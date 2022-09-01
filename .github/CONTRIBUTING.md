@@ -2,10 +2,8 @@
 
 This document outlines the guidelines for contributing to the Indexing Your Heart project and any of its subprojects such as Marteau.
 
-> **Warning**
+> **Warning**  
 > For the most up-to-date information, check the Notion page that contains these guidelines.
-
-**Table of Contents**
 
 ## Ensure files have the appropriate headers
 
