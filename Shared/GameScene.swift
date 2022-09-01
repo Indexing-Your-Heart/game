@@ -37,6 +37,7 @@ class GameScene: SKScene {
         label = childNode(withName: "//helloLabel") as? SKLabelNode
         if let label = label {
             label.alpha = 0.0
+            label.text = NSLocalizedString("example.hello_world", comment: "Hello, world!")
             label.run(SKAction.fadeIn(withDuration: 2.0))
         }
 

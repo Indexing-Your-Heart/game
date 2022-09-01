@@ -13,6 +13,7 @@
 		950F6CE828C0EADA007ACB53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 950F6CC228C0EADA007ACB53 /* Assets.xcassets */; };
 		950F6CF828C13BDF007ACB53 /* GameSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F6CF728C13BDF007ACB53 /* GameSceneView.swift */; };
 		950F6CFC28C13D6F007ACB53 /* Entrypoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F6CFB28C13D6F007ACB53 /* Entrypoint.swift */; };
+		950F6CFE28C156A6007ACB53 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 950F6CFD28C156A6007ACB53 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		950F6CE128C0EADA007ACB53 /* Indexing_Your_Heart_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Indexing_Your_Heart_macOS.entitlements; sourceTree = "<group>"; };
 		950F6CF728C13BDF007ACB53 /* GameSceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneView.swift; sourceTree = "<group>"; };
 		950F6CFB28C13D6F007ACB53 /* Entrypoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entrypoint.swift; sourceTree = "<group>"; };
+		950F6CFD28C156A6007ACB53 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 				950F6CC128C0EAD9007ACB53 /* GameScene.swift */,
 				950F6CC228C0EADA007ACB53 /* Assets.xcassets */,
 				950F6CFB28C13D6F007ACB53 /* Entrypoint.swift */,
+				950F6CFD28C156A6007ACB53 /* Localizable.strings */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				950F6CE428C0EADA007ACB53 /* GameScene.sks in Resources */,
+				950F6CFE28C156A6007ACB53 /* Localizable.strings in Resources */,
 				950F6CE228C0EADA007ACB53 /* Actions.sks in Resources */,
 				950F6CE828C0EADA007ACB53 /* Assets.xcassets in Resources */,
 			);
