@@ -14,6 +14,8 @@
 		950F6CF828C13BDF007ACB53 /* GameSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F6CF728C13BDF007ACB53 /* GameSceneView.swift */; };
 		950F6CFC28C13D6F007ACB53 /* Entrypoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F6CFB28C13D6F007ACB53 /* Entrypoint.swift */; };
 		950F6CFE28C156A6007ACB53 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 950F6CFD28C156A6007ACB53 /* Localizable.strings */; };
+		950F6D0128C27442007ACB53 /* CranberrySprite in Frameworks */ = {isa = PBXBuildFile; productRef = 950F6D0028C27442007ACB53 /* CranberrySprite */; };
+		950F6D0428C27489007ACB53 /* Bunker in Frameworks */ = {isa = PBXBuildFile; productRef = 950F6D0328C27489007ACB53 /* Bunker */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,9 @@
 		950F6CF728C13BDF007ACB53 /* GameSceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneView.swift; sourceTree = "<group>"; };
 		950F6CFB28C13D6F007ACB53 /* Entrypoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entrypoint.swift; sourceTree = "<group>"; };
 		950F6CFD28C156A6007ACB53 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		950F6D0728C2757C007ACB53 /* Salmon Serif 9 Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Serif 9 Bold.ttf"; sourceTree = "<group>"; };
+		950F6D0828C2757C007ACB53 /* Salmon Mono 9 Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Mono 9 Regular.ttf"; sourceTree = "<group>"; };
+		950F6D0928C2757C007ACB53 /* Salmon Sans 9 Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Sans 9 Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +38,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				950F6D0128C27442007ACB53 /* CranberrySprite in Frameworks */,
+				950F6D0428C27489007ACB53 /* Bunker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,10 +58,10 @@
 		950F6CBE28C0EAD8007ACB53 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				950F6D0528C274C3007ACB53 /* Assets */,
 				950F6CF428C13BB2007ACB53 /* Views */,
 				950F6CF328C13BAA007ACB53 /* Scenes */,
 				950F6CC128C0EAD9007ACB53 /* GameScene.swift */,
-				950F6CC228C0EADA007ACB53 /* Assets.xcassets */,
 				950F6CFB28C13D6F007ACB53 /* Entrypoint.swift */,
 				950F6CFD28C156A6007ACB53 /* Localizable.strings */,
 			);
@@ -102,6 +109,25 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		950F6D0528C274C3007ACB53 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				950F6D0628C2752F007ACB53 /* Fonts */,
+				950F6CC228C0EADA007ACB53 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		950F6D0628C2752F007ACB53 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				950F6D0828C2757C007ACB53 /* Salmon Mono 9 Regular.ttf */,
+				950F6D0928C2757C007ACB53 /* Salmon Sans 9 Regular.ttf */,
+				950F6D0728C2757C007ACB53 /* Salmon Serif 9 Bold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -119,6 +145,10 @@
 			dependencies = (
 			);
 			name = "Indexing Your Heart";
+			packageProductDependencies = (
+				950F6D0028C27442007ACB53 /* CranberrySprite */,
+				950F6D0328C27489007ACB53 /* Bunker */,
+			);
 			productName = "Indexing Your Heart iOS";
 			productReference = 950F6CC728C0EADA007ACB53 /* Indexing Your Heart.app */;
 			productType = "com.apple.product-type.application";
@@ -147,6 +177,10 @@
 				Base,
 			);
 			mainGroup = 950F6CB928C0EAD8007ACB53;
+			packageReferences = (
+				950F6CFF28C27442007ACB53 /* XCRemoteSwiftPackageReference "cranberrysprite" */,
+				950F6D0228C27489007ACB53 /* XCRemoteSwiftPackageReference "bunker" */,
+			);
 			productRefGroup = 950F6CC828C0EADA007ACB53 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -408,6 +442,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		950F6CFF28C27442007ACB53 /* XCRemoteSwiftPackageReference "cranberrysprite" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alicerunsonfedora/cranberrysprite";
+			requirement = {
+				branch = root;
+				kind = branch;
+			};
+		};
+		950F6D0228C27489007ACB53 /* XCRemoteSwiftPackageReference "bunker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alicerunsonfedora/bunker.git";
+			requirement = {
+				branch = root;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		950F6D0028C27442007ACB53 /* CranberrySprite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 950F6CFF28C27442007ACB53 /* XCRemoteSwiftPackageReference "cranberrysprite" */;
+			productName = CranberrySprite;
+		};
+		950F6D0328C27489007ACB53 /* Bunker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 950F6D0228C27489007ACB53 /* XCRemoteSwiftPackageReference "bunker" */;
+			productName = Bunker;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 950F6CBA28C0EAD8007ACB53 /* Project object */;
 }

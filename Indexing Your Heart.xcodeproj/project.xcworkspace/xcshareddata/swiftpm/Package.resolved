@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "bunker",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/alicerunsonfedora/bunker.git",
+      "state" : {
+        "branch" : "root",
+        "revision" : "a60d1816cc23de85496d901b12c4057561eb0713"
+      }
+    },
+    {
+      "identity" : "cranberrysprite",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/alicerunsonfedora/cranberrysprite",
+      "state" : {
+        "branch" : "root",
+        "revision" : "f33fa6074fc20346d70ac7c017e1d2fc837e67e2"
+      }
+    }
+  ],
+  "version" : 2
+}
