@@ -1,8 +1,8 @@
 # Indexing Your Heart (Codename "Head Over Heels")
 
 **Indexing Your Heart** is an upcoming puzzle game from _Created by Marquis Kurt_
-where you play as anthromorphic coyote aiming to foster a relationship while wearing
-a hammer costume.
+where you play as anthropomorphic coyote aiming to foster a relationship while
+wearing a hammer costume.
 
 > :warning: This project is still in its infancy, so some details and mechanics may
 > not work as intended. If you'd like to support the project,
