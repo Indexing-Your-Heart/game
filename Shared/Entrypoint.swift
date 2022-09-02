@@ -21,6 +21,7 @@ struct IndexingYourHeartApp: App {
     var body: some Scene {
         WindowGroup {
             GameSceneView()
+                .preferredColorScheme(.dark)
         }
     }
 }
