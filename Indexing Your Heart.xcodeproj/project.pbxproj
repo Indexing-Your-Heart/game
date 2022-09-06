@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		95011E6C28C7796900E511F3 /* FontFamily.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95011E6B28C7796900E511F3 /* FontFamily.swift */; };
+		95011E6D28C77A4200E511F3 /* Salmon Serif 9 Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 950F6D0728C2757C007ACB53 /* Salmon Serif 9 Bold.ttf */; };
+		95011E6E28C77A4200E511F3 /* Salmon Mono 9 Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 950F6D0828C2757C007ACB53 /* Salmon Mono 9 Regular.ttf */; };
+		95011E6F28C77A4200E511F3 /* Salmon Sans 9 Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 950F6D0928C2757C007ACB53 /* Salmon Sans 9 Regular.ttf */; };
+		95011E7128C77B1D00E511F3 /* Salmon Sans 9 Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95011E7028C77B1300E511F3 /* Salmon Sans 9 Bold.ttf */; };
+		95011E7328C77B9800E511F3 /* Salmon Serif 9 Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95011E7228C77B9800E511F3 /* Salmon Serif 9 Regular.ttf */; };
 		950F6CE228C0EADA007ACB53 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 950F6CBF28C0EAD9007ACB53 /* Actions.sks */; };
 		950F6CE428C0EADA007ACB53 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 950F6CC028C0EAD9007ACB53 /* GameScene.sks */; };
 		950F6CE628C0EADA007ACB53 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F6CC128C0EAD9007ACB53 /* GameScene.swift */; };
@@ -19,6 +25,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		95011E6B28C7796900E511F3 /* FontFamily.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontFamily.swift; sourceTree = "<group>"; };
+		95011E7028C77B1300E511F3 /* Salmon Sans 9 Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Sans 9 Bold.ttf"; sourceTree = "<group>"; };
+		95011E7228C77B9800E511F3 /* Salmon Serif 9 Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Serif 9 Regular.ttf"; sourceTree = "<group>"; };
 		950F6CBF28C0EAD9007ACB53 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		950F6CC028C0EAD9007ACB53 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		950F6CC128C0EAD9007ACB53 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -48,6 +57,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		95011E6A28C7795300E511F3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				95011E6B28C7796900E511F3 /* FontFamily.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		950F6CB928C0EAD8007ACB53 = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +79,7 @@
 		950F6CBE28C0EAD8007ACB53 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				95011E6A28C7795300E511F3 /* Extensions */,
 				950F6D0528C274C3007ACB53 /* Assets */,
 				950F6CF428C13BB2007ACB53 /* Views */,
 				950F6CF328C13BAA007ACB53 /* Scenes */,
@@ -125,8 +143,10 @@
 		950F6D0628C2752F007ACB53 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				95011E7228C77B9800E511F3 /* Salmon Serif 9 Regular.ttf */,
 				950F6D0828C2757C007ACB53 /* Salmon Mono 9 Regular.ttf */,
 				950F6D0928C2757C007ACB53 /* Salmon Sans 9 Regular.ttf */,
+				95011E7028C77B1300E511F3 /* Salmon Sans 9 Bold.ttf */,
 				950F6D0728C2757C007ACB53 /* Salmon Serif 9 Bold.ttf */,
 			);
 			path = Fonts;
@@ -199,9 +219,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95011E6F28C77A4200E511F3 /* Salmon Sans 9 Regular.ttf in Resources */,
 				950F6CE428C0EADA007ACB53 /* GameScene.sks in Resources */,
 				950F6CFE28C156A6007ACB53 /* Localizable.strings in Resources */,
+				95011E7128C77B1D00E511F3 /* Salmon Sans 9 Bold.ttf in Resources */,
 				950F6CE228C0EADA007ACB53 /* Actions.sks in Resources */,
+				95011E6E28C77A4200E511F3 /* Salmon Mono 9 Regular.ttf in Resources */,
+				95011E7328C77B9800E511F3 /* Salmon Serif 9 Regular.ttf in Resources */,
+				95011E6D28C77A4200E511F3 /* Salmon Serif 9 Bold.ttf in Resources */,
 				950F6CE828C0EADA007ACB53 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -237,6 +262,7 @@
 			files = (
 				950F6CE628C0EADA007ACB53 /* GameScene.swift in Sources */,
 				950F6CF828C13BDF007ACB53 /* GameSceneView.swift in Sources */,
+				95011E6C28C7796900E511F3 /* FontFamily.swift in Sources */,
 				950F6CFC28C13D6F007ACB53 /* Entrypoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
