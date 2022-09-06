@@ -89,6 +89,7 @@ extension AppDelegate: UIApplicationDelegate {
                 }
             }
         }
+        setUpGameCenterAccessPoint()
         return true
     }
 }
