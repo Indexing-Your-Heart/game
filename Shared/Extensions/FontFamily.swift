@@ -20,14 +20,16 @@ extension Font {
     /// - Parameter style: The SwiftUI font style to be matched against.
     static func salmonEquivalent(for style: Font.TextStyle) -> Font {
         switch style {
-        case .largeTitle, .title:
-            return .custom("Salmon Sans 9 Bold", size: 36)
+        case .largeTitle:
+            return .custom("Salmon Serif 9 Bold", size: 36, relativeTo: .largeTitle)
+        case .title:
+            return .custom("Salmon Sans 9 Bold", size: 36, relativeTo: .title)
         case .title2:
-            return .custom("Salmon Sans 9 Regular", size: 24)
+            return .custom("Salmon Sans 9 Regular", size: 24, relativeTo: .title2)
         case .footnote:
-            return .custom("Salmon Serif 9 Regular", size: 9)
+            return .custom("Salmon Serif 9 Regular", size: 9, relativeTo: .footnote)
         default:
-            return .custom("Salmon Sans 9 Regular", size: 18)
+            return .custom("Salmon Sans 9 Regular", size: 18, relativeTo: .body)
         }
     }
 
@@ -43,6 +45,8 @@ struct SalmonFontFamily_Previews: PreviewProvider {
         VStack(spacing: 16) {
             Text("example.hello_world")
                 .font(.salmonEquivalent(for: .largeTitle))
+            Text("example.hello_world")
+                .font(.salmonEquivalent(for: .title))
             Text("example.hello_world")
                 .font(.salmonEquivalent(for: .title2))
             Text("example.hello_world")

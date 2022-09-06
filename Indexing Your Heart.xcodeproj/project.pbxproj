@@ -22,6 +22,7 @@
 		950F6CFE28C156A6007ACB53 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 950F6CFD28C156A6007ACB53 /* Localizable.strings */; };
 		950F6D0128C27442007ACB53 /* CranberrySprite in Frameworks */ = {isa = PBXBuildFile; productRef = 950F6D0028C27442007ACB53 /* CranberrySprite */; };
 		950F6D0428C27489007ACB53 /* Bunker in Frameworks */ = {isa = PBXBuildFile; productRef = 950F6D0328C27489007ACB53 /* Bunker */; };
+		9524434A28C781FB005F91E1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9524434928C781FB005F91E1 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		950F6D0728C2757C007ACB53 /* Salmon Serif 9 Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Serif 9 Bold.ttf"; sourceTree = "<group>"; };
 		950F6D0828C2757C007ACB53 /* Salmon Mono 9 Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Mono 9 Regular.ttf"; sourceTree = "<group>"; };
 		950F6D0928C2757C007ACB53 /* Salmon Sans 9 Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Sans 9 Regular.ttf"; sourceTree = "<group>"; };
+		9524434928C781FB005F91E1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		95BCB92728C282E0004AFDA3 /* Indexing-Your-Heart-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Indexing-Your-Heart-Info.plist"; sourceTree = "<group>"; };
 		95BCB92828C28330004AFDA3 /* Indexing Your Heart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Indexing Your Heart.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -127,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				950F6CF728C13BDF007ACB53 /* GameSceneView.swift */,
+				9524434928C781FB005F91E1 /* ContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9524434A28C781FB005F91E1 /* ContentView.swift in Sources */,
 				950F6CE628C0EADA007ACB53 /* GameScene.swift in Sources */,
 				950F6CF828C13BDF007ACB53 /* GameSceneView.swift in Sources */,
 				95011E6C28C7796900E511F3 /* FontFamily.swift in Sources */,
@@ -320,6 +324,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -372,6 +378,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -395,10 +403,11 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.puzzle-games";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -434,10 +443,11 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.puzzle-games";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

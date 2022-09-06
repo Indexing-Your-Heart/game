@@ -14,4 +14,15 @@
  details.
 */
 
+// MARK: - General Content
+"general.app_name" = "Indexing Your Heart";
+"general.copyright" = "(C) 2021-2022 Marquis Kurt. Licensed under the CNPLv7+.";
+
+// MARK: - Development Lifecycle States
+"app_states.prototype" = "Prototype";
+"app_states.alpha" = "Alpha";
+"app_states.beta" = "Beta";
+
+// MARK: - Example Content
 "example.hello_world" = "Hello, world!";
+"example.demo_prompt" = "Run Demo Scene";

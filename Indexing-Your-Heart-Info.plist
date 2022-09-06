@@ -6,11 +6,11 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Shared/Assets/Fonts/Salmon Mono 9 Regular.ttf</string>
-		<string>Shared/Assets/Fonts/Salmon Sans 9 Regular.ttf</string>
-		<string>Shared/Assets/Fonts/Salmon Serif 9 Bold.ttf</string>
-		<string>Shared/Assets/Fonts/Salmon Sans 9 Bold.ttf</string>
-		<string>Shared/Assets/Fonts/Salmon Serif 9 Regular.ttf</string>
+		<string>Salmon Mono 9 Regular.ttf</string>
+		<string>Salmon Sans 9 Regular.ttf</string>
+		<string>Salmon Serif 9 Bold.ttf</string>
+		<string>Salmon Sans 9 Bold.ttf</string>
+		<string>Salmon Serif 9 Regular.ttf</string>
 	</array>
 </dict>
 </plist>

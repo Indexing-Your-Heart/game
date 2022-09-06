@@ -28,7 +28,6 @@ struct GameSceneView: View {
             Color.black
             SpriteView(scene: gameScene, transition: .fade(withDuration: 2))
                 .aspectRatio(16 / 9, contentMode: .fit)
-                .scaledToFill()
         }
     }
 }
