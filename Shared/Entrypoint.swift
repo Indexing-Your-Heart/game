@@ -21,9 +21,9 @@ import SwiftUI
 @main
 struct IndexingYourHeartApp: App {
 #if os(macOS)
-    @NSApplicationDelegateAdaptor(MacAppDelegateAdaptor.self) var delegate
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var delegate
 #else
-    @UIApplicationDelegateAdaptor(MobileAppDelegateAdaptor.self) var delegate
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 #endif
 
     var body: some Scene {
@@ -36,25 +36,3 @@ struct IndexingYourHeartApp: App {
         }
     }
 }
-
-// MARK: - Mac App Delegate Adaptor
-
-#if os(macOS)
-class MacAppDelegateAdaptor: NSObject, NSApplicationDelegate {
-    func applicationDidBecomeActive(_: Notification) {
-        // Forcibly set the aspect ratio to 16:10. This prevents awkward resizing.
-        NSApplication.shared.keyWindow?.aspectRatio = .init(width: 16, height: 10)
-    }
-
-    // Terminates after the window is closed, which is intended behavior.
-    func applicationShouldTerminateAfterLastWindowClosed(_: NSApplication) -> Bool {
-        true
-    }
-}
-#endif
-
-// MARK: - iOS App Delegate Adaptor
-
-#if os(iOS)
-class MobileAppDelegateAdaptor: NSObject, UIApplicationDelegate {}
-#endif

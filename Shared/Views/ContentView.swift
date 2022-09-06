@@ -13,9 +13,10 @@
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
 
+import GameKit
 import SwiftUI
 
-enum NavigationState {
+enum NavigationState: Equatable {
     case mainMenu
     case game
 }
@@ -40,6 +41,13 @@ struct ContentView: View {
             case .game:
                 GameSceneView()
             }
+        }
+        .onAppear {
+            GKAccessPoint.shared.isActive = true
+        }
+        .onChange(of: navigationState) { newValue in
+            navigationState = newValue
+            GKAccessPoint.shared.isActive = (newValue == .mainMenu)
         }
     }
 
