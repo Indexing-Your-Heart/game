@@ -67,6 +67,7 @@ struct ContentView: View {
     }
 }
 
+/// The main menu's game title.
 private struct MenuTitle: View {
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
@@ -78,11 +79,12 @@ private struct MenuTitle: View {
                 .font(.salmonEquivalent(for: .body))
                 .textCase(.uppercase)
                 .bold()
+                .padding(.vertical, 2)
                 .padding(.horizontal, 16)
                 .background(
                     Capsule()
                         .fill(
-                            Color.blue.gradient
+                            Color("DebugColor").gradient
                                 .shadow(.drop(radius: 2, y: 2))
                         )
                 )

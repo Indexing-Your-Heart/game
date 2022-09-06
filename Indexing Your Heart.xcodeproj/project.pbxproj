@@ -23,6 +23,7 @@
 		950F6D0128C27442007ACB53 /* CranberrySprite in Frameworks */ = {isa = PBXBuildFile; productRef = 950F6D0028C27442007ACB53 /* CranberrySprite */; };
 		950F6D0428C27489007ACB53 /* Bunker in Frameworks */ = {isa = PBXBuildFile; productRef = 950F6D0328C27489007ACB53 /* Bunker */; };
 		9524434A28C781FB005F91E1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9524434928C781FB005F91E1 /* ContentView.swift */; };
+		956B604128C7A2200031794C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 956B604328C7A2200031794C /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		950F6D0828C2757C007ACB53 /* Salmon Mono 9 Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Mono 9 Regular.ttf"; sourceTree = "<group>"; };
 		950F6D0928C2757C007ACB53 /* Salmon Sans 9 Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Sans 9 Regular.ttf"; sourceTree = "<group>"; };
 		9524434928C781FB005F91E1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		956B604228C7A2200031794C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		95BCB92728C282E0004AFDA3 /* Indexing-Your-Heart-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Indexing-Your-Heart-Info.plist"; sourceTree = "<group>"; };
 		95BCB92828C28330004AFDA3 /* Indexing Your Heart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Indexing Your Heart.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,13 +83,13 @@
 		950F6CBE28C0EAD8007ACB53 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				956B604428C7A2270031794C /* Localizations */,
 				95011E6A28C7795300E511F3 /* Extensions */,
 				950F6D0528C274C3007ACB53 /* Assets */,
 				950F6CF428C13BB2007ACB53 /* Views */,
 				950F6CF328C13BAA007ACB53 /* Scenes */,
 				950F6CC128C0EAD9007ACB53 /* GameScene.swift */,
 				950F6CFB28C13D6F007ACB53 /* Entrypoint.swift */,
-				950F6CFD28C156A6007ACB53 /* Localizable.strings */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -153,6 +155,15 @@
 				950F6D0728C2757C007ACB53 /* Salmon Serif 9 Bold.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		956B604428C7A2270031794C /* Localizations */ = {
+			isa = PBXGroup;
+			children = (
+				950F6CFD28C156A6007ACB53 /* Localizable.strings */,
+				956B604328C7A2200031794C /* InfoPlist.strings */,
+			);
+			path = Localizations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,6 +242,7 @@
 				95011E7328C77B9800E511F3 /* Salmon Serif 9 Regular.ttf in Resources */,
 				95011E6D28C77A4200E511F3 /* Salmon Serif 9 Bold.ttf in Resources */,
 				950F6CE828C0EADA007ACB53 /* Assets.xcassets in Resources */,
+				956B604128C7A2200031794C /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +284,17 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		956B604328C7A2200031794C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				956B604228C7A2200031794C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		950F6CEA28C0EADA007ACB53 /* Debug */ = {
@@ -401,6 +424,7 @@
 				INFOPLIST_FILE = "Indexing-Your-Heart-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Indexing Your Heart";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.puzzle-games";
+				INFOPLIST_KEY_NSHumanReadableCopyright = general.copyright;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -441,6 +465,7 @@
 				INFOPLIST_FILE = "Indexing-Your-Heart-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Indexing Your Heart";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.puzzle-games";
+				INFOPLIST_KEY_NSHumanReadableCopyright = general.copyright;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
