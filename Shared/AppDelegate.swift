@@ -1,5 +1,5 @@
 //
-//  GameSceneView.swift
+//  AppDelegate.swift
 //  Indexing Your Heart
 //
 //  Created by Marquis Kurt on 9/6/22.
