@@ -23,6 +23,7 @@
 		950F6D0128C27442007ACB53 /* CranberrySprite in Frameworks */ = {isa = PBXBuildFile; productRef = 950F6D0028C27442007ACB53 /* CranberrySprite */; };
 		950F6D0428C27489007ACB53 /* Bunker in Frameworks */ = {isa = PBXBuildFile; productRef = 950F6D0328C27489007ACB53 /* Bunker */; };
 		9524434A28C781FB005F91E1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9524434928C781FB005F91E1 /* ContentView.swift */; };
+		9566395628C929A300D9E852 /* JensonKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9566395528C929A300D9E852 /* JensonKit */; };
 		956B604128C7A2200031794C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 956B604328C7A2200031794C /* InfoPlist.strings */; };
 		956B604628C7A4730031794C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956B604528C7A4730031794C /* AppDelegate.swift */; };
 		956B604E28C7B7480031794C /* Testbench.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956B604D28C7B7480031794C /* Testbench.swift */; };
@@ -69,6 +70,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				950F6D0128C27442007ACB53 /* CranberrySprite in Frameworks */,
+				9566395628C929A300D9E852 /* JensonKit in Frameworks */,
 				950F6D0428C27489007ACB53 /* Bunker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,6 +221,7 @@
 			packageProductDependencies = (
 				950F6D0028C27442007ACB53 /* CranberrySprite */,
 				950F6D0328C27489007ACB53 /* Bunker */,
+				9566395528C929A300D9E852 /* JensonKit */,
 			);
 			productName = "Indexing Your Heart iOS";
 			productReference = 950F6CC728C0EADA007ACB53 /* Indexing Your Heart.app */;
@@ -273,6 +276,7 @@
 			packageReferences = (
 				950F6CFF28C27442007ACB53 /* XCRemoteSwiftPackageReference "cranberrysprite" */,
 				950F6D0228C27489007ACB53 /* XCRemoteSwiftPackageReference "bunker" */,
+				9566395428C929A300D9E852 /* XCRemoteSwiftPackageReference "JensonKit" */,
 			);
 			productRefGroup = 950F6CC828C0EADA007ACB53 /* Products */;
 			projectDirPath = "";
@@ -661,6 +665,14 @@
 				kind = branch;
 			};
 		};
+		9566395428C929A300D9E852 /* XCRemoteSwiftPackageReference "JensonKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Indexing-Your-Heart/JensonKit";
+			requirement = {
+				branch = root;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -673,6 +685,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 950F6D0228C27489007ACB53 /* XCRemoteSwiftPackageReference "bunker" */;
 			productName = Bunker;
+		};
+		9566395528C929A300D9E852 /* JensonKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9566395428C929A300D9E852 /* XCRemoteSwiftPackageReference "JensonKit" */;
+			productName = JensonKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
