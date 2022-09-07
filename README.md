@@ -89,6 +89,11 @@ later. You can learn more about what your rights are by reading the
 under open-source licenses:
 
 - CranberrySprite: Mozilla Public License (v2)
+- Bunker: Mozilla Public License (v2)
+
+Additionally, it contains libraries and projects under ethical-source licenses:
+
+- JensonKit: Cooperative Non-violent Public Licnese (v7+)
 
 You can also view the full list of contributors in the
 [CONTRIBUTORS.md](./CONTRIBUTORS.md) file.
