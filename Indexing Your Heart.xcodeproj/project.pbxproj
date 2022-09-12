@@ -35,6 +35,14 @@
 		95DB208428CFA8190079D624 /* ch02-le-marteau-timide.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 95DB207C28CFA8180079D624 /* ch02-le-marteau-timide.jenson */; };
 		95DB208528CFA8190079D624 /* ch03-ecouter-la-vague.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 95DB207D28CFA8180079D624 /* ch03-ecouter-la-vague.jenson */; };
 		95DB208628CFA8190079D624 /* ch01-mise-en-abyme.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 95DB207E28CFA8190079D624 /* ch01-mise-en-abyme.jenson */; };
+		95DB209028CFA9840079D624 /* ch02.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208828CFA9840079D624 /* ch02.md */; };
+		95DB209128CFA9840079D624 /* ch01.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208928CFA9840079D624 /* ch01.md */; };
+		95DB209228CFA9840079D624 /* ch07.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208A28CFA9840079D624 /* ch07.md */; };
+		95DB209328CFA9840079D624 /* ch05.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208B28CFA9840079D624 /* ch05.md */; };
+		95DB209428CFA9840079D624 /* ch03.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208C28CFA9840079D624 /* ch03.md */; };
+		95DB209528CFA9840079D624 /* ch06.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208D28CFA9840079D624 /* ch06.md */; };
+		95DB209628CFA9840079D624 /* ch04.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208E28CFA9840079D624 /* ch04.md */; };
+		95DB209728CFA9840079D624 /* epilogue.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208F28CFA9840079D624 /* epilogue.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +86,14 @@
 		95DB207C28CFA8180079D624 /* ch02-le-marteau-timide.jenson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ch02-le-marteau-timide.jenson"; sourceTree = "<group>"; };
 		95DB207D28CFA8180079D624 /* ch03-ecouter-la-vague.jenson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ch03-ecouter-la-vague.jenson"; sourceTree = "<group>"; };
 		95DB207E28CFA8190079D624 /* ch01-mise-en-abyme.jenson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ch01-mise-en-abyme.jenson"; sourceTree = "<group>"; };
+		95DB208828CFA9840079D624 /* ch02.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ch02.md; sourceTree = "<group>"; };
+		95DB208928CFA9840079D624 /* ch01.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ch01.md; sourceTree = "<group>"; };
+		95DB208A28CFA9840079D624 /* ch07.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ch07.md; sourceTree = "<group>"; };
+		95DB208B28CFA9840079D624 /* ch05.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ch05.md; sourceTree = "<group>"; };
+		95DB208C28CFA9840079D624 /* ch03.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ch03.md; sourceTree = "<group>"; };
+		95DB208D28CFA9840079D624 /* ch06.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ch06.md; sourceTree = "<group>"; };
+		95DB208E28CFA9840079D624 /* ch04.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ch04.md; sourceTree = "<group>"; };
+		95DB208F28CFA9840079D624 /* epilogue.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = epilogue.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +130,7 @@
 			children = (
 				95BCB92828C28330004AFDA3 /* Indexing Your Heart.entitlements */,
 				95BCB92728C282E0004AFDA3 /* Indexing-Your-Heart-Info.plist */,
+				95DB208728CFA96D0079D624 /* Story Source */,
 				950F6CBE28C0EAD8007ACB53 /* Shared */,
 				950F6CF228C0EB20007ACB53 /* Platforms */,
 				956B604C28C7B7480031794C /* Testbench */,
@@ -124,14 +141,13 @@
 		950F6CBE28C0EAD8007ACB53 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				956B604428C7A2270031794C /* Localizations */,
-				95011E6A28C7795300E511F3 /* Extensions */,
 				950F6D0528C274C3007ACB53 /* Assets */,
-				950F6CF428C13BB2007ACB53 /* Views */,
+				95011E6A28C7795300E511F3 /* Extensions */,
 				950F6CF328C13BAA007ACB53 /* Scenes */,
-				950F6CC128C0EAD9007ACB53 /* GameScene.swift */,
-				950F6CFB28C13D6F007ACB53 /* Entrypoint.swift */,
+				950F6CF428C13BB2007ACB53 /* Views */,
 				956B604528C7A4730031794C /* AppDelegate.swift */,
+				950F6CFB28C13D6F007ACB53 /* Entrypoint.swift */,
+				950F6CC128C0EAD9007ACB53 /* GameScene.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -182,6 +198,7 @@
 		950F6D0528C274C3007ACB53 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				956B604428C7A2270031794C /* Localizations */,
 				95DB207628CFA80C0079D624 /* Story */,
 				950F6D0628C2752F007ACB53 /* Fonts */,
 				950F6CC228C0EADA007ACB53 /* Assets.xcassets */,
@@ -233,6 +250,21 @@
 			path = Story;
 			sourceTree = "<group>";
 		};
+		95DB208728CFA96D0079D624 /* Story Source */ = {
+			isa = PBXGroup;
+			children = (
+				95DB208928CFA9840079D624 /* ch01.md */,
+				95DB208828CFA9840079D624 /* ch02.md */,
+				95DB208C28CFA9840079D624 /* ch03.md */,
+				95DB208E28CFA9840079D624 /* ch04.md */,
+				95DB208B28CFA9840079D624 /* ch05.md */,
+				95DB208D28CFA9840079D624 /* ch06.md */,
+				95DB208A28CFA9840079D624 /* ch07.md */,
+				95DB208F28CFA9840079D624 /* epilogue.md */,
+			);
+			path = "Story Source";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -240,6 +272,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 950F6CEC28C0EADA007ACB53 /* Build configuration list for PBXNativeTarget "Indexing Your Heart" */;
 			buildPhases = (
+				95DB209828CFA9A70079D624 /* Convert Story Scripts */,
 				950F6CFA28C13D02007ACB53 /* Run SwiftLint */,
 				950F6CC328C0EADA007ACB53 /* Sources */,
 				950F6CC428C0EADA007ACB53 /* Frameworks */,
@@ -325,19 +358,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95DB209228CFA9840079D624 /* ch07.md in Resources */,
 				95011E6F28C77A4200E511F3 /* Salmon Sans 9 Regular.ttf in Resources */,
 				950F6CE428C0EADA007ACB53 /* GameScene.sks in Resources */,
 				950F6CFE28C156A6007ACB53 /* Localizable.strings in Resources */,
+				95DB209028CFA9840079D624 /* ch02.md in Resources */,
 				95DB208328CFA8190079D624 /* ch06-les-conseils-pour-les-jeunes.jenson in Resources */,
+				95DB209328CFA9840079D624 /* ch05.md in Resources */,
 				95DB208628CFA8190079D624 /* ch01-mise-en-abyme.jenson in Resources */,
 				95011E7128C77B1D00E511F3 /* Salmon Sans 9 Bold.ttf in Resources */,
 				950F6CE228C0EADA007ACB53 /* Actions.sks in Resources */,
 				95DB208228CFA8190079D624 /* ch05-la-lumiere-sombre.jenson in Resources */,
 				95DB207F28CFA8190079D624 /* ch04-la-reveuse-sentimental.jenson in Resources */,
+				95DB209728CFA9840079D624 /* epilogue.md in Resources */,
 				95DB208528CFA8190079D624 /* ch03-ecouter-la-vague.jenson in Resources */,
 				95DB208428CFA8190079D624 /* ch02-le-marteau-timide.jenson in Resources */,
+				95DB209428CFA9840079D624 /* ch03.md in Resources */,
+				95DB209628CFA9840079D624 /* ch04.md in Resources */,
+				95DB209528CFA9840079D624 /* ch06.md in Resources */,
 				95011E6E28C77A4200E511F3 /* Salmon Mono 9 Regular.ttf in Resources */,
 				95DB208128CFA8190079D624 /* epilogue.jenson in Resources */,
+				95DB209128CFA9840079D624 /* ch01.md in Resources */,
 				95DB208028CFA8190079D624 /* ch07-changer-de-vie.jenson in Resources */,
 				95011E7328C77B9800E511F3 /* Salmon Serif 9 Regular.ttf in Resources */,
 				95011E6D28C77A4200E511F3 /* Salmon Serif 9 Bold.ttf in Resources */,
@@ -374,6 +415,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		95DB209828CFA9A70079D624 /* Convert Story Scripts */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(PROJECT_DIR)/Story Source/ch01.md",
+				"$(PROJECT_DIR)/Story Source/ch02.md",
+				"$(PROJECT_DIR)/Story Source/ch03.md",
+				"$(PROJECT_DIR)/Story Source/ch04.md",
+				"$(PROJECT_DIR)/Story Source/ch05.md",
+				"$(PROJECT_DIR)/Story Source/ch06.md",
+				"$(PROJECT_DIR)/Story Source/ch07.md",
+				"$(PROJECT_DIR)/Story Source/epilogue.md",
+			);
+			name = "Convert Story Scripts";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(PROJECT_DIR)/Shared/Assets/Story/ch01-mise-en-abyme.jenson",
+				"$(PROJECT_DIR)/Shared/Assets/Story/ch02-le-marteau-timide.jenson",
+				"$(PROJECT_DIR)/Shared/Assets/Story/ch03-ecouter-la-vague.jenson",
+				"$(PROJECT_DIR)/Shared/Assets/Story/ch04-la-reveuse-sentimental.jenson",
+				"$(PROJECT_DIR)/Shared/Assets/Story/ch05-la-lumiere-sombre.jenson",
+				"$(PROJECT_DIR)/Shared/Assets/Story/ch06-les-conseils-pour-les-jeunes.jenson",
+				"$(PROJECT_DIR)/Shared/Assets/Story/ch07-changer-de-vie.jenson",
+				"$(PROJECT_DIR)/Shared/Assets/Story/epilogue.jenson",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/opt/homebrew/bin\"\nif which marteau >/dev/null; then\n  ./jenson-convert.sh\nelse\n  echo \"warning: Marteau not installed. Skipping story conversions. To squelch this warning, install Marteau with 'brew install'.\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
