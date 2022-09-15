@@ -14,51 +14,26 @@
 //  details.
 
 import SpriteKit
+import CranberrySprite
 
 class GameScene: SKScene {
     fileprivate var label: SKLabelNode?
     fileprivate var spinnyNode: SKShapeNode?
+    var gameDelegate: GameSceneDelegate?
+    var world: CSTileMapParseable?
 
     class func newGameScene() -> GameScene {
-        // Load 'GameScene.sks' as an SKScene.
         guard let scene = SKScene(fileNamed: "GameScene") as? GameScene else {
             print("Failed to load GameScene.sks")
             abort()
         }
-
-        // Set the scale mode to scale to fit the window
         scene.scaleMode = .aspectFill
-
         return scene
     }
 
-    func setUpScene() {
-        // Get label node from scene and store it for use later
-        label = childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = label {
-            label.alpha = 0.0
-            label.text = NSLocalizedString("example.hello_world", comment: "Hello, world!")
-            label.fontName = "Salmon Serif 9 Bold"
-            label.run(SKAction.fadeIn(withDuration: 2.0))
-        }
-
-        // Create shape node to use during mouse interaction
-        let width = (size.width + size.height) * 0.05
-        spinnyNode = SKShapeNode(rectOf: CGSize(width: width, height: width), cornerRadius: width * 0.3)
-
-        if let spinnyNode = spinnyNode {
-            spinnyNode.lineWidth = 4.0
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-            spinnyNode.run(SKAction.sequence([
-                SKAction.wait(forDuration: 0.5),
-                SKAction.fadeOut(withDuration: 0.5),
-                SKAction.removeFromParent()
-            ]))
-        }
-    }
-
     override func didMove(to _: SKView) {
-        setUpScene()
+        gameDelegate = self
+        gameDelegate?.setup()
     }
 
     func makeSpinny(at pos: CGPoint, color: SKColor) {
@@ -107,7 +82,7 @@ extension GameScene {
 }
 #endif
 
-#if os(OSX)
+#if os(macOS)
 // Mouse-based event handling
 extension GameScene {
     override func mouseDown(with event: NSEvent) {
@@ -126,3 +101,40 @@ extension GameScene {
     }
 }
 #endif
+
+extension GameScene: GameSceneDelegate {
+    func applyOnTile(from definition: CSTileMapDefinition) {
+        fatalError("applyOnTile")
+    }
+
+    func setup() {
+        // Get label node from scene and store it for use later
+        label = childNode(withName: "//helloLabel") as? SKLabelNode
+        if let label = label {
+            label.alpha = 0.0
+            label.text = NSLocalizedString("example.hello_world", comment: "Hello, world!")
+            label.fontName = "Salmon Serif 9 Bold"
+            label.run(SKAction.fadeIn(withDuration: 2.0))
+        }
+
+        // Create shape node to use during mouse interaction
+        let width = (size.width + size.height) * 0.05
+        spinnyNode = SKShapeNode(rectOf: CGSize(width: width, height: width), cornerRadius: width * 0.3)
+
+        if let spinnyNode = spinnyNode {
+            spinnyNode.lineWidth = 4.0
+            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
+            spinnyNode.run(SKAction.sequence([
+                SKAction.wait(forDuration: 0.5),
+                SKAction.fadeOut(withDuration: 0.5),
+                SKAction.removeFromParent()
+            ]))
+        }
+    }
+
+    func redraw() {
+
+    }
+
+
+}
