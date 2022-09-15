@@ -34,5 +34,11 @@ struct IndexingYourHeartApp: App {
                 .frame(minWidth: 912, minHeight: 570)
 #endif
         }
+
+#if os(macOS)
+        Settings {
+            SettingsView()
+        }
+#endif
     }
 }

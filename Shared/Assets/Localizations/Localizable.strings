@@ -17,6 +17,7 @@
 // MARK: - General Content
 "general.app_name" = "Indexing Your Heart";
 "general.copyright" = "(C) 2021-2022 Marquis Kurt. Licensed under the CNPLv7+.";
+"general.dismiss" = "Done";
 
 // MARK: - Development Lifecycle States
 "app_states.prototype" = "Prototype";
@@ -26,3 +27,9 @@
 // MARK: - Example Content
 "example.hello_world" = "Hello, world!";
 "example.demo_prompt" = "Run Demo Scene";
+
+// MARK: - Settings
+"settings.name" = "Settings";
+"settings.debugging.title" = "Debugging";
+"settings.debugging.fps" = "Show Frames Per Second";
+"settings.debugging.nodes" = "Show Node Count";

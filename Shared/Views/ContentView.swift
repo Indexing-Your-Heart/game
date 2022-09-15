@@ -23,6 +23,7 @@ enum NavigationState: Equatable {
 
 struct ContentView: View {
     @State private var navigationState: NavigationState = .mainMenu
+    @State private var displaySettings = false
     var body: some View {
         Group {
             switch navigationState {
@@ -63,6 +64,15 @@ struct ContentView: View {
                 } label: {
                     Text("example.demo_prompt")
                 }
+#if os(iOS)
+                Button {
+                    withAnimation {
+                        displaySettings.toggle()
+                    }
+                } label: {
+                    Text("Settings")
+                }
+#endif
             }
             .buttonStyle(.plain)
             .font(.salmonEquivalent(for: .body))
@@ -72,6 +82,11 @@ struct ContentView: View {
                 .padding(.bottom, 16)
         }
         .foregroundColor(.white)
+#if os(iOS)
+            .sheet(isPresented: $displaySettings) {
+                SettingsView()
+            }
+#endif
     }
 }
 

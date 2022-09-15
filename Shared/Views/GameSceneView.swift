@@ -17,6 +17,10 @@ import SpriteKit
 import SwiftUI
 
 struct GameSceneView: View {
+    @AppStorage("dbg:show-nodes") var dbgShowNodes = false
+    @AppStorage("dbg:show-fps") var dbgShowFPS = false
+    @State private var debugOptions: SpriteView.DebugOptions = []
+
     private var gameScene: SKScene = {
         let scene = GameScene.newGameScene()
         // Write any additional logic for setup here.
@@ -26,8 +30,12 @@ struct GameSceneView: View {
     var body: some View {
         ZStack {
             Color.black
-            SpriteView(scene: gameScene, transition: .fade(withDuration: 2))
+            SpriteView(scene: gameScene, transition: .fade(withDuration: 2), debugOptions: debugOptions)
                 .aspectRatio(16 / 9, contentMode: .fit)
+        }
+        .onAppear {
+            if dbgShowNodes { debugOptions.insert(.showsNodeCount) }
+            if dbgShowFPS { debugOptions.insert(.showsFPS) }
         }
     }
 }
