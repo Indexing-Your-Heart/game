@@ -26,18 +26,18 @@
 		9533175928D36A2900E6E516 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9533175828D36A2900E6E516 /* SettingsView.swift */; };
 		9533175C28D371E500E6E516 /* SettingsDebuggingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9533175B28D371E500E6E516 /* SettingsDebuggingView.swift */; };
 		9533176028D3743100E6E516 /* GameSceneRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9533175F28D3743100E6E516 /* GameSceneRenderable.swift */; };
+		9533176128D3787C00E6E516 /* ch01-mise-en-abyme.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 9533176328D3787C00E6E516 /* ch01-mise-en-abyme.jenson */; };
+		9533176428D3788000E6E516 /* ch02-le-marteau-timide.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 9533176628D3788000E6E516 /* ch02-le-marteau-timide.jenson */; };
+		9533176728D3788200E6E516 /* ch03-ecouter-la-vague.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 9533176928D3788200E6E516 /* ch03-ecouter-la-vague.jenson */; };
+		9533176A28D3788600E6E516 /* ch04-la-reveuse-sentimental.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 9533176C28D3788600E6E516 /* ch04-la-reveuse-sentimental.jenson */; };
+		9533176D28D3788900E6E516 /* ch05-la-lumiere-sombre.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 9533176F28D3788900E6E516 /* ch05-la-lumiere-sombre.jenson */; };
+		9533177028D3788C00E6E516 /* ch06-les-conseils-pour-les-jeunes.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 9533177228D3788C00E6E516 /* ch06-les-conseils-pour-les-jeunes.jenson */; };
+		9533177328D3788F00E6E516 /* ch07-changer-de-vie.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 9533177528D3788F00E6E516 /* ch07-changer-de-vie.jenson */; };
+		9533177628D3789100E6E516 /* epilogue.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 9533177828D3789100E6E516 /* epilogue.jenson */; };
 		9566395628C929A300D9E852 /* JensonKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9566395528C929A300D9E852 /* JensonKit */; };
 		956B604128C7A2200031794C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 956B604328C7A2200031794C /* InfoPlist.strings */; };
 		956B604628C7A4730031794C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956B604528C7A4730031794C /* AppDelegate.swift */; };
 		956B604E28C7B7480031794C /* Testbench.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956B604D28C7B7480031794C /* Testbench.swift */; };
-		95DB207F28CFA8190079D624 /* ch04-la-reveuse-sentimental.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 95DB207728CFA8180079D624 /* ch04-la-reveuse-sentimental.jenson */; };
-		95DB208028CFA8190079D624 /* ch07-changer-de-vie.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 95DB207828CFA8180079D624 /* ch07-changer-de-vie.jenson */; };
-		95DB208128CFA8190079D624 /* epilogue.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 95DB207928CFA8180079D624 /* epilogue.jenson */; };
-		95DB208228CFA8190079D624 /* ch05-la-lumiere-sombre.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 95DB207A28CFA8180079D624 /* ch05-la-lumiere-sombre.jenson */; };
-		95DB208328CFA8190079D624 /* ch06-les-conseils-pour-les-jeunes.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 95DB207B28CFA8180079D624 /* ch06-les-conseils-pour-les-jeunes.jenson */; };
-		95DB208428CFA8190079D624 /* ch02-le-marteau-timide.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 95DB207C28CFA8180079D624 /* ch02-le-marteau-timide.jenson */; };
-		95DB208528CFA8190079D624 /* ch03-ecouter-la-vague.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 95DB207D28CFA8180079D624 /* ch03-ecouter-la-vague.jenson */; };
-		95DB208628CFA8190079D624 /* ch01-mise-en-abyme.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 95DB207E28CFA8190079D624 /* ch01-mise-en-abyme.jenson */; };
 		95DB209028CFA9840079D624 /* ch02.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208828CFA9840079D624 /* ch02.md */; };
 		95DB209128CFA9840079D624 /* ch01.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208928CFA9840079D624 /* ch01.md */; };
 		95DB209228CFA9840079D624 /* ch07.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208A28CFA9840079D624 /* ch07.md */; };
@@ -78,20 +78,20 @@
 		9533175828D36A2900E6E516 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9533175B28D371E500E6E516 /* SettingsDebuggingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDebuggingView.swift; sourceTree = "<group>"; };
 		9533175F28D3743100E6E516 /* GameSceneRenderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneRenderable.swift; sourceTree = "<group>"; };
+		9533176228D3787C00E6E516 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = "Base.lproj/ch01-mise-en-abyme.jenson"; sourceTree = "<group>"; };
+		9533176528D3788000E6E516 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = "Base.lproj/ch02-le-marteau-timide.jenson"; sourceTree = "<group>"; };
+		9533176828D3788200E6E516 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = "Base.lproj/ch03-ecouter-la-vague.jenson"; sourceTree = "<group>"; };
+		9533176B28D3788600E6E516 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = "Base.lproj/ch04-la-reveuse-sentimental.jenson"; sourceTree = "<group>"; };
+		9533176E28D3788900E6E516 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = "Base.lproj/ch05-la-lumiere-sombre.jenson"; sourceTree = "<group>"; };
+		9533177128D3788C00E6E516 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = "Base.lproj/ch06-les-conseils-pour-les-jeunes.jenson"; sourceTree = "<group>"; };
+		9533177428D3788F00E6E516 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = "Base.lproj/ch07-changer-de-vie.jenson"; sourceTree = "<group>"; };
+		9533177728D3789100E6E516 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = Base.lproj/epilogue.jenson; sourceTree = "<group>"; };
 		956B604228C7A2200031794C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		956B604528C7A4730031794C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		956B604B28C7B7480031794C /* Testbench.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Testbench.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		956B604D28C7B7480031794C /* Testbench.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Testbench.swift; sourceTree = "<group>"; };
 		95BCB92728C282E0004AFDA3 /* Indexing-Your-Heart-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Indexing-Your-Heart-Info.plist"; sourceTree = "<group>"; };
 		95BCB92828C28330004AFDA3 /* Indexing Your Heart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Indexing Your Heart.entitlements"; sourceTree = "<group>"; };
-		95DB207728CFA8180079D624 /* ch04-la-reveuse-sentimental.jenson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ch04-la-reveuse-sentimental.jenson"; sourceTree = "<group>"; };
-		95DB207828CFA8180079D624 /* ch07-changer-de-vie.jenson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ch07-changer-de-vie.jenson"; sourceTree = "<group>"; };
-		95DB207928CFA8180079D624 /* epilogue.jenson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = epilogue.jenson; sourceTree = "<group>"; };
-		95DB207A28CFA8180079D624 /* ch05-la-lumiere-sombre.jenson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ch05-la-lumiere-sombre.jenson"; sourceTree = "<group>"; };
-		95DB207B28CFA8180079D624 /* ch06-les-conseils-pour-les-jeunes.jenson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ch06-les-conseils-pour-les-jeunes.jenson"; sourceTree = "<group>"; };
-		95DB207C28CFA8180079D624 /* ch02-le-marteau-timide.jenson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ch02-le-marteau-timide.jenson"; sourceTree = "<group>"; };
-		95DB207D28CFA8180079D624 /* ch03-ecouter-la-vague.jenson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ch03-ecouter-la-vague.jenson"; sourceTree = "<group>"; };
-		95DB207E28CFA8190079D624 /* ch01-mise-en-abyme.jenson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ch01-mise-en-abyme.jenson"; sourceTree = "<group>"; };
 		95DB208828CFA9840079D624 /* ch02.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ch02.md; sourceTree = "<group>"; };
 		95DB208928CFA9840079D624 /* ch01.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ch01.md; sourceTree = "<group>"; };
 		95DB208A28CFA9840079D624 /* ch07.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ch07.md; sourceTree = "<group>"; };
@@ -271,14 +271,14 @@
 		95DB207628CFA80C0079D624 /* Story */ = {
 			isa = PBXGroup;
 			children = (
-				95DB207E28CFA8190079D624 /* ch01-mise-en-abyme.jenson */,
-				95DB207C28CFA8180079D624 /* ch02-le-marteau-timide.jenson */,
-				95DB207D28CFA8180079D624 /* ch03-ecouter-la-vague.jenson */,
-				95DB207728CFA8180079D624 /* ch04-la-reveuse-sentimental.jenson */,
-				95DB207A28CFA8180079D624 /* ch05-la-lumiere-sombre.jenson */,
-				95DB207B28CFA8180079D624 /* ch06-les-conseils-pour-les-jeunes.jenson */,
-				95DB207828CFA8180079D624 /* ch07-changer-de-vie.jenson */,
-				95DB207928CFA8180079D624 /* epilogue.jenson */,
+				9533176328D3787C00E6E516 /* ch01-mise-en-abyme.jenson */,
+				9533176628D3788000E6E516 /* ch02-le-marteau-timide.jenson */,
+				9533176928D3788200E6E516 /* ch03-ecouter-la-vague.jenson */,
+				9533176C28D3788600E6E516 /* ch04-la-reveuse-sentimental.jenson */,
+				9533176F28D3788900E6E516 /* ch05-la-lumiere-sombre.jenson */,
+				9533177228D3788C00E6E516 /* ch06-les-conseils-pour-les-jeunes.jenson */,
+				9533177528D3788F00E6E516 /* ch07-changer-de-vie.jenson */,
+				9533177828D3789100E6E516 /* epilogue.jenson */,
 			);
 			path = Story;
 			sourceTree = "<group>";
@@ -396,23 +396,23 @@
 				950F6CE428C0EADA007ACB53 /* GameScene.sks in Resources */,
 				950F6CFE28C156A6007ACB53 /* Localizable.strings in Resources */,
 				95DB209028CFA9840079D624 /* ch02.md in Resources */,
-				95DB208328CFA8190079D624 /* ch06-les-conseils-pour-les-jeunes.jenson in Resources */,
+				9533177028D3788C00E6E516 /* ch06-les-conseils-pour-les-jeunes.jenson in Resources */,
 				95DB209328CFA9840079D624 /* ch05.md in Resources */,
-				95DB208628CFA8190079D624 /* ch01-mise-en-abyme.jenson in Resources */,
+				9533176128D3787C00E6E516 /* ch01-mise-en-abyme.jenson in Resources */,
 				95011E7128C77B1D00E511F3 /* Salmon Sans 9 Bold.ttf in Resources */,
 				950F6CE228C0EADA007ACB53 /* Actions.sks in Resources */,
-				95DB208228CFA8190079D624 /* ch05-la-lumiere-sombre.jenson in Resources */,
-				95DB207F28CFA8190079D624 /* ch04-la-reveuse-sentimental.jenson in Resources */,
+				9533176D28D3788900E6E516 /* ch05-la-lumiere-sombre.jenson in Resources */,
+				9533176A28D3788600E6E516 /* ch04-la-reveuse-sentimental.jenson in Resources */,
 				95DB209728CFA9840079D624 /* epilogue.md in Resources */,
-				95DB208528CFA8190079D624 /* ch03-ecouter-la-vague.jenson in Resources */,
-				95DB208428CFA8190079D624 /* ch02-le-marteau-timide.jenson in Resources */,
+				9533176728D3788200E6E516 /* ch03-ecouter-la-vague.jenson in Resources */,
+				9533176428D3788000E6E516 /* ch02-le-marteau-timide.jenson in Resources */,
 				95DB209428CFA9840079D624 /* ch03.md in Resources */,
 				95DB209628CFA9840079D624 /* ch04.md in Resources */,
 				95DB209528CFA9840079D624 /* ch06.md in Resources */,
 				95011E6E28C77A4200E511F3 /* Salmon Mono 9 Regular.ttf in Resources */,
-				95DB208128CFA8190079D624 /* epilogue.jenson in Resources */,
+				9533177628D3789100E6E516 /* epilogue.jenson in Resources */,
 				95DB209128CFA9840079D624 /* ch01.md in Resources */,
-				95DB208028CFA8190079D624 /* ch07-changer-de-vie.jenson in Resources */,
+				9533177328D3788F00E6E516 /* ch07-changer-de-vie.jenson in Resources */,
 				95011E7328C77B9800E511F3 /* Salmon Serif 9 Regular.ttf in Resources */,
 				95011E6D28C77A4200E511F3 /* Salmon Serif 9 Bold.ttf in Resources */,
 				950F6CE828C0EADA007ACB53 /* Assets.xcassets in Resources */,
@@ -521,6 +521,70 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		9533176328D3787C00E6E516 /* ch01-mise-en-abyme.jenson */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9533176228D3787C00E6E516 /* Base */,
+			);
+			name = "ch01-mise-en-abyme.jenson";
+			sourceTree = "<group>";
+		};
+		9533176628D3788000E6E516 /* ch02-le-marteau-timide.jenson */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9533176528D3788000E6E516 /* Base */,
+			);
+			name = "ch02-le-marteau-timide.jenson";
+			sourceTree = "<group>";
+		};
+		9533176928D3788200E6E516 /* ch03-ecouter-la-vague.jenson */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9533176828D3788200E6E516 /* Base */,
+			);
+			name = "ch03-ecouter-la-vague.jenson";
+			sourceTree = "<group>";
+		};
+		9533176C28D3788600E6E516 /* ch04-la-reveuse-sentimental.jenson */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9533176B28D3788600E6E516 /* Base */,
+			);
+			name = "ch04-la-reveuse-sentimental.jenson";
+			sourceTree = "<group>";
+		};
+		9533176F28D3788900E6E516 /* ch05-la-lumiere-sombre.jenson */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9533176E28D3788900E6E516 /* Base */,
+			);
+			name = "ch05-la-lumiere-sombre.jenson";
+			sourceTree = "<group>";
+		};
+		9533177228D3788C00E6E516 /* ch06-les-conseils-pour-les-jeunes.jenson */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9533177128D3788C00E6E516 /* Base */,
+			);
+			name = "ch06-les-conseils-pour-les-jeunes.jenson";
+			sourceTree = "<group>";
+		};
+		9533177528D3788F00E6E516 /* ch07-changer-de-vie.jenson */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9533177428D3788F00E6E516 /* Base */,
+			);
+			name = "ch07-changer-de-vie.jenson";
+			sourceTree = "<group>";
+		};
+		9533177828D3789100E6E516 /* epilogue.jenson */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9533177728D3789100E6E516 /* Base */,
+			);
+			name = epilogue.jenson;
+			sourceTree = "<group>";
+		};
 		956B604328C7A2200031794C /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
