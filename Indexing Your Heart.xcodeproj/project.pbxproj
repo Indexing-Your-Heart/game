@@ -38,6 +38,7 @@
 		956B604128C7A2200031794C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 956B604328C7A2200031794C /* InfoPlist.strings */; };
 		956B604628C7A4730031794C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956B604528C7A4730031794C /* AppDelegate.swift */; };
 		956B604E28C7B7480031794C /* Testbench.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956B604D28C7B7480031794C /* Testbench.swift */; };
+		957593A828E33CF700012AFC /* ValidatorModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 957593A728E33CF700012AFC /* ValidatorModel.mlmodel */; };
 		95DB209028CFA9840079D624 /* ch02.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208828CFA9840079D624 /* ch02.md */; };
 		95DB209128CFA9840079D624 /* ch01.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208928CFA9840079D624 /* ch01.md */; };
 		95DB209228CFA9840079D624 /* ch07.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208A28CFA9840079D624 /* ch07.md */; };
@@ -90,6 +91,7 @@
 		956B604528C7A4730031794C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		956B604B28C7B7480031794C /* Testbench.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Testbench.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		956B604D28C7B7480031794C /* Testbench.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Testbench.swift; sourceTree = "<group>"; };
+		957593A728E33CF700012AFC /* ValidatorModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ValidatorModel.mlmodel; sourceTree = "<group>"; };
 		95BCB92728C282E0004AFDA3 /* Indexing-Your-Heart-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Indexing-Your-Heart-Info.plist"; sourceTree = "<group>"; };
 		95BCB92828C28330004AFDA3 /* Indexing Your Heart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Indexing Your Heart.entitlements"; sourceTree = "<group>"; };
 		95DB208828CFA9840079D624 /* ch02.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ch02.md; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				9533175D28D373BD00E6E516 /* Game Scene Content */,
 				950F6D0528C274C3007ACB53 /* Assets */,
 				95011E6A28C7795300E511F3 /* Extensions */,
+				957593A628E33CD900012AFC /* Paintbrush */,
 				950F6CF328C13BAA007ACB53 /* Scenes */,
 				950F6CF428C13BB2007ACB53 /* Views */,
 				956B604528C7A4730031794C /* AppDelegate.swift */,
@@ -266,6 +269,14 @@
 				956B604D28C7B7480031794C /* Testbench.swift */,
 			);
 			path = Testbench;
+			sourceTree = "<group>";
+		};
+		957593A628E33CD900012AFC /* Paintbrush */ = {
+			isa = PBXGroup;
+			children = (
+				957593A728E33CF700012AFC /* ValidatorModel.mlmodel */,
+			);
+			path = Paintbrush;
 			sourceTree = "<group>";
 		};
 		95DB207628CFA80C0079D624 /* Story */ = {
@@ -491,6 +502,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9533175928D36A2900E6E516 /* SettingsView.swift in Sources */,
+				957593A828E33CF700012AFC /* ValidatorModel.mlmodel in Sources */,
 				956B604628C7A4730031794C /* AppDelegate.swift in Sources */,
 				9533176028D3743100E6E516 /* GameSceneRenderable.swift in Sources */,
 				9524434A28C781FB005F91E1 /* ContentView.swift in Sources */,
