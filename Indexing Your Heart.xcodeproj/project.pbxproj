@@ -13,6 +13,8 @@
 		95011E6F28C77A4200E511F3 /* Salmon Sans 9 Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 950F6D0928C2757C007ACB53 /* Salmon Sans 9 Regular.ttf */; };
 		95011E7128C77B1D00E511F3 /* Salmon Sans 9 Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95011E7028C77B1300E511F3 /* Salmon Sans 9 Bold.ttf */; };
 		95011E7328C77B9800E511F3 /* Salmon Serif 9 Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95011E7228C77B9800E511F3 /* Salmon Serif 9 Regular.ttf */; };
+		950F634928E49C380018AB43 /* PaintbrushScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F634828E49C380018AB43 /* PaintbrushScene.swift */; };
+		950F634B28E49CC50018AB43 /* PaintbrushSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F634A28E49CC50018AB43 /* PaintbrushSolver.swift */; };
 		950F6CE228C0EADA007ACB53 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 950F6CBF28C0EAD9007ACB53 /* Actions.sks */; };
 		950F6CE428C0EADA007ACB53 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 950F6CC028C0EAD9007ACB53 /* GameScene.sks */; };
 		950F6CE628C0EADA007ACB53 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F6CC128C0EAD9007ACB53 /* GameScene.swift */; };
@@ -63,6 +65,8 @@
 		95011E6B28C7796900E511F3 /* FontFamily.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontFamily.swift; sourceTree = "<group>"; };
 		95011E7028C77B1300E511F3 /* Salmon Sans 9 Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Sans 9 Bold.ttf"; sourceTree = "<group>"; };
 		95011E7228C77B9800E511F3 /* Salmon Serif 9 Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Serif 9 Regular.ttf"; sourceTree = "<group>"; };
+		950F634828E49C380018AB43 /* PaintbrushScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintbrushScene.swift; sourceTree = "<group>"; };
+		950F634A28E49CC50018AB43 /* PaintbrushSolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintbrushSolver.swift; sourceTree = "<group>"; };
 		950F6CBF28C0EAD9007ACB53 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		950F6CC028C0EAD9007ACB53 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		950F6CC128C0EAD9007ACB53 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -275,6 +279,8 @@
 			isa = PBXGroup;
 			children = (
 				957593A728E33CF700012AFC /* ValidatorModel.mlmodel */,
+				950F634828E49C380018AB43 /* PaintbrushScene.swift */,
+				950F634A28E49CC50018AB43 /* PaintbrushSolver.swift */,
 			);
 			path = Paintbrush;
 			sourceTree = "<group>";
@@ -501,10 +507,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				950F634B28E49CC50018AB43 /* PaintbrushSolver.swift in Sources */,
 				9533175928D36A2900E6E516 /* SettingsView.swift in Sources */,
 				957593A828E33CF700012AFC /* ValidatorModel.mlmodel in Sources */,
 				956B604628C7A4730031794C /* AppDelegate.swift in Sources */,
 				9533176028D3743100E6E516 /* GameSceneRenderable.swift in Sources */,
+				950F634928E49C380018AB43 /* PaintbrushScene.swift in Sources */,
 				9524434A28C781FB005F91E1 /* ContentView.swift in Sources */,
 				950F6CE628C0EADA007ACB53 /* GameScene.swift in Sources */,
 				950F6CF828C13BDF007ACB53 /* GameSceneView.swift in Sources */,

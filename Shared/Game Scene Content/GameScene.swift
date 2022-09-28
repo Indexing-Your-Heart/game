@@ -135,6 +135,4 @@ extension GameScene: GameSceneDelegate {
     func redraw() {
 
     }
-
-
 }
