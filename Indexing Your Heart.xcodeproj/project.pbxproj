@@ -15,6 +15,9 @@
 		95011E7328C77B9800E511F3 /* Salmon Serif 9 Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95011E7228C77B9800E511F3 /* Salmon Serif 9 Regular.ttf */; };
 		950F634928E49C380018AB43 /* PaintbrushScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F634828E49C380018AB43 /* PaintbrushScene.swift */; };
 		950F634B28E49CC50018AB43 /* PaintbrushSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F634A28E49CC50018AB43 /* PaintbrushSolver.swift */; };
+		950F634E28E5D41F0018AB43 /* PanelInteractionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F634D28E5D41F0018AB43 /* PanelInteractionDelegate.swift */; };
+		950F635228E5D7B60018AB43 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 950F635128E5D7B60018AB43 /* Algorithms */; };
+		950F635528E62BC10018AB43 /* PaintbrushScene+Inputs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F635428E62BC10018AB43 /* PaintbrushScene+Inputs.swift */; };
 		950F6CE228C0EADA007ACB53 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 950F6CBF28C0EAD9007ACB53 /* Actions.sks */; };
 		950F6CE428C0EADA007ACB53 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 950F6CC028C0EAD9007ACB53 /* GameScene.sks */; };
 		950F6CE628C0EADA007ACB53 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F6CC128C0EAD9007ACB53 /* GameScene.swift */; };
@@ -67,6 +70,8 @@
 		95011E7228C77B9800E511F3 /* Salmon Serif 9 Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Serif 9 Regular.ttf"; sourceTree = "<group>"; };
 		950F634828E49C380018AB43 /* PaintbrushScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintbrushScene.swift; sourceTree = "<group>"; };
 		950F634A28E49CC50018AB43 /* PaintbrushSolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintbrushSolver.swift; sourceTree = "<group>"; };
+		950F634D28E5D41F0018AB43 /* PanelInteractionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelInteractionDelegate.swift; sourceTree = "<group>"; };
+		950F635428E62BC10018AB43 /* PaintbrushScene+Inputs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaintbrushScene+Inputs.swift"; sourceTree = "<group>"; };
 		950F6CBF28C0EAD9007ACB53 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		950F6CC028C0EAD9007ACB53 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		950F6CC128C0EAD9007ACB53 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -113,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				950F635228E5D7B60018AB43 /* Algorithms in Frameworks */,
 				950F6D0128C27442007ACB53 /* CranberrySprite in Frameworks */,
 				9566395628C929A300D9E852 /* JensonKit in Frameworks */,
 				950F6D0428C27489007ACB53 /* Bunker in Frameworks */,
@@ -135,6 +141,23 @@
 				95011E6B28C7796900E511F3 /* FontFamily.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		950F634C28E5D4080018AB43 /* Interactions */ = {
+			isa = PBXGroup;
+			children = (
+				950F634D28E5D41F0018AB43 /* PanelInteractionDelegate.swift */,
+			);
+			path = Interactions;
+			sourceTree = "<group>";
+		};
+		950F635328E62AF20018AB43 /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				957593A728E33CF700012AFC /* ValidatorModel.mlmodel */,
+				950F634A28E49CC50018AB43 /* PaintbrushSolver.swift */,
+			);
+			path = Validation;
 			sourceTree = "<group>";
 		};
 		950F6CB928C0EAD8007ACB53 = {
@@ -278,9 +301,10 @@
 		957593A628E33CD900012AFC /* Paintbrush */ = {
 			isa = PBXGroup;
 			children = (
-				957593A728E33CF700012AFC /* ValidatorModel.mlmodel */,
+				950F635328E62AF20018AB43 /* Validation */,
+				950F634C28E5D4080018AB43 /* Interactions */,
 				950F634828E49C380018AB43 /* PaintbrushScene.swift */,
-				950F634A28E49CC50018AB43 /* PaintbrushSolver.swift */,
+				950F635428E62BC10018AB43 /* PaintbrushScene+Inputs.swift */,
 			);
 			path = Paintbrush;
 			sourceTree = "<group>";
@@ -337,6 +361,7 @@
 				950F6D0028C27442007ACB53 /* CranberrySprite */,
 				950F6D0328C27489007ACB53 /* Bunker */,
 				9566395528C929A300D9E852 /* JensonKit */,
+				950F635128E5D7B60018AB43 /* Algorithms */,
 			);
 			productName = "Indexing Your Heart iOS";
 			productReference = 950F6CC728C0EADA007ACB53 /* Indexing Your Heart.app */;
@@ -392,6 +417,7 @@
 				950F6CFF28C27442007ACB53 /* XCRemoteSwiftPackageReference "cranberrysprite" */,
 				950F6D0228C27489007ACB53 /* XCRemoteSwiftPackageReference "bunker" */,
 				9566395428C929A300D9E852 /* XCRemoteSwiftPackageReference "JensonKit" */,
+				950F635028E5D7B60018AB43 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 			);
 			productRefGroup = 950F6CC828C0EADA007ACB53 /* Products */;
 			projectDirPath = "";
@@ -514,7 +540,9 @@
 				9533176028D3743100E6E516 /* GameSceneRenderable.swift in Sources */,
 				950F634928E49C380018AB43 /* PaintbrushScene.swift in Sources */,
 				9524434A28C781FB005F91E1 /* ContentView.swift in Sources */,
+				950F635528E62BC10018AB43 /* PaintbrushScene+Inputs.swift in Sources */,
 				950F6CE628C0EADA007ACB53 /* GameScene.swift in Sources */,
+				950F634E28E5D41F0018AB43 /* PanelInteractionDelegate.swift in Sources */,
 				950F6CF828C13BDF007ACB53 /* GameSceneView.swift in Sources */,
 				95011E6C28C7796900E511F3 /* FontFamily.swift in Sources */,
 				9533175C28D371E500E6E516 /* SettingsDebuggingView.swift in Sources */,
@@ -884,6 +912,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		950F635028E5D7B60018AB43 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		950F6CFF28C27442007ACB53 /* XCRemoteSwiftPackageReference "cranberrysprite" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/alicerunsonfedora/cranberrysprite";
@@ -911,6 +947,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		950F635128E5D7B60018AB43 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 950F635028E5D7B60018AB43 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
 		950F6D0028C27442007ACB53 /* CranberrySprite */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 950F6CFF28C27442007ACB53 /* XCRemoteSwiftPackageReference "cranberrysprite" */;

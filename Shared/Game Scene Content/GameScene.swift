@@ -13,8 +13,8 @@
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
 
-import SpriteKit
 import CranberrySprite
+import SpriteKit
 
 class GameScene: SKScene {
     fileprivate var label: SKLabelNode?
@@ -103,7 +103,7 @@ extension GameScene {
 #endif
 
 extension GameScene: GameSceneDelegate {
-    func applyOnTile(from definition: CSTileMapDefinition) {
+    func applyOnTile(from _: CSTileMapDefinition) {
         fatalError("applyOnTile")
     }
 
@@ -132,7 +132,5 @@ extension GameScene: GameSceneDelegate {
         }
     }
 
-    func redraw() {
-
-    }
+    func redraw() {}
 }
