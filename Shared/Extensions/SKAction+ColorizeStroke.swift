@@ -18,9 +18,6 @@ import SpriteKit
 extension SKAction {
     /// Changes the stroke color of an `SKShapeNode` to a specified color.
     ///
-    /// On macOS, this action uses the `NSColor.blended` method. For iOS, this action uses a similarly structured
-    /// method that blends the two colors using addition.
-    ///
     /// - Parameter color: The color to change the stroke color to.
     /// - Parameter duration: The amount of time to take to perform this action.
     class func colorizeStroke(to color: SKColor, duration: TimeInterval) -> SKAction {

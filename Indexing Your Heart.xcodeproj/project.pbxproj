@@ -45,11 +45,13 @@
 		9538C70928E724A500D506F0 /* SKColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C70828E724A500D506F0 /* SKColor+Hex.swift */; };
 		9538C70B28E7298200D506F0 /* SKShapeNode+Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C70A28E7298200D506F0 /* SKShapeNode+Line.swift */; };
 		9538C70D28E7370C00D506F0 /* SKAction+ColorizeStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C70C28E7370C00D506F0 /* SKAction+ColorizeStroke.swift */; };
+		9538C71028E7551600D506F0 /* Stage1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9538C70F28E7551600D506F0 /* Stage1.sks */; };
+		9538C71228E756BE00D506F0 /* PaintbrushDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C71128E756BE00D506F0 /* PaintbrushDemoView.swift */; };
+		9538C71428E76AF100D506F0 /* ValidatorModel.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 9538C71328E76AF100D506F0 /* ValidatorModel.mlpackage */; };
 		9566395628C929A300D9E852 /* JensonKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9566395528C929A300D9E852 /* JensonKit */; };
 		956B604128C7A2200031794C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 956B604328C7A2200031794C /* InfoPlist.strings */; };
 		956B604628C7A4730031794C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956B604528C7A4730031794C /* AppDelegate.swift */; };
 		956B604E28C7B7480031794C /* Testbench.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956B604D28C7B7480031794C /* Testbench.swift */; };
-		957593A828E33CF700012AFC /* ValidatorModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 957593A728E33CF700012AFC /* ValidatorModel.mlmodel */; };
 		95DB209028CFA9840079D624 /* ch02.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208828CFA9840079D624 /* ch02.md */; };
 		95DB209128CFA9840079D624 /* ch01.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208928CFA9840079D624 /* ch01.md */; };
 		95DB209228CFA9840079D624 /* ch07.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208A28CFA9840079D624 /* ch07.md */; };
@@ -108,11 +110,13 @@
 		9538C70828E724A500D506F0 /* SKColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKColor+Hex.swift"; sourceTree = "<group>"; };
 		9538C70A28E7298200D506F0 /* SKShapeNode+Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKShapeNode+Line.swift"; sourceTree = "<group>"; };
 		9538C70C28E7370C00D506F0 /* SKAction+ColorizeStroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKAction+ColorizeStroke.swift"; sourceTree = "<group>"; };
+		9538C70F28E7551600D506F0 /* Stage1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Stage1.sks; sourceTree = "<group>"; };
+		9538C71128E756BE00D506F0 /* PaintbrushDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintbrushDemoView.swift; sourceTree = "<group>"; };
+		9538C71328E76AF100D506F0 /* ValidatorModel.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = ValidatorModel.mlpackage; sourceTree = "<group>"; };
 		956B604228C7A2200031794C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		956B604528C7A4730031794C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		956B604B28C7B7480031794C /* Testbench.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Testbench.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		956B604D28C7B7480031794C /* Testbench.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Testbench.swift; sourceTree = "<group>"; };
-		957593A728E33CF700012AFC /* ValidatorModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ValidatorModel.mlmodel; sourceTree = "<group>"; };
 		95BCB92728C282E0004AFDA3 /* Indexing-Your-Heart-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Indexing-Your-Heart-Info.plist"; sourceTree = "<group>"; };
 		95BCB92828C28330004AFDA3 /* Indexing Your Heart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Indexing Your Heart.entitlements"; sourceTree = "<group>"; };
 		95DB208828CFA9840079D624 /* ch02.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ch02.md; sourceTree = "<group>"; };
@@ -169,7 +173,7 @@
 		950F635328E62AF20018AB43 /* Validation */ = {
 			isa = PBXGroup;
 			children = (
-				957593A728E33CF700012AFC /* ValidatorModel.mlmodel */,
+				9538C71328E76AF100D506F0 /* ValidatorModel.mlpackage */,
 				950F634A28E49CC50018AB43 /* PaintbrushSolver.swift */,
 			);
 			path = Validation;
@@ -231,6 +235,7 @@
 		950F6CF328C13BAA007ACB53 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				9538C70E28E7550500D506F0 /* Puzzle Stages */,
 				950F6CBF28C0EAD9007ACB53 /* Actions.sks */,
 				950F6CC028C0EAD9007ACB53 /* GameScene.sks */,
 			);
@@ -244,6 +249,7 @@
 				950F6CF728C13BDF007ACB53 /* GameSceneView.swift */,
 				9524434928C781FB005F91E1 /* ContentView.swift */,
 				9533175828D36A2900E6E516 /* SettingsView.swift */,
+				9538C71128E756BE00D506F0 /* PaintbrushDemoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -311,6 +317,14 @@
 				9538C70428E7200400D506F0 /* PaintbrushConfigurationDelegate.swift */,
 			);
 			path = Configuration;
+			sourceTree = "<group>";
+		};
+		9538C70E28E7550500D506F0 /* Puzzle Stages */ = {
+			isa = PBXGroup;
+			children = (
+				9538C70F28E7551600D506F0 /* Stage1.sks */,
+			);
+			path = "Puzzle Stages";
 			sourceTree = "<group>";
 		};
 		956B604428C7A2270031794C /* Localizations */ = {
@@ -482,6 +496,7 @@
 				9533176A28D3788600E6E516 /* ch04-la-reveuse-sentimental.jenson in Resources */,
 				95DB209728CFA9840079D624 /* epilogue.md in Resources */,
 				9533176728D3788200E6E516 /* ch03-ecouter-la-vague.jenson in Resources */,
+				9538C71028E7551600D506F0 /* Stage1.sks in Resources */,
 				9533176428D3788000E6E516 /* ch02-le-marteau-timide.jenson in Resources */,
 				9538C70028E71DD900D506F0 /* Stage1.json in Resources */,
 				95DB209428CFA9840079D624 /* ch03.md in Resources */,
@@ -570,7 +585,8 @@
 			files = (
 				950F634B28E49CC50018AB43 /* PaintbrushSolver.swift in Sources */,
 				9533175928D36A2900E6E516 /* SettingsView.swift in Sources */,
-				957593A828E33CF700012AFC /* ValidatorModel.mlmodel in Sources */,
+				9538C71428E76AF100D506F0 /* ValidatorModel.mlpackage in Sources */,
+				9538C71228E756BE00D506F0 /* PaintbrushDemoView.swift in Sources */,
 				9538C70528E7200400D506F0 /* PaintbrushConfigurationDelegate.swift in Sources */,
 				956B604628C7A4730031794C /* AppDelegate.swift in Sources */,
 				9533176028D3743100E6E516 /* GameSceneRenderable.swift in Sources */,

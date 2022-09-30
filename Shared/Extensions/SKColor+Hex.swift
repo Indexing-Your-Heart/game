@@ -48,14 +48,35 @@ public extension SKColor {
     }
 
 #if os(iOS)
-// swiftlint:disable identifier_name
-    func blended(withFraction: CGFloat, of color: SKColor) -> SKColor? {
-        var (r1, g1, b1, a1)  = (CGFloat(0), CGFloat(0), CGFloat(0), CGFloat(0))
-        var (r2, g2, b2, a2)  = (CGFloat(0), CGFloat(0), CGFloat(0), CGFloat(0))
-        getRed(&r1, green: &g1, blue: &b1, alpha: &a1)
-        color.getRed(&r2, green: &g2, blue: &b2, alpha: &a2)
-        return .init(red: min(r1 + r2, 1), green: min(g1 + g2, 1), blue: min(b1 + b2, 1), alpha: min(a1 + a2, 1))
+    /// Creates a new color object whose component values are a weighted sum of the current color object and the
+    /// specified color object's.
+    ///
+    /// This implementation tries to mimic the same behavior present in `NSColor.blended` for consistency across
+    /// platforms.
+    ///
+    /// - Parameter frac: The amount of the color to blend with the receiver's color. The method converts `color` and a
+    /// copy of the receiver to RGB, and then sets each component of the returned color to `fraction` of `color`’s value
+    /// plus `1 – fraction` of the receiver’s.
+    /// - Parameter color: The color to blend with the receiver's color.
+    /// - Returns: The resulting color object or `nil` if the colors can’t be converted.
+    func blended(withFraction frac: CGFloat, of color: SKColor) -> SKColor? {
+        var (recRed, recGreen, recBlue, recAlpha) = (CGFloat(0), CGFloat(0), CGFloat(0), CGFloat(0))
+        var (colRed, colGreen, colBlue, colAlpha) = (CGFloat(0), CGFloat(0), CGFloat(0), CGFloat(0))
+        getRed(&recRed, green: &recGreen, blue: &recBlue, alpha: &recAlpha)
+        color.getRed(&colRed, green: &colGreen, blue: &colBlue, alpha: &colAlpha)
+
+        var (newRed, newBlue, newGreen, newAlpha) = (colRed * frac, colBlue * frac, colGreen * frac, colAlpha * frac)
+        newRed += (1 - frac) * recRed
+        newBlue += (1 - frac) * recBlue
+        newGreen += (1 - frac) * recGreen
+        newAlpha += (1 - frac) * recAlpha
+
+        return .init(
+            red: min(newRed, 1),
+            green: min(newBlue, 1),
+            blue: min(newGreen, 1),
+            alpha: min(newAlpha, 1)
+        )
     }
-// swiftlint:enable identifier_name
 #endif
 }

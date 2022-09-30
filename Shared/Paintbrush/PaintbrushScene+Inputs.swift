@@ -34,6 +34,9 @@ extension PaintbrushScene {
         for touch in touches {
             panelWillFinishDrawing(at: touch.location(in: self))
         }
+        if let puzzle {
+            highlight(with: self, matching: puzzle)
+        }
     }
 
     override func touchesCancelled(_ touches: Set<UITouch>, with _: UIEvent?) {

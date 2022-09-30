@@ -23,6 +23,7 @@ class PaintbrushScene: SKScene {
     var drawingDelegateNode: SKNode?
     var stageConfiguration: PaintbrushStageConfiguration?
     var puzzle: PaintbrushStagePuzzleConfiguration?
+    var painting: SKSpriteNode?
 
     override func didMove(to _: SKView) {
         if let delegate = childNode(withName: "//delegate") {
@@ -30,6 +31,9 @@ class PaintbrushScene: SKScene {
         }
         if let panel = drawingDelegateNode?.childNode(withName: "panel") as? SKShapeNode {
             panelDrawingArea = panel
+        }
+        if let paintingSprite = childNode(withName: "//painting") as? SKSpriteNode {
+            painting = paintingSprite
         }
         if let name {
             readPuzzleConfiguration(from: name)
@@ -39,6 +43,9 @@ class PaintbrushScene: SKScene {
     /// Creates a node to be used in the final path.
     @discardableResult
     private func createDrawingNode(at location: CGPoint) -> SKNode {
+        if let previousLine = drawingDelegateNode?.childNode(withName: "witPath") {
+            previousLine.removeFromParent()
+        }
         let drawPoint = SKNode()
         drawPoint.position = location
         drawingDelegateNode?.addChild(drawPoint)
@@ -57,6 +64,10 @@ extension PaintbrushScene: PaintbrushConfigurationDelegate {
     func didSetPuzzleConfiguration(to puzzleConfig: PaintbrushStagePuzzleConfiguration) {
         if let panelDrawingArea {
             panelDrawingArea.fillColor = SKColor(hexString: puzzleConfig.palette.panelColor)
+        }
+        if let painting {
+            painting.texture = .init(imageNamed: puzzleConfig.paintingName)
+            painting.configureForPixelArt()
         }
     }
 }
@@ -86,17 +97,22 @@ extension PaintbrushScene: PanelInteractionDelegate {
 
     func panelDidHighlight(onPredictionStatus prediction: Bool) {
         guard let path = drawingDelegateNode?.childNode(withName: "witPath") as? SKShapeNode else { return }
-        let pathColor = path.strokeColor
+        let pathColor = path.strokeColor.blended(withFraction: 0.7, of: .black) ?? path.strokeColor
         if prediction { return }
         path.run(
-            .repeat(
-                .sequence([
-                    .colorizeStroke(to: .red, duration: 0.5),
-                    .colorizeStroke(to: pathColor, duration: 0.5)
-                ]),
-                count: 5
-            )
-        )
+            .sequence([
+                .repeat(
+                    .sequence([
+                        .colorizeStroke(to: .red, duration: 0.5),
+                        .colorizeStroke(to: pathColor, duration: 0.5)
+                    ]),
+                    count: 5
+                ),
+                .fadeOut(withDuration: 5.0)
+            ])
+        ) {
+            path.removeFromParent()
+        }
     }
 }
 
@@ -126,12 +142,15 @@ extension PaintbrushScene: PaintbrushSolver {
         guard let line = drawingDelegateNode.childNode(withName: "witPath") as? SKShapeNode else { return nil }
         line.strokeColor = .white
         guard let texture = view?.texture(from: drawingDelegateNode, crop: panelDrawingArea.frame) else {
-            line.strokeColor = .black
-            panelDrawingArea.fillColor = .white
+            line.strokeColor = SKColor(hexString: puzzle?.palette.panelLineColor ?? "#000000")
+            panelDrawingArea.fillColor = SKColor(hexString: puzzle?.palette.panelColor ?? "#ffffff")
             return nil
         }
-        line.strokeColor = .black
-        panelDrawingArea.fillColor = .white
+        if let debugNode = childNode(withName: "debugSprite") as? SKSpriteNode {
+            debugNode.texture = texture
+        }
+        line.strokeColor = SKColor(hexString: puzzle?.palette.panelLineColor ?? "#000000")
+        panelDrawingArea.fillColor = SKColor(hexString: puzzle?.palette.panelColor ?? "#ffffff")
         return texture.cgImage()
     }
 
@@ -139,7 +158,7 @@ extension PaintbrushScene: PaintbrushSolver {
         let classifier = try ValidatorModel(configuration: .init())
         let predictions = try classifier.prediction(input: .init(imageWith: cgImage))
             .classLabelProbs
-            .max(count: 2, sortedBy: { $0.value > $1.value })
+            .max(count: 2, sortedBy: { $0.value < $1.value })
         return predictions.map(\.key)
     }
 }

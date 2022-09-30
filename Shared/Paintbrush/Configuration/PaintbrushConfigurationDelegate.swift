@@ -34,7 +34,10 @@ protocol PaintbrushConfigurationDelegate: AnyObject {
 
 extension PaintbrushConfigurationDelegate {
     func readPuzzleConfiguration(from resourceName: String) {
-        guard let path = Bundle.main.path(forResource: resourceName, ofType: "json") else { return }
+        guard let path = Bundle.main.path(forResource: resourceName, ofType: "json") else {
+            print("Failed to load \(resourceName).json")
+            return
+        }
         guard let data = try? Data(contentsOf: .init(filePath: path)) else { return }
         let decoder = PaintbrushStageConfiguration.decoder()
         guard let config = try? decoder.decode(PaintbrushStageConfiguration.self, from: data) else {

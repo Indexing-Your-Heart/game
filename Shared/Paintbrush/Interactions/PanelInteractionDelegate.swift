@@ -41,8 +41,15 @@ extension PanelInteractionDelegate {
     func highlight(with solver: PaintbrushSolver, matching puzzle: PaintbrushStagePuzzleConfiguration) {
         var prediction = false
         let result = solver.predictDrawing()
-        if case let .success(data) = result {
+        switch result {
+        case .success(let data):
             prediction = solver.predictionMatches(puzzle: puzzle, in: data)
+        case .failure(let error):
+#if targetEnvironment(simulator)
+            print("WARN: Model predictions not available in simulator.")
+            prediction = true
+#endif
+            print("Error in prediction: \(error.localizedDescription)")
         }
         panelWillHighlight(onPredictionStatus: prediction)
         panelDidHighlight(onPredictionStatus: prediction)

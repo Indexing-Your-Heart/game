@@ -18,6 +18,7 @@ import SwiftUI
 
 enum NavigationState: Equatable {
     case mainMenu
+    case paintbrushDemo
     case game
 }
 
@@ -39,6 +40,8 @@ struct ContentView: View {
                     menu
                 }
                 .aspectRatio(16 / 9, contentMode: .fit)
+            case .paintbrushDemo:
+                PaintbrushDemoView()
             case .game:
                 GameSceneView()
             }
@@ -63,6 +66,14 @@ struct ContentView: View {
                     }
                 } label: {
                     Text("example.demo_prompt")
+                }
+
+                Button {
+                    withAnimation {
+                        navigationState = .paintbrushDemo
+                    }
+                } label: {
+                    Text("example.paintbrush_demo_prompt")
                 }
 #if os(iOS)
                 Button {

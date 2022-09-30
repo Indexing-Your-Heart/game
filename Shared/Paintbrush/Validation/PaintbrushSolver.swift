@@ -17,7 +17,7 @@ import Foundation
 import SpriteKit
 
 /// An enumeration representing errors that may be thrown during prediction.
-enum PaintbrushSolverError: Error {
+enum PaintbrushSolverError: LocalizedError {
     /// The path couldn't be generated from the player's drawing.
     case noPathGenerated
 
@@ -26,6 +26,18 @@ enum PaintbrushSolverError: Error {
 
     /// An error occurred during the prediction phase.
     case predictionFailure(Error)
+
+    var localizedDescription: String {
+        switch self {
+        case .noPathGenerated:
+            return NSLocalizedString("PaintbrushSolverError.noPathGenerated", comment: "No path generated")
+        case .imageCaptureFailure:
+            return NSLocalizedString("PaintbrushSolverError.imageCaptureFailure", comment: "Image capture failed")
+        case .predictionFailure(let error):
+            return NSLocalizedString("PaintbrushSolverError.predictionFailure", comment: "Prediction failure")
+                + " \(error.localizedDescription)"
+        }
+    }
 }
 
 /// A protocol that indicates a class is capable of making predictions from player drawings.
@@ -59,12 +71,29 @@ protocol PaintbrushSolver: AnyObject {
 // MARK: - Default Implementations
 
 extension PaintbrushSolver {
+    private func resizedForModel(image: CGImage) -> CGImage? {
+        let newSize = CGSize(width: 299, height: 299)
+        guard let colorSpace = image.colorSpace else { return nil }
+        guard let ctx = CGContext(
+            data: nil,
+            width: Int(newSize.width),
+            height: Int(newSize.height),
+            bitsPerComponent: image.bitsPerComponent,
+            bytesPerRow: image.bytesPerRow,
+            space: colorSpace,
+            bitmapInfo: image.alphaInfo.rawValue
+        ) else { return nil }
+        ctx.interpolationQuality = .high
+        ctx.draw(image, in: CGRect(origin: .zero, size: newSize))
+        return ctx.makeImage()
+    }
+
     func predictDrawing() -> Result<[String], PaintbrushSolverError> {
         guard let drawnLine = makePathFromChildren() else {
             return .failure(.noPathGenerated)
         }
         drawingDelegateNode?.addChild(drawnLine)
-        guard let image = getCanvasImageFromScene() else {
+        guard let sourceImage = getCanvasImageFromScene(), let image = resizedForModel(image: sourceImage) else {
             return .failure(.imageCaptureFailure)
         }
         do {

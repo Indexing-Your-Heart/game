@@ -27,9 +27,15 @@
 // MARK: - Example Content
 "example.hello_world" = "Hello, world!";
 "example.demo_prompt" = "Run Demo Scene";
+"example.paintbrush_demo_prompt" = "Run Paintbrush Demo";
 
 // MARK: - Settings
 "settings.name" = "Settings";
 "settings.debugging.title" = "Debugging";
 "settings.debugging.fps" = "Show Frames Per Second";
 "settings.debugging.nodes" = "Show Node Count";
+
+// MARK: - Errors
+"PaintbrushSolverError.noPathGenerated" = "No path could be generated.";
+"PaintbrushSolverError.imageCaptureFailure" = "Failed to capture image from the canvas.";
+"PaintbrushSolverError.predictionFailure" = "An error occurred during prediction.";
