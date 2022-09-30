@@ -1,0 +1,76 @@
+{
+    "stage": "Tutorial",
+    "metapuzzle": {
+        "expected_result": "hoh_1i",
+        "palette": {
+            "panelColor": "#175A4C",
+            "panelLineColor": "#1EBC73"
+        }
+    }
+    "puzzles": [
+        {
+            "painting_name": "hoh_1a",
+            "expected_result": "hoh_1a",
+            "palette": {
+                "panelColor": "#175A4C",
+                "panelLineColor": "#1EBC73"
+            }
+        },
+        {
+            "painting_name": "hoh_1b",
+            "expected_result": "hoh_1b",
+            "palette": {
+                "panelColor": "#175A4C",
+                "panelLineColor": "#1EBC73"
+            }
+        },
+        {
+            "painting_name": "hoh_1c",
+            "expected_result": "hoh_1c",
+            "palette": {
+                "panelColor": "#175A4C",
+                "panelLineColor": "#1EBC73"
+            }
+        },
+        {
+            "painting_name": "hoh_1d",
+            "expected_result": "hoh_1d",
+            "palette": {
+                "panelColor": "#175A4C",
+                "panelLineColor": "#1EBC73"
+            }
+        },
+        {
+            "painting_name": "hoh_1e",
+            "expected_result": "hoh_1e",
+            "palette": {
+                "panelColor": "#175A4C",
+                "panelLineColor": "#1EBC73"
+            }
+        },
+        {
+            "painting_name": "hoh_1f",
+            "expected_result": "hoh_1f",
+            "palette": {
+                "panelColor": "#175A4C",
+                "panelLineColor": "#1EBC73"
+            }
+        },
+        {
+            "painting_name": "hoh_1g",
+            "expected_result": "hoh_1g",
+            "palette": {
+                "panelColor": "#175A4C",
+                "panelLineColor": "#1EBC73"
+            }
+        },
+        {
+            "painting_name": "hoh_1h",
+            "expected_result": "hoh_1h",
+            "palette": {
+                "panelColor": "#175A4C",
+                "panelLineColor": "#1EBC73"
+            }
+        }
+    ]
+}

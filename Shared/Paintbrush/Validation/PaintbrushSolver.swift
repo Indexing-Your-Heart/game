@@ -49,7 +49,14 @@ protocol PaintbrushSolver: AnyObject {
 
     /// Predicts the player's current drawing and returns likely candidates, or a failure if an error occurred.
     func predictDrawing() -> Result<[String], PaintbrushSolverError>
+
+    /// Returns whether the puzzle's predictions line up with the expected puzzle solution.
+    /// - Parameter puzzle: The puzzle that the predictions should have.
+    /// - Parameter predictions: The list of likely predictions from the validator model.
+    func predictionMatches(puzzle: PaintbrushStagePuzzleConfiguration, in predictions: [String]) -> Bool
 }
+
+// MARK: - Default Implementations
 
 extension PaintbrushSolver {
     func predictDrawing() -> Result<[String], PaintbrushSolverError> {
@@ -66,5 +73,9 @@ extension PaintbrushSolver {
         } catch {
             return .failure(.predictionFailure(error))
         }
+    }
+
+    func predictionMatches(puzzle: PaintbrushStagePuzzleConfiguration, in predictions: [String]) -> Bool {
+        predictions.contains(puzzle.expectedResult)
     }
 }

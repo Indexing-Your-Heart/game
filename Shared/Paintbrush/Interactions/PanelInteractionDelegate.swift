@@ -26,4 +26,25 @@ protocol PanelInteractionDelegate: AnyObject {
 
     /// A method called when the player stops drawing on the panel.
     func panelWillFinishDrawing(at location: CGPoint)
+
+    /// A method called when the panel will begin highlighting based on a prediction status.
+    func panelWillHighlight(onPredictionStatus prediction: Bool)
+
+    /// A method called when the panel finishes highlighting based on a prediction status.
+    func panelDidHighlight(onPredictionStatus prediction: Bool)
+}
+
+extension PanelInteractionDelegate {
+    /// Highlights the panel after making a prediction.
+    /// - Parameter solver: The solver that will make a prediction.
+    /// - Parameter puzzle: The puzzle configuration containing the expected result.
+    func highlight(with solver: PaintbrushSolver, matching puzzle: PaintbrushStagePuzzleConfiguration) {
+        var prediction = false
+        let result = solver.predictDrawing()
+        if case let .success(data) = result {
+            prediction = solver.predictionMatches(puzzle: puzzle, in: data)
+        }
+        panelWillHighlight(onPredictionStatus: prediction)
+        panelDidHighlight(onPredictionStatus: prediction)
+    }
 }

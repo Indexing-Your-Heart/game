@@ -17,9 +17,12 @@ import Algorithms
 import CoreML
 import SpriteKit
 
+/// A SpriteKit scene that represents an interactable play area for solving puzzles.
 class PaintbrushScene: SKScene {
     var panelDrawingArea: SKShapeNode?
     var drawingDelegateNode: SKNode?
+    var stageConfiguration: PaintbrushStageConfiguration?
+    var puzzle: PaintbrushStagePuzzleConfiguration?
 
     override func didMove(to _: SKView) {
         if let delegate = childNode(withName: "//delegate") {
@@ -28,8 +31,13 @@ class PaintbrushScene: SKScene {
         if let panel = drawingDelegateNode?.childNode(withName: "panel") as? SKShapeNode {
             panelDrawingArea = panel
         }
+        if let name {
+            readPuzzleConfiguration(from: name)
+        }
     }
 
+    /// Creates a node to be used in the final path.
+    @discardableResult
     private func createDrawingNode(at location: CGPoint) -> SKNode {
         let drawPoint = SKNode()
         drawPoint.position = location
@@ -37,8 +45,19 @@ class PaintbrushScene: SKScene {
         return drawPoint
     }
 
+    /// Returns the drawn path nodes from the player.
     private func getDrawingPoints() -> [SKNode]? {
         drawingDelegateNode?.children.filter { $0 != panelDrawingArea }
+    }
+}
+
+// MARK: - Puzzle Configuration
+
+extension PaintbrushScene: PaintbrushConfigurationDelegate {
+    func didSetPuzzleConfiguration(to puzzleConfig: PaintbrushStagePuzzleConfiguration) {
+        if let panelDrawingArea {
+            panelDrawingArea.fillColor = SKColor(hexString: puzzleConfig.palette.panelColor)
+        }
     }
 }
 
@@ -46,15 +65,38 @@ class PaintbrushScene: SKScene {
 
 extension PaintbrushScene: PanelInteractionDelegate {
     func panelWillStartDrawing(at location: CGPoint) {
-        let drawPoint = createDrawingNode(at: location)
+        createDrawingNode(at: location)
     }
 
     func panelWillMoveDrawing(to location: CGPoint) {
-        let drawPoint = createDrawingNode(at: location)
+        createDrawingNode(at: location)
     }
 
     func panelWillFinishDrawing(at location: CGPoint) {
-        let drawPoint = createDrawingNode(at: location)
+        createDrawingNode(at: location)
+    }
+
+    func panelWillHighlight(onPredictionStatus prediction: Bool) {
+        guard let path = drawingDelegateNode?.childNode(withName: "witPath") as? SKShapeNode else { return }
+        if prediction {
+            path.strokeColor = SKColor(hexString: puzzle?.palette.panelLineColor ?? "#000000")
+            return
+        }
+    }
+
+    func panelDidHighlight(onPredictionStatus prediction: Bool) {
+        guard let path = drawingDelegateNode?.childNode(withName: "witPath") as? SKShapeNode else { return }
+        let pathColor = path.strokeColor
+        if prediction { return }
+        path.run(
+            .repeat(
+                .sequence([
+                    .colorizeStroke(to: .red, duration: 0.5),
+                    .colorizeStroke(to: pathColor, duration: 0.5)
+                ]),
+                count: 5
+            )
+        )
     }
 }
 
@@ -70,12 +112,11 @@ extension PaintbrushScene: PaintbrushSolver {
             drawnPath.addQuadCurve(to: next.position, control: current.position)
         }
         drawingPoints.forEach { $0.removeFromParent() }
-        let pathNode = SKShapeNode(path: drawnPath)
+        let pathNode = SKShapeNode(
+            path: drawnPath,
+            stroke: .init(hexString: puzzle?.palette.panelLineColor ?? "#000000")
+        )
         pathNode.name = "witPath"
-        pathNode.strokeColor = .black
-        pathNode.lineJoin = .round
-        pathNode.lineCap = .round
-        pathNode.lineWidth = 16
         return pathNode
     }
 

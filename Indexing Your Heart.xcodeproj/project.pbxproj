@@ -39,6 +39,12 @@
 		9533177028D3788C00E6E516 /* ch06-les-conseils-pour-les-jeunes.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 9533177228D3788C00E6E516 /* ch06-les-conseils-pour-les-jeunes.jenson */; };
 		9533177328D3788F00E6E516 /* ch07-changer-de-vie.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 9533177528D3788F00E6E516 /* ch07-changer-de-vie.jenson */; };
 		9533177628D3789100E6E516 /* epilogue.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 9533177828D3789100E6E516 /* epilogue.jenson */; };
+		9538C70028E71DD900D506F0 /* Stage1.json in Resources */ = {isa = PBXBuildFile; fileRef = 9538C6FF28E71DD900D506F0 /* Stage1.json */; };
+		9538C70328E71F1F00D506F0 /* PaintbrushStageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C70228E71F1F00D506F0 /* PaintbrushStageConfiguration.swift */; };
+		9538C70528E7200400D506F0 /* PaintbrushConfigurationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C70428E7200400D506F0 /* PaintbrushConfigurationDelegate.swift */; };
+		9538C70928E724A500D506F0 /* SKColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C70828E724A500D506F0 /* SKColor+Hex.swift */; };
+		9538C70B28E7298200D506F0 /* SKShapeNode+Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C70A28E7298200D506F0 /* SKShapeNode+Line.swift */; };
+		9538C70D28E7370C00D506F0 /* SKAction+ColorizeStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C70C28E7370C00D506F0 /* SKAction+ColorizeStroke.swift */; };
 		9566395628C929A300D9E852 /* JensonKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9566395528C929A300D9E852 /* JensonKit */; };
 		956B604128C7A2200031794C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 956B604328C7A2200031794C /* InfoPlist.strings */; };
 		956B604628C7A4730031794C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956B604528C7A4730031794C /* AppDelegate.swift */; };
@@ -96,6 +102,12 @@
 		9533177128D3788C00E6E516 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = "Base.lproj/ch06-les-conseils-pour-les-jeunes.jenson"; sourceTree = "<group>"; };
 		9533177428D3788F00E6E516 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = "Base.lproj/ch07-changer-de-vie.jenson"; sourceTree = "<group>"; };
 		9533177728D3789100E6E516 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = Base.lproj/epilogue.jenson; sourceTree = "<group>"; };
+		9538C6FF28E71DD900D506F0 /* Stage1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Stage1.json; sourceTree = "<group>"; };
+		9538C70228E71F1F00D506F0 /* PaintbrushStageConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintbrushStageConfiguration.swift; sourceTree = "<group>"; };
+		9538C70428E7200400D506F0 /* PaintbrushConfigurationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintbrushConfigurationDelegate.swift; sourceTree = "<group>"; };
+		9538C70828E724A500D506F0 /* SKColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKColor+Hex.swift"; sourceTree = "<group>"; };
+		9538C70A28E7298200D506F0 /* SKShapeNode+Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKShapeNode+Line.swift"; sourceTree = "<group>"; };
+		9538C70C28E7370C00D506F0 /* SKAction+ColorizeStroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKAction+ColorizeStroke.swift"; sourceTree = "<group>"; };
 		956B604228C7A2200031794C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		956B604528C7A4730031794C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		956B604B28C7B7480031794C /* Testbench.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Testbench.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +151,9 @@
 			isa = PBXGroup;
 			children = (
 				95011E6B28C7796900E511F3 /* FontFamily.swift */,
+				9538C70828E724A500D506F0 /* SKColor+Hex.swift */,
+				9538C70A28E7298200D506F0 /* SKShapeNode+Line.swift */,
+				9538C70C28E7370C00D506F0 /* SKAction+ColorizeStroke.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -281,6 +296,23 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		9538C6FE28E71DBD00D506F0 /* Puzzles */ = {
+			isa = PBXGroup;
+			children = (
+				9538C6FF28E71DD900D506F0 /* Stage1.json */,
+			);
+			path = Puzzles;
+			sourceTree = "<group>";
+		};
+		9538C70128E71F0C00D506F0 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				9538C70228E71F1F00D506F0 /* PaintbrushStageConfiguration.swift */,
+				9538C70428E7200400D506F0 /* PaintbrushConfigurationDelegate.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
 		956B604428C7A2270031794C /* Localizations */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,6 +333,8 @@
 		957593A628E33CD900012AFC /* Paintbrush */ = {
 			isa = PBXGroup;
 			children = (
+				9538C70128E71F0C00D506F0 /* Configuration */,
+				9538C6FE28E71DBD00D506F0 /* Puzzles */,
 				950F635328E62AF20018AB43 /* Validation */,
 				950F634C28E5D4080018AB43 /* Interactions */,
 				950F634828E49C380018AB43 /* PaintbrushScene.swift */,
@@ -449,6 +483,7 @@
 				95DB209728CFA9840079D624 /* epilogue.md in Resources */,
 				9533176728D3788200E6E516 /* ch03-ecouter-la-vague.jenson in Resources */,
 				9533176428D3788000E6E516 /* ch02-le-marteau-timide.jenson in Resources */,
+				9538C70028E71DD900D506F0 /* Stage1.json in Resources */,
 				95DB209428CFA9840079D624 /* ch03.md in Resources */,
 				95DB209628CFA9840079D624 /* ch04.md in Resources */,
 				95DB209528CFA9840079D624 /* ch06.md in Resources */,
@@ -536,16 +571,21 @@
 				950F634B28E49CC50018AB43 /* PaintbrushSolver.swift in Sources */,
 				9533175928D36A2900E6E516 /* SettingsView.swift in Sources */,
 				957593A828E33CF700012AFC /* ValidatorModel.mlmodel in Sources */,
+				9538C70528E7200400D506F0 /* PaintbrushConfigurationDelegate.swift in Sources */,
 				956B604628C7A4730031794C /* AppDelegate.swift in Sources */,
 				9533176028D3743100E6E516 /* GameSceneRenderable.swift in Sources */,
 				950F634928E49C380018AB43 /* PaintbrushScene.swift in Sources */,
+				9538C70B28E7298200D506F0 /* SKShapeNode+Line.swift in Sources */,
 				9524434A28C781FB005F91E1 /* ContentView.swift in Sources */,
+				9538C70D28E7370C00D506F0 /* SKAction+ColorizeStroke.swift in Sources */,
+				9538C70328E71F1F00D506F0 /* PaintbrushStageConfiguration.swift in Sources */,
 				950F635528E62BC10018AB43 /* PaintbrushScene+Inputs.swift in Sources */,
 				950F6CE628C0EADA007ACB53 /* GameScene.swift in Sources */,
 				950F634E28E5D41F0018AB43 /* PanelInteractionDelegate.swift in Sources */,
 				950F6CF828C13BDF007ACB53 /* GameSceneView.swift in Sources */,
 				95011E6C28C7796900E511F3 /* FontFamily.swift in Sources */,
 				9533175C28D371E500E6E516 /* SettingsDebuggingView.swift in Sources */,
+				9538C70928E724A500D506F0 /* SKColor+Hex.swift in Sources */,
 				950F6CFC28C13D6F007ACB53 /* Entrypoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
