@@ -42,32 +42,32 @@ builds and renders correctly.
 If you have purchased the Salmon 9 font family and want to use those fonts in the
 game, replace the following files with the corresponding family variants:
 
-- **Monospace** (`assets/fonts/mono.ttf`): Salmon Mono 9 Regular
-- **Sans-serif** (`/assets/fonts/sans.ttf`): Salmon Sans 9 Regular
-- **Serif** (`/assets/fonts/serif.ttf`): Salmon Serif 9 Regular
+- **Monospace** (`Shared/Assets/Fonts/Salmon Mono 9 Regular.ttf`): Salmon Mono 9
+  Regular
+- **Monospace (Bold)** (`Shared/Assets/Fonts/Salmon Mono 9 Bold.ttf`): Salmon Mono 9
+  Bold
+- **Sans-serif** (`Shared/Assets/Fonts/Salmon Sans 9 Regular.ttf`): Salmon Sans 9
+  Regular
+- **Sans-serif (Bold)** (`Shared/Assets/Fonts/Salmon Sans 9 Bold.ttf`): Salmon Sans 9
+  Bold
+- **Serif** (`Shared/Assets/Fonts/Salmon Serif 9 Regular.ttf`): Salmon Serif 9
+  Regular
+- **Serif (Bold)** (`Shared/Assets/Fonts/Salmon Serif 9 Bold.ttf`): Salmon Serif 9
+  Bold
 
 If you have not purchased the font and would like to do so, you can find the font on
 Phildjii's page on Itch.io at https://phildjii.itch.io/salmon-family.
 
 ### Using the utilities package (Marteau)
 
-> **Warning**
-> This documentation has not been updated to reflect the new code structure. This
-> will change over time. More information on the marteau package can be found at
-> https://github.com/Indexing-Your-Heart/marteau.
-
-The Marteau package (`utils`) includes utilities for handling helper functions such
-as:
+The Marteau package (`marteau`) includes utilities for handling helper functions
+such as:
 
 - Updating build configurations
-- Converting Markdown documents to Dialogic timelines
-- Importing portraits into Dialogic quickly
+- Converting Markdown documents to Jenson timelines
 
-More information how to build Marteau and its usage can be found in the documentation
-at [utils/README.md](./utils/README.md).
-
-> Note: You will need either a developer toolchain for Swift or Xcode as described in
-> "Optional Tools" to build and run Marteau.
+More information on how to install and use Marteau can be found on the source code
+repository for Marteau at https://github.com/Indexing-Your-Heart/marteau.
 
 ## Found an issue?
 
@@ -90,6 +90,7 @@ under open-source licenses:
 
 - CranberrySprite: Mozilla Public License (v2)
 - Bunker: Mozilla Public License (v2)
+- Swift Algorithms: Apache License (v2)
 
 Additionally, it contains libraries and projects under ethical-source licenses:
 

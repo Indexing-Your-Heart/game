@@ -28,6 +28,7 @@
 		950F6D0128C27442007ACB53 /* CranberrySprite in Frameworks */ = {isa = PBXBuildFile; productRef = 950F6D0028C27442007ACB53 /* CranberrySprite */; };
 		950F6D0428C27489007ACB53 /* Bunker in Frameworks */ = {isa = PBXBuildFile; productRef = 950F6D0328C27489007ACB53 /* Bunker */; };
 		9510BD3128EB196E00AD0E28 /* ValidatorModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 9510BD3028EB196E00AD0E28 /* ValidatorModel.mlmodel */; };
+		9510BD3428EB1E5500AD0E28 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 9510BD3328EB1E5500AD0E28 /* LICENSE.md */; };
 		9524434A28C781FB005F91E1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9524434928C781FB005F91E1 /* ContentView.swift */; };
 		9533175928D36A2900E6E516 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9533175828D36A2900E6E516 /* SettingsView.swift */; };
 		9533175C28D371E500E6E516 /* SettingsDebuggingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9533175B28D371E500E6E516 /* SettingsDebuggingView.swift */; };
@@ -93,6 +94,8 @@
 		950F6D0828C2757C007ACB53 /* Salmon Mono 9 Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Mono 9 Regular.ttf"; sourceTree = "<group>"; };
 		950F6D0928C2757C007ACB53 /* Salmon Sans 9 Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Sans 9 Regular.ttf"; sourceTree = "<group>"; };
 		9510BD3028EB196E00AD0E28 /* ValidatorModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ValidatorModel.mlmodel; sourceTree = "<group>"; };
+		9510BD3228EB1E4F00AD0E28 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9510BD3328EB1E5500AD0E28 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		9524434928C781FB005F91E1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9533175828D36A2900E6E516 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9533175B28D371E500E6E516 /* SettingsDebuggingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDebuggingView.swift; sourceTree = "<group>"; };
@@ -182,6 +185,8 @@
 		950F6CB928C0EAD8007ACB53 = {
 			isa = PBXGroup;
 			children = (
+				9510BD3228EB1E4F00AD0E28 /* README.md */,
+				9510BD3328EB1E5500AD0E28 /* LICENSE.md */,
 				95BCB92828C28330004AFDA3 /* Indexing Your Heart.entitlements */,
 				95BCB92728C282E0004AFDA3 /* Indexing-Your-Heart-Info.plist */,
 				95DB208728CFA96D0079D624 /* Story Source */,
@@ -508,6 +513,7 @@
 				9533177328D3788F00E6E516 /* ch07-changer-de-vie.jenson in Resources */,
 				95011E7328C77B9800E511F3 /* Salmon Serif 9 Regular.ttf in Resources */,
 				95011E6D28C77A4200E511F3 /* Salmon Serif 9 Bold.ttf in Resources */,
+				9510BD3428EB1E5500AD0E28 /* LICENSE.md in Resources */,
 				950F6CE828C0EADA007ACB53 /* Assets.xcassets in Resources */,
 				956B604128C7A2200031794C /* InfoPlist.strings in Resources */,
 			);
