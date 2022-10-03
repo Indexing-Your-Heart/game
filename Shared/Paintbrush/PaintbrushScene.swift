@@ -22,9 +22,14 @@ class PaintbrushScene: SKScene {
     var panelDrawingArea: SKShapeNode?
     var drawingDelegateNode: SKNode?
     var stageConfiguration: PaintbrushStageConfiguration?
-    var puzzle: PaintbrushStagePuzzleConfiguration?
+    var puzzle: PaintbrushStagePuzzleConfiguration? {
+        didSet {
+            guard let puzzle else { return }
+            didSetPuzzleConfiguration(to: puzzle)
+        }
+    }
+
     var painting: SKSpriteNode?
-    var predictionToleranceThreshold: Double { 0.85 }
 
     override func didMove(to _: SKView) {
         if let delegate = childNode(withName: "//delegate") {
@@ -58,6 +63,17 @@ class PaintbrushScene: SKScene {
     /// Returns the drawn path nodes from the player.
     private func getDrawingPoints() -> [SKNode]? {
         drawingDelegateNode?.children.filter { $0 != panelDrawingArea }
+    }
+
+    func nextPuzzle() {
+        guard let stageConfiguration else { return }
+        if let currentIdx = stageConfiguration.puzzles
+            .firstIndex(where: { $0.paintingName == puzzle?.paintingName }),
+            currentIdx + 1 < stageConfiguration.puzzles.count
+        {
+            let newIdx = currentIdx + 1
+            puzzle = stageConfiguration.puzzles[newIdx]
+        }
     }
 }
 
@@ -142,11 +158,13 @@ extension PaintbrushScene: PaintbrushSolver {
     func getCanvasImageFromScene() -> CGImage? {
         guard let panelDrawingArea, let drawingDelegateNode else { return nil }
         panelDrawingArea.fillColor = .black
+        panelDrawingArea.lineWidth = 0
         guard let line = drawingDelegateNode.childNode(withName: "witPath") as? SKShapeNode else { return nil }
         line.strokeColor = .white
         guard let texture = view?.texture(from: drawingDelegateNode, crop: panelDrawingArea.frame) else {
             line.strokeColor = SKColor(hexString: puzzle?.palette.panelLineColor ?? "#000000")
             panelDrawingArea.fillColor = SKColor(hexString: puzzle?.palette.panelColor ?? "#ffffff")
+            panelDrawingArea.lineWidth = 4
             return nil
         }
         if let debugNode = childNode(withName: "debugSprite") as? SKSpriteNode {
@@ -154,6 +172,7 @@ extension PaintbrushScene: PaintbrushSolver {
         }
         line.strokeColor = SKColor(hexString: puzzle?.palette.panelLineColor ?? "#000000")
         panelDrawingArea.fillColor = SKColor(hexString: puzzle?.palette.panelColor ?? "#ffffff")
+        panelDrawingArea.lineWidth = 4
         return texture.cgImage()
     }
 
@@ -161,8 +180,7 @@ extension PaintbrushScene: PaintbrushSolver {
         let classifier = try ValidatorModel(configuration: .init())
         let predictions = try classifier.prediction(input: .init(imageWith: cgImage))
             .classLabelProbs
-            .filter { $0.value >= predictionToleranceThreshold }
-            .max(count: 2, sortedBy: { $0.value < $1.value })
+            .max(count: 3, sortedBy: { $0.value < $1.value }).reversed()
         return predictions.map(\.key)
     }
 }

@@ -32,7 +32,12 @@ extension PaintbrushScene {
 
     override func touchesEnded(_ touches: Set<UITouch>, with _: UIEvent?) {
         for touch in touches {
-            panelWillFinishDrawing(at: touch.location(in: self))
+            let location = touch.location(in: self)
+            if childNode(withName: "debugSprite")?.frame.contains(location) == true {
+                nextPuzzle()
+                return
+            }
+            panelWillFinishDrawing(at: location)
         }
         if let puzzle {
             highlight(with: self, matching: puzzle)

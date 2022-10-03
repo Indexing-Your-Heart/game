@@ -53,6 +53,8 @@
 		956B604128C7A2200031794C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 956B604328C7A2200031794C /* InfoPlist.strings */; };
 		956B604628C7A4730031794C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956B604528C7A4730031794C /* AppDelegate.swift */; };
 		956B604E28C7B7480031794C /* Testbench.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956B604D28C7B7480031794C /* Testbench.swift */; };
+		95A9605628EB603700F05059 /* CGImage+Resizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A9605528EB603700F05059 /* CGImage+Resizable.swift */; };
+		95A9605828EB61F600F05059 /* Bundle+InfoPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A9605728EB61F600F05059 /* Bundle+InfoPlist.swift */; };
 		95DB209028CFA9840079D624 /* ch02.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208828CFA9840079D624 /* ch02.md */; };
 		95DB209128CFA9840079D624 /* ch01.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208928CFA9840079D624 /* ch01.md */; };
 		95DB209228CFA9840079D624 /* ch07.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208A28CFA9840079D624 /* ch07.md */; };
@@ -120,6 +122,8 @@
 		956B604528C7A4730031794C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		956B604B28C7B7480031794C /* Testbench.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Testbench.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		956B604D28C7B7480031794C /* Testbench.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Testbench.swift; sourceTree = "<group>"; };
+		95A9605528EB603700F05059 /* CGImage+Resizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImage+Resizable.swift"; sourceTree = "<group>"; };
+		95A9605728EB61F600F05059 /* Bundle+InfoPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+InfoPlist.swift"; sourceTree = "<group>"; };
 		95BCB92728C282E0004AFDA3 /* Indexing-Your-Heart-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Indexing-Your-Heart-Info.plist"; sourceTree = "<group>"; };
 		95BCB92828C28330004AFDA3 /* Indexing Your Heart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Indexing Your Heart.entitlements"; sourceTree = "<group>"; };
 		95DB208828CFA9840079D624 /* ch02.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ch02.md; sourceTree = "<group>"; };
@@ -157,10 +161,12 @@
 		95011E6A28C7795300E511F3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				95A9605528EB603700F05059 /* CGImage+Resizable.swift */,
 				95011E6B28C7796900E511F3 /* FontFamily.swift */,
 				9538C70828E724A500D506F0 /* SKColor+Hex.swift */,
 				9538C70A28E7298200D506F0 /* SKShapeNode+Line.swift */,
 				9538C70C28E7370C00D506F0 /* SKAction+ColorizeStroke.swift */,
+				95A9605728EB61F600F05059 /* Bundle+InfoPlist.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -599,11 +605,13 @@
 				950F634928E49C380018AB43 /* PaintbrushScene.swift in Sources */,
 				9538C70B28E7298200D506F0 /* SKShapeNode+Line.swift in Sources */,
 				9524434A28C781FB005F91E1 /* ContentView.swift in Sources */,
+				95A9605828EB61F600F05059 /* Bundle+InfoPlist.swift in Sources */,
 				9538C70D28E7370C00D506F0 /* SKAction+ColorizeStroke.swift in Sources */,
 				9538C70328E71F1F00D506F0 /* PaintbrushStageConfiguration.swift in Sources */,
 				950F635528E62BC10018AB43 /* PaintbrushScene+Inputs.swift in Sources */,
 				950F6CE628C0EADA007ACB53 /* GameScene.swift in Sources */,
 				950F634E28E5D41F0018AB43 /* PanelInteractionDelegate.swift in Sources */,
+				95A9605628EB603700F05059 /* CGImage+Resizable.swift in Sources */,
 				950F6CF828C13BDF007ACB53 /* GameSceneView.swift in Sources */,
 				95011E6C28C7796900E511F3 /* FontFamily.swift in Sources */,
 				9533175C28D371E500E6E516 /* SettingsDebuggingView.swift in Sources */,
@@ -841,12 +849,14 @@
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				PNT_RECORD_OUTPUT = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = art.indexingyourhe.game;
 				PRODUCT_NAME = "Indexing Your Heart";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -882,12 +892,14 @@
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				PNT_RECORD_OUTPUT = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = art.indexingyourhe.game;
 				PRODUCT_NAME = "Indexing Your Heart";
 				PROVISIONING_PROFILE_SPECIFIER = "";

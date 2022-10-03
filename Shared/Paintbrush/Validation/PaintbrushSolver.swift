@@ -15,6 +15,7 @@
 
 import Foundation
 import SpriteKit
+import UniformTypeIdentifiers
 
 /// An enumeration representing errors that may be thrown during prediction.
 enum PaintbrushSolverError: LocalizedError {
@@ -47,9 +48,6 @@ protocol PaintbrushSolver: AnyObject {
 
     /// The node that represents the underlying drawing area.
     var drawingDelegateNode: SKNode? { get set }
-
-    /// The minimum required prediction level to be considered "valid".
-    var predictionToleranceThreshold: Double { get }
 
     /// Creates a shape node with a CGPath based on the player's drawing.
     func makePathFromChildren() -> SKShapeNode?
@@ -99,6 +97,15 @@ extension PaintbrushSolver {
         guard let sourceImage = getCanvasImageFromScene(), let image = resizedForModel(image: sourceImage) else {
             return .failure(.imageCaptureFailure)
         }
+
+#if os(iOS)
+        if let record = Bundle.main.paintbrushRecordOutput, record {
+            if let mlImage = image.resized(to: .init(width: 47, height: 47)) {
+                mlImage.write(to: "drawing_" + Date.now.formatted(.iso8601))
+            }
+        }
+#endif
+
         do {
             let prediction = try makePrediction(from: image)
             return .success(prediction)
