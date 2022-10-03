@@ -24,6 +24,7 @@ class PaintbrushScene: SKScene {
     var stageConfiguration: PaintbrushStageConfiguration?
     var puzzle: PaintbrushStagePuzzleConfiguration?
     var painting: SKSpriteNode?
+    var predictionToleranceThreshold: Double { 0.85 }
 
     override func didMove(to _: SKView) {
         if let delegate = childNode(withName: "//delegate") {
@@ -41,11 +42,13 @@ class PaintbrushScene: SKScene {
     }
 
     /// Creates a node to be used in the final path.
+    /// - Returns: A node included in the final path, or `nil` if the location is out of bounds.
     @discardableResult
-    private func createDrawingNode(at location: CGPoint) -> SKNode {
+    private func createDrawingNode(at location: CGPoint) -> SKNode? {
         if let previousLine = drawingDelegateNode?.childNode(withName: "witPath") {
             previousLine.removeFromParent()
         }
+        guard let panelDrawingArea, panelDrawingArea.frame.contains(location) else { return nil }
         let drawPoint = SKNode()
         drawPoint.position = location
         drawingDelegateNode?.addChild(drawPoint)
@@ -158,6 +161,7 @@ extension PaintbrushScene: PaintbrushSolver {
         let classifier = try ValidatorModel(configuration: .init())
         let predictions = try classifier.prediction(input: .init(imageWith: cgImage))
             .classLabelProbs
+            .filter { $0.value >= predictionToleranceThreshold }
             .max(count: 2, sortedBy: { $0.value < $1.value })
         return predictions.map(\.key)
     }

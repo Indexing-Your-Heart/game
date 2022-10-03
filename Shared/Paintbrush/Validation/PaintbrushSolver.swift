@@ -48,6 +48,9 @@ protocol PaintbrushSolver: AnyObject {
     /// The node that represents the underlying drawing area.
     var drawingDelegateNode: SKNode? { get set }
 
+    /// The minimum required prediction level to be considered "valid".
+    var predictionToleranceThreshold: Double { get }
+
     /// Creates a shape node with a CGPath based on the player's drawing.
     func makePathFromChildren() -> SKShapeNode?
 
