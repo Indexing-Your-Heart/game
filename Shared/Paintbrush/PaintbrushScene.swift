@@ -70,7 +70,7 @@ class PaintbrushScene: SKScene {
         if let currentIdx = stageConfiguration.puzzles
             .firstIndex(where: { $0.paintingName == puzzle?.paintingName }),
             currentIdx + 1 < stageConfiguration.puzzles.count
-        {
+        { // swiftlint:disable:this opening_brace
             let newIdx = currentIdx + 1
             puzzle = stageConfiguration.puzzles[newIdx]
         }

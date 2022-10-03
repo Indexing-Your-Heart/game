@@ -47,7 +47,7 @@ struct ContentView: View {
             }
         }
         .onAppear {
-            GKAccessPoint.shared.isActive = true
+            GKAccessPoint.shared.isActive = (navigationState == .mainMenu)
         }
         .onChange(of: navigationState) { newValue in
             navigationState = newValue
