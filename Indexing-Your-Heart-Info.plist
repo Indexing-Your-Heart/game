@@ -12,5 +12,12 @@
 		<string>Salmon Sans 9 Bold.ttf</string>
 		<string>Salmon Serif 9 Regular.ttf</string>
 	</array>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>LaunchScreenBackground</string>
+		<key>UIImageName</key>
+		<string>LaunchSplash</string>
+	</dict>
 </dict>
 </plist>
