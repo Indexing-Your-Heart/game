@@ -23,7 +23,7 @@ public protocol CaslonSceneTimelineDelegate: AnyObject {
     func didDisplayNewEvent(event: JensonEvent)
 }
 
-extension CaslonSceneTimelineDelegate {
+public extension CaslonSceneTimelineDelegate {
     func next() {
         guard !timeline.isEmpty else { return }
         let event = timeline.removeFirst()

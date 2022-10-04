@@ -19,11 +19,12 @@ import SwiftUI
 enum NavigationState: Equatable {
     case mainMenu
     case paintbrushDemo
+    case caslonDemo
     case game
 }
 
 struct ContentView: View {
-    @State private var navigationState: NavigationState = .paintbrushDemo
+    @State private var navigationState: NavigationState = .caslonDemo
     @State private var displaySettings = false
     var body: some View {
         Group {
@@ -42,6 +43,8 @@ struct ContentView: View {
                 .aspectRatio(16 / 9, contentMode: .fit)
             case .paintbrushDemo:
                 PaintbrushDemoView()
+            case .caslonDemo:
+                CaslonSceneView(script: "ch01-mise-en-abyme")
             case .game:
                 GameSceneView()
             }

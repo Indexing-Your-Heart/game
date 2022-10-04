@@ -20,3 +20,10 @@ public protocol CaslonSceneRefreshDelegate: AnyObject {
     func willRefreshContents(of kind: JensonRefreshContent.Kind, to resourceName: String, with priority: Int?)
     func didRefreshContents(of kind: JensonRefreshContent.Kind, to resourceName: String, with priority: Int?)
 }
+
+public extension CaslonSceneRefreshDelegate {
+    func refreshContents(with trigger: JensonRefreshContent) {
+        willRefreshContents(of: trigger.kind, to: trigger.resourceName, with: trigger.priority)
+        didRefreshContents(of: trigger.kind, to: trigger.resourceName, with: trigger.priority)
+    }
+}
