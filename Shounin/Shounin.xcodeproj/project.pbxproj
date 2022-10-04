@@ -1,0 +1,1032 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		95011E6C28C7796900E511F3 /* FontFamily.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95011E6B28C7796900E511F3 /* FontFamily.swift */; };
+		95011E6D28C77A4200E511F3 /* Salmon Serif 9 Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 950F6D0728C2757C007ACB53 /* Salmon Serif 9 Bold.ttf */; };
+		95011E6E28C77A4200E511F3 /* Salmon Mono 9 Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 950F6D0828C2757C007ACB53 /* Salmon Mono 9 Regular.ttf */; };
+		95011E6F28C77A4200E511F3 /* Salmon Sans 9 Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 950F6D0928C2757C007ACB53 /* Salmon Sans 9 Regular.ttf */; };
+		95011E7128C77B1D00E511F3 /* Salmon Sans 9 Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95011E7028C77B1300E511F3 /* Salmon Sans 9 Bold.ttf */; };
+		95011E7328C77B9800E511F3 /* Salmon Serif 9 Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95011E7228C77B9800E511F3 /* Salmon Serif 9 Regular.ttf */; };
+		950F634928E49C380018AB43 /* PaintbrushScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F634828E49C380018AB43 /* PaintbrushScene.swift */; };
+		950F635228E5D7B60018AB43 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 950F635128E5D7B60018AB43 /* Algorithms */; };
+		950F635528E62BC10018AB43 /* PaintbrushScene+Inputs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F635428E62BC10018AB43 /* PaintbrushScene+Inputs.swift */; };
+		950F6CE228C0EADA007ACB53 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 950F6CBF28C0EAD9007ACB53 /* Actions.sks */; };
+		950F6CE428C0EADA007ACB53 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 950F6CC028C0EAD9007ACB53 /* GameScene.sks */; };
+		950F6CE628C0EADA007ACB53 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F6CC128C0EAD9007ACB53 /* GameScene.swift */; };
+		950F6CE828C0EADA007ACB53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 950F6CC228C0EADA007ACB53 /* Assets.xcassets */; };
+		950F6CF828C13BDF007ACB53 /* GameSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F6CF728C13BDF007ACB53 /* GameSceneView.swift */; };
+		950F6CFC28C13D6F007ACB53 /* Entrypoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F6CFB28C13D6F007ACB53 /* Entrypoint.swift */; };
+		950F6CFE28C156A6007ACB53 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 950F6CFD28C156A6007ACB53 /* Localizable.strings */; };
+		950F6D0128C27442007ACB53 /* CranberrySprite in Frameworks */ = {isa = PBXBuildFile; productRef = 950F6D0028C27442007ACB53 /* CranberrySprite */; };
+		950F6D0428C27489007ACB53 /* Bunker in Frameworks */ = {isa = PBXBuildFile; productRef = 950F6D0328C27489007ACB53 /* Bunker */; };
+		9510BD3128EB196E00AD0E28 /* ValidatorModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 9510BD3028EB196E00AD0E28 /* ValidatorModel.mlmodel */; };
+		9524434A28C781FB005F91E1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9524434928C781FB005F91E1 /* ContentView.swift */; };
+		9533175928D36A2900E6E516 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9533175828D36A2900E6E516 /* SettingsView.swift */; };
+		9533175C28D371E500E6E516 /* SettingsDebuggingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9533175B28D371E500E6E516 /* SettingsDebuggingView.swift */; };
+		9533176028D3743100E6E516 /* GameSceneRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9533175F28D3743100E6E516 /* GameSceneRenderable.swift */; };
+		9533176128D3787C00E6E516 /* ch01-mise-en-abyme.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 9533176328D3787C00E6E516 /* ch01-mise-en-abyme.jenson */; };
+		9533176428D3788000E6E516 /* ch02-le-marteau-timide.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 9533176628D3788000E6E516 /* ch02-le-marteau-timide.jenson */; };
+		9533176728D3788200E6E516 /* ch03-ecouter-la-vague.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 9533176928D3788200E6E516 /* ch03-ecouter-la-vague.jenson */; };
+		9533176A28D3788600E6E516 /* ch04-la-reveuse-sentimental.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 9533176C28D3788600E6E516 /* ch04-la-reveuse-sentimental.jenson */; };
+		9533176D28D3788900E6E516 /* ch05-la-lumiere-sombre.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 9533176F28D3788900E6E516 /* ch05-la-lumiere-sombre.jenson */; };
+		9533177028D3788C00E6E516 /* ch06-les-conseils-pour-les-jeunes.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 9533177228D3788C00E6E516 /* ch06-les-conseils-pour-les-jeunes.jenson */; };
+		9533177328D3788F00E6E516 /* ch07-changer-de-vie.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 9533177528D3788F00E6E516 /* ch07-changer-de-vie.jenson */; };
+		9533177628D3789100E6E516 /* epilogue.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 9533177828D3789100E6E516 /* epilogue.jenson */; };
+		9538C70028E71DD900D506F0 /* Stage1.json in Resources */ = {isa = PBXBuildFile; fileRef = 9538C6FF28E71DD900D506F0 /* Stage1.json */; };
+		9538C70928E724A500D506F0 /* SKColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C70828E724A500D506F0 /* SKColor+Hex.swift */; };
+		9538C70B28E7298200D506F0 /* SKShapeNode+Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C70A28E7298200D506F0 /* SKShapeNode+Line.swift */; };
+		9538C70D28E7370C00D506F0 /* SKAction+ColorizeStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C70C28E7370C00D506F0 /* SKAction+ColorizeStroke.swift */; };
+		9538C71028E7551600D506F0 /* Stage1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9538C70F28E7551600D506F0 /* Stage1.sks */; };
+		9538C71228E756BE00D506F0 /* PaintbrushDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C71128E756BE00D506F0 /* PaintbrushDemoView.swift */; };
+		9564878D28EC756A00B4477D /* Paintbrush in Frameworks */ = {isa = PBXBuildFile; productRef = 9564878C28EC756A00B4477D /* Paintbrush */; };
+		9566395628C929A300D9E852 /* JensonKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9566395528C929A300D9E852 /* JensonKit */; };
+		956B604128C7A2200031794C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 956B604328C7A2200031794C /* InfoPlist.strings */; };
+		956B604628C7A4730031794C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956B604528C7A4730031794C /* AppDelegate.swift */; };
+		956B604E28C7B7480031794C /* Testbench.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956B604D28C7B7480031794C /* Testbench.swift */; };
+		95A9605628EB603700F05059 /* CGImage+Resizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A9605528EB603700F05059 /* CGImage+Resizable.swift */; };
+		95A9605828EB61F600F05059 /* Bundle+InfoPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A9605728EB61F600F05059 /* Bundle+InfoPlist.swift */; };
+		95DB209028CFA9840079D624 /* ch02.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208828CFA9840079D624 /* ch02.md */; };
+		95DB209128CFA9840079D624 /* ch01.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208928CFA9840079D624 /* ch01.md */; };
+		95DB209228CFA9840079D624 /* ch07.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208A28CFA9840079D624 /* ch07.md */; };
+		95DB209328CFA9840079D624 /* ch05.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208B28CFA9840079D624 /* ch05.md */; };
+		95DB209428CFA9840079D624 /* ch03.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208C28CFA9840079D624 /* ch03.md */; };
+		95DB209528CFA9840079D624 /* ch06.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208D28CFA9840079D624 /* ch06.md */; };
+		95DB209628CFA9840079D624 /* ch04.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208E28CFA9840079D624 /* ch04.md */; };
+		95DB209728CFA9840079D624 /* epilogue.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208F28CFA9840079D624 /* epilogue.md */; };
+		95E97AAA28EC783400C9B71C /* PaintbrushSolverError+LocalizedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E97AA928EC783400C9B71C /* PaintbrushSolverError+LocalizedError.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		956B604F28C7B7480031794C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 950F6CBA28C0EAD8007ACB53 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 950F6CC628C0EADA007ACB53;
+			remoteInfo = "Indexing Your Heart";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		95011E6B28C7796900E511F3 /* FontFamily.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontFamily.swift; sourceTree = "<group>"; };
+		95011E7028C77B1300E511F3 /* Salmon Sans 9 Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Sans 9 Bold.ttf"; sourceTree = "<group>"; };
+		95011E7228C77B9800E511F3 /* Salmon Serif 9 Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Serif 9 Regular.ttf"; sourceTree = "<group>"; };
+		950F634828E49C380018AB43 /* PaintbrushScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintbrushScene.swift; sourceTree = "<group>"; };
+		950F635428E62BC10018AB43 /* PaintbrushScene+Inputs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaintbrushScene+Inputs.swift"; sourceTree = "<group>"; };
+		950F6CBF28C0EAD9007ACB53 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
+		950F6CC028C0EAD9007ACB53 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		950F6CC128C0EAD9007ACB53 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		950F6CC228C0EADA007ACB53 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		950F6CC728C0EADA007ACB53 /* Indexing Your Heart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Indexing Your Heart.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		950F6CE128C0EADA007ACB53 /* Indexing_Your_Heart_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Indexing_Your_Heart_macOS.entitlements; sourceTree = "<group>"; };
+		950F6CF728C13BDF007ACB53 /* GameSceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneView.swift; sourceTree = "<group>"; };
+		950F6CFB28C13D6F007ACB53 /* Entrypoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entrypoint.swift; sourceTree = "<group>"; };
+		950F6CFD28C156A6007ACB53 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		950F6D0728C2757C007ACB53 /* Salmon Serif 9 Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Serif 9 Bold.ttf"; sourceTree = "<group>"; };
+		950F6D0828C2757C007ACB53 /* Salmon Mono 9 Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Mono 9 Regular.ttf"; sourceTree = "<group>"; };
+		950F6D0928C2757C007ACB53 /* Salmon Sans 9 Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Sans 9 Regular.ttf"; sourceTree = "<group>"; };
+		9510BD3028EB196E00AD0E28 /* ValidatorModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ValidatorModel.mlmodel; sourceTree = "<group>"; };
+		9524434928C781FB005F91E1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9533175828D36A2900E6E516 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		9533175B28D371E500E6E516 /* SettingsDebuggingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDebuggingView.swift; sourceTree = "<group>"; };
+		9533175F28D3743100E6E516 /* GameSceneRenderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneRenderable.swift; sourceTree = "<group>"; };
+		9533176228D3787C00E6E516 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = "Base.lproj/ch01-mise-en-abyme.jenson"; sourceTree = "<group>"; };
+		9533176528D3788000E6E516 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = "Base.lproj/ch02-le-marteau-timide.jenson"; sourceTree = "<group>"; };
+		9533176828D3788200E6E516 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = "Base.lproj/ch03-ecouter-la-vague.jenson"; sourceTree = "<group>"; };
+		9533176B28D3788600E6E516 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = "Base.lproj/ch04-la-reveuse-sentimental.jenson"; sourceTree = "<group>"; };
+		9533176E28D3788900E6E516 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = "Base.lproj/ch05-la-lumiere-sombre.jenson"; sourceTree = "<group>"; };
+		9533177128D3788C00E6E516 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = "Base.lproj/ch06-les-conseils-pour-les-jeunes.jenson"; sourceTree = "<group>"; };
+		9533177428D3788F00E6E516 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = "Base.lproj/ch07-changer-de-vie.jenson"; sourceTree = "<group>"; };
+		9533177728D3789100E6E516 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = Base.lproj/epilogue.jenson; sourceTree = "<group>"; };
+		9538C6FF28E71DD900D506F0 /* Stage1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Stage1.json; sourceTree = "<group>"; };
+		9538C70828E724A500D506F0 /* SKColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKColor+Hex.swift"; sourceTree = "<group>"; };
+		9538C70A28E7298200D506F0 /* SKShapeNode+Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKShapeNode+Line.swift"; sourceTree = "<group>"; };
+		9538C70C28E7370C00D506F0 /* SKAction+ColorizeStroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKAction+ColorizeStroke.swift"; sourceTree = "<group>"; };
+		9538C70F28E7551600D506F0 /* Stage1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Stage1.sks; sourceTree = "<group>"; };
+		9538C71128E756BE00D506F0 /* PaintbrushDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintbrushDemoView.swift; sourceTree = "<group>"; };
+		9564878A28EC755400B4477D /* Paintbrush */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Paintbrush; path = ../Paintbrush; sourceTree = "<group>"; };
+		956B604228C7A2200031794C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		956B604528C7A4730031794C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		956B604B28C7B7480031794C /* Testbench.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Testbench.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		956B604D28C7B7480031794C /* Testbench.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Testbench.swift; sourceTree = "<group>"; };
+		95A9605528EB603700F05059 /* CGImage+Resizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImage+Resizable.swift"; sourceTree = "<group>"; };
+		95A9605728EB61F600F05059 /* Bundle+InfoPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+InfoPlist.swift"; sourceTree = "<group>"; };
+		95BCB92728C282E0004AFDA3 /* Indexing-Your-Heart-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Indexing-Your-Heart-Info.plist"; sourceTree = "<group>"; };
+		95BCB92828C28330004AFDA3 /* Indexing Your Heart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Indexing Your Heart.entitlements"; sourceTree = "<group>"; };
+		95DB208828CFA9840079D624 /* ch02.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ch02.md; sourceTree = "<group>"; };
+		95DB208928CFA9840079D624 /* ch01.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ch01.md; sourceTree = "<group>"; };
+		95DB208A28CFA9840079D624 /* ch07.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ch07.md; sourceTree = "<group>"; };
+		95DB208B28CFA9840079D624 /* ch05.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ch05.md; sourceTree = "<group>"; };
+		95DB208C28CFA9840079D624 /* ch03.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ch03.md; sourceTree = "<group>"; };
+		95DB208D28CFA9840079D624 /* ch06.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ch06.md; sourceTree = "<group>"; };
+		95DB208E28CFA9840079D624 /* ch04.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ch04.md; sourceTree = "<group>"; };
+		95DB208F28CFA9840079D624 /* epilogue.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = epilogue.md; sourceTree = "<group>"; };
+		95E97AA928EC783400C9B71C /* PaintbrushSolverError+LocalizedError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaintbrushSolverError+LocalizedError.swift"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		950F6CC428C0EADA007ACB53 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				950F635228E5D7B60018AB43 /* Algorithms in Frameworks */,
+				950F6D0128C27442007ACB53 /* CranberrySprite in Frameworks */,
+				9566395628C929A300D9E852 /* JensonKit in Frameworks */,
+				950F6D0428C27489007ACB53 /* Bunker in Frameworks */,
+				9564878D28EC756A00B4477D /* Paintbrush in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		956B604828C7B7480031794C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		95011E6A28C7795300E511F3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				95A9605528EB603700F05059 /* CGImage+Resizable.swift */,
+				95011E6B28C7796900E511F3 /* FontFamily.swift */,
+				9538C70828E724A500D506F0 /* SKColor+Hex.swift */,
+				9538C70A28E7298200D506F0 /* SKShapeNode+Line.swift */,
+				9538C70C28E7370C00D506F0 /* SKAction+ColorizeStroke.swift */,
+				95A9605728EB61F600F05059 /* Bundle+InfoPlist.swift */,
+				95E97AA928EC783400C9B71C /* PaintbrushSolverError+LocalizedError.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		950F6CB928C0EAD8007ACB53 = {
+			isa = PBXGroup;
+			children = (
+				9564878928EC755400B4477D /* Packages */,
+				95BCB92828C28330004AFDA3 /* Indexing Your Heart.entitlements */,
+				95BCB92728C282E0004AFDA3 /* Indexing-Your-Heart-Info.plist */,
+				9598462D28EC7BD6009585DA /* Bootstrap */,
+				95DB208728CFA96D0079D624 /* Story Source */,
+				9533175D28D373BD00E6E516 /* Game Scene Content */,
+				950F6D0528C274C3007ACB53 /* Assets */,
+				95011E6A28C7795300E511F3 /* Extensions */,
+				957593A628E33CD900012AFC /* Paintbrush */,
+				950F6CF328C13BAA007ACB53 /* Scenes */,
+				950F6CF428C13BB2007ACB53 /* Views */,
+				950F6CF228C0EB20007ACB53 /* Platforms */,
+				956B604C28C7B7480031794C /* Testbench */,
+				950F6CC828C0EADA007ACB53 /* Products */,
+				9564878B28EC756A00B4477D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		950F6CC828C0EADA007ACB53 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				950F6CC728C0EADA007ACB53 /* Indexing Your Heart.app */,
+				956B604B28C7B7480031794C /* Testbench.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		950F6CD928C0EADA007ACB53 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				950F6CE128C0EADA007ACB53 /* Indexing_Your_Heart_macOS.entitlements */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		950F6CF228C0EB20007ACB53 /* Platforms */ = {
+			isa = PBXGroup;
+			children = (
+				950F6CD928C0EADA007ACB53 /* macOS */,
+			);
+			name = Platforms;
+			sourceTree = "<group>";
+		};
+		950F6CF328C13BAA007ACB53 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				9538C70E28E7550500D506F0 /* Puzzle Stages */,
+				950F6CBF28C0EAD9007ACB53 /* Actions.sks */,
+				950F6CC028C0EAD9007ACB53 /* GameScene.sks */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		950F6CF428C13BB2007ACB53 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9533175A28D371D600E6E516 /* Settings */,
+				950F6CF728C13BDF007ACB53 /* GameSceneView.swift */,
+				9524434928C781FB005F91E1 /* ContentView.swift */,
+				9533175828D36A2900E6E516 /* SettingsView.swift */,
+				9538C71128E756BE00D506F0 /* PaintbrushDemoView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		950F6D0528C274C3007ACB53 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				956B604428C7A2270031794C /* Localizations */,
+				95DB207628CFA80C0079D624 /* Story */,
+				950F6D0628C2752F007ACB53 /* Fonts */,
+				950F6CC228C0EADA007ACB53 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		950F6D0628C2752F007ACB53 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				95011E7228C77B9800E511F3 /* Salmon Serif 9 Regular.ttf */,
+				950F6D0828C2757C007ACB53 /* Salmon Mono 9 Regular.ttf */,
+				950F6D0928C2757C007ACB53 /* Salmon Sans 9 Regular.ttf */,
+				95011E7028C77B1300E511F3 /* Salmon Sans 9 Bold.ttf */,
+				950F6D0728C2757C007ACB53 /* Salmon Serif 9 Bold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		9533175A28D371D600E6E516 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				9533175B28D371E500E6E516 /* SettingsDebuggingView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		9533175D28D373BD00E6E516 /* Game Scene Content */ = {
+			isa = PBXGroup;
+			children = (
+				9533175E28D373DD00E6E516 /* Protocols */,
+				950F6CC128C0EAD9007ACB53 /* GameScene.swift */,
+			);
+			path = "Game Scene Content";
+			sourceTree = "<group>";
+		};
+		9533175E28D373DD00E6E516 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				9533175F28D3743100E6E516 /* GameSceneRenderable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		9538C6FE28E71DBD00D506F0 /* Puzzles */ = {
+			isa = PBXGroup;
+			children = (
+				9538C6FF28E71DD900D506F0 /* Stage1.json */,
+			);
+			path = Puzzles;
+			sourceTree = "<group>";
+		};
+		9538C70E28E7550500D506F0 /* Puzzle Stages */ = {
+			isa = PBXGroup;
+			children = (
+				9538C70F28E7551600D506F0 /* Stage1.sks */,
+			);
+			path = "Puzzle Stages";
+			sourceTree = "<group>";
+		};
+		9564878928EC755400B4477D /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				9564878A28EC755400B4477D /* Paintbrush */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		9564878B28EC756A00B4477D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		956B604428C7A2270031794C /* Localizations */ = {
+			isa = PBXGroup;
+			children = (
+				950F6CFD28C156A6007ACB53 /* Localizable.strings */,
+				956B604328C7A2200031794C /* InfoPlist.strings */,
+			);
+			path = Localizations;
+			sourceTree = "<group>";
+		};
+		956B604C28C7B7480031794C /* Testbench */ = {
+			isa = PBXGroup;
+			children = (
+				956B604D28C7B7480031794C /* Testbench.swift */,
+			);
+			path = Testbench;
+			sourceTree = "<group>";
+		};
+		957593A628E33CD900012AFC /* Paintbrush */ = {
+			isa = PBXGroup;
+			children = (
+				9510BD3028EB196E00AD0E28 /* ValidatorModel.mlmodel */,
+				9538C6FE28E71DBD00D506F0 /* Puzzles */,
+				950F634828E49C380018AB43 /* PaintbrushScene.swift */,
+				950F635428E62BC10018AB43 /* PaintbrushScene+Inputs.swift */,
+			);
+			path = Paintbrush;
+			sourceTree = "<group>";
+		};
+		9598462D28EC7BD6009585DA /* Bootstrap */ = {
+			isa = PBXGroup;
+			children = (
+				950F6CFB28C13D6F007ACB53 /* Entrypoint.swift */,
+				956B604528C7A4730031794C /* AppDelegate.swift */,
+			);
+			path = Bootstrap;
+			sourceTree = "<group>";
+		};
+		95DB207628CFA80C0079D624 /* Story */ = {
+			isa = PBXGroup;
+			children = (
+				9533176328D3787C00E6E516 /* ch01-mise-en-abyme.jenson */,
+				9533176628D3788000E6E516 /* ch02-le-marteau-timide.jenson */,
+				9533176928D3788200E6E516 /* ch03-ecouter-la-vague.jenson */,
+				9533176C28D3788600E6E516 /* ch04-la-reveuse-sentimental.jenson */,
+				9533176F28D3788900E6E516 /* ch05-la-lumiere-sombre.jenson */,
+				9533177228D3788C00E6E516 /* ch06-les-conseils-pour-les-jeunes.jenson */,
+				9533177528D3788F00E6E516 /* ch07-changer-de-vie.jenson */,
+				9533177828D3789100E6E516 /* epilogue.jenson */,
+			);
+			path = Story;
+			sourceTree = "<group>";
+		};
+		95DB208728CFA96D0079D624 /* Story Source */ = {
+			isa = PBXGroup;
+			children = (
+				95DB208928CFA9840079D624 /* ch01.md */,
+				95DB208828CFA9840079D624 /* ch02.md */,
+				95DB208C28CFA9840079D624 /* ch03.md */,
+				95DB208E28CFA9840079D624 /* ch04.md */,
+				95DB208B28CFA9840079D624 /* ch05.md */,
+				95DB208D28CFA9840079D624 /* ch06.md */,
+				95DB208A28CFA9840079D624 /* ch07.md */,
+				95DB208F28CFA9840079D624 /* epilogue.md */,
+			);
+			path = "Story Source";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		950F6CC628C0EADA007ACB53 /* Indexing Your Heart */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 950F6CEC28C0EADA007ACB53 /* Build configuration list for PBXNativeTarget "Indexing Your Heart" */;
+			buildPhases = (
+				95DB209828CFA9A70079D624 /* Convert Story Scripts */,
+				950F6CFA28C13D02007ACB53 /* Run SwiftLint */,
+				950F6CC328C0EADA007ACB53 /* Sources */,
+				950F6CC428C0EADA007ACB53 /* Frameworks */,
+				950F6CC528C0EADA007ACB53 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Indexing Your Heart";
+			packageProductDependencies = (
+				950F6D0028C27442007ACB53 /* CranberrySprite */,
+				950F6D0328C27489007ACB53 /* Bunker */,
+				9566395528C929A300D9E852 /* JensonKit */,
+				950F635128E5D7B60018AB43 /* Algorithms */,
+				9564878C28EC756A00B4477D /* Paintbrush */,
+			);
+			productName = "Indexing Your Heart iOS";
+			productReference = 950F6CC728C0EADA007ACB53 /* Indexing Your Heart.app */;
+			productType = "com.apple.product-type.application";
+		};
+		956B604A28C7B7480031794C /* Testbench */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 956B605328C7B7480031794C /* Build configuration list for PBXNativeTarget "Testbench" */;
+			buildPhases = (
+				956B604728C7B7480031794C /* Sources */,
+				956B604828C7B7480031794C /* Frameworks */,
+				956B604928C7B7480031794C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				956B605028C7B7480031794C /* PBXTargetDependency */,
+			);
+			name = Testbench;
+			productName = Testbench;
+			productReference = 956B604B28C7B7480031794C /* Testbench.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		950F6CBA28C0EAD8007ACB53 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1400;
+				LastUpgradeCheck = 1410;
+				TargetAttributes = {
+					950F6CC628C0EADA007ACB53 = {
+						CreatedOnToolsVersion = 14.0;
+					};
+					956B604A28C7B7480031794C = {
+						CreatedOnToolsVersion = 14.0;
+						TestTargetID = 950F6CC628C0EADA007ACB53;
+					};
+				};
+			};
+			buildConfigurationList = 950F6CBD28C0EAD8007ACB53 /* Build configuration list for PBXProject "Shounin" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 950F6CB928C0EAD8007ACB53;
+			packageReferences = (
+				950F6CFF28C27442007ACB53 /* XCRemoteSwiftPackageReference "cranberrysprite" */,
+				950F6D0228C27489007ACB53 /* XCRemoteSwiftPackageReference "bunker" */,
+				9566395428C929A300D9E852 /* XCRemoteSwiftPackageReference "JensonKit" */,
+				950F635028E5D7B60018AB43 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+			);
+			productRefGroup = 950F6CC828C0EADA007ACB53 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				950F6CC628C0EADA007ACB53 /* Indexing Your Heart */,
+				956B604A28C7B7480031794C /* Testbench */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		950F6CC528C0EADA007ACB53 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95DB209228CFA9840079D624 /* ch07.md in Resources */,
+				95011E6F28C77A4200E511F3 /* Salmon Sans 9 Regular.ttf in Resources */,
+				950F6CE428C0EADA007ACB53 /* GameScene.sks in Resources */,
+				950F6CFE28C156A6007ACB53 /* Localizable.strings in Resources */,
+				95DB209028CFA9840079D624 /* ch02.md in Resources */,
+				9533177028D3788C00E6E516 /* ch06-les-conseils-pour-les-jeunes.jenson in Resources */,
+				95DB209328CFA9840079D624 /* ch05.md in Resources */,
+				9533176128D3787C00E6E516 /* ch01-mise-en-abyme.jenson in Resources */,
+				95011E7128C77B1D00E511F3 /* Salmon Sans 9 Bold.ttf in Resources */,
+				950F6CE228C0EADA007ACB53 /* Actions.sks in Resources */,
+				9533176D28D3788900E6E516 /* ch05-la-lumiere-sombre.jenson in Resources */,
+				9533176A28D3788600E6E516 /* ch04-la-reveuse-sentimental.jenson in Resources */,
+				95DB209728CFA9840079D624 /* epilogue.md in Resources */,
+				9533176728D3788200E6E516 /* ch03-ecouter-la-vague.jenson in Resources */,
+				9538C71028E7551600D506F0 /* Stage1.sks in Resources */,
+				9533176428D3788000E6E516 /* ch02-le-marteau-timide.jenson in Resources */,
+				9538C70028E71DD900D506F0 /* Stage1.json in Resources */,
+				95DB209428CFA9840079D624 /* ch03.md in Resources */,
+				95DB209628CFA9840079D624 /* ch04.md in Resources */,
+				95DB209528CFA9840079D624 /* ch06.md in Resources */,
+				95011E6E28C77A4200E511F3 /* Salmon Mono 9 Regular.ttf in Resources */,
+				9533177628D3789100E6E516 /* epilogue.jenson in Resources */,
+				95DB209128CFA9840079D624 /* ch01.md in Resources */,
+				9533177328D3788F00E6E516 /* ch07-changer-de-vie.jenson in Resources */,
+				95011E7328C77B9800E511F3 /* Salmon Serif 9 Regular.ttf in Resources */,
+				95011E6D28C77A4200E511F3 /* Salmon Serif 9 Bold.ttf in Resources */,
+				950F6CE828C0EADA007ACB53 /* Assets.xcassets in Resources */,
+				956B604128C7A2200031794C /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		956B604928C7B7480031794C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		950F6CFA28C13D02007ACB53 /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		95DB209828CFA9A70079D624 /* Convert Story Scripts */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(PROJECT_DIR)/Story Source/ch01.md",
+				"$(PROJECT_DIR)/Story Source/ch02.md",
+				"$(PROJECT_DIR)/Story Source/ch03.md",
+				"$(PROJECT_DIR)/Story Source/ch04.md",
+				"$(PROJECT_DIR)/Story Source/ch05.md",
+				"$(PROJECT_DIR)/Story Source/ch06.md",
+				"$(PROJECT_DIR)/Story Source/ch07.md",
+				"$(PROJECT_DIR)/Story Source/epilogue.md",
+			);
+			name = "Convert Story Scripts";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(PROJECT_DIR)/Shared/Assets/Story/ch01-mise-en-abyme.jenson",
+				"$(PROJECT_DIR)/Shared/Assets/Story/ch02-le-marteau-timide.jenson",
+				"$(PROJECT_DIR)/Shared/Assets/Story/ch03-ecouter-la-vague.jenson",
+				"$(PROJECT_DIR)/Shared/Assets/Story/ch04-la-reveuse-sentimental.jenson",
+				"$(PROJECT_DIR)/Shared/Assets/Story/ch05-la-lumiere-sombre.jenson",
+				"$(PROJECT_DIR)/Shared/Assets/Story/ch06-les-conseils-pour-les-jeunes.jenson",
+				"$(PROJECT_DIR)/Shared/Assets/Story/ch07-changer-de-vie.jenson",
+				"$(PROJECT_DIR)/Shared/Assets/Story/epilogue.jenson",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/opt/homebrew/bin\"\nif which marteau >/dev/null; then\n  ./jenson-convert.sh\nelse\n  echo \"warning: Marteau not installed. Skipping story conversions. To squelch this warning, install Marteau with 'brew install'.\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		950F6CC328C0EADA007ACB53 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9510BD3128EB196E00AD0E28 /* ValidatorModel.mlmodel in Sources */,
+				9533175928D36A2900E6E516 /* SettingsView.swift in Sources */,
+				95E97AAA28EC783400C9B71C /* PaintbrushSolverError+LocalizedError.swift in Sources */,
+				9538C71228E756BE00D506F0 /* PaintbrushDemoView.swift in Sources */,
+				956B604628C7A4730031794C /* AppDelegate.swift in Sources */,
+				9533176028D3743100E6E516 /* GameSceneRenderable.swift in Sources */,
+				950F634928E49C380018AB43 /* PaintbrushScene.swift in Sources */,
+				9538C70B28E7298200D506F0 /* SKShapeNode+Line.swift in Sources */,
+				9524434A28C781FB005F91E1 /* ContentView.swift in Sources */,
+				95A9605828EB61F600F05059 /* Bundle+InfoPlist.swift in Sources */,
+				9538C70D28E7370C00D506F0 /* SKAction+ColorizeStroke.swift in Sources */,
+				950F635528E62BC10018AB43 /* PaintbrushScene+Inputs.swift in Sources */,
+				950F6CE628C0EADA007ACB53 /* GameScene.swift in Sources */,
+				95A9605628EB603700F05059 /* CGImage+Resizable.swift in Sources */,
+				950F6CF828C13BDF007ACB53 /* GameSceneView.swift in Sources */,
+				95011E6C28C7796900E511F3 /* FontFamily.swift in Sources */,
+				9533175C28D371E500E6E516 /* SettingsDebuggingView.swift in Sources */,
+				9538C70928E724A500D506F0 /* SKColor+Hex.swift in Sources */,
+				950F6CFC28C13D6F007ACB53 /* Entrypoint.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		956B604728C7B7480031794C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				956B604E28C7B7480031794C /* Testbench.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		956B605028C7B7480031794C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 950F6CC628C0EADA007ACB53 /* Indexing Your Heart */;
+			targetProxy = 956B604F28C7B7480031794C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9533176328D3787C00E6E516 /* ch01-mise-en-abyme.jenson */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9533176228D3787C00E6E516 /* Base */,
+			);
+			name = "ch01-mise-en-abyme.jenson";
+			sourceTree = "<group>";
+		};
+		9533176628D3788000E6E516 /* ch02-le-marteau-timide.jenson */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9533176528D3788000E6E516 /* Base */,
+			);
+			name = "ch02-le-marteau-timide.jenson";
+			sourceTree = "<group>";
+		};
+		9533176928D3788200E6E516 /* ch03-ecouter-la-vague.jenson */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9533176828D3788200E6E516 /* Base */,
+			);
+			name = "ch03-ecouter-la-vague.jenson";
+			sourceTree = "<group>";
+		};
+		9533176C28D3788600E6E516 /* ch04-la-reveuse-sentimental.jenson */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9533176B28D3788600E6E516 /* Base */,
+			);
+			name = "ch04-la-reveuse-sentimental.jenson";
+			sourceTree = "<group>";
+		};
+		9533176F28D3788900E6E516 /* ch05-la-lumiere-sombre.jenson */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9533176E28D3788900E6E516 /* Base */,
+			);
+			name = "ch05-la-lumiere-sombre.jenson";
+			sourceTree = "<group>";
+		};
+		9533177228D3788C00E6E516 /* ch06-les-conseils-pour-les-jeunes.jenson */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9533177128D3788C00E6E516 /* Base */,
+			);
+			name = "ch06-les-conseils-pour-les-jeunes.jenson";
+			sourceTree = "<group>";
+		};
+		9533177528D3788F00E6E516 /* ch07-changer-de-vie.jenson */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9533177428D3788F00E6E516 /* Base */,
+			);
+			name = "ch07-changer-de-vie.jenson";
+			sourceTree = "<group>";
+		};
+		9533177828D3789100E6E516 /* epilogue.jenson */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9533177728D3789100E6E516 /* Base */,
+			);
+			name = epilogue.jenson;
+			sourceTree = "<group>";
+		};
+		956B604328C7A2200031794C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				956B604228C7A2200031794C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		950F6CEA28C0EADA007ACB53 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		950F6CEB28C0EADA007ACB53 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		950F6CED28C0EADA007ACB53 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Indexing Your Heart.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FQQXSP79X3;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Indexing-Your-Heart-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Indexing Your Heart";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.puzzle-games";
+				INFOPLIST_KEY_NSHumanReadableCopyright = general.copyright;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PNT_RECORD_OUTPUT = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = art.indexingyourhe.game;
+				PRODUCT_NAME = "Indexing Your Heart";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		950F6CEE28C0EADA007ACB53 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Indexing Your Heart.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FQQXSP79X3;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Indexing-Your-Heart-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Indexing Your Heart";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.puzzle-games";
+				INFOPLIST_KEY_NSHumanReadableCopyright = general.copyright;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PNT_RECORD_OUTPUT = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = art.indexingyourhe.game;
+				PRODUCT_NAME = "Indexing Your Heart";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		956B605128C7B7480031794C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N4K7Y69MC5;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = art.indexingyourhe.Testbench;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Indexing Your Heart.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Indexing Your Heart";
+			};
+			name = Debug;
+		};
+		956B605228C7B7480031794C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N4K7Y69MC5;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = art.indexingyourhe.Testbench;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Indexing Your Heart.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Indexing Your Heart";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		950F6CBD28C0EAD8007ACB53 /* Build configuration list for PBXProject "Shounin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				950F6CEA28C0EADA007ACB53 /* Debug */,
+				950F6CEB28C0EADA007ACB53 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		950F6CEC28C0EADA007ACB53 /* Build configuration list for PBXNativeTarget "Indexing Your Heart" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				950F6CED28C0EADA007ACB53 /* Debug */,
+				950F6CEE28C0EADA007ACB53 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		956B605328C7B7480031794C /* Build configuration list for PBXNativeTarget "Testbench" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				956B605128C7B7480031794C /* Debug */,
+				956B605228C7B7480031794C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		950F635028E5D7B60018AB43 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		950F6CFF28C27442007ACB53 /* XCRemoteSwiftPackageReference "cranberrysprite" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alicerunsonfedora/cranberrysprite";
+			requirement = {
+				branch = root;
+				kind = branch;
+			};
+		};
+		950F6D0228C27489007ACB53 /* XCRemoteSwiftPackageReference "bunker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alicerunsonfedora/bunker.git";
+			requirement = {
+				branch = root;
+				kind = branch;
+			};
+		};
+		9566395428C929A300D9E852 /* XCRemoteSwiftPackageReference "JensonKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Indexing-Your-Heart/JensonKit";
+			requirement = {
+				branch = root;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		950F635128E5D7B60018AB43 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 950F635028E5D7B60018AB43 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+		950F6D0028C27442007ACB53 /* CranberrySprite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 950F6CFF28C27442007ACB53 /* XCRemoteSwiftPackageReference "cranberrysprite" */;
+			productName = CranberrySprite;
+		};
+		950F6D0328C27489007ACB53 /* Bunker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 950F6D0228C27489007ACB53 /* XCRemoteSwiftPackageReference "bunker" */;
+			productName = Bunker;
+		};
+		9564878C28EC756A00B4477D /* Paintbrush */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Paintbrush;
+		};
+		9566395528C929A300D9E852 /* JensonKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9566395428C929A300D9E852 /* XCRemoteSwiftPackageReference "JensonKit" */;
+			productName = JensonKit;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 950F6CBA28C0EAD8007ACB53 /* Project object */;
+}

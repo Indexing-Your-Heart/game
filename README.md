@@ -26,8 +26,19 @@ wearing a hammer costume.
 - Fastlane (used internally for assistance in CI deployment)
 
 Start by cloning the repository using `gh repo clone` or `git clone`, then open the
-main project file `Indexing Your Heart.xcodeproj`. Go to **Product > Run** to build
-and run the project on your Mac or an iOS simulator.
+main project file `Indexing Your Heart.xcworkspace`. Ensure the current scheme is
+set to **Indexing Your Heart**, then go to **Product > Run** to build and run the
+project on your Mac or an iOS simulator.
+
+### Project Modules
+
+Indexing Your Heart is organized into a set of modules, each containing a system
+used for the main game.
+
+- **Shounin** is the game project itself, where all of the modules get imported
+  into.
+- **Paintbrush** is the module that contains the source code for the Paintbrush
+  puzzle system. The implementations for these exist in Shounin.
 
 ### Using Salmon 9 Fonts
 
@@ -42,17 +53,17 @@ builds and renders correctly.
 If you have purchased the Salmon 9 font family and want to use those fonts in the
 game, replace the following files with the corresponding family variants:
 
-- **Monospace** (`Shared/Assets/Fonts/Salmon Mono 9 Regular.ttf`): Salmon Mono 9
+- **Monospace** (`Assets/Fonts/Salmon Mono 9 Regular.ttf`): Salmon Mono 9
   Regular
-- **Monospace (Bold)** (`Shared/Assets/Fonts/Salmon Mono 9 Bold.ttf`): Salmon Mono 9
+- **Monospace (Bold)** (`Assets/Fonts/Salmon Mono 9 Bold.ttf`): Salmon Mono 9
   Bold
-- **Sans-serif** (`Shared/Assets/Fonts/Salmon Sans 9 Regular.ttf`): Salmon Sans 9
+- **Sans-serif** (`Assets/Fonts/Salmon Sans 9 Regular.ttf`): Salmon Sans 9
   Regular
-- **Sans-serif (Bold)** (`Shared/Assets/Fonts/Salmon Sans 9 Bold.ttf`): Salmon Sans 9
+- **Sans-serif (Bold)** (`Assets/Fonts/Salmon Sans 9 Bold.ttf`): Salmon Sans 9
   Bold
-- **Serif** (`Shared/Assets/Fonts/Salmon Serif 9 Regular.ttf`): Salmon Serif 9
+- **Serif** (`Assets/Fonts/Salmon Serif 9 Regular.ttf`): Salmon Serif 9
   Regular
-- **Serif (Bold)** (`Shared/Assets/Fonts/Salmon Serif 9 Bold.ttf`): Salmon Serif 9
+- **Serif (Bold)** (`Assets/Fonts/Salmon Serif 9 Bold.ttf`): Salmon Serif 9
   Bold
 
 If you have not purchased the font and would like to do so, you can find the font on
