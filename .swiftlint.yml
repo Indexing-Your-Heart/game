@@ -9,8 +9,9 @@ opt_in_rules:
   - inclusive_language
 
 included:
-  - Shared
-  - Tests
+  - Caslon/Sources
+  - Paintbrush/Sources
+  - Shounin
 
 type_name:
   allowed_symbols: ["_"]

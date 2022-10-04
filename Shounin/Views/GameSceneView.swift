@@ -22,9 +22,9 @@ struct GameSceneView: View {
     @State private var debugOptions: SpriteView.DebugOptions = []
 
     private var gameScene: SKScene = {
-        let scene = GameScene.newGameScene()
+        let scene = SKScene(fileNamed: "GameScene")
         // Write any additional logic for setup here.
-        return scene
+        return scene ?? .init()
     }()
 
     var body: some View {

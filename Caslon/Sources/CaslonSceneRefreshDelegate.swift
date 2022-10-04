@@ -1,8 +1,8 @@
 //
-//  GameSceneRenderable.swift
+//  CaslonSceneRefreshDelegate.swift
 //  Indexing Your Heart
 //
-//  Created by Marquis Kurt on 9/15/22.
+//  Created by Marquis Kurt on 10/4/22.
 //
 //  This file is part of Indexing Your Heart.
 //
@@ -13,13 +13,10 @@
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
 
-import CranberrySprite
-import SpriteKit
+import Foundation
+import JensonKit
 
-protocol GameSceneRenderingAttributes {
-    func setup()
-    func redraw()
+public protocol CaslonSceneRefreshDelegate: AnyObject {
+    func willRefreshContents(of kind: JensonRefreshContent.Kind, to resourceName: String, with priority: Int?)
+    func didRefreshContents(of kind: JensonRefreshContent.Kind, to resourceName: String, with priority: Int?)
 }
-
-typealias GameSceneRenderable = CSWorldCreateable & GameSceneRenderingAttributes
-typealias GameSceneDelegate = GameSceneRenderable

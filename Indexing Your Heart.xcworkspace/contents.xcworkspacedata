@@ -7,13 +7,12 @@
    <FileRef
       location = "group:LICENSE.md">
    </FileRef>
-   <Group
-      location = "container:"
-      name = "Subsystems">
-      <FileRef
-         location = "group:Paintbrush">
-      </FileRef>
-   </Group>
+   <FileRef
+      location = "group:Caslon">
+   </FileRef>
+   <FileRef
+      location = "group:Paintbrush">
+   </FileRef>
    <FileRef
       location = "group:Shounin/Shounin.xcodeproj">
    </FileRef>

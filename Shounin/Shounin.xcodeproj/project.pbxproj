@@ -16,20 +16,17 @@
 		950F634928E49C380018AB43 /* PaintbrushScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F634828E49C380018AB43 /* PaintbrushScene.swift */; };
 		950F635228E5D7B60018AB43 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 950F635128E5D7B60018AB43 /* Algorithms */; };
 		950F635528E62BC10018AB43 /* PaintbrushScene+Inputs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F635428E62BC10018AB43 /* PaintbrushScene+Inputs.swift */; };
-		950F6CE228C0EADA007ACB53 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 950F6CBF28C0EAD9007ACB53 /* Actions.sks */; };
 		950F6CE428C0EADA007ACB53 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 950F6CC028C0EAD9007ACB53 /* GameScene.sks */; };
-		950F6CE628C0EADA007ACB53 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F6CC128C0EAD9007ACB53 /* GameScene.swift */; };
 		950F6CE828C0EADA007ACB53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 950F6CC228C0EADA007ACB53 /* Assets.xcassets */; };
 		950F6CF828C13BDF007ACB53 /* GameSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F6CF728C13BDF007ACB53 /* GameSceneView.swift */; };
 		950F6CFC28C13D6F007ACB53 /* Entrypoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F6CFB28C13D6F007ACB53 /* Entrypoint.swift */; };
 		950F6CFE28C156A6007ACB53 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 950F6CFD28C156A6007ACB53 /* Localizable.strings */; };
 		950F6D0128C27442007ACB53 /* CranberrySprite in Frameworks */ = {isa = PBXBuildFile; productRef = 950F6D0028C27442007ACB53 /* CranberrySprite */; };
 		950F6D0428C27489007ACB53 /* Bunker in Frameworks */ = {isa = PBXBuildFile; productRef = 950F6D0328C27489007ACB53 /* Bunker */; };
-		9510BD3128EB196E00AD0E28 /* ValidatorModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 9510BD3028EB196E00AD0E28 /* ValidatorModel.mlmodel */; };
+		9510BD3128EB196E00AD0E28 /* PrototypeValidator.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 9510BD3028EB196E00AD0E28 /* PrototypeValidator.mlmodel */; };
 		9524434A28C781FB005F91E1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9524434928C781FB005F91E1 /* ContentView.swift */; };
 		9533175928D36A2900E6E516 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9533175828D36A2900E6E516 /* SettingsView.swift */; };
 		9533175C28D371E500E6E516 /* SettingsDebuggingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9533175B28D371E500E6E516 /* SettingsDebuggingView.swift */; };
-		9533176028D3743100E6E516 /* GameSceneRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9533175F28D3743100E6E516 /* GameSceneRenderable.swift */; };
 		9533176128D3787C00E6E516 /* ch01-mise-en-abyme.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 9533176328D3787C00E6E516 /* ch01-mise-en-abyme.jenson */; };
 		9533176428D3788000E6E516 /* ch02-le-marteau-timide.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 9533176628D3788000E6E516 /* ch02-le-marteau-timide.jenson */; };
 		9533176728D3788200E6E516 /* ch03-ecouter-la-vague.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 9533176928D3788200E6E516 /* ch03-ecouter-la-vague.jenson */; };
@@ -45,7 +42,6 @@
 		9538C71028E7551600D506F0 /* Stage1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9538C70F28E7551600D506F0 /* Stage1.sks */; };
 		9538C71228E756BE00D506F0 /* PaintbrushDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C71128E756BE00D506F0 /* PaintbrushDemoView.swift */; };
 		9564878D28EC756A00B4477D /* Paintbrush in Frameworks */ = {isa = PBXBuildFile; productRef = 9564878C28EC756A00B4477D /* Paintbrush */; };
-		9566395628C929A300D9E852 /* JensonKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9566395528C929A300D9E852 /* JensonKit */; };
 		956B604128C7A2200031794C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 956B604328C7A2200031794C /* InfoPlist.strings */; };
 		956B604628C7A4730031794C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956B604528C7A4730031794C /* AppDelegate.swift */; };
 		956B604E28C7B7480031794C /* Testbench.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956B604D28C7B7480031794C /* Testbench.swift */; };
@@ -59,6 +55,8 @@
 		95DB209528CFA9840079D624 /* ch06.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208D28CFA9840079D624 /* ch06.md */; };
 		95DB209628CFA9840079D624 /* ch04.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208E28CFA9840079D624 /* ch04.md */; };
 		95DB209728CFA9840079D624 /* epilogue.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208F28CFA9840079D624 /* epilogue.md */; };
+		95E4F61928EC86BD009627F6 /* Caslon in Frameworks */ = {isa = PBXBuildFile; productRef = 95E4F61828EC86BD009627F6 /* Caslon */; };
+		95E4F61C28EC8B27009627F6 /* PaintbrushScene+Solving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E4F61B28EC8B27009627F6 /* PaintbrushScene+Solving.swift */; };
 		95E97AAA28EC783400C9B71C /* PaintbrushSolverError+LocalizedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E97AA928EC783400C9B71C /* PaintbrushSolverError+LocalizedError.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,9 +76,7 @@
 		95011E7228C77B9800E511F3 /* Salmon Serif 9 Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Serif 9 Regular.ttf"; sourceTree = "<group>"; };
 		950F634828E49C380018AB43 /* PaintbrushScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintbrushScene.swift; sourceTree = "<group>"; };
 		950F635428E62BC10018AB43 /* PaintbrushScene+Inputs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaintbrushScene+Inputs.swift"; sourceTree = "<group>"; };
-		950F6CBF28C0EAD9007ACB53 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		950F6CC028C0EAD9007ACB53 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		950F6CC128C0EAD9007ACB53 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		950F6CC228C0EADA007ACB53 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		950F6CC728C0EADA007ACB53 /* Indexing Your Heart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Indexing Your Heart.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		950F6CE128C0EADA007ACB53 /* Indexing_Your_Heart_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Indexing_Your_Heart_macOS.entitlements; sourceTree = "<group>"; };
@@ -90,11 +86,10 @@
 		950F6D0728C2757C007ACB53 /* Salmon Serif 9 Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Serif 9 Bold.ttf"; sourceTree = "<group>"; };
 		950F6D0828C2757C007ACB53 /* Salmon Mono 9 Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Mono 9 Regular.ttf"; sourceTree = "<group>"; };
 		950F6D0928C2757C007ACB53 /* Salmon Sans 9 Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Sans 9 Regular.ttf"; sourceTree = "<group>"; };
-		9510BD3028EB196E00AD0E28 /* ValidatorModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ValidatorModel.mlmodel; sourceTree = "<group>"; };
+		9510BD3028EB196E00AD0E28 /* PrototypeValidator.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = PrototypeValidator.mlmodel; sourceTree = "<group>"; };
 		9524434928C781FB005F91E1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9533175828D36A2900E6E516 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9533175B28D371E500E6E516 /* SettingsDebuggingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDebuggingView.swift; sourceTree = "<group>"; };
-		9533175F28D3743100E6E516 /* GameSceneRenderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneRenderable.swift; sourceTree = "<group>"; };
 		9533176228D3787C00E6E516 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = "Base.lproj/ch01-mise-en-abyme.jenson"; sourceTree = "<group>"; };
 		9533176528D3788000E6E516 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = "Base.lproj/ch02-le-marteau-timide.jenson"; sourceTree = "<group>"; };
 		9533176828D3788200E6E516 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = "Base.lproj/ch03-ecouter-la-vague.jenson"; sourceTree = "<group>"; };
@@ -126,6 +121,8 @@
 		95DB208D28CFA9840079D624 /* ch06.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ch06.md; sourceTree = "<group>"; };
 		95DB208E28CFA9840079D624 /* ch04.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ch04.md; sourceTree = "<group>"; };
 		95DB208F28CFA9840079D624 /* epilogue.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = epilogue.md; sourceTree = "<group>"; };
+		95E4F61728EC86B1009627F6 /* Caslon */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Caslon; path = ../Caslon; sourceTree = "<group>"; };
+		95E4F61B28EC8B27009627F6 /* PaintbrushScene+Solving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaintbrushScene+Solving.swift"; sourceTree = "<group>"; };
 		95E97AA928EC783400C9B71C /* PaintbrushSolverError+LocalizedError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaintbrushSolverError+LocalizedError.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -136,7 +133,7 @@
 			files = (
 				950F635228E5D7B60018AB43 /* Algorithms in Frameworks */,
 				950F6D0128C27442007ACB53 /* CranberrySprite in Frameworks */,
-				9566395628C929A300D9E852 /* JensonKit in Frameworks */,
+				95E4F61928EC86BD009627F6 /* Caslon in Frameworks */,
 				950F6D0428C27489007ACB53 /* Bunker in Frameworks */,
 				9564878D28EC756A00B4477D /* Paintbrush in Frameworks */,
 			);
@@ -174,10 +171,9 @@
 				95BCB92728C282E0004AFDA3 /* Indexing-Your-Heart-Info.plist */,
 				9598462D28EC7BD6009585DA /* Bootstrap */,
 				95DB208728CFA96D0079D624 /* Story Source */,
-				9533175D28D373BD00E6E516 /* Game Scene Content */,
 				950F6D0528C274C3007ACB53 /* Assets */,
 				95011E6A28C7795300E511F3 /* Extensions */,
-				957593A628E33CD900012AFC /* Paintbrush */,
+				957593A628E33CD900012AFC /* Puzzles */,
 				950F6CF328C13BAA007ACB53 /* Scenes */,
 				950F6CF428C13BB2007ACB53 /* Views */,
 				950F6CF228C0EB20007ACB53 /* Platforms */,
@@ -215,8 +211,6 @@
 		950F6CF328C13BAA007ACB53 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				9538C70E28E7550500D506F0 /* Puzzle Stages */,
-				950F6CBF28C0EAD9007ACB53 /* Actions.sks */,
 				950F6CC028C0EAD9007ACB53 /* GameScene.sks */,
 			);
 			path = Scenes;
@@ -265,43 +259,27 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		9533175D28D373BD00E6E516 /* Game Scene Content */ = {
-			isa = PBXGroup;
-			children = (
-				9533175E28D373DD00E6E516 /* Protocols */,
-				950F6CC128C0EAD9007ACB53 /* GameScene.swift */,
-			);
-			path = "Game Scene Content";
-			sourceTree = "<group>";
-		};
-		9533175E28D373DD00E6E516 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				9533175F28D3743100E6E516 /* GameSceneRenderable.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		9538C6FE28E71DBD00D506F0 /* Puzzles */ = {
+		9538C6FE28E71DBD00D506F0 /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
 				9538C6FF28E71DD900D506F0 /* Stage1.json */,
 			);
-			path = Puzzles;
+			path = Configurations;
 			sourceTree = "<group>";
 		};
-		9538C70E28E7550500D506F0 /* Puzzle Stages */ = {
+		9538C70E28E7550500D506F0 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
 				9538C70F28E7551600D506F0 /* Stage1.sks */,
 			);
-			path = "Puzzle Stages";
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 		9564878928EC755400B4477D /* Packages */ = {
 			isa = PBXGroup;
 			children = (
 				9564878A28EC755400B4477D /* Paintbrush */,
+				95E4F61728EC86B1009627F6 /* Caslon */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -330,15 +308,17 @@
 			path = Testbench;
 			sourceTree = "<group>";
 		};
-		957593A628E33CD900012AFC /* Paintbrush */ = {
+		957593A628E33CD900012AFC /* Puzzles */ = {
 			isa = PBXGroup;
 			children = (
-				9510BD3028EB196E00AD0E28 /* ValidatorModel.mlmodel */,
-				9538C6FE28E71DBD00D506F0 /* Puzzles */,
+				95E4F61A28EC8AD2009627F6 /* Validators */,
+				9538C70E28E7550500D506F0 /* Scenes */,
+				9538C6FE28E71DBD00D506F0 /* Configurations */,
 				950F634828E49C380018AB43 /* PaintbrushScene.swift */,
 				950F635428E62BC10018AB43 /* PaintbrushScene+Inputs.swift */,
+				95E4F61B28EC8B27009627F6 /* PaintbrushScene+Solving.swift */,
 			);
-			path = Paintbrush;
+			path = Puzzles;
 			sourceTree = "<group>";
 		};
 		9598462D28EC7BD6009585DA /* Bootstrap */ = {
@@ -380,6 +360,14 @@
 			path = "Story Source";
 			sourceTree = "<group>";
 		};
+		95E4F61A28EC8AD2009627F6 /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+				9510BD3028EB196E00AD0E28 /* PrototypeValidator.mlmodel */,
+			);
+			path = Validators;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -401,9 +389,9 @@
 			packageProductDependencies = (
 				950F6D0028C27442007ACB53 /* CranberrySprite */,
 				950F6D0328C27489007ACB53 /* Bunker */,
-				9566395528C929A300D9E852 /* JensonKit */,
 				950F635128E5D7B60018AB43 /* Algorithms */,
 				9564878C28EC756A00B4477D /* Paintbrush */,
+				95E4F61828EC86BD009627F6 /* Caslon */,
 			);
 			productName = "Indexing Your Heart iOS";
 			productReference = 950F6CC728C0EADA007ACB53 /* Indexing Your Heart.app */;
@@ -458,7 +446,6 @@
 			packageReferences = (
 				950F6CFF28C27442007ACB53 /* XCRemoteSwiftPackageReference "cranberrysprite" */,
 				950F6D0228C27489007ACB53 /* XCRemoteSwiftPackageReference "bunker" */,
-				9566395428C929A300D9E852 /* XCRemoteSwiftPackageReference "JensonKit" */,
 				950F635028E5D7B60018AB43 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 			);
 			productRefGroup = 950F6CC828C0EADA007ACB53 /* Products */;
@@ -485,7 +472,6 @@
 				95DB209328CFA9840079D624 /* ch05.md in Resources */,
 				9533176128D3787C00E6E516 /* ch01-mise-en-abyme.jenson in Resources */,
 				95011E7128C77B1D00E511F3 /* Salmon Sans 9 Bold.ttf in Resources */,
-				950F6CE228C0EADA007ACB53 /* Actions.sks in Resources */,
 				9533176D28D3788900E6E516 /* ch05-la-lumiere-sombre.jenson in Resources */,
 				9533176A28D3788600E6E516 /* ch04-la-reveuse-sentimental.jenson in Resources */,
 				95DB209728CFA9840079D624 /* epilogue.md in Resources */,
@@ -577,23 +563,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9510BD3128EB196E00AD0E28 /* ValidatorModel.mlmodel in Sources */,
+				9510BD3128EB196E00AD0E28 /* PrototypeValidator.mlmodel in Sources */,
 				9533175928D36A2900E6E516 /* SettingsView.swift in Sources */,
 				95E97AAA28EC783400C9B71C /* PaintbrushSolverError+LocalizedError.swift in Sources */,
 				9538C71228E756BE00D506F0 /* PaintbrushDemoView.swift in Sources */,
 				956B604628C7A4730031794C /* AppDelegate.swift in Sources */,
-				9533176028D3743100E6E516 /* GameSceneRenderable.swift in Sources */,
 				950F634928E49C380018AB43 /* PaintbrushScene.swift in Sources */,
 				9538C70B28E7298200D506F0 /* SKShapeNode+Line.swift in Sources */,
 				9524434A28C781FB005F91E1 /* ContentView.swift in Sources */,
 				95A9605828EB61F600F05059 /* Bundle+InfoPlist.swift in Sources */,
 				9538C70D28E7370C00D506F0 /* SKAction+ColorizeStroke.swift in Sources */,
 				950F635528E62BC10018AB43 /* PaintbrushScene+Inputs.swift in Sources */,
-				950F6CE628C0EADA007ACB53 /* GameScene.swift in Sources */,
 				95A9605628EB603700F05059 /* CGImage+Resizable.swift in Sources */,
 				950F6CF828C13BDF007ACB53 /* GameSceneView.swift in Sources */,
 				95011E6C28C7796900E511F3 /* FontFamily.swift in Sources */,
 				9533175C28D371E500E6E516 /* SettingsDebuggingView.swift in Sources */,
+				95E4F61C28EC8B27009627F6 /* PaintbrushScene+Solving.swift in Sources */,
 				9538C70928E724A500D506F0 /* SKColor+Hex.swift in Sources */,
 				950F6CFC28C13D6F007ACB53 /* Entrypoint.swift in Sources */,
 			);
@@ -991,14 +976,6 @@
 				kind = branch;
 			};
 		};
-		9566395428C929A300D9E852 /* XCRemoteSwiftPackageReference "JensonKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Indexing-Your-Heart/JensonKit";
-			requirement = {
-				branch = root;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1021,10 +998,9 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = Paintbrush;
 		};
-		9566395528C929A300D9E852 /* JensonKit */ = {
+		95E4F61828EC86BD009627F6 /* Caslon */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9566395428C929A300D9E852 /* XCRemoteSwiftPackageReference "JensonKit" */;
-			productName = JensonKit;
+			productName = Caslon;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
