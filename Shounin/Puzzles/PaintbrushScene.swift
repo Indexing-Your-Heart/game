@@ -15,9 +15,9 @@
 
 import Algorithms
 import CoreML
+import CranberrySprite
 import Paintbrush
 import SpriteKit
-import CranberrySprite
 
 /// A SpriteKit scene that represents an interactable play area for solving puzzles.
 class PaintbrushScene: SKScene {

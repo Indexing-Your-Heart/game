@@ -10,7 +10,7 @@ let package = Package(
         .library(
             name: "Caslon",
             targets: ["Caslon"]
-        ),
+        )
     ],
     dependencies: [
         .package(
@@ -25,6 +25,6 @@ let package = Package(
                 .product(name: "JensonKit", package: "JensonKit")
             ],
             path: "./Sources/"
-        ),
+        )
     ]
 )

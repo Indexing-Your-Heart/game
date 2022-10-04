@@ -14,8 +14,8 @@
 //  details.
 
 import Foundation
-import SpriteKit
 import Paintbrush
+import SpriteKit
 
 // MARK: - Puzzle Configuration
 
