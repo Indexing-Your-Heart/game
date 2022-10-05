@@ -16,14 +16,22 @@
 import Foundation
 import JensonKit
 
+/// A protocol that indicates an object is capable of iterating through a Jenson timeline.
 public protocol CaslonSceneTimelineDelegate: AnyObject {
+    /// The list of Jenson events that the delegate will iterate through.
     var timeline: [JensonEvent] { get set }
-    func next()
+
+    /// A method called when an event is about to be displayed on screen.
+    /// - Parameter event: The event that the timeline will play.
     func willDisplayNewEvent(event: JensonEvent)
+
+    /// A method called when an event has finished displaying on screen.
+    /// - Parameter event: The event that has been displayed.
     func didDisplayNewEvent(event: JensonEvent)
 }
 
 public extension CaslonSceneTimelineDelegate {
+    /// Loads the next event in the timeline and informs the scene to update its contents.
     func next() {
         guard !timeline.isEmpty else { return }
         let event = timeline.removeFirst()

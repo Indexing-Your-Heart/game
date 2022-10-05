@@ -19,6 +19,12 @@ import SpriteKit
 extension CaslonScene {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
+        if inTransition { return }
+        let location = event.location(in: self)
+        if let selectedOption = selectedOption(at: location) {
+            selectOption(named: selectedOption)
+        }
+        if shouldBlockOtherInputs() { return }
         next()
     }
 }
@@ -28,6 +34,12 @@ extension CaslonScene {
 extension CaslonScene {
     override func mouseUp(with event: NSEvent) {
         super.mouseUp(with: event)
+        if inTransition { return }
+        let location = event.location(in: self)
+        if let selectedOption = selectedOption(at: location) {
+            selectOption(named: selectedOption)
+        }
+        if shouldBlockOtherInputs() { return }
         next()
     }
 }

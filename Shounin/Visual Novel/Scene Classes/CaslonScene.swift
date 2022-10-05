@@ -17,12 +17,22 @@ import Caslon
 import JensonKit
 import SpriteKit
 
+/// A SpriteKit scene that can display a Jenson timeline.
 class CaslonScene: SKScene {
     var timeline = [JensonEvent]()
+
+    /// The label node that contains the "who" field.
     var whatLabel: SKLabelNode?
+
+    /// The label node that contains the "what" field.
     var whoLabel: SKLabelNode?
+
+    /// The node that houses the choice menu buttons.
     var choiceMenu: SKNode?
-    var currentOptions = [JensonChoice]()
+    var options = [JensonChoice]()
+
+    /// Whether the scene is undergoing a transition. Defaults to false.
+    var inTransition = false
 
     override func didMove(to view: SKView) {
         super.didMove(to: view)
@@ -47,6 +57,8 @@ class CaslonScene: SKScene {
         }
     }
 
+    /// Loads a script from a Jenson timeline with a given name.
+    /// - Parameter scriptName: The name of the Jenson file that will be loaded into this scene.
     func loadScript(named scriptName: String) {
         guard let path = Bundle.main.path(forResource: scriptName, ofType: "jenson") else { return }
         let reader = try? JensonReader(fileURLWithPath: path)
@@ -54,90 +66,60 @@ class CaslonScene: SKScene {
             timeline = file.timeline
         }
         runSequence {
+            SKAction.run { [weak self] in
+                self?.inTransition = true
+            }
             SKAction.wait(forDuration: 1.5)
             SKAction.run { [weak self] in
                 self?.next()
             }
             SKAction.run(.fadeAlpha(to: 1, duration: 0.5), onChildWithName: "whoLabel")
             SKAction.run(.fadeAlpha(to: 1, duration: 0.5), onChildWithName: "whatLabel")
-        }
-
-    }
-}
-
-extension CaslonScene: CaslonSceneTimelineDelegate {
-    func willDisplayNewEvent(event: JensonEvent) {
-        switch event.type {
-        case .refresh:
-            if let triggers = event.refresh {
-                for trigger in triggers {
-                    refreshContents(with: trigger)
-                }
+            SKAction.run { [weak self] in
+                self?.inTransition = false
             }
-        case .dialogue:
-            if let whatLabel {
-                whatLabel.text = event.what
-                    .replacingOccurrences(
-                        of: "[Player]",
-                        with: NSFullUserName().split(separator: " ").first ?? "Player"
-                    )
-            }
-            if let whoLabel {
-                whoLabel.text = event.who
-                    .replacingOccurrences(
-                        of: "Player",
-                        with: NSFullUserName().split(separator: " ").first ?? "Player"
-                    )
-            }
-        case .question:
-            choiceMenu?.isHidden = false
-            if let whatLabel, let question = event.question {
-                if !question.question.isEmpty {
-                    whatLabel.text = question.question
-                }
-                currentOptions = question.options
-                print(currentOptions)
-                let approximatedHeight = question.options.count * (56 + 24)
-                var yOffset = 0 - (approximatedHeight / 4)
-                for choice in question.options {
-                    guard let template = choiceMenu?.childNode(withName: "templateButton") else { continue }
-                    guard let copy = template.copy() as? SKSpriteNode else { continue }
-                    copy.isHidden = false
-                    copy.position.y = CGFloat(yOffset)
-                    if let textContent = copy.childNode(withName: "buttonText") as? SKLabelNode {
-                        textContent.text = choice.name
-                    }
-                    choiceMenu?.addChild(copy)
-                    yOffset += (56 + 24)
-                }
-            }
-        default:
-            break
         }
     }
 
-    func didDisplayNewEvent(event: JensonEvent) {
-        guard event.type != .comment else {
-            next()
-            return
-        }
+    /// Updates the dialogue box with the new dialogue from an event.
+    ///
+    /// Instances of `Player` and `[Player]` are replaced with the player's full name from the system.
+    /// - Parameter event: The event that the dialogue box will display.
+    func updateDialogue(with event: JensonEvent) {
+        guard let whatLabel, let whoLabel else { return }
+        whatLabel.text = event.what
+            .replacingOccurrences(
+                of: "[Player]",
+                with: NSFullUserName().split(separator: " ").first ?? "Player"
+            )
+        whoLabel.text = event.who
+            .replacingOccurrences(
+                of: "Player",
+                with: NSFullUserName().split(separator: " ").first ?? "Player"
+            )
     }
-}
 
-extension CaslonScene: CaslonSceneRefreshDelegate {
-    func willRefreshContents(of kind: JensonRefreshContent.Kind, to resourceName: String, with priority: Int?) {
-        switch kind {
-        case .image:
-            if let layer = childNode(withName: "imgLayer_\(priority ?? 0)") as? SKSpriteNode {
-                layer.texture = SKTexture(imageNamed: resourceName)
+    /// Creates the choice menu for a specified question to let the player make a choice.
+    /// - Parameter question: The question the menu will build a choice for.
+    func buildChoiceMenu(for question: JensonQuestion) {
+        guard let whatLabel else { return }
+        if !question.question.isEmpty {
+            whatLabel.text = question.question
+        }
+        options = question.options
+        let approximatedHeight = question.options.count * (56 + 24)
+        var yOffset = 0 - (approximatedHeight / 4)
+        for choice in question.options {
+            guard let template = choiceMenu?.childNode(withName: "templateButton") else { continue }
+            guard let copy = template.copy() as? SKSpriteNode else { continue }
+            copy.name = "choice:\(choice.name)"
+            copy.isHidden = false
+            copy.position.y = CGFloat(yOffset)
+            if let textContent = copy.childNode(withName: "buttonText") as? SKLabelNode {
+                textContent.text = choice.name
             }
-        default:
-            // TODO: Implement for non-image cases
-            break
+            choiceMenu?.addChild(copy)
+            yOffset += (56 + 24)
         }
-    }
-
-    func didRefreshContents(of kind: JensonRefreshContent.Kind, to resourceName: String, with priority: Int?) {
-
     }
 }

@@ -16,14 +16,26 @@
 import Foundation
 import JensonKit
 
+/// A protocol that indicates an object can listen to refresh events triggered by a Jenson event.
 public protocol CaslonSceneRefreshDelegate: AnyObject {
+    /// A method called when the refresh event is about to occur.
+    ///
+    /// To trigger a refresh event, call ``refreshContents(with:)``.
+    /// - Parameter kind: The kind of content that will be refreshed.
+    /// - Parameter resourceName: The name of the resource in the asset catalog that the event will replace the content
+    /// with.
+    /// - Parameter priority: The priority layer that the refresh event will target.
     func willRefreshContents(of kind: JensonRefreshContent.Kind, to resourceName: String, with priority: Int?)
-    func didRefreshContents(of kind: JensonRefreshContent.Kind, to resourceName: String, with priority: Int?)
+
+    /// A method called when the refresh event had finished refreshing contents.
+    func didRefreshContents()
 }
 
 public extension CaslonSceneRefreshDelegate {
+    /// Triggers a refresh event.
+    /// - Parameter trigger: The refresh event trigger that will be used to update the scene.
     func refreshContents(with trigger: JensonRefreshContent) {
         willRefreshContents(of: trigger.kind, to: trigger.resourceName, with: trigger.priority)
-        didRefreshContents(of: trigger.kind, to: trigger.resourceName, with: trigger.priority)
+        didRefreshContents()
     }
 }
