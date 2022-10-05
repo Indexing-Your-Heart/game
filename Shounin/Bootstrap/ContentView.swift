@@ -24,7 +24,7 @@ enum NavigationState: Equatable {
 }
 
 struct ContentView: View {
-    @State private var navigationState: NavigationState = .caslonDemo
+    @State private var navigationState: NavigationState = .mainMenu
     @State private var displaySettings = false
     var body: some View {
         Group {
@@ -69,6 +69,14 @@ struct ContentView: View {
                     }
                 } label: {
                     Text("example.demo_prompt")
+                }
+
+                Button {
+                    withAnimation {
+                        navigationState = .caslonDemo
+                    }
+                } label: {
+                    Text("example.caslon_demo_prompt")
                 }
 
                 Button {

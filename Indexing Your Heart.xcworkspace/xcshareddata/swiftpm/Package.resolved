@@ -28,6 +28,15 @@
       }
     },
     {
+      "identity" : "sktiled",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mfessenden/SKTiled",
+      "state" : {
+        "revision" : "69e520c05f12beb9493c2509a71b259e52342c4a",
+        "version" : "1.23.0"
+      }
+    },
+    {
       "identity" : "swift-algorithms",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-algorithms.git",

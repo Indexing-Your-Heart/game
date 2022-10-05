@@ -47,7 +47,15 @@
 		956B604E28C7B7480031794C /* Testbench.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956B604D28C7B7480031794C /* Testbench.swift */; };
 		95A9605628EB603700F05059 /* CGImage+Resizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A9605528EB603700F05059 /* CGImage+Resizable.swift */; };
 		95A9605828EB61F600F05059 /* Bundle+InfoPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A9605728EB61F600F05059 /* Bundle+InfoPlist.swift */; };
+		95AD565E28EE20B500051144 /* SKTiled in Frameworks */ = {isa = PBXBuildFile; productRef = 95AD565D28EE20B500051144 /* SKTiled */; };
+		95AD566128EE241400051144 /* GameEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AD566028EE241400051144 /* GameEnvironment.swift */; };
+		95AD566528EE246700051144 /* Generic_32x32.tsx in Resources */ = {isa = PBXBuildFile; fileRef = 95AD566228EE246700051144 /* Generic_32x32.tsx */; };
+		95AD566628EE246700051144 /* Room_Builder.tsx in Resources */ = {isa = PBXBuildFile; fileRef = 95AD566328EE246700051144 /* Room_Builder.tsx */; };
+		95AD566728EE246700051144 /* Stage1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 95AD566428EE246700051144 /* Stage1.tmx */; };
+		95AD566A28EE25BD00051144 /* Room_Builder_32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 95AD566828EE25BD00051144 /* Room_Builder_32x32.png */; };
+		95AD566B28EE25BD00051144 /* 1_Generic_32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 95AD566928EE25BD00051144 /* 1_Generic_32x32.png */; };
 		95B7489228EDBA260013AFC7 /* CaslonScene+Caslon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7489128EDBA260013AFC7 /* CaslonScene+Caslon.swift */; };
+		95B748A128EDD7FC0013AFC7 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 95B748A028EDD7FC0013AFC7 /* README.txt */; };
 		95DB209028CFA9840079D624 /* ch02.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208828CFA9840079D624 /* ch02.md */; };
 		95DB209128CFA9840079D624 /* ch01.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208928CFA9840079D624 /* ch01.md */; };
 		95DB209228CFA9840079D624 /* ch07.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208A28CFA9840079D624 /* ch07.md */; };
@@ -116,7 +124,14 @@
 		956B604D28C7B7480031794C /* Testbench.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Testbench.swift; sourceTree = "<group>"; };
 		95A9605528EB603700F05059 /* CGImage+Resizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImage+Resizable.swift"; sourceTree = "<group>"; };
 		95A9605728EB61F600F05059 /* Bundle+InfoPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+InfoPlist.swift"; sourceTree = "<group>"; };
+		95AD566028EE241400051144 /* GameEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEnvironment.swift; sourceTree = "<group>"; };
+		95AD566228EE246700051144 /* Generic_32x32.tsx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Generic_32x32.tsx; sourceTree = "<group>"; };
+		95AD566328EE246700051144 /* Room_Builder.tsx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Room_Builder.tsx; sourceTree = "<group>"; };
+		95AD566428EE246700051144 /* Stage1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Stage1.tmx; sourceTree = "<group>"; };
+		95AD566828EE25BD00051144 /* Room_Builder_32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Room_Builder_32x32.png; sourceTree = "<group>"; };
+		95AD566928EE25BD00051144 /* 1_Generic_32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_Generic_32x32.png; sourceTree = "<group>"; };
 		95B7489128EDBA260013AFC7 /* CaslonScene+Caslon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CaslonScene+Caslon.swift"; sourceTree = "<group>"; };
+		95B748A028EDD7FC0013AFC7 /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		95BCB92728C282E0004AFDA3 /* Indexing-Your-Heart-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Indexing-Your-Heart-Info.plist"; sourceTree = "<group>"; };
 		95BCB92828C28330004AFDA3 /* Indexing Your Heart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Indexing Your Heart.entitlements"; sourceTree = "<group>"; };
 		95DB208828CFA9840079D624 /* ch02.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ch02.md; sourceTree = "<group>"; };
@@ -144,6 +159,7 @@
 				950F635228E5D7B60018AB43 /* Algorithms in Frameworks */,
 				950F6D0128C27442007ACB53 /* CranberrySprite in Frameworks */,
 				95E4F61928EC86BD009627F6 /* Caslon in Frameworks */,
+				95AD565E28EE20B500051144 /* SKTiled in Frameworks */,
 				950F6D0428C27489007ACB53 /* Bunker in Frameworks */,
 				9564878D28EC756A00B4477D /* Paintbrush in Frameworks */,
 			);
@@ -182,9 +198,9 @@
 				9598462D28EC7BD6009585DA /* Bootstrap */,
 				95DB208728CFA96D0079D624 /* Story Source */,
 				950F6D0528C274C3007ACB53 /* Assets */,
+				95AD565F28EE20F500051144 /* Environment */,
 				95011E6A28C7795300E511F3 /* Extensions */,
 				957593A628E33CD900012AFC /* Puzzles */,
-				950F6CF328C13BAA007ACB53 /* Scenes */,
 				950F6CF428C13BB2007ACB53 /* Views */,
 				95E4F61D28EC9C42009627F6 /* Visual Novel */,
 				950F6CF228C0EB20007ACB53 /* Platforms */,
@@ -219,20 +235,11 @@
 			name = Platforms;
 			sourceTree = "<group>";
 		};
-		950F6CF328C13BAA007ACB53 /* Scenes */ = {
-			isa = PBXGroup;
-			children = (
-				950F6CC028C0EAD9007ACB53 /* GameScene.sks */,
-			);
-			path = Scenes;
-			sourceTree = "<group>";
-		};
 		950F6CF428C13BB2007ACB53 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				9533175A28D371D600E6E516 /* Settings */,
 				950F6CF728C13BDF007ACB53 /* GameSceneView.swift */,
-				9524434928C781FB005F91E1 /* ContentView.swift */,
 				9533175828D36A2900E6E516 /* SettingsView.swift */,
 			);
 			path = Views;
@@ -334,9 +341,25 @@
 			isa = PBXGroup;
 			children = (
 				950F6CFB28C13D6F007ACB53 /* Entrypoint.swift */,
+				9524434928C781FB005F91E1 /* ContentView.swift */,
 				956B604528C7A4730031794C /* AppDelegate.swift */,
 			);
 			path = Bootstrap;
+			sourceTree = "<group>";
+		};
+		95AD565F28EE20F500051144 /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				95AD566928EE25BD00051144 /* 1_Generic_32x32.png */,
+				95AD566828EE25BD00051144 /* Room_Builder_32x32.png */,
+				95B748A028EDD7FC0013AFC7 /* README.txt */,
+				95AD566228EE246700051144 /* Generic_32x32.tsx */,
+				95AD566328EE246700051144 /* Room_Builder.tsx */,
+				95AD566428EE246700051144 /* Stage1.tmx */,
+				950F6CC028C0EAD9007ACB53 /* GameScene.sks */,
+				95AD566028EE241400051144 /* GameEnvironment.swift */,
+			);
+			path = Environment;
 			sourceTree = "<group>";
 		};
 		95DB207628CFA80C0079D624 /* Story */ = {
@@ -431,6 +454,7 @@
 				950F635128E5D7B60018AB43 /* Algorithms */,
 				9564878C28EC756A00B4477D /* Paintbrush */,
 				95E4F61828EC86BD009627F6 /* Caslon */,
+				95AD565D28EE20B500051144 /* SKTiled */,
 			);
 			productName = "Indexing Your Heart iOS";
 			productReference = 950F6CC728C0EADA007ACB53 /* Indexing Your Heart.app */;
@@ -486,6 +510,7 @@
 				950F6CFF28C27442007ACB53 /* XCRemoteSwiftPackageReference "cranberrysprite" */,
 				950F6D0228C27489007ACB53 /* XCRemoteSwiftPackageReference "bunker" */,
 				950F635028E5D7B60018AB43 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+				95AD565C28EE20B500051144 /* XCRemoteSwiftPackageReference "SKTiled" */,
 			);
 			productRefGroup = 950F6CC828C0EADA007ACB53 /* Products */;
 			projectDirPath = "";
@@ -502,6 +527,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95AD566A28EE25BD00051144 /* Room_Builder_32x32.png in Resources */,
 				95DB209228CFA9840079D624 /* ch07.md in Resources */,
 				95E4F61F28EC9C61009627F6 /* Caslon Scene.sks in Resources */,
 				95011E6F28C77A4200E511F3 /* Salmon Sans 9 Regular.ttf in Resources */,
@@ -515,17 +541,22 @@
 				9533176D28D3788900E6E516 /* ch05-la-lumiere-sombre.jenson in Resources */,
 				9533176A28D3788600E6E516 /* ch04-la-reveuse-sentimental.jenson in Resources */,
 				95DB209728CFA9840079D624 /* epilogue.md in Resources */,
+				95AD566B28EE25BD00051144 /* 1_Generic_32x32.png in Resources */,
 				9533176728D3788200E6E516 /* ch03-ecouter-la-vague.jenson in Resources */,
 				9538C71028E7551600D506F0 /* Stage1.sks in Resources */,
 				9533176428D3788000E6E516 /* ch02-le-marteau-timide.jenson in Resources */,
 				9538C70028E71DD900D506F0 /* Stage1.json in Resources */,
 				95DB209428CFA9840079D624 /* ch03.md in Resources */,
+				95AD566528EE246700051144 /* Generic_32x32.tsx in Resources */,
+				95B748A128EDD7FC0013AFC7 /* README.txt in Resources */,
 				95DB209628CFA9840079D624 /* ch04.md in Resources */,
 				95DB209528CFA9840079D624 /* ch06.md in Resources */,
+				95AD566728EE246700051144 /* Stage1.tmx in Resources */,
 				95011E6E28C77A4200E511F3 /* Salmon Mono 9 Regular.ttf in Resources */,
 				9533177628D3789100E6E516 /* epilogue.jenson in Resources */,
 				95DB209128CFA9840079D624 /* ch01.md in Resources */,
 				9533177328D3788F00E6E516 /* ch07-changer-de-vie.jenson in Resources */,
+				95AD566628EE246700051144 /* Room_Builder.tsx in Resources */,
 				95011E7328C77B9800E511F3 /* Salmon Serif 9 Regular.ttf in Resources */,
 				95011E6D28C77A4200E511F3 /* Salmon Serif 9 Bold.ttf in Resources */,
 				950F6CE828C0EADA007ACB53 /* Assets.xcassets in Resources */,
@@ -620,6 +651,7 @@
 				95A9605628EB603700F05059 /* CGImage+Resizable.swift in Sources */,
 				95E4F62728ECAE24009627F6 /* CaslonScene+Inputs.swift in Sources */,
 				950F6CF828C13BDF007ACB53 /* GameSceneView.swift in Sources */,
+				95AD566128EE241400051144 /* GameEnvironment.swift in Sources */,
 				95011E6C28C7796900E511F3 /* FontFamily.swift in Sources */,
 				9533175C28D371E500E6E516 /* SettingsDebuggingView.swift in Sources */,
 				95E4F61C28EC8B27009627F6 /* PaintbrushScene+Solving.swift in Sources */,
@@ -1020,6 +1052,14 @@
 				kind = branch;
 			};
 		};
+		95AD565C28EE20B500051144 /* XCRemoteSwiftPackageReference "SKTiled" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mfessenden/SKTiled";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1041,6 +1081,11 @@
 		9564878C28EC756A00B4477D /* Paintbrush */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Paintbrush;
+		};
+		95AD565D28EE20B500051144 /* SKTiled */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 95AD565C28EE20B500051144 /* XCRemoteSwiftPackageReference "SKTiled" */;
+			productName = SKTiled;
 		};
 		95E4F61828EC86BD009627F6 /* Caslon */ = {
 			isa = XCSwiftPackageProductDependency;

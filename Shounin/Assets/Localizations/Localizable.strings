@@ -28,6 +28,7 @@
 "example.hello_world" = "Hello, world!";
 "example.demo_prompt" = "Run Demo Scene";
 "example.paintbrush_demo_prompt" = "Run Paintbrush Demo";
+"example.caslon_demo_prompt" = "Run Caslon Demo";
 
 // MARK: - Settings
 "settings.name" = "Settings";

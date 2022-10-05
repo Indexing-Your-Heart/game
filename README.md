@@ -104,10 +104,15 @@ under open-source licenses:
 - CranberrySprite: Mozilla Public License (v2)
 - Bunker: Mozilla Public License (v2)
 - Swift Algorithms: Apache License (v2)
+- SKTiled: MIT License
 
 Additionally, it contains libraries and projects under ethical-source licenses:
 
 - JensonKit: Cooperative Non-violent Public Licnese (v7+)
+
+Finally, it contains other assets with custom licenses:
+
+- Modern Interiors: LimeZu (see licensed in Assets/Tilesets/README.txt)
 
 You can also view the full list of contributors in the
 [CONTRIBUTORS.md](./CONTRIBUTORS.md) file.

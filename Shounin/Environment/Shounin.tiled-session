@@ -1,0 +1,44 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "Stage1.tmx",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "Generic_32x32.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Room_Builder.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Stage1.tmx": {
+            "scale": 1.2857,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 761.0640118223535,
+                "y": 857.8984210935675
+            }
+        }
+    },
+    "last.externalTilesetPath": "/Users/marquis/Developer/IndexingYourHeart/Shounin/Environment",
+    "last.imagePath": "/Users/marquis/Library/Mobile Documents/com~apple~CloudDocs/Developer Goodies/Tilesets/Modern Interiors/v22_7/1_Interiors/32x32/Theme_Sorter_32x32",
+    "map.height": 50,
+    "map.lastUsedFormat": "tmx",
+    "map.width": 50,
+    "openFiles": [
+        "Stage1.tmx",
+        "Generic_32x32.tsx"
+    ],
+    "project": "Shounin.tiled-project",
+    "recentFiles": [
+        "Generic_32x32.tsx",
+        "Stage1.tmx",
+        "Room_Builder.tsx"
+    ],
+    "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
+    "tileset.lastUsedFormat": "tsx"
+}
