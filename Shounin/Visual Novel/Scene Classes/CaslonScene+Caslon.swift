@@ -60,9 +60,7 @@ extension CaslonScene: CaslonSceneRefreshDelegate {
         }
     }
 
-    func didRefreshContents() {
-
-    }
+    func didRefreshContents() {}
 }
 
 // MARK: - Question Delegate

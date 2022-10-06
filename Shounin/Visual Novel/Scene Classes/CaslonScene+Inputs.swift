@@ -20,12 +20,14 @@ extension CaslonScene {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         if inTransition { return }
-        let location = event.location(in: self)
-        if let selectedOption = selectedOption(at: location) {
-            selectOption(named: selectedOption)
+        for touch in touches {
+            let location = touch.location(in: self)
+            if let selectedOption = selectedOption(at: location) {
+                selectOption(named: selectedOption)
+            }
+            if shouldBlockOtherInputs() { return }
+            next()
         }
-        if shouldBlockOtherInputs() { return }
-        next()
     }
 }
 #endif

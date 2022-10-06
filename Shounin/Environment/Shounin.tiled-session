@@ -5,6 +5,7 @@
     },
     "activeFile": "Stage1.tmx",
     "expandedProjectPaths": [
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -17,11 +18,11 @@
             "scaleInEditor": 1
         },
         "Stage1.tmx": {
-            "scale": 1.2857,
-            "selectedLayer": 4,
+            "scale": 1.28,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 776.6197402193357,
-                "y": 857.5095278836429
+                "x": 886.328125,
+                "y": 752.34375
             }
         }
     },

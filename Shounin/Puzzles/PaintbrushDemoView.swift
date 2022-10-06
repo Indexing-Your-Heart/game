@@ -18,7 +18,7 @@ import SwiftUI
 
 struct PaintbrushDemoView: View {
     private var paintbrushDemoScene: SKScene = {
-        let scene = PaintbrushScene(fileNamed: "Stage1")
+        let scene = PaintbrushScene(fileNamed: "Stage1", debug: true)
         scene?.scaleMode = .aspectFit
         return scene ?? SKScene()
     }()

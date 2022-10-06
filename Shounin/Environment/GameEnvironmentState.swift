@@ -1,8 +1,8 @@
 //
-//  Bundle+InfoPlist.swift
+//  GameEnvironmentState.swift
 //  Indexing Your Heart
 //
-//  Created by Marquis Kurt on 10/3/22.
+//  Created by Marquis Kurt on 10/6/22.
 //
 //  This file is part of Indexing Your Heart.
 //
@@ -14,15 +14,10 @@
 //  details.
 
 import Foundation
+import Paintbrush
 
-extension Bundle {
-    /// Whether the player's drawings should be saved locally as files.
-    var paintbrushRecordOutput: Bool? {
-        object(forInfoDictionaryKey: "PaintbrushRecordOutput") as? Bool
-    }
-
-    /// Whether Game Center features are enabled.
-    var gameCenterEnabled: Bool? {
-        object(forInfoDictionaryKey: "UsesGameCenterFeatures") as? Bool
-    }
+class GameEnvironmentState {
+    var previousEnvironment: GameEnvironment?
+    var previousPuzzleState: PaintbrushSolveState?
+    var puzzleTriggerName: String?
 }

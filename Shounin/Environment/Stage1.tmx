@@ -220,7 +220,7 @@
  </layer>
  <layer id="6" name="PNT_LAYOUT" width="50" height="50">
   <properties>
-   <property name="Expected Layout" value="hoh_1a"/>
+   <property name="Expected Layout" value="hoh_1c"/>
   </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

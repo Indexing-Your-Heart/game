@@ -33,7 +33,11 @@ extension PaintbrushScene {
     override func touchesEnded(_ touches: Set<UITouch>, with _: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-            if childNode(withName: "debugSprite")?.frame.contains(location) == true {
+            if childNode(withName: "//exitButton")?.frame.contains(location) == true {
+                dismissIfPresent()
+                return
+            }
+            if let debug = childNode(withName: "debugSprite"), debug.frame.contains(location), !debug.isHidden {
                 nextPuzzle()
                 return
             }
@@ -65,6 +69,11 @@ extension PaintbrushScene {
 
     override func mouseUp(with event: NSEvent) {
         let location = event.location(in: self)
+        if childNode(withName: "//exitButton")?.frame.contains(location) == true {
+            dismissIfPresent()
+            return
+        }
+        
         if childNode(withName: "debugSprite")?.frame.contains(location) == true {
             nextPuzzle()
             return

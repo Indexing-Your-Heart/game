@@ -30,8 +30,14 @@ class PaintbrushScene: SKScene {
             didSetPuzzleConfiguration(to: puzzle)
         }
     }
+
     var solveState: PaintbrushSolveState = .unsolved
     var painting: SKSpriteNode?
+
+    convenience init?(fileNamed file: String, debug debugMode: Bool = false) {
+        self.init(fileNamed: file)
+        childNode(withName: "//debugSprite")?.isHidden = !debugMode
+    }
 
     override func didMove(to _: SKView) {
         if let delegate = childNode(withName: "//delegate") {
@@ -44,8 +50,17 @@ class PaintbrushScene: SKScene {
             painting = paintingSprite
         }
         if let name {
-            readPuzzleConfiguration(from: name)
+            configureWithPrexistingPuzzleIfPresent { [weak self] in
+                self?.readPuzzleConfiguration(from: name)
+            }
         }
+        if let exitButton = childNode(withName: "//exitButton") as? SKSpriteNode {
+            exitButton.configureForPixelArt()
+        }
+    }
+
+    func enableDebuggingFeatures() {
+        childNode(withName: "//debugSprite")?.isHidden = false
     }
 
     /// Creates a node to be used in the final path.
@@ -75,6 +90,20 @@ class PaintbrushScene: SKScene {
         { // swiftlint:disable:this opening_brace
             let newIdx = currentIdx + 1
             puzzle = stageConfiguration.puzzles[newIdx]
+        }
+    }
+
+    func dismissIfPresent() {
+        guard let previousScene = AppDelegate.observedState.previousEnvironment else { return }
+        AppDelegate.observedState.previousPuzzleState = self.solveState
+        view?.presentScene(previousScene)
+    }
+
+    private func configureWithPrexistingPuzzleIfPresent(handler: @escaping () -> Void) {
+        let previousPuzzle = puzzle
+        handler()
+        if let previousPuzzle {
+            puzzle = previousPuzzle
         }
     }
 }

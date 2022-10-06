@@ -62,7 +62,7 @@ public extension CaslonSceneQuestionDelegate {
     /// - Parameter optionName: The option name that should be selected.
     func selectOption(named optionName: String) {
         let strippedName = String(optionName.trimmingPrefix("choice:"))
-        let choices = options.map { $0.name }
+        let choices = options.map(\.name)
         guard choices.contains(strippedName) else { return }
         didSelectOption(with: strippedName)
     }

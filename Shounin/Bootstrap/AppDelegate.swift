@@ -21,8 +21,9 @@ import UIKit
 import GameKit
 
 // MARK: - General App Delegation
+
 class AppDelegate: NSObject {
-    static var previousGameEnvironment: GameEnvironment?
+    static var observedState = GameEnvironmentState()
 
     func setUpGameCenterAccessPoint() {
         GKAccessPoint.shared.location = .bottomTrailing
@@ -36,14 +37,16 @@ class AppDelegate: NSObject {
 extension AppDelegate: NSApplicationDelegate {
     // Authenticate with Game Center.
     func applicationDidFinishLaunching(_: Notification) {
-        DispatchQueue.main.async {
-            GKLocalPlayer.local.authenticateHandler = { loginSheet, error in
-                if let loginSheet {
-                    NSApplication.shared.keyWindow?.contentViewController?.presentAsSheet(loginSheet)
-                }
-                guard error == nil else {
-                    print("Error: \(error?.localizedDescription ?? "Unknown error")")
-                    return
+        if let useGC = Bundle.main.gameCenterEnabled, useGC {
+            DispatchQueue.main.async {
+                GKLocalPlayer.local.authenticateHandler = { loginSheet, error in
+                    if let loginSheet {
+                        NSApplication.shared.keyWindow?.contentViewController?.presentAsSheet(loginSheet)
+                    }
+                    guard error == nil else {
+                        print("Error: \(error?.localizedDescription ?? "Unknown error")")
+                        return
+                    }
                 }
             }
         }
@@ -52,7 +55,9 @@ extension AppDelegate: NSApplicationDelegate {
     // Forcibly set the aspect ratio to 16:10. This prevents awkward resizing.
     func applicationDidBecomeActive(_: Notification) {
         NSApplication.shared.keyWindow?.aspectRatio = .init(width: 16, height: 10)
-        setUpGameCenterAccessPoint()
+        if let useGC = Bundle.main.gameCenterEnabled, useGC {
+            setUpGameCenterAccessPoint()
+        }
     }
 
     // Terminates after the window is closed, which is intended behavior.
@@ -79,18 +84,20 @@ extension AppDelegate: UIApplicationDelegate {
         _: UIApplication,
         didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        DispatchQueue.main.async {
-            GKLocalPlayer.local.authenticateHandler = { loginSheet, error in
-                if let loginSheet {
-                    AppDelegate.keyWindow?.rootViewController?.present(loginSheet, animated: true)
-                }
-                guard error == nil else {
-                    print("Error: \(error?.localizedDescription ?? "Unknown error")")
-                    return
+        if let useGC = Bundle.main.gameCenterEnabled, useGC {
+            DispatchQueue.main.async {
+                GKLocalPlayer.local.authenticateHandler = { loginSheet, error in
+                    if let loginSheet {
+                        AppDelegate.keyWindow?.rootViewController?.present(loginSheet, animated: true)
+                    }
+                    guard error == nil else {
+                        print("Error: \(error?.localizedDescription ?? "Unknown error")")
+                        return
+                    }
                 }
             }
+            setUpGameCenterAccessPoint()
         }
-        setUpGameCenterAccessPoint()
         return true
     }
 }

@@ -13,9 +13,24 @@
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
 
-import SpriteKit
 import CranberrySprite
+import SpriteKit
 
 class GamePlayer: SKSpriteNode {
-    
+    init(position: CGPoint) {
+        super.init(texture: nil, color: .white, size: .init(squareOf: 32))
+        self.position = position
+        setPhysicsBody()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func setPhysicsBody() {
+        let body = SKPhysicsBody(rectangleOf: .init(squareOf: 32))
+        body.affectedByGravity = false
+        body.allowsRotation = false
+        physicsBody = body
+    }
 }

@@ -13,10 +13,10 @@
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
 
-import SpriteKit
 import CranberrySprite
-import SKTiled
 import Paintbrush
+import SKTiled
+import SpriteKit
 
 class GameEnvironment: SKScene {
     enum LayerType: String {
@@ -30,23 +30,36 @@ class GameEnvironment: SKScene {
     var stageConfiguration: Paintbrush.PaintbrushStageConfiguration?
     var puzzle: Paintbrush.PaintbrushStagePuzzleConfiguration?
     var puzzleFlow = [String]()
-    var puzzleTriggers = [SKNode]()
+    var puzzleTriggers = [CGPoint]()
     var player: SKSpriteNode?
+    var solvedPuzzles = [String]()
 
     private var stageName: String
+    private var preparedForFirstUse = false
 
     init(stageNamed stage: String) {
-        self.stageName = stage
+        stageName = stage
         super.init(size: .init(width: 1600, height: 900))
-        self.backgroundColor = .black
+        backgroundColor = .black
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     override func didMove(to view: SKView) {
         super.didMove(to: view)
+        if AppDelegate.observedState.previousPuzzleState == .solved,
+           let puzzleTrigger = AppDelegate.observedState.puzzleTriggerName {
+            solvedPuzzles.append(puzzleTrigger)
+        }
+        prepareSceneForFirstUseIfNecessary()
+    }
+
+    private func prepareSceneForFirstUseIfNecessary() {
+        if preparedForFirstUse { return }
+        readPuzzleConfiguration(from: stageName)
         if let tilemap = SKTilemap.load(tmxFile: "\(stageName).tmx") {
             self.tilemap = tilemap
             addChild(tilemap)
@@ -55,6 +68,7 @@ class GameEnvironment: SKScene {
             for layer in tilemap.layers {
                 configure(for: layer)
             }
+            preparedForFirstUse = true
         }
     }
 
@@ -85,20 +99,19 @@ class GameEnvironment: SKScene {
     }
 
     private func createPlayer(from layer: SKTiledLayerObject) {
-        guard let tile = layer.children.first else { return }
-        let player = GamePlayer(color: .white, size: .init(squareOf: 32))
-        let playerBody = SKPhysicsBody(rectangleOf: .init(squareOf: 32))
-        playerBody.affectedByGravity = false
-        playerBody.allowsRotation = false
-        player.physicsBody = playerBody
+        guard let tilemap, let tile = tilemap.getTilesWithProperty("Purpose", "player").first else {
+            return
+
+        }
+        let player = GamePlayer(position: layer.convert(tile.position, to: self))
         player.zPosition = layer.zPosition
-        player.position = tile.position
         self.player = player
         addChild(player)
 
         let camera = SKCameraNode()
         camera.physicsBody = nil
         camera.setScale(0.3)
+        camera.position = .zero
         self.camera = camera
         player.addChild(camera)
         layer.removeFromParent()
@@ -108,40 +121,31 @@ class GameEnvironment: SKScene {
         if let expectedLayout = layer.properties["Expected Layout"] {
             puzzleFlow = expectedLayout.split(separator: ",").map { String($0) }
         } else if let configPuzzles = stageConfiguration?.puzzles {
-            puzzleFlow = configPuzzles.map { $0.expectedResult }
+            puzzleFlow = configPuzzles.map(\.expectedResult)
         }
-        puzzleTriggers = layer.children
+        let children = layer.tilemap.getTilesWithProperty("Purpose", "puzzle_trigger")
+        puzzleTriggers = children.map { tile in
+            layer.convert(tile.position, to: self)
+        }
     }
 
-    private func loadPuzzle() {
-        guard let puzzleScene = PaintbrushScene(fileNamed: stageName) else { return }
-        puzzleScene.puzzle = self.puzzle
-        AppDelegate.previousGameEnvironment = self
+    func loadPuzzleIfPresent() {
+        guard let puzzleScene = PaintbrushScene(fileNamed: stageName), let puzzle else { return }
+        puzzleScene.scaleMode = self.scaleMode
+        puzzleScene.puzzle = puzzle
+        AppDelegate.observedState.previousEnvironment = self
+        AppDelegate.observedState.puzzleTriggerName = puzzle.expectedResult
+        view?.presentScene(puzzleScene)
+    }
+
+    func compareDistanceToPlayer(first: CGPoint, second: CGPoint) -> Bool {
+        guard let player else { return false }
+        let firstDistance = first.manhattanDistance(to: player.position)
+        let secondDistance = second.manhattanDistance(to: player.position)
+        return firstDistance < secondDistance
     }
 }
 
 extension GameEnvironment: PaintbrushConfigurationDelegate {
-    func didSetPuzzleConfiguration(to puzzleConfig: Paintbrush.PaintbrushStagePuzzleConfiguration) {
-
-    }
-}
-
-extension GameEnvironment {
-    override func keyDown(with event: NSEvent) {
-        guard let player else { return }
-        switch event.keyCode {
-        case 0x0D:
-            player.run(.moveBy(x: 0, y: 32, duration: 0.1))
-        case 0x00:
-            player.run(.moveBy(x: -32, y: 0, duration: 0.1))
-        case 0x01:
-            player.run(.moveBy(x: 0, y: -32, duration: 0.1))
-        case 0x02:
-            player.run(.moveBy(x: 32, y: 0, duration: 0.1))
-        case 0x31:
-            loadPuzzle()
-        default:
-            print(event.keyCode)
-        }
-    }
+    func didSetPuzzleConfiguration(to _: Paintbrush.PaintbrushStagePuzzleConfiguration) {}
 }

@@ -71,6 +71,8 @@
 		95E4F62728ECAE24009627F6 /* CaslonScene+Inputs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E4F62628ECAE24009627F6 /* CaslonScene+Inputs.swift */; };
 		95E97AAA28EC783400C9B71C /* PaintbrushSolverError+LocalizedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E97AA928EC783400C9B71C /* PaintbrushSolverError+LocalizedError.swift */; };
 		95FFC8FB28EF3A2D009D1A15 /* GamePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FFC8FA28EF3A2D009D1A15 /* GamePlayer.swift */; };
+		95FFC8FD28EF697E009D1A15 /* GameEnvironmentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FFC8FC28EF697E009D1A15 /* GameEnvironmentState.swift */; };
+		95FFC8FF28EF740B009D1A15 /* GameEnvironment+Inputs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FFC8FE28EF740B009D1A15 /* GameEnvironment+Inputs.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,6 +151,8 @@
 		95E4F62628ECAE24009627F6 /* CaslonScene+Inputs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CaslonScene+Inputs.swift"; sourceTree = "<group>"; };
 		95E97AA928EC783400C9B71C /* PaintbrushSolverError+LocalizedError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaintbrushSolverError+LocalizedError.swift"; sourceTree = "<group>"; };
 		95FFC8FA28EF3A2D009D1A15 /* GamePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayer.swift; sourceTree = "<group>"; };
+		95FFC8FC28EF697E009D1A15 /* GameEnvironmentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEnvironmentState.swift; sourceTree = "<group>"; };
+		95FFC8FE28EF740B009D1A15 /* GameEnvironment+Inputs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameEnvironment+Inputs.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -354,6 +358,8 @@
 				95FFC8F528EF39DA009D1A15 /* Levels */,
 				95AD566028EE241400051144 /* GameEnvironment.swift */,
 				95FFC8FA28EF3A2D009D1A15 /* GamePlayer.swift */,
+				95FFC8FC28EF697E009D1A15 /* GameEnvironmentState.swift */,
+				95FFC8FE28EF740B009D1A15 /* GameEnvironment+Inputs.swift */,
 			);
 			path = Environment;
 			sourceTree = "<group>";
@@ -670,12 +676,14 @@
 				9538C70B28E7298200D506F0 /* SKShapeNode+Line.swift in Sources */,
 				9524434A28C781FB005F91E1 /* ContentView.swift in Sources */,
 				95A9605828EB61F600F05059 /* Bundle+InfoPlist.swift in Sources */,
+				95FFC8FD28EF697E009D1A15 /* GameEnvironmentState.swift in Sources */,
 				9538C70D28E7370C00D506F0 /* SKAction+ColorizeStroke.swift in Sources */,
 				950F635528E62BC10018AB43 /* PaintbrushScene+Inputs.swift in Sources */,
 				95A9605628EB603700F05059 /* CGImage+Resizable.swift in Sources */,
 				95E4F62728ECAE24009627F6 /* CaslonScene+Inputs.swift in Sources */,
 				950F6CF828C13BDF007ACB53 /* GameSceneView.swift in Sources */,
 				95AD566128EE241400051144 /* GameEnvironment.swift in Sources */,
+				95FFC8FF28EF740B009D1A15 /* GameEnvironment+Inputs.swift in Sources */,
 				95011E6C28C7796900E511F3 /* FontFamily.swift in Sources */,
 				9533175C28D371E500E6E516 /* SettingsDebuggingView.swift in Sources */,
 				95E4F61C28EC8B27009627F6 /* PaintbrushScene+Solving.swift in Sources */,

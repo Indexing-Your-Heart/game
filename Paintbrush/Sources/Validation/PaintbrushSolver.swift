@@ -102,11 +102,11 @@ public extension PaintbrushSolver {
         }
 
 #if os(iOS)
-        if let record = Bundle.main.paintbrushRecordOutput, record {
-            if let mlImage = image.resized(to: .init(width: 47, height: 47)) {
-                mlImage.write(to: "drawing_" + Date.now.formatted(.iso8601))
-            }
-        }
+//        if let record = Bundle.main.paintbrushRecordOutput, record {
+//            if let mlImage = image.resized(to: .init(width: 47, height: 47)) {
+//                mlImage.write(to: "drawing_" + Date.now.formatted(.iso8601))
+//            }
+//        }
 #endif
 
         do {
