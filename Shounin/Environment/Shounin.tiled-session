@@ -6,6 +6,7 @@
     "activeFile": "Stage1.tmx",
     "expandedProjectPaths": [
     ],
+    "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "Generic_32x32.tsx": {
             "scaleInDock": 1,
@@ -17,10 +18,10 @@
         },
         "Stage1.tmx": {
             "scale": 1.2857,
-            "selectedLayer": 2,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 761.0640118223535,
-                "y": 857.8984210935675
+                "x": 776.6197402193357,
+                "y": 857.5095278836429
             }
         }
     },

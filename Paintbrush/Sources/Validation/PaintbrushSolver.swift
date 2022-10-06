@@ -29,6 +29,18 @@ public enum PaintbrushSolverError: Error {
     case predictionFailure(Error)
 }
 
+/// An enumeration representing various solve states.
+public enum PaintbrushSolveState {
+    /// The puzzle hasn't been solved yet, and no attempt was made.
+    case unsolved
+
+    /// The puzzle returned a failed state.
+    case failure
+
+    /// The puzzle has been solved.
+    case solved
+}
+
 /// A protocol that indicates a class is capable of making predictions from player drawings.
 public protocol PaintbrushSolver: AnyObject {
     /// The shape node that represents the visible drawing area; i.e., the puzzle panel.
@@ -36,6 +48,9 @@ public protocol PaintbrushSolver: AnyObject {
 
     /// The node that represents the underlying drawing area.
     var drawingDelegateNode: SKNode? { get set }
+
+    /// The current state of the puzzle.
+    var solveState: PaintbrushSolveState { get set }
 
     /// Creates a shape node with a CGPath based on the player's drawing.
     func makePathFromChildren() -> SKShapeNode?

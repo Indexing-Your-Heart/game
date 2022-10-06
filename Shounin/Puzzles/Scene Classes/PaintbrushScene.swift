@@ -30,7 +30,7 @@ class PaintbrushScene: SKScene {
             didSetPuzzleConfiguration(to: puzzle)
         }
     }
-
+    var solveState: PaintbrushSolveState = .unsolved
     var painting: SKSpriteNode?
 
     override func didMove(to _: SKView) {

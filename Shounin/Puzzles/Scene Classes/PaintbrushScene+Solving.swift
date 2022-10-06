@@ -47,6 +47,7 @@ extension PaintbrushScene: PanelInteractionDelegate {
     }
 
     func panelWillHighlight(onPredictionStatus prediction: Bool) {
+        solveState = prediction ? .solved : .failure
         guard let path = drawingDelegateNode?.childNode(withName: "witPath") as? SKShapeNode else { return }
         if prediction {
             path.strokeColor = SKColor(hexString: puzzle?.palette.panelLineColor ?? "#000000")

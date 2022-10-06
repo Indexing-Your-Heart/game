@@ -21,8 +21,9 @@ import UIKit
 import GameKit
 
 // MARK: - General App Delegation
-
 class AppDelegate: NSObject {
+    static var previousGameEnvironment: GameEnvironment?
+
     func setUpGameCenterAccessPoint() {
         GKAccessPoint.shared.location = .bottomTrailing
         GKAccessPoint.shared.showHighlights = true

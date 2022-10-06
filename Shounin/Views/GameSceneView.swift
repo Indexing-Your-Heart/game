@@ -22,9 +22,9 @@ struct GameSceneView: View {
     @State private var debugOptions: SpriteView.DebugOptions = []
 
     private var gameScene: SKScene = {
-        let scene = GameEnvironment(fileNamed: "GameScene")
+        let scene = GameEnvironment(stageNamed: "Stage1")
         // Write any additional logic for setup here.
-        return scene ?? .init()
+        return scene
     }()
 
     var body: some View {
@@ -36,6 +36,7 @@ struct GameSceneView: View {
         .onAppear {
             if dbgShowNodes { debugOptions.insert(.showsNodeCount) }
             if dbgShowFPS { debugOptions.insert(.showsFPS) }
+            debugOptions.insert(.showsPhysics)
         }
     }
 }

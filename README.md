@@ -24,6 +24,7 @@ wearing a hammer costume.
 - SwiftLint and SwiftFormat (used internally for code formatting)
 - Xcode Command Line Tools
 - Fastlane (used internally for assistance in CI deployment)
+- Tiled (used to create 2D levels)
 
 Start by cloning the repository using `gh repo clone` or `git clone`, then open the
 main project file `Indexing Your Heart.xcworkspace`. Ensure the current scheme is
