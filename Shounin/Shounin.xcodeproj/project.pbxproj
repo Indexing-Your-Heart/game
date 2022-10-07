@@ -47,6 +47,8 @@
 		958E090828F06786009E6AD9 /* Art_32x32.tsx in Resources */ = {isa = PBXBuildFile; fileRef = 958E090728F06786009E6AD9 /* Art_32x32.tsx */; };
 		958E090A28F067B0009E6AD9 /* 7_Art_32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 958E090928F067B0009E6AD9 /* 7_Art_32x32.png */; };
 		958E090C28F08695009E6AD9 /* SKTexture+URLInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958E090B28F08695009E6AD9 /* SKTexture+URLInit.swift */; };
+		958E090E28F0B1D3009E6AD9 /* GameFlow.json in Resources */ = {isa = PBXBuildFile; fileRef = 958E090D28F0B1D3009E6AD9 /* GameFlow.json */; };
+		958E091128F0B20C009E6AD9 /* FlowConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958E091028F0B20C009E6AD9 /* FlowConfiguration.swift */; };
 		95A9605628EB603700F05059 /* CGImage+Resizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A9605528EB603700F05059 /* CGImage+Resizable.swift */; };
 		95A9605828EB61F600F05059 /* Bundle+InfoPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A9605728EB61F600F05059 /* Bundle+InfoPlist.swift */; };
 		95AD565E28EE20B500051144 /* SKTiled in Frameworks */ = {isa = PBXBuildFile; productRef = 95AD565D28EE20B500051144 /* SKTiled */; };
@@ -129,6 +131,8 @@
 		958E090728F06786009E6AD9 /* Art_32x32.tsx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Art_32x32.tsx; sourceTree = "<group>"; };
 		958E090928F067B0009E6AD9 /* 7_Art_32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7_Art_32x32.png; sourceTree = "<group>"; };
 		958E090B28F08695009E6AD9 /* SKTexture+URLInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKTexture+URLInit.swift"; sourceTree = "<group>"; };
+		958E090D28F0B1D3009E6AD9 /* GameFlow.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GameFlow.json; sourceTree = "<group>"; };
+		958E091028F0B20C009E6AD9 /* FlowConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowConfiguration.swift; sourceTree = "<group>"; };
 		95A9605528EB603700F05059 /* CGImage+Resizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImage+Resizable.swift"; sourceTree = "<group>"; };
 		95A9605728EB61F600F05059 /* Bundle+InfoPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+InfoPlist.swift"; sourceTree = "<group>"; };
 		95AD566028EE241400051144 /* GameEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEnvironment.swift; sourceTree = "<group>"; };
@@ -348,12 +352,22 @@
 			path = Puzzles;
 			sourceTree = "<group>";
 		};
+		958E090F28F0B1FC009E6AD9 /* Flow Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				958E091028F0B20C009E6AD9 /* FlowConfiguration.swift */,
+			);
+			path = "Flow Configuration";
+			sourceTree = "<group>";
+		};
 		9598462D28EC7BD6009585DA /* Bootstrap */ = {
 			isa = PBXGroup;
 			children = (
+				958E090F28F0B1FC009E6AD9 /* Flow Configuration */,
 				950F6CFB28C13D6F007ACB53 /* Entrypoint.swift */,
 				9524434928C781FB005F91E1 /* ContentView.swift */,
 				956B604528C7A4730031794C /* AppDelegate.swift */,
+				958E090D28F0B1D3009E6AD9 /* GameFlow.json */,
 			);
 			path = Bootstrap;
 			sourceTree = "<group>";
@@ -573,6 +587,7 @@
 				950F6CFE28C156A6007ACB53 /* Localizable.strings in Resources */,
 				95DB209028CFA9840079D624 /* ch02.md in Resources */,
 				9533177028D3788C00E6E516 /* ch06-les-conseils-pour-les-jeunes.jenson in Resources */,
+				958E090E28F0B1D3009E6AD9 /* GameFlow.json in Resources */,
 				95DB209328CFA9840079D624 /* ch05.md in Resources */,
 				9533176128D3787C00E6E516 /* ch01-mise-en-abyme.jenson in Resources */,
 				95011E7128C77B1D00E511F3 /* Salmon Sans 9 Bold.ttf in Resources */,
@@ -676,6 +691,7 @@
 			files = (
 				9510BD3128EB196E00AD0E28 /* PrototypeValidator.mlmodel in Sources */,
 				95E4F62428ECA05C009627F6 /* CaslonSceneView.swift in Sources */,
+				958E091128F0B20C009E6AD9 /* FlowConfiguration.swift in Sources */,
 				95FFC8FB28EF3A2D009D1A15 /* GamePlayer.swift in Sources */,
 				95E4F62128EC9CD9009627F6 /* CaslonScene.swift in Sources */,
 				9533175928D36A2900E6E516 /* SettingsView.swift in Sources */,

@@ -23,11 +23,19 @@ import GameKit
 // MARK: - General App Delegation
 
 class AppDelegate: NSObject {
+    typealias GameFlow = [FlowConfiguration]
     static var observedState = GameEnvironmentState()
+    static var currentGameFlow: GameFlow?
 
     func setUpGameCenterAccessPoint() {
         GKAccessPoint.shared.location = .bottomTrailing
         GKAccessPoint.shared.showHighlights = true
+    }
+
+    func fetchGameFlow() {
+        if let config = FlowConfiguration.load(from: "GameFlow") {
+            AppDelegate.currentGameFlow = config
+        }
     }
 }
 
@@ -35,6 +43,10 @@ class AppDelegate: NSObject {
 
 #if os(macOS)
 extension AppDelegate: NSApplicationDelegate {
+    func applicationWillFinishLaunching(_ notification: Notification) {
+        fetchGameFlow()
+    }
+
     // Authenticate with Game Center.
     func applicationDidFinishLaunching(_: Notification) {
         if let useGC = Bundle.main.gameCenterEnabled, useGC {
@@ -84,6 +96,7 @@ extension AppDelegate: UIApplicationDelegate {
         _: UIApplication,
         didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
+        fetchGameFlow()
         if let useGC = Bundle.main.gameCenterEnabled, useGC {
             DispatchQueue.main.async {
                 GKLocalPlayer.local.authenticateHandler = { loginSheet, error in

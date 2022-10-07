@@ -24,7 +24,7 @@ enum NavigationState: Equatable {
 }
 
 struct ContentView: View {
-    @State private var navigationState: NavigationState = .mainMenu
+    @State private var navigationState: NavigationState = .game
     @State private var displaySettings = false
     var body: some View {
         Group {

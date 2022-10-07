@@ -20,23 +20,37 @@ struct GameSceneView: View {
     @AppStorage("dbg:show-nodes") var dbgShowNodes = false
     @AppStorage("dbg:show-fps") var dbgShowFPS = false
     @State private var debugOptions: SpriteView.DebugOptions = []
-
-    private var gameScene: SKScene = {
-        let scene = GameEnvironment(stageNamed: "Stage1")
-        scene.setEndingScene(to: "ch02-le-marteau-timide")
-        return scene
-    }()
+    @State private var gameFlow: AppDelegate.GameFlow = []
 
     var body: some View {
         ZStack {
             Color.black
-            SpriteView(scene: gameScene, transition: .fade(withDuration: 2), debugOptions: debugOptions)
+            SpriteView(
+                scene: getGameSceneInCurrentContext(),
+                transition: .fade(withDuration: 2),
+                debugOptions: debugOptions
+            )
                 .aspectRatio(16 / 9, contentMode: .fit)
         }
         .onAppear {
-            if dbgShowNodes { debugOptions.insert(.showsNodeCount) }
-            if dbgShowFPS { debugOptions.insert(.showsFPS) }
-//            debugOptions.insert(.showsPhysics)
+            configureDebugSettings()
+            loadFlowIntoScene()
         }
+    }
+
+    private func getGameSceneInCurrentContext() -> some SKScene {
+        let scene = GameEnvironment(stageNamed: gameFlow.first?.stage ?? "Stage1")
+        scene.setEndingScene(to: gameFlow.first?.chapter ?? "epilogue")
+        return scene
+    }
+
+    private func configureDebugSettings() {
+        if dbgShowNodes { debugOptions.insert(.showsNodeCount) }
+        if dbgShowFPS { debugOptions.insert(.showsFPS) }
+    }
+
+    private func loadFlowIntoScene() {
+        guard let flow = AppDelegate.currentGameFlow else { return }
+        gameFlow = flow
     }
 }
