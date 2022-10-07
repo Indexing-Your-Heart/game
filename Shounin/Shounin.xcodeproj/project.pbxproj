@@ -44,6 +44,9 @@
 		956B604128C7A2200031794C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 956B604328C7A2200031794C /* InfoPlist.strings */; };
 		956B604628C7A4730031794C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956B604528C7A4730031794C /* AppDelegate.swift */; };
 		956B604E28C7B7480031794C /* Testbench.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956B604D28C7B7480031794C /* Testbench.swift */; };
+		958E090828F06786009E6AD9 /* Art_32x32.tsx in Resources */ = {isa = PBXBuildFile; fileRef = 958E090728F06786009E6AD9 /* Art_32x32.tsx */; };
+		958E090A28F067B0009E6AD9 /* 7_Art_32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 958E090928F067B0009E6AD9 /* 7_Art_32x32.png */; };
+		958E090C28F08695009E6AD9 /* SKTexture+URLInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958E090B28F08695009E6AD9 /* SKTexture+URLInit.swift */; };
 		95A9605628EB603700F05059 /* CGImage+Resizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A9605528EB603700F05059 /* CGImage+Resizable.swift */; };
 		95A9605828EB61F600F05059 /* Bundle+InfoPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A9605728EB61F600F05059 /* Bundle+InfoPlist.swift */; };
 		95AD565E28EE20B500051144 /* SKTiled in Frameworks */ = {isa = PBXBuildFile; productRef = 95AD565D28EE20B500051144 /* SKTiled */; };
@@ -123,6 +126,9 @@
 		956B604528C7A4730031794C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		956B604B28C7B7480031794C /* Testbench.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Testbench.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		956B604D28C7B7480031794C /* Testbench.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Testbench.swift; sourceTree = "<group>"; };
+		958E090728F06786009E6AD9 /* Art_32x32.tsx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Art_32x32.tsx; sourceTree = "<group>"; };
+		958E090928F067B0009E6AD9 /* 7_Art_32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7_Art_32x32.png; sourceTree = "<group>"; };
+		958E090B28F08695009E6AD9 /* SKTexture+URLInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKTexture+URLInit.swift"; sourceTree = "<group>"; };
 		95A9605528EB603700F05059 /* CGImage+Resizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImage+Resizable.swift"; sourceTree = "<group>"; };
 		95A9605728EB61F600F05059 /* Bundle+InfoPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+InfoPlist.swift"; sourceTree = "<group>"; };
 		95AD566028EE241400051144 /* GameEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEnvironment.swift; sourceTree = "<group>"; };
@@ -189,6 +195,7 @@
 				9538C70C28E7370C00D506F0 /* SKAction+ColorizeStroke.swift */,
 				95A9605728EB61F600F05059 /* Bundle+InfoPlist.swift */,
 				95E97AA928EC783400C9B71C /* PaintbrushSolverError+LocalizedError.swift */,
+				958E090B28F08695009E6AD9 /* SKTexture+URLInit.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -445,6 +452,7 @@
 			children = (
 				95FFC8F928EF3A13009D1A15 /* Images */,
 				95AD566228EE246700051144 /* Generic_32x32.tsx */,
+				958E090728F06786009E6AD9 /* Art_32x32.tsx */,
 				95AD566328EE246700051144 /* Room_Builder.tsx */,
 				95B748A028EDD7FC0013AFC7 /* README.txt */,
 			);
@@ -455,6 +463,7 @@
 			isa = PBXGroup;
 			children = (
 				95AD566928EE25BD00051144 /* 1_Generic_32x32.png */,
+				958E090928F067B0009E6AD9 /* 7_Art_32x32.png */,
 				95AD566828EE25BD00051144 /* Room_Builder_32x32.png */,
 			);
 			name = Images;
@@ -570,6 +579,7 @@
 				9533176D28D3788900E6E516 /* ch05-la-lumiere-sombre.jenson in Resources */,
 				9533176A28D3788600E6E516 /* ch04-la-reveuse-sentimental.jenson in Resources */,
 				95DB209728CFA9840079D624 /* epilogue.md in Resources */,
+				958E090A28F067B0009E6AD9 /* 7_Art_32x32.png in Resources */,
 				95AD566B28EE25BD00051144 /* 1_Generic_32x32.png in Resources */,
 				9533176728D3788200E6E516 /* ch03-ecouter-la-vague.jenson in Resources */,
 				9538C71028E7551600D506F0 /* Stage1.sks in Resources */,
@@ -589,6 +599,7 @@
 				95011E7328C77B9800E511F3 /* Salmon Serif 9 Regular.ttf in Resources */,
 				95011E6D28C77A4200E511F3 /* Salmon Serif 9 Bold.ttf in Resources */,
 				950F6CE828C0EADA007ACB53 /* Assets.xcassets in Resources */,
+				958E090828F06786009E6AD9 /* Art_32x32.tsx in Resources */,
 				956B604128C7A2200031794C /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -670,6 +681,7 @@
 				9533175928D36A2900E6E516 /* SettingsView.swift in Sources */,
 				95E97AAA28EC783400C9B71C /* PaintbrushSolverError+LocalizedError.swift in Sources */,
 				9538C71228E756BE00D506F0 /* PaintbrushDemoView.swift in Sources */,
+				958E090C28F08695009E6AD9 /* SKTexture+URLInit.swift in Sources */,
 				956B604628C7A4730031794C /* AppDelegate.swift in Sources */,
 				950F634928E49C380018AB43 /* PaintbrushScene.swift in Sources */,
 				95B7489228EDBA260013AFC7 /* CaslonScene+Caslon.swift in Sources */,

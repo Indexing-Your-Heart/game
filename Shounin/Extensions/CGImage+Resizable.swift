@@ -14,6 +14,7 @@
 //  details.
 
 import CoreGraphics
+import ImageIO
 import UniformTypeIdentifiers
 
 #if os(iOS)
@@ -39,12 +40,10 @@ extension CGImage {
         return ctx.makeImage()
     }
 
-#if os(iOS)
-
     /// Writes the `CGImage` to the specified file name.
     /// - Important: This method is only available on iOS.
     /// - Parameter filename: The name of the file to write to.
-    @available(iOS 16.0, *)
+//    @available(iOS 16.0, *)
     func write(to filename: String) {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let firstPath = paths[0]
@@ -56,6 +55,4 @@ extension CGImage {
         }
         url.stopAccessingSecurityScopedResource()
     }
-
-#endif
 }

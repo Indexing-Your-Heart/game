@@ -73,7 +73,6 @@ extension PaintbrushScene {
             dismissIfPresent()
             return
         }
-        
         if childNode(withName: "debugSprite")?.frame.contains(location) == true {
             nextPuzzle()
             return

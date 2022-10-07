@@ -57,6 +57,8 @@ class PaintbrushScene: SKScene {
         if let exitButton = childNode(withName: "//exitButton") as? SKSpriteNode {
             exitButton.configureForPixelArt()
         }
+        childNode(withName: "//debugSprite")?.isHidden = true
+        loadSolvedStateIfPresent()
     }
 
     func enableDebuggingFeatures() {
@@ -82,6 +84,8 @@ class PaintbrushScene: SKScene {
         drawingDelegateNode?.children.filter { $0 != panelDrawingArea }
     }
 
+    /// Loads the next puzzle in the set.
+    /// - Important: Only use this in a debugging context.
     func nextPuzzle() {
         guard let stageConfiguration else { return }
         if let currentIdx = stageConfiguration.puzzles
@@ -93,9 +97,14 @@ class PaintbrushScene: SKScene {
         }
     }
 
+    /// Dismisses the scene and restores the previous game environment.
     func dismissIfPresent() {
         guard let previousScene = AppDelegate.observedState.previousEnvironment else { return }
-        AppDelegate.observedState.previousPuzzleState = self.solveState
+        AppDelegate.observedState.previousPuzzleState = solveState
+        if solveState == .solved {
+            savePlayerDrawingForReuse()
+        }
+
         view?.presentScene(previousScene)
     }
 
@@ -105,5 +114,26 @@ class PaintbrushScene: SKScene {
         if let previousPuzzle {
             puzzle = previousPuzzle
         }
+    }
+
+    private func savePlayerDrawingForReuse() {
+        guard let puzzle, let image = getImageForSolvedCanvas() else { return }
+        image.write(to: "solved_" + puzzle.expectedResult)
+    }
+
+    private func loadSolvedStateIfPresent() {
+        guard let puzzle else { return }
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let firstPath = paths[0]
+        let url = firstPath.appending(path: "solved_\(puzzle.expectedResult)")
+            .appendingPathExtension("png")
+        _ = url.startAccessingSecurityScopedResource()
+        guard let solvedNode = childNode(withName: "//solveOverlay") as? SKSpriteNode else { return }
+        if let tex = SKTexture(contentsOf: url) {
+            solvedNode.texture = tex
+        } else {
+            solvedNode.isHidden = true
+        }
+        url.stopAccessingSecurityScopedResource()
     }
 }

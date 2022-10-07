@@ -42,7 +42,8 @@ class CaslonScene: SKScene {
         choiceMenu?.isHidden = true
         choiceMenu?.childNode(withName: "templateButton")?.isHidden = true
         if let templateButtonText = choiceMenu?.childNode(withName: "templateButton")?
-            .childNode(withName: "buttonText") as? SKLabelNode {
+            .childNode(withName: "buttonText") as? SKLabelNode
+        {
             templateButtonText.fontName = "Salmon Sans 9 Regular"
         }
         if let whatLabel {

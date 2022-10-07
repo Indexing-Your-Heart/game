@@ -32,7 +32,7 @@ class GameEnvironment: SKScene {
     var puzzleFlow = [String]()
     var puzzleTriggers = [CGPoint]()
     var player: SKSpriteNode?
-    var solvedPuzzles = [String]()
+    var solvedPuzzles = Set<String>()
 
     private var stageName: String
     private var preparedForFirstUse = false
@@ -51,8 +51,9 @@ class GameEnvironment: SKScene {
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         if AppDelegate.observedState.previousPuzzleState == .solved,
-           let puzzleTrigger = AppDelegate.observedState.puzzleTriggerName {
-            solvedPuzzles.append(puzzleTrigger)
+           let puzzleTrigger = AppDelegate.observedState.puzzleTriggerName
+        {
+            solvedPuzzles.insert(puzzleTrigger)
         }
         prepareSceneForFirstUseIfNecessary()
     }
@@ -101,7 +102,6 @@ class GameEnvironment: SKScene {
     private func createPlayer(from layer: SKTiledLayerObject) {
         guard let tilemap, let tile = tilemap.getTilesWithProperty("Purpose", "player").first else {
             return
-
         }
         let player = GamePlayer(position: layer.convert(tile.position, to: self))
         player.zPosition = layer.zPosition
@@ -131,7 +131,7 @@ class GameEnvironment: SKScene {
 
     func loadPuzzleIfPresent() {
         guard let puzzleScene = PaintbrushScene(fileNamed: stageName), let puzzle else { return }
-        puzzleScene.scaleMode = self.scaleMode
+        puzzleScene.scaleMode = scaleMode
         puzzleScene.puzzle = puzzle
         AppDelegate.observedState.previousEnvironment = self
         AppDelegate.observedState.puzzleTriggerName = puzzle.expectedResult
@@ -143,6 +143,17 @@ class GameEnvironment: SKScene {
         let firstDistance = first.manhattanDistance(to: player.position)
         let secondDistance = second.manhattanDistance(to: player.position)
         return firstDistance < secondDistance
+    }
+
+    func loadClosestPuzzleToPlayer() {
+        guard let player, let closestPuzzle = puzzleTriggers.min(by: compareDistanceToPlayer) else { return }
+        let distanceFromPlayer = closestPuzzle.manhattanDistance(to: player.position)
+        let puzzleIdx = puzzleTriggers.firstIndex(of: closestPuzzle)
+        if distanceFromPlayer <= 32, let idx = puzzleIdx {
+            let puzzleM = stageConfiguration?.puzzles.first { $0.expectedResult == puzzleFlow[idx] }
+            puzzle = puzzleM
+            loadPuzzleIfPresent()
+        }
     }
 }
 

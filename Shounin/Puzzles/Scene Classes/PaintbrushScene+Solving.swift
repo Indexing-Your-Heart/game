@@ -35,7 +35,9 @@ extension PaintbrushScene: PaintbrushConfigurationDelegate {
 
 extension PaintbrushScene: PanelInteractionDelegate {
     func panelWillStartDrawing(at location: CGPoint) {
+        guard let panelDrawingArea, panelDrawingArea.frame.contains(location) else { return }
         createDrawingNode(at: location)
+        childNode(withName: "//solveOverlay")?.isHidden = true
     }
 
     func panelWillMoveDrawing(to location: CGPoint) {
@@ -123,5 +125,17 @@ extension PaintbrushScene: PaintbrushSolver {
             .classLabelProbs
             .max(count: 3, sortedBy: { $0.value < $1.value }).reversed()
         return predictions.map(\.key)
+    }
+
+    func getImageForSolvedCanvas() -> CGImage? {
+        guard let panelDrawingArea, let drawingDelegateNode, solveState == .solved else { return nil }
+        guard let line = drawingDelegateNode.childNode(withName: "witPath") as? SKShapeNode else { return nil }
+        panelDrawingArea.lineWidth = 0
+        guard let texture = view?.texture(from: drawingDelegateNode, crop: panelDrawingArea.frame) else {
+            panelDrawingArea.lineWidth = 4
+            return nil
+        }
+        panelDrawingArea.lineWidth = 4
+        return texture.cgImage()
     }
 }

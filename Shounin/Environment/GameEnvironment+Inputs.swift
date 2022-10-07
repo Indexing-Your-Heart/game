@@ -17,21 +17,13 @@ import SpriteKit
 
 #if os(iOS)
 extension GameEnvironment {
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
         for touch in touches {
             guard let player else { return }
             let location = touch.location(in: self)
             let derivedMoveTime = location.distance(player.position) / 64
             player.run(.move(to: touch.location(in: self), duration: TimeInterval(derivedMoveTime)))
-
-            guard let closestPuzzle = puzzleTriggers.min(by: compareDistanceToPlayer) else { return }
-            let distanceFromPlayer = closestPuzzle.manhattanDistance(to: player.position)
-            let puzzleIdx = puzzleTriggers.firstIndex(of: closestPuzzle)
-            if distanceFromPlayer <= 32, let idx = puzzleIdx, !solvedPuzzles.contains(puzzleFlow[idx]) {
-                let puzzleM = stageConfiguration?.puzzles.first { $0.expectedResult == puzzleFlow[idx] }
-                puzzle = puzzleM
-                loadPuzzleIfPresent()
-            }
+            loadClosestPuzzleToPlayer()
         }
     }
 }
@@ -51,14 +43,7 @@ extension GameEnvironment {
         case 0x02:
             player.run(.moveBy(x: 32, y: 0, duration: 0.1))
         case 0x31:
-            guard let closestPuzzle = puzzleTriggers.min(by: compareDistanceToPlayer) else { return }
-            let distanceFromPlayer = closestPuzzle.manhattanDistance(to: player.position)
-            let puzzleIdx = puzzleTriggers.firstIndex(of: closestPuzzle)
-            if distanceFromPlayer <= 32, let idx = puzzleIdx, !solvedPuzzles.contains(puzzleFlow[idx]) {
-                let puzzleM = stageConfiguration?.puzzles.first { $0.expectedResult == puzzleFlow[idx] }
-                puzzle = puzzleM
-                loadPuzzleIfPresent()
-            }
+            loadClosestPuzzleToPlayer()
         default:
             print(event.keyCode)
         }
