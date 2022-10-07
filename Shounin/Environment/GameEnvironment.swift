@@ -23,19 +23,22 @@ class GameEnvironment: SKScene {
         case bounds = "Bounds"
         case playerInsert = "PLAYER_INSERT"
         case paintbrush = "PNT_LAYOUT"
+        case paintbrushMetapuzzle = "PNT_LAYOUT_META"
         case other
     }
 
-    var tilemap: SKTilemap?
-    var stageConfiguration: Paintbrush.PaintbrushStageConfiguration?
+    var metapuzzleTrigger = CGPoint.zero
+    var player: SKSpriteNode?
     var puzzle: Paintbrush.PaintbrushStagePuzzleConfiguration?
     var puzzleFlow = [String]()
     var puzzleTriggers = [CGPoint]()
-    var player: SKSpriteNode?
     var solvedPuzzles = Set<String>()
+    var stageConfiguration: Paintbrush.PaintbrushStageConfiguration?
+    var tilemap: SKTilemap?
 
-    private var stageName: String
+    private var completionCaslonName = ""
     private var preparedForFirstUse = false
+    private var stageName: String
 
     init(stageNamed stage: String) {
         stageName = stage
@@ -48,12 +51,19 @@ class GameEnvironment: SKScene {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func setEndingScene(to caslonName: String) {
+        completionCaslonName = caslonName
+    }
+
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         if AppDelegate.observedState.previousPuzzleState == .solved,
            let puzzleTrigger = AppDelegate.observedState.puzzleTriggerName
-        {
+        { // swiftlint:disable:this opening_brace
             solvedPuzzles.insert(puzzleTrigger)
+            if puzzleTrigger == stageConfiguration?.metapuzzle.expectedResult {
+                loadEndingCaslonSceneIfPresent()
+            }
         }
         prepareSceneForFirstUseIfNecessary()
     }
@@ -82,6 +92,8 @@ class GameEnvironment: SKScene {
             createPlayer(from: layer)
         case .paintbrush:
             configurePaintbrush(from: layer)
+        case .paintbrushMetapuzzle:
+            configurePaintbrushMetapuzzle(from: layer)
         case .other:
             print("Skipping layer: \(layer.name ?? "unknown layer")")
         }
@@ -124,9 +136,18 @@ class GameEnvironment: SKScene {
             puzzleFlow = configPuzzles.map(\.expectedResult)
         }
         let children = layer.tilemap.getTilesWithProperty("Purpose", "puzzle_trigger")
+            .filter { $0.layer == layer }
         puzzleTriggers = children.map { tile in
             layer.convert(tile.position, to: self)
         }
+    }
+
+    private func configurePaintbrushMetapuzzle(from layer: SKTiledLayerObject) {
+        let metaTrigger = layer.tilemap
+            .getTilesWithProperty("Purpose", "puzzle_trigger")
+            .filter { $0.layer == layer }
+            .first
+        metapuzzleTrigger = layer.convert(metaTrigger?.position ?? .zero, to: self)
     }
 
     func loadPuzzleIfPresent() {
@@ -138,6 +159,13 @@ class GameEnvironment: SKScene {
         view?.presentScene(puzzleScene)
     }
 
+    func loadEndingCaslonSceneIfPresent() {
+        guard let vnScene = CaslonScene(fileNamed: "Caslon Scene") else { return }
+        vnScene.scaleMode = self.scaleMode
+        vnScene.loadScript(named: completionCaslonName)
+        view?.presentScene(vnScene, transition: .fade(withDuration: 3.0))
+    }
+
     func compareDistanceToPlayer(first: CGPoint, second: CGPoint) -> Bool {
         guard let player else { return false }
         let firstDistance = first.manhattanDistance(to: player.position)
@@ -146,12 +174,22 @@ class GameEnvironment: SKScene {
     }
 
     func loadClosestPuzzleToPlayer() {
-        guard let player, let closestPuzzle = puzzleTriggers.min(by: compareDistanceToPlayer) else { return }
+        let allPuzzleTriggers = puzzleTriggers + [metapuzzleTrigger]
+        guard let player, let closestPuzzle = allPuzzleTriggers.min(by: compareDistanceToPlayer) else { return }
         let distanceFromPlayer = closestPuzzle.manhattanDistance(to: player.position)
-        let puzzleIdx = puzzleTriggers.firstIndex(of: closestPuzzle)
+        let puzzleIdx = allPuzzleTriggers.firstIndex(of: closestPuzzle)
         if distanceFromPlayer <= 32, let idx = puzzleIdx {
-            let puzzleM = stageConfiguration?.puzzles.first { $0.expectedResult == puzzleFlow[idx] }
-            puzzle = puzzleM
+            if puzzleIdx == allPuzzleTriggers.firstIndex(of: metapuzzleTrigger) {
+                guard let metaConfig = stageConfiguration?.metapuzzle else { return }
+                let metapuzzle = PaintbrushStagePuzzleConfiguration(
+                    paintingName: "",
+                    expectedResult: metaConfig.expectedResult,
+                    palette: metaConfig.palette
+                )
+                puzzle = metapuzzle
+            } else {
+                puzzle = stageConfiguration?.puzzles.first { $0.expectedResult == puzzleFlow[idx] }
+            }
             loadPuzzleIfPresent()
         }
     }

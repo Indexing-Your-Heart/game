@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "Art_32x32.tsx",
+    "activeFile": "Stage1.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -30,7 +30,7 @@
             "selectedLayer": 3,
             "viewCenter": {
                 "x": 802.1739130434785,
-                "y": 826.0869565217392
+                "y": 634.7826086956522
             }
         }
     },
@@ -45,8 +45,8 @@
     ],
     "project": "Shounin.tiled-project",
     "recentFiles": [
-        "Stage1.tmx",
         "Art_32x32.tsx",
+        "Stage1.tmx",
         "Generic_32x32.tsx",
         "LivingRoom_32x32.tsx",
         "Room_Builder.tsx"

@@ -30,6 +30,12 @@ public struct PaintbrushStagePuzzleConfiguration: Codable {
     public let paintingName: String
     public let expectedResult: String
     public let palette: PaintbrushStagePaletteConfiguration
+
+    public init(paintingName: String, expectedResult: String, palette: PaintbrushStagePaletteConfiguration) {
+        self.paintingName = paintingName
+        self.expectedResult = expectedResult
+        self.palette = palette
+    }
 }
 
 public struct PaintbrushStagePaletteConfiguration: Codable {

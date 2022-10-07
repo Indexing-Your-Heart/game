@@ -21,13 +21,15 @@ import SpriteKit
 
 extension PaintbrushScene: PaintbrushConfigurationDelegate {
     func didSetPuzzleConfiguration(to puzzleConfig: PaintbrushStagePuzzleConfiguration) {
-        if let panelDrawingArea {
-            panelDrawingArea.fillColor = SKColor(hexString: puzzleConfig.palette.panelColor)
+        guard let panelDrawingArea, let painting else { return }
+        panelDrawingArea.fillColor = SKColor(hexString: puzzleConfig.palette.panelColor)
+        if puzzleConfig.paintingName.isEmpty {
+            painting.isHidden = true
+            panelDrawingArea.position = .zero
+            childNode(withName: "//solveOverlay")?.position = .zero
         }
-        if let painting {
-            painting.texture = .init(imageNamed: puzzleConfig.paintingName)
-            painting.configureForPixelArt()
-        }
+        painting.texture = .init(imageNamed: puzzleConfig.paintingName)
+        painting.configureForPixelArt()
     }
 }
 
@@ -129,7 +131,6 @@ extension PaintbrushScene: PaintbrushSolver {
 
     func getImageForSolvedCanvas() -> CGImage? {
         guard let panelDrawingArea, let drawingDelegateNode, solveState == .solved else { return nil }
-        guard let line = drawingDelegateNode.childNode(withName: "witPath") as? SKShapeNode else { return nil }
         panelDrawingArea.lineWidth = 0
         guard let texture = view?.texture(from: drawingDelegateNode, crop: panelDrawingArea.frame) else {
             panelDrawingArea.lineWidth = 4

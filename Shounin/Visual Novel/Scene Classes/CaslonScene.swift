@@ -43,7 +43,7 @@ class CaslonScene: SKScene {
         choiceMenu?.childNode(withName: "templateButton")?.isHidden = true
         if let templateButtonText = choiceMenu?.childNode(withName: "templateButton")?
             .childNode(withName: "buttonText") as? SKLabelNode
-        {
+        { // swiftlint:disable:this opening_brace
             templateButtonText.fontName = "Salmon Sans 9 Regular"
         }
         if let whatLabel {

@@ -23,7 +23,7 @@ struct GameSceneView: View {
 
     private var gameScene: SKScene = {
         let scene = GameEnvironment(stageNamed: "Stage1")
-        // Write any additional logic for setup here.
+        scene.setEndingScene(to: "ch02-le-marteau-timide")
         return scene
     }()
 
@@ -36,7 +36,7 @@ struct GameSceneView: View {
         .onAppear {
             if dbgShowNodes { debugOptions.insert(.showsNodeCount) }
             if dbgShowFPS { debugOptions.insert(.showsFPS) }
-            debugOptions.insert(.showsPhysics)
+//            debugOptions.insert(.showsPhysics)
         }
     }
 }
