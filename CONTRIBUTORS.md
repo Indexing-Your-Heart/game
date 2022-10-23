@@ -12,3 +12,4 @@ by going to https://ko-fi.com/marquiskurt.
 - nd
 - SuspiciousYak
 - James Kearney
+- ChristineKearney-Kurt
