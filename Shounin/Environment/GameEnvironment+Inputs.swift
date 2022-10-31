@@ -22,8 +22,13 @@ extension GameEnvironment {
             guard let player else { return }
             let location = touch.location(in: self)
             let derivedMoveTime = location.distance(player.position) / 64
-            player.run(.move(to: touch.location(in: self), duration: TimeInterval(derivedMoveTime)))
-            loadClosestPuzzleToPlayer()
+
+            player.runSequence {
+                SKAction.move(to: touch.location(in: self), duration: TimeInterval(derivedMoveTime))
+                SKAction.run { [weak self] in
+                    self?.loadClosestPuzzleToPlayer()
+                }
+            }
         }
     }
 }

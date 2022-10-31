@@ -30,7 +30,7 @@ import UIKit
 
 extension SKTexture {
     convenience init?(contentsOf url: URL) {
-        guard let image = UIImage(contentsOfFile: url.absoluteString) else { return nil }
+        guard let image = try? UIImage(data: .init(contentsOf: url)) else { return nil }
         self.init(image: image)
     }
 }
