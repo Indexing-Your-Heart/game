@@ -1,101 +1,116 @@
-It's been at least a year since I've gone on a hike, and I must have fallen out of shape since then. I can barely keep up with Chelsea, who is yards away from me. She doesn't seem to mind, though.
+It’s been about six months since I’ve moved in with Sam, and it’s been really nice, living with them. I get to look out at the ocean as I write up some songs for my next album on my tablet, and Sam even makes pancakes for me sometimes. 
 
-Player: "Hey, wait up!"
+Sam recently took up a leadership role for a different software company and works remotely. Meanwhile, I’ve been working on more songs and even do freelance costume design on the side. Despite all this happening, we’ve still been dating all this while. Our relationship has grown stronger with no signs of stopping. I’m kind of surprised Sam hasn’t proposed yet.
 
-Chelsea stops at a nearby tree and turns around. She leans her arm against the tree and crosses her legs.
+I just barely make it through the door as I swing all the grocery bags inside and place them on the counter.
 
-Chelsea: "Gee, [Player]! I didn't realize just how out of shape you are!"
-Player: "It's been a while, alright?"
+Chelsea: “I’m back! Man, that grocery store was really packed today…”
 
-Chelsea smiles as I walk over to her. She pulls out a water bottle from the side of her bag.
+I hang the keys up and take my shoes off by the door. *There’s no response, either; maybe they went somewhere?* I make nothing of it and put the groceries away. After a waltz over to the couch, I notice a giant toolbox in place of the coffee table.
 
-Chelsea: "Here. You'll want to stay hydrated."
+*… the heck?*
 
-I open the bottle and take a sip. Chelsea grabs the other water bottle and drinks some of it.
+I get on my knees and investigate. I’ve never seen a toolbox this big before…
 
-Player: "Thanks."
-Chelsea: "We're almost at the top. Should be there in about ten, maybe fifteen, minutes."
-Player: "Oh, good."
-Chelsea: "It'll be easier on the way down. Trust me."
+> Fabric punch sound plays.
+> 
 
-She grabs the bottles and puts them back on the sides of the bag and turns around. We keep walking up the rough terrain. I still can't believe it's only been eight months since she took her helmet off and, more importantly, since we got serious with this relationship of ours. So serious, in fact, that we got engaged a month ago.
+The box shakes, as if someone had knocked on it from inside. *Is Sam in there?* I carefully unlock and open the toolbox, unsure of what to find. Surprisingly, I see a person wearing… a nail costume? *Wait a minute… isn’t this my design?*
 
-I can see her ring shimmer in the sunlight as we take a sharp turn around the boulder and up to the next trail marker. I've nearly forgotten what they mean, but I trust that Chelsea knows at least enough to navigate the trail. We eventually reach a fork in the path. Incidentally, Chelsea and I split, with her taking the right path, and me the left. After a few seconds, she turns around, realizing I wasn't behind her.
+Sam: “Hey there.”
 
-Chelsea: "Oi! [Player]! Wrong way!"
-Player: "Don't these lead to the same place?"
+I yelp and bounce backwards, startled.
 
-Chelsea walks over to me.
+Chelsea: “Sam! Bloody hell, you scared me!”
 
-Chelsea: "The marker says to go to the right, silly."
-Chelsea: "You see how the squares are leaning to the right?"
+Sam laughs, rising from the toolbox.
 
-She points to the trail marker posted on the tree, showing two squares leaning to the right.
+Sam: “I didn’t mean to scare you, sorry…”
 
-Player: "Oh. My bad."
-Chelsea: "It really has been a long time since you've last hiked, hasn't it?"
-Player: "Yeah. It has."
+I calm down, recovering from the little jumpscare.
 
-Chelsea grabs my hands and walks over to her path.
+Chelsea: “Where’d you get the costume from?”  
+Sam: “I know someone who makes costumes…”  
+Chelsea: “Me? When did I…?”  
+Sam: “Anonymous request.”  
+Chelsea: “… oh. Right…”  
+Sam: “Why don’t you join me? I think you’d like this little toolbox fort.”  
+Chelsea: “I don’t know, looks a bit cramped.”  
+Sam: “Ah, come on, I know you’re not claustrophobic….”  
+Chelsea: “I suppose you’re right. Give me a second.”
 
-Chelsea: "Papa used to take me on this trail all the time when I was a little pup."
-Chelsea: "He'd teach me everything about hiking."
-Chelsea: "He even let me lead the way, relying on the trail markers for guidance."
-Chelsea: "He doesn't do it a lot nowadays because he's getting older."
-Chelsea: "I wouldn't want him throwing his back out up here."
-Player: "Me either."
+I walk over to the bedroom, shut the door, and don my hammer helmet and black dress. Waltzin back to the toolbox, I gently step inside. Sam closes the lid and turns on some LED lights.
 
-We stop for a brief moment while Chelsea looks off to the side.
+Chelsea: “Where’d you get these from?”  
+Sam: “Amozin. I bought them a year ago before I met you.”  
+Chelsea: “Oh.”  
+Sam: “I made this toolbox like a little pillow fort.”
 
-Chelsea: "Wowie... look at that river down there, [Player]!"
+I look around and notice all the decorations and a small box of nails in the corner. It really does feel like a pillow fort my father and I used to make when I was a young pup.
 
-Chelsea points to a river toward the bottom of the hill, which continues to flow and meander about.
+Chelsea: “Huh. Yeah…”  
+Chelsea: “How long did this take to set up?”  
+Sam: “Five minutes, give or take.”  
+Chelsea: “And you set all this up while I went to go get groceries?”  
+Sam: “Yeah, it was quick and easy.”  
+Chelsea: “Wow…”  
 
-Chelsea: "I've never seen the river flowing this much."
-Chelsea: "Something must have cleared up somewhere to let this happen."
-Chelsea: "It's so pretty to watch..."
+I look at Sam, who is now propped up against the fabric wall lining the toolbox structure held up with PVC pipes.
 
-I grab her hand while she continues to watch the river for a brief moment. Eventually, Chelsea and I get back on track and continue walking up and around the hill. Carefully, we climb up some boulders and keep moving until we eventually make it up to the top of the incline.
+Chelsea: “This is really interesting, talking to a nail…”  
+Sam: “It’s just as interesting talking to the hammer in the same toolbox.”
 
-Chelsea: "We're here!"
+I giggle. Sam slides over and gently kicks the box of nails in my direction with their feet.
 
-I stand right next to her and look off to the distance while regaining my breath. It's a very clear view, and I can make out a lot of the areas we just hiked. The waterfall rushes down the side of a nearby mountain, feeding into the river we looked at earlier.  I can barely make out the road we traveled on to get to the trail.
+Chelsea: “You want me to grab another nail from the box or something?”  
+Chelsea: “And I could’ve sworn I made some velcro holes for arms…”
 
-Chelsea: "Isn't it beautiful?"
-Player: "As beautiful as you are."
+Sam undoes the velcro for said holes and sticks their arms out.
 
-Chelsea giggles.
+Sam: “Of course you did. I just felt lazy.”
 
-Chelsea: "Here, let's take a seat on this rock."
+They take the box of nails and put it in their hands. *What in the world are they doing…?*
 
-We saunter over to the rock and take a seat. Chelsea pulls out the water bottles and hands me my bottle.
+Sam: “Now, Miss Hammer…”  
+Sam: “We’ve in this same toolbox for as long as I can remember.”
 
-Player: "Thanks."
+We’ve only been in here for about a few minutes, but I shrug off the comment. Maybe they were being symbolic.
 
-I take the bottle from her and drink from it. She opens her bottle up and drinks.
+Sam: “And we’ve been a really good duo. Like we were meant for each other.”
 
-Player: "So, about those numbers on Tropify..."
-Chelsea: "I know. It's still hard for me to wrap my head around it."
-Chelsea: "Trending at number five on the list. I never tought I'd see the day!"
-Player: "I'm proud of you, Chels."
-Chelsea: "I'm proud of you, too, ArcAI web development department head."
-Player: "I wonder if someone's gonna catch us making out on this rock soon."
-Chelsea: "Who cares if someone does?"
-Chelsea: "Besides, almost everyone in town knows we're engaged."
-Chelsea: "This shouldn't be news to them."
-Player: "True, I suppose."
+*Oh… is this really happening? I think I know what’s in that box…*
 
-Chelsea giggles lightly.
+Sam: “How about we hammer this in, really?”
 
-Chelsea: "It only feels like I met you last week."
-Chelsea: "I didn't think we'd make it this far as a couple."
-Player: "I don't know. I kinda dig hammers."
-Player: "At least I don't have to go to the hardware store to find the best one of the bunch."
-Chelsea: "Well, I guess you could say we nailed it."
+They open the box, revealing a diamond ring, glistening in the warm LED lights. *Holy crap…*
 
-We laugh for a moment and take another drink from our bottles. We could practically stay up here for hours.
+Sam: “Chelsea, will you marry me?”
 
-Player: "I love you, you goofy puppy."
-Chelsea: "Love you, too, monkey head."
+This really is happening! I have a hard time articulating my words, resorting to a combination of laughter and tears of joy.
 
-We lean in and kiss for a short moment. I couldn't be more grateful for all of this. Things are going to get even better from here, and I'm excited to see what the future holds for me and my future wife.
+Chelsea: “Oh, my God, yes, you dork!”
+
+We brace for a hug and laugh together as we bathe in the warm lights. This is it; I’m going to be spending the rest of my days with the love of my life. And I couldn’t be happier.
+
+Sam: “If I’m honest, this is the best proposal idea I’ve had for months.”  
+Chelsea: “I think you nailed it.”
+
+We cuddle for a while, absorbing our surroundings and not having a care in the world. Sam wraps their arms around me and I look up at them.
+
+Sam: “We’re quite a couple aren’t we?”
+
+I nod in agreement. Sam squeezes me a little. *Ooh, spicy…*
+
+Chelsea: “Whoa, nail! Whatever happens in this toolbox…”
+
+I flick my finger under their chin.
+
+Chelsea: “The helmet stays on during sex.”
+
+Sam laughs. They unzip the back of their costume and bodysuit, respectively, revealing their face. I take off my helmet and carefully set it aside.
+
+Sam: “So, how about some burgers to celebrate?”
+
+I giggle.
+
+Chelsea: “Sure, it’s settled.”

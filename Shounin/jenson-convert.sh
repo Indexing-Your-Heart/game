@@ -21,25 +21,25 @@ echo "Done."
 echo "Converting Chapter 2..."
 marteau jenson Story\ Source/ch02.md \
     Assets/Story/Base.lproj/ch02-le-marteau-timide.jenson \
-    --chapter-name "Le Marteau Timide"
+    --chapter-name "Écouter La Vague"
 echo "Done."
 
 echo "Converting Chapter 3..."
 marteau jenson Story\ Source/ch03.md \
-    Assets/Story/Base.lproj/ch03-ecouter-la-vague.jenson \
-    --chapter-name "Écouter La Vague"
+    Assets/Story/Base.lproj/ch03-la-subjectif-e.jenson \
+    --chapter-name "La Subjectif E"
 echo "Done."
 
 echo "Converting Chapter 4..."
 marteau jenson Story\ Source/ch04.md \
-    Assets/Story/Base.lproj/ch04-la-reveuse-sentimental.jenson \
-    --chapter-name "La Rêveuse Sentimental"
+    Assets/Story/Base.lproj/ch04-un-jeu-maladroit.jenson \
+    --chapter-name "Un Jeu Maladroit avec Un Colonne"
 echo "Done."
 
 echo "Converting Chapter 5..."
 marteau jenson Story\ Source/ch05.md \
-    Assets/Story/Base.lproj/ch05-la-lumiere-sombre.jenson \
-    --chapter-name "La Lumière Sombre"
+    Assets/Story/Base.lproj/ch05-souriez-si-vous-plait.jenson \
+    --chapter-name "Souriez, Si Vous Plâit"
 echo "Done."
 
 echo "Converting Chapter 6..."
@@ -50,8 +50,8 @@ echo "Done."
 
 echo "Converting Chapter 7..."
 marteau jenson Story\ Source/ch07.md \
-    Assets/Story/Base.lproj/ch07-changer-de-vie.jenson \
-    --chapter-name "Changer de Vie"
+    Assets/Story/Base.lproj/ch07-un-fete-inoubliable.jenson \
+    --chapter-name "Une Fête Inoubliable"
 echo "Done."
 
 echo "Converting Epilogue..."
