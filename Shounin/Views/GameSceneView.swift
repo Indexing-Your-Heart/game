@@ -20,7 +20,7 @@ struct GameSceneView: View {
     @AppStorage("dbg:show-nodes") var dbgShowNodes = false
     @AppStorage("dbg:show-fps") var dbgShowFPS = false
     @State private var debugOptions: SpriteView.DebugOptions = []
-    @State private var gameFlow: AppDelegate.GameFlow = []
+    @ObservedObject var currentFlow: GameFlowViewModel
 
     var body: some View {
         ZStack {
@@ -34,23 +34,17 @@ struct GameSceneView: View {
         }
         .onAppear {
             configureDebugSettings()
-            loadFlowIntoScene()
         }
     }
 
     private func getGameSceneInCurrentContext() -> some SKScene {
-        let scene = GameEnvironment(stageNamed: gameFlow.first?.stage ?? "Stage1")
-        scene.setEndingScene(to: gameFlow.first?.chapter ?? "epilogue")
+        let scene = GameEnvironment(stageNamed: currentFlow.currentBlock?.stage ?? "Stage1")
+        scene.setEndingScene(to: currentFlow.currentBlock?.chapter ?? "epilogue")
         return scene
     }
 
     private func configureDebugSettings() {
         if dbgShowNodes { debugOptions.insert(.showsNodeCount) }
         if dbgShowFPS { debugOptions.insert(.showsFPS) }
-    }
-
-    private func loadFlowIntoScene() {
-        guard let flow = AppDelegate.currentGameFlow else { return }
-        gameFlow = flow
     }
 }

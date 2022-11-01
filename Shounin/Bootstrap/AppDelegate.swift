@@ -25,7 +25,10 @@ import GameKit
 class AppDelegate: NSObject {
     typealias GameFlow = [FlowConfiguration]
     static var observedState = GameEnvironmentState()
+
+    @available(*, deprecated, message: "Use the AppDelegate.currentFlow view model instead.")
     static var currentGameFlow: GameFlow?
+    static var currentFlow = GameFlowViewModel()
 
     func setUpGameCenterAccessPoint() {
         GKAccessPoint.shared.location = .bottomTrailing
@@ -35,6 +38,7 @@ class AppDelegate: NSObject {
     func fetchGameFlow() {
         if let config = FlowConfiguration.load(from: "GameFlow") {
             AppDelegate.currentGameFlow = config
+            AppDelegate.currentFlow.insert(blocks: config)
         }
     }
 }

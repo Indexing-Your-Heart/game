@@ -46,7 +46,7 @@ struct ContentView: View {
             case .caslonDemo:
                 CaslonSceneView(script: "ch01-mise-en-abyme")
             case .game:
-                GameSceneView()
+                GameSceneView(currentFlow: AppDelegate.currentFlow)
             }
         }
         .onAppear {
