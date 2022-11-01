@@ -1,8 +1,11 @@
 # Indexing Your Heart (Codename "Head Over Heels")
 
-**Indexing Your Heart** is an upcoming puzzle game from _Created by Marquis Kurt_
-where you play as anthropomorphic coyote aiming to foster a relationship while
-wearing a hammer costume.
+**Indexing Your Heart** is an upcoming A Witness-like puzzle game from _Created by
+Marquis Kurt_ about a transfemme pansexual anthropomorphic coyote falling in love
+with a highly-skilled artificial intelligence and machine learning engineer in New
+Rollinsport. Explore Chelsea Roslyn’s inner world with puzzles that present many
+ideas about her own thoughts and feelings, while following the story of her finding
+the love of her life, Sam.
 
 > :warning: This project is still in its infancy, so some details and mechanics may
 > not work as intended. If you'd like to support the project,
@@ -86,10 +89,8 @@ repository for Marteau at https://github.com/Indexing-Your-Heart/marteau.
 ## Found an issue?
 
 If you've found a bug or want to submit feedback to the project, it is encouraged
-that you submit a report on our bug reporter on YouTrack. For sensitive information
-or security vulnerability reports, email hello at indexingyourhe.art directly.
-
-[File a bug report on YouTrack &rsaquo;][youtrack]
+that you submit feedback in our Discord server or by emailing us at
+`hello at indexingyourhe.art`.
 
 ## Licensing
 
