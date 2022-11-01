@@ -28,12 +28,18 @@ public protocol CaslonSceneTimelineDelegate: AnyObject {
     /// A method called when an event has finished displaying on screen.
     /// - Parameter event: The event that has been displayed.
     func didDisplayNewEvent(event: JensonEvent)
+
+    /// A method called when the timeline has finished; i.e., there are no more events to process.
+    func didReachEndOfTimeline()
 }
 
 public extension CaslonSceneTimelineDelegate {
     /// Loads the next event in the timeline and informs the scene to update its contents.
     func next() {
-        guard !timeline.isEmpty else { return }
+        guard !timeline.isEmpty else {
+            didReachEndOfTimeline()
+            return
+        }
         let event = timeline.removeFirst()
         willDisplayNewEvent(event: event)
         didDisplayNewEvent(event: event)

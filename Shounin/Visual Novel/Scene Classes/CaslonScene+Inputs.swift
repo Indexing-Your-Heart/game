@@ -44,5 +44,20 @@ extension CaslonScene {
         if shouldBlockOtherInputs() { return }
         next()
     }
+
+    override func keyDown(with event: NSEvent) {
+        switch event.keyCode {
+        case 0x31:
+            if inTransition { return }
+            let location = event.location(in: self)
+            if let selectedOption = selectedOption(at: location) {
+                selectOption(named: selectedOption)
+            }
+            if shouldBlockOtherInputs() { return }
+            next()
+        default:
+            break
+        }
+    }
 }
 #endif

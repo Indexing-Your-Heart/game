@@ -44,6 +44,18 @@ extension CaslonScene: CaslonSceneTimelineDelegate {
             return
         }
     }
+
+    func didReachEndOfTimeline() {
+        runSequence {
+            SKAction.fadeOut(withDuration: 1.5)
+            SKAction.run {
+                AppDelegate.currentFlow.next()
+                if AppDelegate.currentFlow.currentBlock == nil {
+                    exit(0)
+                }
+            }
+        }
+    }
 }
 
 // MARK: - Refresh Content Delegation
