@@ -3,6 +3,8 @@
 Many thanks to the following contributors for helping make **Indexing Your Heart** possible.
 
 - Phildjii
+- LimeZu
+- Wintermelon
 
 ## Supporters on Ko-fi
 
