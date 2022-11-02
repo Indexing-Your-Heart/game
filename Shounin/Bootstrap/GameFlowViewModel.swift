@@ -13,8 +13,8 @@
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
 
-import Foundation
 import Combine
+import Foundation
 
 class GameFlowViewModel: ObservableObject {
     @Published private var blocks = [FlowConfiguration]()
@@ -46,6 +46,6 @@ class GameFlowViewModel: ObservableObject {
     }
 
     func next() {
-        self.blocks.removeFirst()
+        blocks.removeFirst()
     }
 }

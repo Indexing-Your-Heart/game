@@ -59,7 +59,7 @@ public protocol PaintbrushSolver: AnyObject {
     func getCanvasImageFromScene() -> CGImage?
 
     /// Attempts to make a prediction from the validation model.
-    /// - Throws: Prediction errors may be thrown from the ``ValidatorModel``.
+    /// - Throws: Prediction errors may be thrown from the validation model.
     /// - Returns: An array of strings of the most likely candidates.
     func makePrediction(from cgImage: CGImage) throws -> [String]
 

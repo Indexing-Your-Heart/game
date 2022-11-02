@@ -25,7 +25,7 @@ extension CGImage {
     /// Returns a new `CGImage` that is resized to the specified size.
     /// - Parameter size: The new size of the `CGImage`.
     func resized(to size: CGSize) -> CGImage? {
-        guard let colorSpace = colorSpace else { return nil }
+        guard let colorSpace else { return nil }
         guard let ctx = CGContext(
             data: nil,
             width: Int(size.width),

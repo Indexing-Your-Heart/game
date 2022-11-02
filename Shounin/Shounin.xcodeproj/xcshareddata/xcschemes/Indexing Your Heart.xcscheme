@@ -42,6 +42,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "PaintbrushProtractorTests"
+               BuildableName = "PaintbrushProtractorTests"
+               BlueprintName = "PaintbrushProtractorTests"
+               ReferencedContainer = "container:../Paintbrush">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "956B604A28C7B7480031794C"
+               BuildableName = "Testbench.xctest"
+               BlueprintName = "Testbench"
+               ReferencedContainer = "container:Shounin.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

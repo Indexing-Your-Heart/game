@@ -30,7 +30,7 @@ struct GameSceneView: View {
                 transition: .fade(withDuration: 2),
                 debugOptions: debugOptions
             )
-                .aspectRatio(16 / 9, contentMode: .fit)
+            .aspectRatio(16 / 9, contentMode: .fit)
         }
         .onAppear {
             configureDebugSettings()

@@ -22,6 +22,15 @@ let package = Package(
                 "CranberrySprite"
             ],
             path: "./Sources/"
+        ),
+        .testTarget(
+            name: "PaintbrushProtractorTests",
+            dependencies: [
+                "Paintbrush"
+            ],
+            resources: [
+                .process("Resources")
+            ]
         )
     ]
 )

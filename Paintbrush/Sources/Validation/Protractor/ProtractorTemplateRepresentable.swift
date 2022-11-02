@@ -15,9 +15,18 @@
 
 import Foundation
 
+/// A protocol that indicates an object represents a template that is usable in gesture recognition.
 public protocol ProtractorTemplateRepresentable {
+    /// The representation of a point in the template.
     associatedtype Point: ProtractorCoordinateRepresentable
+
+    /// A typealias referring to the point's components.
+    /// - SeeAlso: ``ProtractorCoordinateRepresentable.Component``
     typealias Component = Point.CoordinateComponent
+
+    /// The template's name.
     var name: String { get set }
+
+    /// The vector array representing the template's path.
     var vectorPath: [Component] { get set }
 }

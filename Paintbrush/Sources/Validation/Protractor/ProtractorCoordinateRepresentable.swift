@@ -13,18 +13,28 @@
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
 
-import Foundation
 import CoreGraphics
+import Foundation
 
+/// A protocol that indicates a point is able to be used for gesture recognition.
 public protocol ProtractorCoordinateRepresentable {
+    /// The component that the point uses to determine itself in a plane.
     associatedtype CoordinateComponent: BinaryFloatingPoint & Comparable
+
+    /// The location along the X axis.
     var x: CoordinateComponent { get set } // swiftlint:disable:this identifier_name
+
+    /// The location along the Y axis.
     var y: CoordinateComponent { get set } // swiftlint:disable:this identifier_name
+
+    /// Translates the current point by offsetting it to another.
+    /// - Parameter point: The point that the current point will be offset by.
+    /// - Returns: A new point with the translation applied.
     func translated(by point: Self) -> Self
 }
 
 extension CGPoint: ProtractorCoordinateRepresentable {
     public func translated(by point: CGPoint) -> CGPoint {
-        return CGPoint(x: self.x - point.x, y: self.y - point.y)
+        CGPoint(x: x - point.x, y: y - point.y)
     }
 }

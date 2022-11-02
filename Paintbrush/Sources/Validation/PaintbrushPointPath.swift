@@ -13,9 +13,10 @@
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
 
-import Foundation
 import CoreGraphics
+import Foundation
 
+/// A struct that represents a path of points.
 public struct PaintbrushPointPath {
     public var points: [PaintbrushPoint]
 
@@ -39,7 +40,7 @@ extension PaintbrushPointPath: ProtractorPathConvertible {
     }
 
     public var count: Double {
-        return Double(points.count)
+        Double(points.count)
     }
 
     public var indicativeAngle: Double {
@@ -56,7 +57,7 @@ extension PaintbrushPointPath: ProtractorPathConvertible {
     }
 
     public func resampled(count: Int) -> PaintbrushPointPath {
-        var points = self.points
+        var points = points
         let avgStep = length / Double(count - 1)
         var totalDistance = 0.0
         var newPoints = [points[0]]
@@ -65,6 +66,7 @@ extension PaintbrushPointPath: ProtractorPathConvertible {
             let stepDistance = PaintbrushPoint.distance(from: points[idx - 1], to: points[idx])
             if (totalDistance + stepDistance) < avgStep {
                 totalDistance += stepDistance
+                idx += 1
                 continue
             }
             let delta = ((avgStep - totalDistance) / stepDistance)

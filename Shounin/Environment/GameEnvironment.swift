@@ -161,7 +161,7 @@ class GameEnvironment: SKScene {
 
     func loadEndingCaslonSceneIfPresent() {
         guard let vnScene = CaslonScene(fileNamed: "Caslon Scene") else { return }
-        vnScene.scaleMode = self.scaleMode
+        vnScene.scaleMode = scaleMode
         vnScene.loadScript(named: completionCaslonName)
         view?.presentScene(vnScene, transition: .fade(withDuration: 3.0))
     }
