@@ -55,7 +55,7 @@ public extension PaintbrushMachineLearningSolver {
             return nil
         }
         drawingDelegateNode?.addChild(drawnLine)
-       return getCanvasImageFromScene()
+        return getCanvasImageFromScene()
     }
 
     func createInputFromPath(in _: SKShapeNode) -> PaintbrushInput? {

@@ -20,7 +20,7 @@ import SpriteKit
 extension PaintbrushScene: PaintbrushProtractorSolver {
     func makeRecognizer(with input: PaintbrushPointPath) -> PaintbrushRecognizer {
         let recognizer = PaintbrushRecognizer(from: input, accountForOrientation: false, resampledBy: 24)
-        recognizer.insertTemplates(reading: "\(self.name ?? "Stage0")t", in: .main)
+        recognizer.insertTemplates(reading: "\(name ?? "Stage0")t", in: .main)
         return recognizer
     }
 
@@ -32,9 +32,9 @@ extension PaintbrushScene: PaintbrushProtractorSolver {
                 point.translated(by: panelDrawingArea?.position ?? .zero)
             }
             points.append(contentsOf: translated)
-            #if DEBUG
+#if DEBUG
             print("Current Drawing (TC): ", points.map { [Int($0.x), Int($0.y)] })
-            #endif
+#endif
         }
         return points
     }
@@ -42,12 +42,13 @@ extension PaintbrushScene: PaintbrushProtractorSolver {
     func makePath(from points: [CGPoint]) -> SKShapeNode? {
         let drawnPath = CGMutablePath()
         let reconverted = points.map { point in
-            point.translated(by:
+            point.translated(
+                by:
                 .init(
                     x: (panelDrawingArea?.position.x ?? 0) * -1,
                     y: (panelDrawingArea?.position.y ?? 0) * -1
                 )
-             )
+            )
         }
         for points in reconverted.windows(ofCount: 2) {
             guard let current = points.first, let next = points.last else { continue }
