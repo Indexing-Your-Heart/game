@@ -68,7 +68,6 @@ public protocol PaintbrushSolver: AnyObject {
     func getPrediction(from input: PaintbrushInput) throws -> PaintbrushOutput
 
     func matches(prediction: PaintbrushOutput, against sourceOfTruth: PaintbrushStagePuzzleConfiguration) -> Bool
-
 }
 
 public extension PaintbrushSolver {

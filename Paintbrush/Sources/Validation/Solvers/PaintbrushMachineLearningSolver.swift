@@ -18,7 +18,9 @@ import SpriteKit
 import UniformTypeIdentifiers
 
 /// A protocol that indicates a class is capable of making predictions from player drawings.
-public protocol PaintbrushMachineLearningSolver: PaintbrushSolver where PaintbrushInput == CGImage, PaintbrushOutput == [String] {
+public protocol PaintbrushMachineLearningSolver: PaintbrushSolver where PaintbrushInput == CGImage,
+    PaintbrushOutput == [String]
+{
     /// Returns a portion of the screen from the ``panelDrawingArea`` as as CGImage.
     func getCanvasImageFromScene() -> CGImage?
 
@@ -48,13 +50,13 @@ public extension PaintbrushMachineLearningSolver {
         return ctx.makeImage()
     }
 
-    func createInputFromPath(in node: SKShapeNode) -> PaintbrushInput? {
+    func createInputFromPath(in _: SKShapeNode) -> PaintbrushInput? {
         guard let sourceImage = getCanvasImageFromScene() else { return nil }
         return resizedForModel(image: sourceImage)
     }
 
     func matches(prediction: PaintbrushOutput, against sourceOfTruth: PaintbrushStagePuzzleConfiguration) -> Bool {
-        return predictionMatches(puzzle: sourceOfTruth, in: prediction)
+        predictionMatches(puzzle: sourceOfTruth, in: prediction)
     }
 
     func predictionMatches(puzzle: PaintbrushStagePuzzleConfiguration, in predictions: [String]) -> Bool {
