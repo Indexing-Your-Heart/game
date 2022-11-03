@@ -37,7 +37,6 @@ class AppDelegate: NSObject {
 
     func fetchGameFlow() {
         if let config = FlowConfiguration.load(from: "GameFlow") {
-            AppDelegate.currentGameFlow = config
             AppDelegate.currentFlow.insert(blocks: config)
         }
     }
