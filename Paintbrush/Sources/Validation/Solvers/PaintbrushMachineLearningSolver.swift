@@ -2,7 +2,7 @@
 //  PaintbrushMachineLearningSolver.swift
 //  Indexing Your Heart
 //
-//  Created by Marquis Kurt on 9/28/22.
+//  Created by Marquis Kurt on 11/3/22.
 //
 //  This file is part of Indexing Your Heart.
 //
@@ -50,6 +50,14 @@ public extension PaintbrushMachineLearningSolver {
         return ctx.makeImage()
     }
 
+    func createInput(from points: [CGPoint]) -> PaintbrushInput? {
+        guard let drawnLine = makePath(from: points) else {
+            return nil
+        }
+        drawingDelegateNode?.addChild(drawnLine)
+       return getCanvasImageFromScene()
+    }
+
     func createInputFromPath(in _: SKShapeNode) -> PaintbrushInput? {
         guard let sourceImage = getCanvasImageFromScene() else { return nil }
         return resizedForModel(image: sourceImage)
@@ -61,5 +69,19 @@ public extension PaintbrushMachineLearningSolver {
 
     func predictionMatches(puzzle: PaintbrushStagePuzzleConfiguration, in predictions: [String]) -> Bool {
         predictions.contains(puzzle.expectedResult)
+    }
+
+    func predictDrawing() -> Result<PaintbrushOutput, PaintbrushSolverError> {
+        let points = getDrawnPathPoints()
+        guard let input = createInput(from: points) else {
+            return .failure(.inputCaptureFailure)
+        }
+
+        do {
+            let prediction = try getPrediction(from: input)
+            return .success(prediction)
+        } catch {
+            return .failure(.predictionFailure(error))
+        }
     }
 }

@@ -58,33 +58,19 @@ public protocol PaintbrushSolver: AnyObject {
     /// The current state of the puzzle.
     var solveState: PaintbrushSolveState { get set }
 
+    /// Retrieves the points in the path.
+    func getDrawnPathPoints() -> [CGPoint]
+
     /// Creates a shape node with a CGPath based on the player's drawing.
-    func makePathFromChildren() -> SKShapeNode?
+    func makePath(from points: [CGPoint]) -> SKShapeNode?
 
     /// Transforms the given shape node into an input.
-    func createInputFromPath(in node: SKShapeNode) -> PaintbrushInput?
+    func createInput(from points: [CGPoint]) -> PaintbrushInput?
 
     /// Generates a prediction from the specified input.
     func getPrediction(from input: PaintbrushInput) throws -> PaintbrushOutput
 
+    func predictDrawing() -> Result<PaintbrushOutput, PaintbrushSolverError>
+
     func matches(prediction: PaintbrushOutput, against sourceOfTruth: PaintbrushStagePuzzleConfiguration) -> Bool
-}
-
-public extension PaintbrushSolver {
-    func predictDrawing() -> Result<PaintbrushOutput, PaintbrushSolverError> {
-        guard let drawnLine = makePathFromChildren() else {
-            return .failure(.noPathGenerated)
-        }
-        drawingDelegateNode?.addChild(drawnLine)
-        guard let input = createInputFromPath(in: drawnLine) else {
-            return .failure(.inputCaptureFailure)
-        }
-
-        do {
-            let prediction = try getPrediction(from: input)
-            return .success(prediction)
-        } catch {
-            return .failure(.predictionFailure(error))
-        }
-    }
 }

@@ -30,7 +30,7 @@ public class PaintbrushRecognizer: ProtractorRecognitionDelegate {
     /// Whether to account for orientation when matching gestures.
     private var orientationSensitive: Bool = false
 
-    init(
+    public init(
         from path: PaintbrushPointPath,
         accountForOrientation orientationSensitive: Bool = false,
         resampledBy resampling: Int = 16
@@ -43,7 +43,7 @@ public class PaintbrushRecognizer: ProtractorRecognitionDelegate {
 
     /// Inserts a series of templates into the recognizer.
     /// - Parameter templates: An array of templates to include in the recognizer.
-    func insertTemplates(from templates: [PaintbrushTemplate]) {
+    public func insertTemplates(from templates: [PaintbrushTemplate]) {
         self.templates.append(contentsOf: templates)
     }
 
@@ -51,7 +51,7 @@ public class PaintbrushRecognizer: ProtractorRecognitionDelegate {
     /// resources.
     /// - Parameter configResourceName: The name of the resource to load and decode.
     /// - Parameter bundle: The bundle to find the resource in.
-    func insertTemplates(reading configResourceName: String, in bundle: Bundle) {
+    public func insertTemplates(reading configResourceName: String, in bundle: Bundle) {
         guard let path = bundle.path(forResource: configResourceName, ofType: "json") else {
             return
         }

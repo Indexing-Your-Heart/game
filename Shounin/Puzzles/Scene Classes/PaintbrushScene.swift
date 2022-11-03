@@ -136,4 +136,15 @@ class PaintbrushScene: SKScene {
         }
         url.stopAccessingSecurityScopedResource()
     }
+
+    func getImageForSolvedCanvas() -> CGImage? {
+        guard let panelDrawingArea, let drawingDelegateNode, solveState == .solved else { return nil }
+        panelDrawingArea.lineWidth = 0
+        guard let texture = view?.texture(from: drawingDelegateNode, crop: panelDrawingArea.frame) else {
+            panelDrawingArea.lineWidth = 4
+            return nil
+        }
+        panelDrawingArea.lineWidth = 4
+        return texture.cgImage()
+    }
 }

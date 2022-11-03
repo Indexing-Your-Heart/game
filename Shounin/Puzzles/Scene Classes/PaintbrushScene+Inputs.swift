@@ -43,7 +43,7 @@ extension PaintbrushScene {
             }
             panelWillFinishDrawing(at: location)
         }
-        if let puzzle {
+        if let puzzle, getDrawingPoints()?.isEmpty == false {
             highlight(with: self, matching: puzzle)
         }
     }
@@ -78,7 +78,7 @@ extension PaintbrushScene {
             return
         }
         panelWillFinishDrawing(at: event.location(in: self))
-        if let puzzle {
+        if let puzzle, getDrawingPoints()?.isEmpty == false {
             highlight(with: self, matching: puzzle)
         }
     }

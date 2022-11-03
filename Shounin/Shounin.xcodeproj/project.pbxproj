@@ -22,7 +22,6 @@
 		950F6CFE28C156A6007ACB53 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 950F6CFD28C156A6007ACB53 /* Localizable.strings */; };
 		950F6D0128C27442007ACB53 /* CranberrySprite in Frameworks */ = {isa = PBXBuildFile; productRef = 950F6D0028C27442007ACB53 /* CranberrySprite */; };
 		950F6D0428C27489007ACB53 /* Bunker in Frameworks */ = {isa = PBXBuildFile; productRef = 950F6D0328C27489007ACB53 /* Bunker */; };
-		9510BD3128EB196E00AD0E28 /* PrototypeValidator.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 9510BD3028EB196E00AD0E28 /* PrototypeValidator.mlmodel */; };
 		9524434A28C781FB005F91E1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9524434928C781FB005F91E1 /* ContentView.swift */; };
 		9533175928D36A2900E6E516 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9533175828D36A2900E6E516 /* SettingsView.swift */; };
 		9533175C28D371E500E6E516 /* SettingsDebuggingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9533175B28D371E500E6E516 /* SettingsDebuggingView.swift */; };
@@ -44,6 +43,8 @@
 		956B604128C7A2200031794C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 956B604328C7A2200031794C /* InfoPlist.strings */; };
 		956B604628C7A4730031794C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956B604528C7A4730031794C /* AppDelegate.swift */; };
 		956B604E28C7B7480031794C /* Testbench.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956B604D28C7B7480031794C /* Testbench.swift */; };
+		956D7DC52914280A004F4A3C /* PaintbrushScene+PaintbrushProtractorSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956D7DC42914280A004F4A3C /* PaintbrushScene+PaintbrushProtractorSolver.swift */; };
+		956D7DC929142A7D004F4A3C /* Stage1t.json in Resources */ = {isa = PBXBuildFile; fileRef = 956D7DC829142A7D004F4A3C /* Stage1t.json */; };
 		958857B529115C5700318735 /* GameFlowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958857B429115C5700318735 /* GameFlowViewModel.swift */; };
 		958E090828F06786009E6AD9 /* Art_32x32.tsx in Resources */ = {isa = PBXBuildFile; fileRef = 958E090728F06786009E6AD9 /* Art_32x32.tsx */; };
 		958E090A28F067B0009E6AD9 /* 7_Art_32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 958E090928F067B0009E6AD9 /* 7_Art_32x32.png */; };
@@ -106,7 +107,6 @@
 		950F6D0728C2757C007ACB53 /* Salmon Serif 9 Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Serif 9 Bold.ttf"; sourceTree = "<group>"; };
 		950F6D0828C2757C007ACB53 /* Salmon Mono 9 Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Mono 9 Regular.ttf"; sourceTree = "<group>"; };
 		950F6D0928C2757C007ACB53 /* Salmon Sans 9 Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Sans 9 Regular.ttf"; sourceTree = "<group>"; };
-		9510BD3028EB196E00AD0E28 /* PrototypeValidator.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = PrototypeValidator.mlmodel; sourceTree = "<group>"; };
 		9524434928C781FB005F91E1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9533175828D36A2900E6E516 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9533175B28D371E500E6E516 /* SettingsDebuggingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDebuggingView.swift; sourceTree = "<group>"; };
@@ -129,6 +129,8 @@
 		956B604528C7A4730031794C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		956B604B28C7B7480031794C /* Testbench.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Testbench.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		956B604D28C7B7480031794C /* Testbench.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Testbench.swift; sourceTree = "<group>"; };
+		956D7DC42914280A004F4A3C /* PaintbrushScene+PaintbrushProtractorSolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaintbrushScene+PaintbrushProtractorSolver.swift"; sourceTree = "<group>"; };
+		956D7DC829142A7D004F4A3C /* Stage1t.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Stage1t.json; sourceTree = "<group>"; };
 		958857B429115C5700318735 /* GameFlowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFlowViewModel.swift; sourceTree = "<group>"; };
 		958E090728F06786009E6AD9 /* Art_32x32.tsx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Art_32x32.tsx; sourceTree = "<group>"; };
 		958E090928F067B0009E6AD9 /* 7_Art_32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7_Art_32x32.png; sourceTree = "<group>"; };
@@ -421,7 +423,7 @@
 		95E4F61A28EC8AD2009627F6 /* Validators */ = {
 			isa = PBXGroup;
 			children = (
-				9510BD3028EB196E00AD0E28 /* PrototypeValidator.mlmodel */,
+				956D7DC829142A7D004F4A3C /* Stage1t.json */,
 			);
 			path = Validators;
 			sourceTree = "<group>";
@@ -442,6 +444,7 @@
 				950F634828E49C380018AB43 /* PaintbrushScene.swift */,
 				950F635428E62BC10018AB43 /* PaintbrushScene+Inputs.swift */,
 				95E4F61B28EC8B27009627F6 /* PaintbrushScene+Solving.swift */,
+				956D7DC42914280A004F4A3C /* PaintbrushScene+PaintbrushProtractorSolver.swift */,
 			);
 			path = "Scene Classes";
 			sourceTree = "<group>";
@@ -591,6 +594,7 @@
 				950F6CFE28C156A6007ACB53 /* Localizable.strings in Resources */,
 				95DB209028CFA9840079D624 /* ch02.md in Resources */,
 				9533177028D3788C00E6E516 /* ch06-les-conseils-pour-les-jeunes.jenson in Resources */,
+				956D7DC929142A7D004F4A3C /* Stage1t.json in Resources */,
 				958E090E28F0B1D3009E6AD9 /* GameFlow.json in Resources */,
 				95DB209328CFA9840079D624 /* ch05.md in Resources */,
 				9533176128D3787C00E6E516 /* ch01-mise-en-abyme.jenson in Resources */,
@@ -692,7 +696,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9510BD3128EB196E00AD0E28 /* PrototypeValidator.mlmodel in Sources */,
 				95E4F62428ECA05C009627F6 /* CaslonSceneView.swift in Sources */,
 				958E091128F0B20C009E6AD9 /* FlowConfiguration.swift in Sources */,
 				95FFC8FB28EF3A2D009D1A15 /* GamePlayer.swift in Sources */,
@@ -717,6 +720,7 @@
 				95FFC8FF28EF740B009D1A15 /* GameEnvironment+Inputs.swift in Sources */,
 				95011E6C28C7796900E511F3 /* FontFamily.swift in Sources */,
 				958857B529115C5700318735 /* GameFlowViewModel.swift in Sources */,
+				956D7DC52914280A004F4A3C /* PaintbrushScene+PaintbrushProtractorSolver.swift in Sources */,
 				9533175C28D371E500E6E516 /* SettingsDebuggingView.swift in Sources */,
 				95E4F61C28EC8B27009627F6 /* PaintbrushScene+Solving.swift in Sources */,
 				9538C70928E724A500D506F0 /* SKColor+Hex.swift in Sources */,
