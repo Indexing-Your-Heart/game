@@ -32,7 +32,9 @@ extension PaintbrushScene: PaintbrushProtractorSolver {
                 point.translated(by: panelDrawingArea?.position ?? .zero)
             }
             points.append(contentsOf: translated)
-            print(points.map { [Int($0.x), Int($0.y)] })
+            #if DEBUG
+            print("Current Drawing (TC): ", points.map { [Int($0.x), Int($0.y)] })
+            #endif
         }
         return points
     }

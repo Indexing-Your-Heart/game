@@ -32,7 +32,9 @@ public extension PaintbrushProtractorSolver {
     func getPrediction(from input: PaintbrushInput) throws -> PaintbrushOutput {
         let recognizer = makeRecognizer(with: input)
         let (name, _) = recognizer.recognize()
-        print("===\(name)===")
+        #if DEBUG
+        print("Detected: \(name)")
+        #endif
         return name
     }
 
