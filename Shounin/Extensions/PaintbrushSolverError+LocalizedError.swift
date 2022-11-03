@@ -21,8 +21,8 @@ extension PaintbrushSolverError: LocalizedError {
         switch self {
         case .noPathGenerated:
             return NSLocalizedString("PaintbrushSolverError.noPathGenerated", comment: "No path generated")
-        case .imageCaptureFailure:
-            return NSLocalizedString("PaintbrushSolverError.imageCaptureFailure", comment: "Image capture failed")
+        case .inputCaptureFailure:
+            return NSLocalizedString("PaintbrushSolverError.inputCaptureFailure", comment: "Input capture failed")
         case .predictionFailure(let error):
             return NSLocalizedString("PaintbrushSolverError.predictionFailure", comment: "Prediction failure")
                 + " \(error.localizedDescription)"

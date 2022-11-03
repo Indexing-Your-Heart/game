@@ -38,12 +38,12 @@ public extension PanelInteractionDelegate {
     /// Highlights the panel after making a prediction.
     /// - Parameter solver: The solver that will make a prediction.
     /// - Parameter puzzle: The puzzle configuration containing the expected result.
-    func highlight(with solver: PaintbrushSolver, matching puzzle: PaintbrushStagePuzzleConfiguration) {
+    func highlight(with solver: some PaintbrushSolver, matching puzzle: PaintbrushStagePuzzleConfiguration) {
         var prediction = false
         let result = solver.predictDrawing()
         switch result {
         case .success(let data):
-            prediction = solver.predictionMatches(puzzle: puzzle, in: data)
+            prediction = solver.matches(prediction: data, against: puzzle)
         case .failure(let error):
 #if targetEnvironment(simulator)
             print("WARN: Model predictions not available in simulator.")

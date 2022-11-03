@@ -38,5 +38,5 @@
 
 // MARK: - Errors
 "PaintbrushSolverError.noPathGenerated" = "No path could be generated.";
-"PaintbrushSolverError.imageCaptureFailure" = "Failed to capture image from the canvas.";
+"PaintbrushSolverError.inputCaptureFailure" = "Failed to capture input from the canvas.";
 "PaintbrushSolverError.predictionFailure" = "An error occurred during prediction.";

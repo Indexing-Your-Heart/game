@@ -82,7 +82,10 @@ extension PaintbrushScene: PanelInteractionDelegate {
 
 // MARK: - Paintbrush Validation
 
-extension PaintbrushScene: PaintbrushSolver {
+extension PaintbrushScene: PaintbrushMachineLearningSolver {
+    typealias PaintbrushInput = CGImage
+    typealias PaintbrushOutput = [String]
+
     func makePathFromChildren() -> SKShapeNode? {
         guard let drawingPoints = getDrawingPoints() else { return nil }
         let drawnPath = CGMutablePath()
@@ -121,9 +124,9 @@ extension PaintbrushScene: PaintbrushSolver {
         return texture.cgImage()
     }
 
-    func makePrediction(from cgImage: CGImage) throws -> [String] {
+    func getPrediction(from input: CGImage) throws -> [String] {
         let classifier = try PrototypeValidator(configuration: .init())
-        let predictions = try classifier.prediction(input: .init(imageWith: cgImage))
+        let predictions = try classifier.prediction(input: .init(imageWith: input))
             .classLabelProbs
             .max(count: 3, sortedBy: { $0.value < $1.value }).reversed()
         return predictions.map(\.key)
