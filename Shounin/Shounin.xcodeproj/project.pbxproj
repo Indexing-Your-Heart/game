@@ -353,7 +353,7 @@
 				95735C19291BE7B1003947F5 /* TutorialSwipeAction.sks */,
 			);
 			name = SKActions;
-			path = Shared/SKActions;
+			path = Assets/SKActions;
 			sourceTree = SOURCE_ROOT;
 		};
 		957593A628E33CD900012AFC /* Puzzles */ = {
