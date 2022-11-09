@@ -145,9 +145,9 @@ class CaslonScene: SKScene {
             tutorialNode.removeFromParent()
             return
         }
-        #if os(iOS)
+#if os(iOS)
         tutorialNode.texture = SKTexture(imageNamed: "UI_Tap")
-        #endif
+#endif
         tutorialNode.texture?.configureForPixelArt()
         didSetTutorial = true
     }

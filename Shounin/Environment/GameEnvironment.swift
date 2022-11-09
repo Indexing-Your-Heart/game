@@ -135,12 +135,14 @@ class GameEnvironment: SKScene {
 
 #if os(macOS)
         if AppDelegate.currentFlow.currentBlock?.showTutorials == true,
-           let referenceNode = SKReferenceNode(fileNamed: "TutorialKeyLayout") {
+           let referenceNode = SKReferenceNode(fileNamed: "TutorialKeyLayout")
+        {
             tutorialNode = referenceNode
         }
 #else
         if AppDelegate.currentFlow.currentBlock?.showTutorials == true,
-           let referenceNode = SKReferenceNode(fileNamed: "TutorialTouchLayout") {
+           let referenceNode = SKReferenceNode(fileNamed: "TutorialTouchLayout")
+        {
             tutorialNode = referenceNode
         }
 #endif
@@ -176,13 +178,13 @@ class GameEnvironment: SKScene {
               !enteredSolveModeForFirstUse,
               tutorialNode == nil,
               playerIsCloseToPuzzle(tolerance: 128) else { return }
-        #if os(macOS)
+#if os(macOS)
         if let carrier = SKReferenceNode(fileNamed: "TutorialSolveKeyLayout") {
             setUpTutorialNode(tutorial: carrier)
             player?.addChild(carrier)
             carrier.run(.fadeAlpha(to: 1.0, duration: 2))
         }
-        #else
+#else
         let tutorialImage = SKSpriteNode(pixelImage: "UI_Tap")
         tutorialImage.size = .init(squareOf: 76)
         let moveLabel = SKLabelNode(text: "Solve")
@@ -199,7 +201,7 @@ class GameEnvironment: SKScene {
         addChild(carrier)
         carrier.zPosition = (player?.zPosition ?? 50) + 20
         carrier.run(.fadeAlpha(to: 1.0, duration: 2))
-        #endif
+#endif
     }
 
     /// Returns whether the player is close to a puzzle given a maximum distance tolerance.

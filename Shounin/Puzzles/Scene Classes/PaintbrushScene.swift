@@ -72,7 +72,8 @@ class PaintbrushScene: SKScene {
 
     func presentTutorialHintIfPresent() {
         guard let hintRequired = puzzle?.showTutorialHint,
-              let hint = childNode(withName: "//tutorialHint") as? SKSpriteNode else {
+              let hint = childNode(withName: "//tutorialHint") as? SKSpriteNode
+        else {
             childNode(withName: "//tutorialHint")?.removeFromParent()
             return
         }

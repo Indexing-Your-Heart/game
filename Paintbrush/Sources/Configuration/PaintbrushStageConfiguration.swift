@@ -36,7 +36,7 @@ public struct PaintbrushStagePuzzleConfiguration: Codable {
         self.paintingName = paintingName
         self.expectedResult = expectedResult
         self.palette = palette
-        self.showTutorialHint = false
+        showTutorialHint = false
     }
 }
 
