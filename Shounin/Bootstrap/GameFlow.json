@@ -1,6 +1,7 @@
 [
     {
         "stage": "Stage1",
-        "chapter": "ch01-mise-en-abyme"
+        "chapter": "ch01-mise-en-abyme",
+        "show_tutorials": true
     }
 ]

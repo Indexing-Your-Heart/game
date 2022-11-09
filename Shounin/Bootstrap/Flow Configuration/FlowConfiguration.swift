@@ -18,6 +18,7 @@ import Foundation
 struct FlowConfiguration: Codable {
     let stage: String
     let chapter: String
+    let showTutorials: Bool?
 }
 
 extension FlowConfiguration {
@@ -27,6 +28,7 @@ extension FlowConfiguration {
         guard let data = try? Data(contentsOf: url) else { return nil }
         let jsonDecoder = JSONDecoder()
         jsonDecoder.allowsJSON5 = true
+        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
         return try? jsonDecoder.decode([FlowConfiguration].self, from: data)
     }
 }

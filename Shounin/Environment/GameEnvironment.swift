@@ -39,6 +39,7 @@ class GameEnvironment: SKScene {
     private var completionCaslonName = ""
     private var preparedForFirstUse = false
     private var stageName: String
+    private var tutorialNode: SKReferenceNode?
 
     init(stageNamed stage: String) {
         stageName = stage
@@ -120,6 +121,31 @@ class GameEnvironment: SKScene {
         self.player = player
         addChild(player)
 
+#if os(macOS)
+        if AppDelegate.currentFlow.currentBlock?.showTutorials == true,
+           let referenceNode = SKReferenceNode(fileNamed: "TutorialKeyLayout") {
+            tutorialNode = referenceNode
+        }
+#else
+        if AppDelegate.currentFlow.currentBlock?.showTutorials == true,
+           let referenceNode = SKReferenceNode(fileNamed: "TutorialTouchLayout") {
+            tutorialNode = referenceNode
+        }
+#endif
+        tutorialNode?.zPosition += 20
+        tutorialNode?.setScale(0.3)
+        tutorialNode?.alpha = 0
+
+        tutorialNode?.apply(recursively: true) { child in
+            if let sprite = child as? SKSpriteNode {
+                sprite.texture?.configureForPixelArt()
+            }
+        }
+        if let tutorialNode {
+            player.addChild(tutorialNode)
+            tutorialNode.run(.fadeAlpha(to: 1.0, duration: 2))
+        }
+
         let camera = SKCameraNode()
         camera.physicsBody = nil
         camera.setScale(0.3)
@@ -148,6 +174,16 @@ class GameEnvironment: SKScene {
             .filter { $0.layer == layer }
             .first
         metapuzzleTrigger = layer.convert(metaTrigger?.position ?? .zero, to: self)
+    }
+
+    func dismissTutorialOnMove() {
+        tutorialNode?.runSequence {
+            SKAction.fadeAlpha(to: 0, duration: 0.5)
+            SKAction.run { [weak self] in
+                self?.tutorialNode?.removeFromParent()
+                self?.tutorialNode = nil
+            }
+        }
     }
 
     func loadPuzzleIfPresent() {

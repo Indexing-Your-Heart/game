@@ -24,6 +24,9 @@ extension GameEnvironment {
             let derivedMoveTime = location.distance(player.position) / 64
 
             player.runSequence {
+                SKAction.run { [weak self] in
+                    self?.dismissTutorialOnMove()
+                }
                 SKAction.move(to: touch.location(in: self), duration: TimeInterval(derivedMoveTime))
                 SKAction.run { [weak self] in
                     self?.loadClosestPuzzleToPlayer()
@@ -39,14 +42,23 @@ extension GameEnvironment {
     override func keyDown(with event: NSEvent) {
         guard let player else { return }
         switch event.keyCode {
-        case 0x0D:
+        // Move up.
+        case 0x0D, 0x7E:
             player.run(.moveBy(x: 0, y: 32, duration: 0.1))
-        case 0x00:
+            dismissTutorialOnMove()
+        // Move left.
+        case 0x00, 0x7B:
             player.run(.moveBy(x: -32, y: 0, duration: 0.1))
-        case 0x01:
+            dismissTutorialOnMove()
+        // Move down.
+        case 0x01, 0x7D:
             player.run(.moveBy(x: 0, y: -32, duration: 0.1))
-        case 0x02:
+            dismissTutorialOnMove()
+        // Move right.
+        case 0x02, 0x7C:
             player.run(.moveBy(x: 32, y: 0, duration: 0.1))
+            dismissTutorialOnMove()
+        // Invoke solve mode.
         case 0x31:
             loadClosestPuzzleToPlayer()
         default:
