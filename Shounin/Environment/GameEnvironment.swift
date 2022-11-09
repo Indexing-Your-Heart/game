@@ -95,7 +95,7 @@ class GameEnvironment: SKScene {
         case .paintbrushMetapuzzle:
             configurePaintbrushMetapuzzle(from: layer)
         case .other:
-            print("Skipping layer: \(layer.name ?? "unknown layer")")
+            print("[PNT]: Skipping layer - \(layer.name ?? "unknown layer")")
         }
     }
 
