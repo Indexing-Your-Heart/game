@@ -38,6 +38,7 @@ class CaslonScene: SKScene {
 
     override func didMove(to view: SKView) {
         super.didMove(to: view)
+        childNode(withName: "//tutorialNodeTap")?.isHidden = true
         whatLabel = childNode(withName: "//whatLabel") as? SKLabelNode
         whoLabel = childNode(withName: "//whoLabel") as? SKLabelNode
         choiceMenu = childNode(withName: "//menu")
@@ -145,6 +146,7 @@ class CaslonScene: SKScene {
             tutorialNode.removeFromParent()
             return
         }
+        tutorialNode.isHidden = false
 #if os(iOS)
         tutorialNode.texture = SKTexture(imageNamed: "UI_Tap")
 #endif

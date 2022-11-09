@@ -40,7 +40,8 @@ extension CaslonScene: CaslonSceneTimelineDelegate {
     }
 
     func didDisplayNewEvent(event: JensonEvent) {
-        guard event.type != .comment else {
+        let standardEvents: [JensonEvent.EventType] = [.choice, .dialogue, .question]
+        guard standardEvents.contains(event.type) else {
             next()
             return
         }
@@ -66,7 +67,13 @@ extension CaslonScene: CaslonSceneRefreshDelegate {
         switch kind {
         case .image:
             if let layer = childNode(withName: "imgLayer_\(priority ?? 0)") as? SKSpriteNode {
-                layer.texture = SKTexture(imageNamed: resourceName)
+                layer.runSequence {
+                    SKAction.colorize(with: .black, colorBlendFactor: 1, duration: 0.25)
+                    SKAction.setTexture(SKTexture(imageNamed: resourceName), resize: false)
+                    SKAction.colorize(with: .white, colorBlendFactor: 1, duration: 0.25)
+                }
+            } else {
+                print("[CSL]: Priority layer \(priority ?? 0) not found")
             }
         default:
             break
