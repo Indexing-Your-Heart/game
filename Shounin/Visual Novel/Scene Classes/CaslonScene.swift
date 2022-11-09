@@ -34,6 +34,8 @@ class CaslonScene: SKScene {
     /// Whether the scene is undergoing a transition. Defaults to false.
     var inTransition = false
 
+    private var didSetTutorial = false
+
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         whatLabel = childNode(withName: "//whatLabel") as? SKLabelNode
@@ -78,6 +80,7 @@ class CaslonScene: SKScene {
             SKAction.run(.fadeAlpha(to: 1, duration: 0.5), onChildWithName: "whatLabel")
             SKAction.run { [weak self] in
                 self?.inTransition = false
+                self?.setUpTutorialContext()
             }
         }
     }
@@ -122,5 +125,30 @@ class CaslonScene: SKScene {
             choiceMenu?.addChild(copy)
             yOffset += (56 + 24)
         }
+    }
+
+    func dismissTutorialNode() {
+        guard let tutorialNode = childNode(withName: "//tutorialNodeTap"), didSetTutorial else {
+            return
+        }
+        tutorialNode.runSequence {
+            SKAction.fadeAlpha(to: 0, duration: 0.25)
+            SKAction.run {
+                tutorialNode.removeFromParent()
+            }
+        }
+    }
+
+    private func setUpTutorialContext() {
+        guard let tutorialNode = childNode(withName: "//tutorialNodeTap") as? SKSpriteNode else { return }
+        if AppDelegate.currentFlow.currentBlock?.showTutorials != true {
+            tutorialNode.removeFromParent()
+            return
+        }
+        #if os(iOS)
+        tutorialNode.texture = SKTexture(imageNamed: "UI_Tap")
+        #endif
+        tutorialNode.texture?.configureForPixelArt()
+        didSetTutorial = true
     }
 }

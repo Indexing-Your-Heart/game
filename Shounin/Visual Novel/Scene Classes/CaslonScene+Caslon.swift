@@ -21,6 +21,7 @@ import SpriteKit
 
 extension CaslonScene: CaslonSceneTimelineDelegate {
     func willDisplayNewEvent(event: JensonEvent) {
+        dismissTutorialNode()
         switch event.type {
         case .refresh:
             if let triggers = event.refresh {
@@ -34,7 +35,7 @@ extension CaslonScene: CaslonSceneTimelineDelegate {
             guard let question = event.question else { return }
             load(question: question)
         default:
-            print("Skipping event type \(event.type.rawValue)")
+            print("[CSL]: Skipping event type \(event.type.rawValue)")
         }
     }
 
