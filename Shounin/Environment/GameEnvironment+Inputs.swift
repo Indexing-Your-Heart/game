@@ -25,10 +25,11 @@ extension GameEnvironment {
 
             player.runSequence {
                 SKAction.run { [weak self] in
-                    self?.dismissTutorialOnMove()
+                    self?.dismissTutorialNode()
                 }
                 SKAction.move(to: touch.location(in: self), duration: TimeInterval(derivedMoveTime))
                 SKAction.run { [weak self] in
+                    self?.displaySolvingTutorialIfNeeded()
                     self?.loadClosestPuzzleToPlayer()
                 }
             }
@@ -45,25 +46,27 @@ extension GameEnvironment {
         // Move up.
         case 0x0D, 0x7E:
             player.run(.moveBy(x: 0, y: 32, duration: 0.1))
-            dismissTutorialOnMove()
         // Move left.
         case 0x00, 0x7B:
             player.run(.moveBy(x: -32, y: 0, duration: 0.1))
-            dismissTutorialOnMove()
         // Move down.
         case 0x01, 0x7D:
             player.run(.moveBy(x: 0, y: -32, duration: 0.1))
-            dismissTutorialOnMove()
         // Move right.
         case 0x02, 0x7C:
             player.run(.moveBy(x: 32, y: 0, duration: 0.1))
-            dismissTutorialOnMove()
         // Invoke solve mode.
         case 0x31:
             loadClosestPuzzleToPlayer()
         default:
             print(event.keyCode)
         }
+        dismissTutorialNode()
+    }
+
+    override func keyUp(with event: NSEvent) {
+        super.keyUp(with: event)
+        displaySolvingTutorialIfNeeded()
     }
 }
 

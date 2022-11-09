@@ -49,6 +49,7 @@
 		95735C1D291C0A02003947F5 /* TutorialKeyLayout.sks in Resources */ = {isa = PBXBuildFile; fileRef = 95735C1C291C0A02003947F5 /* TutorialKeyLayout.sks */; };
 		95735C1F291C125F003947F5 /* TutorialTouchLayout.sks in Resources */ = {isa = PBXBuildFile; fileRef = 95735C1E291C125F003947F5 /* TutorialTouchLayout.sks */; };
 		95735C21291C13A6003947F5 /* SKScene+Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95735C20291C13A6003947F5 /* SKScene+Application.swift */; };
+		95735C23291C1F16003947F5 /* TutorialSolveKeyLayout.sks in Resources */ = {isa = PBXBuildFile; fileRef = 95735C22291C1F16003947F5 /* TutorialSolveKeyLayout.sks */; };
 		958857B529115C5700318735 /* GameFlowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958857B429115C5700318735 /* GameFlowViewModel.swift */; };
 		958E090828F06786009E6AD9 /* Art_32x32.tsx in Resources */ = {isa = PBXBuildFile; fileRef = 958E090728F06786009E6AD9 /* Art_32x32.tsx */; };
 		958E090A28F067B0009E6AD9 /* 7_Art_32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 958E090928F067B0009E6AD9 /* 7_Art_32x32.png */; };
@@ -139,6 +140,7 @@
 		95735C1C291C0A02003947F5 /* TutorialKeyLayout.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TutorialKeyLayout.sks; sourceTree = "<group>"; };
 		95735C1E291C125F003947F5 /* TutorialTouchLayout.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TutorialTouchLayout.sks; sourceTree = "<group>"; };
 		95735C20291C13A6003947F5 /* SKScene+Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKScene+Application.swift"; sourceTree = "<group>"; };
+		95735C22291C1F16003947F5 /* TutorialSolveKeyLayout.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TutorialSolveKeyLayout.sks; sourceTree = "<group>"; };
 		958857B429115C5700318735 /* GameFlowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFlowViewModel.swift; sourceTree = "<group>"; };
 		958E090728F06786009E6AD9 /* Art_32x32.tsx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Art_32x32.tsx; sourceTree = "<group>"; };
 		958E090928F067B0009E6AD9 /* 7_Art_32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7_Art_32x32.png; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 			children = (
 				95735C1C291C0A02003947F5 /* TutorialKeyLayout.sks */,
 				95735C1E291C125F003947F5 /* TutorialTouchLayout.sks */,
+				95735C22291C1F16003947F5 /* TutorialSolveKeyLayout.sks */,
 			);
 			path = SKUIScenes;
 			sourceTree = "<group>";
@@ -633,6 +636,7 @@
 				958E090A28F067B0009E6AD9 /* 7_Art_32x32.png in Resources */,
 				95AD566B28EE25BD00051144 /* 1_Generic_32x32.png in Resources */,
 				9538C71028E7551600D506F0 /* Stage1.sks in Resources */,
+				95735C23291C1F16003947F5 /* TutorialSolveKeyLayout.sks in Resources */,
 				9538C70028E71DD900D506F0 /* Stage1.json in Resources */,
 				95DB209428CFA9840079D624 /* ch03.md in Resources */,
 				95AD566528EE246700051144 /* Generic_32x32.tsx in Resources */,

@@ -39,7 +39,8 @@ class GameEnvironment: SKScene {
     private var completionCaslonName = ""
     private var preparedForFirstUse = false
     private var stageName: String
-    private var tutorialNode: SKReferenceNode?
+    private var tutorialNode: SKNode?
+    private var enteredSolveModeForFirstUse = false
 
     init(stageNamed stage: String) {
         stageName = stage
@@ -50,10 +51,6 @@ class GameEnvironment: SKScene {
     @available(*, unavailable)
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    func setEndingScene(to caslonName: String) {
-        completionCaslonName = caslonName
     }
 
     override func didMove(to view: SKView) {
@@ -69,19 +66,13 @@ class GameEnvironment: SKScene {
         prepareSceneForFirstUseIfNecessary()
     }
 
-    private func prepareSceneForFirstUseIfNecessary() {
-        if preparedForFirstUse { return }
-        readPuzzleConfiguration(from: stageName)
-        if let tilemap = SKTilemap.load(tmxFile: "\(stageName).tmx") {
-            self.tilemap = tilemap
-            addChild(tilemap)
-
-            tilemap.zPosition = -1
-            for layer in tilemap.layers {
-                configure(for: layer)
-            }
-            preparedForFirstUse = true
-        }
+    /// Returns whether the player is closer to the first point or the second point.
+    /// This is used for comparisons and sorting.
+    func compareDistanceToPlayer(first: CGPoint, second: CGPoint) -> Bool {
+        guard let player else { return false }
+        let firstDistance = first.manhattanDistance(to: player.position)
+        let secondDistance = second.manhattanDistance(to: player.position)
+        return firstDistance < secondDistance
     }
 
     private func configure(for layer: SKTiledLayerObject) {
@@ -98,6 +89,27 @@ class GameEnvironment: SKScene {
         case .other:
             print("[PNT]: Skipping layer - \(layer.name ?? "unknown layer")")
         }
+    }
+
+    private func configurePaintbrush(from layer: SKTiledLayerObject) {
+        if let expectedLayout = layer.properties["Expected Layout"] {
+            puzzleFlow = expectedLayout.split(separator: ",").map { String($0) }
+        } else if let configPuzzles = stageConfiguration?.puzzles {
+            puzzleFlow = configPuzzles.map(\.expectedResult)
+        }
+        let children = layer.tilemap.getTilesWithProperty("Purpose", "puzzle_trigger")
+            .filter { $0.layer == layer }
+        puzzleTriggers = children.map { tile in
+            layer.convert(tile.position, to: self)
+        }
+    }
+
+    private func configurePaintbrushMetapuzzle(from layer: SKTiledLayerObject) {
+        let metaTrigger = layer.tilemap
+            .getTilesWithProperty("Purpose", "puzzle_trigger")
+            .filter { $0.layer == layer }
+            .first
+        metapuzzleTrigger = layer.convert(metaTrigger?.position ?? .zero, to: self)
     }
 
     private func createBounds(from layer: SKTiledLayerObject) {
@@ -132,16 +144,8 @@ class GameEnvironment: SKScene {
             tutorialNode = referenceNode
         }
 #endif
-        tutorialNode?.zPosition += 20
-        tutorialNode?.setScale(0.3)
-        tutorialNode?.alpha = 0
-
-        tutorialNode?.apply(recursively: true) { child in
-            if let sprite = child as? SKSpriteNode {
-                sprite.texture?.configureForPixelArt()
-            }
-        }
         if let tutorialNode {
+            setUpTutorialNode(tutorial: tutorialNode)
             player.addChild(tutorialNode)
             tutorialNode.run(.fadeAlpha(to: 1.0, duration: 2))
         }
@@ -155,28 +159,8 @@ class GameEnvironment: SKScene {
         layer.removeFromParent()
     }
 
-    private func configurePaintbrush(from layer: SKTiledLayerObject) {
-        if let expectedLayout = layer.properties["Expected Layout"] {
-            puzzleFlow = expectedLayout.split(separator: ",").map { String($0) }
-        } else if let configPuzzles = stageConfiguration?.puzzles {
-            puzzleFlow = configPuzzles.map(\.expectedResult)
-        }
-        let children = layer.tilemap.getTilesWithProperty("Purpose", "puzzle_trigger")
-            .filter { $0.layer == layer }
-        puzzleTriggers = children.map { tile in
-            layer.convert(tile.position, to: self)
-        }
-    }
-
-    private func configurePaintbrushMetapuzzle(from layer: SKTiledLayerObject) {
-        let metaTrigger = layer.tilemap
-            .getTilesWithProperty("Purpose", "puzzle_trigger")
-            .filter { $0.layer == layer }
-            .first
-        metapuzzleTrigger = layer.convert(metaTrigger?.position ?? .zero, to: self)
-    }
-
-    func dismissTutorialOnMove() {
+    /// Dismisses the tutorial node and removes it from the scene tree, if present.
+    func dismissTutorialNode() {
         tutorialNode?.runSequence {
             SKAction.fadeAlpha(to: 0, duration: 0.5)
             SKAction.run { [weak self] in
@@ -186,6 +170,59 @@ class GameEnvironment: SKScene {
         }
     }
 
+    /// Displays the solving mode tutorial if it hasn't been displayed already.
+    func displaySolvingTutorialIfNeeded() {
+        guard AppDelegate.currentFlow.currentBlock?.showTutorials == true,
+              !enteredSolveModeForFirstUse,
+              tutorialNode == nil,
+              playerIsCloseToPuzzle(tolerance: 128) else { return }
+        #if os(macOS)
+        if let carrier = SKReferenceNode(fileNamed: "TutorialSolveKeyLayout") {
+            setUpTutorialNode(tutorial: carrier)
+            player?.addChild(carrier)
+            carrier.run(.fadeAlpha(to: 1.0, duration: 2))
+        }
+        #else
+        let tutorialImage = SKSpriteNode(pixelImage: "UI_Tap")
+        tutorialImage.size = .init(squareOf: 76)
+        let moveLabel = SKLabelNode(text: "Solve")
+        moveLabel.fontName = "Salmon Sans 9 Bold"
+        moveLabel.fontSize = 54
+        let carrier = SKNode()
+        carrier.addChild(tutorialImage)
+        carrier.addChild(moveLabel)
+        moveLabel.position = moveLabel.position.translated(by: .init(x: 0, y: 100))
+        setUpTutorialNode(tutorial: carrier)
+        if let puzzlePoint = getClosestPuzzlePosition(tolerance: 128) {
+            carrier.position = puzzlePoint
+        }
+        addChild(carrier)
+        carrier.zPosition = (player?.zPosition ?? 50) + 20
+        carrier.run(.fadeAlpha(to: 1.0, duration: 2))
+        #endif
+    }
+
+    /// Returns whether the player is close to a puzzle given a maximum distance tolerance.
+    /// - Parameter tolerance: The maximum distance the player can be from the closest puzzle before being considered
+    /// out of range.
+    func playerIsCloseToPuzzle(tolerance: Int) -> Bool {
+        let allPuzzleTriggers = puzzleTriggers + [metapuzzleTrigger]
+        guard let player, let closestPuzzle = allPuzzleTriggers.min(by: compareDistanceToPlayer) else { return false }
+        let distanceFromPlayer = closestPuzzle.manhattanDistance(to: player.position)
+        return distanceFromPlayer <= CGFloat(tolerance)
+    }
+
+    /// Returns the position of the closest puzzle given a maximum distance tolerance.
+    /// - Parameter tolerance: The maximum distance the player can be from the closest puzzle before being considered
+    /// out of range.
+    func getClosestPuzzlePosition(tolerance: Int) -> CGPoint? {
+        let allPuzzleTriggers = puzzleTriggers + [metapuzzleTrigger]
+        guard let player, let closestPuzzle = allPuzzleTriggers.min(by: compareDistanceToPlayer) else { return nil }
+        let distanceFromPlayer = closestPuzzle.manhattanDistance(to: player.position)
+        return distanceFromPlayer <= CGFloat(tolerance) ? closestPuzzle : nil
+    }
+
+    /// Loads the current puzzle if the player is near a puzzle panel and a puzzle exists for it.
     func loadPuzzleIfPresent() {
         guard let puzzleScene = PaintbrushScene(fileNamed: stageName), let puzzle else { return }
         puzzleScene.scaleMode = scaleMode
@@ -195,6 +232,7 @@ class GameEnvironment: SKScene {
         view?.presentScene(puzzleScene)
     }
 
+    /// Loads the ending Caslon scene if it is present in the game's files.
     func loadEndingCaslonSceneIfPresent() {
         guard let vnScene = CaslonScene(fileNamed: "Caslon Scene") else { return }
         vnScene.scaleMode = scaleMode
@@ -202,13 +240,7 @@ class GameEnvironment: SKScene {
         view?.presentScene(vnScene, transition: .fade(withDuration: 3.0))
     }
 
-    func compareDistanceToPlayer(first: CGPoint, second: CGPoint) -> Bool {
-        guard let player else { return false }
-        let firstDistance = first.manhattanDistance(to: player.position)
-        let secondDistance = second.manhattanDistance(to: player.position)
-        return firstDistance < secondDistance
-    }
-
+    /// Loads the puzzle that is closest to the player.
     func loadClosestPuzzleToPlayer() {
         let allPuzzleTriggers = puzzleTriggers + [metapuzzleTrigger]
         guard let player, let closestPuzzle = allPuzzleTriggers.min(by: compareDistanceToPlayer) else { return }
@@ -226,7 +258,41 @@ class GameEnvironment: SKScene {
             } else {
                 puzzle = stageConfiguration?.puzzles.first { $0.expectedResult == puzzleFlow[idx] }
             }
+            enteredSolveModeForFirstUse = true
             loadPuzzleIfPresent()
+        }
+    }
+
+    private func prepareSceneForFirstUseIfNecessary() {
+        if preparedForFirstUse { return }
+        readPuzzleConfiguration(from: stageName)
+        if let tilemap = SKTilemap.load(tmxFile: "\(stageName).tmx") {
+            self.tilemap = tilemap
+            addChild(tilemap)
+
+            tilemap.zPosition = -1
+            for layer in tilemap.layers {
+                configure(for: layer)
+            }
+            preparedForFirstUse = true
+        }
+    }
+
+    /// Sets the ending Caslon scene that will be loaded.
+    func setEndingScene(to caslonName: String) {
+        completionCaslonName = caslonName
+    }
+
+    private func setUpTutorialNode(tutorial: SKNode) {
+        tutorial.zPosition += 20
+        tutorial.setScale(0.3)
+        tutorial.alpha = 0
+        tutorialNode = tutorial
+
+        tutorial.apply(recursively: true) { child in
+            if let sprite = child as? SKSpriteNode {
+                sprite.texture?.configureForPixelArt()
+            }
         }
     }
 }
