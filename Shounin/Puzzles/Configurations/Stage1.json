@@ -11,6 +11,7 @@
         {
             "painting_name": "hoh_1a",
             "expected_result": "hoh_1a",
+            "show_tutorial_hint": true,
             "palette": {
                 "panelColor": "#175A4C",
                 "panelLineColor": "#1EBC73"

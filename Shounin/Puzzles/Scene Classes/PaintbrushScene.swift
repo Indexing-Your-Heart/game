@@ -34,6 +34,10 @@ class PaintbrushScene: SKScene {
     var solveState: PaintbrushSolveState = .unsolved
     var painting: SKSpriteNode?
 
+    var showingTutorialHint = false {
+        didSet { updateTutorialHintState() }
+    }
+
     convenience init?(fileNamed file: String, debug debugMode: Bool = false) {
         self.init(fileNamed: file)
         childNode(withName: "//debugSprite")?.isHidden = !debugMode
@@ -59,10 +63,36 @@ class PaintbrushScene: SKScene {
         }
         childNode(withName: "//debugSprite")?.isHidden = true
         loadSolvedStateIfPresent()
+        presentTutorialHintIfPresent()
     }
 
     func enableDebuggingFeatures() {
         childNode(withName: "//debugSprite")?.isHidden = false
+    }
+
+    func presentTutorialHintIfPresent() {
+        guard let hintRequired = puzzle?.showTutorialHint,
+              let hint = childNode(withName: "//tutorialHint") as? SKSpriteNode else {
+            childNode(withName: "//tutorialHint")?.removeFromParent()
+            return
+        }
+        guard hintRequired == true, solveState != .solved else {
+            hint.removeFromParent()
+            return
+        }
+        hint.texture?.configureForPixelArt()
+#if os(macOS)
+        let dragTexture = SKTexture(imageNamed: "UI_Tutorial_Drag")
+        dragTexture.configureForPixelArt()
+        hint.texture = dragTexture
+#endif
+    }
+
+    func updateTutorialHintState() {
+        if showingTutorialHint {
+            return
+        }
+        childNode(withName: "//tutorialHint")?.removeFromParent()
     }
 
     /// Creates a node to be used in the final path.

@@ -40,6 +40,7 @@ extension PaintbrushScene: PanelInteractionDelegate {
         guard let panelDrawingArea, panelDrawingArea.frame.contains(location) else { return }
         createDrawingNode(at: location)
         childNode(withName: "//solveOverlay")?.isHidden = true
+        showingTutorialHint = false
     }
 
     func panelWillMoveDrawing(to location: CGPoint) {

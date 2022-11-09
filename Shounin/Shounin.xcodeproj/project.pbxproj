@@ -45,6 +45,7 @@
 		956B604E28C7B7480031794C /* Testbench.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956B604D28C7B7480031794C /* Testbench.swift */; };
 		956D7DC52914280A004F4A3C /* PaintbrushScene+PaintbrushProtractorSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956D7DC42914280A004F4A3C /* PaintbrushScene+PaintbrushProtractorSolver.swift */; };
 		956D7DC929142A7D004F4A3C /* Stage1t.json in Resources */ = {isa = PBXBuildFile; fileRef = 956D7DC829142A7D004F4A3C /* Stage1t.json */; };
+		95735C1A291BE7B1003947F5 /* TutorialSwipeAction.sks in Resources */ = {isa = PBXBuildFile; fileRef = 95735C19291BE7B1003947F5 /* TutorialSwipeAction.sks */; };
 		958857B529115C5700318735 /* GameFlowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958857B429115C5700318735 /* GameFlowViewModel.swift */; };
 		958E090828F06786009E6AD9 /* Art_32x32.tsx in Resources */ = {isa = PBXBuildFile; fileRef = 958E090728F06786009E6AD9 /* Art_32x32.tsx */; };
 		958E090A28F067B0009E6AD9 /* 7_Art_32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 958E090928F067B0009E6AD9 /* 7_Art_32x32.png */; };
@@ -131,6 +132,7 @@
 		956B604D28C7B7480031794C /* Testbench.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Testbench.swift; sourceTree = "<group>"; };
 		956D7DC42914280A004F4A3C /* PaintbrushScene+PaintbrushProtractorSolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaintbrushScene+PaintbrushProtractorSolver.swift"; sourceTree = "<group>"; };
 		956D7DC829142A7D004F4A3C /* Stage1t.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Stage1t.json; sourceTree = "<group>"; };
+		95735C19291BE7B1003947F5 /* TutorialSwipeAction.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TutorialSwipeAction.sks; sourceTree = "<group>"; };
 		958857B429115C5700318735 /* GameFlowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFlowViewModel.swift; sourceTree = "<group>"; };
 		958E090728F06786009E6AD9 /* Art_32x32.tsx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Art_32x32.tsx; sourceTree = "<group>"; };
 		958E090928F067B0009E6AD9 /* 7_Art_32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7_Art_32x32.png; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 		950F6D0528C274C3007ACB53 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				95735C18291BE7B1003947F5 /* SKActions */,
 				956B604428C7A2270031794C /* Localizations */,
 				95DB207628CFA80C0079D624 /* Story */,
 				950F6D0628C2752F007ACB53 /* Fonts */,
@@ -343,6 +346,15 @@
 			);
 			path = Testbench;
 			sourceTree = "<group>";
+		};
+		95735C18291BE7B1003947F5 /* SKActions */ = {
+			isa = PBXGroup;
+			children = (
+				95735C19291BE7B1003947F5 /* TutorialSwipeAction.sks */,
+			);
+			name = SKActions;
+			path = Shared/SKActions;
+			sourceTree = SOURCE_ROOT;
 		};
 		957593A628E33CD900012AFC /* Puzzles */ = {
 			isa = PBXGroup;
@@ -606,6 +618,7 @@
 				9538C70028E71DD900D506F0 /* Stage1.json in Resources */,
 				95DB209428CFA9840079D624 /* ch03.md in Resources */,
 				95AD566528EE246700051144 /* Generic_32x32.tsx in Resources */,
+				95735C1A291BE7B1003947F5 /* TutorialSwipeAction.sks in Resources */,
 				95B748A128EDD7FC0013AFC7 /* README.txt in Resources */,
 				95DB209628CFA9840079D624 /* ch04.md in Resources */,
 				95DB209528CFA9840079D624 /* ch06.md in Resources */,
