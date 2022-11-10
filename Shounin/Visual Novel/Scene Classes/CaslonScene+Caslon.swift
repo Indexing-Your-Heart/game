@@ -36,6 +36,7 @@ extension CaslonScene: CaslonSceneTimelineDelegate {
             load(question: question)
         default:
             print("[CSL]: Skipping event type \(event.type.rawValue)")
+            print("- Content: \(event.what)")
         }
     }
 
@@ -66,11 +67,20 @@ extension CaslonScene: CaslonSceneRefreshDelegate {
     func willRefreshContents(of kind: JensonRefreshContent.Kind, to resourceName: String, with priority: Int?) {
         switch kind {
         case .image:
-            if let layer = childNode(withName: "imgLayer_\(priority ?? 0)") as? SKSpriteNode {
+            if let layer = childNode(withName: "imgLayer_\(priority ?? 0)") as? SKSpriteNode, !resourceName.isEmpty {
                 layer.runSequence {
-                    SKAction.colorize(with: .black, colorBlendFactor: 1, duration: 0.25)
+                    SKAction.fadeAlpha(to: 0, duration: 0.1)
                     SKAction.setTexture(SKTexture(imageNamed: resourceName), resize: false)
-                    SKAction.colorize(with: .white, colorBlendFactor: 1, duration: 0.25)
+                    SKAction.fadeAlpha(to: 1, duration: 0.1)
+                }
+            } else if let layer = childNode(withName: "imgLayer_\(priority ?? 0)") as? SKSpriteNode {
+                print("[CSL]: Clearing priority layer \(priority ?? 0)")
+                layer.runSequence {
+                    SKAction.fadeAlpha(to: 0, duration: 0.1)
+                    SKAction.run {
+                        layer.texture = nil 
+                    }
+                    SKAction.fadeAlpha(to: 1, duration: 0.1)
                 }
             } else {
                 print("[CSL]: Priority layer \(priority ?? 0) not found")
