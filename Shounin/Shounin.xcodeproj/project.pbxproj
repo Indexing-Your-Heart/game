@@ -56,6 +56,8 @@
 		958E090C28F08695009E6AD9 /* SKTexture+URLInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958E090B28F08695009E6AD9 /* SKTexture+URLInit.swift */; };
 		958E090E28F0B1D3009E6AD9 /* GameFlow.json in Resources */ = {isa = PBXBuildFile; fileRef = 958E090D28F0B1D3009E6AD9 /* GameFlow.json */; };
 		958E091128F0B20C009E6AD9 /* FlowConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958E091028F0B20C009E6AD9 /* FlowConfiguration.swift */; };
+		9597E1EC291D5F8B00291AFD /* PaintbrushEmitter.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9597E1EA291D5F8B00291AFD /* PaintbrushEmitter.sks */; };
+		9597E1ED291D5F8B00291AFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9597E1EB291D5F8B00291AFD /* Assets.xcassets */; };
 		95A9605628EB603700F05059 /* CGImage+Resizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A9605528EB603700F05059 /* CGImage+Resizable.swift */; };
 		95A9605828EB61F600F05059 /* Bundle+InfoPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A9605728EB61F600F05059 /* Bundle+InfoPlist.swift */; };
 		95AD565E28EE20B500051144 /* SKTiled in Frameworks */ = {isa = PBXBuildFile; productRef = 95AD565D28EE20B500051144 /* SKTiled */; };
@@ -147,6 +149,8 @@
 		958E090B28F08695009E6AD9 /* SKTexture+URLInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKTexture+URLInit.swift"; sourceTree = "<group>"; };
 		958E090D28F0B1D3009E6AD9 /* GameFlow.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GameFlow.json; sourceTree = "<group>"; };
 		958E091028F0B20C009E6AD9 /* FlowConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowConfiguration.swift; sourceTree = "<group>"; };
+		9597E1EA291D5F8B00291AFD /* PaintbrushEmitter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PaintbrushEmitter.sks; sourceTree = "<group>"; };
+		9597E1EB291D5F8B00291AFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		95A9605528EB603700F05059 /* CGImage+Resizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImage+Resizable.swift"; sourceTree = "<group>"; };
 		95A9605728EB61F600F05059 /* Bundle+InfoPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+InfoPlist.swift"; sourceTree = "<group>"; };
 		95AD566028EE241400051144 /* GameEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEnvironment.swift; sourceTree = "<group>"; };
@@ -278,7 +282,7 @@
 		950F6D0528C274C3007ACB53 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				95735C1B291C09E0003947F5 /* SKUIScenes */,
+				95735C1B291C09E0003947F5 /* SpriteKit */,
 				95735C18291BE7B1003947F5 /* SKActions */,
 				956B604428C7A2270031794C /* Localizations */,
 				95DB207628CFA80C0079D624 /* Story */,
@@ -366,14 +370,16 @@
 			path = Assets/SKActions;
 			sourceTree = SOURCE_ROOT;
 		};
-		95735C1B291C09E0003947F5 /* SKUIScenes */ = {
+		95735C1B291C09E0003947F5 /* SpriteKit */ = {
 			isa = PBXGroup;
 			children = (
 				95735C1C291C0A02003947F5 /* TutorialKeyLayout.sks */,
 				95735C1E291C125F003947F5 /* TutorialTouchLayout.sks */,
 				95735C22291C1F16003947F5 /* TutorialSolveKeyLayout.sks */,
+				9597E1EA291D5F8B00291AFD /* PaintbrushEmitter.sks */,
+				9597E1EB291D5F8B00291AFD /* Assets.xcassets */,
 			);
-			path = SKUIScenes;
+			path = SpriteKit;
 			sourceTree = "<group>";
 		};
 		957593A628E33CD900012AFC /* Puzzles */ = {
@@ -634,6 +640,7 @@
 				95011E7128C77B1D00E511F3 /* Salmon Sans 9 Bold.ttf in Resources */,
 				95DB209728CFA9840079D624 /* epilogue.md in Resources */,
 				958E090A28F067B0009E6AD9 /* 7_Art_32x32.png in Resources */,
+				9597E1ED291D5F8B00291AFD /* Assets.xcassets in Resources */,
 				95AD566B28EE25BD00051144 /* 1_Generic_32x32.png in Resources */,
 				9538C71028E7551600D506F0 /* Stage1.sks in Resources */,
 				95735C23291C1F16003947F5 /* TutorialSolveKeyLayout.sks in Resources */,
@@ -656,6 +663,7 @@
 				950F6CE828C0EADA007ACB53 /* Assets.xcassets in Resources */,
 				958E090828F06786009E6AD9 /* Art_32x32.tsx in Resources */,
 				956B604128C7A2200031794C /* InfoPlist.strings in Resources */,
+				9597E1EC291D5F8B00291AFD /* PaintbrushEmitter.sks in Resources */,
 				9534015D29104BC700D8268C /* ch05-souriez-si-vous-plait.jenson in Resources */,
 				9534015B29104BC700D8268C /* ch04-un-jeu-maladroit.jenson in Resources */,
 				9534015E29104BC700D8268C /* ch03-la-subjectif-e.jenson in Resources */,

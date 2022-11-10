@@ -104,7 +104,7 @@ class PaintbrushScene: SKScene {
             previousLine.removeFromParent()
         }
         guard let panelDrawingArea, panelDrawingArea.frame.contains(location) else { return nil }
-        let drawPoint = SKNode()
+        let drawPoint = SKEmitterNode(fileNamed: "PaintbrushEmitter") ?? SKNode()
         drawPoint.position = location
         drawingDelegateNode?.addChild(drawPoint)
         return drawPoint
