@@ -78,7 +78,7 @@ extension CaslonScene: CaslonSceneRefreshDelegate {
                 layer.runSequence {
                     SKAction.fadeAlpha(to: 0, duration: 0.1)
                     SKAction.run {
-                        layer.texture = nil 
+                        layer.texture = nil
                     }
                     SKAction.fadeAlpha(to: 1, duration: 0.1)
                 }
