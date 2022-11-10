@@ -58,6 +58,7 @@
 		958E091128F0B20C009E6AD9 /* FlowConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958E091028F0B20C009E6AD9 /* FlowConfiguration.swift */; };
 		9597E1EC291D5F8B00291AFD /* PaintbrushEmitter.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9597E1EA291D5F8B00291AFD /* PaintbrushEmitter.sks */; };
 		9597E1ED291D5F8B00291AFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9597E1EB291D5F8B00291AFD /* Assets.xcassets */; };
+		9597E1EF291D628E00291AFD /* EnvironmentBokeh.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9597E1EE291D628E00291AFD /* EnvironmentBokeh.sks */; };
 		95A9605628EB603700F05059 /* CGImage+Resizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A9605528EB603700F05059 /* CGImage+Resizable.swift */; };
 		95A9605828EB61F600F05059 /* Bundle+InfoPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A9605728EB61F600F05059 /* Bundle+InfoPlist.swift */; };
 		95AD565E28EE20B500051144 /* SKTiled in Frameworks */ = {isa = PBXBuildFile; productRef = 95AD565D28EE20B500051144 /* SKTiled */; };
@@ -151,6 +152,7 @@
 		958E091028F0B20C009E6AD9 /* FlowConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowConfiguration.swift; sourceTree = "<group>"; };
 		9597E1EA291D5F8B00291AFD /* PaintbrushEmitter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PaintbrushEmitter.sks; sourceTree = "<group>"; };
 		9597E1EB291D5F8B00291AFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9597E1EE291D628E00291AFD /* EnvironmentBokeh.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EnvironmentBokeh.sks; sourceTree = "<group>"; };
 		95A9605528EB603700F05059 /* CGImage+Resizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImage+Resizable.swift"; sourceTree = "<group>"; };
 		95A9605728EB61F600F05059 /* Bundle+InfoPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+InfoPlist.swift"; sourceTree = "<group>"; };
 		95AD566028EE241400051144 /* GameEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEnvironment.swift; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 				95735C1E291C125F003947F5 /* TutorialTouchLayout.sks */,
 				95735C22291C1F16003947F5 /* TutorialSolveKeyLayout.sks */,
 				9597E1EA291D5F8B00291AFD /* PaintbrushEmitter.sks */,
+				9597E1EE291D628E00291AFD /* EnvironmentBokeh.sks */,
 				9597E1EB291D5F8B00291AFD /* Assets.xcassets */,
 			);
 			path = SpriteKit;
@@ -637,6 +640,7 @@
 				958E090E28F0B1D3009E6AD9 /* GameFlow.json in Resources */,
 				95DB209328CFA9840079D624 /* ch05.md in Resources */,
 				9533176128D3787C00E6E516 /* ch01-mise-en-abyme.jenson in Resources */,
+				9597E1EF291D628E00291AFD /* EnvironmentBokeh.sks in Resources */,
 				95011E7128C77B1D00E511F3 /* Salmon Sans 9 Bold.ttf in Resources */,
 				95DB209728CFA9840079D624 /* epilogue.md in Resources */,
 				958E090A28F067B0009E6AD9 /* 7_Art_32x32.png in Resources */,

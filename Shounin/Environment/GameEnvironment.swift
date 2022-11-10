@@ -158,6 +158,12 @@ class GameEnvironment: SKScene {
         camera.position = .zero
         self.camera = camera
         player.addChild(camera)
+
+        if let bokehEffect = SKEmitterNode(fileNamed: "EnvironmentBokeh") {
+            bokehEffect.zPosition += player.zPosition + 20
+            player.addChild(bokehEffect)
+        }
+
         layer.removeFromParent()
     }
 
