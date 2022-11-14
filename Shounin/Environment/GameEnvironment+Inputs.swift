@@ -45,16 +45,28 @@ extension GameEnvironment {
         switch event.keyCode {
         // Move up.
         case 0x0D, 0x7E:
-            player.run(.moveBy(x: 0, y: 32, duration: 0.1))
+            player.runSequence {
+                SKAction.run { player.move(in: .up) }
+                SKAction.moveBy(x: 0, y: 32, duration: 0.1)
+            }
         // Move left.
         case 0x00, 0x7B:
-            player.run(.moveBy(x: -32, y: 0, duration: 0.1))
+            player.runSequence {
+                SKAction.run { player.move(in: .left) }
+                SKAction.moveBy(x: -32, y: 0, duration: 0.1)
+            }
         // Move down.
         case 0x01, 0x7D:
-            player.run(.moveBy(x: 0, y: -32, duration: 0.1))
+            player.runSequence {
+                SKAction.run { player.move(in: .down) }
+                SKAction.moveBy(x: 0, y: -32, duration: 0.1)
+            }
         // Move right.
         case 0x02, 0x7C:
-            player.run(.moveBy(x: 32, y: 0, duration: 0.1))
+            player.runSequence {
+                SKAction.run { player.move(in: .right) }
+                SKAction.moveBy(x: 32, y: 0, duration: 0.1)
+            }
         // Invoke solve mode.
         case 0x31:
             loadClosestPuzzleToPlayer()
@@ -67,6 +79,11 @@ extension GameEnvironment {
     override func keyUp(with event: NSEvent) {
         super.keyUp(with: event)
         displaySolvingTutorialIfNeeded()
+        player?.run(
+            .run { [weak self] in
+                self?.player?.stopMoving()
+            }
+        )
     }
 }
 

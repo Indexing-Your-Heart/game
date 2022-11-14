@@ -28,7 +28,7 @@ class GameEnvironment: SKScene {
     }
 
     var metapuzzleTrigger = CGPoint.zero
-    var player: SKSpriteNode?
+    var player: GamePlayer?
     var puzzle: Paintbrush.PaintbrushStagePuzzleConfiguration?
     var puzzleFlow = [String]()
     var puzzleTriggers = [CGPoint]()
