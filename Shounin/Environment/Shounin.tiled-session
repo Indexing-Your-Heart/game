@@ -27,10 +27,10 @@
         },
         "Stage1.tmx": {
             "scale": 0.6351,
-            "selectedLayer": 3,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 792.0012596441505,
-                "y": 571.5635333018422
+                "x": 1125.8069595339318,
+                "y": 955.7549992127223
             }
         }
     },
@@ -41,15 +41,17 @@
     "map.width": 50,
     "openFiles": [
         "Stage1.tmx",
-        "Art_32x32.tsx"
+        "Art_32x32.tsx",
+        "Room_Builder.tsx"
     ],
     "project": "Shounin.tiled-project",
+    "property.type": "bool",
     "recentFiles": [
+        "Room_Builder.tsx",
         "Art_32x32.tsx",
         "Stage1.tmx",
         "Generic_32x32.tsx",
-        "LivingRoom_32x32.tsx",
-        "Room_Builder.tsx"
+        "LivingRoom_32x32.tsx"
     ],
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
     "tileset.lastUsedFormat": "tsx"

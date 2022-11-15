@@ -19,15 +19,19 @@ import SpriteKit
 extension GameEnvironment {
     override func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
         for touch in touches {
-            guard let player else { return }
-            let location = touch.location(in: self)
-            let derivedMoveTime = location.distance(player.position) / 64
+            guard let player, let walkingLayer else { return }
+//            let location = touch.location(in: self)
+            let location = walkingLayer.coordinateAtTouchLocation(touch)
+//            let derivedMoveTime = location.distance(player.position) / 64
+
+            let moveActions = actions(with: path(to: location))
 
             player.runSequence {
                 SKAction.run { [weak self] in
                     self?.dismissTutorialNode()
                 }
-                SKAction.move(to: touch.location(in: self), duration: TimeInterval(derivedMoveTime))
+                SKAction.sequence(moveActions)
+//                SKAction.move(to: touch.location(in: self), duration: TimeInterval(derivedMoveTime))
                 SKAction.run { [weak self] in
                     self?.displaySolvingTutorialIfNeeded()
                     self?.loadClosestPuzzleToPlayer()

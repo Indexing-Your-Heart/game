@@ -17,9 +17,11 @@ import CranberrySprite
 import Paintbrush
 import SKTiled
 import SpriteKit
+import GameplayKit
 
 class GameEnvironment: SKScene {
     enum LayerType: String {
+        case walkingGraph = "Graph"
         case bounds = "Bounds"
         case playerInsert = "PLAYER_INSERT"
         case paintbrush = "PNT_LAYOUT"
@@ -27,6 +29,7 @@ class GameEnvironment: SKScene {
         case other
     }
 
+    var enteredSolveModeForFirstUse = false
     var metapuzzleTrigger = CGPoint.zero
     var player: GamePlayer?
     var puzzle: Paintbrush.PaintbrushStagePuzzleConfiguration?
@@ -34,13 +37,14 @@ class GameEnvironment: SKScene {
     var puzzleTriggers = [CGPoint]()
     var solvedPuzzles = Set<String>()
     var stageConfiguration: Paintbrush.PaintbrushStageConfiguration?
+    var stageName: String
     var tilemap: SKTilemap?
+    var walkableTiles = [SKTile]()
+    var walkingLayer: SKTileLayer?
 
     private var completionCaslonName = ""
     private var preparedForFirstUse = false
-    private var stageName: String
     private var tutorialNode: SKNode?
-    private var enteredSolveModeForFirstUse = false
 
     init(stageNamed stage: String) {
         stageName = stage
@@ -75,7 +79,7 @@ class GameEnvironment: SKScene {
         return firstDistance < secondDistance
     }
 
-    private func configure(for layer: SKTiledLayerObject) {
+    private func configure(for layer: SKTileLayer) {
         let layerKind = LayerType(rawValue: layer.name ?? "") ?? .other
         switch layerKind {
         case .bounds:
@@ -86,12 +90,14 @@ class GameEnvironment: SKScene {
             configurePaintbrush(from: layer)
         case .paintbrushMetapuzzle:
             configurePaintbrushMetapuzzle(from: layer)
-        case .other:
+        case .walkingGraph:
+            createWalkableNodes(from: layer)
+        default:
             print("[PNT]: Skipping layer - \(layer.name ?? "unknown layer")")
         }
     }
 
-    private func configurePaintbrush(from layer: SKTiledLayerObject) {
+    private func configurePaintbrush(from layer: SKTileLayer) {
         if let expectedLayout = layer.properties["Expected Layout"] {
             puzzleFlow = expectedLayout.split(separator: ",").map { String($0) }
         } else if let configPuzzles = stageConfiguration?.puzzles {
@@ -104,7 +110,7 @@ class GameEnvironment: SKScene {
         }
     }
 
-    private func configurePaintbrushMetapuzzle(from layer: SKTiledLayerObject) {
+    private func configurePaintbrushMetapuzzle(from layer: SKTileLayer) {
         let metaTrigger = layer.tilemap
             .getTilesWithProperty("Purpose", "puzzle_trigger")
             .filter { $0.layer == layer }
@@ -112,7 +118,7 @@ class GameEnvironment: SKScene {
         metapuzzleTrigger = layer.convert(metaTrigger?.position ?? .zero, to: self)
     }
 
-    private func createBounds(from layer: SKTiledLayerObject) {
+    private func createBounds(from layer: SKTileLayer) {
         for tile in layer.children {
             guard let spriteTile = tile as? SKSpriteNode else { continue }
             spriteTile.configureForPixelArt()
@@ -124,7 +130,7 @@ class GameEnvironment: SKScene {
         }
     }
 
-    private func createPlayer(from layer: SKTiledLayerObject) {
+    private func createPlayer(from layer: SKTileLayer) {
         guard let tilemap, let tile = tilemap.getTilesWithProperty("Purpose", "player").first else {
             return
         }
@@ -165,6 +171,16 @@ class GameEnvironment: SKScene {
         }
 
         layer.removeFromParent()
+    }
+
+    private func createWalkableNodes(from layer: SKTileLayer) {
+        walkingLayer = layer
+        getWalkableNodes(from: layer)
+        createGraph(in: layer)
+        for tile in layer.children {
+            guard let spriteTile = tile as? SKSpriteNode else { continue }
+            spriteTile.configureForPixelArt()
+        }
     }
 
     /// Dismisses the tutorial node and removes it from the scene tree, if present.
@@ -210,65 +226,12 @@ class GameEnvironment: SKScene {
 #endif
     }
 
-    /// Returns whether the player is close to a puzzle given a maximum distance tolerance.
-    /// - Parameter tolerance: The maximum distance the player can be from the closest puzzle before being considered
-    /// out of range.
-    func playerIsCloseToPuzzle(tolerance: Int) -> Bool {
-        let allPuzzleTriggers = puzzleTriggers + [metapuzzleTrigger]
-        guard let player, let closestPuzzle = allPuzzleTriggers.min(by: compareDistanceToPlayer) else { return false }
-        let distanceFromPlayer = closestPuzzle.manhattanDistance(to: player.position)
-        return distanceFromPlayer <= CGFloat(tolerance)
-    }
-
-    /// Returns the position of the closest puzzle given a maximum distance tolerance.
-    /// - Parameter tolerance: The maximum distance the player can be from the closest puzzle before being considered
-    /// out of range.
-    func getClosestPuzzlePosition(tolerance: Int) -> CGPoint? {
-        let allPuzzleTriggers = puzzleTriggers + [metapuzzleTrigger]
-        guard let player, let closestPuzzle = allPuzzleTriggers.min(by: compareDistanceToPlayer) else { return nil }
-        let distanceFromPlayer = closestPuzzle.manhattanDistance(to: player.position)
-        return distanceFromPlayer <= CGFloat(tolerance) ? closestPuzzle : nil
-    }
-
-    /// Loads the current puzzle if the player is near a puzzle panel and a puzzle exists for it.
-    func loadPuzzleIfPresent() {
-        guard let puzzleScene = PaintbrushScene(fileNamed: stageName), let puzzle else { return }
-        puzzleScene.scaleMode = scaleMode
-        puzzleScene.puzzle = puzzle
-        AppDelegate.observedState.previousEnvironment = self
-        AppDelegate.observedState.puzzleTriggerName = puzzle.expectedResult
-        view?.presentScene(puzzleScene)
-    }
-
     /// Loads the ending Caslon scene if it is present in the game's files.
     func loadEndingCaslonSceneIfPresent() {
         guard let vnScene = CaslonScene(fileNamed: "Caslon Scene") else { return }
         vnScene.scaleMode = scaleMode
         vnScene.loadScript(named: completionCaslonName)
         view?.presentScene(vnScene, transition: .fade(withDuration: 3.0))
-    }
-
-    /// Loads the puzzle that is closest to the player.
-    func loadClosestPuzzleToPlayer() {
-        let allPuzzleTriggers = puzzleTriggers + [metapuzzleTrigger]
-        guard let player, let closestPuzzle = allPuzzleTriggers.min(by: compareDistanceToPlayer) else { return }
-        let distanceFromPlayer = closestPuzzle.manhattanDistance(to: player.position)
-        let puzzleIdx = allPuzzleTriggers.firstIndex(of: closestPuzzle)
-        if distanceFromPlayer <= 32, let idx = puzzleIdx {
-            if puzzleIdx == allPuzzleTriggers.firstIndex(of: metapuzzleTrigger) {
-                guard let metaConfig = stageConfiguration?.metapuzzle else { return }
-                let metapuzzle = PaintbrushStagePuzzleConfiguration(
-                    paintingName: "",
-                    expectedResult: metaConfig.expectedResult,
-                    palette: metaConfig.palette
-                )
-                puzzle = metapuzzle
-            } else {
-                puzzle = stageConfiguration?.puzzles.first { $0.expectedResult == puzzleFlow[idx] }
-            }
-            enteredSolveModeForFirstUse = true
-            loadPuzzleIfPresent()
-        }
     }
 
     private func prepareSceneForFirstUseIfNecessary() {
@@ -280,7 +243,9 @@ class GameEnvironment: SKScene {
 
             tilemap.zPosition = -1
             for layer in tilemap.layers {
-                configure(for: layer)
+                if let realLayer = layer as? SKTileLayer {
+                    configure(for: realLayer)
+                }
             }
             preparedForFirstUse = true
         }

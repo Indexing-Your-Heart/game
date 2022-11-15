@@ -15,6 +15,7 @@
 
 import CranberrySprite
 import SpriteKit
+import SKTiled
 
 class GamePlayer: SKSpriteNode {
     enum Direction {
@@ -50,8 +51,14 @@ class GamePlayer: SKSpriteNode {
         physicsBody = body
     }
 
+    func getCoordinates(withRespectTo layer: SKTileLayer) -> CGPoint {
+        guard let scene else { return position }
+        let layerPos = layer.convert(position, from: scene)
+        return layer.coordinateForPoint(layerPos)
+    }
+
     func move(in direction: Direction) {
-        guard !isMoving else { return }
+        if walkingDirection == direction { return }
         walkingDirection = direction
         facingDirection = direction
         updateWalkSpriteAnimation()
@@ -60,6 +67,7 @@ class GamePlayer: SKSpriteNode {
 
     func stopMoving() {
         guard isMoving else { return }
+        facingDirection = walkingDirection
         walkingDirection = .stop
         updateIdleSpriteAnimation()
         isMoving = false

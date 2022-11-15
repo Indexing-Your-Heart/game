@@ -69,6 +69,7 @@
 		95AD566B28EE25BD00051144 /* 1_Generic_32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 95AD566928EE25BD00051144 /* 1_Generic_32x32.png */; };
 		95B7489228EDBA260013AFC7 /* CaslonScene+Caslon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7489128EDBA260013AFC7 /* CaslonScene+Caslon.swift */; };
 		95B748A128EDD7FC0013AFC7 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 95B748A028EDD7FC0013AFC7 /* README.txt */; };
+		95C4654729241F7F0061CB2C /* GameEnvironment+Puzzles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C4654629241F7F0061CB2C /* GameEnvironment+Puzzles.swift */; };
 		95DB209028CFA9840079D624 /* ch02.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208828CFA9840079D624 /* ch02.md */; };
 		95DB209128CFA9840079D624 /* ch01.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208928CFA9840079D624 /* ch01.md */; };
 		95DB209228CFA9840079D624 /* ch07.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208A28CFA9840079D624 /* ch07.md */; };
@@ -87,6 +88,8 @@
 		95FC94EA2922BD8B00623FA1 /* GameEnvironmentPlayer.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95FC94E82922BD8B00623FA1 /* GameEnvironmentPlayer.plist */; };
 		95FC94EB2922BD8B00623FA1 /* GameEnvironmentPlayer.1.png in Resources */ = {isa = PBXBuildFile; fileRef = 95FC94E92922BD8B00623FA1 /* GameEnvironmentPlayer.1.png */; };
 		95FC94EF2922C30700623FA1 /* GameEnvironmentPlayerAtlas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FC94EE2922C30700623FA1 /* GameEnvironmentPlayerAtlas.swift */; };
+		95FC94F12922CECD00623FA1 /* GameEnvironmentNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FC94F02922CECD00623FA1 /* GameEnvironmentNavigationDelegate.swift */; };
+		95FC94F32922CF3800623FA1 /* GameEnvironment+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FC94F22922CF3800623FA1 /* GameEnvironment+Navigation.swift */; };
 		95FFC8FB28EF3A2D009D1A15 /* GamePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FFC8FA28EF3A2D009D1A15 /* GamePlayer.swift */; };
 		95FFC8FD28EF697E009D1A15 /* GameEnvironmentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FFC8FC28EF697E009D1A15 /* GameEnvironmentState.swift */; };
 		95FFC8FF28EF740B009D1A15 /* GameEnvironment+Inputs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FFC8FE28EF740B009D1A15 /* GameEnvironment+Inputs.swift */; };
@@ -166,6 +169,7 @@
 		95B748A028EDD7FC0013AFC7 /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		95BCB92728C282E0004AFDA3 /* Indexing-Your-Heart-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Indexing-Your-Heart-Info.plist"; sourceTree = "<group>"; };
 		95BCB92828C28330004AFDA3 /* Indexing Your Heart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Indexing Your Heart.entitlements"; sourceTree = "<group>"; };
+		95C4654629241F7F0061CB2C /* GameEnvironment+Puzzles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameEnvironment+Puzzles.swift"; sourceTree = "<group>"; };
 		95DB208828CFA9840079D624 /* ch02.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ch02.md; sourceTree = "<group>"; };
 		95DB208928CFA9840079D624 /* ch01.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ch01.md; sourceTree = "<group>"; };
 		95DB208A28CFA9840079D624 /* ch07.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ch07.md; sourceTree = "<group>"; };
@@ -184,6 +188,8 @@
 		95FC94E82922BD8B00623FA1 /* GameEnvironmentPlayer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GameEnvironmentPlayer.plist; sourceTree = "<group>"; };
 		95FC94E92922BD8B00623FA1 /* GameEnvironmentPlayer.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameEnvironmentPlayer.1.png; sourceTree = "<group>"; };
 		95FC94EE2922C30700623FA1 /* GameEnvironmentPlayerAtlas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEnvironmentPlayerAtlas.swift; sourceTree = "<group>"; };
+		95FC94F02922CECD00623FA1 /* GameEnvironmentNavigationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEnvironmentNavigationDelegate.swift; sourceTree = "<group>"; };
+		95FC94F22922CF3800623FA1 /* GameEnvironment+Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameEnvironment+Navigation.swift"; sourceTree = "<group>"; };
 		95FFC8FA28EF3A2D009D1A15 /* GamePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayer.swift; sourceTree = "<group>"; };
 		95FFC8FC28EF697E009D1A15 /* GameEnvironmentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEnvironmentState.swift; sourceTree = "<group>"; };
 		95FFC8FE28EF740B009D1A15 /* GameEnvironment+Inputs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameEnvironment+Inputs.swift"; sourceTree = "<group>"; };
@@ -432,6 +438,9 @@
 				95FFC8FA28EF3A2D009D1A15 /* GamePlayer.swift */,
 				95FFC8FC28EF697E009D1A15 /* GameEnvironmentState.swift */,
 				95FFC8FE28EF740B009D1A15 /* GameEnvironment+Inputs.swift */,
+				95FC94F02922CECD00623FA1 /* GameEnvironmentNavigationDelegate.swift */,
+				95FC94F22922CF3800623FA1 /* GameEnvironment+Navigation.swift */,
+				95C4654629241F7F0061CB2C /* GameEnvironment+Puzzles.swift */,
 			);
 			path = Environment;
 			sourceTree = "<group>";
@@ -724,6 +733,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95FC94F32922CF3800623FA1 /* GameEnvironment+Navigation.swift in Sources */,
+				95C4654729241F7F0061CB2C /* GameEnvironment+Puzzles.swift in Sources */,
 				95E4F62428ECA05C009627F6 /* CaslonSceneView.swift in Sources */,
 				958E091128F0B20C009E6AD9 /* FlowConfiguration.swift in Sources */,
 				95FFC8FB28EF3A2D009D1A15 /* GamePlayer.swift in Sources */,
@@ -752,6 +763,7 @@
 				956D7DC52914280A004F4A3C /* PaintbrushScene+PaintbrushProtractorSolver.swift in Sources */,
 				9533175C28D371E500E6E516 /* SettingsDebuggingView.swift in Sources */,
 				95E4F61C28EC8B27009627F6 /* PaintbrushScene+Solving.swift in Sources */,
+				95FC94F12922CECD00623FA1 /* GameEnvironmentNavigationDelegate.swift in Sources */,
 				95FC94EF2922C30700623FA1 /* GameEnvironmentPlayerAtlas.swift in Sources */,
 				9538C70928E724A500D506F0 /* SKColor+Hex.swift in Sources */,
 				950F6CFC28C13D6F007ACB53 /* Entrypoint.swift in Sources */,
