@@ -15,10 +15,12 @@
 
 import Caslon
 import JensonKit
+import Logging
 import SpriteKit
 
 /// A SpriteKit scene that can display a Jenson timeline.
 class CaslonScene: SKScene {
+    var logger = Logger(label: "caslon")
     var timeline = [JensonEvent]()
 
     /// The label node that contains the "who" field.
@@ -38,6 +40,9 @@ class CaslonScene: SKScene {
 
     override func didMove(to view: SKView) {
         super.didMove(to: view)
+#if DEBUG
+        logger.logLevel = .debug
+#endif
         childNode(withName: "//tutorialNodeTap")?.isHidden = true
         whatLabel = childNode(withName: "//whatLabel") as? SKLabelNode
         whoLabel = childNode(withName: "//whoLabel") as? SKLabelNode

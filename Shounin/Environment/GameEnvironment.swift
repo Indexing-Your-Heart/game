@@ -55,7 +55,7 @@ class GameEnvironment: SKScene {
     var environmentDelegate: GameEnvironmentDelegate?
 
     /// The game environment's logging facility to log messages.
-    var logger = Logger(label: "shounin")
+    var logger = Logger(label: "shounin_env")
 
     /// The position of the metapuzzle trigger.
     var metapuzzleTrigger = CGPoint.zero
@@ -102,9 +102,9 @@ class GameEnvironment: SKScene {
         super.init(size: .init(width: 1600, height: 900))
         backgroundColor = .black
         environmentDelegate = self
-        #if DEBUG
+#if DEBUG
         logger.logLevel = .debug
-        #endif
+#endif
     }
 
     @available(*, unavailable)

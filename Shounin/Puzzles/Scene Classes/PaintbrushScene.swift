@@ -16,6 +16,7 @@
 import Algorithms
 import CoreML
 import CranberrySprite
+import Logging
 import Paintbrush
 import SpriteKit
 
@@ -33,6 +34,7 @@ class PaintbrushScene: SKScene {
 
     var solveState: PaintbrushSolveState = .unsolved
     var painting: SKSpriteNode?
+    var logger = Logger(label: "paintbrush")
 
     var showingTutorialHint = false {
         didSet { updateTutorialHintState() }
@@ -44,6 +46,9 @@ class PaintbrushScene: SKScene {
     }
 
     override func didMove(to _: SKView) {
+#if DEBUG
+        logger.logLevel = .debug
+#endif
         if let delegate = childNode(withName: "//delegate") {
             drawingDelegateNode = delegate
         }

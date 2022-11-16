@@ -33,7 +33,8 @@ extension PaintbrushScene: PaintbrushProtractorSolver {
             }
             points.append(contentsOf: translated)
 #if DEBUG
-            print("Current Drawing (TC): ", points.map { [Int($0.x), Int($0.y)] })
+            let debugPoints = points.map { [Int($0.x), Int($0.y)] }
+            logger.debug("Current Drawing (TC): \(debugPoints)")
 #endif
         }
         return points

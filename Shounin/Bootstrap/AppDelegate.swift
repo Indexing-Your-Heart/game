@@ -19,6 +19,7 @@ import AppKit
 import UIKit
 #endif
 import GameKit
+import Logging
 
 // MARK: - General App Delegation
 
@@ -29,6 +30,8 @@ class AppDelegate: NSObject {
     @available(*, deprecated, message: "Use the AppDelegate.currentFlow view model instead.")
     static var currentGameFlow: GameFlow?
     static var currentFlow = GameFlowViewModel()
+
+    var logger = Logger(label: "shounin")
 
     func setUpGameCenterAccessPoint() {
         GKAccessPoint.shared.location = .bottomTrailing
@@ -59,7 +62,7 @@ extension AppDelegate: NSApplicationDelegate {
                         NSApplication.shared.keyWindow?.contentViewController?.presentAsSheet(loginSheet)
                     }
                     guard error == nil else {
-                        print("Error: \(error?.localizedDescription ?? "Unknown error")")
+                        logger.error("Error: \(error?.localizedDescription ?? "Unknown error")")
                         return
                     }
                 }
@@ -102,12 +105,12 @@ extension AppDelegate: UIApplicationDelegate {
         fetchGameFlow()
         if let useGC = Bundle.main.gameCenterEnabled, useGC {
             DispatchQueue.main.async {
-                GKLocalPlayer.local.authenticateHandler = { loginSheet, error in
+                GKLocalPlayer.local.authenticateHandler = { [weak self] loginSheet, error in
                     if let loginSheet {
                         AppDelegate.keyWindow?.rootViewController?.present(loginSheet, animated: true)
                     }
                     guard error == nil else {
-                        print("Error: \(error?.localizedDescription ?? "Unknown error")")
+                        self?.logger.error("Error: \(error?.localizedDescription ?? "Unknown error")")
                         return
                     }
                 }
