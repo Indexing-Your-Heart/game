@@ -71,7 +71,7 @@ extension GameEnvironment {
         case 0x31:
             environmentDelegate?.loadClosestPuzzleToPlayer()
         default:
-            print(event.keyCode)
+            logger.info("Received keystroke: \(event.keyCode)")
         }
         environmentDelegate?.dismissTutorialNode()
     }

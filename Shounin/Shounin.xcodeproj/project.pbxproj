@@ -79,6 +79,7 @@
 		95C465592925228B0061CB2C /* GameEnvironment+Caslon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C465582925228B0061CB2C /* GameEnvironment+Caslon.swift */; };
 		95C4655C292523A90061CB2C /* GameEnvironment+Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C4655B292523A90061CB2C /* GameEnvironment+Tutorial.swift */; };
 		95C4655E292523F70061CB2C /* GameEnvironmentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C4655D292523F70061CB2C /* GameEnvironmentDelegate.swift */; };
+		95C46563292537300061CB2C /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 95C46562292537300061CB2C /* Logging */; };
 		95DB209028CFA9840079D624 /* ch02.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208828CFA9840079D624 /* ch02.md */; };
 		95DB209128CFA9840079D624 /* ch01.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208928CFA9840079D624 /* ch01.md */; };
 		95DB209228CFA9840079D624 /* ch07.md in Resources */ = {isa = PBXBuildFile; fileRef = 95DB208A28CFA9840079D624 /* ch07.md */; };
@@ -220,6 +221,7 @@
 			files = (
 				950F635228E5D7B60018AB43 /* Algorithms in Frameworks */,
 				950F6D0128C27442007ACB53 /* CranberrySprite in Frameworks */,
+				95C46563292537300061CB2C /* Logging in Frameworks */,
 				95E4F61928EC86BD009627F6 /* Caslon in Frameworks */,
 				95AD565E28EE20B500051144 /* SKTiled in Frameworks */,
 				950F6D0428C27489007ACB53 /* Bunker in Frameworks */,
@@ -628,6 +630,7 @@
 				9564878C28EC756A00B4477D /* Paintbrush */,
 				95E4F61828EC86BD009627F6 /* Caslon */,
 				95AD565D28EE20B500051144 /* SKTiled */,
+				95C46562292537300061CB2C /* Logging */,
 			);
 			productName = "Indexing Your Heart iOS";
 			productReference = 950F6CC728C0EADA007ACB53 /* Indexing Your Heart.app */;
@@ -684,6 +687,7 @@
 				950F6D0228C27489007ACB53 /* XCRemoteSwiftPackageReference "bunker" */,
 				950F635028E5D7B60018AB43 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 				95AD565C28EE20B500051144 /* XCRemoteSwiftPackageReference "SKTiled" */,
+				95C46561292537300061CB2C /* XCRemoteSwiftPackageReference "swift-log" */,
 			);
 			productRefGroup = 950F6CC828C0EADA007ACB53 /* Products */;
 			projectDirPath = "";
@@ -1236,6 +1240,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		95C46561292537300061CB2C /* XCRemoteSwiftPackageReference "swift-log" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-log";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1262,6 +1274,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 95AD565C28EE20B500051144 /* XCRemoteSwiftPackageReference "SKTiled" */;
 			productName = SKTiled;
+		};
+		95C46562292537300061CB2C /* Logging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 95C46561292537300061CB2C /* XCRemoteSwiftPackageReference "swift-log" */;
+			productName = Logging;
 		};
 		95E4F61828EC86BD009627F6 /* Caslon */ = {
 			isa = XCSwiftPackageProductDependency;

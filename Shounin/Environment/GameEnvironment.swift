@@ -15,6 +15,7 @@
 
 import CranberrySprite
 import GameplayKit
+import Logging
 import Paintbrush
 import SKTiled
 import SpriteKit
@@ -52,6 +53,9 @@ class GameEnvironment: SKScene {
 
     /// The game environment delegate used to communicate with all systems.
     var environmentDelegate: GameEnvironmentDelegate?
+
+    /// The game environment's logging facility to log messages.
+    var logger = Logger(label: "shounin")
 
     /// The position of the metapuzzle trigger.
     var metapuzzleTrigger = CGPoint.zero
@@ -98,6 +102,9 @@ class GameEnvironment: SKScene {
         super.init(size: .init(width: 1600, height: 900))
         backgroundColor = .black
         environmentDelegate = self
+        #if DEBUG
+        logger.logLevel = .debug
+        #endif
     }
 
     @available(*, unavailable)
@@ -123,7 +130,7 @@ class GameEnvironment: SKScene {
         guard shouldDisplaySolvingTutorialNode() else { return }
 #if os(macOS)
         if let carrier = SKReferenceNode(fileNamed: "TutorialSolveKeyLayout") {
-            environmentDelegate.setUpTutorialNode(tutorial: carrier)
+            environmentDelegate?.setUpTutorialNode(tutorial: carrier)
             player?.addChild(carrier)
             carrier.run(.fadeAlpha(to: 1.0, duration: 2))
         }
@@ -162,7 +169,7 @@ class GameEnvironment: SKScene {
         case .walkingGraph:
             createWalkableNodes(from: layer)
         default:
-            print("[SHN]: Skipping layer - \(layer.name ?? "unknown layer")", separator: "")
+            logger.info("Skipping layer - \(layer.name ?? "unknown layer")")
         }
     }
 

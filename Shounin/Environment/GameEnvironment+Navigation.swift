@@ -54,9 +54,7 @@ extension GameEnvironment: GameEnvironmentNavigationDelegate {
             let layerPoint = walkingLayer.pointForCoordinate(vec2: node.gridPosition)
             let nodePosition = walkingLayer.convert(layerPoint, to: self)
             let direction = direction(from: currentPosition, to: nodePosition)
-#if DEBUG
-            print("[SHN] Move \(currentPosition) -> \(nodePosition) [\(direction)]")
-#endif
+            logger.debug("Move \(currentPosition) -> \(nodePosition) [\(direction)]")
 
             var delta = 1.0
             switch direction {
