@@ -14,10 +14,10 @@
 //  details.
 //
 
-import SpriteKit
-import SKTiled
 import CranberrySprite
 import GameplayKit
+import SKTiled
+import SpriteKit
 
 extension GameEnvironment: GameEnvironmentNavigationDelegate {
     func createGraph(in layer: SKTileLayer) {
@@ -39,7 +39,8 @@ extension GameEnvironment: GameEnvironmentNavigationDelegate {
         guard walkingLayer.isValid(coord: start), walkingLayer.isValid(coord: coordinate) else { return [] }
 
         if let start = graph.node(atGridPosition: start.toVec2),
-            let end = graph.node(atGridPosition: coordinate.toVec2) {
+           let end = graph.node(atGridPosition: coordinate.toVec2)
+        {
             return start.findPath(to: end)
         }
         return []
@@ -53,7 +54,9 @@ extension GameEnvironment: GameEnvironmentNavigationDelegate {
             let layerPoint = walkingLayer.pointForCoordinate(vec2: node.gridPosition)
             let nodePosition = walkingLayer.convert(layerPoint, to: self)
             let direction = direction(from: currentPosition, to: nodePosition)
-            print("[PNT] Move \(currentPosition) -> \(nodePosition) [\(direction)]")
+#if DEBUG
+            print("[SHN] Move \(currentPosition) -> \(nodePosition) [\(direction)]")
+#endif
 
             var delta = 1.0
             switch direction {

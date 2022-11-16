@@ -20,21 +20,17 @@ extension GameEnvironment {
     override func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
         for touch in touches {
             guard let player, let walkingLayer else { return }
-//            let location = touch.location(in: self)
             let location = walkingLayer.coordinateAtTouchLocation(touch)
-//            let derivedMoveTime = location.distance(player.position) / 64
-
-            let moveActions = actions(with: path(to: location))
-
-            player.runSequence {
-                SKAction.run { [weak self] in
-                    self?.dismissTutorialNode()
-                }
-                SKAction.sequence(moveActions)
-//                SKAction.move(to: touch.location(in: self), duration: TimeInterval(derivedMoveTime))
-                SKAction.run { [weak self] in
-                    self?.displaySolvingTutorialIfNeeded()
-                    self?.loadClosestPuzzleToPlayer()
+            if let moveActions = environmentDelegate?.actions(with: path(to: location)) {
+                player.runSequence {
+                    SKAction.run { [weak self] in
+                        self?.dismissTutorialNode()
+                    }
+                    SKAction.sequence(moveActions)
+                    SKAction.run { [weak self] in
+                        self?.displaySolvingTutorialIfNeeded()
+                        self?.environmentDelegate?.loadClosestPuzzleToPlayer()
+                    }
                 }
             }
         }
@@ -73,11 +69,11 @@ extension GameEnvironment {
             }
         // Invoke solve mode.
         case 0x31:
-            loadClosestPuzzleToPlayer()
+            environmentDelegate?.loadClosestPuzzleToPlayer()
         default:
             print(event.keyCode)
         }
-        dismissTutorialNode()
+        environmentDelegate?.dismissTutorialNode()
     }
 
     override func keyUp(with event: NSEvent) {

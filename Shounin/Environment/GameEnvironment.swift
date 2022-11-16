@@ -14,42 +14,90 @@
 //  details.
 
 import CranberrySprite
+import GameplayKit
 import Paintbrush
 import SKTiled
 import SpriteKit
-import GameplayKit
 
+/// A SpriteKit scene that represents the primary game environment.
 class GameEnvironment: SKScene {
+    /// An enumeration that encodes layer names to corresponding types. This is used for world setup to perform certain
+    /// tasks such as gathering walkable tiles for pathfinding.
     enum LayerType: String {
+        /// The layer that represents the walkable tiles used for the graph.
         case walkingGraph = "Graph"
+
+        /// The layer that represents the bounds where the player cannot cross.
         case bounds = "Bounds"
+
+        /// The layer that contains information on where the player exists.
         case playerInsert = "PLAYER_INSERT"
+
+        /// The layer that contains information on how puzzles are laid out in the world.
         case paintbrush = "PNT_LAYOUT"
+
+        /// The layer that contains informaton on how the metapuzzle is laid out in the world.
         case paintbrushMetapuzzle = "PNT_LAYOUT_META"
+
+        /// A generic, unspecified layer.
         case other
     }
 
+    /// The name of the Caslon scene that should be played when the player finishes the metapuzzle.
+    var completionCaslonName = ""
+
+    /// Whether the player has entered solve mode for the first time.
+    /// Internally, this is used to determine whether the tutorial for solving a puzzle should be displayed on screen.
     var enteredSolveModeForFirstUse = false
+
+    /// The game environment delegate used to communicate with all systems.
+    var environmentDelegate: GameEnvironmentDelegate?
+
+    /// The position of the metapuzzle trigger.
     var metapuzzleTrigger = CGPoint.zero
+
+    /// The node that refers to the player.
     var player: GamePlayer?
+
+    /// The current puzzle in the environment's context.
     var puzzle: Paintbrush.PaintbrushStagePuzzleConfiguration?
+
+    /// An array of strings indicating the preferred order of puzzles when being laid out in the world.
     var puzzleFlow = [String]()
+
+    /// An array of points where puzzle triggers are located.
     var puzzleTriggers = [CGPoint]()
+
+    /// A set of puzzles that the player has completed.
     var solvedPuzzles = Set<String>()
+
+    /// The Paintbrush stage configuration that corresponds to this level.
     var stageConfiguration: Paintbrush.PaintbrushStageConfiguration?
+
+    /// The environment's stage name.
     var stageName: String
+
+    /// The tilemap node used to render the world.
     var tilemap: SKTilemap?
+
+    /// The tutorial node that displays hints on how to move or interact in the world.
+    var tutorialNode: SKNode?
+
+    /// An array of tiles that the player can walk on. This is used for pathfinding.
     var walkableTiles = [SKTile]()
+
+    /// The tilemap layer that includes walkable tiles. This is used for pathfinding.
     var walkingLayer: SKTileLayer?
 
-    private var completionCaslonName = ""
     private var preparedForFirstUse = false
-    private var tutorialNode: SKNode?
 
+    /// Creates a game environment from a given stage name.
+    /// - Parameter stage: The stage name to initialize the environment with.
     init(stageNamed stage: String) {
         stageName = stage
         super.init(size: .init(width: 1600, height: 900))
         backgroundColor = .black
+        environmentDelegate = self
     }
 
     @available(*, unavailable)
@@ -64,19 +112,40 @@ class GameEnvironment: SKScene {
         { // swiftlint:disable:this opening_brace
             solvedPuzzles.insert(puzzleTrigger)
             if puzzleTrigger == stageConfiguration?.metapuzzle.expectedResult {
-                loadEndingCaslonSceneIfPresent()
+                environmentDelegate?.loadEndingCaslonSceneIfPresent()
             }
         }
         prepareSceneForFirstUseIfNecessary()
     }
 
-    /// Returns whether the player is closer to the first point or the second point.
-    /// This is used for comparisons and sorting.
-    func compareDistanceToPlayer(first: CGPoint, second: CGPoint) -> Bool {
-        guard let player else { return false }
-        let firstDistance = first.manhattanDistance(to: player.position)
-        let secondDistance = second.manhattanDistance(to: player.position)
-        return firstDistance < secondDistance
+    /// Displays the solving mode tutorial if it hasn't been displayed already.
+    func displaySolvingTutorialIfNeeded() {
+        guard shouldDisplaySolvingTutorialNode() else { return }
+#if os(macOS)
+        if let carrier = SKReferenceNode(fileNamed: "TutorialSolveKeyLayout") {
+            environmentDelegate.setUpTutorialNode(tutorial: carrier)
+            player?.addChild(carrier)
+            carrier.run(.fadeAlpha(to: 1.0, duration: 2))
+        }
+#else
+        let tutorialImage = SKSpriteNode(pixelImage: "UI_Tap")
+        tutorialImage.size = .init(squareOf: 76)
+        let moveLabel = SKLabelNode(text: "Solve", with: "Salmon Sans 9 Bold", at: 45)
+
+        let carrier = SKCarrierNode()
+        carrier.alignmentAxis = .vertical
+        carrier.spacing = 32
+        carrier.addArrangedChildren(tutorialImage, moveLabel)
+
+        environmentDelegate?.setUpTutorialNode(tutorial: carrier)
+        if let puzzlePoint = environmentDelegate?.getClosestPuzzlePosition(tolerance: 128) {
+            carrier.position = puzzlePoint
+        }
+
+        addChild(carrier)
+        carrier.zPosition = (player?.zPosition ?? 50) + 20
+        carrier.run(.fadeAlpha(to: 1.0, duration: 2))
+#endif
     }
 
     private func configure(for layer: SKTileLayer) {
@@ -93,7 +162,7 @@ class GameEnvironment: SKScene {
         case .walkingGraph:
             createWalkableNodes(from: layer)
         default:
-            print("[PNT]: Skipping layer - \(layer.name ?? "unknown layer")")
+            print("[SHN]: Skipping layer - \(layer.name ?? "unknown layer")", separator: "")
         }
     }
 
@@ -122,11 +191,7 @@ class GameEnvironment: SKScene {
         for tile in layer.children {
             guard let spriteTile = tile as? SKSpriteNode else { continue }
             spriteTile.configureForPixelArt()
-            let physicsBody = SKPhysicsBody(rectangleOf: spriteTile.size)
-            physicsBody.affectedByGravity = false
-            physicsBody.allowsRotation = false
-            physicsBody.isDynamic = false
-            spriteTile.physicsBody = physicsBody
+            spriteTile.physicsBody = .immovable(with: spriteTile.size)
         }
     }
 
@@ -139,21 +204,9 @@ class GameEnvironment: SKScene {
         self.player = player
         addChild(player)
 
-#if os(macOS)
-        if AppDelegate.currentFlow.currentBlock?.showTutorials == true,
-           let referenceNode = SKReferenceNode(fileNamed: "TutorialKeyLayout")
-        {
-            tutorialNode = referenceNode
-        }
-#else
-        if AppDelegate.currentFlow.currentBlock?.showTutorials == true,
-           let referenceNode = SKReferenceNode(fileNamed: "TutorialTouchLayout")
-        {
-            tutorialNode = referenceNode
-        }
-#endif
+        tutorialNode = environmentDelegate?.getMovementTutorialReferenceNode()
         if let tutorialNode {
-            setUpTutorialNode(tutorial: tutorialNode)
+            environmentDelegate?.setUpTutorialNode(tutorial: tutorialNode)
             player.addChild(tutorialNode)
             tutorialNode.run(.fadeAlpha(to: 1.0, duration: 2))
         }
@@ -175,63 +228,8 @@ class GameEnvironment: SKScene {
 
     private func createWalkableNodes(from layer: SKTileLayer) {
         walkingLayer = layer
-        getWalkableNodes(from: layer)
+        environmentDelegate?.getWalkableNodes(from: layer)
         createGraph(in: layer)
-        for tile in layer.children {
-            guard let spriteTile = tile as? SKSpriteNode else { continue }
-            spriteTile.configureForPixelArt()
-        }
-    }
-
-    /// Dismisses the tutorial node and removes it from the scene tree, if present.
-    func dismissTutorialNode() {
-        tutorialNode?.runSequence {
-            SKAction.fadeAlpha(to: 0, duration: 0.5)
-            SKAction.run { [weak self] in
-                self?.tutorialNode?.removeFromParent()
-                self?.tutorialNode = nil
-            }
-        }
-    }
-
-    /// Displays the solving mode tutorial if it hasn't been displayed already.
-    func displaySolvingTutorialIfNeeded() {
-        guard AppDelegate.currentFlow.currentBlock?.showTutorials == true,
-              !enteredSolveModeForFirstUse,
-              tutorialNode == nil,
-              playerIsCloseToPuzzle(tolerance: 128) else { return }
-#if os(macOS)
-        if let carrier = SKReferenceNode(fileNamed: "TutorialSolveKeyLayout") {
-            setUpTutorialNode(tutorial: carrier)
-            player?.addChild(carrier)
-            carrier.run(.fadeAlpha(to: 1.0, duration: 2))
-        }
-#else
-        let tutorialImage = SKSpriteNode(pixelImage: "UI_Tap")
-        tutorialImage.size = .init(squareOf: 76)
-        let moveLabel = SKLabelNode(text: "Solve")
-        moveLabel.fontName = "Salmon Sans 9 Bold"
-        moveLabel.fontSize = 54
-        let carrier = SKNode()
-        carrier.addChild(tutorialImage)
-        carrier.addChild(moveLabel)
-        moveLabel.position = moveLabel.position.translated(by: .init(x: 0, y: 100))
-        setUpTutorialNode(tutorial: carrier)
-        if let puzzlePoint = getClosestPuzzlePosition(tolerance: 128) {
-            carrier.position = puzzlePoint
-        }
-        addChild(carrier)
-        carrier.zPosition = (player?.zPosition ?? 50) + 20
-        carrier.run(.fadeAlpha(to: 1.0, duration: 2))
-#endif
-    }
-
-    /// Loads the ending Caslon scene if it is present in the game's files.
-    func loadEndingCaslonSceneIfPresent() {
-        guard let vnScene = CaslonScene(fileNamed: "Caslon Scene") else { return }
-        vnScene.scaleMode = scaleMode
-        vnScene.loadScript(named: completionCaslonName)
-        view?.presentScene(vnScene, transition: .fade(withDuration: 3.0))
     }
 
     private func prepareSceneForFirstUseIfNecessary() {
@@ -251,25 +249,9 @@ class GameEnvironment: SKScene {
         }
     }
 
-    /// Sets the ending Caslon scene that will be loaded.
-    func setEndingScene(to caslonName: String) {
-        completionCaslonName = caslonName
+    private func shouldDisplaySolvingTutorialNode() -> Bool {
+        guard let environmentDelegate else { return false }
+        return environmentDelegate.tutorialShouldBeDisplayed() && tutorialNode == nil && environmentDelegate
+            .playerIsCloseToPuzzle(tolerance: 128)
     }
-
-    private func setUpTutorialNode(tutorial: SKNode) {
-        tutorial.zPosition += 20
-        tutorial.setScale(0.3)
-        tutorial.alpha = 0
-        tutorialNode = tutorial
-
-        tutorial.apply(recursively: true) { child in
-            if let sprite = child as? SKSpriteNode {
-                sprite.texture?.configureForPixelArt()
-            }
-        }
-    }
-}
-
-extension GameEnvironment: PaintbrushConfigurationDelegate {
-    func didSetPuzzleConfiguration(to _: Paintbrush.PaintbrushStagePuzzleConfiguration) {}
 }

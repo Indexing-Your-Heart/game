@@ -14,49 +14,27 @@
 //  details.
 //
 
-import SpriteKit
 import CranberrySprite
 import Paintbrush
+import SpriteKit
 
-extension GameEnvironment {
-    /// Returns whether the player is close to a puzzle given a maximum distance tolerance.
-    /// - Parameter tolerance: The maximum distance the player can be from the closest puzzle before being considered
-    /// out of range.
-    func playerIsCloseToPuzzle(tolerance: Int) -> Bool {
-        let allPuzzleTriggers = puzzleTriggers + [metapuzzleTrigger]
-        guard let player, let closestPuzzle = allPuzzleTriggers.min(by: compareDistanceToPlayer) else { return false }
-        let distanceFromPlayer = closestPuzzle.manhattanDistance(to: player.position)
-        return distanceFromPlayer <= CGFloat(tolerance)
-    }
-
-    /// Returns the position of the closest puzzle given a maximum distance tolerance.
-    /// - Parameter tolerance: The maximum distance the player can be from the closest puzzle before being considered
-    /// out of range.
+extension GameEnvironment: GameEnvironmentPuzzleDelegate {
     func getClosestPuzzlePosition(tolerance: Int) -> CGPoint? {
+        guard let player else { return nil }
         let allPuzzleTriggers = puzzleTriggers + [metapuzzleTrigger]
-        guard let player, let closestPuzzle = allPuzzleTriggers.min(by: compareDistanceToPlayer) else { return nil }
+        guard let closestPuzzle = allPuzzleTriggers.min(by: player.compareDistancesToPoints) else { return nil }
         let distanceFromPlayer = closestPuzzle.manhattanDistance(to: player.position)
         return distanceFromPlayer <= CGFloat(tolerance) ? closestPuzzle : nil
     }
 
-    /// Loads the current puzzle if the player is near a puzzle panel and a puzzle exists for it.
-    func loadPuzzleIfPresent() {
-        guard let puzzleScene = PaintbrushScene(fileNamed: stageName), let puzzle else { return }
-        puzzleScene.scaleMode = scaleMode
-        puzzleScene.puzzle = puzzle
-        AppDelegate.observedState.previousEnvironment = self
-        AppDelegate.observedState.puzzleTriggerName = puzzle.expectedResult
-        view?.presentScene(puzzleScene)
-    }
-
-    /// Loads the puzzle that is closest to the player.
     func loadClosestPuzzleToPlayer() {
-        let allPuzzleTriggers = puzzleTriggers + [metapuzzleTrigger]
-        guard let player, let closestPuzzle = allPuzzleTriggers.min(by: compareDistanceToPlayer) else { return }
+        guard let player, let closestPuzzle = allPuzzleTriggers().min(by: player.compareDistancesToPoints) else {
+            return
+        }
         let distanceFromPlayer = closestPuzzle.manhattanDistance(to: player.position)
-        let puzzleIdx = allPuzzleTriggers.firstIndex(of: closestPuzzle)
+        let puzzleIdx = allPuzzleTriggers().firstIndex(of: closestPuzzle)
         if distanceFromPlayer <= 32, let idx = puzzleIdx {
-            if puzzleIdx == allPuzzleTriggers.firstIndex(of: metapuzzleTrigger) {
+            if puzzleIdx == allPuzzleTriggers().firstIndex(of: metapuzzleTrigger) {
                 guard let metaConfig = stageConfiguration?.metapuzzle else { return }
                 let metapuzzle = PaintbrushStagePuzzleConfiguration(
                     paintingName: "",
@@ -71,4 +49,26 @@ extension GameEnvironment {
             loadPuzzleIfPresent()
         }
     }
+
+    func loadPuzzleIfPresent() {
+        guard let puzzleScene = PaintbrushScene(fileNamed: stageName), let puzzle else { return }
+        puzzleScene.scaleMode = scaleMode
+        puzzleScene.puzzle = puzzle
+        AppDelegate.observedState.previousEnvironment = self
+        AppDelegate.observedState.puzzleTriggerName = puzzle.expectedResult
+        view?.presentScene(puzzleScene)
+    }
+
+    func playerIsCloseToPuzzle(tolerance: Int) -> Bool {
+        let allPuzzleTriggers = puzzleTriggers + [metapuzzleTrigger]
+        guard let player, let closestPuzzle = allPuzzleTriggers.min(by: player.compareDistancesToPoints) else {
+            return false
+        }
+        let distanceFromPlayer = closestPuzzle.manhattanDistance(to: player.position)
+        return distanceFromPlayer <= CGFloat(tolerance)
+    }
+}
+
+extension GameEnvironment: PaintbrushConfigurationDelegate {
+    func didSetPuzzleConfiguration(to _: Paintbrush.PaintbrushStagePuzzleConfiguration) {}
 }

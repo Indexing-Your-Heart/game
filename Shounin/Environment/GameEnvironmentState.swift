@@ -16,8 +16,14 @@
 import Foundation
 import Paintbrush
 
+/// A class that contains a game environment state.
 class GameEnvironmentState {
+    /// The previous game environment the player has played in.
     var previousEnvironment: GameEnvironment?
+
+    /// The solve status of the previous puzzle.
     var previousPuzzleState: PaintbrushSolveState?
+
+    /// The name of the puzzle to trigger in Paintbrush.
     var puzzleTriggerName: String?
 }

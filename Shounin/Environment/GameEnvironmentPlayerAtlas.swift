@@ -23,6 +23,7 @@
 
 import SpriteKit
 
+/// A class containing the texture atlas properties for the player's sprites.
 class GameEnvironmentPlayerAtlas {
     // sprite names
     let CHELSEA_IDLE_BACK = "chelsea_idle_back"

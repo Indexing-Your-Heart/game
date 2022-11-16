@@ -14,10 +14,15 @@
 //  details.
 
 import CranberrySprite
-import SpriteKit
 import SKTiled
+import SpriteKit
 
+/// A sprite that represents the player.
 class GamePlayer: SKSpriteNode {
+    /// A typealias referencing the class that contains the player's texture atlas.
+    typealias TextureAtlas = GameEnvironmentPlayerAtlas
+
+    /// An enumeration for the different directions a player can face or walk.
     enum Direction {
         case up // swiftlint:disable:this identifier_name
         case down
@@ -26,10 +31,18 @@ class GamePlayer: SKSpriteNode {
         case stop
     }
 
+    /// The current direction the player is facing when walking.
     var walkingDirection: Direction = .stop
-    var facingDirection: Direction = .down
-    private var isMoving = false
 
+    /// The current direction the player is facing when idling.
+    var facingDirection: Direction = .down
+
+    private var isMoving = false
+    private var atlas = TextureAtlas()
+    private var frameRate: TimeInterval = 1 / 6
+
+    /// Creates a player at a specified position.
+    /// - Parameter position: The position in the SpriteKit scene to set the player at.
     init(position: CGPoint) {
         walkingDirection = .stop
         facingDirection = .down
@@ -44,19 +57,25 @@ class GamePlayer: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func setPhysicsBody() {
-        let body = SKPhysicsBody(rectangleOf: .init(squareOf: 32))
-        body.affectedByGravity = false
-        body.allowsRotation = false
-        physicsBody = body
+    /// Returns whether the player is closer to the first point or the second point.
+    /// This is used for comparisons and sorting.
+    func compareDistancesToPoints(first: CGPoint, second: CGPoint) -> Bool {
+        let firstDistance = first.manhattanDistance(to: position)
+        let secondDistance = second.manhattanDistance(to: position)
+        return firstDistance < secondDistance
     }
 
+    /// Returns the player's tile coordiantes with respect to a specified layer.
+    /// This is used to determine the player's location in pathfinding and navigation.
+    /// - Parameter layer: The layer to get the tile coordinates of the player from.
     func getCoordinates(withRespectTo layer: SKTileLayer) -> CGPoint {
         guard let scene else { return position }
         let layerPos = layer.convert(position, from: scene)
         return layer.coordinateForPoint(layerPos)
     }
 
+    /// Moves the player in a specified direction, updating the sprites as necessary.
+    /// - Parameter direction: The direction for the player to move in.
     func move(in direction: Direction) {
         if walkingDirection == direction { return }
         walkingDirection = direction
@@ -65,6 +84,7 @@ class GamePlayer: SKSpriteNode {
         isMoving = true
     }
 
+    /// Stops the player's movement and updates the sprites to an idling state.
     func stopMoving() {
         guard isMoving else { return }
         facingDirection = walkingDirection
@@ -73,9 +93,14 @@ class GamePlayer: SKSpriteNode {
         isMoving = false
     }
 
+    private func setPhysicsBody() {
+        let body = SKPhysicsBody(rectangleOf: .init(squareOf: 32))
+        body.affectedByGravity = false
+        body.allowsRotation = false
+        physicsBody = body
+    }
+
     private func updateIdleSpriteAnimation() {
-        let atlas = GameEnvironmentPlayerAtlas()
-        let frameRate: TimeInterval = 1/6
         var idleSet = [SKTexture]()
         switch walkingDirection {
         case .up:
@@ -94,8 +119,6 @@ class GamePlayer: SKSpriteNode {
     }
 
     private func updateWalkSpriteAnimation() {
-        let atlas = GameEnvironmentPlayerAtlas()
-        let frameRate: TimeInterval = 1/6
         var walkSet = [SKTexture]()
         switch walkingDirection {
         case .up:

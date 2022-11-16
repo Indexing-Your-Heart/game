@@ -27,10 +27,10 @@
         },
         "Stage1.tmx": {
             "scale": 0.6351,
-            "selectedLayer": 2,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 1125.8069595339318,
-                "y": 955.7549992127223
+                "x": 1117.9341835931348,
+                "y": 1152.5743977326406
             }
         }
     },
@@ -40,16 +40,14 @@
     "map.lastUsedFormat": "tmx",
     "map.width": 50,
     "openFiles": [
-        "Stage1.tmx",
-        "Art_32x32.tsx",
-        "Room_Builder.tsx"
+        "Stage1.tmx"
     ],
     "project": "Shounin.tiled-project",
     "property.type": "bool",
     "recentFiles": [
+        "Stage1.tmx",
         "Room_Builder.tsx",
         "Art_32x32.tsx",
-        "Stage1.tmx",
         "Generic_32x32.tsx",
         "LivingRoom_32x32.tsx"
     ],
