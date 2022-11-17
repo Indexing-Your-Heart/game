@@ -49,26 +49,16 @@ class PaintbrushScene: SKScene {
 #if DEBUG
         logger.logLevel = .debug
 #endif
-        if let delegate = childNode(withName: "//delegate") {
-            drawingDelegateNode = delegate
-        }
-        if let panel = drawingDelegateNode?.childNode(withName: "panel") as? SKShapeNode {
-            panelDrawingArea = panel
-        }
-        if let paintingSprite = childNode(withName: "//painting") as? SKSpriteNode {
-            painting = paintingSprite
-        }
-        if let name {
-            configureWithPrexistingPuzzleIfPresent { [weak self] in
-                self?.readPuzzleConfiguration(from: name)
-            }
-        }
         if let exitButton = childNode(withName: "//exitButton") as? SKSpriteNode {
             exitButton.configureForPixelArt()
         }
         childNode(withName: "//debugSprite")?.isHidden = true
+        preparePuzzleForUse()
         loadSolvedStateIfPresent()
         presentTutorialHintIfPresent()
+
+        let ambience = SKAudioNode(ambientTrackNamed: "amb_panel_presence", at: 0.05)
+        addChild(ambience)
     }
 
     func enableDebuggingFeatures() {
@@ -149,6 +139,23 @@ class PaintbrushScene: SKScene {
         handler()
         if let previousPuzzle {
             puzzle = previousPuzzle
+        }
+    }
+
+    private func preparePuzzleForUse() {
+        if let delegate = childNode(withName: "//delegate") {
+            drawingDelegateNode = delegate
+        }
+        if let panel = drawingDelegateNode?.childNode(withName: "panel") as? SKShapeNode {
+            panelDrawingArea = panel
+        }
+        if let paintingSprite = childNode(withName: "//painting") as? SKSpriteNode {
+            painting = paintingSprite
+        }
+        if let name {
+            configureWithPrexistingPuzzleIfPresent { [weak self] in
+                self?.readPuzzleConfiguration(from: name)
+            }
         }
     }
 

@@ -123,6 +123,8 @@ class GameEnvironment: SKScene {
             }
         }
         prepareSceneForFirstUseIfNecessary()
+        let audioNode = SKAudioNode(ambientTrackNamed: "amb_room_still", at: 0.1)
+        addChild(audioNode)
     }
 
     /// Displays the solving mode tutorial if it hasn't been displayed already.
@@ -153,6 +155,22 @@ class GameEnvironment: SKScene {
         carrier.zPosition = (player?.zPosition ?? 50) + 20
         carrier.run(.fadeAlpha(to: 1.0, duration: 2))
 #endif
+    }
+
+    func walkToSpecifiedLocation(at location: CGPoint) {
+        guard let player else { return }
+        if let moveActions = environmentDelegate?.actions(with: path(to: location)) {
+            player.runSequence {
+                SKAction.run { [weak self] in
+                    self?.dismissTutorialNode()
+                }
+                SKAction.sequence(moveActions)
+                SKAction.run { [weak self] in
+                    self?.displaySolvingTutorialIfNeeded()
+                    self?.environmentDelegate?.loadClosestPuzzleToPlayer()
+                }
+            }
+        }
     }
 
     private func configure(for layer: SKTileLayer) {

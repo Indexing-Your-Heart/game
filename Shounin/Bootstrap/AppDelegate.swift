@@ -57,12 +57,12 @@ extension AppDelegate: NSApplicationDelegate {
     func applicationDidFinishLaunching(_: Notification) {
         if let useGC = Bundle.main.gameCenterEnabled, useGC {
             DispatchQueue.main.async {
-                GKLocalPlayer.local.authenticateHandler = { loginSheet, error in
+                GKLocalPlayer.local.authenticateHandler = { [weak self] loginSheet, error in
                     if let loginSheet {
                         NSApplication.shared.keyWindow?.contentViewController?.presentAsSheet(loginSheet)
                     }
                     guard error == nil else {
-                        logger.error("Error: \(error?.localizedDescription ?? "Unknown error")")
+                        self?.logger.error("Error: \(error?.localizedDescription ?? "Unknown error")")
                         return
                     }
                 }

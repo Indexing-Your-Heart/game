@@ -39,6 +39,9 @@
 		9538C70D28E7370C00D506F0 /* SKAction+ColorizeStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C70C28E7370C00D506F0 /* SKAction+ColorizeStroke.swift */; };
 		9538C71028E7551600D506F0 /* Stage1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9538C70F28E7551600D506F0 /* Stage1.sks */; };
 		9538C71228E756BE00D506F0 /* PaintbrushDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C71128E756BE00D506F0 /* PaintbrushDemoView.swift */; };
+		9553E33F2926768700B6C713 /* amb_room_still.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 9553E33E2926768700B6C713 /* amb_room_still.aiff */; };
+		9553E3412926780500B6C713 /* SKAudioNode+AmbientNoise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9553E3402926780500B6C713 /* SKAudioNode+AmbientNoise.swift */; };
+		9553E34329267D2700B6C713 /* amb_panel_presence.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 9553E34229267D2700B6C713 /* amb_panel_presence.aiff */; };
 		9564878D28EC756A00B4477D /* Paintbrush in Frameworks */ = {isa = PBXBuildFile; productRef = 9564878C28EC756A00B4477D /* Paintbrush */; };
 		956B604128C7A2200031794C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 956B604328C7A2200031794C /* InfoPlist.strings */; };
 		956B604628C7A4730031794C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956B604528C7A4730031794C /* AppDelegate.swift */; };
@@ -147,6 +150,9 @@
 		9538C70C28E7370C00D506F0 /* SKAction+ColorizeStroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKAction+ColorizeStroke.swift"; sourceTree = "<group>"; };
 		9538C70F28E7551600D506F0 /* Stage1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Stage1.sks; sourceTree = "<group>"; };
 		9538C71128E756BE00D506F0 /* PaintbrushDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintbrushDemoView.swift; sourceTree = "<group>"; };
+		9553E33E2926768700B6C713 /* amb_room_still.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = amb_room_still.aiff; sourceTree = "<group>"; };
+		9553E3402926780500B6C713 /* SKAudioNode+AmbientNoise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKAudioNode+AmbientNoise.swift"; sourceTree = "<group>"; };
+		9553E34229267D2700B6C713 /* amb_panel_presence.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = amb_panel_presence.aiff; sourceTree = "<group>"; };
 		9564878A28EC755400B4477D /* Paintbrush */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Paintbrush; path = ../Paintbrush; sourceTree = "<group>"; };
 		956B604228C7A2200031794C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		956B604528C7A4730031794C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -242,17 +248,18 @@
 		95011E6A28C7795300E511F3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				95A9605728EB61F600F05059 /* Bundle+InfoPlist.swift */,
 				95A9605528EB603700F05059 /* CGImage+Resizable.swift */,
 				95011E6B28C7796900E511F3 /* FontFamily.swift */,
-				9538C70828E724A500D506F0 /* SKColor+Hex.swift */,
-				9538C70A28E7298200D506F0 /* SKShapeNode+Line.swift */,
-				9538C70C28E7370C00D506F0 /* SKAction+ColorizeStroke.swift */,
-				95A9605728EB61F600F05059 /* Bundle+InfoPlist.swift */,
 				95E97AA928EC783400C9B71C /* PaintbrushSolverError+LocalizedError.swift */,
-				958E090B28F08695009E6AD9 /* SKTexture+URLInit.swift */,
-				95735C20291C13A6003947F5 /* SKScene+Application.swift */,
-				95C4654B29242DD90061CB2C /* SKPhysicsBody+Immovable.swift */,
+				9538C70C28E7370C00D506F0 /* SKAction+ColorizeStroke.swift */,
+				9553E3402926780500B6C713 /* SKAudioNode+AmbientNoise.swift */,
+				9538C70828E724A500D506F0 /* SKColor+Hex.swift */,
 				95C465502924336F0061CB2C /* SKLabelNode+Init.swift */,
+				95C4654B29242DD90061CB2C /* SKPhysicsBody+Immovable.swift */,
+				95735C20291C13A6003947F5 /* SKScene+Application.swift */,
+				9538C70A28E7298200D506F0 /* SKShapeNode+Line.swift */,
+				958E090B28F08695009E6AD9 /* SKTexture+URLInit.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -317,12 +324,13 @@
 		950F6D0528C274C3007ACB53 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				95735C1B291C09E0003947F5 /* SpriteKit */,
-				95735C18291BE7B1003947F5 /* SKActions */,
-				956B604428C7A2270031794C /* Localizations */,
-				95DB207628CFA80C0079D624 /* Story */,
-				950F6D0628C2752F007ACB53 /* Fonts */,
 				950F6CC228C0EADA007ACB53 /* Assets.xcassets */,
+				950F6D0628C2752F007ACB53 /* Fonts */,
+				956B604428C7A2270031794C /* Localizations */,
+				9553E33D2926758500B6C713 /* SFX */,
+				95735C18291BE7B1003947F5 /* SKActions */,
+				95735C1B291C09E0003947F5 /* SpriteKit */,
+				95DB207628CFA80C0079D624 /* Story */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -361,6 +369,15 @@
 				9538C70F28E7551600D506F0 /* Stage1.sks */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		9553E33D2926758500B6C713 /* SFX */ = {
+			isa = PBXGroup;
+			children = (
+				9553E34229267D2700B6C713 /* amb_panel_presence.aiff */,
+				9553E33E2926768700B6C713 /* amb_room_still.aiff */,
+			);
+			path = SFX;
 			sourceTree = "<group>";
 		};
 		9564878928EC755400B4477D /* Packages */ = {
@@ -718,6 +735,8 @@
 				956D7DC929142A7D004F4A3C /* Stage1t.json in Resources */,
 				958E090E28F0B1D3009E6AD9 /* GameFlow.json in Resources */,
 				95DB209328CFA9840079D624 /* ch05.md in Resources */,
+				9553E33F2926768700B6C713 /* amb_room_still.aiff in Resources */,
+				9553E34329267D2700B6C713 /* amb_panel_presence.aiff in Resources */,
 				9533176128D3787C00E6E516 /* ch01-mise-en-abyme.jenson in Resources */,
 				9597E1EF291D628E00291AFD /* EnvironmentBokeh.sks in Resources */,
 				95011E7128C77B1D00E511F3 /* Salmon Sans 9 Bold.ttf in Resources */,
@@ -796,6 +815,7 @@
 				958E091128F0B20C009E6AD9 /* FlowConfiguration.swift in Sources */,
 				95FFC8FB28EF3A2D009D1A15 /* GamePlayer.swift in Sources */,
 				95E4F62128EC9CD9009627F6 /* CaslonScene.swift in Sources */,
+				9553E3412926780500B6C713 /* SKAudioNode+AmbientNoise.swift in Sources */,
 				95C4654C29242DD90061CB2C /* SKPhysicsBody+Immovable.swift in Sources */,
 				95C46557292522180061CB2C /* GameEnvironmentCaslonDelegate.swift in Sources */,
 				9533175928D36A2900E6E516 /* SettingsView.swift in Sources */,

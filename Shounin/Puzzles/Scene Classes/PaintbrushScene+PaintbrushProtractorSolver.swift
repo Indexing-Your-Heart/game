@@ -19,7 +19,7 @@ import SpriteKit
 
 extension PaintbrushScene: PaintbrushProtractorSolver {
     func makeRecognizer(with input: PaintbrushPointPath) -> PaintbrushRecognizer {
-        let recognizer = PaintbrushRecognizer(from: input, accountForOrientation: false, resampledBy: 36)
+        let recognizer = PaintbrushRecognizer(from: input, accountForOrientation: true, resampledBy: 36)
         recognizer.insertTemplates(reading: "\(name ?? "Stage0")t", in: .main)
         return recognizer
     }

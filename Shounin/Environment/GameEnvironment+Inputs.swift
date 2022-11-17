@@ -19,20 +19,9 @@ import SpriteKit
 extension GameEnvironment {
     override func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
         for touch in touches {
-            guard let player, let walkingLayer else { return }
+            guard let walkingLayer else { return }
             let location = walkingLayer.coordinateAtTouchLocation(touch)
-            if let moveActions = environmentDelegate?.actions(with: path(to: location)) {
-                player.runSequence {
-                    SKAction.run { [weak self] in
-                        self?.dismissTutorialNode()
-                    }
-                    SKAction.sequence(moveActions)
-                    SKAction.run { [weak self] in
-                        self?.displaySolvingTutorialIfNeeded()
-                        self?.environmentDelegate?.loadClosestPuzzleToPlayer()
-                    }
-                }
-            }
+            walkToSpecifiedLocation(at: location)
         }
     }
 }
@@ -40,6 +29,12 @@ extension GameEnvironment {
 
 #if os(macOS)
 extension GameEnvironment {
+    override func mouseUp(with event: NSEvent) {
+        guard let walkingLayer else { return }
+        let location = walkingLayer.coordinateAtMouseEvent(event: event)
+        walkToSpecifiedLocation(at: location)
+    }
+
     override func keyDown(with event: NSEvent) {
         guard let player else { return }
         switch event.keyCode {

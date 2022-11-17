@@ -102,7 +102,7 @@ class GamePlayer: SKSpriteNode {
 
     private func updateIdleSpriteAnimation() {
         var idleSet = [SKTexture]()
-        switch walkingDirection {
+        switch facingDirection {
         case .up:
             idleSet = atlas.chelsea_idle_up_()
         case .left:
