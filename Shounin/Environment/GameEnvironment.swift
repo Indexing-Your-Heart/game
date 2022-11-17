@@ -123,8 +123,7 @@ class GameEnvironment: SKScene {
             }
         }
         prepareSceneForFirstUseIfNecessary()
-        let audioNode = SKAudioNode(ambientTrackNamed: "amb_room_still", at: 0.1)
-        addChild(audioNode)
+        setUpAmbientSoundscape()
     }
 
     /// Displays the solving mode tutorial if it hasn't been displayed already.
@@ -242,6 +241,7 @@ class GameEnvironment: SKScene {
         camera.position = .zero
         self.camera = camera
         player.addChild(camera)
+        listener = camera
 
         if let bokehEffect = SKEmitterNode(fileNamed: "EnvironmentBokeh") {
             bokehEffect.zPosition += player.zPosition + 20
@@ -271,6 +271,20 @@ class GameEnvironment: SKScene {
                 }
             }
             preparedForFirstUse = true
+        }
+    }
+
+    private func setUpAmbientSoundscape() {
+        let audioNode = SKAudioNode(ambientTrackNamed: "amb_room_still", at: 0.1)
+        addChild(audioNode)
+        let puzzlesCount = Float(environmentDelegate?.allPuzzleTriggers().count ?? 0)
+        environmentDelegate?.allPuzzleTriggers().forEach { position in
+            let ambientNode = SKAudioNode(fileNamed: "amb_panel_presence")
+            ambientNode.isPositional = true
+            ambientNode.autoplayLooped = true
+            ambientNode.position = position
+            ambientNode.run(.changeVolume(to: 0.1 / puzzlesCount, duration: 0))
+            addChild(ambientNode)
         }
     }
 

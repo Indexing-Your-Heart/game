@@ -38,7 +38,9 @@ extension PaintbrushScene: PaintbrushConfigurationDelegate {
 extension PaintbrushScene: PanelInteractionDelegate {
     func panelWillStartDrawing(at location: CGPoint) {
         guard let panelDrawingArea, panelDrawingArea.frame.contains(location) else { return }
-        createDrawingNode(at: location)
+        if let start = createDrawingNode(at: location) {
+            start.run(.playSoundFileNamed("sfx_panel_start", waitForCompletion: false))
+        }
         childNode(withName: "//solveOverlay")?.isHidden = true
         showingTutorialHint = false
     }
@@ -63,9 +65,13 @@ extension PaintbrushScene: PanelInteractionDelegate {
     func panelDidHighlight(onPredictionStatus prediction: Bool) {
         guard let path = drawingDelegateNode?.childNode(withName: "witPath") as? SKShapeNode else { return }
         let pathColor = path.strokeColor.blended(withFraction: 0.7, of: .black) ?? path.strokeColor
-        if prediction { return }
+        if prediction {
+            path.run(.playSoundFileNamed("sfx_panel_end", waitForCompletion: false))
+            return
+        }
         path.run(
             .sequence([
+                .playSoundFileNamed("sfx_panel_failure", waitForCompletion: false),
                 .repeat(
                     .sequence([
                         .colorizeStroke(to: .red, duration: 0.5),

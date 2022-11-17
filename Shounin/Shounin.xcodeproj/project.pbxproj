@@ -39,9 +39,12 @@
 		9538C70D28E7370C00D506F0 /* SKAction+ColorizeStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C70C28E7370C00D506F0 /* SKAction+ColorizeStroke.swift */; };
 		9538C71028E7551600D506F0 /* Stage1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9538C70F28E7551600D506F0 /* Stage1.sks */; };
 		9538C71228E756BE00D506F0 /* PaintbrushDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C71128E756BE00D506F0 /* PaintbrushDemoView.swift */; };
-		9553E33F2926768700B6C713 /* amb_room_still.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 9553E33E2926768700B6C713 /* amb_room_still.aiff */; };
 		9553E3412926780500B6C713 /* SKAudioNode+AmbientNoise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9553E3402926780500B6C713 /* SKAudioNode+AmbientNoise.swift */; };
-		9553E34329267D2700B6C713 /* amb_panel_presence.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 9553E34229267D2700B6C713 /* amb_panel_presence.aiff */; };
+		9553E3492926850800B6C713 /* amb_panel_presence.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9553E3462926850800B6C713 /* amb_panel_presence.wav */; };
+		9553E34A2926850800B6C713 /* amb_room_still.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9553E3472926850800B6C713 /* amb_room_still.wav */; };
+		9553E34B2926850800B6C713 /* sfx_panel_failure.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9553E3482926850800B6C713 /* sfx_panel_failure.wav */; };
+		9553E34D2926881400B6C713 /* sfx_panel_start.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9553E34C2926881400B6C713 /* sfx_panel_start.wav */; };
+		9553E34F2926893000B6C713 /* sfx_panel_end.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9553E34E2926893000B6C713 /* sfx_panel_end.wav */; };
 		9564878D28EC756A00B4477D /* Paintbrush in Frameworks */ = {isa = PBXBuildFile; productRef = 9564878C28EC756A00B4477D /* Paintbrush */; };
 		956B604128C7A2200031794C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 956B604328C7A2200031794C /* InfoPlist.strings */; };
 		956B604628C7A4730031794C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956B604528C7A4730031794C /* AppDelegate.swift */; };
@@ -150,9 +153,12 @@
 		9538C70C28E7370C00D506F0 /* SKAction+ColorizeStroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKAction+ColorizeStroke.swift"; sourceTree = "<group>"; };
 		9538C70F28E7551600D506F0 /* Stage1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Stage1.sks; sourceTree = "<group>"; };
 		9538C71128E756BE00D506F0 /* PaintbrushDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintbrushDemoView.swift; sourceTree = "<group>"; };
-		9553E33E2926768700B6C713 /* amb_room_still.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = amb_room_still.aiff; sourceTree = "<group>"; };
 		9553E3402926780500B6C713 /* SKAudioNode+AmbientNoise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKAudioNode+AmbientNoise.swift"; sourceTree = "<group>"; };
-		9553E34229267D2700B6C713 /* amb_panel_presence.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = amb_panel_presence.aiff; sourceTree = "<group>"; };
+		9553E3462926850800B6C713 /* amb_panel_presence.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = amb_panel_presence.wav; sourceTree = "<group>"; };
+		9553E3472926850800B6C713 /* amb_room_still.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = amb_room_still.wav; sourceTree = "<group>"; };
+		9553E3482926850800B6C713 /* sfx_panel_failure.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_panel_failure.wav; sourceTree = "<group>"; };
+		9553E34C2926881400B6C713 /* sfx_panel_start.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_panel_start.wav; sourceTree = "<group>"; };
+		9553E34E2926893000B6C713 /* sfx_panel_end.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_panel_end.wav; sourceTree = "<group>"; };
 		9564878A28EC755400B4477D /* Paintbrush */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Paintbrush; path = ../Paintbrush; sourceTree = "<group>"; };
 		956B604228C7A2200031794C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		956B604528C7A4730031794C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -374,8 +380,11 @@
 		9553E33D2926758500B6C713 /* SFX */ = {
 			isa = PBXGroup;
 			children = (
-				9553E34229267D2700B6C713 /* amb_panel_presence.aiff */,
-				9553E33E2926768700B6C713 /* amb_room_still.aiff */,
+				9553E3462926850800B6C713 /* amb_panel_presence.wav */,
+				9553E3472926850800B6C713 /* amb_room_still.wav */,
+				9553E34E2926893000B6C713 /* sfx_panel_end.wav */,
+				9553E3482926850800B6C713 /* sfx_panel_failure.wav */,
+				9553E34C2926881400B6C713 /* sfx_panel_start.wav */,
 			);
 			path = SFX;
 			sourceTree = "<group>";
@@ -734,9 +743,8 @@
 				9533177028D3788C00E6E516 /* ch06-les-conseils-pour-les-jeunes.jenson in Resources */,
 				956D7DC929142A7D004F4A3C /* Stage1t.json in Resources */,
 				958E090E28F0B1D3009E6AD9 /* GameFlow.json in Resources */,
+				9553E3492926850800B6C713 /* amb_panel_presence.wav in Resources */,
 				95DB209328CFA9840079D624 /* ch05.md in Resources */,
-				9553E33F2926768700B6C713 /* amb_room_still.aiff in Resources */,
-				9553E34329267D2700B6C713 /* amb_panel_presence.aiff in Resources */,
 				9533176128D3787C00E6E516 /* ch01-mise-en-abyme.jenson in Resources */,
 				9597E1EF291D628E00291AFD /* EnvironmentBokeh.sks in Resources */,
 				95011E7128C77B1D00E511F3 /* Salmon Sans 9 Bold.ttf in Resources */,
@@ -746,6 +754,7 @@
 				9538C71028E7551600D506F0 /* Stage1.sks in Resources */,
 				95735C23291C1F16003947F5 /* TutorialSolveKeyLayout.sks in Resources */,
 				9538C70028E71DD900D506F0 /* Stage1.json in Resources */,
+				9553E34A2926850800B6C713 /* amb_room_still.wav in Resources */,
 				95DB209428CFA9840079D624 /* ch03.md in Resources */,
 				95AD566528EE246700051144 /* Generic_32x32.tsx in Resources */,
 				95735C1A291BE7B1003947F5 /* TutorialSwipeAction.sks in Resources */,
@@ -755,17 +764,20 @@
 				95DB209528CFA9840079D624 /* ch06.md in Resources */,
 				95AD566728EE246700051144 /* Stage1.tmx in Resources */,
 				9534015C29104BC700D8268C /* ch02-ecouter-la-vague.jenson in Resources */,
+				9553E34D2926881400B6C713 /* sfx_panel_start.wav in Resources */,
 				95011E6E28C77A4200E511F3 /* Salmon Mono 9 Regular.ttf in Resources */,
 				9533177628D3789100E6E516 /* epilogue.jenson in Resources */,
 				95DB209128CFA9840079D624 /* ch01.md in Resources */,
 				95AD566628EE246700051144 /* Room_Builder.tsx in Resources */,
 				95011E7328C77B9800E511F3 /* Salmon Serif 9 Regular.ttf in Resources */,
 				95011E6D28C77A4200E511F3 /* Salmon Serif 9 Bold.ttf in Resources */,
+				9553E34B2926850800B6C713 /* sfx_panel_failure.wav in Resources */,
 				950F6CE828C0EADA007ACB53 /* Assets.xcassets in Resources */,
 				958E090828F06786009E6AD9 /* Art_32x32.tsx in Resources */,
 				956B604128C7A2200031794C /* InfoPlist.strings in Resources */,
 				9597E1EC291D5F8B00291AFD /* PaintbrushEmitter.sks in Resources */,
 				9534015D29104BC700D8268C /* ch05-souriez-si-vous-plait.jenson in Resources */,
+				9553E34F2926893000B6C713 /* sfx_panel_end.wav in Resources */,
 				9534015B29104BC700D8268C /* ch04-un-jeu-maladroit.jenson in Resources */,
 				9534015E29104BC700D8268C /* ch03-la-subjectif-e.jenson in Resources */,
 			);
