@@ -45,6 +45,7 @@
 		9553E34B2926850800B6C713 /* sfx_panel_failure.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9553E3482926850800B6C713 /* sfx_panel_failure.wav */; };
 		9553E34D2926881400B6C713 /* sfx_panel_start.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9553E34C2926881400B6C713 /* sfx_panel_start.wav */; };
 		9553E34F2926893000B6C713 /* sfx_panel_end.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9553E34E2926893000B6C713 /* sfx_panel_end.wav */; };
+		9553E3512927C5E500B6C713 /* sfx_foot_wood.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9553E3502927C5E500B6C713 /* sfx_foot_wood.wav */; };
 		9564878D28EC756A00B4477D /* Paintbrush in Frameworks */ = {isa = PBXBuildFile; productRef = 9564878C28EC756A00B4477D /* Paintbrush */; };
 		956B604128C7A2200031794C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 956B604328C7A2200031794C /* InfoPlist.strings */; };
 		956B604628C7A4730031794C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956B604528C7A4730031794C /* AppDelegate.swift */; };
@@ -159,6 +160,7 @@
 		9553E3482926850800B6C713 /* sfx_panel_failure.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_panel_failure.wav; sourceTree = "<group>"; };
 		9553E34C2926881400B6C713 /* sfx_panel_start.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_panel_start.wav; sourceTree = "<group>"; };
 		9553E34E2926893000B6C713 /* sfx_panel_end.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_panel_end.wav; sourceTree = "<group>"; };
+		9553E3502927C5E500B6C713 /* sfx_foot_wood.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_foot_wood.wav; sourceTree = "<group>"; };
 		9564878A28EC755400B4477D /* Paintbrush */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Paintbrush; path = ../Paintbrush; sourceTree = "<group>"; };
 		956B604228C7A2200031794C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		956B604528C7A4730031794C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -382,6 +384,7 @@
 			children = (
 				9553E3462926850800B6C713 /* amb_panel_presence.wav */,
 				9553E3472926850800B6C713 /* amb_room_still.wav */,
+				9553E3502927C5E500B6C713 /* sfx_foot_wood.wav */,
 				9553E34E2926893000B6C713 /* sfx_panel_end.wav */,
 				9553E3482926850800B6C713 /* sfx_panel_failure.wav */,
 				9553E34C2926881400B6C713 /* sfx_panel_start.wav */,
@@ -734,6 +737,7 @@
 				95AD566A28EE25BD00051144 /* Room_Builder_32x32.png in Resources */,
 				95DB209228CFA9840079D624 /* ch07.md in Resources */,
 				95735C1F291C125F003947F5 /* TutorialTouchLayout.sks in Resources */,
+				9553E3512927C5E500B6C713 /* sfx_foot_wood.wav in Resources */,
 				95FC94EB2922BD8B00623FA1 /* GameEnvironmentPlayer.1.png in Resources */,
 				95E4F61F28EC9C61009627F6 /* Caslon Scene.sks in Resources */,
 				95FC94EA2922BD8B00623FA1 /* GameEnvironmentPlayer.plist in Resources */,

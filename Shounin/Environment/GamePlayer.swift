@@ -40,6 +40,7 @@ class GamePlayer: SKSpriteNode {
     private var isMoving = false
     private var atlas = TextureAtlas()
     private var frameRate: TimeInterval = 1 / 6
+    private var footsteps: SKAudioNode?
 
     /// Creates a player at a specified position.
     /// - Parameter position: The position in the SpriteKit scene to set the player at.
@@ -81,6 +82,7 @@ class GamePlayer: SKSpriteNode {
         walkingDirection = direction
         facingDirection = direction
         updateWalkSpriteAnimation()
+        createFootsteps()
         isMoving = true
     }
 
@@ -91,6 +93,23 @@ class GamePlayer: SKSpriteNode {
         walkingDirection = .stop
         updateIdleSpriteAnimation()
         isMoving = false
+        destroyFootsteps()
+    }
+
+    private func createFootsteps() {
+        guard footsteps == nil else { return }
+        let fsNode = SKAudioNode(fileNamed: "sfx_foot_wood")
+        fsNode.autoplayLooped = true
+        fsNode.isPositional = true
+        fsNode.run(.changeVolume(to: 0.1, duration: 0))
+        addChild(fsNode)
+        footsteps = fsNode
+    }
+
+    private func destroyFootsteps() {
+        guard let footsteps else { return }
+        footsteps.removeFromParent()
+        self.footsteps = nil
     }
 
     private func setPhysicsBody() {

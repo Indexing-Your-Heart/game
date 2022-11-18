@@ -126,6 +126,10 @@ class GameEnvironment: SKScene {
         setUpAmbientSoundscape()
     }
 
+    override func willMove(from view: SKView) {
+        childNode(withName: "baseAmbience")?.run(.changeVolume(to: 0, duration: 0.1))
+    }
+
     /// Displays the solving mode tutorial if it hasn't been displayed already.
     func displaySolvingTutorialIfNeeded() {
         guard shouldDisplaySolvingTutorialNode() else { return }
@@ -276,16 +280,9 @@ class GameEnvironment: SKScene {
 
     private func setUpAmbientSoundscape() {
         let audioNode = SKAudioNode(ambientTrackNamed: "amb_room_still", at: 0.1)
+        audioNode.name = "baseAmbience"
+        audioNode.run(.changeVolume(to: 0, duration: 0.1))
         addChild(audioNode)
-        let puzzlesCount = Float(environmentDelegate?.allPuzzleTriggers().count ?? 0)
-        environmentDelegate?.allPuzzleTriggers().forEach { position in
-            let ambientNode = SKAudioNode(fileNamed: "amb_panel_presence")
-            ambientNode.isPositional = true
-            ambientNode.autoplayLooped = true
-            ambientNode.position = position
-            ambientNode.run(.changeVolume(to: 0.1 / puzzlesCount, duration: 0))
-            addChild(ambientNode)
-        }
     }
 
     private func shouldDisplaySolvingTutorialNode() -> Bool {
