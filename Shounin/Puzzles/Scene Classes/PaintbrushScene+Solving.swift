@@ -38,10 +38,9 @@ extension PaintbrushScene: PaintbrushConfigurationDelegate {
 extension PaintbrushScene: PanelInteractionDelegate {
     func panelWillStartDrawing(at location: CGPoint) {
         guard let panelDrawingArea, panelDrawingArea.frame.contains(location) else { return }
-        if let start = createDrawingNode(at: location) {
-            let audioCue = SKAudioNode(soundEffectNamed: "sfx_panel_start")
-            audioCue.position = start.position
-            audioCue.playAndQueueFree()
+        createDrawingNode(at: location)
+        if let audioCue = childNode(withName: "sndStart") as? SKAudioNode {
+            audioCue.play()
         }
         childNode(withName: "//solveOverlay")?.isHidden = true
         showingTutorialHint = false
@@ -68,17 +67,17 @@ extension PaintbrushScene: PanelInteractionDelegate {
         guard let path = drawingDelegateNode?.childNode(withName: "witPath") as? SKShapeNode else { return }
         let pathColor = path.strokeColor.blended(withFraction: 0.7, of: .black) ?? path.strokeColor
         if prediction {
-            let successCue = SKAudioNode(soundEffectNamed: "sfx_panel_end")
-            successCue.position = path.position
-            successCue.playAndQueueFree()
+            if let audioCue = childNode(withName: "sndSuccess") as? SKAudioNode {
+                audioCue.play()
+            }
             return
         }
-        let failureCue = SKAudioNode(soundEffectNamed: "sfx_panel_failure")
-        failureCue.position = path.position
         path.run(
             .sequence([
-                .run {
-                    failureCue.playAndQueueFree()
+                .run { [weak self] in
+                    if let audioCue = self?.childNode(withName: "sndFail") as? SKAudioNode {
+                        audioCue.play()
+                    }
                 },
                 .repeat(
                     .sequence([

@@ -25,6 +25,7 @@ extension SKAudioNode {
     /// - Parameter volume: The node's volume when playing the ambience. Defaults to `0.2`.
     convenience init(ambientTrackNamed trackName: String, at volume: Float = 0.2) {
         self.init(fileNamed: trackName)
+        setVolume(to: volume)
         run(.changeVolume(to: volume, duration: 0))
         isPositional = false
         autoplayLooped = true
@@ -37,9 +38,14 @@ extension SKAudioNode {
     /// - Parameter volume: The node's volume when playing the sound effect. Defaults to `0.5`.
     convenience init(soundEffectNamed trackName: String, at volume: Float = 0.5) {
         self.init(fileNamed: trackName)
-        run(.changeVolume(to: volume, duration: 0))
+        setVolume(to: volume)
         isPositional = true
         autoplayLooped = false
+    }
+
+    func setVolume(to volume: Float) {
+        avAudioNode?.engine?.mainMixerNode.volume = volume
+        avAudioNode?.reset()
     }
 
     /// Plays an audio node and removes itself from the scene tree.
@@ -55,5 +61,11 @@ extension SKAudioNode {
     /// Plays the current audio stream without removing it from the scene tree.
     func play() {
         run(.play())
+    }
+
+    func reset() {
+        run(.run { [weak self] in
+            self?.avAudioNode?.reset()
+        })
     }
 }

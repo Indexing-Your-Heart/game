@@ -93,6 +93,7 @@ class GameEnvironment: SKScene {
     /// The tilemap layer that includes walkable tiles. This is used for pathfinding.
     var walkingLayer: SKTileLayer?
 
+    private var ambientSoundscape: SKAudioNode?
     private var preparedForFirstUse = false
 
     /// Creates a game environment from a given stage name.
@@ -124,10 +125,6 @@ class GameEnvironment: SKScene {
         }
         prepareSceneForFirstUseIfNecessary()
         setUpAmbientSoundscape()
-    }
-
-    override func willMove(from view: SKView) {
-        childNode(withName: "baseAmbience")?.run(.changeVolume(to: 0, duration: 0.1))
     }
 
     /// Displays the solving mode tutorial if it hasn't been displayed already.
@@ -274,14 +271,17 @@ class GameEnvironment: SKScene {
                     configure(for: realLayer)
                 }
             }
-            preparedForFirstUse = true
         }
+        preparedForFirstUse = true
     }
 
     private func setUpAmbientSoundscape() {
+        if let ambientSoundscape {
+            ambientSoundscape.play()
+            return
+        }
         let audioNode = SKAudioNode(ambientTrackNamed: "amb_room_still", at: 0.1)
-        audioNode.name = "baseAmbience"
-        audioNode.run(.changeVolume(to: 0, duration: 0.1))
+        ambientSoundscape = audioNode
         addChild(audioNode)
     }
 
