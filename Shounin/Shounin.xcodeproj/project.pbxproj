@@ -13,6 +13,9 @@
 		95011E6F28C77A4200E511F3 /* Salmon Sans 9 Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 950F6D0928C2757C007ACB53 /* Salmon Sans 9 Regular.ttf */; };
 		95011E7128C77B1D00E511F3 /* Salmon Sans 9 Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95011E7028C77B1300E511F3 /* Salmon Sans 9 Bold.ttf */; };
 		95011E7328C77B9800E511F3 /* Salmon Serif 9 Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95011E7228C77B9800E511F3 /* Salmon Serif 9 Regular.ttf */; };
+		95069C64292C0B3200BFD8D2 /* PaintbrushSceneSolvedStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95069C63292C0B3200BFD8D2 /* PaintbrushSceneSolvedStateDelegate.swift */; };
+		95069C67292C0C9200BFD8D2 /* PaintbrushScene+PaintbrushSceneSolvedStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95069C66292C0C9200BFD8D2 /* PaintbrushScene+PaintbrushSceneSolvedStateDelegate.swift */; };
+		95069C69292C0CF400BFD8D2 /* PaintbrushSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95069C68292C0CF400BFD8D2 /* PaintbrushSceneDelegate.swift */; };
 		950F634928E49C380018AB43 /* PaintbrushScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F634828E49C380018AB43 /* PaintbrushScene.swift */; };
 		950F635228E5D7B60018AB43 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 950F635128E5D7B60018AB43 /* Algorithms */; };
 		950F635528E62BC10018AB43 /* PaintbrushScene+Inputs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F635428E62BC10018AB43 /* PaintbrushScene+Inputs.swift */; };
@@ -126,6 +129,9 @@
 		95011E6B28C7796900E511F3 /* FontFamily.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontFamily.swift; sourceTree = "<group>"; };
 		95011E7028C77B1300E511F3 /* Salmon Sans 9 Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Sans 9 Bold.ttf"; sourceTree = "<group>"; };
 		95011E7228C77B9800E511F3 /* Salmon Serif 9 Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Serif 9 Regular.ttf"; sourceTree = "<group>"; };
+		95069C63292C0B3200BFD8D2 /* PaintbrushSceneSolvedStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintbrushSceneSolvedStateDelegate.swift; sourceTree = "<group>"; };
+		95069C66292C0C9200BFD8D2 /* PaintbrushScene+PaintbrushSceneSolvedStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaintbrushScene+PaintbrushSceneSolvedStateDelegate.swift"; sourceTree = "<group>"; };
+		95069C68292C0CF400BFD8D2 /* PaintbrushSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintbrushSceneDelegate.swift; sourceTree = "<group>"; };
 		950F634828E49C380018AB43 /* PaintbrushScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintbrushScene.swift; sourceTree = "<group>"; };
 		950F635428E62BC10018AB43 /* PaintbrushScene+Inputs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaintbrushScene+Inputs.swift"; sourceTree = "<group>"; };
 		950F6CC228C0EADA007ACB53 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -270,6 +276,24 @@
 				958E090B28F08695009E6AD9 /* SKTexture+URLInit.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		95069C62292C0ABB00BFD8D2 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				95069C63292C0B3200BFD8D2 /* PaintbrushSceneSolvedStateDelegate.swift */,
+				95069C68292C0CF400BFD8D2 /* PaintbrushSceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		95069C65292C0C7800BFD8D2 /* Responsibilities */ = {
+			isa = PBXGroup;
+			children = (
+				95E4F61B28EC8B27009627F6 /* PaintbrushScene+Solving.swift */,
+				95069C66292C0C9200BFD8D2 /* PaintbrushScene+PaintbrushSceneSolvedStateDelegate.swift */,
+			);
+			path = Responsibilities;
 			sourceTree = "<group>";
 		};
 		950F6CB928C0EAD8007ACB53 = {
@@ -450,6 +474,8 @@
 		957593A628E33CD900012AFC /* Puzzles */ = {
 			isa = PBXGroup;
 			children = (
+				95069C65292C0C7800BFD8D2 /* Responsibilities */,
+				95069C62292C0ABB00BFD8D2 /* Delegates */,
 				95E4F62228ECA039009627F6 /* Scene Classes */,
 				95E4F61A28EC8AD2009627F6 /* Validators */,
 				9538C70E28E7550500D506F0 /* Scenes */,
@@ -580,7 +606,6 @@
 			children = (
 				950F634828E49C380018AB43 /* PaintbrushScene.swift */,
 				950F635428E62BC10018AB43 /* PaintbrushScene+Inputs.swift */,
-				95E4F61B28EC8B27009627F6 /* PaintbrushScene+Solving.swift */,
 				956D7DC42914280A004F4A3C /* PaintbrushScene+PaintbrushProtractorSolver.swift */,
 			);
 			path = "Scene Classes";
@@ -831,6 +856,7 @@
 				958E091128F0B20C009E6AD9 /* FlowConfiguration.swift in Sources */,
 				95FFC8FB28EF3A2D009D1A15 /* GamePlayer.swift in Sources */,
 				95E4F62128EC9CD9009627F6 /* CaslonScene.swift in Sources */,
+				95069C69292C0CF400BFD8D2 /* PaintbrushSceneDelegate.swift in Sources */,
 				9553E3412926780500B6C713 /* SKAudioNode+AmbientNoise.swift in Sources */,
 				95C4654C29242DD90061CB2C /* SKPhysicsBody+Immovable.swift in Sources */,
 				95C46557292522180061CB2C /* GameEnvironmentCaslonDelegate.swift in Sources */,
@@ -843,6 +869,7 @@
 				95B7489228EDBA260013AFC7 /* CaslonScene+Caslon.swift in Sources */,
 				95C465512924336F0061CB2C /* SKLabelNode+Init.swift in Sources */,
 				95735C21291C13A6003947F5 /* SKScene+Application.swift in Sources */,
+				95069C64292C0B3200BFD8D2 /* PaintbrushSceneSolvedStateDelegate.swift in Sources */,
 				9538C70B28E7298200D506F0 /* SKShapeNode+Line.swift in Sources */,
 				9524434A28C781FB005F91E1 /* ContentView.swift in Sources */,
 				95C46555292436EB0061CB2C /* GameEnvironmentTutorialDelegate.swift in Sources */,
@@ -857,6 +884,7 @@
 				95C4655C292523A90061CB2C /* GameEnvironment+Tutorial.swift in Sources */,
 				95AD566128EE241400051144 /* GameEnvironment.swift in Sources */,
 				95FFC8FF28EF740B009D1A15 /* GameEnvironment+Inputs.swift in Sources */,
+				95069C67292C0C9200BFD8D2 /* PaintbrushScene+PaintbrushSceneSolvedStateDelegate.swift in Sources */,
 				95011E6C28C7796900E511F3 /* FontFamily.swift in Sources */,
 				958857B529115C5700318735 /* GameFlowViewModel.swift in Sources */,
 				956D7DC52914280A004F4A3C /* PaintbrushScene+PaintbrushProtractorSolver.swift in Sources */,

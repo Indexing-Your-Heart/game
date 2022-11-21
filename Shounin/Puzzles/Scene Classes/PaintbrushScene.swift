@@ -28,12 +28,13 @@ class PaintbrushScene: SKScene {
     var puzzle: PaintbrushStagePuzzleConfiguration? {
         didSet {
             guard let puzzle else { return }
-            didSetPuzzleConfiguration(to: puzzle)
+            sceneDelegate?.didSetPuzzleConfiguration(to: puzzle)
         }
     }
 
-    var solveState: PaintbrushSolveState = .unsolved
     var painting: SKSpriteNode?
+    var sceneDelegate: (any PaintbrushSceneDelegate)?
+    var solveState: PaintbrushSolveState = .unsolved
     var logger = Logger(label: "paintbrush")
 
     var showingTutorialHint = false {
@@ -46,6 +47,7 @@ class PaintbrushScene: SKScene {
     }
 
     override func didMove(to _: SKView) {
+        sceneDelegate = self
 #if DEBUG
         logger.logLevel = .debug
 #endif
@@ -54,7 +56,7 @@ class PaintbrushScene: SKScene {
         }
         childNode(withName: "//debugSprite")?.isHidden = true
         preparePuzzleForUse()
-        loadSolvedStateIfPresent()
+        sceneDelegate?.loadSolvedStateIfPresent()
         presentTutorialHintIfPresent()
 
         let ambience = SKAudioNode(ambientTrackNamed: "amb_panel_presence", at: 0.05)
@@ -128,7 +130,7 @@ class PaintbrushScene: SKScene {
         guard let previousScene = AppDelegate.observedState.previousEnvironment else { return }
         AppDelegate.observedState.previousPuzzleState = solveState
         if solveState == .solved {
-            savePlayerDrawingForReuse()
+            sceneDelegate?.savePlayerDrawingForReuse()
         }
 
         view?.presentScene(previousScene)
@@ -157,37 +159,5 @@ class PaintbrushScene: SKScene {
                 self?.readPuzzleConfiguration(from: name)
             }
         }
-    }
-
-    private func savePlayerDrawingForReuse() {
-        guard let puzzle, let image = getImageForSolvedCanvas() else { return }
-        image.write(to: "solved_" + puzzle.expectedResult)
-    }
-
-    private func loadSolvedStateIfPresent() {
-        guard let puzzle else { return }
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let firstPath = paths[0]
-        let url = firstPath.appending(path: "solved_\(puzzle.expectedResult)")
-            .appendingPathExtension("png")
-        _ = url.startAccessingSecurityScopedResource()
-        guard let solvedNode = childNode(withName: "//solveOverlay") as? SKSpriteNode else { return }
-        if let tex = SKTexture(contentsOf: url) {
-            solvedNode.texture = tex
-        } else {
-            solvedNode.isHidden = true
-        }
-        url.stopAccessingSecurityScopedResource()
-    }
-
-    func getImageForSolvedCanvas() -> CGImage? {
-        guard let panelDrawingArea, let drawingDelegateNode, solveState == .solved else { return nil }
-        panelDrawingArea.lineWidth = 0
-        guard let texture = view?.texture(from: drawingDelegateNode, crop: panelDrawingArea.frame) else {
-            panelDrawingArea.lineWidth = 4
-            return nil
-        }
-        panelDrawingArea.lineWidth = 4
-        return texture.cgImage()
     }
 }

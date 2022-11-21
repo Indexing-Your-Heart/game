@@ -20,13 +20,13 @@ import SpriteKit
 extension PaintbrushScene {
     override func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
         for touch in touches {
-            panelWillStartDrawing(at: touch.location(in: self))
+            sceneDelegate?.panelWillStartDrawing(at: touch.location(in: self))
         }
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with _: UIEvent?) {
         for touch in touches {
-            panelWillMoveDrawing(to: touch.location(in: self))
+            sceneDelegate?.panelWillMoveDrawing(to: touch.location(in: self))
         }
     }
 
@@ -41,7 +41,7 @@ extension PaintbrushScene {
                 nextPuzzle()
                 return
             }
-            panelWillFinishDrawing(at: location)
+            sceneDelegate?.panelWillFinishDrawing(at: location)
         }
         if let puzzle, getDrawingPoints()?.isEmpty == false {
             highlight(with: self, matching: puzzle)
@@ -50,7 +50,7 @@ extension PaintbrushScene {
 
     override func touchesCancelled(_ touches: Set<UITouch>, with _: UIEvent?) {
         for touch in touches {
-            panelWillFinishDrawing(at: touch.location(in: self))
+            sceneDelegate?.panelWillFinishDrawing(at: touch.location(in: self))
         }
     }
 }
@@ -60,11 +60,11 @@ extension PaintbrushScene {
 // Mouse-based event handling
 extension PaintbrushScene {
     override func mouseDown(with event: NSEvent) {
-        panelWillStartDrawing(at: event.location(in: self))
+        sceneDelegate?.panelWillStartDrawing(at: event.location(in: self))
     }
 
     override func mouseDragged(with event: NSEvent) {
-        panelWillMoveDrawing(to: event.location(in: self))
+        sceneDelegate?.panelWillMoveDrawing(to: event.location(in: self))
     }
 
     override func mouseUp(with event: NSEvent) {
@@ -77,7 +77,7 @@ extension PaintbrushScene {
             nextPuzzle()
             return
         }
-        panelWillFinishDrawing(at: event.location(in: self))
+        sceneDelegate?.panelWillFinishDrawing(at: event.location(in: self))
         if let puzzle, getDrawingPoints()?.isEmpty == false {
             highlight(with: self, matching: puzzle)
         }
