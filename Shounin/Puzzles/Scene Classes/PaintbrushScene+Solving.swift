@@ -39,7 +39,9 @@ extension PaintbrushScene: PanelInteractionDelegate {
     func panelWillStartDrawing(at location: CGPoint) {
         guard let panelDrawingArea, panelDrawingArea.frame.contains(location) else { return }
         if let start = createDrawingNode(at: location) {
-            start.run(.playSoundFileNamed("sfx_panel_start", waitForCompletion: false))
+            let audioCue = SKAudioNode(soundEffectNamed: "sfx_panel_start")
+            audioCue.position = start.position
+            audioCue.playAndQueueFree()
         }
         childNode(withName: "//solveOverlay")?.isHidden = true
         showingTutorialHint = false
@@ -66,12 +68,18 @@ extension PaintbrushScene: PanelInteractionDelegate {
         guard let path = drawingDelegateNode?.childNode(withName: "witPath") as? SKShapeNode else { return }
         let pathColor = path.strokeColor.blended(withFraction: 0.7, of: .black) ?? path.strokeColor
         if prediction {
-            path.run(.playSoundFileNamed("sfx_panel_end", waitForCompletion: false))
+            let successCue = SKAudioNode(soundEffectNamed: "sfx_panel_end")
+            successCue.position = path.position
+            successCue.playAndQueueFree()
             return
         }
+        let failureCue = SKAudioNode(soundEffectNamed: "sfx_panel_failure")
+        failureCue.position = path.position
         path.run(
             .sequence([
-                .playSoundFileNamed("sfx_panel_failure", waitForCompletion: false),
+                .run {
+                    failureCue.playAndQueueFree()
+                },
                 .repeat(
                     .sequence([
                         .colorizeStroke(to: .red, duration: 0.5),

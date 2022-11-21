@@ -85,13 +85,20 @@ extension CaslonScene: CaslonSceneRefreshDelegate {
                 logger.warning("Priority layer \(priority ?? 0) not found")
             }
         case .soundEffect:
-            if let sfxLayer = childNode(withName: "sfx") as? SKAudioNode {
-                sfxLayer.run(.playSoundFileNamed(resourceName, waitForCompletion: false))
-            }
+            let soundEffect = SKAudioNode(soundEffectNamed: resourceName)
+            soundEffect.position = self.position
+            soundEffect.play()
         case .music:
             if let musicLayer = childNode(withName: "music") as? SKAudioNode {
-                musicLayer.run(.playSoundFileNamed(resourceName, waitForCompletion: false))
+                musicLayer.runSequence {
+                    SKAction.changeVolume(to: 0, duration: 1)
+                    SKAction.run { musicLayer.removeFromParent() }
+                }
             }
+            let musicLayer = SKAudioNode(ambientTrackNamed: resourceName, at: 1)
+            musicLayer.name = "music"
+            addChild(musicLayer)
+            musicLayer.play()
         default:
             break
         }
