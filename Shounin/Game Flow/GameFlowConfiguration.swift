@@ -1,5 +1,5 @@
 //
-//  FlowConfiguration.swift
+//  GameFlowConfiguration.swift
 //  Indexing Your Heart
 //
 //  Created by Marquis Kurt on 10/7/22.
@@ -15,20 +15,20 @@
 
 import Foundation
 
-struct FlowConfiguration: Codable {
+struct GameFlowConfiguration: Codable {
     let stage: String
     let chapter: String
     let showTutorials: Bool?
 }
 
-extension FlowConfiguration {
-    static func load(from resourceName: String) -> [FlowConfiguration]? {
+extension GameFlowConfiguration {
+    static func load(from resourceName: String) -> [GameFlowConfiguration]? {
         guard let path = Bundle.main.path(forResource: resourceName, ofType: "json") else { return nil }
         let url = URL(filePath: path)
         guard let data = try? Data(contentsOf: url) else { return nil }
         let jsonDecoder = JSONDecoder()
         jsonDecoder.allowsJSON5 = true
         jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-        return try? jsonDecoder.decode([FlowConfiguration].self, from: data)
+        return try? jsonDecoder.decode([GameFlowConfiguration].self, from: data)
     }
 }

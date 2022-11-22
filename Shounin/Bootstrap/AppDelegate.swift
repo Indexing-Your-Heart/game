@@ -24,7 +24,7 @@ import Logging
 // MARK: - General App Delegation
 
 class AppDelegate: NSObject {
-    typealias GameFlow = [FlowConfiguration]
+    typealias GameFlow = [GameFlowConfiguration]
     static var observedState = GameEnvironmentState()
 
     @available(*, deprecated, message: "Use the AppDelegate.currentFlow view model instead.")
@@ -39,7 +39,7 @@ class AppDelegate: NSObject {
     }
 
     func fetchGameFlow() {
-        if let config = FlowConfiguration.load(from: "GameFlow") {
+        if let config = GameFlowConfiguration.load(from: "GameFlow") {
             AppDelegate.currentFlow.insert(blocks: config)
         }
     }

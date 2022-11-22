@@ -17,8 +17,8 @@ import Combine
 import Foundation
 
 class GameFlowViewModel: ObservableObject {
-    @Published private var blocks = [FlowConfiguration]()
-    var currentBlock: FlowConfiguration? { blocks.first }
+    @Published private var blocks = [GameFlowConfiguration]()
+    var currentBlock: GameFlowConfiguration? { blocks.first }
 
     enum InsertionState {
         case beforeCurrent
@@ -30,11 +30,11 @@ class GameFlowViewModel: ObservableObject {
         self.init(with: [])
     }
 
-    init(with blocks: [FlowConfiguration]) {
+    init(with blocks: [GameFlowConfiguration]) {
         self.blocks = blocks
     }
 
-    func insert(blocks: [FlowConfiguration], at insertionState: InsertionState = .afterLast) {
+    func insert(blocks: [GameFlowConfiguration], at insertionState: InsertionState = .afterLast) {
         switch insertionState {
         case .afterLast:
             self.blocks.append(contentsOf: blocks)
