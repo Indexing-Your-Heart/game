@@ -309,8 +309,8 @@
 				95AD565F28EE20F500051144 /* Environment */,
 				95011E6A28C7795300E511F3 /* Extensions */,
 				957593A628E33CD900012AFC /* Puzzles */,
+				95BD6CDC292D21370019D103 /* Settings */,
 				95C46548292427920061CB2C /* Utilities */,
-				950F6CF428C13BB2007ACB53 /* Views */,
 				95E4F61D28EC9C42009627F6 /* Visual Novel */,
 				950F6CF228C0EB20007ACB53 /* Platforms */,
 				956B604C28C7B7480031794C /* Testbench */,
@@ -347,9 +347,6 @@
 		950F6CF428C13BB2007ACB53 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9533175A28D371D600E6E516 /* Settings */,
-				950F6CF728C13BDF007ACB53 /* GameSceneView.swift */,
-				9533175828D36A2900E6E516 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -378,14 +375,6 @@
 				950F6D0728C2757C007ACB53 /* Salmon Serif 9 Bold.ttf */,
 			);
 			path = Fonts;
-			sourceTree = "<group>";
-		};
-		9533175A28D371D600E6E516 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				9533175B28D371E500E6E516 /* SettingsDebuggingView.swift */,
-			);
-			path = Settings;
 			sourceTree = "<group>";
 		};
 		9538C6FE28E71DBD00D506F0 /* Configurations */ = {
@@ -489,9 +478,11 @@
 		9598462D28EC7BD6009585DA /* Bootstrap */ = {
 			isa = PBXGroup;
 			children = (
-				950F6CFB28C13D6F007ACB53 /* Entrypoint.swift */,
-				9524434928C781FB005F91E1 /* ContentView.swift */,
+				950F6CF428C13BB2007ACB53 /* Views */,
 				956B604528C7A4730031794C /* AppDelegate.swift */,
+				9524434928C781FB005F91E1 /* ContentView.swift */,
+				950F6CFB28C13D6F007ACB53 /* Entrypoint.swift */,
+				950F6CF728C13BDF007ACB53 /* GameSceneView.swift */,
 			);
 			path = Bootstrap;
 			sourceTree = "<group>";
@@ -520,6 +511,24 @@
 				958857B429115C5700318735 /* GameFlowViewModel.swift */,
 			);
 			path = "Game Flow";
+			sourceTree = "<group>";
+		};
+		95BD6CDB292D211A0019D103 /* Responsibilities */ = {
+			isa = PBXGroup;
+			children = (
+				95E4F62628ECAE24009627F6 /* CaslonScene+Inputs.swift */,
+				95B7489128EDBA260013AFC7 /* CaslonScene+Caslon.swift */,
+			);
+			path = Responsibilities;
+			sourceTree = "<group>";
+		};
+		95BD6CDC292D21370019D103 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				9533175B28D371E500E6E516 /* SettingsDebuggingView.swift */,
+				9533175828D36A2900E6E516 /* SettingsView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		95C46548292427920061CB2C /* Utilities */ = {
@@ -594,6 +603,7 @@
 		95E4F61D28EC9C42009627F6 /* Visual Novel */ = {
 			isa = PBXGroup;
 			children = (
+				95BD6CDB292D211A0019D103 /* Responsibilities */,
 				95E4F62528ECAE10009627F6 /* Scene Classes */,
 				95E4F61E28EC9C61009627F6 /* Caslon Scene.sks */,
 				95E4F62328ECA05B009627F6 /* CaslonSceneView.swift */,
@@ -615,8 +625,6 @@
 			isa = PBXGroup;
 			children = (
 				95E4F62028EC9CD9009627F6 /* CaslonScene.swift */,
-				95E4F62628ECAE24009627F6 /* CaslonScene+Inputs.swift */,
-				95B7489128EDBA260013AFC7 /* CaslonScene+Caslon.swift */,
 			);
 			path = "Scene Classes";
 			sourceTree = "<group>";
