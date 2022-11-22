@@ -22,6 +22,8 @@
 		<string>LaunchScreenBackground</string>
 		<key>UIImageName</key>
 		<string>LaunchSplash</string>
+		<key>UIImageRespectsSafeAreaInsets</key>
+		<true/>
 	</dict>
 	<key>UsesGameCenterFeatures</key>
 	<false/>
