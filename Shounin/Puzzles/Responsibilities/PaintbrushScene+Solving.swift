@@ -72,23 +72,22 @@ extension PaintbrushScene: PanelInteractionDelegate {
             }
             return
         }
-        path.run(
-            .sequence([
-                .run { [weak self] in
-                    if let audioCue = self?.childNode(withName: "sndFail") as? SKAudioNode {
-                        audioCue.play()
-                    }
-                },
-                .repeat(
-                    .sequence([
-                        .colorizeStroke(to: .red, duration: 0.5),
-                        .colorizeStroke(to: pathColor, duration: 0.5)
-                    ]),
-                    count: 5
-                ),
-                .fadeOut(withDuration: 5.0)
-            ])
-        ) {
+
+        path.runSequence {
+            SKAction.run { [weak self] in
+                if let audioCue = self?.childNode(withName: "sndFail") as? SKAudioNode {
+                    audioCue.play()
+                }
+            }
+            SKAction.repeat(
+                .sequence([
+                    .colorizeStroke(to: .red, duration: 0.5),
+                    .colorizeStroke(to: pathColor, duration: 0.5)
+                ]),
+                count: 5
+            )
+            SKAction.fadeOut(withDuration: 5.0)
+        } completion: {
             path.removeFromParent()
         }
     }

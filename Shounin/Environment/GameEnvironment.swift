@@ -93,7 +93,6 @@ class GameEnvironment: SKScene {
     /// The tilemap layer that includes walkable tiles. This is used for pathfinding.
     var walkingLayer: SKTileLayer?
 
-    private var ambientSoundscape: SKAudioNode?
     private var preparedForFirstUse = false
 
     /// Creates a game environment from a given stage name.
@@ -141,10 +140,8 @@ class GameEnvironment: SKScene {
         tutorialImage.size = .init(squareOf: 76)
         let moveLabel = SKLabelNode(text: "Solve", with: "Salmon Sans 9 Bold", at: 45)
 
-        let carrier = SKCarrierNode()
-        carrier.alignmentAxis = .vertical
-        carrier.spacing = 32
-        carrier.addArrangedChildren(tutorialImage, moveLabel)
+        let carrier = CSStackNode(alignment: .vertical, spacing: 32)
+        carrier.addArrangedChildren([tutorialImage, moveLabel])
 
         environmentDelegate?.setUpTutorialNode(tutorial: carrier)
         if let puzzlePoint = environmentDelegate?.getClosestPuzzlePosition(tolerance: 128) {
@@ -216,7 +213,7 @@ class GameEnvironment: SKScene {
         for tile in layer.children {
             guard let spriteTile = tile as? SKSpriteNode else { continue }
             spriteTile.configureForPixelArt()
-            spriteTile.physicsBody = .immovable(with: spriteTile.size)
+            spriteTile.physicsBody = .immovableObject(sized: spriteTile.size)
         }
     }
 
@@ -276,13 +273,9 @@ class GameEnvironment: SKScene {
     }
 
     private func setUpAmbientSoundscape() {
-        if let ambientSoundscape {
-            ambientSoundscape.play()
-            return
+        buildSoundscape(listeningTo: player) {
+            Ambience(name: "amb_room_still", volume: 0.1)
         }
-        let audioNode = SKAudioNode(ambientTrackNamed: "amb_room_still", at: 0.1)
-        ambientSoundscape = audioNode
-        addChild(audioNode)
     }
 
     private func shouldDisplaySolvingTutorialNode() -> Bool {

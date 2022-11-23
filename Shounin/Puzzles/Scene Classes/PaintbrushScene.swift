@@ -59,8 +59,9 @@ class PaintbrushScene: SKScene {
         sceneDelegate?.loadSolvedStateIfPresent()
         presentTutorialHintIfPresent()
 
-        let ambience = SKAudioNode(ambientTrackNamed: "amb_panel_presence", at: 0.05)
-        addChild(ambience)
+        buildSoundscape {
+            Ambience(name: "amb_panel_presence", volume: 0.05)
+        }
     }
 
     func enableDebuggingFeatures() {

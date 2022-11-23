@@ -42,7 +42,7 @@
 		9538C70D28E7370C00D506F0 /* SKAction+ColorizeStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C70C28E7370C00D506F0 /* SKAction+ColorizeStroke.swift */; };
 		9538C71028E7551600D506F0 /* Stage1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9538C70F28E7551600D506F0 /* Stage1.sks */; };
 		9538C71228E756BE00D506F0 /* PaintbrushDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C71128E756BE00D506F0 /* PaintbrushDemoView.swift */; };
-		9553E3412926780500B6C713 /* SKAudioNode+AmbientNoise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9553E3402926780500B6C713 /* SKAudioNode+AmbientNoise.swift */; };
+		9553E3412926780500B6C713 /* SKAudioNode+Volume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9553E3402926780500B6C713 /* SKAudioNode+Volume.swift */; };
 		9553E3492926850800B6C713 /* amb_panel_presence.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9553E3462926850800B6C713 /* amb_panel_presence.wav */; };
 		9553E34A2926850800B6C713 /* amb_room_still.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9553E3472926850800B6C713 /* amb_room_still.wav */; };
 		9553E34B2926850800B6C713 /* sfx_panel_failure.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9553E3482926850800B6C713 /* sfx_panel_failure.wav */; };
@@ -58,7 +58,6 @@
 		95735C1A291BE7B1003947F5 /* TutorialSwipeAction.sks in Resources */ = {isa = PBXBuildFile; fileRef = 95735C19291BE7B1003947F5 /* TutorialSwipeAction.sks */; };
 		95735C1D291C0A02003947F5 /* TutorialKeyLayout.sks in Resources */ = {isa = PBXBuildFile; fileRef = 95735C1C291C0A02003947F5 /* TutorialKeyLayout.sks */; };
 		95735C1F291C125F003947F5 /* TutorialTouchLayout.sks in Resources */ = {isa = PBXBuildFile; fileRef = 95735C1E291C125F003947F5 /* TutorialTouchLayout.sks */; };
-		95735C21291C13A6003947F5 /* SKScene+Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95735C20291C13A6003947F5 /* SKScene+Application.swift */; };
 		95735C23291C1F16003947F5 /* TutorialSolveKeyLayout.sks in Resources */ = {isa = PBXBuildFile; fileRef = 95735C22291C1F16003947F5 /* TutorialSolveKeyLayout.sks */; };
 		958857B529115C5700318735 /* GameFlowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958857B429115C5700318735 /* GameFlowViewModel.swift */; };
 		958E090828F06786009E6AD9 /* Art_32x32.tsx in Resources */ = {isa = PBXBuildFile; fileRef = 958E090728F06786009E6AD9 /* Art_32x32.tsx */; };
@@ -80,8 +79,6 @@
 		95B7489228EDBA260013AFC7 /* CaslonScene+Caslon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7489128EDBA260013AFC7 /* CaslonScene+Caslon.swift */; };
 		95B748A128EDD7FC0013AFC7 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 95B748A028EDD7FC0013AFC7 /* README.txt */; };
 		95C4654729241F7F0061CB2C /* GameEnvironment+Puzzles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C4654629241F7F0061CB2C /* GameEnvironment+Puzzles.swift */; };
-		95C4654A292427AC0061CB2C /* SKCarrierNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C46549292427AC0061CB2C /* SKCarrierNode.swift */; };
-		95C4654C29242DD90061CB2C /* SKPhysicsBody+Immovable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C4654B29242DD90061CB2C /* SKPhysicsBody+Immovable.swift */; };
 		95C465512924336F0061CB2C /* SKLabelNode+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C465502924336F0061CB2C /* SKLabelNode+Init.swift */; };
 		95C46553292434D90061CB2C /* GameEnvironmentPuzzleDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C46552292434D90061CB2C /* GameEnvironmentPuzzleDelegate.swift */; };
 		95C46555292436EB0061CB2C /* GameEnvironmentTutorialDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C46554292436EB0061CB2C /* GameEnvironmentTutorialDelegate.swift */; };
@@ -160,7 +157,7 @@
 		9538C70C28E7370C00D506F0 /* SKAction+ColorizeStroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKAction+ColorizeStroke.swift"; sourceTree = "<group>"; };
 		9538C70F28E7551600D506F0 /* Stage1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Stage1.sks; sourceTree = "<group>"; };
 		9538C71128E756BE00D506F0 /* PaintbrushDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintbrushDemoView.swift; sourceTree = "<group>"; };
-		9553E3402926780500B6C713 /* SKAudioNode+AmbientNoise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKAudioNode+AmbientNoise.swift"; sourceTree = "<group>"; };
+		9553E3402926780500B6C713 /* SKAudioNode+Volume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKAudioNode+Volume.swift"; sourceTree = "<group>"; };
 		9553E3462926850800B6C713 /* amb_panel_presence.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = amb_panel_presence.wav; sourceTree = "<group>"; };
 		9553E3472926850800B6C713 /* amb_room_still.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = amb_room_still.wav; sourceTree = "<group>"; };
 		9553E3482926850800B6C713 /* sfx_panel_failure.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_panel_failure.wav; sourceTree = "<group>"; };
@@ -177,7 +174,6 @@
 		95735C19291BE7B1003947F5 /* TutorialSwipeAction.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TutorialSwipeAction.sks; sourceTree = "<group>"; };
 		95735C1C291C0A02003947F5 /* TutorialKeyLayout.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TutorialKeyLayout.sks; sourceTree = "<group>"; };
 		95735C1E291C125F003947F5 /* TutorialTouchLayout.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TutorialTouchLayout.sks; sourceTree = "<group>"; };
-		95735C20291C13A6003947F5 /* SKScene+Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKScene+Application.swift"; sourceTree = "<group>"; };
 		95735C22291C1F16003947F5 /* TutorialSolveKeyLayout.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TutorialSolveKeyLayout.sks; sourceTree = "<group>"; };
 		958857B429115C5700318735 /* GameFlowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFlowViewModel.swift; sourceTree = "<group>"; };
 		958E090728F06786009E6AD9 /* Art_32x32.tsx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Art_32x32.tsx; sourceTree = "<group>"; };
@@ -200,8 +196,6 @@
 		95BCB92728C282E0004AFDA3 /* Indexing-Your-Heart-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Indexing-Your-Heart-Info.plist"; sourceTree = "<group>"; };
 		95BCB92828C28330004AFDA3 /* Indexing Your Heart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Indexing Your Heart.entitlements"; sourceTree = "<group>"; };
 		95C4654629241F7F0061CB2C /* GameEnvironment+Puzzles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameEnvironment+Puzzles.swift"; sourceTree = "<group>"; };
-		95C46549292427AC0061CB2C /* SKCarrierNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKCarrierNode.swift; sourceTree = "<group>"; };
-		95C4654B29242DD90061CB2C /* SKPhysicsBody+Immovable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKPhysicsBody+Immovable.swift"; sourceTree = "<group>"; };
 		95C465502924336F0061CB2C /* SKLabelNode+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKLabelNode+Init.swift"; sourceTree = "<group>"; };
 		95C46552292434D90061CB2C /* GameEnvironmentPuzzleDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEnvironmentPuzzleDelegate.swift; sourceTree = "<group>"; };
 		95C46554292436EB0061CB2C /* GameEnvironmentTutorialDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEnvironmentTutorialDelegate.swift; sourceTree = "<group>"; };
@@ -267,11 +261,9 @@
 				95011E6B28C7796900E511F3 /* FontFamily.swift */,
 				95E97AA928EC783400C9B71C /* PaintbrushSolverError+LocalizedError.swift */,
 				9538C70C28E7370C00D506F0 /* SKAction+ColorizeStroke.swift */,
-				9553E3402926780500B6C713 /* SKAudioNode+AmbientNoise.swift */,
+				9553E3402926780500B6C713 /* SKAudioNode+Volume.swift */,
 				9538C70828E724A500D506F0 /* SKColor+Hex.swift */,
 				95C465502924336F0061CB2C /* SKLabelNode+Init.swift */,
-				95C4654B29242DD90061CB2C /* SKPhysicsBody+Immovable.swift */,
-				95735C20291C13A6003947F5 /* SKScene+Application.swift */,
 				9538C70A28E7298200D506F0 /* SKShapeNode+Line.swift */,
 				958E090B28F08695009E6AD9 /* SKTexture+URLInit.swift */,
 			);
@@ -310,7 +302,6 @@
 				95011E6A28C7795300E511F3 /* Extensions */,
 				957593A628E33CD900012AFC /* Puzzles */,
 				95BD6CDC292D21370019D103 /* Settings */,
-				95C46548292427920061CB2C /* Utilities */,
 				95E4F61D28EC9C42009627F6 /* Visual Novel */,
 				950F6CF228C0EB20007ACB53 /* Platforms */,
 				956B604C28C7B7480031794C /* Testbench */,
@@ -529,14 +520,6 @@
 				9533175828D36A2900E6E516 /* SettingsView.swift */,
 			);
 			path = Settings;
-			sourceTree = "<group>";
-		};
-		95C46548292427920061CB2C /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				95C46549292427AC0061CB2C /* SKCarrierNode.swift */,
-			);
-			path = Utilities;
 			sourceTree = "<group>";
 		};
 		95C4654F292430890061CB2C /* Delegates */ = {
@@ -865,8 +848,7 @@
 				95FFC8FB28EF3A2D009D1A15 /* GamePlayer.swift in Sources */,
 				95E4F62128EC9CD9009627F6 /* CaslonScene.swift in Sources */,
 				95069C69292C0CF400BFD8D2 /* PaintbrushSceneDelegate.swift in Sources */,
-				9553E3412926780500B6C713 /* SKAudioNode+AmbientNoise.swift in Sources */,
-				95C4654C29242DD90061CB2C /* SKPhysicsBody+Immovable.swift in Sources */,
+				9553E3412926780500B6C713 /* SKAudioNode+Volume.swift in Sources */,
 				95C46557292522180061CB2C /* GameEnvironmentCaslonDelegate.swift in Sources */,
 				9533175928D36A2900E6E516 /* SettingsView.swift in Sources */,
 				95E97AAA28EC783400C9B71C /* PaintbrushSolverError+LocalizedError.swift in Sources */,
@@ -876,7 +858,6 @@
 				950F634928E49C380018AB43 /* PaintbrushScene.swift in Sources */,
 				95B7489228EDBA260013AFC7 /* CaslonScene+Caslon.swift in Sources */,
 				95C465512924336F0061CB2C /* SKLabelNode+Init.swift in Sources */,
-				95735C21291C13A6003947F5 /* SKScene+Application.swift in Sources */,
 				95069C64292C0B3200BFD8D2 /* PaintbrushSceneSolvedStateDelegate.swift in Sources */,
 				9538C70B28E7298200D506F0 /* SKShapeNode+Line.swift in Sources */,
 				9524434A28C781FB005F91E1 /* ContentView.swift in Sources */,
@@ -897,7 +878,6 @@
 				958857B529115C5700318735 /* GameFlowViewModel.swift in Sources */,
 				956D7DC52914280A004F4A3C /* PaintbrushScene+PaintbrushProtractorSolver.swift in Sources */,
 				9533175C28D371E500E6E516 /* SettingsDebuggingView.swift in Sources */,
-				95C4654A292427AC0061CB2C /* SKCarrierNode.swift in Sources */,
 				95E4F61C28EC8B27009627F6 /* PaintbrushScene+Solving.swift in Sources */,
 				95FC94F12922CECD00623FA1 /* GameEnvironmentNavigationDelegate.swift in Sources */,
 				95FC94EF2922C30700623FA1 /* GameEnvironmentPlayerAtlas.swift in Sources */,

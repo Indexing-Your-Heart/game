@@ -1,8 +1,8 @@
 //
-//  SKPhysicsBody+Immovable.swift
+//  SKAudioNode+Volume.swift
 //  Indexing Your Heart
 //
-//  Created by Marquis Kurt on 11/15/22.
+//  Created by Marquis Kurt on 11/17/22.
 //
 //  This file is part of Indexing Your Heart.
 //
@@ -12,18 +12,19 @@
 //
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
-//
 
 import SpriteKit
+import CranberrySprite
 
-extension SKPhysicsBody {
-    /// Creates an immovable object physics body.
-    /// - Parameter size: The size of the physics body's bounds.
-    static func immovable(with size: CGSize) -> SKPhysicsBody {
-        let body = SKPhysicsBody(rectangleOf: size)
-        body.affectedByGravity = false
-        body.allowsRotation = false
-        body.isDynamic = false
-        return body
+extension SKAudioNode {
+    func setVolume(to volume: Float) {
+        avAudioNode?.engine?.mainMixerNode.volume = volume
+        avAudioNode?.reset()
+    }
+
+    func reset() {
+        run(.run { [weak self] in
+            self?.avAudioNode?.reset()
+        })
     }
 }
