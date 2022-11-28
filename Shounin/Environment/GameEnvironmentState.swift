@@ -19,7 +19,7 @@ import Paintbrush
 /// A class that contains a game environment state.
 class GameEnvironmentState {
     /// The previous game environment the player has played in.
-    var previousEnvironment: GameEnvironment?
+    weak var previousEnvironment: GameEnvironment?
 
     /// The solve status of the previous puzzle.
     var previousPuzzleState: PaintbrushSolveState?

@@ -114,6 +114,10 @@ class GameEnvironment: SKScene {
 
     override func didMove(to view: SKView) {
         super.didMove(to: view)
+        if AppDelegate.observedState.previousEnvironment == self {
+            AppDelegate.observedState.previousEnvironment = nil
+        }
+
         if AppDelegate.observedState.previousPuzzleState == .solved,
            let puzzleTrigger = AppDelegate.observedState.puzzleTriggerName
         { // swiftlint:disable:this opening_brace

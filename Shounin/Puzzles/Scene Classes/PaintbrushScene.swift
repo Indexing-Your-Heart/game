@@ -33,7 +33,7 @@ class PaintbrushScene: SKScene {
     }
 
     var painting: SKSpriteNode?
-    var sceneDelegate: (any PaintbrushSceneDelegate)?
+    weak var sceneDelegate: (any PaintbrushSceneDelegate)?
     var solveState: PaintbrushSolveState = .unsolved
     var logger = Logger(label: "paintbrush")
 
@@ -44,6 +44,24 @@ class PaintbrushScene: SKScene {
     convenience init?(fileNamed file: String, debug debugMode: Bool = false) {
         self.init(fileNamed: file)
         childNode(withName: "//debugSprite")?.isHidden = !debugMode
+    }
+
+    override func willMove(from view: SKView) {
+        panelDrawingArea = nil
+        drawingDelegateNode = nil
+        stageConfiguration = nil
+        painting = nil
+        sceneDelegate?.stageConfiguration = nil
+        sceneDelegate?.puzzle = nil
+        sceneDelegate?.drawingDelegateNode = nil
+        sceneDelegate?.panelDrawingArea = nil
+        sceneDelegate = nil
+        puzzle = nil
+        apply(recursively: true) { child in
+            child.removeAllActions()
+            child.removeFromParent()
+        }
+        removeAllActions()
     }
 
     override func didMove(to _: SKView) {
@@ -104,13 +122,16 @@ class PaintbrushScene: SKScene {
         guard let panelDrawingArea, panelDrawingArea.frame.contains(location) else { return nil }
         let drawPoint = SKEmitterNode(fileNamed: "PaintbrushEmitter") ?? SKNode()
         drawPoint.position = location
+        drawPoint.zPosition = 5
         drawingDelegateNode?.addChild(drawPoint)
         return drawPoint
     }
 
     /// Returns the drawn path nodes from the player.
     func getDrawingPoints() -> [SKNode]? {
-        drawingDelegateNode?.children.filter { $0 != panelDrawingArea }
+        drawingDelegateNode?.children.filter { child in
+            ![panelDrawingArea, childNode(withName: "//tutorialOverlay")].contains(child)
+        }
     }
 
     /// Loads the next puzzle in the set.

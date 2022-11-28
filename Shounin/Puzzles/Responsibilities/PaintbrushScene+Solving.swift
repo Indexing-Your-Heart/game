@@ -30,6 +30,17 @@ extension PaintbrushScene: PaintbrushConfigurationDelegate {
         }
         painting.texture = .init(imageNamed: puzzleConfig.paintingName)
         painting.configureForPixelArt()
+
+        let tutorialOverlay = drawingDelegateNode?.childNode(withName: "tutorialOverlay") as? SKSpriteNode
+
+        if let overlayName = puzzleConfig.tutorialOverlay, let overlay = tutorialOverlay {
+            overlay.texture = SKTexture(imageNamed: overlayName)
+            if puzzleConfig.paintingName.isEmpty {
+                overlay.position = .zero
+            }
+        } else {
+            drawingDelegateNode?.childNode(withName: "tutorialOverlay")?.removeFromParent()
+        }
     }
 }
 
@@ -57,6 +68,7 @@ extension PaintbrushScene: PanelInteractionDelegate {
     func panelWillHighlight(onPredictionStatus prediction: Bool) {
         solveState = prediction ? .solved : .failure
         guard let path = drawingDelegateNode?.childNode(withName: "witPath") as? SKShapeNode else { return }
+        path.zPosition = 5
         if prediction {
             path.strokeColor = SKColor(hexString: puzzle?.palette.panelLineColor ?? "#000000")
             return

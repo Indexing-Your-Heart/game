@@ -39,7 +39,8 @@ extension GameEnvironment: GameEnvironmentPuzzleDelegate {
                 let metapuzzle = PaintbrushStagePuzzleConfiguration(
                     paintingName: "",
                     expectedResult: metaConfig.expectedResult,
-                    palette: metaConfig.palette
+                    palette: metaConfig.palette,
+                    overlay: metaConfig.tutorialOverlay
                 )
                 puzzle = metapuzzle
             } else {
