@@ -37,7 +37,7 @@
 		9534015D29104BC700D8268C /* ch05-souriez-si-vous-plait.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 9534015629104BC700D8268C /* ch05-souriez-si-vous-plait.jenson */; };
 		9534015E29104BC700D8268C /* ch03-la-subjectif-e.jenson in Resources */ = {isa = PBXBuildFile; fileRef = 9534015829104BC700D8268C /* ch03-la-subjectif-e.jenson */; };
 		9538C70028E71DD900D506F0 /* Stage1.json in Resources */ = {isa = PBXBuildFile; fileRef = 9538C6FF28E71DD900D506F0 /* Stage1.json */; };
-		9538C70928E724A500D506F0 /* SKColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C70828E724A500D506F0 /* SKColor+Hex.swift */; };
+		9538C70928E724A500D506F0 /* SKColor+Blending.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C70828E724A500D506F0 /* SKColor+Blending.swift */; };
 		9538C70B28E7298200D506F0 /* SKShapeNode+Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C70A28E7298200D506F0 /* SKShapeNode+Line.swift */; };
 		9538C70D28E7370C00D506F0 /* SKAction+ColorizeStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C70C28E7370C00D506F0 /* SKAction+ColorizeStroke.swift */; };
 		9538C71028E7551600D506F0 /* Stage1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9538C70F28E7551600D506F0 /* Stage1.sks */; };
@@ -152,7 +152,7 @@
 		9534015729104BC700D8268C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = "Base.lproj/ch05-souriez-si-vous-plait.jenson"; sourceTree = "<group>"; };
 		9534015929104BC700D8268C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base; path = "Base.lproj/ch03-la-subjectif-e.jenson"; sourceTree = "<group>"; };
 		9538C6FF28E71DD900D506F0 /* Stage1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Stage1.json; sourceTree = "<group>"; };
-		9538C70828E724A500D506F0 /* SKColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKColor+Hex.swift"; sourceTree = "<group>"; };
+		9538C70828E724A500D506F0 /* SKColor+Blending.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKColor+Blending.swift"; sourceTree = "<group>"; };
 		9538C70A28E7298200D506F0 /* SKShapeNode+Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKShapeNode+Line.swift"; sourceTree = "<group>"; };
 		9538C70C28E7370C00D506F0 /* SKAction+ColorizeStroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKAction+ColorizeStroke.swift"; sourceTree = "<group>"; };
 		9538C70F28E7551600D506F0 /* Stage1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Stage1.sks; sourceTree = "<group>"; };
@@ -262,7 +262,7 @@
 				95E97AA928EC783400C9B71C /* PaintbrushSolverError+LocalizedError.swift */,
 				9538C70C28E7370C00D506F0 /* SKAction+ColorizeStroke.swift */,
 				9553E3402926780500B6C713 /* SKAudioNode+Volume.swift */,
-				9538C70828E724A500D506F0 /* SKColor+Hex.swift */,
+				9538C70828E724A500D506F0 /* SKColor+Blending.swift */,
 				95C465502924336F0061CB2C /* SKLabelNode+Init.swift */,
 				9538C70A28E7298200D506F0 /* SKShapeNode+Line.swift */,
 				958E090B28F08695009E6AD9 /* SKTexture+URLInit.swift */,
@@ -881,7 +881,7 @@
 				95E4F61C28EC8B27009627F6 /* PaintbrushScene+Solving.swift in Sources */,
 				95FC94F12922CECD00623FA1 /* GameEnvironmentNavigationDelegate.swift in Sources */,
 				95FC94EF2922C30700623FA1 /* GameEnvironmentPlayerAtlas.swift in Sources */,
-				9538C70928E724A500D506F0 /* SKColor+Hex.swift in Sources */,
+				9538C70928E724A500D506F0 /* SKColor+Blending.swift in Sources */,
 				950F6CFC28C13D6F007ACB53 /* Entrypoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

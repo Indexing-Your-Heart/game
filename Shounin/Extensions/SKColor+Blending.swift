@@ -17,36 +17,6 @@ import SpriteKit
 import SwiftUI
 
 public extension SKColor {
-    /// Initializes a SpriteColor from a hexadecimal string, or clear if the conversion fails.
-    ///
-    /// Adapted from Paul Hudson's implementation on _Hacking with Swift_.
-    /// https://www.hackingwithswift.com/example-code/uicolor/how-to-convert-a-hex-color-to-a-uicolor
-    ///
-    /// - Parameter hexString: The hexadecimal string representing the color to initialize from.
-    convenience init(hexString: String) {
-        guard hexString.starts(with: "#") else {
-            self.init(.clear)
-            return
-        }
-        let r, g, b: CGFloat // swiftlint:disable:this identifier_name
-        let startingIdx = hexString.index(hexString.startIndex, offsetBy: 1)
-        let colorContents = String(hexString[startingIdx...])
-        guard colorContents.count == 6 else {
-            self.init(.clear)
-            return
-        }
-        let scanner = Scanner(string: colorContents)
-        var hexNumber: UInt64 = 0
-        if scanner.scanHexInt64(&hexNumber) {
-            r = CGFloat((hexNumber & 0xFF0000) >> 16) / 255
-            g = CGFloat((hexNumber & 0x00FF00) >> 8) / 255
-            b = CGFloat(hexNumber & 0x0000FF) / 255
-            self.init(Color(cgColor: .init(red: r, green: g, blue: b, alpha: 1)))
-            return
-        }
-        self.init(.clear)
-    }
-
 #if os(iOS)
     /// Creates a new color object whose component values are a weighted sum of the current color object and the
     /// specified color object's.
