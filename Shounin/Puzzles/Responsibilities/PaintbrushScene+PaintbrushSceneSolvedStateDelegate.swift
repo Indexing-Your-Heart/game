@@ -16,6 +16,7 @@
 import Foundation
 import SpriteKit
 import Paintbrush
+import Bunker
 
 extension PaintbrushScene: PaintbrushSceneSolvedStateDelegate {
     func savePlayerDrawingForReuse() {
@@ -29,14 +30,14 @@ extension PaintbrushScene: PaintbrushSceneSolvedStateDelegate {
         let firstPath = paths[0]
         let url = firstPath.appending(path: "solved_\(puzzle.expectedResult)")
             .appendingPathExtension("png")
-        _ = url.startAccessingSecurityScopedResource()
-        guard let solvedNode = childNode(withName: "//solveOverlay") as? SKSpriteNode else { return }
-        if let tex = SKTexture(contentsOf: url) {
-            solvedNode.texture = tex
-        } else {
-            solvedNode.isHidden = true
+        url.accessInSecurityScopedResource { [weak self] in
+            guard let solvedNode = self?.childNode(withName: "//solveOverlay") as? SKSpriteNode else { return }
+            if let tex = SKTexture(contentsOf: url) {
+                solvedNode.texture = tex
+            } else {
+                solvedNode.isHidden = true
+            }
         }
-        url.stopAccessingSecurityScopedResource()
     }
 
     func getImageForSolvedCanvas() -> CGImage? {

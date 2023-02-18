@@ -6,7 +6,7 @@
       "location" : "https://github.com/alicerunsonfedora/bunker.git",
       "state" : {
         "branch" : "root",
-        "revision" : "a60d1816cc23de85496d901b12c4057561eb0713"
+        "revision" : "580a61b6fc576a9014f94b380758720967c8f087"
       }
     },
     {
@@ -50,8 +50,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-log",
       "state" : {
-        "revision" : "6fe203dc33195667ce1759bf0182975e4653ba1c",
-        "version" : "1.4.4"
+        "revision" : "32e8d724467f8fe623624570367e3d50c5638e46",
+        "version" : "1.5.2"
       }
     },
     {

@@ -13,6 +13,7 @@
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
 
+import Bunker
 import CoreGraphics
 import ImageIO
 import UniformTypeIdentifiers
@@ -47,11 +48,11 @@ extension CGImage {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let firstPath = paths[0]
         let url = firstPath.appending(path: filename).appendingPathExtension("png")
-        _ = url.startAccessingSecurityScopedResource()
-        if let dest = CGImageDestinationCreateWithURL(url as CFURL, UTType.png.identifier as CFString, 1, nil) {
-            CGImageDestinationAddImage(dest, self, nil)
-            CGImageDestinationFinalize(dest)
+        url.accessInSecurityScopedResource {
+            if let dest = CGImageDestinationCreateWithURL(url as CFURL, UTType.png.identifier as CFString, 1, nil) {
+                CGImageDestinationAddImage(dest, self, nil)
+                CGImageDestinationFinalize(dest)
+            }
         }
-        url.stopAccessingSecurityScopedResource()
     }
 }
