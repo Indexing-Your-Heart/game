@@ -69,7 +69,7 @@ class PaintbrushScene: SKScene {
 #if DEBUG
         logger.logLevel = .debug
 #endif
-        let paths = ["//exitButton", "//delegate/panelBacking", "//paintingFrame"]
+        let paths = ["//exitButton", "//panelBacking", "//paintingFrame"]
         paths.map(childNode).map { $0 as? SKSpriteNode }
             .forEach { $0?.configureForPixelArt() }
 
