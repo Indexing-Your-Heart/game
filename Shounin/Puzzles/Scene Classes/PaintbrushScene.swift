@@ -69,9 +69,10 @@ class PaintbrushScene: SKScene {
 #if DEBUG
         logger.logLevel = .debug
 #endif
-        if let exitButton = childNode(withName: "//exitButton") as? SKSpriteNode {
-            exitButton.configureForPixelArt()
-        }
+        let paths = ["//exitButton", "//delegate/panelBacking", "//paintingFrame"]
+        paths.map(childNode).map { $0 as? SKSpriteNode }
+            .forEach { $0?.configureForPixelArt() }
+
         childNode(withName: "//debugSprite")?.isHidden = true
         preparePuzzleForUse()
         sceneDelegate?.loadSolvedStateIfPresent()

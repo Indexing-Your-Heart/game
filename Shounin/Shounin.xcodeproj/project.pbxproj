@@ -336,13 +336,6 @@
 			name = Platforms;
 			sourceTree = "<group>";
 		};
-		950F6CF428C13BB2007ACB53 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		950F6D0528C274C3007ACB53 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -471,7 +464,6 @@
 		9598462D28EC7BD6009585DA /* Bootstrap */ = {
 			isa = PBXGroup;
 			children = (
-				950F6CF428C13BB2007ACB53 /* Views */,
 				956B604528C7A4730031794C /* AppDelegate.swift */,
 				9524434928C781FB005F91E1 /* ContentView.swift */,
 				950F6CFB28C13D6F007ACB53 /* Entrypoint.swift */,
