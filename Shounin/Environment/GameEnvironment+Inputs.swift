@@ -17,11 +17,12 @@ import SpriteKit
 
 #if os(iOS)
 extension GameEnvironment {
-    override func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
-        for touch in touches {
+    override func touchesEnded(_ touches: Set<UITouch>, with _: UIEvent?) {
+        if let touch = touches.first {
             guard let walkingLayer else { return }
             let location = walkingLayer.coordinateAtTouchLocation(touch)
-            walkToSpecifiedLocation(at: location)
+            let proposedSpeed: CGFloat = 1.0 / CGFloat(touch.tapCount)
+            walkToSpecifiedLocation(at: location, speed: proposedSpeed.clamp(to: CGFloat(0.25)..<CGFloat(1.01)))
         }
     }
 }

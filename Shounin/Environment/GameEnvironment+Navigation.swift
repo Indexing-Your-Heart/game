@@ -46,7 +46,7 @@ extension GameEnvironment: GameEnvironmentNavigationDelegate {
         return []
     }
 
-    func actions(with graphNodes: [GKGraphNode]) -> [SKAction] {
+    func actions(with graphNodes: [GKGraphNode], speed: CGFloat = 1) -> [SKAction] {
         guard let nodes = graphNodes as? [GKGridGraphNode], let walkingLayer, let player else { return [] }
         var actions = [SKAction]()
         var currentPosition = player.position
@@ -66,11 +66,13 @@ extension GameEnvironment: GameEnvironmentNavigationDelegate {
                 break
             }
 
+            let moveSpeed = abs(delta / 16) * speed
+
             actions.append(contentsOf: [
                 SKAction.run { [weak self] in
                     self?.player?.move(in: direction)
                 },
-                SKAction.move(to: nodePosition, duration: 0.25 * abs(delta / 16))
+                SKAction.move(to: nodePosition, duration: 0.25 * moveSpeed)
             ])
             currentPosition = nodePosition
         }

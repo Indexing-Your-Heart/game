@@ -25,8 +25,10 @@ extension PaintbrushScene: PaintbrushConfigurationDelegate {
         panelDrawingArea.fillColor = SKColor(hexString: puzzleConfig.palette.panelColor)
         if puzzleConfig.paintingName.isEmpty {
             painting.isHidden = true
+            childNode(withName: "//paintingFrame")?.isHidden = true
             panelDrawingArea.position = .zero
             childNode(withName: "//solveOverlay")?.position = .zero
+            childNode(withName: "//panelBacking")?.position = .zero
         }
         painting.texture = .init(imageNamed: puzzleConfig.paintingName)
         painting.configureForPixelArt()

@@ -158,9 +158,10 @@ class GameEnvironment: SKScene {
 #endif
     }
 
-    func walkToSpecifiedLocation(at location: CGPoint) {
+    func walkToSpecifiedLocation(at location: CGPoint, speed: CGFloat = 1) {
         guard let player else { return }
-        if let moveActions = environmentDelegate?.actions(with: path(to: location)) {
+        if let moveActions = environmentDelegate?.actions(with: path(to: location), speed: speed) {
+            player.removeAllActions()
             player.runSequence {
                 SKAction.run { [weak self] in
                     self?.dismissTutorialNode()

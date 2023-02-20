@@ -36,5 +36,5 @@ public protocol GameEnvironmentNavigationDelegate: AnyObject {
 
     /// Generates an array of SpriteKit actions from graph nodes for the player to follow.
     /// - Parameter graphNodes: The array of graph nodes to create actions for.
-    func actions(with graphNodes: [GKGraphNode]) -> [SKAction]
+    func actions(with graphNodes: [GKGraphNode], speed: CGFloat) -> [SKAction]
 }
