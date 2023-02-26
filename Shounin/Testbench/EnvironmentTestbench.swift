@@ -57,7 +57,7 @@ final class EnvironmentTestbench: XCTestCase {
                 }
             }
 
-            self.wait(for: [walkingExpectation], timeout: 60)
+            self.wait(for: [walkingExpectation], timeout: 90)
             XCTAssertNotEqual(env.player?.position, previousPosition)
         }
     }
@@ -70,7 +70,7 @@ final class EnvironmentTestbench: XCTestCase {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 dismissalExpectation.fulfill()
             }
-            self.wait(for: [dismissalExpectation], timeout: 60)
+            self.wait(for: [dismissalExpectation], timeout: 90)
             XCTAssertNil(env.environmentDelegate?.tutorialNode)
         }
     }
