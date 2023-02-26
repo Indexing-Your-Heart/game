@@ -13,10 +13,10 @@
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
 
-import Foundation
-import SpriteKit
-import Paintbrush
 import Bunker
+import Foundation
+import Paintbrush
+import SpriteKit
 
 extension PaintbrushScene: PaintbrushSceneSolvedStateDelegate {
     func savePlayerDrawingForReuse() {

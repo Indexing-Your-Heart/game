@@ -88,7 +88,7 @@ extension CaslonScene: CaslonSceneRefreshDelegate {
             let soundEffect = SKAudioNode(fileNamed: resourceName)
             soundEffect.autoplayLooped = false
             soundEffect.isPositional = true
-            soundEffect.position = self.position
+            soundEffect.position = position
             soundEffect.play()
         case .music:
             if let musicLayer = childNode(withName: "music") as? SKAudioNode {

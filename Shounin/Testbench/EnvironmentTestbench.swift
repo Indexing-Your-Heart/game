@@ -14,8 +14,8 @@
 //  details.
 
 import Foundation
-import XCTest
 import SpriteKit
+import XCTest
 
 @testable import Indexing_Your_Heart
 

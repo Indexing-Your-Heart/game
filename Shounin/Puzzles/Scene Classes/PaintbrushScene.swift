@@ -46,7 +46,7 @@ class PaintbrushScene: SKScene {
         childNode(withName: "//debugSprite")?.isHidden = !debugMode
     }
 
-    override func willMove(from view: SKView) {
+    override func willMove(from _: SKView) {
         panelDrawingArea = nil
         drawingDelegateNode = nil
         stageConfiguration = nil

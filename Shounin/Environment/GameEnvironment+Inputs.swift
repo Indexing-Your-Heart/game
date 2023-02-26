@@ -22,7 +22,7 @@ extension GameEnvironment {
             guard let walkingLayer else { return }
             let location = walkingLayer.coordinateAtTouchLocation(touch)
             let proposedSpeed: CGFloat = 1.0 / CGFloat(touch.tapCount)
-            walkToSpecifiedLocation(at: location, speed: proposedSpeed.clamp(to: CGFloat(0.25)..<CGFloat(1.01)))
+            walkToSpecifiedLocation(at: location, speed: proposedSpeed.clamp(to: CGFloat(0.25) ..< CGFloat(1.01)))
         }
     }
 }

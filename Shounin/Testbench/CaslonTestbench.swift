@@ -13,10 +13,10 @@
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
 
-import XCTest
-import SpriteKit
-import JensonKit
 @testable import Indexing_Your_Heart
+import JensonKit
+import SpriteKit
+import XCTest
 
 final class CaslonTestbench: XCTestCase {
     var vnScene: CaslonScene?
