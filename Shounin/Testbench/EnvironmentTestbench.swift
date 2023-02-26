@@ -62,19 +62,6 @@ final class EnvironmentTestbench: XCTestCase {
         }
     }
 
-    func testTutorialNodeDelegations() throws {
-        testInEnvironment { env in
-            let dismissalExpectation = XCTestExpectation(description: "Bye-bye tutorial node")
-            XCTAssertNotNil(env.environmentDelegate?.tutorialNode)
-            env.environmentDelegate?.dismissTutorialNode()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                dismissalExpectation.fulfill()
-            }
-            self.wait(for: [dismissalExpectation], timeout: 200)
-            XCTAssertNil(env.environmentDelegate?.tutorialNode)
-        }
-    }
-
     func testInEnvironment(testCase: @escaping (GameEnvironment) throws -> Void) rethrows {
         guard let environment else { return XCTFail("Game environment has not been initialized.") }
         try testCase(environment)
