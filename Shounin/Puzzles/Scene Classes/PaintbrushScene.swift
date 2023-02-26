@@ -156,7 +156,7 @@ class PaintbrushScene: SKScene {
             sceneDelegate?.savePlayerDrawingForReuse()
         }
 
-        view?.presentScene(previousScene)
+        view?.presentScene(previousScene, transition: .push(with: .up, duration: 0.5))
     }
 
     private func configureWithPrexistingPuzzleIfPresent(handler: @escaping () -> Void) {

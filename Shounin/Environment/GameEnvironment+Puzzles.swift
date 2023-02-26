@@ -57,7 +57,7 @@ extension GameEnvironment: GameEnvironmentPuzzleDelegate {
         puzzleScene.puzzle = puzzle
         AppDelegate.observedState.previousEnvironment = self
         AppDelegate.observedState.puzzleTriggerName = puzzle.expectedResult
-        view?.presentScene(puzzleScene)
+        view?.presentScene(puzzleScene, transition: .push(with: .down, duration: 0.5))
     }
 
     func playerIsCloseToPuzzle(tolerance: Int) -> Bool {
