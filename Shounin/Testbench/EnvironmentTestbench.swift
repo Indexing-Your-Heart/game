@@ -67,7 +67,7 @@ final class EnvironmentTestbench: XCTestCase {
             let dismissalExpectation = XCTestExpectation(description: "Bye-bye tutorial node")
             XCTAssertNotNil(env.environmentDelegate?.tutorialNode)
             env.environmentDelegate?.dismissTutorialNode()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 dismissalExpectation.fulfill()
             }
             self.wait(for: [dismissalExpectation], timeout: 30)
