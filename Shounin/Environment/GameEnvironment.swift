@@ -158,7 +158,7 @@ class GameEnvironment: SKScene {
 #endif
     }
 
-    func walkToSpecifiedLocation(at location: CGPoint, speed: CGFloat = 1) {
+    func walkToSpecifiedLocation(at location: CGPoint, speed: CGFloat = 1, completion: (() -> Void)? = nil) {
         guard let player else { return }
         if let moveActions = environmentDelegate?.actions(with: path(to: location), speed: speed) {
             player.removeAllActions()
@@ -169,6 +169,7 @@ class GameEnvironment: SKScene {
                 SKAction.sequence(moveActions)
                 SKAction.run { [weak self] in
                     self?.displaySolvingTutorialIfNeeded()
+                    completion?()
                     self?.environmentDelegate?.loadClosestPuzzleToPlayer()
                 }
             }
