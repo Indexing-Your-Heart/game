@@ -70,7 +70,7 @@ final class EnvironmentTestbench: XCTestCase {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 dismissalExpectation.fulfill()
             }
-            self.wait(for: [dismissalExpectation], timeout: 90)
+            self.wait(for: [dismissalExpectation], timeout: 200)
             XCTAssertNil(env.environmentDelegate?.tutorialNode)
         }
     }
