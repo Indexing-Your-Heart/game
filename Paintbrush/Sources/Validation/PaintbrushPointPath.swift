@@ -18,6 +18,9 @@ import Foundation
 
 /// A struct that represents a path of points.
 public struct PaintbrushPointPath {
+    /// A number that represents the minimum number of points needed to perform a successful resampling. This value is
+    /// currently set to 16 points.
+    public static let minimumPointsNeededForResampling = 16
     public var points: [PaintbrushPoint]
 
     public init(points: [PaintbrushPoint]) {
@@ -57,6 +60,7 @@ extension PaintbrushPointPath: ProtractorPathConvertible {
     }
 
     public func resampled(count: Int) -> PaintbrushPointPath {
+        guard points.count >= PaintbrushPointPath.minimumPointsNeededForResampling else { return self }
         var points = points
         let avgStep = length / Double(count - 1)
         var totalDistance = 0.0
