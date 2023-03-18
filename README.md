@@ -89,8 +89,9 @@ repository for Marteau at https://github.com/Indexing-Your-Heart/marteau.
 ## Found an issue?
 
 If you've found a bug or want to submit feedback to the project, it is encouraged
-that you submit feedback in our Discord server or by emailing us at
-`hello at indexingyourhe.art`.
+that you submit feedback through the project's Raceway page at
+https://feedback.marquiskurt.net/t/indexing-your-heart. Additionally, you can send
+feedback in our Discord server or by emailing us at `hello at indexingyourhe.art`.
 
 ## Licensing
 
@@ -118,5 +119,3 @@ Finally, it contains other assets with custom licenses:
 
 You can also view the full list of contributors in the
 [CONTRIBUTORS.md](./CONTRIBUTORS.md) file.
-
-[youtrack]: https://youtrack.marquiskurt.net/youtrack/newIssue?project=HOH
