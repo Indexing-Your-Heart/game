@@ -55,8 +55,9 @@ extension GameEnvironment: GameEnvironmentPuzzleDelegate {
         guard let puzzleScene = PaintbrushScene(fileNamed: stageName), let puzzle else { return }
         puzzleScene.scaleMode = scaleMode
         puzzleScene.puzzle = puzzle
-        AppDelegate.observedState.previousEnvironment = self
+        AppDelegate.observedState.previousEnvironment = capture()
         AppDelegate.observedState.puzzleTriggerName = puzzle.expectedResult
+        if let view { self.willMove(from: view) }
         view?.presentScene(puzzleScene, transition: .push(with: .down, duration: 0.5))
     }
 

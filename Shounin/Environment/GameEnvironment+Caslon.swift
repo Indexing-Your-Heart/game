@@ -21,6 +21,7 @@ extension GameEnvironment: GameEnvironmentCaslonDelegate {
         guard let vnScene = CaslonScene(fileNamed: "Caslon Scene") else { return }
         vnScene.scaleMode = scaleMode
         vnScene.loadScript(named: completionCaslonName)
+        self.teardown()
         view?.presentScene(vnScene, transition: .fade(withDuration: 3.0))
     }
 

@@ -51,6 +51,9 @@ class GameEnvironment: SKScene {
     /// Internally, this is used to determine whether the tutorial for solving a puzzle should be displayed on screen.
     var enteredSolveModeForFirstUse = false
 
+    /// Whether the movement tutorial has been displayed.
+    var displayedMovementTutorial = false
+
     /// The game environment delegate used to communicate with all systems.
     var environmentDelegate: GameEnvironmentDelegate?
 
@@ -114,21 +117,17 @@ class GameEnvironment: SKScene {
 
     override func willMove(from view: SKView) {
         super.willMove(from: view)
-        apply(recursively: true) { child in
-            if let sound = child as? SKAudioNode {
-                sound.changeVolume(to: .zero)
-                sound.removeAllActions()
-            }
-            child.removeFromParent()
-        }
+        self.teardown()
     }
 
     override func didMove(to view: SKView) {
         super.didMove(to: view)
-        if AppDelegate.observedState.previousEnvironment == self {
+        prepareSceneForFirstUseIfNecessary()
+        setUpAmbientSoundscape()
+        if let restoredState = AppDelegate.observedState.previousEnvironment {
+            restore(from: restoredState)
             AppDelegate.observedState.previousEnvironment = nil
         }
-
         if AppDelegate.observedState.previousPuzzleState == .solved,
            let puzzleTrigger = AppDelegate.observedState.puzzleTriggerName
         { // swiftlint:disable:this opening_brace
@@ -138,8 +137,24 @@ class GameEnvironment: SKScene {
                 return
             }
         }
-        prepareSceneForFirstUseIfNecessary()
-        setUpAmbientSoundscape()
+    }
+
+    func configureLayer(_ layer: SKTileLayer, in tilemap: SKTilemap) {
+        let layerKind = LayerType(rawValue: layer.name ?? "") ?? .other
+        switch layerKind {
+        case .bounds:
+            createBounds(from: layer)
+        case .playerInsert:
+            createPlayer(from: layer, in: tilemap)
+        case .paintbrush:
+            configurePaintbrush(from: layer)
+        case .paintbrushMetapuzzle:
+            configurePaintbrushMetapuzzle(from: layer)
+        case .walkingGraph:
+            createWalkableNodes(from: layer)
+        default:
+            logger.info("Skipping layer - \(layer.name ?? "unknown layer")")
+        }
     }
 
     /// Displays the solving mode tutorial if it hasn't been displayed already.
@@ -170,12 +185,29 @@ class GameEnvironment: SKScene {
 #endif
     }
 
+    func teardown() {
+        self.environmentDelegate = nil
+        self.player = nil
+        self.walkableTiles.removeAll()
+        self.walkingLayer = nil
+        self.stageConfiguration = nil
+        apply(recursively: true) { child in
+            if let sound = child as? SKAudioNode, let audioNode = sound.avAudioNode {
+                sound.changeVolume(to: .zero)
+                audioNode.engine?.detach(audioNode)
+            }
+            child.removeAllActions()
+            child.removeFromParent()
+        }
+    }
+
     func walkToSpecifiedLocation(at location: CGPoint, speed: CGFloat = 1, completion: (() -> Void)? = nil) {
         guard let player else { return }
         if let moveActions = environmentDelegate?.actions(with: path(to: location), speed: speed) {
             player.removeAllActions()
             player.runSequence {
                 SKAction.run { [weak self] in
+                    self?.displayedMovementTutorial = true
                     self?.dismissTutorialNode()
                 }
                 SKAction.sequence(moveActions)
@@ -185,24 +217,6 @@ class GameEnvironment: SKScene {
                     self?.environmentDelegate?.loadClosestPuzzleToPlayer()
                 }
             }
-        }
-    }
-
-    private func configure(for layer: SKTileLayer) {
-        let layerKind = LayerType(rawValue: layer.name ?? "") ?? .other
-        switch layerKind {
-        case .bounds:
-            createBounds(from: layer)
-        case .playerInsert:
-            createPlayer(from: layer)
-        case .paintbrush:
-            configurePaintbrush(from: layer)
-        case .paintbrushMetapuzzle:
-            configurePaintbrushMetapuzzle(from: layer)
-        case .walkingGraph:
-            createWalkableNodes(from: layer)
-        default:
-            logger.info("Skipping layer - \(layer.name ?? "unknown layer")")
         }
     }
 
@@ -235,8 +249,8 @@ class GameEnvironment: SKScene {
         }
     }
 
-    private func createPlayer(from layer: SKTileLayer) {
-        guard let tilemap, let tile = tilemap.getTilesWithProperty("Purpose", "player").first else {
+    private func createPlayer(from layer: SKTileLayer, in tilemap: SKTilemap) {
+        guard let tile = tilemap.getTilesWithProperty("Purpose", "player").first else {
             return
         }
         let player = GamePlayer(position: layer.convert(tile.position, to: self))
@@ -276,16 +290,15 @@ class GameEnvironment: SKScene {
     private func prepareSceneForFirstUseIfNecessary() {
         if preparedForFirstUse { return }
         readPuzzleConfiguration(from: stageName)
-        if let tilemap = SKTilemap.load(tmxFile: "\(stageName).tmx") {
+        if let tilemap = SKTilemap.load(
+            tmxFile: "\(stageName).tmx",
+            delegate: self,
+            updateMode: .actions,
+            withTilesets: AppDelegate.loadedTilesets
+        ) {
             self.tilemap = tilemap
             addChild(tilemap)
-
             tilemap.zPosition = -1
-            for layer in tilemap.layers {
-                if let realLayer = layer as? SKTileLayer {
-                    configure(for: realLayer)
-                }
-            }
         }
         preparedForFirstUse = true
     }

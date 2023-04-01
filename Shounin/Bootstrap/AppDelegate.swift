@@ -20,12 +20,15 @@ import UIKit
 #endif
 import GameKit
 import Logging
+import SKTiled
 
 // MARK: - General App Delegation
 
 class AppDelegate: NSObject {
     typealias GameFlow = [GameFlowConfiguration]
     static var observedState = GameEnvironmentState()
+    static var loadedTilesets = [SKTileset]()
+    fileprivate static var tilesetFiles = ["Generic_32x32.tsx", "Art_32x32.tsx", "Room_Builder.tsx"]
 
     @available(*, deprecated, message: "Use the AppDelegate.currentFlow view model instead.")
     static var currentGameFlow: GameFlow?
@@ -38,9 +41,23 @@ class AppDelegate: NSObject {
         GKAccessPoint.shared.showHighlights = true
     }
 
-    func fetchGameFlow() {
+    func fetchGameFlow() async {
         if let config = GameFlowConfiguration.load(from: "GameFlow") {
             AppDelegate.currentFlow.insert(blocks: config)
+        }
+    }
+
+    func preloadTilesets() async {
+        logger.debug("Preloading tilesets for environment.")
+        AppDelegate.loadedTilesets = SKTileset.load(tsxFiles: AppDelegate.tilesetFiles)
+    }
+
+    func preloadGameData() {
+        Task {
+            await withTaskGroup(of: Void.self) { group in
+                group.addTask { await self.fetchGameFlow() }
+                group.addTask { await self.preloadTilesets() }
+            }
         }
     }
 }
@@ -50,7 +67,7 @@ class AppDelegate: NSObject {
 #if os(macOS)
 extension AppDelegate: NSApplicationDelegate {
     func applicationWillFinishLaunching(_: Notification) {
-        fetchGameFlow()
+        preloadGameData()
     }
 
     // Authenticate with Game Center.
@@ -102,7 +119,7 @@ extension AppDelegate: UIApplicationDelegate {
         _: UIApplication,
         didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        fetchGameFlow()
+        preloadGameData()
         if let useGC = Bundle.main.gameCenterEnabled, useGC {
             DispatchQueue.main.async {
                 GKLocalPlayer.local.authenticateHandler = { [weak self] loginSheet, error in

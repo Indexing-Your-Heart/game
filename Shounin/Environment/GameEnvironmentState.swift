@@ -19,11 +19,29 @@ import Paintbrush
 /// A class that contains a game environment state.
 class GameEnvironmentState {
     /// The previous game environment the player has played in.
-    weak var previousEnvironment: GameEnvironment?
+    var previousEnvironment: GameEnvironmentRestorable?
 
     /// The solve status of the previous puzzle.
     var previousPuzzleState: PaintbrushSolveState?
 
     /// The name of the puzzle to trigger in Paintbrush.
     var puzzleTriggerName: String?
+}
+
+/// A struct that represents a restorable state for the game environment.
+struct GameEnvironmentRestorable: Hashable {
+    /// The name of the stage that the environment originated from.
+    let stageName: String
+
+    /// The player's position in the game environment scene.
+    let playerPosition: CGPoint
+
+    /// An array of the puzzles the player has solved previously in this environment.
+    let solvedPuzzles: [String]
+
+    /// Whether the tutorial has been displayed already.
+    let displayedTutorial: Bool
+
+    /// The name of the story that will be loaded when the environment is done.
+    let linkedStory: String
 }
