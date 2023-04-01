@@ -19,12 +19,13 @@
 //
 // https://www.codeandweb.com/texturepacker
 // ----------------------------------------
-// swiftlint:disable:file identifier_name
 
 import SpriteKit
 
 /// A class containing the texture atlas properties for the player's sprites.
 class GameEnvironmentPlayerAtlas {
+    // swiftlint:disable identifier_name
+
     // sprite names
     let CHELSEA_IDLE_BACK = "chelsea_idle_back"
     let CHELSEA_IDLE_DOWN_00001 = "chelsea_idle_down_00001"
@@ -224,4 +225,6 @@ class GameEnvironmentPlayerAtlas {
             chelsea_walk_up_00006()
         ]
     }
+
+    // swiftlint:enable identifier_name
 }

@@ -112,6 +112,17 @@ class GameEnvironment: SKScene {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func willMove(from view: SKView) {
+        super.willMove(from: view)
+        apply(recursively: true) { child in
+            if let sound = child as? SKAudioNode {
+                sound.changeVolume(to: .zero)
+                sound.removeAllActions()
+            }
+            child.removeFromParent()
+        }
+    }
+
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         if AppDelegate.observedState.previousEnvironment == self {
@@ -124,6 +135,7 @@ class GameEnvironment: SKScene {
             solvedPuzzles.insert(puzzleTrigger)
             if puzzleTrigger == stageConfiguration?.metapuzzle.expectedResult {
                 environmentDelegate?.loadEndingCaslonSceneIfPresent()
+                return
             }
         }
         prepareSceneForFirstUseIfNecessary()
