@@ -150,13 +150,13 @@ class PaintbrushScene: SKScene {
 
     /// Dismisses the scene and restores the previous game environment.
     func dismissIfPresent() {
-        guard let previousScene = AppDelegate.observedState.previousEnvironment else { return }
+        guard let previousEnvironment = AppDelegate.observedState.previousEnvironment else { return }
         AppDelegate.observedState.previousPuzzleState = solveState
         if solveState == .solved {
             sceneDelegate?.savePlayerDrawingForReuse()
         }
-
-        view?.presentScene(previousScene, transition: .push(with: .up, duration: 0.5))
+        let environment = GameEnvironment(stageNamed: previousEnvironment.stageName)
+        view?.presentScene(environment, transition: .push(with: .up, duration: 2))
     }
 
     private func configureWithPrexistingPuzzleIfPresent(handler: @escaping () -> Void) {
