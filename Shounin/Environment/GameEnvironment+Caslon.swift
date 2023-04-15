@@ -14,6 +14,7 @@
 //  details.
 //
 
+import Caslon
 import SpriteKit
 
 extension GameEnvironment: GameEnvironmentCaslonDelegate {
@@ -21,6 +22,7 @@ extension GameEnvironment: GameEnvironmentCaslonDelegate {
         guard let vnScene = CaslonScene(fileNamed: "Caslon Scene") else { return }
         vnScene.scaleMode = scaleMode
         vnScene.loadScript(named: completionCaslonName)
+        vnScene.setActor(to: CaslonActor())
         self.teardown()
         view?.presentScene(vnScene, transition: .fade(withDuration: 3.0))
     }

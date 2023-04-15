@@ -16,25 +16,25 @@
 import Combine
 import Foundation
 
-class GameFlowViewModel: ObservableObject {
-    @Published private var blocks = [GameFlowConfiguration]()
-    var currentBlock: GameFlowConfiguration? { blocks.first }
+public class CelestialFlowViewModel: ObservableObject {
+    @Published private var blocks = [CelestialFlowConfiguration]()
+    public var currentBlock: CelestialFlowConfiguration? { blocks.first }
 
-    enum InsertionState {
+    public enum InsertionState {
         case beforeCurrent
         case afterCurrent
         case afterLast
     }
 
-    convenience init() {
+    public convenience init() {
         self.init(with: [])
     }
 
-    init(with blocks: [GameFlowConfiguration]) {
+    public init(with blocks: [CelestialFlowConfiguration]) {
         self.blocks = blocks
     }
 
-    func insert(blocks: [GameFlowConfiguration], at insertionState: InsertionState = .afterLast) {
+    public func insert(blocks: [CelestialFlowConfiguration], at insertionState: InsertionState = .afterLast) {
         switch insertionState {
         case .afterLast:
             self.blocks.append(contentsOf: blocks)
@@ -45,7 +45,7 @@ class GameFlowViewModel: ObservableObject {
         }
     }
 
-    func next() {
+    public func next() {
         blocks.removeFirst()
     }
 }

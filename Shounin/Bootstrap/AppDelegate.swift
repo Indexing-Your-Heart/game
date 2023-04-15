@@ -21,18 +21,19 @@ import UIKit
 import GameKit
 import Logging
 import SKTiled
+import Celestia
 
 // MARK: - General App Delegation
 
 class AppDelegate: NSObject {
-    typealias GameFlow = [GameFlowConfiguration]
+    typealias GameFlow = [CelestialFlowConfiguration]
     static var observedState = GameEnvironmentState()
     static var loadedTilesets = [SKTileset]()
     fileprivate static var tilesetFiles = ["Generic_32x32.tsx", "Art_32x32.tsx", "Room_Builder.tsx"]
 
     @available(*, deprecated, message: "Use the AppDelegate.currentFlow view model instead.")
     static var currentGameFlow: GameFlow?
-    static var currentFlow = GameFlowViewModel()
+    static var currentFlow = CelestialFlowViewModel()
 
     var logger = Logger(label: "shounin")
 
@@ -42,7 +43,7 @@ class AppDelegate: NSObject {
     }
 
     func fetchGameFlow() async {
-        if let config = GameFlowConfiguration.load(from: "GameFlow") {
+        if let config = CelestialFlowConfiguration.load(from: "GameFlow") {
             AppDelegate.currentFlow.insert(blocks: config)
         }
     }

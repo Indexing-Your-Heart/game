@@ -11,6 +11,9 @@
       location = "group:Caslon">
    </FileRef>
    <FileRef
+      location = "group:Celestia">
+   </FileRef>
+   <FileRef
       location = "group:Paintbrush">
    </FileRef>
    <FileRef

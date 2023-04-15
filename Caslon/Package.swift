@@ -16,7 +16,12 @@ let package = Package(
         .package(
             url: "https://github.com/Indexing-Your-Heart/JensonKit",
             from: .init(0, 1, 0, prereleaseIdentifiers: ["alpha"])
-        )
+        ),
+        .package(
+            url: "https://github.com/apple/swift-log",
+            from: .init(1, 0, 0)
+        ),
+        .package(url: "https://github.com/alicerunsonedora/CranberrySprite", branch: "root")
     ],
     targets: [
         .target(

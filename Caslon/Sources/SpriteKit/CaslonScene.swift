@@ -13,15 +13,17 @@
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
 
-import Caslon
 import JensonKit
 import Logging
 import SpriteKit
 
 /// A SpriteKit scene that can display a Jenson timeline.
-class CaslonScene: SKScene {
+public class CaslonScene: SKScene {
     var logger = Logger(label: "caslon")
-    var timeline = [JensonEvent]()
+    public var timeline = [JensonEvent]()
+    public var options = [JensonChoice]()
+
+    var actorProvider: CaslonSceneActionProviding?
 
     /// The label node that contains the "who" field.
     var whatLabel: SKLabelNode?
@@ -31,14 +33,13 @@ class CaslonScene: SKScene {
 
     /// The node that houses the choice menu buttons.
     var choiceMenu: SKNode?
-    var options = [JensonChoice]()
 
     /// Whether the scene is undergoing a transition. Defaults to false.
     var inTransition = false
 
     private var didSetTutorial = false
 
-    override func didMove(to view: SKView) {
+    public override func didMove(to view: SKView) {
         super.didMove(to: view)
 #if DEBUG
         logger.logLevel = .debug
@@ -68,7 +69,7 @@ class CaslonScene: SKScene {
 
     /// Loads a script from a Jenson timeline with a given name.
     /// - Parameter scriptName: The name of the Jenson file that will be loaded into this scene.
-    func loadScript(named scriptName: String) {
+    public func loadScript(named scriptName: String) {
         guard let path = Bundle.main.path(forResource: scriptName, ofType: "jenson") else { return }
         let reader = try? JensonReader(fileURLWithPath: path)
         if let file = try? reader?.decode() {
@@ -89,6 +90,10 @@ class CaslonScene: SKScene {
                 self?.setUpTutorialContext()
             }
         }
+    }
+
+    public func setActor(to provider: CaslonSceneActionProviding) {
+        self.actorProvider = provider
     }
 
     /// Updates the dialogue box with the new dialogue from an event.
@@ -147,7 +152,7 @@ class CaslonScene: SKScene {
 
     private func setUpTutorialContext() {
         guard let tutorialNode = childNode(withName: "//tutorialNodeTap") as? SKSpriteNode else { return }
-        if AppDelegate.currentFlow.currentBlock?.showTutorials != true {
+        if actorProvider?.sceneRequestsDismissingTutorial() != true {
             tutorialNode.removeFromParent()
             return
         }

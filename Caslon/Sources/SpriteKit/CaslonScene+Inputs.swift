@@ -16,7 +16,7 @@
 import SpriteKit
 
 #if os(iOS) || os(tvOS)
-extension CaslonScene {
+public extension CaslonScene {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         if inTransition { return }
@@ -33,7 +33,7 @@ extension CaslonScene {
 #endif
 
 #if os(macOS)
-extension CaslonScene {
+public extension CaslonScene {
     override func mouseUp(with event: NSEvent) {
         super.mouseUp(with: event)
         if inTransition { return }

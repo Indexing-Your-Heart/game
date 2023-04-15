@@ -13,14 +13,14 @@
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
 
-import Caslon
 import JensonKit
 import SpriteKit
+import CranberrySprite
 
 // MARK: - Timeline Delegation
 
 extension CaslonScene: CaslonSceneTimelineDelegate {
-    func willDisplayNewEvent(event: JensonEvent) {
+    public func willDisplayNewEvent(event: JensonEvent) {
         dismissTutorialNode()
         switch event.type {
         case .refresh:
@@ -39,7 +39,7 @@ extension CaslonScene: CaslonSceneTimelineDelegate {
         }
     }
 
-    func didDisplayNewEvent(event: JensonEvent) {
+    public func didDisplayNewEvent(event: JensonEvent) {
         let standardEvents: [JensonEvent.EventType] = [.choice, .dialogue, .question]
         guard standardEvents.contains(event.type) else {
             next()
@@ -47,14 +47,11 @@ extension CaslonScene: CaslonSceneTimelineDelegate {
         }
     }
 
-    func didReachEndOfTimeline() {
+    public func didReachEndOfTimeline() {
         runSequence {
             SKAction.fadeOut(withDuration: 1.5)
-            SKAction.run {
-                AppDelegate.currentFlow.next()
-                if AppDelegate.currentFlow.currentBlock == nil {
-                    exit(0)
-                }
+            SKAction.run { [weak self] in
+                self?.actorProvider?.sceneWillEnd()
             }
         }
     }
@@ -63,7 +60,7 @@ extension CaslonScene: CaslonSceneTimelineDelegate {
 // MARK: - Refresh Content Delegation
 
 extension CaslonScene: CaslonSceneRefreshDelegate {
-    func willRefreshContents(of kind: JensonRefreshContent.Kind, to resourceName: String, with priority: Int?) {
+    public func willRefreshContents(of kind: JensonRefreshContent.Kind, to resourceName: String, with priority: Int?) {
         switch kind {
         case .image:
             if let layer = childNode(withName: "imgLayer_\(priority ?? 0)") as? SKSpriteNode, !resourceName.isEmpty {
@@ -106,25 +103,25 @@ extension CaslonScene: CaslonSceneRefreshDelegate {
         }
     }
 
-    func didRefreshContents() {}
+    public func didRefreshContents() {}
 }
 
 // MARK: - Question Delegate
 
 extension CaslonScene: CaslonSceneQuestionDelegate {
-    func willLoadOptions(from question: JensonQuestion) {
+    public func willLoadOptions(from question: JensonQuestion) {
         buildChoiceMenu(for: question)
     }
 
-    func didLoadOptions() {
+    public func didLoadOptions() {
         choiceMenu?.isHidden = false
     }
 
-    func shouldBlockOtherInputs() -> Bool {
+    public func shouldBlockOtherInputs() -> Bool {
         choiceMenu?.isHidden == false
     }
 
-    func selectedOption(at location: CGPoint) -> String? {
+    public func selectedOption(at location: CGPoint) -> String? {
         guard let choiceMenu else { return nil }
         let buttonNames = options.map { "choice:\($0.name)" }
         return buttonNames.map {
@@ -135,7 +132,7 @@ extension CaslonScene: CaslonSceneQuestionDelegate {
         .first??.name
     }
 
-    func didSelectOption(with name: String) {
+    public func didSelectOption(with name: String) {
         guard let choice = options.first(where: { $0.name == name }) else { return }
         timeline.insert(contentsOf: choice.events, at: 0)
         choiceMenu?.children.filter { $0.name?.starts(with: "choice") == true }

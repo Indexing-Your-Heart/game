@@ -15,20 +15,33 @@
 
 import Foundation
 
-struct GameFlowConfiguration: Codable {
-    let stage: String
-    let chapter: String
-    let showTutorials: Bool?
+public struct CelestialFlowConfiguration: Codable {
+    public let stage: String
+    public let chapter: String
+    public let showTutorials: Bool?
+
+    public init(stage: String, chapter: String, showTutorials: Bool?) {
+        self.stage = stage
+        self.chapter = chapter
+        self.showTutorials = showTutorials
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.stage = try container.decode(String.self, forKey: .stage)
+        self.chapter = try container.decode(String.self, forKey: .chapter)
+        self.showTutorials = try container.decodeIfPresent(Bool.self, forKey: .showTutorials)
+    }
 }
 
-extension GameFlowConfiguration {
-    static func load(from resourceName: String) -> [GameFlowConfiguration]? {
+extension CelestialFlowConfiguration {
+    public static func load(from resourceName: String) -> [CelestialFlowConfiguration]? {
         guard let path = Bundle.main.path(forResource: resourceName, ofType: "json") else { return nil }
         let url = URL(filePath: path)
         guard let data = try? Data(contentsOf: url) else { return nil }
         let jsonDecoder = JSONDecoder()
         jsonDecoder.allowsJSON5 = true
         jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-        return try? jsonDecoder.decode([GameFlowConfiguration].self, from: data)
+        return try? jsonDecoder.decode([CelestialFlowConfiguration].self, from: data)
     }
 }

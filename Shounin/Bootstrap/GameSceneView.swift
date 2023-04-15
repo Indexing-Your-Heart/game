@@ -13,6 +13,7 @@
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
 
+import Celestia
 import SpriteKit
 import SwiftUI
 
@@ -20,7 +21,7 @@ struct GameSceneView: View {
     @AppStorage("dbg:show-nodes") var dbgShowNodes = false
     @AppStorage("dbg:show-fps") var dbgShowFPS = false
     @State private var debugOptions: SpriteView.DebugOptions = []
-    @ObservedObject var currentFlow: GameFlowViewModel
+    @ObservedObject var currentFlow: CelestialFlowViewModel
 
     var body: some View {
         ZStack {
