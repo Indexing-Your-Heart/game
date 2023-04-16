@@ -8,19 +8,19 @@
       location = "group:LICENSE.md">
    </FileRef>
    <FileRef
-      location = "group:Bedrock">
+      location = "group:Modules/Bedrock">
    </FileRef>
    <FileRef
-      location = "group:Caslon">
+      location = "group:Modules/Caslon">
    </FileRef>
    <FileRef
-      location = "group:Celestia">
+      location = "group:Modules/Celestia">
    </FileRef>
    <FileRef
-      location = "group:Paintbrush">
+      location = "group:Modules/Paintbrush">
    </FileRef>
    <FileRef
-      location = "group:CranberrySprite">
+      location = "group:Modules/CranberrySprite">
    </FileRef>
    <FileRef
       location = "group:Shounin/Shounin.xcodeproj">
