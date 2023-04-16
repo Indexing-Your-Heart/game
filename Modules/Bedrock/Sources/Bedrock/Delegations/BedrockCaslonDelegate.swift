@@ -1,5 +1,5 @@
 //
-//  GameEnvironmentCaslonDelegate.swift
+//  BedrockCaslonDelegate.swift
 //  Indexing Your Heart
 //
 //  Created by Marquis Kurt on 11/16/22.
@@ -17,7 +17,7 @@
 import SpriteKit
 
 /// A delegate that handles opening Caslon scenes in the game world.
-public protocol GameEnvironmentCaslonDelegate: AnyObject {
+public protocol BedrockCaslonDelegate: AnyObject {
     /// Loads the ending Caslon scene if it is present in the game's files.
     func loadEndingCaslonSceneIfPresent()
 

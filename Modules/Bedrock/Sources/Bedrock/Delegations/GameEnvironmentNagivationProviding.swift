@@ -15,20 +15,22 @@
 //
 
 import GameplayKit
-import SKTiled
 import SpriteKit
 
 /// A delegate that handles pathfinding and navigation in a game environment.
-public protocol GameEnvironmentNavigationDelegate: AnyObject {
+public protocol GameEnvironmentNagivationProviding {
+    associatedtype Layer
+    associatedtype Tile
+
     /// An array of tiles that the player can move around in. This is used to initialize the pathfinding graph.
-    var walkableTiles: [SKTile] { get set }
+    var walkableTiles: [Tile] { get set }
 
     /// The tilemap layer that contains where walkable tiles are and where the graph will be initialized.
-    var walkingLayer: SKTileLayer? { get set }
+    var walkingLayer: Layer? { get set }
 
     /// Retrieves the walkable tiles from a given layer.
     /// - Parameter layer: The layer that contains walkable tiles.
-    func getWalkableNodes(from layer: SKTileLayer)
+    func getWalkableNodes(from layer: Layer)
 
     /// Generates an array of nodes in the pathfinding graph from the player's current position to the destination.
     /// - Parameter coordinate: The destination coordinate for the player to walk to.

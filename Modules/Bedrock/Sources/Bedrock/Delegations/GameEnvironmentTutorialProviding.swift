@@ -18,7 +18,7 @@ import CranberrySprite
 import SpriteKit
 
 /// A delegate that handles creating and displaying tutorials.
-public protocol GameEnvironmentTutorialDelegate: AnyObject {
+public protocol GameEnvironmentTutorialProviding {
     /// Whether the player has entered solve mode for the first time.
     /// Internally, this is used to determine whether the tutorial for solving a puzzle should be displayed on screen.
     var enteredSolveModeForFirstUse: Bool { get set }

@@ -20,7 +20,10 @@ import GameplayKit
 import SKTiled
 import SpriteKit
 
-extension GameEnvironment: GameEnvironmentNavigationDelegate {
+extension GameEnvironment: GameEnvironmentNagivationProviding {
+    typealias Layer = SKTileLayer
+    typealias Tile = SKTile
+
     func createGraph(in layer: SKTileLayer) {
         let newGraph = layer.initializeGraph(walkable: walkableTiles, obstacles: [], diagonalsAllowed: false)
         layer.graph = newGraph

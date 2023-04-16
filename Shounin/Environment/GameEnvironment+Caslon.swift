@@ -18,7 +18,7 @@ import Bedrock
 import Caslon
 import SpriteKit
 
-extension GameEnvironment: GameEnvironmentCaslonDelegate {
+extension GameEnvironment: BedrockCaslonDelegate {
     func loadEndingCaslonSceneIfPresent() {
         guard let vnScene = CaslonScene(fileNamed: "Caslon Scene") else { return }
         vnScene.scaleMode = scaleMode

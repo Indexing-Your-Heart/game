@@ -14,7 +14,6 @@
 //  details.
 //
 
-import CranberrySprite
 import Paintbrush
 import SpriteKit
 

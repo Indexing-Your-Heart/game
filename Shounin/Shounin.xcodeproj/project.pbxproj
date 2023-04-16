@@ -162,7 +162,7 @@
 		9553E34C2926881400B6C713 /* sfx_panel_start.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_panel_start.wav; sourceTree = "<group>"; };
 		9553E34E2926893000B6C713 /* sfx_panel_end.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_panel_end.wav; sourceTree = "<group>"; };
 		9553E3502927C5E500B6C713 /* sfx_foot_wood.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_foot_wood.wav; sourceTree = "<group>"; };
-		9564878A28EC755400B4477D /* Paintbrush */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Paintbrush; path = ../Paintbrush; sourceTree = "<group>"; };
+		9564878A28EC755400B4477D /* Paintbrush */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Paintbrush; path = ../Modules/Paintbrush; sourceTree = "<group>"; };
 		9566C63429EA24000086C28F /* CaslonActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaslonActor.swift; sourceTree = "<group>"; };
 		956B604228C7A2200031794C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		956B604528C7A4730031794C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -173,15 +173,15 @@
 		95735C1C291C0A02003947F5 /* TutorialKeyLayout.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TutorialKeyLayout.sks; sourceTree = "<group>"; };
 		95735C1E291C125F003947F5 /* TutorialTouchLayout.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TutorialTouchLayout.sks; sourceTree = "<group>"; };
 		95735C22291C1F16003947F5 /* TutorialSolveKeyLayout.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TutorialSolveKeyLayout.sks; sourceTree = "<group>"; };
-		9577F57B29EA232F0096457A /* Celestia */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Celestia; path = ../Celestia; sourceTree = "<group>"; };
-		958569DD29EC840B004EA6B8 /* Bedrock */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Bedrock; path = ../Bedrock; sourceTree = "<group>"; };
+		9577F57B29EA232F0096457A /* Celestia */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Celestia; path = ../Modules/Celestia; sourceTree = "<group>"; };
+		958569DD29EC840B004EA6B8 /* Bedrock */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Bedrock; path = ../Modules/Bedrock; sourceTree = "<group>"; };
 		958E090728F06786009E6AD9 /* Art_32x32.tsx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Art_32x32.tsx; sourceTree = "<group>"; };
 		958E090928F067B0009E6AD9 /* 7_Art_32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7_Art_32x32.png; sourceTree = "<group>"; };
 		958E090B28F08695009E6AD9 /* SKTexture+URLInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKTexture+URLInit.swift"; sourceTree = "<group>"; };
 		958E090D28F0B1D3009E6AD9 /* GameFlow.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GameFlow.json; sourceTree = "<group>"; };
 		9597E1EA291D5F8B00291AFD /* PaintbrushEmitter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PaintbrushEmitter.sks; sourceTree = "<group>"; };
 		9597E1EE291D628E00291AFD /* EnvironmentBokeh.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EnvironmentBokeh.sks; sourceTree = "<group>"; };
-		95A42D8529EC66DA009D1F04 /* CranberrySprite */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CranberrySprite; path = ../CranberrySprite; sourceTree = "<group>"; };
+		95A42D8529EC66DA009D1F04 /* CranberrySprite */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CranberrySprite; path = ../Modules/CranberrySprite; sourceTree = "<group>"; };
 		95A9605528EB603700F05059 /* CGImage+Resizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImage+Resizable.swift"; sourceTree = "<group>"; };
 		95A9605728EB61F600F05059 /* Bundle+InfoPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+InfoPlist.swift"; sourceTree = "<group>"; };
 		95AD566028EE241400051144 /* GameEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEnvironment.swift; sourceTree = "<group>"; };
@@ -206,7 +206,7 @@
 		95DB208D28CFA9840079D624 /* ch06.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ch06.md; sourceTree = "<group>"; };
 		95DB208E28CFA9840079D624 /* ch04.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ch04.md; sourceTree = "<group>"; };
 		95DB208F28CFA9840079D624 /* epilogue.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = epilogue.md; sourceTree = "<group>"; };
-		95E4F61728EC86B1009627F6 /* Caslon */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Caslon; path = ../Caslon; sourceTree = "<group>"; };
+		95E4F61728EC86B1009627F6 /* Caslon */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Caslon; path = ../Modules/Caslon; sourceTree = "<group>"; };
 		95E4F61B28EC8B27009627F6 /* PaintbrushScene+Solving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaintbrushScene+Solving.swift"; sourceTree = "<group>"; };
 		95E4F61E28EC9C61009627F6 /* Caslon Scene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Caslon Scene.sks"; sourceTree = "<group>"; };
 		95E4F62328ECA05B009627F6 /* CaslonSceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaslonSceneView.swift; sourceTree = "<group>"; };

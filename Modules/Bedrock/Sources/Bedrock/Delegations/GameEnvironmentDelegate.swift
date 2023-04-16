@@ -17,10 +17,10 @@
 import Foundation
 
 /// The delegate responsible for communicating with the systems for movement and pathfinding.
-public typealias GameEnvironmentMovementDelegate = GameEnvironmentTutorialDelegate & GameEnvironmentNavigationDelegate
+public typealias GameEnvironmentMovementDelegate = GameEnvironmentTutorialProviding & GameEnvironmentNagivationProviding
 
 /// The delegate responsible for communicating with the game's internal subsystems.
-public typealias GameEnvironmentSubsystemDelegate = GameEnvironmentCaslonDelegate & GameEnvironmentPuzzleDelegate
+public typealias GameEnvironmentSubsystemDelegate = BedrockCaslonDelegate & GameEnvironmentPuzzleDelegate
 
 /// The primary delegate responsible for communicating with all the game's systems, including movement and any
 /// subsystem therein.

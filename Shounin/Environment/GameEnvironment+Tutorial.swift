@@ -18,7 +18,7 @@ import Bedrock
 import CranberrySprite
 import SpriteKit
 
-extension GameEnvironment: GameEnvironmentTutorialDelegate {
+extension GameEnvironment: GameEnvironmentTutorialProviding {
     func dismissTutorialNode() {
         tutorialNode?.runSequence {
             SKAction.fadeAlpha(to: 0, duration: 0.5)

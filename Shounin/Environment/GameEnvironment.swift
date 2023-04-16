@@ -23,27 +23,7 @@ import SpriteKit
 
 /// A SpriteKit scene that represents the primary game environment.
 class GameEnvironment: SKScene {
-    /// An enumeration that encodes layer names to corresponding types. This is used for world setup to perform certain
-    /// tasks such as gathering walkable tiles for pathfinding.
-    enum LayerType: String {
-        /// The layer that represents the walkable tiles used for the graph.
-        case walkingGraph = "Graph"
-
-        /// The layer that represents the bounds where the player cannot cross.
-        case bounds = "Bounds"
-
-        /// The layer that contains information on where the player exists.
-        case playerInsert = "PLAYER_INSERT"
-
-        /// The layer that contains information on how puzzles are laid out in the world.
-        case paintbrush = "PNT_LAYOUT"
-
-        /// The layer that contains informaton on how the metapuzzle is laid out in the world.
-        case paintbrushMetapuzzle = "PNT_LAYOUT_META"
-
-        /// A generic, unspecified layer.
-        case other
-    }
+    typealias LayerType = BedrockLayer
 
     /// The name of the Caslon scene that should be played when the player finishes the metapuzzle.
     var completionCaslonName = ""
@@ -56,7 +36,7 @@ class GameEnvironment: SKScene {
     var displayedMovementTutorial = false
 
     /// The game environment delegate used to communicate with all systems.
-    var environmentDelegate: GameEnvironmentDelegate?
+    var environmentDelegate: (any GameEnvironmentDelegate)?
 
     /// The game environment's logging facility to log messages.
     var logger = Logger(label: "shounin_env")
@@ -284,7 +264,7 @@ class GameEnvironment: SKScene {
 
     private func createWalkableNodes(from layer: SKTileLayer) {
         walkingLayer = layer
-        environmentDelegate?.getWalkableNodes(from: layer)
+        getWalkableNodes(from: layer)
         createGraph(in: layer)
     }
 
