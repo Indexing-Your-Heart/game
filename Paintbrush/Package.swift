@@ -13,14 +13,11 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/alicerunsonfedora/CranberrySprite", branch: "root")
     ],
     targets: [
         .target(
             name: "Paintbrush",
-            dependencies: [
-                "CranberrySprite"
-            ],
+            dependencies: [],
             path: "./Sources/"
         ),
         .testTarget(

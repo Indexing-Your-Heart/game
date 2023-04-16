@@ -20,8 +20,7 @@ let package = Package(
         .package(
             url: "https://github.com/apple/swift-log",
             from: .init(1, 0, 0)
-        ),
-        .package(url: "https://github.com/alicerunsonedora/CranberrySprite", branch: "root")
+        )
     ],
     targets: [
         .target(
