@@ -44,7 +44,10 @@ used for the main game.
 - **Paintbrush** is the module that contains the source code for the Paintbrush
   puzzle system. The implementations for these exist in Shounin.
 - **Caslon** is the module containing the source code for the Caslon visual novel
-  system created for Jenson files.
+  system created for Jenson files
+- **Celestia** is the module containing code for observing states and loading the
+  game's configuration files such as the flow of game events. This module may also
+  contain the logic for the save and load system.
 
 ### Using Salmon 9 Fonts
 
