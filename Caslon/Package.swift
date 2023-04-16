@@ -32,6 +32,13 @@ let package = Package(
                 .product(name: "Logging", package: "swift-log")
             ],
             path: "./Sources/"
+        ),
+        .testTarget(
+            name: "CaslonTests",
+            dependencies: ["Caslon"],
+            resources: [
+                .process("Resources")
+            ]
         )
     ]
 )

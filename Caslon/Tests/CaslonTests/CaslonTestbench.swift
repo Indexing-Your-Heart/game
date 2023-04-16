@@ -13,7 +13,8 @@
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
 
-@testable import Indexing_Your_Heart
+@testable import Caslon
+import CranberrySprite
 import JensonKit
 import SpriteKit
 import XCTest
@@ -23,8 +24,8 @@ final class CaslonTestbench: XCTestCase {
     var view: SKView?
 
     override func setUpWithError() throws {
-        vnScene = CaslonScene(fileNamed: "Caslon Scene")
-        vnScene?.loadScript(named: "ch01-mise-en-abyme")
+        vnScene = CaslonScene.load(resourceNamed: "Sample", bundle: .module)
+        vnScene?.loadScript(named: "Script", from: .module)
         view = SKView(frame: .zero)
         view?.presentScene(vnScene)
     }
@@ -57,10 +58,13 @@ final class CaslonTestbench: XCTestCase {
         testInCaslonScene { scene in
             if let choice = scene.timeline.first(where: { $0.type == .question }) {
                 emulateNextEvent(with: choice)
+                let allOptions = scene.choiceMenu?.children.filter { child in
+                    child.name != "templateButton"
+                }
                 XCTAssertNotEqual(scene.options, [])
-                XCTAssertEqual(scene.choiceMenu?.children.count, scene.options.count)
+                XCTAssertEqual(allOptions?.count, scene.options.count)
 
-                let names = scene.choiceMenu?.children.map { $0.name?.replacingOccurrences(of: "choice:", with: "") }
+                let names = allOptions?.map { $0.name?.replacingOccurrences(of: "choice:", with: "") }
                 XCTAssertEqual(names, scene.options.map(\.name))
             }
         }

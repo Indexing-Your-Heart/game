@@ -69,8 +69,8 @@ public class CaslonScene: SKScene {
 
     /// Loads a script from a Jenson timeline with a given name.
     /// - Parameter scriptName: The name of the Jenson file that will be loaded into this scene.
-    public func loadScript(named scriptName: String) {
-        guard let path = Bundle.main.path(forResource: scriptName, ofType: "jenson") else { return }
+    public func loadScript(named scriptName: String, from bundle: Bundle = .main) {
+        guard let path = bundle.path(forResource: scriptName, ofType: "jenson") else { return }
         let reader = try? JensonReader(fileURLWithPath: path)
         if let file = try? reader?.decode() {
             timeline = file.timeline

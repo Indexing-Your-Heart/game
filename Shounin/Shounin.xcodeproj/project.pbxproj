@@ -25,7 +25,6 @@
 		950F6CFE28C156A6007ACB53 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 950F6CFD28C156A6007ACB53 /* Localizable.strings */; };
 		950F6D0428C27489007ACB53 /* Bunker in Frameworks */ = {isa = PBXBuildFile; productRef = 950F6D0328C27489007ACB53 /* Bunker */; };
 		9513314429ABE84400DC2F83 /* EnvironmentTestbench.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9513314329ABE84400DC2F83 /* EnvironmentTestbench.swift */; };
-		9513314629ABF62600DC2F83 /* CaslonTestbench.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9513314529ABF62600DC2F83 /* CaslonTestbench.swift */; };
 		951A435A29D8BE6C0034B343 /* GameEnvironmentRestorableProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951A435929D8BE6C0034B343 /* GameEnvironmentRestorableProviding.swift */; };
 		951A435C29D8BECF0034B343 /* GameEnvironment+GameEnvironmentResotrableProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951A435B29D8BECF0034B343 /* GameEnvironment+GameEnvironmentResotrableProviding.swift */; };
 		951A435E29D8C1F30034B343 /* GameEnvironment+SKTilemapDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951A435D29D8C1F30034B343 /* GameEnvironment+SKTilemapDelegate.swift */; };
@@ -142,7 +141,6 @@
 		950F6D0828C2757C007ACB53 /* Salmon Mono 9 Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Mono 9 Regular.ttf"; sourceTree = "<group>"; };
 		950F6D0928C2757C007ACB53 /* Salmon Sans 9 Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Salmon Sans 9 Regular.ttf"; sourceTree = "<group>"; };
 		9513314329ABE84400DC2F83 /* EnvironmentTestbench.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentTestbench.swift; sourceTree = "<group>"; };
-		9513314529ABF62600DC2F83 /* CaslonTestbench.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaslonTestbench.swift; sourceTree = "<group>"; };
 		951A435929D8BE6C0034B343 /* GameEnvironmentRestorableProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEnvironmentRestorableProviding.swift; sourceTree = "<group>"; };
 		951A435B29D8BECF0034B343 /* GameEnvironment+GameEnvironmentResotrableProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameEnvironment+GameEnvironmentResotrableProviding.swift"; sourceTree = "<group>"; };
 		951A435D29D8C1F30034B343 /* GameEnvironment+SKTilemapDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameEnvironment+SKTilemapDelegate.swift"; sourceTree = "<group>"; };
@@ -427,7 +425,6 @@
 			children = (
 				95C278CE29A1971900CD11EB /* Testbench.xctestplan */,
 				9513314329ABE84400DC2F83 /* EnvironmentTestbench.swift */,
-				9513314529ABF62600DC2F83 /* CaslonTestbench.swift */,
 			);
 			path = Testbench;
 			sourceTree = "<group>";
@@ -873,7 +870,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9513314629ABF62600DC2F83 /* CaslonTestbench.swift in Sources */,
 				9513314429ABE84400DC2F83 /* EnvironmentTestbench.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
