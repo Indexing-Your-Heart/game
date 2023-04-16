@@ -4,8 +4,7 @@ on:
   push:
     branches: [ root, devel, prototype ]
     paths:
-      - 'Caslon/**'
-      - 'Paintbrush/**'
+      - 'Modules/**'
       - 'Shounin/**'
   pull_request:
     branches: [ root, devel, prototype ]
