@@ -13,9 +13,11 @@
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
 
+import Celestia
 import SpriteKit
 
-extension GameEnvironment: GameEnvironmentRestorableProviding {
+extension GameEnvironment: CelestialContextProviding {
+    typealias State = GameEnvironmentRestorable
     func capture() -> GameEnvironmentRestorable {
         GameEnvironmentRestorable(
             stageName: stageName,
@@ -26,12 +28,12 @@ extension GameEnvironment: GameEnvironmentRestorableProviding {
         )
     }
 
-    func restore(from restoredState: GameEnvironmentRestorable) {
-        guard restoredState.stageName == stageName else { return }
-        restoredState.solvedPuzzles.forEach { self.solvedPuzzles.insert($0) }
-        player?.position = restoredState.playerPosition
-        setEndingScene(to: restoredState.linkedStory)
-        if restoredState.displayedTutorial {
+    func restore(from state: GameEnvironmentRestorable) {
+        guard state.stageName == stageName else { return }
+        state.solvedPuzzles.forEach { self.solvedPuzzles.insert($0) }
+        player?.position = state.playerPosition
+        setEndingScene(to: state.linkedStory)
+        if state.displayedTutorial {
             tutorialNode?.removeFromParent()
             tutorialNode = nil
         }

@@ -1,8 +1,8 @@
 //
-//  GameEnvironmentCaslonDelegate.swift
+//  CelestialContextProviding.swift
 //  Indexing Your Heart
 //
-//  Created by Marquis Kurt on 11/16/22.
+//  Created by Marquis Kurt on 4/16/23.
 //
 //  This file is part of Indexing Your Heart.
 //
@@ -12,16 +12,12 @@
 //
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
-//
 
-import Caslon
-import SpriteKit
+import Foundation
 
-/// A delegate that handles opening Caslon scenes in the game world.
-public protocol GameEnvironmentCaslonDelegate: AnyObject {
-    /// Loads the ending Caslon scene if it is present in the game's files.
-    func loadEndingCaslonSceneIfPresent()
+public protocol CelestialContextProviding {
+    associatedtype State: Hashable, Codable
 
-    /// Sets the ending Caslon scene that will be loaded.
-    func setEndingScene(to caslonName: String)
+    func capture() -> State
+    func restore(from state: State)
 }

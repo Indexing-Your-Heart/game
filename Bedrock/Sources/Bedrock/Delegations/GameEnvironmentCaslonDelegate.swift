@@ -1,8 +1,8 @@
 //
-//  GameEnvironmentRestorableProviding.swift
+//  GameEnvironmentCaslonDelegate.swift
 //  Indexing Your Heart
 //
-//  Created by Marquis Kurt on 4/1/23.
+//  Created by Marquis Kurt on 11/16/22.
 //
 //  This file is part of Indexing Your Heart.
 //
@@ -12,10 +12,15 @@
 //
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
+//
 
 import SpriteKit
 
-protocol GameEnvironmentRestorableProviding: AnyObject {
-    func capture() -> GameEnvironmentRestorable
-    func restore(from restoredState: GameEnvironmentRestorable)
+/// A delegate that handles opening Caslon scenes in the game world.
+public protocol GameEnvironmentCaslonDelegate: AnyObject {
+    /// Loads the ending Caslon scene if it is present in the game's files.
+    func loadEndingCaslonSceneIfPresent()
+
+    /// Sets the ending Caslon scene that will be loaded.
+    func setEndingScene(to caslonName: String)
 }

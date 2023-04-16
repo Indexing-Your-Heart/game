@@ -14,6 +14,7 @@
 //  details.
 //
 
+import Bedrock
 import CranberrySprite
 import GameplayKit
 import SKTiled

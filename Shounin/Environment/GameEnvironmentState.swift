@@ -29,7 +29,7 @@ class GameEnvironmentState {
 }
 
 /// A struct that represents a restorable state for the game environment.
-struct GameEnvironmentRestorable: Hashable {
+struct GameEnvironmentRestorable: Hashable, Codable {
     /// The name of the stage that the environment originated from.
     let stageName: String
 

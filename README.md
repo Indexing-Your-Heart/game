@@ -48,6 +48,8 @@ used for the main game.
 - **Celestia** is the module containing code for observing states and loading the
   game's configuration files such as the flow of game events. This module may also
   contain the logic for the save and load system.
+- **Bedrock** is the module that contains the foundational elements of the game
+  environment. Implementations are currently found in Shounin.
 
 ### Using Salmon 9 Fonts
 

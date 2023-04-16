@@ -8,6 +8,9 @@
       location = "group:LICENSE.md">
    </FileRef>
    <FileRef
+      location = "group:Bedrock">
+   </FileRef>
+   <FileRef
       location = "group:Caslon">
    </FileRef>
    <FileRef
