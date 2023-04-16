@@ -28,14 +28,14 @@ public struct CelestialFlowConfiguration: Codable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.stage = try container.decode(String.self, forKey: .stage)
-        self.chapter = try container.decode(String.self, forKey: .chapter)
-        self.showTutorials = try container.decodeIfPresent(Bool.self, forKey: .showTutorials)
+        stage = try container.decode(String.self, forKey: .stage)
+        chapter = try container.decode(String.self, forKey: .chapter)
+        showTutorials = try container.decodeIfPresent(Bool.self, forKey: .showTutorials)
     }
 }
 
-extension CelestialFlowConfiguration {
-    public static func load(from resourceName: String) -> [CelestialFlowConfiguration]? {
+public extension CelestialFlowConfiguration {
+    static func load(from resourceName: String) -> [CelestialFlowConfiguration]? {
         guard let path = Bundle.main.path(forResource: resourceName, ofType: "json") else { return nil }
         let url = URL(filePath: path)
         guard let data = try? Data(contentsOf: url) else { return nil }

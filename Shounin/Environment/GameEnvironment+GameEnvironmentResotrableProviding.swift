@@ -17,23 +17,23 @@ import SpriteKit
 
 extension GameEnvironment: GameEnvironmentRestorableProviding {
     func capture() -> GameEnvironmentRestorable {
-        return GameEnvironmentRestorable(
-            stageName: self.stageName,
-            playerPosition: self.player?.position ?? .zero,
-            solvedPuzzles: Array(self.solvedPuzzles),
+        GameEnvironmentRestorable(
+            stageName: stageName,
+            playerPosition: player?.position ?? .zero,
+            solvedPuzzles: Array(solvedPuzzles),
             displayedTutorial: displayedMovementTutorial,
             linkedStory: completionCaslonName
         )
     }
 
     func restore(from restoredState: GameEnvironmentRestorable) {
-        guard restoredState.stageName == self.stageName else { return }
+        guard restoredState.stageName == stageName else { return }
         restoredState.solvedPuzzles.forEach { self.solvedPuzzles.insert($0) }
-        self.player?.position = restoredState.playerPosition
-        self.setEndingScene(to: restoredState.linkedStory)
+        player?.position = restoredState.playerPosition
+        setEndingScene(to: restoredState.linkedStory)
         if restoredState.displayedTutorial {
-            self.tutorialNode?.removeFromParent()
-            self.tutorialNode = nil
+            tutorialNode?.removeFromParent()
+            tutorialNode = nil
         }
     }
 }

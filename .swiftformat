@@ -11,3 +11,4 @@
 --wraparguments before-first
 --wrapcollections before-first
 --wrapparameters before-first
+--exclude CranberrySprite

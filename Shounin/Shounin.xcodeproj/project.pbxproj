@@ -23,7 +23,6 @@
 		950F6CF828C13BDF007ACB53 /* GameSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F6CF728C13BDF007ACB53 /* GameSceneView.swift */; };
 		950F6CFC28C13D6F007ACB53 /* Entrypoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F6CFB28C13D6F007ACB53 /* Entrypoint.swift */; };
 		950F6CFE28C156A6007ACB53 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 950F6CFD28C156A6007ACB53 /* Localizable.strings */; };
-		950F6D0128C27442007ACB53 /* CranberrySprite in Frameworks */ = {isa = PBXBuildFile; productRef = 950F6D0028C27442007ACB53 /* CranberrySprite */; };
 		950F6D0428C27489007ACB53 /* Bunker in Frameworks */ = {isa = PBXBuildFile; productRef = 950F6D0328C27489007ACB53 /* Bunker */; };
 		9513314429ABE84400DC2F83 /* EnvironmentTestbench.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9513314329ABE84400DC2F83 /* EnvironmentTestbench.swift */; };
 		9513314629ABF62600DC2F83 /* CaslonTestbench.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9513314529ABF62600DC2F83 /* CaslonTestbench.swift */; };
@@ -71,6 +70,7 @@
 		958E090E28F0B1D3009E6AD9 /* GameFlow.json in Resources */ = {isa = PBXBuildFile; fileRef = 958E090D28F0B1D3009E6AD9 /* GameFlow.json */; };
 		9597E1EC291D5F8B00291AFD /* PaintbrushEmitter.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9597E1EA291D5F8B00291AFD /* PaintbrushEmitter.sks */; };
 		9597E1EF291D628E00291AFD /* EnvironmentBokeh.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9597E1EE291D628E00291AFD /* EnvironmentBokeh.sks */; };
+		95A42D8729EC66E2009D1F04 /* CranberrySprite in Frameworks */ = {isa = PBXBuildFile; productRef = 95A42D8629EC66E2009D1F04 /* CranberrySprite */; };
 		95A9605628EB603700F05059 /* CGImage+Resizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A9605528EB603700F05059 /* CGImage+Resizable.swift */; };
 		95A9605828EB61F600F05059 /* Bundle+InfoPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A9605728EB61F600F05059 /* Bundle+InfoPlist.swift */; };
 		95AD565E28EE20B500051144 /* SKTiled in Frameworks */ = {isa = PBXBuildFile; productRef = 95AD565D28EE20B500051144 /* SKTiled */; };
@@ -188,6 +188,7 @@
 		958E090D28F0B1D3009E6AD9 /* GameFlow.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GameFlow.json; sourceTree = "<group>"; };
 		9597E1EA291D5F8B00291AFD /* PaintbrushEmitter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PaintbrushEmitter.sks; sourceTree = "<group>"; };
 		9597E1EE291D628E00291AFD /* EnvironmentBokeh.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EnvironmentBokeh.sks; sourceTree = "<group>"; };
+		95A42D8529EC66DA009D1F04 /* CranberrySprite */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CranberrySprite; path = ../CranberrySprite; sourceTree = "<group>"; };
 		95A9605528EB603700F05059 /* CGImage+Resizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImage+Resizable.swift"; sourceTree = "<group>"; };
 		95A9605728EB61F600F05059 /* Bundle+InfoPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+InfoPlist.swift"; sourceTree = "<group>"; };
 		95AD566028EE241400051144 /* GameEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEnvironment.swift; sourceTree = "<group>"; };
@@ -237,12 +238,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				950F635228E5D7B60018AB43 /* Algorithms in Frameworks */,
-				950F6D0128C27442007ACB53 /* CranberrySprite in Frameworks */,
 				9566C63329EA23860086C28F /* Celestia in Frameworks */,
 				95C46563292537300061CB2C /* Logging in Frameworks */,
 				95E4F61928EC86BD009627F6 /* Caslon in Frameworks */,
 				95AD565E28EE20B500051144 /* SKTiled in Frameworks */,
 				950F6D0428C27489007ACB53 /* Bunker in Frameworks */,
+				95A42D8729EC66E2009D1F04 /* CranberrySprite in Frameworks */,
 				9564878D28EC756A00B4477D /* Paintbrush in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -400,6 +401,7 @@
 				9564878A28EC755400B4477D /* Paintbrush */,
 				95E4F61728EC86B1009627F6 /* Caslon */,
 				9577F57B29EA232F0096457A /* Celestia */,
+				95A42D8529EC66DA009D1F04 /* CranberrySprite */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -651,7 +653,6 @@
 			);
 			name = "Indexing Your Heart";
 			packageProductDependencies = (
-				950F6D0028C27442007ACB53 /* CranberrySprite */,
 				950F6D0328C27489007ACB53 /* Bunker */,
 				950F635128E5D7B60018AB43 /* Algorithms */,
 				9564878C28EC756A00B4477D /* Paintbrush */,
@@ -659,6 +660,7 @@
 				95AD565D28EE20B500051144 /* SKTiled */,
 				95C46562292537300061CB2C /* Logging */,
 				9566C63229EA23860086C28F /* Celestia */,
+				95A42D8629EC66E2009D1F04 /* CranberrySprite */,
 			);
 			productName = "Indexing Your Heart iOS";
 			productReference = 950F6CC728C0EADA007ACB53 /* Indexing Your Heart.app */;
@@ -711,7 +713,6 @@
 			);
 			mainGroup = 950F6CB928C0EAD8007ACB53;
 			packageReferences = (
-				950F6CFF28C27442007ACB53 /* XCRemoteSwiftPackageReference "cranberrysprite" */,
 				950F6D0228C27489007ACB53 /* XCRemoteSwiftPackageReference "bunker" */,
 				950F635028E5D7B60018AB43 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 				95AD565C28EE20B500051144 /* XCRemoteSwiftPackageReference "SKTiled" */,
@@ -1251,14 +1252,6 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		950F6CFF28C27442007ACB53 /* XCRemoteSwiftPackageReference "cranberrysprite" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/alicerunsonfedora/cranberrysprite";
-			requirement = {
-				branch = root;
-				kind = branch;
-			};
-		};
 		950F6D0228C27489007ACB53 /* XCRemoteSwiftPackageReference "bunker" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/alicerunsonfedora/bunker.git";
@@ -1291,11 +1284,6 @@
 			package = 950F635028E5D7B60018AB43 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
 			productName = Algorithms;
 		};
-		950F6D0028C27442007ACB53 /* CranberrySprite */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 950F6CFF28C27442007ACB53 /* XCRemoteSwiftPackageReference "cranberrysprite" */;
-			productName = CranberrySprite;
-		};
 		950F6D0328C27489007ACB53 /* Bunker */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 950F6D0228C27489007ACB53 /* XCRemoteSwiftPackageReference "bunker" */;
@@ -1308,6 +1296,10 @@
 		9566C63229EA23860086C28F /* Celestia */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Celestia;
+		};
+		95A42D8629EC66E2009D1F04 /* CranberrySprite */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CranberrySprite;
 		};
 		95AD565D28EE20B500051144 /* SKTiled */ = {
 			isa = XCSwiftPackageProductDependency;

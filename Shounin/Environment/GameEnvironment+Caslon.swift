@@ -23,7 +23,7 @@ extension GameEnvironment: GameEnvironmentCaslonDelegate {
         vnScene.scaleMode = scaleMode
         vnScene.loadScript(named: completionCaslonName)
         vnScene.setActor(to: CaslonActor())
-        self.teardown()
+        teardown()
         view?.presentScene(vnScene, transition: .fade(withDuration: 3.0))
     }
 

@@ -13,8 +13,8 @@
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
 
-import SpriteKit
 import SKTiled
+import SpriteKit
 
 extension GameEnvironment: SKTilemapDelegate {
     func didRenderMap(_ tilemap: SKTilemap) {

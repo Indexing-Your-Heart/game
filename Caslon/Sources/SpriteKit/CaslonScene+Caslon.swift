@@ -13,9 +13,9 @@
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
 
+import CranberrySprite
 import JensonKit
 import SpriteKit
-import CranberrySprite
 
 // MARK: - Timeline Delegation
 

@@ -117,7 +117,7 @@ class GameEnvironment: SKScene {
 
     override func willMove(from view: SKView) {
         super.willMove(from: view)
-        self.teardown()
+        teardown()
     }
 
     override func didMove(to view: SKView) {
@@ -186,11 +186,11 @@ class GameEnvironment: SKScene {
     }
 
     func teardown() {
-        self.environmentDelegate = nil
-        self.player = nil
-        self.walkableTiles.removeAll()
-        self.walkingLayer = nil
-        self.stageConfiguration = nil
+        environmentDelegate = nil
+        player = nil
+        walkableTiles.removeAll()
+        walkingLayer = nil
+        stageConfiguration = nil
         apply(recursively: true) { child in
             if let sound = child as? SKAudioNode, let audioNode = sound.avAudioNode {
                 sound.changeVolume(to: .zero)

@@ -18,10 +18,10 @@ import AppKit
 #else
 import UIKit
 #endif
+import Celestia
 import GameKit
 import Logging
 import SKTiled
-import Celestia
 
 // MARK: - General App Delegation
 

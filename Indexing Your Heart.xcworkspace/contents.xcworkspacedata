@@ -17,6 +17,9 @@
       location = "group:Paintbrush">
    </FileRef>
    <FileRef
+      location = "group:CranberrySprite">
+   </FileRef>
+   <FileRef
       location = "group:Shounin/Shounin.xcodeproj">
    </FileRef>
 </Workspace>

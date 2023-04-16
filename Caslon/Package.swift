@@ -20,13 +20,16 @@ let package = Package(
         .package(
             url: "https://github.com/apple/swift-log",
             from: .init(1, 0, 0)
-        )
+        ),
+        .package(name: "CranberrySprite", path: "../CranberrySprite")
     ],
     targets: [
         .target(
             name: "Caslon",
             dependencies: [
-                .product(name: "JensonKit", package: "JensonKit")
+                .product(name: "JensonKit", package: "JensonKit"),
+                .product(name: "CranberrySprite", package: "CranberrySprite"),
+                .product(name: "Logging", package: "swift-log")
             ],
             path: "./Sources/"
         )

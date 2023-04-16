@@ -57,7 +57,7 @@ extension GameEnvironment: GameEnvironmentPuzzleDelegate {
         puzzleScene.puzzle = puzzle
         AppDelegate.observedState.previousEnvironment = capture()
         AppDelegate.observedState.puzzleTriggerName = puzzle.expectedResult
-        if let view { self.willMove(from: view) }
+        if let view { willMove(from: view) }
         view?.presentScene(puzzleScene, transition: .push(with: .down, duration: 0.5))
     }
 

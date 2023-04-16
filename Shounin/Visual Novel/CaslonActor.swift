@@ -19,7 +19,7 @@ import Foundation
 
 class CaslonActor: CaslonSceneActionProviding {
     func sceneRequestsDismissingTutorial() -> Bool? {
-        return AppDelegate.currentFlow.currentBlock?.showTutorials
+        AppDelegate.currentFlow.currentBlock?.showTutorials
     }
 
     func sceneWillEnd() {

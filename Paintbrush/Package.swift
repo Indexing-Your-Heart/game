@@ -13,11 +13,14 @@ let package = Package(
         )
     ],
     dependencies: [
+        .package(name: "CranberrySprite", path: "../CranberrySprite")
     ],
     targets: [
         .target(
             name: "Paintbrush",
-            dependencies: [],
+            dependencies: [
+                .product(name: "CranberrySprite", package: "CranberrySprite")
+            ],
             path: "./Sources/"
         ),
         .testTarget(

@@ -39,7 +39,7 @@ public class CaslonScene: SKScene {
 
     private var didSetTutorial = false
 
-    public override func didMove(to view: SKView) {
+    override public func didMove(to view: SKView) {
         super.didMove(to: view)
 #if DEBUG
         logger.logLevel = .debug
@@ -93,7 +93,7 @@ public class CaslonScene: SKScene {
     }
 
     public func setActor(to provider: CaslonSceneActionProviding) {
-        self.actorProvider = provider
+        actorProvider = provider
     }
 
     /// Updates the dialogue box with the new dialogue from an event.
