@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dlqqh8vgix5xp"]
+
+[node name="ProtractorDemo" type="Node2D"]
+
+[node name="ProtractorDrawer" type="ProtractorDrawer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]

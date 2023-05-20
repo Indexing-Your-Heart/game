@@ -1,75 +1,21 @@
 {
   "pins" : [
     {
-      "identity" : "bunker",
+      "identity" : "swiftgodot",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/alicerunsonfedora/bunker.git",
+      "location" : "https://github.com/alicerunsonfedora/SwiftGodot",
       "state" : {
-        "branch" : "root",
-        "revision" : "9f7ba80122b3f0ff525d13cf997ecaa8c2128d87"
+        "branch" : "main",
+        "revision" : "aba88cb371e1e9999aeba664335a52bb9df58489"
       }
     },
     {
-      "identity" : "jensonkit",
+      "identity" : "xmlcoder",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Indexing-Your-Heart/JensonKit",
+      "location" : "https://github.com/CoreOffice/XMLCoder",
       "state" : {
-        "revision" : "51d3979ce0720253b77d76b56c4809998f70ecd2",
-        "version" : "0.1.0-alpha2"
-      }
-    },
-    {
-      "identity" : "sktiled",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mfessenden/SKTiled",
-      "state" : {
-        "revision" : "69e520c05f12beb9493c2509a71b259e52342c4a",
-        "version" : "1.23.0"
-      }
-    },
-    {
-      "identity" : "swift-algorithms",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-algorithms.git",
-      "state" : {
-        "revision" : "b14b7f4c528c942f121c8b860b9410b2bf57825e",
-        "version" : "1.0.0"
-      }
-    },
-    {
-      "identity" : "swift-docc-plugin",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-docc-plugin.git",
-      "state" : {
-        "revision" : "9b1258905c21fc1b97bf03d1b4ca12c4ec4e5fda",
-        "version" : "1.2.0"
-      }
-    },
-    {
-      "identity" : "swift-docc-symbolkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-docc-symbolkit",
-      "state" : {
-        "revision" : "b45d1f2ed151d057b54504d653e0da5552844e34",
-        "version" : "1.0.0"
-      }
-    },
-    {
-      "identity" : "swift-log",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-log",
-      "state" : {
-        "revision" : "32e8d724467f8fe623624570367e3d50c5638e46",
-        "version" : "1.5.2"
-      }
-    },
-    {
-      "identity" : "swift-numerics",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-numerics",
-      "state" : {
-        "revision" : "0a5bc04095a675662cf24757cc0640aa2204253b",
-        "version" : "1.0.2"
+        "revision" : "b1e944cbd0ef33787b13f639a5418d55b3bed501",
+        "version" : "0.17.1"
       }
     }
   ],

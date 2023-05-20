@@ -1,0 +1,5 @@
+[configuration]
+entry_symbol = "libprotractor_entry_point"
+
+[libraries]
+macos.debug = "res://bin/libProtractor.dylib"

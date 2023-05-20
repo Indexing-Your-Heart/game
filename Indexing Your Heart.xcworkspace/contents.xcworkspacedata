@@ -8,21 +8,6 @@
       location = "group:LICENSE.md">
    </FileRef>
    <FileRef
-      location = "group:Modules/Bedrock">
-   </FileRef>
-   <FileRef
-      location = "group:Modules/Caslon">
-   </FileRef>
-   <FileRef
-      location = "group:Modules/Celestia">
-   </FileRef>
-   <FileRef
-      location = "group:Modules/Paintbrush">
-   </FileRef>
-   <FileRef
-      location = "group:Modules/CranberrySprite">
-   </FileRef>
-   <FileRef
-      location = "group:Shounin/Shounin.xcodeproj">
+      location = "group:Protractor">
    </FileRef>
 </Workspace>
