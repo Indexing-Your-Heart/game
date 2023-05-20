@@ -18,16 +18,49 @@ import SwiftGodot
 import GDExtension
 
 class ProtractorDrawer: Node2D {
+    // FIXME: These values aren't being retained correctly.
+    static var initClass: Void = {
+        let classInfo = ClassInfo<ProtractorDrawer>(name: "ProtractorDrawer")
+        let templateArgs = [
+            PropInfo(propertyType: .string,
+                     propertyName: "Template File",
+                     className: StringName("protractor_template"),
+                     hint: .file,
+                     hintStr: "The file containing templates that the reader will pick from.",
+                     usage: .propertyUsageDefault)
+        ]
+        classInfo.registerMethod(name: "drawer_set_templates",
+                                 flags: .default,
+                                 returnValue: nil,
+                                 arguments: templateArgs,
+                                 function: ProtractorDrawer.drawerSetTemplates)
+        classInfo.registerMethod(name: "drawer_get_templates",
+                                 flags: .default,
+                                 returnValue: templateArgs[0],
+                                 arguments: [],
+                                 function: ProtractorDrawer.drawerGetTemplates)
+        let templateProp = PropInfo(propertyType: .string,
+                                    propertyName: "protractor_template",
+                                    className: "ProtractorDrawer",
+                                    hint: .file,
+                                    hintStr: "*.json",
+                                    usage: .propertyUsageDefault)
+        classInfo.registerProperty(templateProp, getter: "drawer_get_templates", setter: "drawer_set_templates")
+    }()
+
     var drawingArea: Area2D
     var visibleLine: Line2D
 
     private var dragging: Bool = false
     private var frame = Sprite2D()
     private var recognizer = ProtractorRecognizer()
+    private var protractorTemplate: String
 
     required init() {
+        ProtractorDrawer.initClass
         self.drawingArea = Area2D()
         self.visibleLine = Line2D()
+        self.protractorTemplate = ""
         super.init()
         self.setupArea()
         self.setupLine()
@@ -36,13 +69,30 @@ class ProtractorDrawer: Node2D {
     }
 
     required init(nativeHandle: UnsafeRawPointer) {
-        self.drawingArea = Area2D(nativeHandle: nativeHandle)
-        self.visibleLine = Line2D(nativeHandle: nativeHandle)
-        super.init(nativeHandle: nativeHandle)
-        self.setupArea()
-        self.setupLine()
-        self.setupFrame()
-        self.setupRecognizer()
+        fatalError("init(nativeHandle:) not implemented")
+    }
+
+    func drawerSetTemplates(args: [Variant]) -> Variant? {
+        guard let arg = args.first else {
+            GD.pushError("Expected argument of file path, but got nil.")
+            return nil
+        }
+        self.protractorTemplate = String(arg) ?? ""
+        GD.print("Got template string", self.protractorTemplate)
+        do {
+            self.recognizer.dropTemplates()
+            try self.recognizer.insertTemplates(reading: self.protractorTemplate)
+            GD.print(self.recognizer.templates.map(\.name))
+        } catch {
+            GD.pushError("Failed to add template:", error.localizedDescription)
+        }
+        return nil
+    }
+
+    func drawerGetTemplates(args: [Variant]) -> Variant? {
+        GD.print(self.protractorTemplate)
+        let variant = Variant(GString(stringLiteral: self.protractorTemplate))
+        return variant
     }
 
     private func setupArea() {
@@ -88,7 +138,7 @@ class ProtractorDrawer: Node2D {
 
     private func setupLine() {
         self.addChild(node: visibleLine)
-//        self.visibleLine.defaultColor = Color(code: "#102030", alpha: 1.0)
+        //        self.visibleLine.defaultColor = Color(code: "#102030", alpha: 1.0)
         self.visibleLine.antialiased = true
         self.visibleLine.endCapMode = .lineCapRound
         self.visibleLine.beginCapMode = .lineCapRound
@@ -97,12 +147,12 @@ class ProtractorDrawer: Node2D {
 
     private func setupRecognizer() {
         // TODO: Can we use an exported variable to have a list of resources to load from instead?
-        do {
-            try self.recognizer.insertTemplates(reading: "res://data/templates.json")
-            try self.recognizer.insertTemplates(reading: "res://data/Ashashat.json")
-        } catch {
-            GD.pushError("Failed to load templates", error.localizedDescription)
-        }
+//        do {
+//            try self.recognizer.insertTemplates(reading: "res://data/templates.json")
+//            try self.recognizer.insertTemplates(reading: "res://data/Ashashat.json")
+//        } catch {
+//            GD.pushError("Failed to load templates", error.localizedDescription)
+//        }
     }
 
     private func drawingBounds(of size: Vector2) -> CollisionShape2D {

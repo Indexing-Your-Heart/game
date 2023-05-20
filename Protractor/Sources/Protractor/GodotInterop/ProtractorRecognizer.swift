@@ -51,6 +51,10 @@ public class ProtractorRecognizer: ProtractorRecognitionDelegate {
             .vectorized(accountsForOrientation: self.orientationSensitive)
     }
 
+    public func dropTemplates() {
+        self.templates.removeAll()
+    }
+
     /// Inserts a series of templates into the recognizer.
     /// - Parameter templates: An array of templates to include in the recognizer.
     public func insertTemplates(from templates: [ProtractorTemplate]) {
