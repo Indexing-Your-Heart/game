@@ -3,5 +3,7 @@
 [node name="ProtractorDemo" type="Node2D"]
 
 [node name="ProtractorDrawer" type="ProtractorDrawer" parent="."]
+recognizer_orientation_sensitive = true
+debug_print_path = true
 
 [node name="Camera2D" type="Camera2D" parent="."]

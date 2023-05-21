@@ -46,9 +46,10 @@ public class ProtractorRecognizer: ProtractorRecognitionDelegate {
             .vectorized(accountsForOrientation: orientationSensitive)
     }
 
-    public func setPath(_ path: ProtractorPath) {
+    public func setPath(_ path: ProtractorPath, orientationSensitive: Bool) {
+        self.orientationSensitive = orientationSensitive
         self.vectorPath = path.resampled(count: self.resampling)
-            .vectorized(accountsForOrientation: self.orientationSensitive)
+            .vectorized(accountsForOrientation: orientationSensitive)
     }
 
     public func dropTemplates() {
