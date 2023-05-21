@@ -56,6 +56,7 @@ class ProtractorDrawer: Node2D {
     }
 
     func getRecognizerTemplates(args: [Variant]) -> Variant? {
+        print(Variant(stringLiteral: protractorTemplate).description)
         return Variant(stringLiteral: protractorTemplate)
     }
 
@@ -84,13 +85,13 @@ class ProtractorDrawer: Node2D {
         }
         self.protractorTemplate = String(arg) ?? ""
         GD.print("Got template string", self.protractorTemplate)
-        do {
-            self.recognizer.dropTemplates()
-            try self.recognizer.insertTemplates(reading: self.protractorTemplate)
-            GD.print(self.recognizer.templates.map(\.name))
-        } catch {
-            GD.pushError("Failed to add template:", error.localizedDescription)
-        }
+//        do {
+//            self.recognizer.dropTemplates()
+//            try self.recognizer.insertTemplates(reading: self.protractorTemplate)
+//            GD.print(self.recognizer.templates.map(\.name))
+//        } catch {
+//            GD.pushError("Failed to add template:", error.localizedDescription)
+//        }
         return nil
     }
 
