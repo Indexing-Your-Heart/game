@@ -11,9 +11,17 @@ config_version=5
 [application]
 
 config/name="Indexing Your Heart"
+run/main_scene="res://demos/protractor_demo.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
 config/icon="res://icon.png"
+
+[display]
+
+window/size/viewport_width=1600
+window/size/viewport_height=900
+window/size/mode=3
 
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_s3tc_bptc=true

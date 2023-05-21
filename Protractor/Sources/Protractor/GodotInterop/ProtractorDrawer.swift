@@ -138,7 +138,6 @@ class ProtractorDrawer: Node2D {
 
     private func setupLine() {
         self.addChild(node: visibleLine)
-        //        self.visibleLine.defaultColor = Color(code: "#102030", alpha: 1.0)
         self.visibleLine.antialiased = true
         self.visibleLine.endCapMode = .lineCapRound
         self.visibleLine.beginCapMode = .lineCapRound

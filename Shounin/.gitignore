@@ -1,2 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
+
+# Hide exporting templates
+export_presets.cfg
