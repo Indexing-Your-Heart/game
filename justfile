@@ -36,7 +36,7 @@ clean-all-deps:
 
 # Fetches remote dependencies from Git submodules
 fetch-remote-deps:
-	git submodule update --init --recursive
+	git submodule update --init --recursive --remote
 
 # Formats the source files in a specified set of dependencies
 format-dep +DEPENDENCIES:
