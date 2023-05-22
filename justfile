@@ -45,6 +45,10 @@ format-dep +DEPENDENCIES:
 		swiftformat "$DEPENDENCY/Sources" --swiftversion 5.8
 	done
 
+# Formats source files in all dependencies
+format-all-deps:
+	just format-dep Protractor
+
 # Test a specified set of dependencies
 test-dep +DEPENDENCIES: (build-dep '-d -m' DEPENDENCIES)
 	#!/bin/sh

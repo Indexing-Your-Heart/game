@@ -40,7 +40,6 @@ class ProtractorDrawer: Node2D {
         setupArea()
         setupLine()
         setupFrame()
-        setupRecognizer()
     }
 
     required init(nativeHandle _: UnsafeRawPointer) {
@@ -56,8 +55,7 @@ class ProtractorDrawer: Node2D {
     }
 
     func getRecognizerTemplates(args _: [Variant]) -> Variant? {
-        print(Variant(stringLiteral: protractorTemplate).description)
-        return Variant(stringLiteral: protractorTemplate)
+        Variant(stringLiteral: protractorTemplate)
     }
 
     func setDebugPrintPaths(args: [Variant]) -> Variant? {
@@ -84,14 +82,13 @@ class ProtractorDrawer: Node2D {
             return nil
         }
         protractorTemplate = String(arg) ?? ""
-        GD.print("Got template string", protractorTemplate)
-//        do {
-//            self.recognizer.dropTemplates()
-//            try self.recognizer.insertTemplates(reading: self.protractorTemplate)
-//            GD.print(self.recognizer.templates.map(\.name))
-//        } catch {
-//            GD.pushError("Failed to add template:", error.localizedDescription)
-//        }
+        do {
+            recognizer.dropTemplates()
+            try recognizer.insertTemplates(reading: protractorTemplate)
+            GD.print(recognizer.templates.map(\.name))
+        } catch {
+            GD.pushError("Failed to add template:", error.localizedDescription)
+        }
         return nil
     }
 
@@ -142,16 +139,6 @@ class ProtractorDrawer: Node2D {
         visibleLine.endCapMode = .lineCapRound
         visibleLine.beginCapMode = .lineCapRound
         visibleLine.jointMode = .lineJointRound
-    }
-
-    private func setupRecognizer() {
-        // TODO: Can we use an exported variable to have a list of resources to load from instead?
-        do {
-            try recognizer.insertTemplates(reading: "res://data/templates.json")
-//            try self.recognizer.insertTemplates(reading: "res://data/Ashashat.json")
-        } catch {
-            GD.pushError("Failed to load templates", error.localizedDescription)
-        }
     }
 
     private func drawingBounds(of size: Vector2) -> CollisionShape2D {
