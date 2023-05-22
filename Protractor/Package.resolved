@@ -1,15 +1,6 @@
 {
   "pins" : [
     {
-      "identity" : "swiftgodot",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/alicerunsonfedora/SwiftGodot",
-      "state" : {
-        "branch" : "main",
-        "revision" : "20859a7da77d7a77cdb83562c2910c0101729fc3"
-      }
-    },
-    {
       "identity" : "xmlcoder",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/CoreOffice/XMLCoder",

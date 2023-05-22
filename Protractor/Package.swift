@@ -12,8 +12,7 @@ let package = Package(
             targets: ["Protractor"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/alicerunsonfedora/SwiftGodot",
-                 branch: "main")
+        .package(name: "SwiftGodot", path: "../SwiftGodot")
     ],
     targets: [
         .target(

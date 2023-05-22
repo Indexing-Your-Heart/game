@@ -115,4 +115,7 @@ Shared/Assets/Fonts/Salmon**.ttf
 # Markdown source files
 Story Source/**.md
 
+# Prebuilt libraries
+Shounin/bin/*.dylib
+Shounin/bin/*.framework
 old/
