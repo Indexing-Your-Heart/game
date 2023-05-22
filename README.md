@@ -19,37 +19,42 @@ the love of her life, Sam.
 **Required Tools**
 
 - Xcode 14 or later
-- macOS 12.4 (Monterey) or later
+- macOS 13 (Ventura) or later
+- Just (`brew install just`)
+- Godot 4.0.x
 
 **Optional Tools**
 
 - Salmon 9 font family
 - SwiftLint and SwiftFormat (used internally for code formatting)
 - Xcode Command Line Tools
-- Fastlane (used internally for assistance in CI deployment)
-- Tiled (used to create 2D levels)
 
-Start by cloning the repository using `gh repo clone` or `git clone`, then open the
-main project file `Indexing Your Heart.xcworkspace`. Ensure the current scheme is
-set to **Indexing Your Heart**, then go to **Product > Run** to build and run the
-project on your Mac or an iOS simulator.
+Start by cloning the repository using `gh repo clone` or `git clone --recursive`.
+Then, run `just build-all-deps` to build the required dependencies for the internal
+extensions that the main game uses.
 
-### Project Modules
+From here, you can open the Shounin project in Godot or run `just edit-game` to open
+Godot automatically.
 
-Indexing Your Heart is organized into a set of modules, each containing a system
-used for the main game.
+> **Note**  
+> Using `just edit-game` assumes that you have the Godot binary in your PATH.
 
-- **Shounin** is the game project itself, where all of the modules get imported
-  into.
-- **Paintbrush** is the module that contains the source code for the Paintbrush
-  puzzle system. The implementations for these exist in Shounin.
-- **Caslon** is the module containing the source code for the Caslon visual novel
-  system created for Jenson files
-- **Celestia** is the module containing code for observing states and loading the
-  game's configuration files such as the flow of game events. This module may also
-  contain the logic for the save and load system.
-- **Bedrock** is the module that contains the foundational elements of the game
-  environment. Implementations are currently found in Shounin.
+### Editing Dependencies
+
+If you need to edit any of the dependent libraries, you can run `just edit-deps` or
+open the Indexing Your Heart.xcworkspace file. This will open Xcode with all the
+Swift packages used to build the libraries that the Godot project utilizes.
+
+### Exporting Requirements
+
+Generally, you can export the Godot project like any other typical Godot project,
+with the following caveats/requirements:
+
+- **The dependent libraries currently only build for macOS and iOS.** They do not
+  build for any other platform.
+- **The JSON files in the data folder must be included.** Add `data/*.json` to the
+  required paths to export in the Resources tab of each target you'd like to build
+  for.
 
 ### Using Salmon 9 Fonts
 
@@ -109,10 +114,8 @@ later. You can learn more about what your rights are by reading the
 **Indexing Your Heart (Codename "Head Over Heels")** includes libraries and projects
 under open-source licenses:
 
-- CranberrySprite: Mozilla Public License (v2)
-- Bunker: Mozilla Public License (v2)
-- Swift Algorithms: Apache License (v2)
-- SKTiled: MIT License
+- SwiftGodot: MIT License
+- Godot: MIT License
 
 Additionally, it contains libraries and projects under ethical-source licenses:
 
