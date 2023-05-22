@@ -75,11 +75,11 @@ extension ProtractorDrawer {
                                  arguments: [],
                                  function: ProtractorDrawer.getRecognizerOrientationSensitivity)
         let orientationProp = PropInfo(propertyType: .bool,
-                                    propertyName: "recognizer_orientation_sensitive",
-                                    className: "ProtractorDrawer",
-                                    hint: .flags,
-                                    hintStr: "",
-                                    usage: .propertyUsageDefault)
+                                       propertyName: "recognizer_orientation_sensitive",
+                                       className: "ProtractorDrawer",
+                                       hint: .flags,
+                                       hintStr: "",
+                                       usage: .propertyUsageDefault)
         classInfo.registerProperty(orientationProp,
                                    getter: "recognizer_get_orientation_sensitive",
                                    setter: "recognizer_set_orientation_sensitive")
@@ -97,11 +97,11 @@ extension ProtractorDrawer {
                                  arguments: [],
                                  function: ProtractorDrawer.getDebugPrintPaths)
         let debugPrintPathProp = PropInfo(propertyType: .bool,
-                                       propertyName: "debug_print_path",
-                                       className: "ProtractorDrawer",
-                                       hint: .flags,
-                                       hintStr: "",
-                                       usage: .propertyUsageDefault)
+                                          propertyName: "debug_print_path",
+                                          className: "ProtractorDrawer",
+                                          hint: .flags,
+                                          hintStr: "",
+                                          usage: .propertyUsageDefault)
         classInfo.registerProperty(debugPrintPathProp,
                                    getter: "debug_get_print_path",
                                    setter: "debug_set_print_path")

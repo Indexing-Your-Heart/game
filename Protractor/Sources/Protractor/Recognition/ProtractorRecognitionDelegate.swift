@@ -59,10 +59,9 @@ public extension ProtractorRecognitionDelegate {
         return (matchingGestureName, maxScore)
     }
 
-    func optimalCosineDistance(
-        from vector: [Component],
-        to prime: [Component]
-    ) -> Component where Template.Component == Point.CoordinateComponent {
+    func optimalCosineDistance(from vector: [Component],
+                               to prime: [Component]) -> Component where Template.Component == Point.CoordinateComponent
+    {
         var aValue = 0.0
         var bValue = 0.0
         for idx in stride(from: 0, to: vector.count, by: 2) {

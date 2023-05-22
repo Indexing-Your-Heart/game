@@ -13,8 +13,8 @@
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
 
-import SwiftGodot
 import Foundation
+import SwiftGodot
 
 /// A struct that represents a path of points.
 public struct ProtractorPath {
@@ -29,9 +29,9 @@ public struct ProtractorPath {
     }
 }
 
-extension ProtractorPath {
-    public init(line: Line2D) {
-        self.points = line.points.map(ProtractorPoint.init)
+public extension ProtractorPath {
+    init(line: Line2D) {
+        points = line.points.map(ProtractorPoint.init)
     }
 }
 

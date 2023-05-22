@@ -14,8 +14,8 @@
 //  details.
 
 import Foundation
-import SwiftGodot
 import GDExtension
+import SwiftGodot
 
 class ProtractorDrawer: Node2D {
     var drawingArea: Area2D
@@ -31,31 +31,31 @@ class ProtractorDrawer: Node2D {
 
     required init() {
         ProtractorDrawer.initClass
-        self.drawingArea = Area2D()
-        self.visibleLine = Line2D()
-        self.orientationSensitive = false
-        self.protractorTemplate = ""
-        self.debugPrintPaths = false
+        drawingArea = Area2D()
+        visibleLine = Line2D()
+        orientationSensitive = false
+        protractorTemplate = ""
+        debugPrintPaths = false
         super.init()
-        self.setupArea()
-        self.setupLine()
-        self.setupFrame()
-        self.setupRecognizer()
+        setupArea()
+        setupLine()
+        setupFrame()
+        setupRecognizer()
     }
 
-    required init(nativeHandle: UnsafeRawPointer) {
+    required init(nativeHandle _: UnsafeRawPointer) {
         fatalError("init(nativeHandle:) not implemented")
     }
 
-    func getDebugPrintPaths(args: [Variant]) -> Variant? {
-        return(Variant(debugPrintPaths))
+    func getDebugPrintPaths(args _: [Variant]) -> Variant? {
+        Variant(debugPrintPaths)
     }
 
-    func getRecognizerOrientationSensitivity(args: [Variant]) -> Variant? {
-        return Variant(orientationSensitive)
+    func getRecognizerOrientationSensitivity(args _: [Variant]) -> Variant? {
+        Variant(orientationSensitive)
     }
 
-    func getRecognizerTemplates(args: [Variant]) -> Variant? {
+    func getRecognizerTemplates(args _: [Variant]) -> Variant? {
         print(Variant(stringLiteral: protractorTemplate).description)
         return Variant(stringLiteral: protractorTemplate)
     }
@@ -65,7 +65,7 @@ class ProtractorDrawer: Node2D {
             GD.pushError("Expected argument for orientation sensitivity, but got nil")
             return nil
         }
-        self.debugPrintPaths = Bool(arg) ?? false
+        debugPrintPaths = Bool(arg) ?? false
         return nil
     }
 
@@ -74,7 +74,7 @@ class ProtractorDrawer: Node2D {
             GD.pushError("Expected argument for orientation sensitivity, but got nil")
             return nil
         }
-        self.orientationSensitive = Bool(arg) ?? false
+        orientationSensitive = Bool(arg) ?? false
         return nil
     }
 
@@ -83,8 +83,8 @@ class ProtractorDrawer: Node2D {
             GD.pushError("Expected argument of file path, but got nil.")
             return nil
         }
-        self.protractorTemplate = String(arg) ?? ""
-        GD.print("Got template string", self.protractorTemplate)
+        protractorTemplate = String(arg) ?? ""
+        GD.print("Got template string", protractorTemplate)
 //        do {
 //            self.recognizer.dropTemplates()
 //            try self.recognizer.insertTemplates(reading: self.protractorTemplate)
@@ -96,10 +96,10 @@ class ProtractorDrawer: Node2D {
     }
 
     private func setupArea() {
-        self.drawingArea.addChild(node: drawingBounds(of: .init(x: 256, y: 256)))
-        self.drawingArea.inputPickable = true
-        self.addChild(node: drawingArea)
-        self.drawingArea.inputEvent.connect { viewport, event, shapeIdx in
+        drawingArea.addChild(node: drawingBounds(of: .init(x: 256, y: 256)))
+        drawingArea.inputPickable = true
+        addChild(node: drawingArea)
+        drawingArea.inputEvent.connect { _, event, _ in
             // TODO: Would be nice if I could conditional type cast here...
             // Register mouse events for clicking and dragging.
             if event.getClass() == "\(InputEventMouseButton.self)", !event.asText().starts(with: "Mouse Wheel") {
@@ -129,25 +129,25 @@ class ProtractorDrawer: Node2D {
 
     private func setupFrame() {
         guard let frameResource: Texture2D = GD.load(path: "res://resources/pb_border.png") else { return }
-        self.frame.texture = frameResource
-        self.frame.textureFilter = .nearest
-        self.frame.zIndex = -1
-        self.frame.scale = .init(x: 3, y: 3)
-        self.addChild(node: frame)
+        frame.texture = frameResource
+        frame.textureFilter = .nearest
+        frame.zIndex = -1
+        frame.scale = .init(x: 3, y: 3)
+        addChild(node: frame)
     }
 
     private func setupLine() {
-        self.addChild(node: visibleLine)
-        self.visibleLine.antialiased = true
-        self.visibleLine.endCapMode = .lineCapRound
-        self.visibleLine.beginCapMode = .lineCapRound
-        self.visibleLine.jointMode = .lineJointRound
+        addChild(node: visibleLine)
+        visibleLine.antialiased = true
+        visibleLine.endCapMode = .lineCapRound
+        visibleLine.beginCapMode = .lineCapRound
+        visibleLine.jointMode = .lineJointRound
     }
 
     private func setupRecognizer() {
         // TODO: Can we use an exported variable to have a list of resources to load from instead?
         do {
-            try self.recognizer.insertTemplates(reading: "res://data/templates.json")
+            try recognizer.insertTemplates(reading: "res://data/templates.json")
 //            try self.recognizer.insertTemplates(reading: "res://data/Ashashat.json")
         } catch {
             GD.pushError("Failed to load templates", error.localizedDescription)
@@ -165,32 +165,32 @@ class ProtractorDrawer: Node2D {
     }
 
     private func startDrawing(with event: InputEvent) {
-        self.dragging = event.isPressed()
+        dragging = event.isPressed()
         if !event.isPressed() {
-            self.endDrawing(from: event)
+            endDrawing(from: event)
             return
         }
-        if !self.visibleLine.points.isEmpty(), event.isPressed() {
-            self.visibleLine.clearPoints()
+        if !visibleLine.points.isEmpty(), event.isPressed() {
+            visibleLine.clearPoints()
         }
-        self.visibleLine.addPoint(position: getLocalMousePosition())
+        visibleLine.addPoint(position: getLocalMousePosition())
     }
 
-    private func continueDrawing(with event: InputEvent) {
-        self.visibleLine.addPoint(position: getLocalMousePosition())
+    private func continueDrawing(with _: InputEvent) {
+        visibleLine.addPoint(position: getLocalMousePosition())
     }
 
-    private func endDrawing(from event: InputEvent) {
-        self.visibleLine.addPoint(position: getLocalMousePosition())
-        let path = ProtractorPath(line: self.visibleLine)
-        self.recognizer.setPath(path, orientationSensitive: orientationSensitive)
+    private func endDrawing(from _: InputEvent) {
+        visibleLine.addPoint(position: getLocalMousePosition())
+        let path = ProtractorPath(line: visibleLine)
+        recognizer.setPath(path, orientationSensitive: orientationSensitive)
 
         if debugPrintPaths {
-            let printedPoints = self.visibleLine.points.map { [Int($0.x), Int($0.y)] }
+            let printedPoints = visibleLine.points.map { [Int($0.x), Int($0.y)] }
             GD.print("Drawn Path:", printedPoints)
         }
 
-        guard !self.recognizer.templates.isEmpty else {
+        guard !recognizer.templates.isEmpty else {
             GD.pushWarning("Recognizer templates are empty.")
             return
         }

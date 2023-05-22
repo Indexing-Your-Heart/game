@@ -13,13 +13,14 @@
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
 
-import SwiftGodot
 import GDExtension
+import SwiftGodot
 
 @_cdecl("libprotractor_entry_point")
 public func libprotractor_entry_point(interface: OpaquePointer?,
                                       library: OpaquePointer?,
-                                      extension: OpaquePointer?) -> UInt8 {
+                                      extension: OpaquePointer?) -> UInt8
+{
     guard let library, let interface, let `extension` else {
         print("Error: Not all parameters were initialized.")
         print("Library:", library, "Interface", interface, "Extension", `extension`)

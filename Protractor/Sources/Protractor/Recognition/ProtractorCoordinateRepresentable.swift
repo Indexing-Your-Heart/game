@@ -14,8 +14,8 @@
 //  details.
 
 import CoreGraphics
-import SwiftGodot
 import Foundation
+import SwiftGodot
 
 /// A protocol that indicates a point is able to be used for gesture recognition.
 public protocol ProtractorCoordinateRepresentable {

@@ -10,9 +10,7 @@ opt_in_rules:
   - inclusive_language
 
 included:
-  - Caslon/Sources
-  - Paintbrush/Sources
-  - Shounin
+  - Protractor/Sources/
 
 type_name:
   allowed_symbols: ["_"]

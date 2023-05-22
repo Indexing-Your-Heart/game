@@ -13,8 +13,8 @@
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
 
-import SwiftGodot
 import Foundation
+import SwiftGodot
 
 /// A class that handles gesture recognition using the Protractor algorithm.
 public class ProtractorRecognizer: ProtractorRecognitionDelegate {
@@ -32,14 +32,13 @@ public class ProtractorRecognizer: ProtractorRecognitionDelegate {
 
     public init(accountForOrientation orientationSensitive: Bool = false, resampledBy resampleRate: Int = 16) {
         self.orientationSensitive = orientationSensitive
-        self.resampling = resampleRate
+        resampling = resampleRate
     }
 
-    public init(
-        from path: ProtractorPath,
-        accountForOrientation orientationSensitive: Bool = false,
-        resampledBy resampling: Int = 16
-    ) {
+    public init(from path: ProtractorPath,
+                accountForOrientation orientationSensitive: Bool = false,
+                resampledBy resampling: Int = 16)
+    {
         self.resampling = resampling
         self.orientationSensitive = orientationSensitive
         vectorPath = path.resampled(count: self.resampling)
@@ -48,12 +47,12 @@ public class ProtractorRecognizer: ProtractorRecognitionDelegate {
 
     public func setPath(_ path: ProtractorPath, orientationSensitive: Bool) {
         self.orientationSensitive = orientationSensitive
-        self.vectorPath = path.resampled(count: self.resampling)
+        vectorPath = path.resampled(count: resampling)
             .vectorized(accountsForOrientation: orientationSensitive)
     }
 
     public func dropTemplates() {
-        self.templates.removeAll()
+        templates.removeAll()
     }
 
     /// Inserts a series of templates into the recognizer.
@@ -69,11 +68,9 @@ public class ProtractorRecognizer: ProtractorRecognitionDelegate {
     public func insertTemplates(reading path: String) throws {
         let result = try ProtractorTemplateCodable.load(resourcePath: path)
         let transformedTemplates = result.map { configTemplate in
-            ProtractorTemplate(
-                from: configTemplate,
-                accountsForOrientation: self.orientationSensitive,
-                resampledBy: self.resampling
-            )
+            ProtractorTemplate(from: configTemplate,
+                               accountsForOrientation: self.orientationSensitive,
+                               resampledBy: self.resampling)
         }
         templates.append(contentsOf: transformedTemplates)
     }

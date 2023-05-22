@@ -28,11 +28,10 @@ public struct ProtractorTemplate {
         self.vectorPath = vectorPath
     }
 
-    init(
-        from configuration: ProtractorTemplateCodable,
-        accountsForOrientation orientationSensitive: Bool = false,
-        resampledBy resampling: Int = 16
-    ) {
+    init(from configuration: ProtractorTemplateCodable,
+         accountsForOrientation orientationSensitive: Bool = false,
+         resampledBy resampling: Int = 16)
+    {
         let name = configuration.name
         let vectorPath = ProtractorPath(points: configuration.points())
             .resampled(count: resampling)

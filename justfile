@@ -1,12 +1,60 @@
-host := `uname -a`
+#
+#  justfile
+#  Indexing Your Heart
+#
+#  Created by Marquis Kurt on 5/21/23.
+#
+#  This file is part of Indexing Your Heart.
+#
+#  Indexing Your Heart is non-violent software: you can use, redistribute,
+#  and/or modify it under the terms of the CNPLv7+ as found in the LICENSE file
+#  in the source code root directory or at
+#  <https://git.pixie.town/thufie/npl-builder>.
+#
+#  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent
+#  permitted by applicable law. See the CNPL for details.
+#
 
-# Build specified dependency
-build-dep DEPENDENCY:
-	./build-libs.sh {{DEPENDENCY}}
+# Build a specified set of dependencies with some flags
+build-dep LIB_FLAGS +DEPENDENCIES:
+	./build-libs.sh {{LIB_FLAGS}} {{DEPENDENCIES}}
 
 # Build all dependencies
-build-deps:
-	./build-libs.sh Protractor
+build-all-deps:
+	just build-dep Protractor
+
+# Cleans a specified set of dependencies
+clean-dep +DEPENDENCIES:
+	#!/bin/sh
+	for DEPENDENCY in {{DEPENDENCIES}}; do
+		cd $DEPENDENCY && rm -rf .build xcbuild && cd ..
+	done
+
+# Cleans all dependencies
+clean-all-deps:
+	just clean-dep Protractor
+
+# Formats the source files in a specified set of dependencies
+format-dep +DEPENDENCIES:
+	#!/bin/sh
+	for DEPENDENCY in {{DEPENDENCIES}}; do
+		swiftformat "$DEPENDENCY/Sources" --swiftversion 5.8
+	done
+
+# Test a specified set of dependencies
+test-dep +DEPENDENCIES: (build-dep '-d -m' DEPENDENCIES)
+	#!/bin/sh
+	for DEPENDENCY in {{DEPENDENCIES}}; do
+		cd $DEPENDENCY && swift test && rm -rf .build && cd ..
+	done
+
+# Test all dependencies
+test-all-deps:
+	just test-dep Protractor
+
+# Dry run the game locally
+dry-run:
+	godot --path Shounin
 
 # Edits dependencies in Xcode
 edit-deps:
@@ -15,3 +63,7 @@ edit-deps:
 # Open Godot editor
 edit-game:
 	godot --path Shounin -e
+
+# Runs SwiftLint on library code
+lint:
+	swiftlint lint --config .swiftlint.yml

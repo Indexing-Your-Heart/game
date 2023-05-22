@@ -13,8 +13,8 @@
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
 
-import SwiftGodot
 import Foundation
+import SwiftGodot
 
 /// A struct that represents a coordinate in 2D space, used for gesture recognition exclusively.
 public struct ProtractorPoint {
@@ -63,14 +63,14 @@ extension ProtractorPoint: ProtractorCoordinateRepresentable {
     }
 }
 
-extension ProtractorPoint {
-    public static func distance(from startPoint: ProtractorPoint, to endPoint: ProtractorPoint) -> Double {
+public extension ProtractorPoint {
+    static func distance(from startPoint: ProtractorPoint, to endPoint: ProtractorPoint) -> Double {
         let xDistance = pow(endPoint.x - startPoint.x, 2)
         let yDistance = pow(endPoint.y - startPoint.y, 2)
         return sqrt(xDistance + yDistance)
     }
 
-    public static func manhattanDistance(from first: ProtractorPoint, to second: ProtractorPoint) -> Double {
+    static func manhattanDistance(from first: ProtractorPoint, to second: ProtractorPoint) -> Double {
         abs(first.x - second.x) + abs(first.y - second.y)
     }
 }

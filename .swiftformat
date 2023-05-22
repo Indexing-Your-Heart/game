@@ -1,4 +1,3 @@
---swiftversion 5.7
 --maxwidth 120
 --binarygrouping none
 --commas inline
@@ -8,7 +7,6 @@
 --octalgrouping none
 --patternlet inline
 --semicolons never
---wraparguments before-first
+--wraparguments after-first
 --wrapcollections before-first
---wrapparameters before-first
---exclude CranberrySprite
+--wrapparameters after-first
