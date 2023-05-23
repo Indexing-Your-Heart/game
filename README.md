@@ -108,6 +108,7 @@ under open-source licenses:
 
 - SwiftGodot: MIT License
 - Godot: MIT License
+- Panku Console: MIT License
 
 Additionally, it contains libraries and projects under ethical-source licenses:
 

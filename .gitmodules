@@ -4,3 +4,6 @@
 [submodule "SwiftGodot"]
 	path = SwiftGodot
 	url = https://github.com/alicerunsonfedora/SwiftGodot
+[submodule "Shounin/addons/panku_console"]
+	path = Shounin/addons/panku_console
+	url = https://github.com/Ark2000/panku_console

@@ -14,6 +14,7 @@ config/name="Indexing Your Heart"
 run/main_scene="res://demos/protractor_demo.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
 config/icon="res://icon.png"
+config/macos_native_icon="res://icon.icns"
 
 [display]
 
@@ -21,7 +22,15 @@ window/size/viewport_width=1600
 window/size/viewport_height=900
 window/size/mode=3
 window/stretch/mode="viewport"
-window/size/mode.debug=0
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/panku_console/plugin.cfg")
+
+[gui]
+
+fonts/dynamic_fonts/use_oversampling=false
+theme/default_font_subpixel_positioning=0
 
 [rendering]
 
