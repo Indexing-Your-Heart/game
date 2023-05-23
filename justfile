@@ -1,5 +1,5 @@
 #
-#  justfile
+#  Justfile
 #  Indexing Your Heart
 #
 #  Created by Marquis Kurt on 5/21/23.
@@ -50,7 +50,7 @@ format-all-deps:
 	just format-dep Protractor
 
 # Test a specified set of dependencies
-test-dep +DEPENDENCIES: (build-dep '-d -m' DEPENDENCIES)
+test-dep +DEPENDENCIES:
 	#!/bin/sh
 	for DEPENDENCY in {{DEPENDENCIES}}; do
 		cd $DEPENDENCY && swift test && rm -rf .build && cd ..
