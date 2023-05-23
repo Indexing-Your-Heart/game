@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dbup2qc6kea2t"]
+
+[ext_resource type="FontVariation" uid="uid://bom4j70msd28c" path="res://resources/sans_regular_font.tres" id="1_wb2wi"]
+
+[resource]
+default_font = ExtResource("1_wb2wi")
+default_font_size = 18
+Button/fonts/font = ExtResource("1_wb2wi")
+Label/fonts/font = ExtResource("1_wb2wi")
+LineEdit/fonts/font = ExtResource("1_wb2wi")

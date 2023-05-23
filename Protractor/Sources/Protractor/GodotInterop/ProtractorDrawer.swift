@@ -18,6 +18,7 @@ import GDExtension
 import SwiftGodot
 
 class ProtractorDrawer: Node2D {
+    static var recognizedSignalName = StringName("recognized")
     var drawingArea: Area2D
     var visibleLine: Line2D
 
@@ -183,6 +184,7 @@ class ProtractorDrawer: Node2D {
         }
 
         let (name, accuracy) = recognizer.recognize()
-        GD.print("Best guess:", name, "Accuracy:", accuracy, separator: "\t")
+        GD.print("Best guess:", name, "with accuracy:", accuracy)
+        emitSignal(signal: Self.recognizedSignalName, Variant(stringLiteral: name))
     }
 }

@@ -20,6 +20,19 @@ extension ProtractorDrawer {
     // FIXME: These values aren't being retained correctly.
     static var initClass: Void = {
         let classInfo = ClassInfo<ProtractorDrawer>(name: "ProtractorDrawer")
+
+        // MARK: Signal Registration
+        let recognizedSignalProps = [
+            PropInfo(propertyType: .string,
+                     propertyName: StringName("gesture"),
+                     className: StringName("\(ProtractorDrawer.self)"),
+                     hint: .typeString,
+                     hintStr: "The gesture pattern that was recognized.",
+                     usage: .propertyUsageDefault)
+        ]
+        classInfo.registerSignal(name: recognizedSignalName, arguments: recognizedSignalProps)
+
+        // MARK: Property Registration
         classInfo.addPropertyGroup(name: "Recognizer", prefix: "recognizer_")
         let templateArgs = [
             PropInfo(propertyType: .string,

@@ -20,6 +20,7 @@ config/icon="res://icon.png"
 window/size/viewport_width=1600
 window/size/viewport_height=900
 window/size/mode=3
+window/size/mode.debug=0
 
 [rendering]
 

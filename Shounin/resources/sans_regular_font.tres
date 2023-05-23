@@ -1,0 +1,9 @@
+[gd_resource type="FontVariation" load_steps=3 format=3 uid="uid://bom4j70msd28c"]
+
+[ext_resource type="FontFile" uid="uid://cimxh7xd43ehl" path="res://resources/salmon/s_sans_regular.ttf" id="1_cl6oc"]
+
+[sub_resource type="SystemFont" id="SystemFont_630g0"]
+
+[resource]
+base_font = ExtResource("1_cl6oc")
+fallbacks = Array[Font]([SubResource("SystemFont_630g0")])

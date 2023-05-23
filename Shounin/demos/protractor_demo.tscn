@@ -1,6 +1,10 @@
-[gd_scene format=3 uid="uid://dlqqh8vgix5xp"]
+[gd_scene load_steps=3 format=3 uid="uid://dlqqh8vgix5xp"]
+
+[ext_resource type="Script" path="res://scripts/demo_protractor.gd" id="1_2wwvw"]
+[ext_resource type="Theme" uid="uid://dbup2qc6kea2t" path="res://resources/theme.tres" id="2_dgijh"]
 
 [node name="ProtractorDemo" type="Node2D"]
+script = ExtResource("1_2wwvw")
 
 [node name="ProtractorDrawer" type="ProtractorDrawer" parent="."]
 recognizer_protractor_template = "res://data/templates.json"
@@ -9,3 +13,13 @@ debug_print_path = true
 scale = Vector2(2, 2)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 158.0
+offset_bottom = 42.0
+theme = ExtResource("2_dgijh")
+text = "Draw a line on the panel to get a gesture name."
