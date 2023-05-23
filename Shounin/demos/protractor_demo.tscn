@@ -19,7 +19,7 @@ scale = Vector2(2, 2)
 [node name="Label" type="Label" parent="CanvasLayer"]
 offset_left = 16.0
 offset_top = 16.0
-offset_right = 158.0
-offset_bottom = 42.0
+offset_right = 466.0
+offset_bottom = 43.0
 theme = ExtResource("2_dgijh")
 text = "Draw a line on the panel to get a gesture name."
