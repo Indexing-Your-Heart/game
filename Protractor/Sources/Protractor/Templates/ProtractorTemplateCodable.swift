@@ -53,4 +53,10 @@ extension ProtractorTemplateCodable {
         let decoder = JSONDecoder()
         return try decoder.decode([Self].self, from: data)
     }
+
+    static func load(resourceURL url: URL) throws -> [Self] {
+        guard let data = try String(contentsOf: url).data(using: .utf8) else { throw CocoaError(.fileReadUnknown) }
+        let decoder = JSONDecoder()
+        return try decoder.decode([Self].self, from: data)
+    }
 }

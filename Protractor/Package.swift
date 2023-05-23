@@ -22,6 +22,9 @@ let package = Package(
             linkerSettings: [.unsafeFlags(["-Xlinker", "-undefined","-Xlinker", "dynamic_lookup"])]),
         .testTarget(
             name: "ProtractorTests",
-            dependencies: ["Protractor"]),
+            dependencies: ["Protractor"],
+            resources: [
+                .process("Resources")
+            ]),
     ]
 )

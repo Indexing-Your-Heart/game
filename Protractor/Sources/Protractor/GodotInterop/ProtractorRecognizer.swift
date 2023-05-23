@@ -74,4 +74,22 @@ public class ProtractorRecognizer: ProtractorRecognitionDelegate {
         }
         templates.append(contentsOf: transformedTemplates)
     }
+
+    /// Inserts a series of templates by decoding and transforming a configuration file located in the bundle's
+    /// resources.
+    /// - Parameter configResourceName: The name of the resource to load and decode.
+    /// - Parameter bundle: The bundle to find the resource in.
+    public func insertTemplates(reading configResourceName: String, in bundle: Bundle = .main) throws {
+        guard let path = bundle.path(forResource: configResourceName, ofType: "json") else {
+            return
+        }
+        
+        let result = try ProtractorTemplateCodable.load(resourceURL: URL(filePath: path))
+        let transformedTemplates = result.map { configTemplate in
+            ProtractorTemplate(from: configTemplate,
+                               accountsForOrientation: self.orientationSensitive,
+                               resampledBy: self.resampling)
+        }
+        templates.append(contentsOf: transformedTemplates)
+    }
 }
