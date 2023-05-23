@@ -58,28 +58,20 @@ with the following caveats/requirements:
 
 ### Using Salmon 9 Fonts
 
-> **Warning**
-> This documentation is not updated to reflect the new code structure. This will
-> change over time.
-
 By default, this project does _not_ include the Salmon 9 font family per its license
-agreement. Instead, great open-source equivalents are provided so that the project
-builds and renders correctly.
+agreement. Instead, the default system font is loaded (see Godot's `SystemFont`).
 
 If you have purchased the Salmon 9 font family and want to use those fonts in the
 game, replace the following files with the corresponding family variants:
 
-- **Monospace** (`Assets/Fonts/Salmon Mono 9 Regular.ttf`): Salmon Mono 9
+- **Monospace** (`Shounin/resources/salmon/s_mono_regular.ttf`): Salmon Mono 9
   Regular
-- **Monospace (Bold)** (`Assets/Fonts/Salmon Mono 9 Bold.ttf`): Salmon Mono 9
+- **Sans-serif** (`Shounin/resources/salmon/s_sans_regular.ttf`): Salmon Sans 9
+  Regular
+- **Sans-serif (Bold)** (`Shounin/resources/salmon/s_sans_bold.ttf`): Salmon Sans 9
   Bold
-- **Sans-serif** (`Assets/Fonts/Salmon Sans 9 Regular.ttf`): Salmon Sans 9
-  Regular
-- **Sans-serif (Bold)** (`Assets/Fonts/Salmon Sans 9 Bold.ttf`): Salmon Sans 9
-  Bold
-- **Serif** (`Assets/Fonts/Salmon Serif 9 Regular.ttf`): Salmon Serif 9
-  Regular
-- **Serif (Bold)** (`Assets/Fonts/Salmon Serif 9 Bold.ttf`): Salmon Serif 9
+- **Serif** (`Shounin/resources/salmon/s_serif_regular.ttf`): Salmon Serif 9 Regular
+- **Serif (Bold)** (`Shounin/resources/salmon/s_serif_bold.ttf`): Salmon Serif 9
   Bold
 
 If you have not purchased the font and would like to do so, you can find the font on
