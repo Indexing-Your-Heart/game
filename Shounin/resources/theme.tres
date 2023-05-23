@@ -1,6 +1,10 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dbup2qc6kea2t"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://dbup2qc6kea2t"]
 
 [ext_resource type="FontVariation" uid="uid://bom4j70msd28c" path="res://resources/sans_regular_font.tres" id="1_wb2wi"]
+[ext_resource type="StyleBox" uid="uid://dgm8a5lcti7kw" path="res://resources/focus_style_box_flat.tres" id="2_5ul88"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gcerf"]
+bg_color = Color(0.152941, 0.458824, 0.392157, 1)
 
 [resource]
 default_font = ExtResource("1_wb2wi")
@@ -8,3 +12,7 @@ default_font_size = 18
 Button/fonts/font = ExtResource("1_wb2wi")
 Label/fonts/font = ExtResource("1_wb2wi")
 LineEdit/fonts/font = ExtResource("1_wb2wi")
+LineEdit/styles/focus = ExtResource("2_5ul88")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_gcerf")
+TabBar/colors/drop_mark_color = Color(0.152941, 0.458824, 0.392157, 1)
+TextEdit/styles/focus = ExtResource("2_5ul88")
