@@ -20,14 +20,26 @@ import Foundation
 public struct ProtractorTemplate {
     public typealias Point = ProtractorPoint
 
+    /// The name of the gesture in the template.
     public var name: String
+
+    /// An array of double values that represent the vector path of the gesture.
     public var vectorPath: [Double]
 
+    /// Creates a new instance of a template.
+    /// - Parameter name: The new name of the gesture.
+    /// - Parameter vectorPath: The list of double that represent the gesture's vector path. This path should already be
+    ///   vectorized and resampled.
     public init(name: String, vectorPath: [Double]) {
         self.name = name
         self.vectorPath = vectorPath
     }
 
+    /// Creates a template from a codable value.
+    /// - Parameter configuration: The codable configuration that contains the template.
+    /// - Parameter orientationSensitive: Whether orientation should be taken into account when generating the
+    ///   vector path. Defaults to false.
+    /// - Parameter resampling: The number of points that the vectorized path should contain. Defaults to 16.
     init(from configuration: ProtractorTemplateCodable,
          accountsForOrientation orientationSensitive: Bool = false,
          resampledBy resampling: Int = 16)

@@ -16,6 +16,7 @@
 import GDExtension
 import SwiftGodot
 
+/// The public entry point for the GDExtension.
 @_cdecl("libprotractor_entry_point")
 public func libprotractor_entry_point(interface: OpaquePointer?,
                                       library: OpaquePointer?,

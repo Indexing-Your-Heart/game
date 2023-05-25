@@ -17,15 +17,15 @@ import Foundation
 import SwiftGodot
 
 /// A struct that represents a template configuration.
-struct ProtractorTemplateCodable: Decodable {
+public struct ProtractorTemplateCodable: Decodable {
     /// The template's name.
-    var name: String
+    public var name: String
 
     /// The template's path as a nested array of integers.
-    var path: [[Int]]
+    public var path: [[Int]]
 
     /// Converts the path into an array of Paintbrush points.
-    func points() -> [ProtractorPoint] {
+    public func points() -> [ProtractorPoint] {
         path.compactMap { array in
             guard let first = array.first, let last = array.last else { return .zero }
             return ProtractorPoint(x: Double(first), y: Double(last))
@@ -34,7 +34,9 @@ struct ProtractorTemplateCodable: Decodable {
 }
 
 extension ProtractorTemplateCodable {
-    init(resourcePath path: String) throws {
+    /// Creates a codable template from a loadable path in a Godot project.
+    /// - Parameter path: The resource path to the template file in Godot that contains the template.
+    public init(resourcePath path: String) throws {
         let file = FileAccess.open(path: path, flags: .read)
         let contents = file.getAsText()
         file.close()
@@ -44,7 +46,9 @@ extension ProtractorTemplateCodable {
         self = try decoder.decode(Self.self, from: data)
     }
 
-    static func load(resourcePath path: String) throws -> [Self] {
+    /// Creates a list of codable templates from a loadable path in a Godot project.
+    /// - Parameter path: The resource path to the template file in Godot to decode.
+    public static func load(resourcePath path: String) throws -> [Self] {
         let file = FileAccess.open(path: path, flags: .read)
         let contents = file.getAsText()
         file.close()
@@ -54,7 +58,9 @@ extension ProtractorTemplateCodable {
         return try decoder.decode([Self].self, from: data)
     }
 
-    static func load(resourceURL url: URL) throws -> [Self] {
+    /// Creates a list of codable templates from a loadable path from a URL.
+    /// - Parameter url: The URL to the template to decode.
+    public static func load(resourceURL url: URL) throws -> [Self] {
         guard let data = try String(contentsOf: url).data(using: .utf8) else { throw CocoaError(.fileReadUnknown) }
         let decoder = JSONDecoder()
         return try decoder.decode([Self].self, from: data)

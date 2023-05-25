@@ -18,11 +18,23 @@ import SwiftGodot
 
 /// A class that handles gesture recognition using the Protractor algorithm.
 public class ProtractorRecognizer: ProtractorRecognitionDelegate {
+    /// The representation of a point.
     public typealias Point = ProtractorPoint
+
+    /// The representation of a template.
     public typealias Template = ProtractorTemplate
 
-    public var templates = [ProtractorTemplate]()
-    public var vectorPath = [Double]()
+    /// The list of templates the recognizer is aware of.
+    public var templates: [ProtractorTemplate] { _templates }
+
+    /// The prepared path that the recognizer will attempt to match among a list of templates.
+    ///
+    /// When calling ``setPath(_:orientationSensitive:)`` or ``init(from:accountForOrientation:resampledBy:)``, the path
+    /// will be resampled and vectorized automatically.
+    public var vectorPath: [Component] { _vectorPath }
+
+    private var _templates = [ProtractorTemplate]()
+    public var _vectorPath = [Double]()
 
     /// The number of points to resample both the vector path and each template by.
     private var resampling: Int
@@ -30,35 +42,54 @@ public class ProtractorRecognizer: ProtractorRecognitionDelegate {
     /// Whether to account for orientation when matching gestures.
     private var orientationSensitive: Bool = false
 
+    /// Creates a blank recognizer.
+    /// - Parameter orientationSensitive: Whether the recognizer should account for orientation when recognizing a
+    ///   gesture. Defaults to false.
+    /// - Parameter resampleRate: The number of points that a vector path should be resampled to for the best possible
+    ///   results. Defaults to 16.
     public init(accountForOrientation orientationSensitive: Bool = false, resampledBy resampleRate: Int = 16) {
         self.orientationSensitive = orientationSensitive
         resampling = resampleRate
     }
 
+    /// Creates a recognizer with a prefilled path.
+    ///
+    /// When constructing a recognizer with a predefined path, the recognizer will automatically resample and vectorize
+    /// the path, taking into account orientation and the resample rate defined.
+    ///
+    /// - Parameter path: The vector path that will be recognized.
+    /// - Parameter orientationSensitive: Whether the recognizer should account for orientation when recognizing a
+    ///   gesture. Defaults to false.
+    /// - Parameter resampleRate: The number of points that a vector path should be resampled to for the best possible
+    ///   results. Defaults to 16.
     public init(from path: ProtractorPath,
                 accountForOrientation orientationSensitive: Bool = false,
                 resampledBy resampling: Int = 16)
     {
         self.resampling = resampling
         self.orientationSensitive = orientationSensitive
-        vectorPath = path.resampled(count: self.resampling)
+        _vectorPath = path.resampled(count: self.resampling)
             .vectorized(accountsForOrientation: orientationSensitive)
     }
 
+    /// Sets the path to be recognized, resampling it and vectorizing it automatically.
+    /// - Parameter path: The path that will be recognized.
+    /// - Parameter orientationSensitive: Whether the recognizer should account for orientation.
     public func setPath(_ path: ProtractorPath, orientationSensitive: Bool) {
         self.orientationSensitive = orientationSensitive
-        vectorPath = path.resampled(count: resampling)
+        _vectorPath = path.resampled(count: resampling)
             .vectorized(accountsForOrientation: orientationSensitive)
     }
 
+    /// Removes all current templates available from the recognizer.
     public func dropTemplates() {
-        templates.removeAll()
+        _templates.removeAll()
     }
 
     /// Inserts a series of templates into the recognizer.
     /// - Parameter templates: An array of templates to include in the recognizer.
     public func insertTemplates(from templates: [ProtractorTemplate]) {
-        self.templates.append(contentsOf: templates)
+        self._templates.append(contentsOf: templates)
     }
 
     /// Inserts a series of templates by decoding and transforming a configuration file located in the bundle's
@@ -67,12 +98,11 @@ public class ProtractorRecognizer: ProtractorRecognitionDelegate {
     /// - Parameter bundle: The bundle to find the resource in.
     public func insertTemplates(reading path: String) throws {
         let result = try ProtractorTemplateCodable.load(resourcePath: path)
-        let transformedTemplates = result.map { configTemplate in
+        _templates.append(contentsOf: result.map { configTemplate in
             ProtractorTemplate(from: configTemplate,
                                accountsForOrientation: self.orientationSensitive,
                                resampledBy: self.resampling)
-        }
-        templates.append(contentsOf: transformedTemplates)
+        })
     }
 
     /// Inserts a series of templates by decoding and transforming a configuration file located in the bundle's
@@ -85,11 +115,10 @@ public class ProtractorRecognizer: ProtractorRecognitionDelegate {
         }
         
         let result = try ProtractorTemplateCodable.load(resourceURL: URL(filePath: path))
-        let transformedTemplates = result.map { configTemplate in
+        _templates.append(contentsOf: result.map { configTemplate in
             ProtractorTemplate(from: configTemplate,
                                accountsForOrientation: self.orientationSensitive,
                                resampledBy: self.resampling)
-        }
-        templates.append(contentsOf: transformedTemplates)
+        })
     }
 }

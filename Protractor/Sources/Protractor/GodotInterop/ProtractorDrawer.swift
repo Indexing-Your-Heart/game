@@ -17,33 +17,48 @@ import Foundation
 import GDExtension
 import SwiftGodot
 
-class ProtractorDrawer: Node2D {
-    static var recognizedSignalName = StringName("recognized")
+/// A node that allows drawing lines that can be matched with a list of recognized gestures.
+///
+/// When added to the scene tree, the `recognized` singal will be emitted whenever the user draws a line on the panel.
+/// This signal returns the recognizer's best guess as a string, or an empty string if no match could be found.
+///
+/// The drawer can also be used to generate templates. By turning on ``debugPrintPaths`` in the editor, the path will be
+/// printed out into the console, which can be added to a JSON file containing the templates.
+public class ProtractorDrawer: Node2D {
+    /// The name for the `recognized` signal.
+    public static var recognizedSignalName = StringName("recognized")
     var drawingArea: Area2D
     var visibleLine: Line2D
 
-    private var dragging: Bool = false
-    private var frame = Sprite2D()
-    private var recognizer = ProtractorRecognizer(accountForOrientation: true)
+    var dragging: Bool = false
+    var frame = Sprite2D()
+    var recognizer = ProtractorRecognizer(accountForOrientation: true)
 
-    private var debugPrintPaths: Bool
-    private var orientationSensitive: Bool
-    private var protractorTemplate: String
+    /// Whether debugging statements should be displayed to show drawn paths. Defaults to false.
+    ///
+    /// This can be used as a means to capture user input to generate templates the drawer will be able to recognize.
+    public var debugPrintPaths: Bool = false
 
-    required init() {
+    /// Whether the internal recognizer should account for orientation when recognizing templates. Defaults to false.
+    public var orientationSensitive: Bool = false
+
+    /// The path to a JSON resource in a Godot project that contains templates.
+    ///
+    /// This is passed to the recognizer internally to use as a source of truth for matching gestures.
+    public var protractorTemplate: String = ""
+
+    /// Generates an instance of the drawer node in the Godot scene.
+    public required init() {
         ProtractorDrawer.initClass
         drawingArea = Area2D()
         visibleLine = Line2D()
-        orientationSensitive = false
-        protractorTemplate = ""
-        debugPrintPaths = false
         super.init()
         setupArea()
         setupLine()
         setupFrame()
     }
 
-    required init(nativeHandle _: UnsafeRawPointer) {
+    public required init(nativeHandle _: UnsafeRawPointer) {
         fatalError("init(nativeHandle:) not implemented")
     }
 

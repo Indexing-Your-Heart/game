@@ -28,10 +28,10 @@ public protocol ProtractorRecognitionDelegate: AnyObject {
     typealias Component = Point.CoordinateComponent
 
     /// An array of templates the recognizer will match against.
-    var templates: [Template] { get set }
+    var templates: [Template] { get }
 
     /// The vectorized path that the recognizer will attempt to recognize.
-    var vectorPath: [Component] { get set }
+    var vectorPath: [Component] { get }
 
     /// Runs the Protractor algorithm to determine what gesture best represents the vector path.
     /// - Returns: A tuple containing the closest matching template name and the maximum score.
