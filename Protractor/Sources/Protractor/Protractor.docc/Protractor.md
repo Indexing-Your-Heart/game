@@ -1,6 +1,6 @@
 # ``Protractor``
 
-Recognize gestures a user draws in game.
+Recognize drawn gestures quickly and easily.
 
 ## Overview
 

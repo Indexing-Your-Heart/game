@@ -62,11 +62,6 @@ A template file can be created as a JSON file with a root array of template stru
 ]
 ```
 
-> Tip: 
-> A quick and easy way of generating a path is by drawing the path yourself. Add a ``ProtractorDrawer`` to a 2D scene in
-> in a Godot project with ``ProtractorDrawer/debugPrintPaths`` enabled. By running the scene and drawing a path on the
-panel, a new debugging statement will appear in the console with the path printed out.
-
 ## Creating a template programmatically
 
 Alternatively, you can write your own template programmatically using the ``ProtractorTemplate`` structure:
@@ -104,22 +99,3 @@ do {
     print("Unable to add templates: \(error.localizedDescription)")
 }
 ```
-
-### Adding using Godot resources
-
-If your templates reside in a Godot project, call ``ProtractorRecognizer/insertTemplates(reading:)`` to read from the
-path in the game's resources.
-
-```swift
-let recognizer = ProtractorRecognizer()
-do {
-    try recognizer.insertTemplates(reading: "res://data/templates/all.json")
-} catch {
-    print("Unable to add templates: \(error.localizedDescription)")
-}
-```
-
-> Important:
-> Ensure that your templates will be exported along with your other resources in the Godot project's export settings.
-> Failing to do so will cause ``ProtractorRecognizer/insertTemplates(reading:)`` to always throw an error, even if the
-> the template is present in the source code.
