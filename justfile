@@ -21,7 +21,7 @@ build-dep LIB_FLAGS +DEPENDENCIES: (fetch-remote-deps)
 
 # Build all dependencies
 build-all-deps:
-	just build-dep '' Protractor
+	just build-dep '-l ProtractorGodotInterop' Protractor
 
 # Cleans a specified set of dependencies
 clean-dep +DEPENDENCIES:

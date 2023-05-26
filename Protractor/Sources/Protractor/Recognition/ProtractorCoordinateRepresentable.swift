@@ -15,7 +15,6 @@
 
 import CoreGraphics
 import Foundation
-import SwiftGodot
 
 /// A protocol that indicates a point is able to be used for gesture recognition.
 public protocol ProtractorCoordinateRepresentable {
@@ -37,11 +36,5 @@ public protocol ProtractorCoordinateRepresentable {
 extension CGPoint: ProtractorCoordinateRepresentable {
     public func translated(by point: CGPoint) -> CGPoint {
         CGPoint(x: x - point.x, y: y - point.y)
-    }
-}
-
-extension Vector2: ProtractorCoordinateRepresentable {
-    public func translated(by point: Vector2) -> Vector2 {
-        Vector2(x: x - point.x, y: y - point.y)
     }
 }

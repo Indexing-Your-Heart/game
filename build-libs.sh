@@ -16,16 +16,18 @@
 
 __maconly=false
 __autoclean=true
+__library=""
 
 # Prints the help message.
 help() {
 	echo "Builds the corresponding dependency libraries."
 	echo
-	echo "Syntax: build-libs [-d|h|m] [LIBRARIES]"
+	echo "Syntax: build-libs [-d|h|m|l <libname>] [LIBRARY]"
 	echo "options:"
 	echo "d     Skips running cleanup tasks."
 	echo "h     Print this Help."
 	echo "m     Builds only the libraries for macOS."
+	echo "l     The output library name."
 	echo
 }
 
@@ -69,18 +71,26 @@ build_mac_lib() {
 # Builds the Swift package dynamic libraries and copies the files into Shounin.
 build_lib() {
 	cd "$1"
-	build_mac_lib "$1"
+	if [ __library = "" ]; then
+		build_mac_lib "$1"
+	else
+		build_mac_lib "$__library"
+	fi
 	if [ "$__maconly" = true ]; then
 		echo "Skipping iOS build [$1]."
 		cd ..
 		return
 	fi
-	build_ios_lib "$1"
+	if [ __library = "" ]; then
+		build_ios_lib "$1"
+	else
+		build_ios_lib "$__library"
+	fi
 	cd ..
 }
 
 # Parses options before reading list of files.
-while getopts ":dhm" option; do
+while getopts ":dhml:" option; do
 	case $option in
 		h)
 	   		help
@@ -89,6 +99,8 @@ while getopts ":dhm" option; do
 			__autoclean=false;;
 		m)
 			__maconly=true;;
+		l)
+			__library="$OPTARG";;
 		\?)
 			echo "Err: invalid options"
 			exit 1;;
@@ -107,6 +119,4 @@ if [[ -e "Shounin/bin/SwiftGodot.framework" && "$__maconly" = false ]]; then
 	rm -rf Shounin/bin/SwiftGodot.framework
 fi
 
-for library in "$@"; do
-	build_lib "$library"
-done
+build_lib "$1"

@@ -40,9 +40,9 @@ public struct ProtractorTemplate {
     /// - Parameter orientationSensitive: Whether orientation should be taken into account when generating the
     ///   vector path. Defaults to false.
     /// - Parameter resampling: The number of points that the vectorized path should contain. Defaults to 16.
-    init(from configuration: ProtractorTemplateCodable,
-         accountsForOrientation orientationSensitive: Bool = false,
-         resampledBy resampling: Int = 16)
+    public init(from configuration: ProtractorTemplateCodable,
+                accountsForOrientation orientationSensitive: Bool = false,
+                resampledBy resampling: Int = 16)
     {
         let name = configuration.name
         let vectorPath = ProtractorPath(points: configuration.points())

@@ -2,10 +2,10 @@
 entry_symbol = "libprotractor_entry_point"
 
 [libraries]
-macos.debug = "res://bin/libProtractor.dylib"
-macos.release = "res://bin/libProtractor.dylib"
-ios.debug = "res://bin/Protractor.framework"
-ios.release = "res://bin/Protractor.framework"
+macos.debug = "res://bin/libProtractorGodotInterop.dylib"
+macos.release = "res://bin/libProtractorGodotInterop.dylib"
+ios.debug = "res://bin/ProtractorGodotInterop.framework"
+ios.release = "res://bin/ProtractorGodotInterop.framework"
 
 [dependencies]
 macos = { "res://bin/libSwiftGodot.dylib" : "" }

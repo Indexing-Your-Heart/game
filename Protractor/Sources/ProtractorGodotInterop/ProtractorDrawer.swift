@@ -15,6 +15,7 @@
 
 import Foundation
 import GDExtension
+import Protractor
 import SwiftGodot
 
 /// A node that allows drawing lines that can be matched with a list of recognized gestures.

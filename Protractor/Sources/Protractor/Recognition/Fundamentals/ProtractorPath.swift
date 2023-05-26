@@ -14,7 +14,6 @@
 //  details.
 
 import Foundation
-import SwiftGodot
 
 /// A struct that represents a path of points.
 public struct ProtractorPath {
@@ -26,12 +25,6 @@ public struct ProtractorPath {
 
     public init(points: [ProtractorPoint]) {
         self.points = points
-    }
-}
-
-public extension ProtractorPath {
-    init(line: Line2D) {
-        points = line.points.map(ProtractorPoint.init)
     }
 }
 

@@ -14,7 +14,6 @@
 //  details.
 
 import Foundation
-import SwiftGodot
 
 /// A struct that represents a coordinate in 2D space, used for gesture recognition exclusively.
 public struct ProtractorPoint {
@@ -31,17 +30,13 @@ public struct ProtractorPoint {
     public var y: Double // swiftlint:disable:this identifier_name
 
     /// A Core Graphics point that represents this point.
-    public var vector: Vector2 {
-        Vector2(x: Float(x), y: Float(y))
+    public var point: CGPoint {
+        CGPoint(x: x, y: y)
     }
 
     public init(x: Double, y: Double) { // swiftlint:disable:this identifier_name
         self.x = x
         self.y = y
-    }
-
-    public init(from vector: Vector2) {
-        self.init(x: Double(vector.x), y: Double(vector.y))
     }
 }
 

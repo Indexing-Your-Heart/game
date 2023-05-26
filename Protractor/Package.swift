@@ -8,16 +8,20 @@ let package = Package(
     products: [
         .library(
             name: "Protractor",
-            type: .dynamic,
             targets: ["Protractor"]),
+        .library(
+            name: "ProtractorGodotInterop",
+            type: .dynamic,
+            targets: ["ProtractorGodotInterop"])
     ],
     dependencies: [
         .package(name: "SwiftGodot", path: "../SwiftGodot")
     ],
     targets: [
+        .target(name: "Protractor"),
         .target(
-            name: "Protractor",
-            dependencies: ["SwiftGodot"],
+            name: "ProtractorGodotInterop",
+            dependencies: ["SwiftGodot", "Protractor"],
             swiftSettings: [.unsafeFlags(["-suppress-warnings"])],
             linkerSettings: [.unsafeFlags(["-Xlinker", "-undefined","-Xlinker", "dynamic_lookup"])]),
         .testTarget(

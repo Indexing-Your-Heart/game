@@ -14,7 +14,6 @@
 //  details.
 
 import Foundation
-import SwiftGodot
 
 /// A class that handles gesture recognition using the Protractor algorithm.
 public class ProtractorRecognizer: ProtractorRecognitionDelegate {
@@ -23,6 +22,12 @@ public class ProtractorRecognizer: ProtractorRecognitionDelegate {
 
     /// The representation of a template.
     public typealias Template = ProtractorTemplate
+
+    /// Whether to account for orientation when matching gestures.
+    public var orientationSensitive: Bool { self._orientationSensitive }
+
+    /// The number of points to resample both the vector path and each template by.
+    public var resampling: Int { self._resampling }
 
     /// The list of templates the recognizer is aware of.
     public var templates: [ProtractorTemplate] { _templates }
@@ -36,11 +41,9 @@ public class ProtractorRecognizer: ProtractorRecognitionDelegate {
     private var _templates = [ProtractorTemplate]()
     public var _vectorPath = [Double]()
 
-    /// The number of points to resample both the vector path and each template by.
-    private var resampling: Int
+    private var _resampling: Int
 
-    /// Whether to account for orientation when matching gestures.
-    private var orientationSensitive: Bool = false
+    private var _orientationSensitive: Bool = false
 
     /// Creates a blank recognizer.
     /// - Parameter orientationSensitive: Whether the recognizer should account for orientation when recognizing a
@@ -48,8 +51,8 @@ public class ProtractorRecognizer: ProtractorRecognitionDelegate {
     /// - Parameter resampleRate: The number of points that a vector path should be resampled to for the best possible
     ///   results. Defaults to 16.
     public init(accountForOrientation orientationSensitive: Bool = false, resampledBy resampleRate: Int = 16) {
-        self.orientationSensitive = orientationSensitive
-        resampling = resampleRate
+        _orientationSensitive = orientationSensitive
+        _resampling = resampleRate
     }
 
     /// Creates a recognizer with a prefilled path.
@@ -66,8 +69,8 @@ public class ProtractorRecognizer: ProtractorRecognitionDelegate {
                 accountForOrientation orientationSensitive: Bool = false,
                 resampledBy resampling: Int = 16)
     {
-        self.resampling = resampling
-        self.orientationSensitive = orientationSensitive
+        _resampling = resampling
+        _orientationSensitive = orientationSensitive
         _vectorPath = path.resampled(count: self.resampling)
             .vectorized(accountsForOrientation: orientationSensitive)
     }
@@ -76,7 +79,7 @@ public class ProtractorRecognizer: ProtractorRecognitionDelegate {
     /// - Parameter path: The path that will be recognized.
     /// - Parameter orientationSensitive: Whether the recognizer should account for orientation.
     public func setPath(_ path: ProtractorPath, orientationSensitive: Bool) {
-        self.orientationSensitive = orientationSensitive
+        _orientationSensitive = orientationSensitive
         _vectorPath = path.resampled(count: resampling)
             .vectorized(accountsForOrientation: orientationSensitive)
     }
@@ -90,19 +93,6 @@ public class ProtractorRecognizer: ProtractorRecognitionDelegate {
     /// - Parameter templates: An array of templates to include in the recognizer.
     public func insertTemplates(from templates: [ProtractorTemplate]) {
         self._templates.append(contentsOf: templates)
-    }
-
-    /// Inserts a series of templates by decoding and transforming a configuration file located in the bundle's
-    /// resources.
-    /// - Parameter configResourceName: The name of the resource to load and decode.
-    /// - Parameter bundle: The bundle to find the resource in.
-    public func insertTemplates(reading path: String) throws {
-        let result = try ProtractorTemplateCodable.load(resourcePath: path)
-        _templates.append(contentsOf: result.map { configTemplate in
-            ProtractorTemplate(from: configTemplate,
-                               accountsForOrientation: self.orientationSensitive,
-                               resampledBy: self.resampling)
-        })
     }
 
     /// Inserts a series of templates by decoding and transforming a configuration file located in the bundle's

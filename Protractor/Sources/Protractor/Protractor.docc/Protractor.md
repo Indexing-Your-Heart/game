@@ -5,8 +5,8 @@ Recognize gestures a user draws in game.
 ## Overview
 
 The Protractor library provides the tools for creating gesture recognition systems using the Protractor gesture
-recognition algorithm. The library can also be surfaced as an extension for the Godot game engine through GDExtension,
-allowing for recognizing gestures in games.
+recognition algorithm. Its corrolary library, **ProtractorGodotInterop**, can be used with the Godot game engine to add
+a gesture recognition tool inside any game.
 
 ## Topics
 
@@ -20,8 +20,3 @@ allowing for recognizing gestures in games.
 
 - ``ProtractorRecognizer``
 - ``ProtractorRecognitionDelegate``
-
-### Godot Interoperability
-
-- ``ProtractorDrawer``
-- ``libprotractor_entry_point(interface:library:extension:)``
