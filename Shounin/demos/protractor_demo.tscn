@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dlqqh8vgix5xp"]
 
 [ext_resource type="Script" path="res://scripts/demo_protractor.gd" id="1_2wwvw"]
-[ext_resource type="Theme" uid="uid://dbup2qc6kea2t" path="res://resources/theme.tres" id="2_dgijh"]
+[ext_resource type="Theme" uid="uid://dbup2qc6kea2t" path="res://resources/gui/theme.tres" id="2_73j2r"]
 
 [node name="ProtractorDemo" type="Node2D"]
 script = ExtResource("1_2wwvw")
@@ -21,5 +21,5 @@ offset_left = 16.0
 offset_top = 16.0
 offset_right = 466.0
 offset_bottom = 43.0
-theme = ExtResource("2_dgijh")
+theme = ExtResource("2_73j2r")
 text = "Draw a line on the panel to get a gesture name."

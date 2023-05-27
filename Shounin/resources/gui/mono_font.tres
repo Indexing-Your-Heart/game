@@ -1,6 +1,6 @@
 [gd_resource type="FontVariation" load_steps=3 format=3 uid="uid://blb00dm6xxxpe"]
 
-[ext_resource type="FontFile" uid="uid://nkx4vwcbosxy" path="res://resources/salmon/s_mono_regular.ttf" id="1_6kyjy"]
+[ext_resource type="FontFile" uid="uid://nkx4vwcbosxy" path="res://resources/gui/salmon/s_mono_regular.ttf" id="1_6kyjy"]
 
 [sub_resource type="SystemFont" id="SystemFont_r2873"]
 
