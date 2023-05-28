@@ -39,6 +39,7 @@ build_ios_lib() {
 	xcodebuild -scheme "$1" -destination 'generic/platform=iOS' \
 		-derivedDataPath xcbuild -skipPackagePluginValidation \
 		-configuration Release
+	echo "Copying [$1] library binaries to Shounin/bin."
 	cp -rf "xcbuild/Build/Products/Release-iphoneos/PackageFrameworks/$1.framework" \
 		"../Shounin/bin/$1.framework"
 	if ! [ -e "Shounin/bin/SwiftGodot.framework" ]; then
@@ -47,6 +48,7 @@ build_ios_lib() {
 	fi
 	echo "Library built [$1] for iOS."
 	if [ "$__autoclean" = true ]; then
+		echo "Cleaning up intermediates from [$1]."
 		rm -rf xcbuild
 	fi
 }
@@ -56,6 +58,7 @@ build_mac_lib() {
 	echo "Building library [$1] for macOS."
 	swift build --configuration release --triple arm64-apple-macosx
 	swift build --configuration release --triple x86_64-apple-macosx
+	echo "Copying [$1] library binaries to Shounin/bin."
 	lipo -create -output "../Shounin/bin/lib$1.dylib" \
 		".build/arm64-apple-macosx/release/lib$1.dylib" \
 		".build/x86_64-apple-macosx/release/lib$1.dylib"
@@ -66,6 +69,7 @@ build_mac_lib() {
 	fi
 	echo "Library built [$1] for macOS."
 	if [ "$__autoclean" = true ]; then
+		echo "Cleaning up intermediates from [$1]."
 		rm -rf .build
 	fi
 }
@@ -119,12 +123,12 @@ done
 
 shift "$((OPTIND-1))"
 
-if [[ -e "Shounin/bin/libSwiftGodot.dylib" && $__preclean = false && "$__iosonly" = false ]]; then
+if [[ -e "Shounin/bin/libSwiftGodot.dylib" && $__preclean = false ]]; then
 	echo "Removing old Swift Godot dynamic library. This will be rebuilt."
 	rm -f Shounin/bin/libSwiftGodot.dylib
 fi
 
-if [[ -e "Shounin/bin/SwiftGodot.framework" && $__preclean = false && "$__maconly" = false ]]; then
+if [[ -e "Shounin/bin/SwiftGodot.framework" && $__preclean = false ]]; then
 	echo "Removing old Swift Godot framework. This will be rebuilt."
 	rm -rf Shounin/bin/SwiftGodot.framework
 fi
