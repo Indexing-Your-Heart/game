@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Indexing Your Heart"
-run/main_scene="res://demos/protractor_demo.tscn"
+run/main_scene="res://demos/demo_menu.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
 config/icon="res://icon.png"
 config/macos_native_icon="res://icon.icns"

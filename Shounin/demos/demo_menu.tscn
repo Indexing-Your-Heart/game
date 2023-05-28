@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckyyjw47ox00g"]
+
+[ext_resource type="Theme" uid="uid://dbup2qc6kea2t" path="res://resources/gui/theme.tres" id="1_du0j6"]
+[ext_resource type="Script" path="res://demos/demo_menu.gd" id="2_8g1px"]
+
+[node name="DemoMenu" type="Window"]
+title = "Demos"
+position = Vector2i(600, 300)
+size = Vector2i(400, 300)
+popup_window = true
+theme = ExtResource("1_du0j6")
+script = ExtResource("2_8g1px")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="ScrollContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Container/VBoxContainer"]
+layout_mode = 2
+text = "Select a demo from the list below to run it in the editor."
+autowrap_mode = 3
+
+[node name="HSeparator" type="HSeparator" parent="Container/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="EnvironmentDemo" type="Button" parent="Container/VBoxContainer"]
+layout_mode = 2
+text = "Environment Demo"
+flat = true
+
+[node name="ProtractorDemo" type="Button" parent="Container/VBoxContainer"]
+layout_mode = 2
+text = "Protractor Demo"
+flat = true
