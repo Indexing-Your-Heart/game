@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bocr1o22wwwhn"]
+[gd_scene load_steps=5 format=3 uid="uid://bocr1o22wwwhn"]
 
 [ext_resource type="TileSet" uid="uid://bg87l810jxdqv" path="res://resources/lz_room_builder.tres" id="1_6a2ab"]
+[ext_resource type="Script" path="res://scripts/proto_st1.gd" id="1_ux0dw"]
 [ext_resource type="PackedScene" uid="uid://bhdu82yikkqf3" path="res://resources/player.tscn" id="2_y1vg6"]
+[ext_resource type="PackedScene" uid="uid://bgmtbbukdpkj0" path="res://resources/puzzle_target.tscn" id="4_k85oa"]
 
 [node name="Environment" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_ux0dw")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -35,3 +38,11 @@ position = Vector2(103, 537)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(3, 3)
+
+[node name="Targets" type="Node2D" parent="."]
+
+[node name="Target" parent="Targets" instance=ExtResource("4_k85oa")]
+position = Vector2(112, 458)
+input_pickable = false
+monitorable = false
+puzzle_name = "hoh_1a"
