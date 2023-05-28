@@ -6,10 +6,6 @@
 [node name="Environment" type="Node2D"]
 y_sort_enabled = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(96, 69)
-zoom = Vector2(3, 3)
-
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
 texture_filter = 1
@@ -35,3 +31,8 @@ layer_2/tile_data = PackedInt32Array(131072, 131075, 17, 0, 851971, 25, 131077, 
 [node name="Player" parent="." instance=ExtResource("2_gpp2e")]
 z_index = 1
 position = Vector2(93, 83)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(6, -28)
+scale = Vector2(2, 2)
+zoom = Vector2(3, 3)
