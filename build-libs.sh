@@ -14,20 +14,22 @@
 #  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 #  details.
 
-__maconly=false
+__target="all"
 __autoclean=true
+__preclean=true
 __library=""
 
 # Prints the help message.
 help() {
 	echo "Builds the corresponding dependency libraries."
 	echo
-	echo "Syntax: build-libs [-d|h|m|l <libname>] [LIBRARY]"
+	echo "Syntax: build-libs [-d|f|h|l <libname>|t <ios|mac|all>] [LIBRARY]"
 	echo "options:"
 	echo "d     Skips running cleanup tasks."
 	echo "h     Print this Help."
-	echo "m     Builds only the libraries for macOS."
+	echo "t     Builds libraries for the specified target."
 	echo "l     The output library name."
+	echo "f     Skips deleting existing dependency files before building."
 	echo
 }
 
@@ -70,27 +72,27 @@ build_mac_lib() {
 
 # Builds the Swift package dynamic libraries and copies the files into Shounin.
 build_lib() {
+	echo "Building for target: $__target."
 	cd "$1"
-	if [ __library = "" ]; then
-		build_mac_lib "$1"
-	else
-		build_mac_lib "$__library"
+	if [[ "$__target" = "all" || "$__target" = "mac" ]]; then
+		if [[ -z $__library ]]; then
+			build_mac_lib "$1"
+		else
+			build_mac_lib "$__library"
+		fi
 	fi
-	if [ "$__maconly" = true ]; then
-		echo "Skipping iOS build [$1]."
-		cd ..
-		return
-	fi
-	if [ __library = "" ]; then
-		build_ios_lib "$1"
-	else
-		build_ios_lib "$__library"
+	if [[ "$__target" = "all" || "$__target" = "ios" ]]; then
+		if [[ -z $__library ]]; then
+			build_ios_lib "$1"
+		else
+			build_ios_lib "$__library"
+		fi
 	fi
 	cd ..
 }
 
 # Parses options before reading list of files.
-while getopts ":dhml:" option; do
+while getopts ":dfhl:t:" option; do
 	case $option in
 		h)
 	   		help
@@ -98,9 +100,17 @@ while getopts ":dhml:" option; do
 		d)
 			__autoclean=false;;
 		m)
-			__maconly=true;;
+			__maconly=true
+			__iosonly=false;;
+		i)
+			__maconly=false
+			__iosonly=true;;
+		f)
+			__preclean=false;;
 		l)
 			__library="$OPTARG";;
+		t)
+			__target="$OPTARG";;
 		\?)
 			echo "Err: invalid options"
 			exit 1;;
@@ -109,12 +119,12 @@ done
 
 shift "$((OPTIND-1))"
 
-if [ -e "Shounin/bin/libSwiftGodot.dylib" ]; then
+if [[ -e "Shounin/bin/libSwiftGodot.dylib" && $__preclean = false && "$__iosonly" = false ]]; then
 	echo "Removing old Swift Godot dynamic library. This will be rebuilt."
 	rm -f Shounin/bin/libSwiftGodot.dylib
 fi
 
-if [[ -e "Shounin/bin/SwiftGodot.framework" && "$__maconly" = false ]]; then
+if [[ -e "Shounin/bin/SwiftGodot.framework" && $__preclean = false && "$__maconly" = false ]]; then
 	echo "Removing old Swift Godot framework. This will be rebuilt."
 	rm -rf Shounin/bin/SwiftGodot.framework
 fi
