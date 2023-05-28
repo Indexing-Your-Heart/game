@@ -11,10 +11,8 @@ let package = Package(
             type: .dynamic,
             targets: ["AnthroBase"]),
     ],
-    dependencies: [
-        .package(name: "SwiftGodot", path: "../SwiftGodot")
-    ],
     targets: [
+        .binaryTarget(name: "SwiftGodot", path: "../SwiftGodot.xcframework"),
         .target(
             name: "AnthroBase",
             dependencies: ["SwiftGodot"],

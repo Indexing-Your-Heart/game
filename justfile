@@ -33,6 +33,17 @@ build-all-deps:
 	just build-dep '-l ProtractorGodotInterop' Protractor
 	just build-dep '-f' AnthroBase
 
+# Builds the SwiftGodot xcframework.
+build-swift-godot: (fetch-remote-deps)
+	#!/bin/sh
+	cd SwiftGodot
+	touch nodeploy
+	VERSION="nodeploy" NOTES="./nodeploy" SWIFT_GODOT_NODEPLOY=true make build-release
+	rm -r nodeploy
+	cd ..
+	cp -rf ~/sg-builds/SwiftGodot.xcframework .
+	rm -rf ~/sg-builds
+
 # Cleans a specified set of dependencies
 clean-dep +DEPENDENCIES:
 	#!/bin/sh

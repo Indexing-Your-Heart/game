@@ -119,3 +119,4 @@ Story Source/**.md
 Shounin/bin/*.dylib
 Shounin/bin/*.framework
 old/
+*.xcframework
