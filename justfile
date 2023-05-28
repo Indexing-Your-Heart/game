@@ -15,6 +15,15 @@
 #  permitted by applicable law. See the CNPL for details.
 #
 
+# The path to the Godot binary to execute.
+gdengine := `which godot`
+
+# The arguments to be passed into Godot, pointing to the game's project files.
+godot_args := "--path Shounin"
+
+# The text editor to open when writing files.
+editor := 'subl'
+
 # Build a specified set of dependencies with some flags
 build-dep LIB_FLAGS +DEPENDENCIES: (fetch-remote-deps)
 	./build-libs.sh {{LIB_FLAGS}} {{DEPENDENCIES}}
@@ -63,7 +72,11 @@ test-all-deps:
 
 # Dry run the game locally
 dry-run:
-	godot --path Shounin
+	{{gdengine}} {{godot_args}}
+
+# Edits the script that builds libraries
+edit-build-lib:
+	{{editor}} ./build-libs.sh
 
 # Edits dependencies in Xcode
 edit-deps:
@@ -71,7 +84,11 @@ edit-deps:
 
 # Open Godot editor
 edit-game:
-	godot --path Shounin -e
+	{{gdengine}} {{godot_args}} -e
+
+# Edits this Justfile
+edit-just:
+	{{editor}} {{justfile()}}
 
 # Runs SwiftLint on library code
 lint:
