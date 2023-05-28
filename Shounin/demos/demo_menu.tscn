@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ckyyjw47ox00g"]
 
 [ext_resource type="Theme" uid="uid://dbup2qc6kea2t" path="res://resources/gui/theme.tres" id="1_du0j6"]
-[ext_resource type="Script" path="res://demos/demo_menu.gd" id="2_8g1px"]
+[ext_resource type="Script" path="res://scripts/demo_menu.gd" id="2_8g1px"]
 
 [node name="DemoMenu" type="Window"]
 title = "Demos"

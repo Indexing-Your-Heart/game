@@ -1,6 +1,6 @@
 [gd_scene load_steps=28 format=3 uid="uid://bhdu82yikkqf3"]
 
-[ext_resource type="Script" path="res://demos/demo_player.gd" id="1_1osyc"]
+[ext_resource type="Script" path="res://scripts/demo_player.gd" id="1_j5c5v"]
 [ext_resource type="Texture2D" uid="uid://b1d5u8txom028" path="res://resources/sprt_chelsea.png" id="2_r517x"]
 
 [sub_resource type="Animation" id="Animation_shu7v"]
@@ -225,7 +225,7 @@ height = 64.0
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 scale = Vector2(0.5, 0.5)
-script = ExtResource("1_1osyc")
+script = ExtResource("1_j5c5v")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
