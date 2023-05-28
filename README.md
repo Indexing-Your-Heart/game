@@ -7,8 +7,15 @@ Rollinsport. Explore Chelsea Roslyn’s inner world with puzzles that present ma
 ideas about her own thoughts and feelings, while following the story of her finding
 the love of her life, Sam.
 
-> :warning: This project is still in its infancy, so some details and mechanics may
-> not work as intended. If you'd like to support the project,
+> **Warning**  
+> This branch pertains to a rewrite of the game using the Godot Engine v4, and it
+> is still in its infancy. Documentation may be incomplete as the rewrite
+> progresses. Visit the `prototype` branch to view the current source code available
+> for the current version on TestFlight.
+
+> **Warning**  
+> This project is still in its infancy, so some details and mechanics may not work
+> as intended. If you'd like to support the project,
 > [consider supporting the developers on Ko-fi][kofi].
 
 [kofi]: https://ko-fi.com/marquiskurt
@@ -33,17 +40,28 @@ Start by cloning the repository using `gh repo clone` or `git clone --recursive`
 Then, run `just build-all-deps` to build the required dependencies for the internal
 extensions that the main game uses.
 
-From here, you can open the Shounin project in Godot or run `just edit-game` to open
-Godot automatically.
+From here, you can open the Shounin project in Godot through the project manager, or
+you can invoke `just edit-game` to open the project directly in the editor.
+
+To run the game as-is, call `just dry-run`. The game will launch as if it were built
+and distributed.
 
 > **Note**  
-> Using `just edit-game` assumes that you have the Godot binary in your PATH.
+> Using `just edit-game` assumes that the `gdengine` variable in the Justfile is
+> pointing to the Godot binary in your `PATH`. Edit this variable to match the path
+> of your Godot binary if this doesn't match, or update `PATH` to include the Godot
+> binary.
 
 ### Editing Dependencies
 
 If you need to edit any of the dependent libraries, you can run `just edit-deps` or
 open the Indexing Your Heart.xcworkspace file. This will open Xcode with all the
 Swift packages used to build the libraries that the Godot project utilizes.
+
+To rebuild all dependencies after making adjustments, run `just build-all-deps`.
+The correct build flags will be applied to ensure binaries for macOS and iOS are
+available. Likewise, you can call either `just build-dep` or run `.build-libs.sh` to
+build a given dependency.
 
 ### Exporting Requirements
 
@@ -64,14 +82,15 @@ agreement. Instead, the default system font is loaded (see Godot's `SystemFont`)
 If you have purchased the Salmon 9 font family and want to use those fonts in the
 game, replace the following files with the corresponding family variants:
 
-- **Monospace** (`Shounin/resources/salmon/s_mono_regular.ttf`): Salmon Mono 9
+- **Monospace** (`Shounin/resources/gui/salmon/s_mono_regular.ttf`): Salmon Mono 9
   Regular
-- **Sans-serif** (`Shounin/resources/salmon/s_sans_regular.ttf`): Salmon Sans 9
+- **Sans-serif** (`Shounin/resources/gui/salmon/s_sans_regular.ttf`): Salmon Sans 9
   Regular
-- **Sans-serif (Bold)** (`Shounin/resources/salmon/s_sans_bold.ttf`): Salmon Sans 9
-  Bold
-- **Serif** (`Shounin/resources/salmon/s_serif_regular.ttf`): Salmon Serif 9 Regular
-- **Serif (Bold)** (`Shounin/resources/salmon/s_serif_bold.ttf`): Salmon Serif 9
+- **Sans-serif (Bold)** (`Shounin/resources/gui/salmon/s_sans_bold.ttf`): Salmon
+  Sans 9 Bold
+- **Serif** (`Shounin/resources/gui/salmon/s_serif_regular.ttf`): Salmon Serif 9
+  Regular
+- **Serif (Bold)** (`Shounin/resources/gui/salmon/s_serif_bold.ttf`): Salmon Serif 9
   Bold
 
 If you have not purchased the font and would like to do so, you can find the font on
@@ -84,6 +103,31 @@ such as:
 
 - Updating build configurations
 - Converting Markdown documents to Jenson timelines
+
+### Just Commands
+
+The following is the list of commands available from Just. You can also view this
+list by invoking `just -l`.
+
+```
+Available recipes:
+    build-all-deps           # Build all dependencies
+    build-dep LIB_FLAGS +DEPENDENCIES # Build a specified set of dependencies with some flags
+    clean-all-deps           # Cleans all dependencies
+    clean-dep +DEPENDENCIES  # Cleans a specified set of dependencies
+    dry-run                  # Dry run the game locally
+    edit-build-lib           # Edits the script that builds libraries
+    edit-deps                # Edits dependencies in Xcode
+    edit-game                # Open Godot editor
+    edit-just                # Edits this Justfile
+    fetch-remote-deps        # Fetches remote dependencies from Git submodules
+    format-all-deps          # Formats source files in all dependencies
+    format-dep +DEPENDENCIES # Formats the source files in a specified set of dependencies
+    lint                     # Runs SwiftLint on library code
+    test-all-deps            # Test all dependencies
+    test-dep +DEPENDENCIES   # Test a specified set of dependencies
+
+```
 
 More information on how to install and use Marteau can be found on the source code
 repository for Marteau at https://github.com/Indexing-Your-Heart/marteau.
