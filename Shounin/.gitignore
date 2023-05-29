@@ -3,3 +3,6 @@
 
 # Hide exporting templates
 export_presets.cfg
+
+# Hide import files
+**.import
