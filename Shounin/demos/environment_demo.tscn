@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://oeq4crgd2e6y"]
 
-[ext_resource type="PackedScene" uid="uid://bhdu82yikkqf3" path="res://resources/player.tscn" id="1_66ytc"]
+[ext_resource type="PackedScene" uid="uid://bhdu82yikkqf3" path="res://components/player.tscn" id="1_66ytc"]
 [ext_resource type="TileSet" uid="uid://bg87l810jxdqv" path="res://resources/lz_room_builder.tres" id="1_sye1b"]
 
 [node name="Environment" type="Node2D"]
