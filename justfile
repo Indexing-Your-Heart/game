@@ -30,11 +30,11 @@ build-dep LIB_FLAGS +DEPENDENCIES: (fetch-remote-deps)
 
 # Build all dependencies
 build-all-deps:
-	just build-dep '-l ProtractorGodotInterop' Protractor
-	just build-dep '-f' AnthroBase
+	just build-dep '-d -t mac -l ProtractorGodotInterop' Protractor
+	just build-dep '-d -t mac -f' AnthroBase
 
 # Builds the SwiftGodot xcframework.
-build-swift-godot: (fetch-remote-deps)
+build-swift-godot:
 	#!/bin/sh
 	cd SwiftGodot
 	touch nodeploy
@@ -54,6 +54,7 @@ clean-dep +DEPENDENCIES:
 # Cleans all dependencies
 clean-all-deps:
 	just clean-dep Protractor
+	just clean-dep AnthroBase
 
 # Fetches remote dependencies from Git submodules
 fetch-remote-deps:

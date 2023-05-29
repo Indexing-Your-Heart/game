@@ -116,7 +116,7 @@ Shounin/resources/salmon
 Story Source/**.md
 
 # Prebuilt libraries
-Shounin/bin/*.dylib
-Shounin/bin/*.framework
+Shounin/bin/**/*.dylib
+Shounin/bin/**/*.framework
 old/
 *.xcframework

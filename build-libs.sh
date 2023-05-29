@@ -42,9 +42,9 @@ build_ios_lib() {
 	echo "Copying [$1] library binaries to Shounin/bin."
 	cp -rf "xcbuild/Build/Products/Release-iphoneos/PackageFrameworks/$1.framework" \
 		"../Shounin/bin/$1.framework"
-	if ! [ -e "Shounin/bin/SwiftGodot.framework" ]; then
-		cp -rf "xcbuild/Build/Products/Release-iphoneos/PackageFrameworks/SwiftGodot.framework" \
-			"../Shounin/bin/SwiftGodot.framework"
+	if ! [ -e "Shounin/bin/ios/SwiftGodot.framework" ]; then
+		cp -rf "../SwiftGodot.xcframework/ios-arm64/SwiftGodot.framework" \
+			"../Shounin/bin/ios/"
 	fi
 	echo "Library built [$1] for iOS."
 	if [ "$__autoclean" = true ]; then
@@ -59,13 +59,11 @@ build_mac_lib() {
 	swift build --configuration release --triple arm64-apple-macosx
 	swift build --configuration release --triple x86_64-apple-macosx
 	echo "Copying [$1] library binaries to Shounin/bin."
-	lipo -create -output "../Shounin/bin/lib$1.dylib" \
+	lipo -create -output "../Shounin/bin/mac/lib$1.dylib" \
 		".build/arm64-apple-macosx/release/lib$1.dylib" \
 		".build/x86_64-apple-macosx/release/lib$1.dylib"
-	if ! [ -e "Shounin/bin/libSwiftGodot.dylib" ]; then
-		lipo -create -output ../Shounin/bin/libSwiftGodot.dylib \
-			.build/arm64-apple-macosx/release/libSwiftGodot.dylib \
-			.build/x86_64-apple-macosx/release/libSwiftGodot.dylib
+	if ! [ -e "Shounin/bin/mac/SwiftGodot.framework" ]; then
+		cp -rf "../SwiftGodot.xcframework/macos-arm64_x86_64/SwiftGodot.framework" "../Shounin/bin/mac/"
 	fi
 	echo "Library built [$1] for macOS."
 	if [ "$__autoclean" = true ]; then
@@ -123,14 +121,14 @@ done
 
 shift "$((OPTIND-1))"
 
-if [[ -e "Shounin/bin/libSwiftGodot.dylib" && $__preclean = false ]]; then
-	echo "Removing old Swift Godot dynamic library. This will be rebuilt."
-	rm -f Shounin/bin/libSwiftGodot.dylib
-fi
+# if [[ -e "Shounin/bin/mac/SwiftGodot.framework" && $__preclean = false ]]; then
+# 	echo "Removing old Swift Godot framework. This will be rebuilt."
+# 	rm -rf Shounin/bin/SwiftGodot.framework
+# fi
 
-if [[ -e "Shounin/bin/SwiftGodot.framework" && $__preclean = false ]]; then
-	echo "Removing old Swift Godot framework. This will be rebuilt."
-	rm -rf Shounin/bin/SwiftGodot.framework
-fi
+# if [[ -e "Shounin/bin/ios/SwiftGodot.framework" && $__preclean = false ]]; then
+# 	echo "Removing old Swift Godot framework. This will be rebuilt."
+# 	rm -rf Shounin/bin/SwiftGodot.framework
+# fi
 
 build_lib "$1"

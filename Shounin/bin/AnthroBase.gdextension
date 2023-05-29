@@ -2,13 +2,5 @@
 entry_symbol = "libanthrobase_entry_point"
 
 [libraries]
-macos.debug = "res://bin/libAnthroBase.dylib"
-macos.release = "res://bin/libAnthroBase.dylib"
-ios.debug = "res://bin/AnthroBase.framework"
-ios.release = "res://bin/AnthroBase.framework"
-
-[dependencies]
-macos = { "res://bin/libSwiftGodot.dylib" : "" }
-macos.template_release = { "res://bin/libSwiftGodot.dylib" : "" }
-ios = { "res://bin/SwiftGodot.framework" : "" }
-ios.template_release = { "res://bin/SwiftGodot.framework" : "" }
+macos.debug = "res://bin/mac/libAnthroBase.dylib"
+macos.release = "res://bin/mac/libAnthroBase.dylib"

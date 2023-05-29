@@ -14,7 +14,6 @@
 //  details.
 
 import Foundation
-import GDExtension
 import Protractor
 import SwiftGodot
 
