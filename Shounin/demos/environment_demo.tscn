@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://oeq4crgd2e6y"]
 
+[ext_resource type="PackedScene" uid="uid://bhdu82yikkqf3" path="res://resources/player.tscn" id="1_66ytc"]
 [ext_resource type="TileSet" uid="uid://bg87l810jxdqv" path="res://resources/lz_room_builder.tres" id="1_sye1b"]
-[ext_resource type="PackedScene" uid="uid://bhdu82yikkqf3" path="res://resources/player.tscn" id="2_gpp2e"]
 
 [node name="Environment" type="Node2D"]
 y_sort_enabled = true
@@ -28,11 +28,10 @@ layer_2/y_sort_origin = 0
 layer_2/z_index = 1
 layer_2/tile_data = PackedInt32Array(131072, 131075, 17, 0, 851971, 25, 131077, 851971, 28)
 
-[node name="Player" parent="." instance=ExtResource("2_gpp2e")]
+[node name="Player" parent="." instance=ExtResource("1_66ytc")]
 z_index = 1
-position = Vector2(93, 83)
+position = Vector2(90, 68)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(6, -28)
+[node name="Camera" type="Camera2D" parent="Player"]
 scale = Vector2(2, 2)
 zoom = Vector2(3, 3)

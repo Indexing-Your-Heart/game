@@ -4,7 +4,7 @@
 [ext_resource type="StyleBox" uid="uid://dgm8a5lcti7kw" path="res://resources/gui/focus_style_box_flat.tres" id="2_5ul88"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gcerf"]
-bg_color = Color(0.152941, 0.458824, 0.392157, 1)
+bg_color = Color(0, 0, 0, 1)
 
 [resource]
 default_font = ExtResource("1_wb2wi")
