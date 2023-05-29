@@ -37,8 +37,8 @@ the love of her life, Sam.
 - Xcode Command Line Tools
 
 Start by cloning the repository using `gh repo clone` or `git clone --recursive`.
-Then, run `just build-all-deps` to build the required dependencies for the internal
-extensions that the main game uses.
+Then, run `just build-swift-godot` and `just build-all-deps` to build the required
+dependencies for the internal extensions that the main game uses.
 
 From here, you can open the Shounin project in Godot through the project manager, or
 you can invoke `just edit-game` to open the project directly in the editor.
@@ -113,6 +113,7 @@ list by invoking `just -l`.
 Available recipes:
     build-all-deps           # Build all dependencies
     build-dep LIB_FLAGS +DEPENDENCIES # Build a specified set of dependencies with some flags
+    build-swift-godot        # Builds the SwiftGodot xcframework.
     clean-all-deps           # Cleans all dependencies
     clean-dep +DEPENDENCIES  # Cleans a specified set of dependencies
     dry-run                  # Dry run the game locally
