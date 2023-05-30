@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://oeq4crgd2e6y"]
+[gd_scene load_steps=4 format=3 uid="uid://oeq4crgd2e6y"]
 
 [ext_resource type="PackedScene" uid="uid://bhdu82yikkqf3" path="res://components/player.tscn" id="1_66ytc"]
+[ext_resource type="PackedScene" uid="uid://wyglut8qeqvb" path="res://components/player_gdscript.tscn" id="1_e3k7l"]
 [ext_resource type="TileSet" uid="uid://bg87l810jxdqv" path="res://resources/lz_room_builder.tres" id="1_sye1b"]
 
 [node name="Environment" type="Node2D"]
 y_sort_enabled = true
+
+[node name="Player2" parent="." instance=ExtResource("1_e3k7l")]
+position = Vector2(83.5004, 67.2917)
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -29,6 +33,7 @@ layer_2/z_index = 1
 layer_2/tile_data = PackedInt32Array(131072, 131075, 17, 0, 851971, 25, 131077, 851971, 28)
 
 [node name="Player" parent="." instance=ExtResource("1_66ytc")]
+process_mode = 4
 z_index = 1
 position = Vector2(90, 68)
 

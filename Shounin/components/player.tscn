@@ -230,7 +230,7 @@ texture_repeat = 1
 texture = ExtResource("2_r517x")
 hframes = 12
 vframes = 5
-frame = 59
+frame = 12
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 libraries = {

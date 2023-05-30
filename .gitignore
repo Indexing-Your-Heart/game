@@ -120,3 +120,6 @@ Shounin/bin/**/*.dylib
 Shounin/bin/**/*.framework
 old/
 *.xcframework
+
+# Product build logs
+*_build.log

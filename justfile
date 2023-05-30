@@ -33,8 +33,8 @@ build-dep LIB_FLAGS +DEPENDENCIES: (fetch-remote-deps)
 
 # Build all dependencies
 build-all-deps:
-	just build-dep '-d -t mac -l ProtractorGodotInterop' Protractor
-	just build-dep '-d -t mac -f' AnthroBase
+	just build-dep '-l ProtractorGodotInterop' Protractor
+	just build-dep '-f' AnthroBase
 
 # Builds the SwiftGodot xcframework.
 build-swift-godot:
