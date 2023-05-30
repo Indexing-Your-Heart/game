@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://q67iel4jqnnq"]
 
-[ext_resource type="PackedScene" uid="uid://cmngu1jd47ni" path="res://areas/pzl_panel.tscn" id="1_mt2uw"]
+[ext_resource type="PackedScene" uid="uid://cmngu1jd47ni" path="res://components/pzl_panel.tscn" id="1_mt2uw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lbb5a"]
 sky_top_color = Color(0.427451, 0.764706, 0.921569, 1)

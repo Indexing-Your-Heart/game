@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/proto_st1.gd" id="1_ux0dw"]
 [ext_resource type="PackedScene" uid="uid://bhdu82yikkqf3" path="res://components/player.tscn" id="2_y1vg6"]
 [ext_resource type="PackedScene" uid="uid://bgmtbbukdpkj0" path="res://components/puzzle_target.tscn" id="4_k85oa"]
-[ext_resource type="PackedScene" uid="uid://cmngu1jd47ni" path="res://areas/pzl_panel.tscn" id="5_s3yrq"]
+[ext_resource type="PackedScene" uid="uid://cmngu1jd47ni" path="res://components/pzl_panel.tscn" id="5_s3yrq"]
 
 [node name="Environment" type="Node2D"]
 y_sort_enabled = true

@@ -37,7 +37,7 @@ scale = Vector2(7.33333, 7)
 texture = ExtResource("2_sgx3w")
 
 [node name="ProtractorDrawer" type="ProtractorDrawer" parent="."]
-recognizer_protractor_template = "res://data/templates.json"
+template = "res://data/templates.json"
 recognizer_orientation_sensitive = true
 z_index = 1
 position = Vector2(1222, 450)

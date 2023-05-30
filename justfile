@@ -24,6 +24,9 @@ godot_args := "--path Shounin"
 # The text editor to open when writing files.
 editor := 'subl'
 
+# The editor when updating packages.
+dep_editor := `which xed`
+
 # Build a specified set of dependencies with some flags
 build-dep LIB_FLAGS +DEPENDENCIES: (fetch-remote-deps)
 	./build-libs.sh {{LIB_FLAGS}} {{DEPENDENCIES}}
@@ -55,6 +58,9 @@ clean-dep +DEPENDENCIES:
 clean-all-deps:
 	just clean-dep Protractor
 	just clean-dep AnthroBase
+
+edit-dep DEPENDENCY:
+	{{dep_editor}} {{DEPENDENCY}}
 
 # Fetches remote dependencies from Git submodules
 fetch-remote-deps:

@@ -200,12 +200,11 @@ blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y410c"]
 reset = false
-advance_mode = 2
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1f7q0"]
 reset = false
 switch_mode = 2
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_u2fhk"]
 states/End/position = Vector2(686, 100)
@@ -231,7 +230,7 @@ texture_repeat = 1
 texture = ExtResource("2_r517x")
 hframes = 12
 vframes = 5
-frame = 12
+frame = 59
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 libraries = {
@@ -243,8 +242,8 @@ tree_root = SubResource("AnimationNodeStateMachine_u2fhk")
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_upjym")
-parameters/Idle/blend_position = Vector2(0, 1)
-parameters/Walk/blend_position = Vector2(-0.0266904, -0.212121)
+parameters/Idle/blend_position = Vector2(2.08165e-12, 2.08165e-12)
+parameters/Walk/blend_position = Vector2(2.08165e-12, 2.08165e-12)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 14)

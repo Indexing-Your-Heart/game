@@ -75,37 +75,28 @@ public class ProtractorDrawer: Node2D {
     }
 
     func setDebugPrintPaths(args: [Variant]) -> Variant? {
-        guard let arg = args.first else {
-            GD.pushError("Expected argument for orientation sensitivity, but got nil")
-            return nil
+        ClassInfo.withCheckedProperty(named: "debugPrintPaths", in: args) { arg in
+            debugPrintPaths = Bool(arg) ?? false
         }
-        debugPrintPaths = Bool(arg) ?? false
-        return nil
     }
 
     func setRecognizerOrientationSensitiviy(args: [Variant]) -> Variant? {
-        guard let arg = args.first else {
-            GD.pushError("Expected argument for orientation sensitivity, but got nil")
-            return nil
+        ClassInfo.withCheckedProperty(named: "orientationSensitive", in: args) { arg in
+            orientationSensitive = Bool(arg) ?? false
         }
-        orientationSensitive = Bool(arg) ?? false
-        return nil
     }
 
     func setRecognizerTemplate(args: [Variant]) -> Variant? {
-        guard let arg = args.first else {
-            GD.pushError("Expected argument of file path, but got nil.")
-            return nil
+        ClassInfo.withCheckedProperty(named: "templates", in: args) { arg in
+            protractorTemplate = String(arg) ?? ""
+            do {
+                recognizer.dropTemplates()
+                try recognizer.insertTemplates(reading: protractorTemplate)
+                GD.print("Loaded templates:", recognizer.templates.map(\.name))
+            } catch {
+                GD.pushError("Failed to add template:", error.localizedDescription)
+            }
         }
-        protractorTemplate = String(arg) ?? ""
-        do {
-            recognizer.dropTemplates()
-            try recognizer.insertTemplates(reading: protractorTemplate)
-            GD.print(recognizer.templates.map(\.name))
-        } catch {
-            GD.pushError("Failed to add template:", error.localizedDescription)
-        }
-        return nil
     }
 
     private func setupArea() {
