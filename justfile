@@ -24,6 +24,9 @@ godot_args := "--path Shounin"
 # The text editor to open when writing files.
 editor := 'subl'
 
+# The path where the package cache is stored.
+dep_cache := "~/Library/Developer/Xcode/DerivedData/itanium"
+
 # The editor when updating packages.
 dep_editor := `which xed`
 
@@ -35,16 +38,17 @@ build-dep LIB_FLAGS +DEPENDENCIES: (fetch-remote-deps)
 build-all-deps:
 	just build-dep '-l ProtractorGodotInterop' Protractor
 	just build-dep '-f' AnthroBase
+	just build-dep '-f' JensonGodotKit
 
 # Builds the SwiftGodot xcframework.
 build-swift-godot:
 	#!/bin/sh
-	cd SwiftGodot
+	cd SwiftGodot-Source
 	touch nodeploy
 	VERSION="nodeploy" NOTES="./nodeploy" SWIFT_GODOT_NODEPLOY=true make build-release
 	rm -r nodeploy
 	cd ..
-	cp -rf ~/sg-builds/SwiftGodot.xcframework .
+	cp -rf ~/sg-builds/SwiftGodot.xcframework SwiftGodot
 	rm -rf ~/sg-builds
 
 # Cleans a specified set of dependencies
@@ -58,6 +62,9 @@ clean-dep +DEPENDENCIES:
 clean-all-deps:
 	just clean-dep Protractor
 	just clean-dep AnthroBase
+	just clean-dep JensonGodotKit
+	rm -rf {{dep_cache}}
+	rm *_build.log
 
 edit-dep DEPENDENCY:
 	{{dep_editor}} {{DEPENDENCY}}

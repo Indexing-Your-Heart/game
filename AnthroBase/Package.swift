@@ -11,12 +11,14 @@ let package = Package(
             type: .dynamic,
             targets: ["AnthroBase"]),
     ],
+    dependencies: [
+        .package(name: "SwiftGodot", path: "../SwiftGodot"),
+    ],
     targets: [
         .target(
             name: "AnthroBase",
             dependencies: ["SwiftGodot"],
             swiftSettings: [.unsafeFlags(["-suppress-warnings"])],
             linkerSettings: [.unsafeFlags(["-Xlinker", "-undefined","-Xlinker", "dynamic_lookup"])]),
-        .binaryTarget(name: "SwiftGodot", path: "../SwiftGodot.xcframework")
     ]
 )

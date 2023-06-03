@@ -8,13 +8,29 @@
       location = "group:LICENSE.md">
    </FileRef>
    <FileRef
-      location = "group:Justfile"
-      assignedFileDataType = "public.make-source">
+      location = "group:CONTRIBUTORS.md">
+   </FileRef>
+   <Group
+      location = "container:"
+      name = "Build Scripts">
+      <FileRef
+         location = "group:build-libs.sh">
+      </FileRef>
+      <FileRef
+         location = "group:Justfile"
+         assignedFileDataType = "public.make-source">
+      </FileRef>
+   </Group>
+   <FileRef
+      location = "group:SwiftGodot">
    </FileRef>
    <FileRef
       location = "group:AnthroBase">
    </FileRef>
    <FileRef
       location = "group:Protractor">
+   </FileRef>
+   <FileRef
+      location = "group:JensonGodotKit">
    </FileRef>
 </Workspace>

@@ -4,3 +4,5 @@ entry_symbol = "libanthrobase_entry_point"
 [libraries]
 macos.debug = "res://bin/mac/libAnthroBase.dylib"
 macos.release = "res://bin/mac/libAnthroBase.dylib"
+ios.debug = "res://bin/ios/AnthroBase.framework"
+ios.release = "res://bin/ios/AnthroBase.framework"

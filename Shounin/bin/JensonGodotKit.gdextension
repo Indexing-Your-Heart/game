@@ -1,0 +1,8 @@
+[configuration]
+entry_symbol = "libjensongodotkit_entry_point"
+
+[libraries]
+macos.debug = "res://bin/mac/libJensonGodotKit.dylib"
+macos.release = "res://bin/mac/libJensonGodotKit.dylib"
+ios.debug = "res://bin/ios/JensonGodotKit.framework"
+ios.release = "res://bin/ios/JensonGodotKit.framework"

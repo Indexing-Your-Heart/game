@@ -14,6 +14,9 @@ let package = Package(
             type: .dynamic,
             targets: ["ProtractorGodotInterop"])
     ],
+    dependencies: [
+        .package(name: "SwiftGodot", path: "../SwiftGodot"),
+    ],
     targets: [
         .target(name: "Protractor"),
         .target(
@@ -26,7 +29,6 @@ let package = Package(
             dependencies: ["Protractor"],
             resources: [
                 .process("Resources")
-            ]),
-        .binaryTarget(name: "SwiftGodot", path: "../SwiftGodot.xcframework")
+            ])
     ]
 )

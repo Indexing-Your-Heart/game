@@ -4,3 +4,5 @@ entry_symbol = "libprotractor_entry_point"
 [libraries]
 macos.debug = "res://bin/mac/libProtractorGodotInterop.dylib"
 macos.release = "res://bin/mac/libProtractorGodotInterop.dylib"
+ios.debug = "res://bin/ios/ProtractorGodotInterop.framework"
+ios.release = "res://bin/ios/ProtractorGodotInterop.framework"

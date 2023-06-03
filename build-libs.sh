@@ -38,12 +38,13 @@ build_ios_lib() {
 	echo "Building library [$1] for iOS."
 	xcodebuild -scheme "$1" -destination 'generic/platform=iOS' \
 		-derivedDataPath xcbuild -skipPackagePluginValidation \
+		-clonedSourcePackagesDirPath ~/Library/Developer/Xcode/DerivedData/itanium \
 		-configuration Release >> ../$1_build.log
 	echo "Copying [$1] library binaries to Shounin/bin."
 	cp -rf "xcbuild/Build/Products/Release-iphoneos/PackageFrameworks/$1.framework" \
 		"../Shounin/bin/ios/$1.framework"
 	if ! [ -e "Shounin/bin/ios/SwiftGodot.framework" ]; then
-		cp -rf "../SwiftGodot.xcframework/ios-arm64/SwiftGodot.framework" \
+		cp -rf "../SwiftGodot/SwiftGodot.xcframework/ios-arm64/SwiftGodot.framework" \
 			"../Shounin/bin/ios/"
 	fi
 	echo "Library built [$1] for iOS."
@@ -65,7 +66,7 @@ build_mac_lib() {
 		".build/arm64-apple-macosx/release/lib$1.dylib" \
 		".build/x86_64-apple-macosx/release/lib$1.dylib"
 	if ! [ -e "Shounin/bin/mac/SwiftGodot.framework" ]; then
-		cp -rf "../SwiftGodot.xcframework/macos-arm64_x86_64/SwiftGodot.framework" "../Shounin/bin/mac/"
+		cp -rf "../SwiftGodot/SwiftGodot.xcframework/macos-arm64_x86_64/SwiftGodot.framework" "../Shounin/bin/mac/"
 	fi
 	echo "Library built [$1] for macOS."
 	if [ "$__autoclean" = true ]; then
