@@ -18,6 +18,12 @@ jobs:
       with:
         xcode-version: latest-stable
     - uses: extractions/setup-just@v1
+    - uses: supplypike/setup-bin@v3
+      with:
+        uri: 'https://github.com/godotengine/godot/releases/download/4.0.3-stable/Godot_v4.0.3-stable_macos.universal.zip'
+        name: 'godot'
+        version: '4.0.3'
+        subPath: 'Godot.app/Contents/MacOS/'
     - uses: actions/checkout@v3
       with:
         submodules: 'recursive'
@@ -33,16 +39,14 @@ jobs:
       with:
         xcode-version: latest-stable
     - uses: extractions/setup-just@v1
-    - uses: actions/checkout@v3
-      with:
-        submodules: 'recursive'
     - uses: supplypike/setup-bin@v3
       with:
         uri: 'https://github.com/godotengine/godot/releases/download/4.0.3-stable/Godot_v4.0.3-stable_macos.universal.zip'
         name: 'godot'
         version: '4.0.3'
         subPath: 'Godot.app/Contents/MacOS/'
-      env:
-        HOMEBREW_NO_AUTO_UPDATE: 1
+    - uses: actions/checkout@v3
+      with:
+        submodules: 'recursive'
     - run: just test-all-deps
 
