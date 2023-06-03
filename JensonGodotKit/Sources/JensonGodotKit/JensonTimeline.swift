@@ -24,10 +24,10 @@ public class JensonTimeline: Node {
 
     enum AnimationName: String {
         case startTimeline = "start_timeline"
-        case speech = "speech"
+        case speech
 
         var stringName: StringName {
-            StringName(stringLiteral: self.rawValue)
+            StringName(stringLiteral: rawValue)
         }
     }
 
@@ -40,7 +40,7 @@ public class JensonTimeline: Node {
         case singleSpeaker = "Single Speaker"
 
         var path: NodePath {
-            NodePath(stringLiteral: self.rawValue)
+            NodePath(stringLiteral: rawValue)
         }
     }
 

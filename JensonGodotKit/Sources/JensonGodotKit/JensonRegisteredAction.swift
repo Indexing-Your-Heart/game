@@ -22,6 +22,6 @@ enum JensonRegisteredAction: String {
 
 extension InputEvent {
     func isActionPressed(action: JensonRegisteredAction) -> Bool {
-        self.isActionPressed(action: StringName(action.rawValue))
+        isActionPressed(action: StringName(action.rawValue))
     }
 }
