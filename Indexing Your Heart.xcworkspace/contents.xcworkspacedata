@@ -24,6 +24,13 @@
    <Group
       location = "container:"
       name = "Supporting Files">
+      <Group
+         location = "container:"
+         name = "GitHub Workflows">
+         <FileRef
+            location = "group:.github/workflows/unit_tests.yml">
+         </FileRef>
+      </Group>
       <FileRef
          location = "group:SwiftGodot">
       </FileRef>
