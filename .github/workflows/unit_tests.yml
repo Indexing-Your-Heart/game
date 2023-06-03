@@ -9,9 +9,24 @@ on:
 
 
 jobs:
+  preflight:
+    name: Preflight
+    runs-on: macos-latest
+
+    steps:
+    - uses: maxim-lobanov/setup-xcode@v1.5.1
+      with:
+        xcode-version: latest-stable
+    - uses: extractions/setup-just@v1
+    - uses: actions/checkout@v3
+      with:
+        submodules: 'recursive'
+    - run: just build-swift-godot
+
   test:
     name: Test
     runs-on: macos-latest
+    needs: preflight
 
     steps:
     - uses: maxim-lobanov/setup-xcode@v1.5.1
