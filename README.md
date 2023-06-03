@@ -116,8 +116,10 @@ Available recipes:
     build-swift-godot        # Builds the SwiftGodot xcframework.
     clean-all-deps           # Cleans all dependencies
     clean-dep +DEPENDENCIES  # Cleans a specified set of dependencies
+    clean-logs               # Cleans all logs built from a Just command.
     dry-run                  # Dry run the game locally
     edit-build-lib           # Edits the script that builds libraries
+    edit-dep DEPENDENCY      # Opens the dependent package in dep_editor for editing.
     edit-deps                # Edits dependencies in Xcode
     edit-game                # Open Godot editor
     edit-just                # Edits this Justfile

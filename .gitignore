@@ -123,3 +123,4 @@ old/
 
 # Product build logs
 *_build.log
+swiftlint_*.log

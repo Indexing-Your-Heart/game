@@ -30,6 +30,9 @@ dep_cache := "~/Library/Developer/Xcode/DerivedData/itanium"
 # The editor when updating packages.
 dep_editor := `which xed`
 
+# The date and time the action was performed.
+exec_date := `date "+%d-%m-%Y.%H-%M-%S"`
+
 # Build a specified set of dependencies with some flags
 build-dep LIB_FLAGS +DEPENDENCIES: (fetch-remote-deps)
 	./build-libs.sh {{LIB_FLAGS}} {{DEPENDENCIES}}
@@ -66,6 +69,11 @@ clean-all-deps:
 	rm -rf {{dep_cache}}
 	rm *_build.log
 
+# Cleans all logs built from a Just command.
+clean-logs:
+	rm -f *_build.log swiftlint_*.log
+
+# Opens the dependent package in dep_editor for editing.
 edit-dep DEPENDENCY:
 	{{dep_editor}} {{DEPENDENCY}}
 
@@ -117,4 +125,4 @@ edit-just:
 
 # Runs SwiftLint on library code
 lint:
-	swiftlint lint --config .swiftlint.yml
+	swiftlint lint --config .swiftlint.yml --output swiftlint_{{exec_date}}.log
