@@ -17,11 +17,11 @@ import Foundation
 import SwiftGodot
 
 extension ProtractorDrawer {
-    // FIXME: These values aren't being retained correctly.
     static var initClass: Void = {
         let classInfo = ClassInfo<ProtractorDrawer>(name: "ProtractorDrawer")
 
         // MARK: Signal Registration
+
         let recognizedSignalProps = [
             PropInfo(propertyType: .string,
                      propertyName: StringName("gesture"),
@@ -33,6 +33,7 @@ extension ProtractorDrawer {
         classInfo.registerSignal(name: recognizedSignalName, arguments: recognizedSignalProps)
 
         // MARK: Property Registration
+
         classInfo.addPropertyGroup(name: "Recognizer", prefix: "recognizer_")
 
         classInfo.registerFilePicker(named: "template",

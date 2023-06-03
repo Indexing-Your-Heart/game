@@ -17,10 +17,10 @@ import Foundation
 import JensonKit
 import SwiftGodot
 
-extension JensonReader {
+public extension JensonReader {
     /// Creates an instance of a Jenson reader from a Godot resource path.
     /// - Parameter path: The path to the resource file that contains the Jenson script.
-    public convenience init?(resource path: String) throws {
+    convenience init?(resource path: String) throws {
         guard let file = FileAccess.open(path: path, flags: .read) else { return nil }
         let contents = file.getAsText()
         file.close()

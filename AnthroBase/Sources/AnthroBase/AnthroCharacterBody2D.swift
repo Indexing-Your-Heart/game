@@ -1,9 +1,18 @@
 //
-//  File.swift
-//  
+//  AnthroCharacterBody2D.swift
+//  Indexing Your Heart
 //
 //  Created by Marquis Kurt on 5/27/23.
 //
+//  This file is part of Indexing Your Heart.
+//
+//  Indexing Your Heart is non-violent software: you can use, redistribute, and/or modify it under the terms of the
+//  CNPLv7+ as found in the LICENSE file in the source code root directory or at
+//  <https://git.pixie.town/thufie/npl-builder>.
+//
+//  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
+//  details.
+
 
 import Foundation
 import SwiftGodot
@@ -38,23 +47,23 @@ public class AnthroCharacterBody2D: CharacterBody2D {
                                positiveX: "move_right",
                                negativeY: "move_up",
                                positiveY: "move_down")
-        .normalized()
+            .normalized()
     }
 
     public required init() {
         AnthroCharacterBody2D.initClass
-        self.friction = 100
-        self.speed = 200
-        self.acceleration = 250
+        friction = 100
+        speed = 200
+        acceleration = 250
         super.init()
     }
 
     @available(*, unavailable)
-    required init(nativeHandle: UnsafeRawPointer) {
+    required init(nativeHandle _: UnsafeRawPointer) {
         fatalError("init(nativeHandle:) has not been implemented")
     }
 
-    public override func _ready() {
+    override public func _ready() {
         super._ready()
         sprite = getNodeOrNull(path: NodePath(stringLiteral: "Sprite")) as? Sprite2D
         animationTree = getNodeOrNull(path: NodePath(stringLiteral: "Sprite/AnimationTree")) as? AnimationTree
@@ -62,7 +71,7 @@ public class AnthroCharacterBody2D: CharacterBody2D {
         animationState = animationTree?.get(property: StringName("parameters/playback")).asObject()
     }
 
-    public override func _physicsProcess(delta: Double) {
+    override public func _physicsProcess(delta: Double) {
         if Engine.shared.isEditorHint() { return }
         if movementVector != Vector2.zero {
             updateBlendingProperties(with: movementVector)

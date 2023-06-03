@@ -32,10 +32,10 @@ public struct ProtractorTemplateCodable: Decodable {
     }
 }
 
-extension ProtractorTemplateCodable {
+public extension ProtractorTemplateCodable {
     /// Creates a list of codable templates from a loadable path from a URL.
     /// - Parameter url: The URL to the template to decode.
-    public static func load(resourceURL url: URL) throws -> [Self] {
+    static func load(resourceURL url: URL) throws -> [Self] {
         guard let data = try String(contentsOf: url).data(using: .utf8) else { throw CocoaError(.fileReadUnknown) }
         let decoder = JSONDecoder()
         return try decoder.decode([Self].self, from: data)

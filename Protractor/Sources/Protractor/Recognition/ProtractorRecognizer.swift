@@ -24,10 +24,10 @@ public class ProtractorRecognizer: ProtractorRecognitionDelegate {
     public typealias Template = ProtractorTemplate
 
     /// Whether to account for orientation when matching gestures.
-    public var orientationSensitive: Bool { self._orientationSensitive }
+    public var orientationSensitive: Bool { _orientationSensitive }
 
     /// The number of points to resample both the vector path and each template by.
-    public var resampling: Int { self._resampling }
+    public var resampling: Int { _resampling }
 
     /// The list of templates the recognizer is aware of.
     public var templates: [ProtractorTemplate] { _templates }
@@ -39,8 +39,7 @@ public class ProtractorRecognizer: ProtractorRecognitionDelegate {
     public var vectorPath: [Component] { _vectorPath }
 
     private var _templates = [ProtractorTemplate]()
-    public var _vectorPath = [Double]()
-
+    private var _vectorPath = [Double]()
     private var _resampling: Int
 
     private var _orientationSensitive: Bool = false
@@ -92,7 +91,7 @@ public class ProtractorRecognizer: ProtractorRecognitionDelegate {
     /// Inserts a series of templates into the recognizer.
     /// - Parameter templates: An array of templates to include in the recognizer.
     public func insertTemplates(from templates: [ProtractorTemplate]) {
-        self._templates.append(contentsOf: templates)
+        _templates.append(contentsOf: templates)
     }
 
     /// Inserts a series of templates by decoding and transforming a configuration file located in the bundle's
@@ -103,7 +102,7 @@ public class ProtractorRecognizer: ProtractorRecognitionDelegate {
         guard let path = bundle.path(forResource: configResourceName, ofType: "json") else {
             return
         }
-        
+
         let result = try ProtractorTemplateCodable.load(resourceURL: URL(filePath: path))
         _templates.append(contentsOf: result.map { configTemplate in
             ProtractorTemplate(from: configTemplate,

@@ -32,7 +32,7 @@ public class JensonTimeline: Node {
         super.init()
     }
 
-    public override func _ready() {
+    override public func _ready() {
         super._ready()
         animator = getNode(path: NodePath(stringLiteral: "AnimationPlayer")) as? AnimationPlayer
         whoLabel = findChild(pattern: "Who Label", recursive: true) as? Label
@@ -52,14 +52,14 @@ public class JensonTimeline: Node {
         }
     }
 
-    public override func _input(event: InputEvent) {
+    override public func _input(event: InputEvent) {
         if event.isActionPressed(action: "timeline_next") || Input.shared.isMouseButtonPressed(button: .left) {
             next()
         }
     }
 
     @available(*, unavailable)
-    required init(nativeHandle: UnsafeRawPointer) {
+    required init(nativeHandle _: UnsafeRawPointer) {
         fatalError("init(nativeHandle:) has not been implemented")
     }
 

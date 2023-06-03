@@ -17,10 +17,10 @@ import Foundation
 import Protractor
 import SwiftGodot
 
-extension ProtractorTemplateCodable {
+public extension ProtractorTemplateCodable {
     /// Creates a codable template from a loadable path in a Godot project.
     /// - Parameter path: The resource path to the template file in Godot that contains the template.
-    public init?(resourcePath path: String) throws {
+    init?(resourcePath path: String) throws {
         guard let file = FileAccess.open(path: path, flags: .read) else { return nil }
         let contents = file.getAsText()
         file.close()
@@ -32,7 +32,7 @@ extension ProtractorTemplateCodable {
 
     /// Creates a list of codable templates from a loadable path in a Godot project.
     /// - Parameter path: The resource path to the template file in Godot to decode.
-    public static func load(resourcePath path: String) throws -> [Self] {
+    static func load(resourcePath path: String) throws -> [Self] {
         guard let file = FileAccess.open(path: path, flags: .read) else { return [] }
         let contents = file.getAsText()
         file.close()

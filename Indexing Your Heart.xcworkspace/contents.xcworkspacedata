@@ -21,9 +21,13 @@
          assignedFileDataType = "public.make-source">
       </FileRef>
    </Group>
-   <FileRef
-      location = "group:SwiftGodot">
-   </FileRef>
+   <Group
+      location = "container:"
+      name = "Supporting Files">
+      <FileRef
+         location = "group:SwiftGodot">
+      </FileRef>
+   </Group>
    <FileRef
       location = "group:AnthroBase">
    </FileRef>

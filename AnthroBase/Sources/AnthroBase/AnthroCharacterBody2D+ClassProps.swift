@@ -1,9 +1,18 @@
 //
-//  File.swift
-//  
+//  AnthroCharacterBody2D+ClassProps.swift
+//  Indexing Your Heart
 //
 //  Created by Marquis Kurt on 5/27/23.
 //
+//  This file is part of Indexing Your Heart.
+//
+//  Indexing Your Heart is non-violent software: you can use, redistribute, and/or modify it under the terms of the
+//  CNPLv7+ as found in the LICENSE file in the source code root directory or at
+//  <https://git.pixie.town/thufie/npl-builder>.
+//
+//  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
+//  details.
+
 
 import Foundation
 import SwiftGodot
@@ -19,18 +28,18 @@ extension AnthroCharacterBody2D {
 
         classInfo.addPropertyGroup(name: "Movement", prefix: "movement_")
         classInfo.registerInt(named: "acceleration",
-                              range: 1...1000,
+                              range: 1 ... 1000,
                               stride: 5,
                               prefix: "movement",
                               getter: AnthroCharacterBody2D.getAcceleration,
                               setter: AnthroCharacterBody2D.setAcceleration)
         classInfo.registerInt(named: "speed",
-                              range: 1...1000,
+                              range: 1 ... 1000,
                               prefix: "movement",
                               getter: AnthroCharacterBody2D.getSpeed,
                               setter: AnthroCharacterBody2D.setSpeed)
         classInfo.registerInt(named: "friction",
-                              range: 1...1000,
+                              range: 1 ... 1000,
                               prefix: "movement",
                               getter: AnthroCharacterBody2D.getFriction,
                               setter: AnthroCharacterBody2D.setFriction)

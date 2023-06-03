@@ -32,7 +32,7 @@ extension JensonTimeline {
     }()
 
     func getScriptPath(args _: [Variant]) -> Variant? {
-        return Variant(stringLiteral: script ?? "")
+        Variant(stringLiteral: script ?? "")
     }
 
     func setScriptPath(args: [Variant]) -> Variant? {

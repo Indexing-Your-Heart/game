@@ -82,7 +82,7 @@ format-dep +DEPENDENCIES:
 
 # Formats source files in all dependencies
 format-all-deps:
-	just format-dep Protractor
+	just format-dep Protractor AnthroBase JensonGodotKit
 
 # Test a specified set of dependencies
 test-dep +DEPENDENCIES:

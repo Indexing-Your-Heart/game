@@ -13,8 +13,8 @@
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
 
-import SwiftGodot
 import JensonKit
+import SwiftGodot
 
 /// The public entry point for the GDExtension.
 @_cdecl("libjensongodotkit_entry_point")
