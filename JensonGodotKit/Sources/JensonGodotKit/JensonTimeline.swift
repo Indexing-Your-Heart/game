@@ -17,12 +17,59 @@ import Foundation
 import JensonKit
 import SwiftGodot
 
+/// A Godot node that registers a Jenson timeline and attempts to update any children UI elements to reflect the current
+/// event in the story.
 public class JensonTimeline: Node {
+    static var timelineFinishedSignalName = StringName("timeline_finished")
+
+    enum AnimationName: String {
+        case startTimeline = "start_timeline"
+        case speech = "speech"
+
+        var stringName: StringName {
+            StringName(stringLiteral: self.rawValue)
+        }
+    }
+
+    enum ChildPath: String {
+        case animationPlayer = "AnimationPlayer"
+        case background = "Background"
+        case choiceMenu = "Choice Menu"
+        case leftSpeaker = "Left Speaker"
+        case rightSpeaker = "Right Speaker"
+        case singleSpeaker = "Single Speaker"
+
+        var path: NodePath {
+            NodePath(stringLiteral: self.rawValue)
+        }
+    }
+
+    enum ImageRefreshPriorityLayer: Int {
+        case background = -1
+        case speakerSingle = 0
+        case speakerLeft = 1
+        case speakerRight = 2
+        case unknown = -999
+    }
+
+    /// Whether comment events should be displayed.
+    public var displayCommentary = false
+
+    /// The script being loaded into the timeline.
     public var script: String?
 
     private var animator: AnimationPlayer?
+    private var backgroundLayer: TextureRect?
+    private var choices = [String: [JensonEvent]]()
+    private var choiceTemplate: Button?
     private var currentEvent: JensonEvent?
+    private var finished = false
+    private var initialized = false
+    private var menu: VBoxContainer?
     private var reader: JensonReader?
+    private var speakerLeft: TextureRect?
+    private var speakerRight: TextureRect?
+    private var speakerSingle: TextureRect?
     private var timeline = [JensonEvent]()
     private var whoLabel: Label?
     private var whatLabel: Label?
@@ -34,33 +81,62 @@ public class JensonTimeline: Node {
 
     override public func _ready() {
         super._ready()
-        animator = getNode(path: NodePath(stringLiteral: "AnimationPlayer")) as? AnimationPlayer
+        animator = getNode(path: ChildPath.animationPlayer.path) as? AnimationPlayer
         whoLabel = findChild(pattern: "Who Label", recursive: true) as? Label
         whatLabel = findChild(pattern: "What Label", recursive: true) as? Label
 
+        backgroundLayer = getNode(path: ChildPath.background.path) as? TextureRect
+        speakerLeft = getNode(path: ChildPath.leftSpeaker.path) as? TextureRect
+        speakerRight = getNode(path: ChildPath.rightSpeaker.path) as? TextureRect
+        speakerSingle = getNode(path: ChildPath.singleSpeaker.path) as? TextureRect
+
+        menu = getNode(path: ChildPath.choiceMenu.path) as? VBoxContainer
+        choiceTemplate = menu?.getChild(idx: 0) as? Button
+
         guard !Engine.shared.isEditorHint() else { return }
+        menu?.visible = false
+        choiceTemplate?.visible = false
         whoLabel?.text = ""
         whatLabel?.text = ""
-        if let animator {
-            animator.play(name: StringName("start_timeline"))
-        } else {
-            GD.print("Couldn't get the animation")
+
+        if !displayCommentary {
+            GD.print("Removing developer commentary nodes.")
+            timeline.removeAll { event in
+                event.type == .comment
+            }
         }
 
+        preloadRefreshedData()
+        animator?.play(name: AnimationName.startTimeline.stringName)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { [weak self] in
+            self?.initialized = true
             self?.next()
         }
     }
 
     override public func _input(event: InputEvent) {
-        if event.isActionPressed(action: "timeline_next") || Input.shared.isMouseButtonPressed(button: .left) {
-            next()
+        if event.isActionPressed(action: .timelineNext) || Input.shared.isMouseButtonPressed(button: .left) {
+            handleNextEvent()
         }
     }
 
     @available(*, unavailable)
     required init(nativeHandle _: UnsafeRawPointer) {
         fatalError("init(nativeHandle:) has not been implemented")
+    }
+
+    func handleNextEvent() {
+        guard let animator else {
+            next()
+            return
+        }
+        if let menu, menu.visible { return }
+        if animator.isPlaying(), animator.currentAnimation != AnimationName.startTimeline.rawValue, let whatLabel {
+            animator.stop()
+            whatLabel.visibleRatio = 1
+            return
+        }
+        next()
     }
 
     func loadScript() {
@@ -70,7 +146,7 @@ public class JensonTimeline: Node {
                 GD.pushError("Decoded file for \(script) returned nil.")
                 return
             }
-            timeline = file.timeline.filter { event in event.type != .comment }
+            timeline = file.timeline
             if timeline.isEmpty {
                 GD.pushWarning("The file loaded, but the timeline is empty.")
                 return
@@ -82,25 +158,136 @@ public class JensonTimeline: Node {
 
     func next() {
         guard !timeline.isEmpty else {
+            if !finished {
+                finished.toggle()
+                GD.print("Timeline has finished.")
+                emitSignal(signal: JensonTimeline.timelineFinishedSignalName)
+            }
             GD.pushWarning("Attempted to move to an empty slot.")
             return
         }
         currentEvent = timeline.removeFirst()
         if let currentEvent {
             setup(event: currentEvent)
+        } else {
+            GD.print("Timeline has completed.")
+            emitSignal(signal: JensonTimeline.timelineFinishedSignalName)
+        }
+    }
+
+    func preloadRefreshedData() {
+        guard !Engine.shared.isEditorHint(), let first = timeline.first else { return }
+        if first.type != .refresh {
+            GD.pushWarning("Next event doesn't require initial setup.")
+            return
+        }
+        GD.print("Running initial refresh contents.")
+        next()
+        initialized = true
+    }
+
+    func refreshScene(using triggers: [JensonRefreshContent]) {
+        triggers.forEach { trig in
+            switch trig.kind {
+            case .image:
+                refreshImageLayer(with: trig)
+            default:
+                GD.pushWarning("Unsupported refresh kind: \(trig.kind.rawValue). This trigger will be skipped.")
+            }
+        }
+        guard initialized else { return }
+        next()
+    }
+
+    func refreshImageLayer(with trigger: JensonRefreshContent) {
+        guard let priority = ImageRefreshPriorityLayer(rawValue: trigger.priority ?? -999) else {
+            GD.pushWarning("Skipping priority-less image trigger.")
+            return
+        }
+        switch priority {
+        case .background:
+            guard let tex: Texture2D = GD.load(path: "res://resources/backgrounds/\(trigger.resourceName).png") else {
+                GD.pushWarning("Unable to find image resource \(trigger.resourceName).")
+                return
+            }
+            backgroundLayer?.texture = tex
+        case .speakerSingle:
+            guard let tex: Texture2D = GD.load(path: "res://resources/characters/\(trigger.resourceName).png") else {
+                GD.pushWarning("Unable to find image resource \(trigger.resourceName).")
+                return
+            }
+            speakerSingle?.texture = tex
+        case .speakerLeft:
+            guard let tex: Texture2D = GD.load(path: "res://resources/characters/\(trigger.resourceName).png") else {
+                GD.pushWarning("Unable to find image resource \(trigger.resourceName).")
+                return
+            }
+            speakerLeft?.texture = tex
+        case .speakerRight:
+            guard let tex: Texture2D = GD.load(path: "res://resources/characters/\(trigger.resourceName).png") else {
+                GD.pushWarning("Unable to find image resource \(trigger.resourceName).")
+                return
+            }
+            speakerRight?.texture = tex
+        case .unknown:
+            GD.pushWarning("Skipping refresh with unknown priority.")
         }
     }
 
     func setup(event: JensonEvent) {
         switch event.type {
         case .dialogue:
-            GD.print(event, whoLabel, whoLabel)
-            whoLabel?.text = event.who
-            whatLabel?.text = event.what
-            animator?.play(name: StringName("speech"))
+            setupDialogue(with: event)
+        case .question:
+            setupDialogue(with: event)
+            guard let question = event.question else {
+                GD.pushWarning("Question event expected a question object, but received nil.")
+                return
+            }
+            setupQuestion(question: question)
+        case .refresh:
+            if let refreshTriggers = event.refresh {
+                refreshScene(using: refreshTriggers)
+            }
+        case .comment where displayCommentary:
+            setupDialogue(with: event, overrideSpeaker: "Developer Commentary")
         default:
             GD.pushWarning("Unknown event type: \(event.type.rawValue). This will be skipped.")
             next()
         }
+    }
+
+    func setupDialogue(with event: JensonEvent, overrideSpeaker speaker: String? = nil) {
+        whoLabel?.text = speaker ?? event.who
+        whatLabel?.text = event.what
+        animator?.play(name: AnimationName.speech.stringName, customSpeed: Double(event.what.count) / 4.0)
+    }
+
+    func setupQuestion(question: JensonQuestion) {
+        guard let menu else { return }
+        choices.removeAll()
+        question.options.forEach { choice in
+            choices[choice.name] = choice.events
+        }
+        menu.getChildren()
+            .filter { child in child != choiceTemplate }
+            .forEach(menu.removeChild(node:))
+        question.options.map(\.name).forEach { choiceName in
+            if let newButton = choiceTemplate?.duplicate() as? Button {
+                newButton.text = choiceName
+                newButton.pressed.connect { [weak self] in
+                    self?.menu?.visible = false
+                    guard let events = self?.choices[choiceName] else {
+                        GD.pushWarning("No option with key '\(choiceName)' exists. No new events will be inserted.")
+                        return
+                    }
+                    self?.timeline.insert(contentsOf: events, at: 0)
+                    self?.next()
+                }
+                newButton.visible = true
+                menu.addChild(node: newButton)
+            }
+        }
+        menu.visible = true
     }
 }

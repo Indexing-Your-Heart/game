@@ -25,10 +25,17 @@ extension UTType {
 extension JensonTimeline {
     static var initClass: Void = {
         let classInfo = ClassInfo<JensonTimeline>(name: StringName("\(JensonTimeline.self)"))
+        classInfo.registerSignal(name: JensonTimeline.timelineFinishedSignalName)
         classInfo.registerFilePicker(named: "script_path",
                                      allowedTypes: [.jenson],
                                      getter: JensonTimeline.getScriptPath,
                                      setter: JensonTimeline.setScriptPath)
+
+        classInfo.addPropertyGroup(name: "Debugging", prefix: "debug")
+        classInfo.registerCheckbox(named: "display_commentary",
+                                   prefix: "debug",
+                                   getter: JensonTimeline.getDebugCommentary,
+                                   setter: JensonTimeline.setDebugCommentary)
     }()
 
     func getScriptPath(args _: [Variant]) -> Variant? {
@@ -38,7 +45,20 @@ extension JensonTimeline {
     func setScriptPath(args: [Variant]) -> Variant? {
         ClassInfo.withCheckedProperty(named: "script_path", in: args) { arg in
             script = String(arg)
-            loadScript()
+            if !Engine.shared.isEditorHint() {
+                loadScript()
+            }
+        }
+    }
+
+    func getDebugCommentary(args _: [Variant]) -> Variant? {
+        Variant(displayCommentary)
+    }
+
+    func setDebugCommentary(args: [Variant]) -> Variant? {
+        ClassInfo.withCheckedProperty(named: "display_commentary", in: args) { arg in
+            GD.print(Bool(arg))
+            displayCommentary = Bool(arg) ?? false
         }
     }
 }
