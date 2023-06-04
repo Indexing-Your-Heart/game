@@ -60,7 +60,7 @@ jobs:
       id: download
       with:
         name: swiftgodot-package
-    - run: echo ${{steps.download.outputs.download-path}}
+    - run: ls -lAF
     - run: just test-all-deps
 
 # TODO: Re-enable once Metal is enabled.
