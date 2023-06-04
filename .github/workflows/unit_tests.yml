@@ -29,7 +29,7 @@ jobs:
         submodules: 'recursive'
     - run: just build-swift-godot
 
-  test:
+  test_unit:
     name: Test
     runs-on: macos-latest
     needs: preflight
@@ -49,4 +49,26 @@ jobs:
       with:
         submodules: 'recursive'
     - run: just test-all-deps
+
+  test_integration:
+    name: Test
+    runs-on: macos-latest
+    needs: preflight
+
+    steps:
+    - uses: maxim-lobanov/setup-xcode@v1.5.1
+      with:
+        xcode-version: latest-stable
+    - uses: extractions/setup-just@v1
+    - uses: supplypike/setup-bin@v3
+      with:
+        uri: 'https://github.com/godotengine/godot/releases/download/4.0.3-stable/Godot_v4.0.3-stable_macos.universal.zip'
+        name: 'godot'
+        version: '4.0.3'
+        subPath: 'Godot.app/Contents/MacOS/'
+    - uses: actions/checkout@v3
+      with:
+        submodules: 'recursive'
+    - run: just build-all-deps
+    - run: just test-game
 

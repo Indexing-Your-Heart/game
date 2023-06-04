@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyu5qnluixvqm"]
+
+[ext_resource type="Script" path="res://tests/backing/jenson_testcase.gd" id="1_p5nrm"]
+[ext_resource type="PackedScene" uid="uid://d3xhnxqyltvn6" path="res://components/jenson_ui.tscn" id="2_lkdpm"]
+
+[node name="JensonScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p5nrm")
+
+[node name="JensonTimeline" parent="." instance=ExtResource("2_lkdpm")]
+script_path = "res://data/test_scpt.jenson"
