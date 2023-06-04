@@ -28,6 +28,8 @@ jobs:
       with:
         submodules: 'recursive'
     - run: just build-swift-godot
+      env:
+        SKIP_CLEAN: true
     - uses: actions/upload-artifact@v2
       with:
         name: swiftgodot-package
@@ -57,10 +59,9 @@ jobs:
       with:
         submodules: 'recursive'
     - uses: actions/download-artifact@v2
-      id: download
       with:
         name: swiftgodot-package
-    - run: ls -lAF
+        path: SwiftGodot
     - run: just test-all-deps
 
 # TODO: Re-enable once Metal is enabled.
