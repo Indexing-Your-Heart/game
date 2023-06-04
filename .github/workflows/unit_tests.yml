@@ -11,12 +11,12 @@ on:
 jobs:
   preflight:
     name: Preflight
-    runs-on: macos-latest
+    runs-on: macos-13
 
     steps:
     - uses: maxim-lobanov/setup-xcode@v1.5.1
       with:
-        xcode-version: latest-stable
+        xcode-version: 14.3
     - uses: extractions/setup-just@v1
     - uses: supplypike/setup-bin@v3
       with:
@@ -31,13 +31,13 @@ jobs:
 
   test_unit:
     name: Unit Tests (Libraries)
-    runs-on: macos-latest
+    runs-on: macos-13
     needs: preflight
 
     steps:
     - uses: maxim-lobanov/setup-xcode@v1.5.1
       with:
-        xcode-version: latest-stable
+        xcode-version: 14.3
     - uses: extractions/setup-just@v1
     - uses: supplypike/setup-bin@v3
       with:
