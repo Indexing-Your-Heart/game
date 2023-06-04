@@ -105,8 +105,9 @@ test-all-deps:
 
 # Runs the integration tests through Godot.
 test-game:
-	{{gdengine}} {{godot_args}} -s addons/gut/gut_cmdln.gd \
-	-gdir=res://tests -gprefix=test_ -gsuffix=.gd -gexit -ginclude_subdirs -gjunit_xml_file=testresults.xml -glog=2
+	{{gdengine}} {{godot_args}} -s -d addons/gut/gut_cmdln.gd \
+	-gdir=res://tests -gprefix=test_ -gsuffix=.gd -gexit -ginclude_subdirs \
+	-gjunit_xml_file=../integration_results_{{exec_date}}.xml -glog=2
 
 # Dry run the game locally
 dry-run:

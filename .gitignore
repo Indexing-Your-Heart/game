@@ -121,6 +121,7 @@ Shounin/bin/**/*.framework
 old/
 *.xcframework
 
-# Product build logs
+# Product build, lint, and test logs
 *_build.log
 swiftlint_*.log
+integration_results_*.xml

@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.0", "Mobile")
 config/icon="res://icon.png"
 config/macos_native_icon="res://icon.icns"
 
+[autoload]
+
+Console="*res://addons/panku_console/console.tscn"
+
 [debug]
 
 shapes/collision/shape_color=Color(1, 1, 1, 0.419608)
