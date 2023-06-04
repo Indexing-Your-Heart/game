@@ -28,6 +28,10 @@ jobs:
       with:
         submodules: 'recursive'
     - run: just build-swift-godot
+    - uses: actions/upload-artifact@v2
+      with:
+        name: swiftgodot-logs
+        path: ~/sg-builds/*.log
 
   test_unit:
     name: Unit Tests (Libraries)
