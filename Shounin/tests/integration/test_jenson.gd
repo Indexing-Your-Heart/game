@@ -26,6 +26,7 @@ func test_loads_into_dialogue():
 	assert_not_null(speaker.texture)
 	assert_eq(speaker.texture.resource_path, "res://resources/characters/Chelsea0.png")
 
+## Test that the timeline advances when the action timeline_next is triggered.
 func test_timeline_advances():
 	_sender.action_down("timeline_next").hold_for(.1).wait(.3)
 	await wait_for_signal(_sender.idle, 5)
@@ -37,7 +38,9 @@ func test_timeline_advances():
 	var what = test_scene.find_child("What Label", true, false) as Label
 	assert_not_null(what)
 	assert_eq(what.text, "Hello, world.")
-	
+
+## Test that the current animation halts when invoking timeline_text before the
+## text is fully displayed.
 func test_timeline_quickpass():
 	_sender.action_down("timeline_next") \
 		.hold_for(.1) \
