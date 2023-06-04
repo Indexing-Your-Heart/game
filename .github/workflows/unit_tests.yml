@@ -30,7 +30,7 @@ jobs:
     - run: just build-swift-godot
 
   test_unit:
-    name: Test
+    name: Unit Tests (Libraries)
     runs-on: macos-latest
     needs: preflight
 
@@ -51,7 +51,7 @@ jobs:
     - run: just test-all-deps
 
   test_integration:
-    name: Test
+    name: Integration Tests (Godot)
     runs-on: macos-latest
     needs: preflight
 
