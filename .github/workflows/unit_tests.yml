@@ -31,7 +31,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: swiftgodot-logs
-        path: ~/sg-builds/*.log
+        path: ~/sg-builds/**-build/*.log
 
   test_unit:
     name: Unit Tests (Libraries)
