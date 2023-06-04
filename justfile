@@ -51,11 +51,8 @@ build-swift-godot:
 	VERSION="nodeploy" NOTES="./nodeploy" SWIFT_GODOT_NODEPLOY=true make build-release
 	rm -r nodeploy
 	cd ..
-
-	if [[ -e "~/sg-builds/SwiftGodot.xcframework" ]]; then
-		cp -rf ~/sg-builds/SwiftGodot.xcframework SwiftGodot
-		rm -rf ~/sg-builds
-	fi
+	cp -rf ~/sg-builds/SwiftGodot.xcframework SwiftGodot
+	rm -rf ~/sg-builds
 
 # Cleans a specified set of dependencies
 clean-dep +DEPENDENCIES:
