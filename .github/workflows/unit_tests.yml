@@ -57,8 +57,10 @@ jobs:
       with:
         submodules: 'recursive'
     - uses: actions/download-artifact@v2
+      id: download
       with:
         name: swiftgodot-package
+    - run: echo ${{steps.download.outputs.download-path}}
     - run: just test-all-deps
 
 # TODO: Re-enable once Metal is enabled.
