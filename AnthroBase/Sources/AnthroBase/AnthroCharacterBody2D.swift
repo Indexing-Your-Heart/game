@@ -16,7 +16,21 @@
 import Foundation
 import SwiftGodot
 
+#if swift(>=5.9)
+import SwiftGodotMacros
+#endif
+
+#if swift(>=5.9)
+@NativeHandleDiscarding
+#endif
 public class AnthroCharacterBody2D: CharacterBody2D {
+#if swift(>=5.9)
+    @PickerNameProvider
+    public enum Character: Int {
+        case chelsea
+        case sky
+    }
+#else
     public enum Character: Int, CaseIterable, Nameable {
         case chelsea
         case sky
@@ -30,6 +44,7 @@ public class AnthroCharacterBody2D: CharacterBody2D {
             }
         }
     }
+#endif
 
     var sprite: Sprite2D?
     var animationTree: AnimationTree?
@@ -57,10 +72,12 @@ public class AnthroCharacterBody2D: CharacterBody2D {
         super.init()
     }
 
+    #if swift(<5.9)
     @available(*, unavailable)
     required init(nativeHandle _: UnsafeRawPointer) {
         fatalError("init(nativeHandle:) has not been implemented")
     }
+    #endif
 
     override public func _ready() {
         super._ready()

@@ -17,7 +17,7 @@ let package = Package(
     targets: [
         .target(
             name: "AnthroBase",
-            dependencies: ["SwiftGodot"],
+            dependencies: ["SwiftGodot", .product(name: "SwiftGodotMacros", package: "SwiftGodot")],
             swiftSettings: [.unsafeFlags(["-suppress-warnings"])],
             linkerSettings: [.unsafeFlags(["-Xlinker", "-undefined","-Xlinker", "dynamic_lookup"])]),
     ]
