@@ -54,6 +54,7 @@ build-swift-godot:
 	cp -rf ~/sg-builds/SwiftGodot.xcframework SwiftGodot
 	if [ -z "$SKIP_CLEAN" ]; then
 		rm -rf ~/sg-builds
+		rm SwiftGodot-Source/Package.resolved
 	fi
 
 # Cleans a specified set of dependencies
