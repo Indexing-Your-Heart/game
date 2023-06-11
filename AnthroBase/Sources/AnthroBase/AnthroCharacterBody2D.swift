@@ -30,7 +30,7 @@ public class AnthroCharacterBody2D: CharacterBody2D {
     var animationPlayer: AnimationPlayer?
     var animationState: AnimationNodeStateMachinePlayback?
 
-    @RegisteredVariant public var acceleration: Float
+    public var acceleration: Float
     public var character: Character = .chelsea
     public var friction: Double
     public var speed: Double
