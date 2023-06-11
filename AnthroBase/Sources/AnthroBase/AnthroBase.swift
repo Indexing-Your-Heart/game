@@ -14,35 +14,6 @@
 //  details.
 
 import SwiftGodot
-
-#if swift(>=5.9)
 import SwiftGodotMacros
 
 #initSwiftExtension(cdecl: "libanthrobase_entry_point", types: [AnthroCharacterBody2D.self])
-#else
-/// The public entry point for the GDExtension.
-@_cdecl("libanthrobase_entry_point")
-public func libanthrobase_entry_point(interface: OpaquePointer?,
-                                      library: OpaquePointer?,
-                                      extension: OpaquePointer?) -> UInt8
-{
-    guard let library, let interface, let `extension` else {
-        print("Error: Not all parameters were initialized.")
-        print("Library:", library, "Interface", interface, "Extension", `extension`)
-        return 0
-    }
-    initializeSwiftModule(interface, library, `extension`, initHook: setupExtension, deInitHook: { _ in })
-    return 1
-}
-
-func setupExtension(at level: GDExtension.InitializationLevel) {
-    print("Setting up AnthroBase")
-    switch level {
-    case .scene:
-        register(type: AnthroCharacterBody2D.self)
-    default:
-        break
-    }
-}
-
-#endif
