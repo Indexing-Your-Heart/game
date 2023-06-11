@@ -23,3 +23,13 @@ enum Fruit: Int {
     case banana
 }
 
+@NativeHandleDiscarding
+class ExampleNode: Node {
+    required init() {
+        super.init()
+    }
+}
+
+//class Test {
+//    #initSwiftExtension(cdecl: "libanthrobase_entry_point", types: [ExampleNode.self])
+//}

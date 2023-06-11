@@ -45,10 +45,9 @@ public struct PickerNameProviderMacro: MemberMacro {
         }
     }
 
-    public static func expansion<Declaration: DeclGroupSyntax, Context: MacroExpansionContext>(
-        of node: AttributeSyntax,
-        providingMembersOf declaration: Declaration,
-        in context: Context) throws -> [DeclSyntax] {
+    public static func expansion(of node: AttributeSyntax,
+                                 providingMembersOf declaration: some DeclGroupSyntax,
+                                 in context: some MacroExpansionContext) throws -> [DeclSyntax] {
             guard let enumDecl = declaration.as(EnumDeclSyntax.self) else {
                 let enumError = Diagnostic(node: declaration.root, message: ProviderDiagnostic.notAnEnum)
                 context.diagnose(enumError)
@@ -99,10 +98,10 @@ public struct PickerNameProviderMacro: MemberMacro {
 }
 
 extension PickerNameProviderMacro: ConformanceMacro {
-    public static func expansion<Declaration: DeclGroupSyntax, Context: MacroExpansionContext>(
-        of node: SwiftSyntax.AttributeSyntax,
-        providingConformancesOf declaration: Declaration,
-        in context: Context) throws -> [(SwiftSyntax.TypeSyntax, SwiftSyntax.GenericWhereClauseSyntax?)] {
+    public typealias ConformanceInformation = (SwiftSyntax.TypeSyntax, SwiftSyntax.GenericWhereClauseSyntax?)
+    public static func expansion(of node: SwiftSyntax.AttributeSyntax,
+                                 providingConformancesOf declaration: some DeclGroupSyntax,
+                                 in context: some MacroExpansionContext) throws -> [ConformanceInformation] {
             return [("CaseIterable", nil), ("Nameable", nil)]
         }
 }
