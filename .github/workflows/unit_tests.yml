@@ -16,7 +16,7 @@ jobs:
     steps:
     - uses: maxim-lobanov/setup-xcode@v1.5.1
       with:
-        xcode-version: 15.0
+        xcode-version: '15.0-beta'
     - uses: extractions/setup-just@v1
     - uses: supplypike/setup-bin@v3
       with:
@@ -47,7 +47,7 @@ jobs:
     steps:
     - uses: maxim-lobanov/setup-xcode@v1.5.1
       with:
-        xcode-version: 15.0
+        xcode-version: '15.0-beta'
     - uses: extractions/setup-just@v1
     - uses: supplypike/setup-bin@v3
       with:
