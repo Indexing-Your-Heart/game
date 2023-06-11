@@ -25,8 +25,8 @@ the love of her life, Sam.
 
 **Required Tools**
 
-- Xcode 14 or later
-- macOS 13 (Ventura) or later
+- Xcode 15 or later
+- macOS 14 (Sonoma) or later
 - Just (`brew install just`)
 - Godot 4.0.x
 
