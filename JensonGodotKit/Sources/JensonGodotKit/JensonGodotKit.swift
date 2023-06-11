@@ -16,6 +16,11 @@
 import JensonKit
 import SwiftGodot
 
+#if swift(>=5.9)
+import SwiftGodotMacros
+
+#initSwiftExtension(cdecl: "libjensongodotkit_entry_point", types: [JensonTimeline.self])
+#else
 /// The public entry point for the GDExtension.
 @_cdecl("libjensongodotkit_entry_point")
 public func libjensongodotkit_entry_point(interface: OpaquePointer?,
@@ -39,3 +44,4 @@ func setupExtension(at level: GDExtension.InitializationLevel) {
         break
     }
 }
+#endif

@@ -107,7 +107,6 @@ public class AnthroCharacterBody2D: CharacterBody2D {
             return
         }
 
-        // FIXME: This seems to do nothing. Why?
         animationTree.set(property: StringName("parameters/Idle/blend_position"), value: Variant(vector))
         animationTree.set(property: StringName("parameters/Walk/blend_position"), value: Variant(vector))
     }

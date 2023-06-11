@@ -8,6 +8,8 @@
 y_sort_enabled = true
 
 [node name="Player2" parent="." instance=ExtResource("1_e3k7l")]
+process_mode = 4
+visible = false
 position = Vector2(83.5004, 67.2917)
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -33,7 +35,6 @@ layer_2/z_index = 1
 layer_2/tile_data = PackedInt32Array(131072, 131075, 17, 0, 851971, 25, 131077, 851971, 28)
 
 [node name="Player" parent="." instance=ExtResource("1_66ytc")]
-process_mode = 4
 z_index = 1
 position = Vector2(90, 68)
 
