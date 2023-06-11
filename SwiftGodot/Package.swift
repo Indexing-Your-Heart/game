@@ -26,18 +26,18 @@ let package = Package(
     ],
     targets: [
         .macro(
-            name: "SwiftGodotMacrosMacros",
+            name: "SwiftGodotMacroLibrary",
             dependencies: [
                 .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
                 .product(name: "SwiftCompilerPlugin", package: "swift-syntax")
             ]
         ),
-        .target(name: "SwiftGodotMacros", dependencies: ["SwiftGodotMacrosMacros"]),
+        .target(name: "SwiftGodotMacros", dependencies: ["SwiftGodotMacroLibrary"]),
         .executableTarget(name: "SwiftGodotMacrosClient", dependencies: ["SwiftGodotMacros"]),
         .testTarget(
             name: "SwiftGodotMacrosTests",
             dependencies: [
-                "SwiftGodotMacrosMacros",
+                "SwiftGodotMacroLibrary",
                 .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax"),
             ]
         ),

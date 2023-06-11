@@ -16,9 +16,9 @@
 import SwiftSyntaxMacros
 import SwiftSyntaxMacrosTestSupport
 import XCTest
-import SwiftGodotMacrosMacros
+import SwiftGodotMacroLibrary
 
-final class SwiftGodotNamePickerMacroTests: XCTestCase {
+final class PickerNameProviderMacroTests: XCTestCase {
     let testMacros: [String: Macro.Type] = [
         "PickerNameProvider": PickerNameProviderMacro.self
     ]

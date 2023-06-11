@@ -15,6 +15,8 @@
 
 import SwiftGodot
 
+// MARK: - Freestanding Macros
+
 /// A macro used to write an entrypoint for a Godot extension.
 ///
 /// For example, to initialize a Swift extension to Godot with custom types:
@@ -29,7 +31,11 @@ import SwiftGodot
 /// - Parameter cdecl: The name of the entrypoint exposed to C.
 /// - Parameter types: The node types that should be registered with Godot.
 @freestanding(declaration, names: arbitrary)
-public macro initSwiftExtension<T: Wrapped>(cdecl: String, types: [T.Type]) = #externalMacro(module: "SwiftGodotMacrosMacros", type: "InitSwiftExtensionMacro")
+public macro initSwiftExtension<T: Wrapped>(cdecl: String,
+                                            types: [T.Type]) = #externalMacro(module: "SwiftGodotMacroLibrary",
+                                                                              type: "InitSwiftExtensionMacro")
+
+// MARK: - Attached Macros
 
 /// A macro that enables an enumeration to be visible to the Godot editor.
 ///
@@ -47,7 +53,7 @@ public macro initSwiftExtension<T: Wrapped>(cdecl: String, types: [T.Type]) = #e
 /// - Important: The enumeration should have an `Int` backing to allow being represented as an integer value by Godot.
 @attached(conformance)
 @attached(member, names: named(name))
-public macro PickerNameProvider() = #externalMacro(module: "SwiftGodotMacrosMacros", type: "PickerNameProviderMacro")
+public macro PickerNameProvider() = #externalMacro(module: "SwiftGodotMacroLibrary", type: "PickerNameProviderMacro")
 
 
 /// A macro that automatically implements `init(nativeHandle:)` for nodes.
@@ -61,4 +67,5 @@ public macro PickerNameProvider() = #externalMacro(module: "SwiftGodotMacrosMacr
 /// }
 /// ```
 @attached(member, names: named(init(nativeHandle:)))
-public macro NativeHandleDiscarding() = #externalMacro(module: "SwiftGodotMacrosMacros", type: "NativeHandleDiscardingMacro")
+public macro NativeHandleDiscarding() = #externalMacro(module: "SwiftGodotMacroLibrary",
+                                                       type: "NativeHandleDiscardingMacro")

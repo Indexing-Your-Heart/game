@@ -16,9 +16,9 @@
 import SwiftSyntaxMacros
 import SwiftSyntaxMacrosTestSupport
 import XCTest
-import SwiftGodotMacrosMacros
+import SwiftGodotMacroLibrary
 
-final class SwiftGodotNativeHandleDiscardingMacroTests: XCTestCase {
+final class NativeHandleDiscardingMacroTests: XCTestCase {
     let testMacros: [String: Macro.Type] = [
         "NativeHandleDiscarding": NativeHandleDiscardingMacro.self
     ]
