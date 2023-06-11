@@ -1,5 +1,5 @@
 //
-//  SwiftGodotMacrosMacro.swift
+//  SwiftGodotMacrosPlugin.swift
 //  Indexing Your Heart
 //
 //  Created by Marquis Kurt on 6/9/23.
