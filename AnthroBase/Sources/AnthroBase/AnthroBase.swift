@@ -15,6 +15,17 @@
 
 import SwiftGodot
 
+#if swift(>=5.9)
+import SwiftGodotMacros
+#endif
+
+
+#if swift(>=5.9)
+
+#initSwiftExtension(cdecl: "libanthrobase_entry_point", types: [AnthroCharacterBody2D.self])
+
+#else
+
 /// The public entry point for the GDExtension.
 @_cdecl("libanthrobase_entry_point")
 public func libanthrobase_entry_point(interface: OpaquePointer?,
@@ -39,3 +50,5 @@ func setupExtension(at level: GDExtension.InitializationLevel) {
         break
     }
 }
+
+#endif

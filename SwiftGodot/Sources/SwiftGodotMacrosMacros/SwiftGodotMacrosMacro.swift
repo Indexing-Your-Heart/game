@@ -24,6 +24,7 @@ import SwiftSyntaxMacros
 struct SwiftGodotMacrosPlugin: CompilerPlugin {
     let providingMacros: [Macro.Type] = [
         PickerNameProviderMacro.self,
-        NativeHandleDiscardingMacro.self
+        NativeHandleDiscardingMacro.self,
+        InitSwiftExtensionMacro.self
     ]
 }

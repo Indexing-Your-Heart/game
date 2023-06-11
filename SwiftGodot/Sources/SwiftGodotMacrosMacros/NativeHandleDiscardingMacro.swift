@@ -45,11 +45,10 @@ public struct NativeHandleDiscardingMacro: MemberMacro {
         }
     }
 
-    public static func expansion<Declaration: DeclGroupSyntax, Context: MacroExpansionContext>(
-        of node: AttributeSyntax,
-        providingMembersOf declaration: Declaration,
-        in context: Context) throws -> [DeclSyntax] {
-            guard let classDecl = declaration.as(ClassDeclSyntax.self) else {
+    public static func expansion(of node: AttributeSyntax,
+                                 providingMembersOf declaration: some DeclGroupSyntax,
+                                 in context: some MacroExpansionContext) throws -> [DeclSyntax] {
+            guard declaration.as(ClassDeclSyntax.self) != nil else {
                 let classError = Diagnostic(node: declaration.root, message: ProviderDiagnostic.notAClass)
                 context.diagnose(classError)
                 return []
