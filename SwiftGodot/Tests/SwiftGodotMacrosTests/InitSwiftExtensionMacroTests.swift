@@ -16,9 +16,9 @@
 import SwiftSyntaxMacros
 import SwiftSyntaxMacrosTestSupport
 import XCTest
-import SwiftGodotMacrosMacros
+import SwiftGodotMacroLibrary
 
-final class SwiftGodotInitSwiftExtensionMacroTests: XCTestCase {
+final class InitSwiftExtensionMacroTests: XCTestCase {
     let testMacros: [String: Macro.Type] = [
         "initSwiftExtension": InitSwiftExtensionMacro.self
     ]

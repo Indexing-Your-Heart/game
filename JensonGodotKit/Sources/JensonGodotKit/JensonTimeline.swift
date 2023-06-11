@@ -16,16 +16,11 @@
 import Foundation
 import JensonKit
 import SwiftGodot
-
-#if swift(>=5.9)
 import SwiftGodotMacros
-#endif
 
 /// A Godot node that registers a Jenson timeline and attempts to update any children UI elements to reflect the current
 /// event in the story.
-#if swift(>=5.9)
 @NativeHandleDiscarding
-#endif
 public class JensonTimeline: Node {
     static var timelineFinishedSignalName = StringName("timeline_finished")
 
@@ -126,13 +121,6 @@ public class JensonTimeline: Node {
             handleNextEvent()
         }
     }
-
-    #if swift(<5.9)
-    @available(*, unavailable)
-    required init(nativeHandle _: UnsafeRawPointer) {
-        fatalError("init(nativeHandle:) has not been implemented")
-    }
-    #endif
 
     func handleNextEvent() {
         guard let animator else {
