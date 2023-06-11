@@ -17,6 +17,10 @@ import Foundation
 import Protractor
 import SwiftGodot
 
+#if swift(>=5.9)
+import SwiftGodotMacros
+#endif
+
 /// A node that allows drawing lines that can be matched with a list of recognized gestures.
 ///
 /// When added to the scene tree, the `recognized` singal will be emitted whenever the user draws a line on the panel.
@@ -24,6 +28,9 @@ import SwiftGodot
 ///
 /// The drawer can also be used to generate templates. By turning on ``debugPrintPaths`` in the editor, the path will be
 /// printed out into the console, which can be added to a JSON file containing the templates.
+#if swift(>=5.9)
+@NativeHandleDiscarding
+#endif
 public class ProtractorDrawer: Node2D {
     /// The name for the `recognized` signal.
     public static var recognizedSignalName = StringName("recognized")
@@ -58,9 +65,11 @@ public class ProtractorDrawer: Node2D {
         setupFrame()
     }
 
+    #if swift(<5.9)
     public required init(nativeHandle _: UnsafeRawPointer) {
         fatalError("init(nativeHandle:) not implemented")
     }
+    #endif
 
     func getDebugPrintPaths(args _: [Variant]) -> Variant? {
         Variant(debugPrintPaths)

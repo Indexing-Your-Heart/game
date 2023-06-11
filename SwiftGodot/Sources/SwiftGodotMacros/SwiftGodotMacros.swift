@@ -28,7 +28,7 @@ import SwiftGodot
 ///
 /// - Parameter cdecl: The name of the entrypoint exposed to C.
 /// - Parameter types: The node types that should be registered with Godot.
-@freestanding(declaration)
+@freestanding(declaration, names: arbitrary)
 public macro initSwiftExtension<T: Wrapped>(cdecl: String, types: [T.Type]) = #externalMacro(module: "SwiftGodotMacrosMacros", type: "InitSwiftExtensionMacro")
 
 /// A macro that enables an enumeration to be visible to the Godot editor.
@@ -51,5 +51,14 @@ public macro PickerNameProvider() = #externalMacro(module: "SwiftGodotMacrosMacr
 
 
 /// A macro that automatically implements `init(nativeHandle:)` for nodes.
+///
+/// Use this for a class that has a required initializer with an `UnsafeRawPointer`.
+///
+/// ```swift
+/// @NativeHandleDiscarding
+/// class MySprite: Sprite2D {
+///     ...
+/// }
+/// ```
 @attached(member, names: named(init(nativeHandle:)))
 public macro NativeHandleDiscarding() = #externalMacro(module: "SwiftGodotMacrosMacros", type: "NativeHandleDiscardingMacro")

@@ -1,4 +1,4 @@
-// swift-tools-version: 5.7
+// swift-tools-version: 5.9
 
 import PackageDescription
 
@@ -21,7 +21,7 @@ let package = Package(
         .target(name: "Protractor"),
         .target(
             name: "ProtractorGodotInterop",
-            dependencies: ["SwiftGodot", "Protractor"],
+            dependencies: ["SwiftGodot", "Protractor", .product(name: "SwiftGodotMacros", package: "SwiftGodot")],
             swiftSettings: [.unsafeFlags(["-suppress-warnings"])],
             linkerSettings: [.unsafeFlags(["-Xlinker", "-undefined","-Xlinker", "dynamic_lookup"])]),
         .testTarget(

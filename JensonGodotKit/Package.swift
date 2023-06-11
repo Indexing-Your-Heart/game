@@ -1,4 +1,4 @@
-// swift-tools-version: 5.7
+// swift-tools-version: 5.9
 
 import PackageDescription
 
@@ -18,7 +18,7 @@ let package = Package(
     targets: [
         .target(
             name: "JensonGodotKit",
-            dependencies: ["SwiftGodot", "JensonKit"],
+            dependencies: ["SwiftGodot", "JensonKit", .product(name: "SwiftGodotMacros", package: "SwiftGodot")],
             swiftSettings: [.unsafeFlags(["-suppress-warnings"])],
             linkerSettings: [.unsafeFlags(["-Xlinker", "-undefined","-Xlinker", "dynamic_lookup"])])
     ]
