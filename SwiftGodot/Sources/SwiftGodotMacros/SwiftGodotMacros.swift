@@ -35,6 +35,20 @@ public macro initSwiftExtension<T: Wrapped>(cdecl: String,
                                             types: [T.Type]) = #externalMacro(module: "SwiftGodotMacroLibrary",
                                                                               type: "InitSwiftExtensionMacro")
 
+/// A macro that instantiates a `Texture2D` from a specified resource path. If the texture cannot be created, a
+/// `preconditionFailure` will be thrown.
+///
+/// Use this to quickly instantiate a `Texture2D`:
+/// ```swift
+/// func makeSprite() -> Sprite2D {
+///     let sprite = Sprite2D()
+///     sprite.texture = #texture2DLiteratl("res://assets/playersprite.png")
+/// }
+/// ```
+@freestanding(expression)
+public macro texture2DLiteral(_ path: String) -> Texture2D = #externalMacro(module: "SwiftGodotMacroLibrary",
+                                                                            type: "Texture2DLiteralMacro")
+
 // MARK: - Attached Macros
 
 /// A macro that enables an enumeration to be visible to the Godot editor.

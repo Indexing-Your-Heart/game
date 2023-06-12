@@ -25,6 +25,7 @@ let package = Package(
                  from: "509.0.0-swift-5.9-DEVELOPMENT-SNAPSHOT-2023-04-25-b"),
     ],
     targets: [
+        .binaryTarget(name: "SwiftGodot", path: "./SwiftGodot.xcframework"),
         .macro(
             name: "SwiftGodotMacroLibrary",
             dependencies: [
@@ -32,7 +33,8 @@ let package = Package(
                 .product(name: "SwiftCompilerPlugin", package: "swift-syntax")
             ]
         ),
-        .target(name: "SwiftGodotMacros", dependencies: ["SwiftGodotMacroLibrary"]),
+        .target(name: "SwiftGodotMacros",
+                dependencies: ["SwiftGodotMacroLibrary", .target(name: "SwiftGodot")]),
         .executableTarget(name: "SwiftGodotMacrosClient", dependencies: ["SwiftGodotMacros"]),
         .testTarget(
             name: "SwiftGodotMacrosTests",
@@ -41,6 +43,5 @@ let package = Package(
                 .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax"),
             ]
         ),
-        .binaryTarget(name: "SwiftGodot", path: "./SwiftGodot.xcframework"),
     ]
 )

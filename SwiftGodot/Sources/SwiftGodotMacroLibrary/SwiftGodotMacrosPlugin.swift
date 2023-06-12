@@ -25,6 +25,7 @@ struct SwiftGodotMacrosPlugin: CompilerPlugin {
     let providingMacros: [Macro.Type] = [
         PickerNameProviderMacro.self,
         NativeHandleDiscardingMacro.self,
-        InitSwiftExtensionMacro.self
+        InitSwiftExtensionMacro.self,
+        Texture2DLiteralMacro.self
     ]
 }
