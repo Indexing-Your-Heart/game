@@ -131,7 +131,7 @@ public class ProtractorDrawer: Node2D {
 
     private func setupFrame() {
         guard let frameResource: Texture2D = GD.load(path: "res://resources/pb_border.png") else { return }
-        frame.texture = frameResource
+        frame.texture = #texture2DLiteral("res://resources/pb_border.png")
         frame.textureFilter = .nearest
         frame.zIndex = -1
         frame.scale = .init(x: 3, y: 3)

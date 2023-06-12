@@ -39,9 +39,9 @@ build-dep LIB_FLAGS +DEPENDENCIES: (fetch-remote-deps)
 
 # Build all dependencies
 build-all-deps:
-	just build-dep '-l ProtractorGodotInterop' Protractor
-	just build-dep '-f' AnthroBase
-	just build-dep '-f' JensonGodotKit
+	just build-dep '-a -l ProtractorGodotInterop' Protractor
+	just build-dep '-a -f' AnthroBase
+	just build-dep '-a -f' JensonGodotKit
 
 # Builds the SwiftGodot xcframework.
 build-swift-godot:
@@ -56,6 +56,11 @@ build-swift-godot:
 		rm -rf ~/sg-builds
 		rm SwiftGodot-Source/Package.resolved
 	fi
+
+# Cleans alls dependencies, logs, etc.
+clean:
+	just clean-all-deps
+	just clean-logs
 
 # Cleans a specified set of dependencies
 clean-dep +DEPENDENCIES:
