@@ -30,6 +30,11 @@ class ExampleNode: Node {
     }
 }
 
+class MyNode: Node2D {
+    @SceneTree(path: "LigmaBalls")
+    var ligmaBalls: CharacterBody2D?
+}
+
 //class Test {
 //    #initSwiftExtension(cdecl: "libanthrobase_entry_point", types: [ExampleNode.self])
 //}

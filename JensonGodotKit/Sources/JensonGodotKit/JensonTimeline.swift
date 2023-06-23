@@ -40,10 +40,6 @@ public class JensonTimeline: Node {
         case leftSpeaker = "Left Speaker"
         case rightSpeaker = "Right Speaker"
         case singleSpeaker = "Single Speaker"
-
-        var path: NodePath {
-            NodePath(stringLiteral: rawValue)
-        }
     }
 
     enum ImageRefreshPriorityLayer: Int {
@@ -60,17 +56,29 @@ public class JensonTimeline: Node {
     /// The script being loaded into the timeline.
     public var script: String?
 
+    @SceneTree(path: ChildPath.animationPlayer.rawValue)
     private var animator: AnimationPlayer?
+
+    @SceneTree(path: ChildPath.background.rawValue)
     private var backgroundLayer: TextureRect?
     private var choices = [String: [JensonEvent]]()
     private var choiceTemplate: Button?
     private var currentEvent: JensonEvent?
     private var finished = false
     private var initialized = false
+
+    @SceneTree(path: ChildPath.choiceMenu.rawValue)
     private var menu: VBoxContainer?
+
     private var reader: JensonReader?
+
+    @SceneTree(path: ChildPath.leftSpeaker.rawValue)
     private var speakerLeft: TextureRect?
+
+    @SceneTree(path: ChildPath.rightSpeaker.rawValue)
     private var speakerRight: TextureRect?
+
+    @SceneTree(path: ChildPath.singleSpeaker.rawValue)
     private var speakerSingle: TextureRect?
     private var timeline = [JensonEvent]()
     private var whoLabel: Label?
@@ -83,16 +91,9 @@ public class JensonTimeline: Node {
 
     override public func _ready() {
         super._ready()
-        animator = getNode(path: ChildPath.animationPlayer.path) as? AnimationPlayer
         whoLabel = findChild(pattern: "Who Label", recursive: true) as? Label
         whatLabel = findChild(pattern: "What Label", recursive: true) as? Label
 
-        backgroundLayer = getNode(path: ChildPath.background.path) as? TextureRect
-        speakerLeft = getNode(path: ChildPath.leftSpeaker.path) as? TextureRect
-        speakerRight = getNode(path: ChildPath.rightSpeaker.path) as? TextureRect
-        speakerSingle = getNode(path: ChildPath.singleSpeaker.path) as? TextureRect
-
-        menu = getNode(path: ChildPath.choiceMenu.path) as? VBoxContainer
         choiceTemplate = menu?.getChild(idx: 0) as? Button
 
         guard !Engine.shared.isEditorHint() else { return }
