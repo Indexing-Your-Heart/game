@@ -25,8 +25,13 @@ public class AnthroCharacterBody2D: CharacterBody2D {
         case sky
     }
 
+    @SceneTree(path: "Sprite")
     var sprite: Sprite2D?
+
+    @SceneTree(path: "Sprite/AnimationTree")
     var animationTree: AnimationTree?
+
+    @SceneTree(path: "Sprite/AnimationPlayer")
     var animationPlayer: AnimationPlayer?
     var animationState: AnimationNodeStateMachinePlayback?
 
@@ -53,9 +58,6 @@ public class AnthroCharacterBody2D: CharacterBody2D {
 
     override public func _ready() {
         super._ready()
-        sprite = getNodeOrNull(path: NodePath(stringLiteral: "Sprite")) as? Sprite2D
-        animationTree = getNodeOrNull(path: NodePath(stringLiteral: "Sprite/AnimationTree")) as? AnimationTree
-        animationPlayer = getNodeOrNull(path: NodePath(stringLiteral: "Sprite/AnimationPlayer")) as? AnimationPlayer
         animationState = animationTree?.get(property: StringName("parameters/playback")).asObject()
     }
 

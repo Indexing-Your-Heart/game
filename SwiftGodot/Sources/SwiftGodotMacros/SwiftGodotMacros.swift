@@ -83,3 +83,17 @@ public macro PickerNameProvider() = #externalMacro(module: "SwiftGodotMacroLibra
 @attached(member, names: named(init(nativeHandle:)))
 public macro NativeHandleDiscarding() = #externalMacro(module: "SwiftGodotMacroLibrary",
                                                        type: "NativeHandleDiscardingMacro")
+
+/// A macro that finds and assigns a node from the scene tree to a stored property.
+///
+/// Use this to quickly assign a stored property to a node in the scene tree.
+/// ```swift
+/// class MyNode: Node2D {
+///     @SceneTree(path: "Entities/Player")
+///     var player: CharacterBody2D?
+/// }
+/// ```
+///
+/// - Important: This property will become a computed property, and it cannot be reassigned later.
+@attached(accessor)
+public macro SceneTree(path: String) = #externalMacro(module: "SwiftGodotMacroLibrary", type: "SceneTreeMacro")
