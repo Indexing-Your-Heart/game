@@ -30,7 +30,7 @@ import SwiftGodot
 ///
 /// - Parameter cdecl: The name of the entrypoint exposed to C.
 /// - Parameter types: The node types that should be registered with Godot.
-@freestanding(declaration, names: arbitrary)
+@freestanding(declaration, names: named(enterExtension), named(setupExtension))
 public macro initSwiftExtension<T: Wrapped>(cdecl: String,
                                             types: [T.Type]) = #externalMacro(module: "SwiftGodotMacroLibrary",
                                                                               type: "InitSwiftExtensionMacro")
@@ -65,8 +65,8 @@ public macro texture2DLiteral(_ path: String) -> Texture2D = #externalMacro(modu
 /// ```
 ///
 /// - Important: The enumeration should have an `Int` backing to allow being represented as an integer value by Godot.
-@attached(conformance)
-@attached(member, names: named(name))
+@attached(extension, conformances: CaseIterable, Nameable, names: named(name))
+//@attached(member, names: named(name))
 public macro PickerNameProvider() = #externalMacro(module: "SwiftGodotMacroLibrary", type: "PickerNameProviderMacro")
 
 

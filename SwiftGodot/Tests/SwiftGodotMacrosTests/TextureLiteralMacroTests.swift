@@ -49,10 +49,10 @@ final class TextureLiteralMacroTests: XCTestCase {
             let spriteTexture = #texture2DLiteral()
             """,
             expandedSource: """
-            let spriteTexture = <#placeholder#>
+            let spriteTexture = ""
             """,
             diagnostics: [
-                .init(message: "Argument 'path' is missing.", line: 1, column: 1)
+                .init(message: "Argument 'path' is missing.", line: 1, column: 21)
             ],
             macros: testMacros
         )

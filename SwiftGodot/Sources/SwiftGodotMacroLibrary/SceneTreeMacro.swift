@@ -64,7 +64,11 @@ public struct SceneTreeMacro: AccessorMacro {
         guard let argument = node.argument?.as(TupleExprElementListSyntax.self)?.first?.expression else {
             let missingArgErr = Diagnostic(node: node.root, message: ProviderDiagnostic.missingPathArgument)
             context.diagnose(missingArgErr)
-            return []
+            return [
+                """
+                get { getNodeOrNull(path: NodePath(stringLiteral: "")) as? Node }
+                """
+            ]
         }
         guard let varDecl = declaration.as(VariableDeclSyntax.self) else {
             let invalidUsageErr = Diagnostic(node: node.root, message: ProviderDiagnostic.invalidDeclaration)
@@ -85,12 +89,16 @@ public struct SceneTreeMacro: AccessorMacro {
                                          message: ProviderDiagnostic.nonOptionalTypeAnnotation,
                                          fixIts: [addOptionalFix])
             context.diagnose(nonOptional)
-            return []
+            return [
+                """
+                get { getNodeOrNull(path: NodePath(stringLiteral: \(argument))) as? \(nodeType) }
+                """
+            ]
         }
 
         return [
             """
-            get { getNodeOrNull(path: NodePath(\(argument))) as? \(optional.wrappedType) }
+            get { getNodeOrNull(path: NodePath(stringLiteral: \(argument))) as? \(optional.wrappedType) }
             """
         ]
     }

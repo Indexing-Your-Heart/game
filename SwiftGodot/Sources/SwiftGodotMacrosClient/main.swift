@@ -35,6 +35,8 @@ class MyNode: Node2D {
     var ligmaBalls: CharacterBody2D?
 }
 
+//#initSwiftExtension(cdecl: "libanthrobase_entry_point", types: [ExampleNode.self])
+
 //class Test {
 //    #initSwiftExtension(cdecl: "libanthrobase_entry_point", types: [ExampleNode.self])
 //}
