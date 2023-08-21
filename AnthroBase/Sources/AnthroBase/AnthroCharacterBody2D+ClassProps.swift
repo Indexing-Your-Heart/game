@@ -69,6 +69,7 @@ extension AnthroCharacterBody2D {
     func setCharacter(args: [Variant]) -> Variant? {
         ClassInfo.withCheckedProperty(named: "character", in: args) { arg in
             character = Character(rawValue: Int(arg) ?? 0) ?? .chelsea
+            changeSprites()
         }
     }
 
