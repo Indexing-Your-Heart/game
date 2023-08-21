@@ -22,7 +22,7 @@ public class AnthroCharacterBody2D: CharacterBody2D {
     @PickerNameProvider
     public enum Character: Int {
         case chelsea
-        case sky
+        case obel
     }
 
     @SceneTree(path: "Sprite")
@@ -73,6 +73,15 @@ public class AnthroCharacterBody2D: CharacterBody2D {
         }
         moveAndSlide()
         super._physicsProcess(delta: delta)
+    }
+
+    func changeSprites() {
+        switch character {
+        case .chelsea:
+            sprite?.texture = #texture2DLiteral("res://resources/sprt_chelsea.png")
+        case .obel:
+            sprite?.texture = #texture2DLiteral("res://resources/sprt_obel.png")
+        }
     }
 
     private func updateBlendingProperties(with vector: Vector2) {
