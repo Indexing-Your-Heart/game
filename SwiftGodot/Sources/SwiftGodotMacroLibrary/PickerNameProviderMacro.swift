@@ -20,7 +20,7 @@ import SwiftSyntax
 import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
 
-public struct PickerNameProviderMacro: MemberMacro {
+public struct PickerNameProviderMacro: ExtensionMacro {
     enum ProviderDiagnostic: String, DiagnosticMessage {
         case notAnEnum
         case missingInt
@@ -46,62 +46,67 @@ public struct PickerNameProviderMacro: MemberMacro {
     }
 
     public static func expansion(of node: AttributeSyntax,
-                                 providingMembersOf declaration: some DeclGroupSyntax,
-                                 in context: some MacroExpansionContext) throws -> [DeclSyntax] {
-            guard let enumDecl = declaration.as(EnumDeclSyntax.self) else {
-                let enumError = Diagnostic(node: declaration.root, message: ProviderDiagnostic.notAnEnum)
-                context.diagnose(enumError)
-                return []
-            }
+                                 attachedTo declaration: some DeclGroupSyntax,
+                                 providingExtensionsOf type: some TypeSyntaxProtocol,
+                                 conformingTo protocols: [TypeSyntax],
+                                 in context: some MacroExpansionContext) throws -> [ExtensionDeclSyntax] {
 
-            guard let inheritors = enumDecl.inheritanceClause?.inheritedTypeCollection else {
-                let missingInt = Diagnostic(node: declaration.root, message: ProviderDiagnostic.missingInt)
-                context.diagnose(missingInt)
-                return []
-            }
+        guard let enumDecl = declaration.as(EnumDeclSyntax.self) else {
+            let enumError = Diagnostic(node: declaration.root, message: ProviderDiagnostic.notAnEnum)
+            context.diagnose(enumError)
+            return []
+        }
 
-            let types = inheritors.map { $0.typeName.as(SimpleTypeIdentifierSyntax.self) }
-            let names = types.map { $0?.name.text }
+        guard let inheritors = enumDecl.inheritanceClause?.inheritedTypes else {
+            let missingInt = Diagnostic(node: declaration.root, message: ProviderDiagnostic.missingInt)
+            context.diagnose(missingInt)
+            return []
+        }
 
-            guard names.contains("Int") else {
-                let missingInt = Diagnostic(node: declaration.root, message: ProviderDiagnostic.missingInt)
-                context.diagnose(missingInt)
-                return []
-            }
+        let types = inheritors.map { $0.type.as(IdentifierTypeSyntax.self) }
+        let names = types.map { $0?.name.text }
 
-            let members = enumDecl.memberBlock.members
-            let cases = members.compactMap { $0.decl.as(EnumCaseDeclSyntax.self) }
-            let elements = cases.flatMap { $0.elements }
+        guard names.contains("Int") else {
+            let missingInt = Diagnostic(node: declaration.root, message: ProviderDiagnostic.missingInt)
+            context.diagnose(missingInt)
+            return []
+        }
 
-            let nameDeclBase = try VariableDeclSyntax("var name: String") {
-                try SwitchExprSyntax("switch self") {
-                    for element in elements {
-                        SwitchCaseSyntax(
+        let members = enumDecl.memberBlock.members
+        let cases = members.compactMap { $0.decl.as(EnumCaseDeclSyntax.self) }
+        let elements = cases.flatMap { $0.elements }
+
+        let nameDeclBase = try VariableDeclSyntax("var name: String") {
+            try SwitchExprSyntax("switch self") {
+                for element in elements {
+                    SwitchCaseSyntax(
                             """
-                            case .\(element.identifier):
-                                return \(literal: element.identifier.text.capitalized)
+                            case .\(element.name):
+                                return \(literal: element.name.text.capitalized)
                             """
-                        )
-                    }
+                    )
                 }
             }
-
-            var nameDecl = nameDeclBase
-            if let modifiers = enumDecl.modifiers {
-                for modifier in modifiers {
-                    nameDecl = nameDecl.addModifier(modifier)
-                }
-            }
-
-            return [DeclSyntax(nameDecl)]
         }
-}
 
-extension PickerNameProviderMacro: ConformanceMacro {
-    public typealias ConformanceInformation = (SwiftSyntax.TypeSyntax, SwiftSyntax.GenericWhereClauseSyntax?)
-    public static func expansion(of node: SwiftSyntax.AttributeSyntax,
-                                 providingConformancesOf declaration: some DeclGroupSyntax,
-                                 in context: some MacroExpansionContext) throws -> [ConformanceInformation] {
-            return [("CaseIterable", nil), ("Nameable", nil)]
+        var nameDecl = nameDeclBase
+        for modifier in enumDecl.modifiers {
+            nameDecl.modifiers.append(modifier)
         }
+
+        let caseIterableExtensionDecl: DeclSyntax =
+            """
+            extension \(type.trimmed): CaseIterable {}
+            """
+
+        guard let caseIterableExtension = caseIterableExtensionDecl.as(ExtensionDeclSyntax.self) else {
+            return []
+        }
+
+        let nameableExtension = try ExtensionDeclSyntax("extension \(type.trimmed): Nameable") {
+            DeclSyntax(nameDecl)
+        }
+
+        return [caseIterableExtension, nameableExtension]
+    }
 }

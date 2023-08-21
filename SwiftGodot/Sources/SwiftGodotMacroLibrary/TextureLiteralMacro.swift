@@ -46,7 +46,7 @@ public struct Texture2DLiteralMacro: ExpressionMacro {
         guard let argument = node.argumentList.first?.expression else {
             let argumentError = Diagnostic(node: node.root, message: ProviderDiagnostic.missingArguments)
             context.diagnose(argumentError)
-            return "<#placeholder#>"
+            return "\"\""
         }
         let location: AbstractSourceLocation = context.location(of: node)!
         return """

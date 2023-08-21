@@ -37,6 +37,12 @@ final class PickerNameProviderMacroTests: XCTestCase {
             enum Character: Int {
                 case chelsea
                 case sky
+            }
+
+            extension Character: CaseIterable {
+            }
+            
+            extension Character: Nameable {
                 var name: String {
                     switch self {
                     case .chelsea:

@@ -23,18 +23,20 @@ final class InitSwiftExtensionMacroTests: XCTestCase {
         "initSwiftExtension": InitSwiftExtensionMacro.self
     ]
 
-    func testPickerNameProviderMacro() {
+    func testInitSwiftExtensionMacro() {
         assertMacroExpansion(
             """
             #initSwiftExtension(cdecl: "libchrysalis_entry_point", types: [ChrysalisNode.self])
             """,
             expandedSource: """
-            @_cdecl("libchrysalis_entry_point") public func libchrysalis_entry_point(interface: OpaquePointer?, library: OpaquePointer?, extension: OpaquePointer?) -> UInt8 {
+            @_cdecl("libchrysalis_entry_point") public func enterExtension(interface: OpaquePointer?, library: OpaquePointer?, extension: OpaquePointer?) -> UInt8 {
                 guard let library, let interface, let `extension` else {
-                    print(" Error: Not all parameters were initialized.")
+                    print("Error: Not all parameters were initialized.")
                     return 0
                 }
-                initializeSwiftModule(interface, library, `extension`, initHook: setupExtension, deInitHook: { _ in })
+                let deinitHook: (GDExtension.InitializationLevel) -> Void = { _ in
+                }
+                initializeSwiftModule(interface, library, `extension`, initHook: setupExtension, deInitHook: deinitHook)
                 return 1
             }
             func setupExtension(level: GDExtension.InitializationLevel) {

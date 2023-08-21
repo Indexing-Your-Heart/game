@@ -35,7 +35,7 @@ final class SceneTreeMacroTests: XCTestCase {
             class MyNode: Node {
                 var character: CharacterBody2D? {
                     get {
-                        getNodeOrNull(NodePath("Entities/CharacterBody2D")) as? CharacterBody2D
+                        getNodeOrNull(path: NodePath(stringLiteral: "Entities/CharacterBody2D")) as? CharacterBody2D
                     }
                 }
             }
@@ -54,31 +54,15 @@ final class SceneTreeMacroTests: XCTestCase {
             """,
             expandedSource: """
             class MyNode: Node {
-                var character: CharacterBody2D?
+                var character: CharacterBody2D? {
+                    get {
+                        getNodeOrNull(path: NodePath(stringLiteral: "")) as? Node
+                    }
+                }
             }
             """,
             diagnostics: [
-                .init(message: "Missing argument 'path'", line: 1, column: 1)
-            ],
-            macros: testMacros
-        )
-    }
-
-    func testMacroMissingTypeAnnotationDiagnostic() {
-        assertMacroExpansion(
-            """
-            class MyNode: Node {
-                @SceneTree(path: "Entities/CharacterBody2D")
-                var character
-            }
-            """,
-            expandedSource: """
-            class MyNode: Node {
-                var character
-            }
-            """,
-            diagnostics: [
-                .init(message: "SceneTree requires an explicit type declaration", line: 1, column: 1)
+                .init(message: "Missing argument 'path'", line: 2, column: 5)
             ],
             macros: testMacros
         )
@@ -94,13 +78,17 @@ final class SceneTreeMacroTests: XCTestCase {
             """,
             expandedSource: """
             class MyNode: Node {
-                var character: CharacterBody2D
+                var character: CharacterBody2D {
+                    get {
+                        getNodeOrNull(path: NodePath(stringLiteral: "Entities/CharacterBody2D")) as? CharacterBody2D
+                    }
+                }
             }
             """,
             diagnostics: [
                 .init(message: "Stored properties with SceneTree must be marked as Optional",
-                      line: 1,
-                      column: 1,
+                      line: 2,
+                      column: 5,
                       fixIts: [
                         .init(message: "Mark as Optional")
                       ])

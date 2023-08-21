@@ -23,7 +23,7 @@ final class NativeHandleDiscardingMacroTests: XCTestCase {
         "NativeHandleDiscarding": NativeHandleDiscardingMacro.self
     ]
 
-    func testPickerNameProviderMacro() {
+    func testNativeHandleDiscardingMacro() {
         assertMacroExpansion(
             """
             @NativeHandleDiscarding
@@ -35,8 +35,8 @@ final class NativeHandleDiscardingMacroTests: XCTestCase {
 
             class MyNode: Sprite2D {
                 var collider: CollisionShape2D?
-                required init(nativeHandle _: UnsafeRawPointer) {
-                    fatalError(" init(nativeHandle:) has not been implemented")
+
+                required init(nativeHandle _: UnsafeRawPointer) {fatalError("init(nativeHandle:) has not been implemented")
                 }
             }
             """,
@@ -44,7 +44,7 @@ final class NativeHandleDiscardingMacroTests: XCTestCase {
         )
     }
 
-    func testPickerNameProviderMacroDiagnostics() {
+    func testNativeHandleDiscardingMacroDiagnostics() {
         assertMacroExpansion(
             """
             @NativeHandleDiscarding

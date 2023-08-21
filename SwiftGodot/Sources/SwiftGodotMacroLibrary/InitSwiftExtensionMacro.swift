@@ -31,30 +31,29 @@ public struct InitSwiftExtensionMacro: DeclarationMacro {
             fatalError("compiler bug: the macro does not have any arguments")
         }
 
-        let name = cDecl.as(StringLiteralExprSyntax.self)?.segments.first?.as(StringSegmentSyntax.self)?.content.text ?? "libentry"
-
-        let initModule = try FunctionDeclSyntax(
-            "@_cdecl(\(raw: cDecl.description)) public func \(raw: name)(interface: OpaquePointer?, library: OpaquePointer?, extension: OpaquePointer?) -> UInt8") {
-                try GuardStmtSyntax("guard let library, let interface, let `extension` else") {
-                    StmtSyntax(stringLiteral: #"print("Error: Not all parameters were initialized.")"#)
-                    StmtSyntax(stringLiteral: "return 0")
-                }
-                StmtSyntax(stringLiteral: "initializeSwiftModule(interface, library, `extension`, initHook: setupExtension, deInitHook: { _ in })")
-                StmtSyntax(stringLiteral: "return 1")
+        let initModule: DeclSyntax = """
+        @_cdecl(\(raw: cDecl.description)) public func enterExtension(interface: OpaquePointer?, library: OpaquePointer?, extension: OpaquePointer?) -> UInt8 {
+            guard let library, let interface, let `extension` else {
+                print("Error: Not all parameters were initialized.")
+                return 0
+            }
+            let deinitHook: (GDExtension.InitializationLevel) -> Void = { _ in }
+            initializeSwiftModule(interface, library, `extension`, initHook: setupExtension, deInitHook: deinitHook)
+            return 1
         }
+        """
 
-        let setupModule = try FunctionDeclSyntax("func setupExtension(level: GDExtension.InitializationLevel)") {
-            StmtSyntax(stringLiteral: "let types = \(types)")
-            try SwitchExprSyntax("switch level") {
-                SwitchCaseSyntax("case .scene:") {
-                    StmtSyntax(stringLiteral: "types.forEach(register)")
-                }
-                SwitchCaseSyntax("default:") {
-                    StmtSyntax(stringLiteral: "break")
-                }
+        let setupModule: DeclSyntax = """
+        func setupExtension(level: GDExtension.InitializationLevel) {
+            let types = \(types)
+            switch level {
+            case .scene:
+                types.forEach(register)
+            default:
+                break
             }
         }
-
-        return [DeclSyntax(initModule), DeclSyntax(setupModule)]
+        """
+        return [initModule, setupModule]
     }
 }
