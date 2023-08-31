@@ -85,6 +85,11 @@ clean-logs:
 edit-dep DEPENDENCY:
 	{{dep_editor}} {{DEPENDENCY}}
 
+# Fetches the marteau toolchain
+fetch-tools:
+	brew tap indexing-your-heart/packages
+	brew install marteau
+
 # Fetches remote dependencies from Git submodules
 fetch-remote-deps:
 	git submodule update --init --recursive --remote
@@ -140,3 +145,10 @@ edit-just:
 # Runs SwiftLint on library code
 lint:
 	swiftlint lint --config .swiftlint.yml --output swiftlint_{{exec_date}}.log
+
+# Unswizzles protected images
+unswizzle-assets:
+	#!/bin/sh
+	for file in Shounin/resources/characters/*.swizzle; do
+		marteau unswizzle "$file" "${file%.swizzle}.png"
+	done
