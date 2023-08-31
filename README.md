@@ -36,9 +36,12 @@ the love of her life, Sam.
 - SwiftLint and SwiftFormat (used internally for code formatting)
 - Xcode Command Line Tools
 
-Start by cloning the repository using `gh repo clone` or `git clone --recursive`.
-Then, run `just build-swift-godot` and `just build-all-deps` to build the required
-dependencies for the internal extensions that the main game uses.
+1. Start by cloning the repository using `gh repo clone` or `git clone --recursive`.
+2. Next, run `just fetch-tools` to fetch the other tools needed to build the game.
+3. Then, run `just build-swift-godot` and `just build-all-deps` to build the required
+   dependencies for the internal extensions that the main game uses.
+4. Finally, run `just unswizzle-assets` to unswizzle the assets in the game's resources so
+   that the game can be built normally.
 
 From here, you can open the Shounin project in Godot through the project manager, or
 you can invoke `just edit-game` to open the project directly in the editor.
@@ -114,6 +117,7 @@ Available recipes:
     build-all-deps           # Build all dependencies
     build-dep LIB_FLAGS +DEPENDENCIES # Build a specified set of dependencies with some flags
     build-swift-godot        # Builds the SwiftGodot xcframework.
+    clean                    # Cleans alls dependencies, logs, etc.
     clean-all-deps           # Cleans all dependencies
     clean-dep +DEPENDENCIES  # Cleans a specified set of dependencies
     clean-logs               # Cleans all logs built from a Just command.
@@ -124,16 +128,20 @@ Available recipes:
     edit-game                # Open Godot editor
     edit-just                # Edits this Justfile
     fetch-remote-deps        # Fetches remote dependencies from Git submodules
+    fetch-tools              # Fetches the marteau toolchain
     format-all-deps          # Formats source files in all dependencies
     format-dep +DEPENDENCIES # Formats the source files in a specified set of dependencies
     lint                     # Runs SwiftLint on library code
     test-all-deps            # Test all dependencies
     test-dep +DEPENDENCIES   # Test a specified set of dependencies
-
+    test-game                # Runs the integration tests through Godot.
+    unswizzle-assets         # Unswizzles protected images
 ```
 
-More information on how to install and use Marteau can be found on the source code
-repository for Marteau at https://github.com/Indexing-Your-Heart/marteau.
+> **Note**  
+> To install Marteau from Homebrew automatically, run `just fetch-tools`. More information
+> use Marteau can be found on the source code repository for Marteau at
+> https://github.com/Indexing-Your-Heart/marteau.
 
 ## Found an issue?
 
