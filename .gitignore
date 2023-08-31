@@ -125,3 +125,6 @@ old/
 *_build.log
 swiftlint_*.log
 integration_results_*.xml
+
+# Raw unswizzled assets
+Shounin/resources/characters/**.png
