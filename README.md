@@ -1,25 +1,18 @@
 # Indexing Your Heart (Codename "Head Over Heels")
 
-**Indexing Your Heart** is an upcoming A Witness-like puzzle game from _Created by
-Marquis Kurt_ about a transfemme pansexual anthropomorphic coyote falling in love
-with a highly-skilled artificial intelligence and machine learning engineer in New
-Rollinsport. Explore Chelsea Roslyn’s inner world with puzzles that present many
-ideas about her own thoughts and feelings, while following the story of her finding
-the love of her life, Sam.
+**Indexing Your Heart** is an upcoming hybrid Witness-like puzzle game and visual novel
+for iPhone, iPad, and Mac. Follow Chelsea Roslyn, a lovable anthro-coyote, as she explores
+the mountains towering over New Rollinsport and meets a mysterious obelisk creature with
+an existential crisis. Learn the [ʔaʃaʃat] language with cleverly crafted puzzles and
+understand the mysteries of the obelisk.
 
 > **Warning**  
-> This branch pertains to a rewrite of the game using the Godot Engine v4, and it
-> is still in its infancy. Documentation may be incomplete as the rewrite
-> progresses. Visit the `prototype` branch to view the current source code available
-> for the current version on TestFlight.
-
-> **Warning**  
-> This project is still in its infancy, so some details and mechanics may not work
-> as intended. If you'd like to support the project,
+> This project is a work in progress. Game mechanics, lore, and other parts of the game
+> are still a work in progress and may not be representative of the final release. Use at
+> your own risk. If you'd like to support the project,
 > [consider supporting the developers on Ko-fi][kofi].
 
 [kofi]: https://ko-fi.com/marquiskurt
-[gh-badge]: https://github.com/Indexing-Your-Heart/head-over-heels/actions/workflows/tests.yml/badge.svg
 
 ## Getting started: Build from source
 
