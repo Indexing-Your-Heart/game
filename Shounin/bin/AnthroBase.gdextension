@@ -1,5 +1,6 @@
 [configuration]
 entry_symbol = "libanthrobase_entry_point"
+compatibility_minimum = 4.1
 
 [libraries]
 macos.debug = "res://bin/mac/libAnthroBase.dylib"

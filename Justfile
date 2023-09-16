@@ -81,6 +81,10 @@ clean-all-deps:
 clean-logs:
 	rm -f *_build.log swiftlint_*.log
 
+# Codesigns the dependency dylibs.
+codesign-deps IDENTITY:
+	codesign -s "{{IDENTITY}}" Shounin/bin/mac/*.dylib
+
 # Opens the dependent package in dep_editor for editing.
 edit-dep DEPENDENCY:
 	{{dep_editor}} {{DEPENDENCY}}

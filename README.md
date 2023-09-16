@@ -21,7 +21,7 @@ understand the mysteries of the obelisk.
 - Xcode 15 or later
 - macOS 14 (Sonoma) or later
 - Just (`brew install just`)
-- Godot 4.0.x
+- Godot 4.1.x
 
 **Optional Tools**
 
@@ -58,6 +58,14 @@ To rebuild all dependencies after making adjustments, run `just build-all-deps`.
 The correct build flags will be applied to ensure binaries for macOS and iOS are
 available. Likewise, you can call either `just build-dep` or run `.build-libs.sh` to
 build a given dependency.
+
+> **Note**  
+> Before running the game, make sure that the dylib dependencies are signed by
+> running `just codesign-deps` and provide your codesigning identity:
+> 
+> ```
+> just codesign-deps "Developer ID Application: John Appleseed (...)"
+> ```
 
 ### Exporting Requirements
 
@@ -114,6 +122,7 @@ Available recipes:
     clean-all-deps           # Cleans all dependencies
     clean-dep +DEPENDENCIES  # Cleans a specified set of dependencies
     clean-logs               # Cleans all logs built from a Just command.
+    codesign-deps IDENTITY   # Codesigns the dependency dylibs.
     dry-run                  # Dry run the game locally
     edit-build-lib           # Edits the script that builds libraries
     edit-dep DEPENDENCY      # Opens the dependent package in dep_editor for editing.

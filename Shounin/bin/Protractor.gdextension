@@ -1,5 +1,6 @@
 [configuration]
 entry_symbol = "libprotractor_entry_point"
+compatibility_minimum = 4.1
 
 [libraries]
 macos.debug = "res://bin/mac/libProtractorGodotInterop.dylib"
