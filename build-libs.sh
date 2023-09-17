@@ -20,6 +20,9 @@ __preclean=true
 __library=""
 __incl_rosetta=true
 
+__fbold=$(tput bold)
+__freset=$(tput sgr0)
+
 # Prints the help message.
 help() {
 	echo "Builds the corresponding dependency libraries."
@@ -37,7 +40,7 @@ help() {
 
 # Builds the libraries for iOS (framework).
 build_ios_lib() {
-	echo "Building library [$1] for iOS."
+	echo "${__fbold}Building library [$1] for iOS.${__freset}"
 	xcodebuild -scheme "$1" -destination 'generic/platform=iOS' \
 		-derivedDataPath xcbuild -skipPackagePluginValidation \
 		-clonedSourcePackagesDirPath ~/Library/Developer/Xcode/DerivedData/itanium \
@@ -58,7 +61,7 @@ build_ios_lib() {
 
 # Builds the libraries for macOS (dylib) x86_64 and arm64 into a single library.
 build_mac_lib() {
-	echo "Building library [$1] for macOS."
+	echo "${__fbold}Building library [$1] for macOS.${__freset}"
 	echo "- Step: arm64"
 	swift build --configuration release --triple arm64-apple-macosx >> ../$1_build.log
     if [ $__incl_rosetta = true ]; then

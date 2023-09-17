@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <Group
+      location = "container:"
+      name = "Godot Extensions">
+      <FileRef
+         location = "group:Shounin/bin/AnthroBase.gdextension">
+      </FileRef>
+      <FileRef
+         location = "group:Shounin/bin/JensonGodotKit.gdextension">
+      </FileRef>
+      <FileRef
+         location = "group:Shounin/bin/Protractor.gdextension">
+      </FileRef>
+      <FileRef
+         location = "group:Shounin/bin/Ashashat.gdextension">
+      </FileRef>
+   </Group>
    <FileRef
       location = "group:README.md">
    </FileRef>
@@ -37,6 +53,9 @@
    </Group>
    <FileRef
       location = "group:AnthroBase">
+   </FileRef>
+   <FileRef
+      location = "group:Ashashat">
    </FileRef>
    <FileRef
       location = "group:Protractor">

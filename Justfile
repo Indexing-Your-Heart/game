@@ -40,6 +40,7 @@ build-dep LIB_FLAGS +DEPENDENCIES: (fetch-remote-deps)
 # Build all dependencies
 build-all-deps:
 	just build-dep '-a -l ProtractorGodotInterop' Protractor
+	just build-dep '-a -f' Ashashat
 	just build-dep '-a -f' AnthroBase
 	just build-dep '-a -f' JensonGodotKit
 
@@ -72,10 +73,11 @@ clean-dep +DEPENDENCIES:
 # Cleans all dependencies
 clean-all-deps:
 	just clean-dep Protractor
+	just clean-dep Ashashat
 	just clean-dep AnthroBase
 	just clean-dep JensonGodotKit
 	rm -rf {{dep_cache}}
-	rm *_build.log
+	rm -f *_build.log
 
 # Cleans all logs built from a Just command.
 clean-logs:
