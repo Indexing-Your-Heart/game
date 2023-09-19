@@ -10,6 +10,7 @@ opt_in_rules:
   - inclusive_language
 
 included:
+  - Ashashat/Sources/
   - Protractor/Sources/
   - AnthroBase/Sources/
   - JensonGodotKit/Sources/
@@ -53,8 +54,11 @@ custom_rules:
       - string
     message: "Refer to the project by its public-facing name, Indexing Your Heart."
     severity: warning
-  unneeded_filter:
-    name: "Possible Unneeded Filter"
-    regex: ".filter(\\s?)\\{(.+)\\}\\s+for (\\w+) in (\\w+) \\{\\s*(.+)\\s*\\}"
-    message: "Filter might be unneeded; try using the for-where clause to iterate over a filter."
+  there_is_no_god:
+    name: "Deity Name Mismatch"
+    regex: "(\\b[Gg]od\\b)"
+    capture_group: 0
+    match_kinds:
+      - comment
+    message: "There is no god, only Obel."
     severity: warning
