@@ -3,6 +3,7 @@ disabled_rules:
   - duplicate_imports
   - function_body_length
   - opening_brace
+  - unneeded_synthesized_initializer
 
 opt_in_rules:
   - file_header
