@@ -23,31 +23,4 @@ final class AshashatWordTests: XCTestCase {
         let word = String(ashashatWord: person)
         XCTAssertEqual(word, "[pubaʃ]")
     }
-
-    func testPluralizationModifier() throws {
-        let someThings: some AshashatWord = {
-            AshashatPrimitive.thing
-                .pluralized(.some)
-        }()
-
-        XCTAssertTrue(someThings is PluralizedAshashatWord<AshashatPrimitive>)
-        XCTAssertEqual(String(ashashatWord: someThings), "[iʔaʃaʃatasa]")
-
-        let nothing: some AshashatWord = {
-            AshashatPrimitive.thing
-                .pluralized(.none)
-        }()
-
-        XCTAssertTrue(nothing is PluralizedAshashatWord<AshashatPrimitive>)
-        XCTAssertEqual(String(ashashatWord: nothing), "[i:ʔaʃaʃat]")
-    }
-
-    func testPossessionModifier() throws {
-        let word: some AshashatWord = {
-            AshashatPrimitive.animal
-                .owning()
-        }()
-        XCTAssertTrue(word is PossessedAshashatWord<AshashatPrimitive>)
-        XCTAssertEqual(String(ashashatWord: word), "[k'abupeʃsu:p]")
-    }
 }

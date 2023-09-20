@@ -42,7 +42,8 @@ public protocol AshashatWord {
 public struct AshashatRepairStrategy: PhonotacticRepairStrategy {
     private static var remappings: [String: String] {
         [
-            "t": "ta"
+            "t": "ta",
+            "ʃ": "ʃa"
         ]
     }
 
@@ -81,39 +82,6 @@ public extension String {
         self = "[\(word.word)]"
     }
 }
-
-//public struct AnyAshashatWord<Content: LinguisticRepresentable> {
-//    public enum MorphologicalOperator {
-//        case prefix
-//        case suffix
-//        case infix
-//        case circumfix
-//    }
-//
-//    var linguistics: Content
-//
-//    public func applying(
-//        operation: MorphologicalOperator,
-//        with morpheme: Content.BoundMorpheme
-//    ) -> AnyAshashatWord<Content.Compound> where Content == Content.Compound {
-//        switch operation {
-//        case .prefix:
-//            AnyAshashatWord(linguistics: linguistics.prefixed(by: morpheme))
-//        case .suffix:
-//            AnyAshashatWord(linguistics: linguistics.suffixed(by: morpheme))
-//        case .infix:
-//            AnyAshashatWord(linguistics: linguistics.infixed(by: morpheme))
-//        case .circumfix:
-//            AnyAshashatWord(linguistics: linguistics.circumfixed(by: morpheme))
-//        }
-//    }
-//}
-
-//extension AnyAshashatWord: AshashatWord {
-//    public var word: some LinguisticRepresentable {
-//        linguistics
-//    }
-//}
 
 /// A representation of the [ʔaʃaʃat] primitive.
 ///
