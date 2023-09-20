@@ -54,4 +54,13 @@ final class AshashatModifierTests: XCTestCase {
         XCTAssertTrue(yourIdea is GrammaticalPersonAshashatWord<PossessedAshashatWord<AshashatPrimitive>>)
         XCTAssertEqual(String(ashashatWord: yourIdea), "[bik'aʔaʃasu:p]")
     }
+
+    func testActionModifier() throws {
+        let word: some AshashatWord = {
+            AshashatPrimitive.idea
+                .action(.speakable)
+        }()
+        XCTAssertTrue(word is ActionableAshashatWord<AshashatPrimitive>)
+        XCTAssertEqual(String(ashashatWord: word), "[ʔaʃakasu]")
+    }
 }

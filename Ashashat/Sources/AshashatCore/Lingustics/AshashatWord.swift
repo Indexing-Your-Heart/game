@@ -42,6 +42,8 @@ public protocol AshashatWord {
 public struct AshashatRepairStrategy: PhonotacticRepairStrategy {
     private static var remappings: [String: String] {
         [
+            "l": "lu",
+            "n": "na",
             "t": "ta",
             "ʃ": "ʃa"
         ]
