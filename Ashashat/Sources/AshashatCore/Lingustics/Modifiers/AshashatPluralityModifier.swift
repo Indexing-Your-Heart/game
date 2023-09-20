@@ -62,7 +62,8 @@ struct PluralizedAshashatWord<SingularForm: AshashatWord>: AshashatWord {
         //
         // Obel help us if we end up changing the underlying type of the plural modifier...
         singularForm.word
-            .circumfixed(by: plural.word as! SingularForm.Word.BoundMorpheme) // swiftlint:disable:this force_cast
+            .circumfixed(by: plural.word as! SingularForm.Word.BoundMorpheme, // swiftlint:disable:this force_cast
+                         repairingWith: LinguisticRepairStrategy.ashashat)
     }
 }
 

@@ -51,4 +51,11 @@ final class MorphologyTests: XCTestCase {
         let infixedValue = root.circumfixed(by: "un.able").infixed(by: "fu.cking")
         XCTAssertEqual(String(linguisticRepresentable: infixedValue), "unfuckingprocessable")
     }
+
+    func testPrefixingWithRepairStrategy() throws {
+        let prefixedValue = root.prefixed(by: "post") { first, second, _ in
+            ["a\(first.content)", "a\(second.content)"].map(Syllable.init(content:))
+        }
+        XCTAssertEqual(String(linguisticRepresentable: prefixedValue), "apostaproacess")
+    }
 }

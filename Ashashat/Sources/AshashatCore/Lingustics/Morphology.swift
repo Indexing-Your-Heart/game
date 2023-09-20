@@ -13,6 +13,7 @@
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
 
+import Algorithms
 import Foundation
 
 /// A structure representing an atomic portion of a morpheme.
@@ -57,11 +58,19 @@ public protocol LinguisticRepresentable {
 
     /// Creates a new representable with a prefix applied.
     /// - Parameter prefix: The prefix that will be prefixed to the current representable.
-    func prefixed(by prefix: BoundMorpheme) -> Compound
+    /// - Parameter strategy: A closure that returns an array of repaired syllables, if repair strategies need to be
+    ///   applied. The first two arguments contain the syllables, and the final argument indicates whether the pair
+    ///   sits at the end of the morpheme.
+    func prefixed(by prefix: BoundMorpheme,
+                  repairingWith strategy: @escaping (Syllable, Syllable, Bool) -> [Syllable]) -> Compound
 
     /// Creates a new representable with a suffix applied.
     /// - Parameter suffix: The suffix that will be appended to the current representable.
-    func suffixed(by suffix: BoundMorpheme) -> Compound
+    /// - Parameter strategy: A closure that returns an array of repaired syllables, if repair strategies need to be
+    ///   applied. The first two arguments contain the syllables, and the final argument indicates whether the pair
+    ///   sits at the end of the morpheme.
+    func suffixed(by suffix: BoundMorpheme,
+                  repairingWith strategy: @escaping (Syllable, Syllable, Bool) -> [Syllable]) -> Compound
 
     /// Creates a new representable with a circumfix applied.
     ///
@@ -69,7 +78,11 @@ public protocol LinguisticRepresentable {
     /// being appended to the end of the morpheme.
     ///
     /// - Parameter circumfix: The circumfix that will wrap the current representable.
-    func circumfixed(by circumfix: BoundMorpheme) -> Compound
+    /// - Parameter strategy: A closure that returns an array of repaired syllables, if repair strategies need to be
+    ///   applied. The first two arguments contain the syllables, and the final argument indicates whether the pair
+    ///   sits at the end of the morpheme.
+    func circumfixed(by circumfix: BoundMorpheme,
+                     repairingWith strategy: @escaping (Syllable, Syllable, Bool) -> [Syllable]) -> Compound
 
     /// Creates a new representable with an infix applied.
     ///
@@ -80,7 +93,17 @@ public protocol LinguisticRepresentable {
     /// bound.circumfixed(by: root)
     /// ```
     /// - Parameter infix: The infix that will be inserted into the current representable.
-    func infixed(by infix: BoundMorpheme) -> Compound
+    /// - Parameter strategy: A closure that returns an array of repaired syllables, if repair strategies need to be
+    ///   applied. The first two arguments contain the syllables, and the final argument indicates whether the pair
+    ///   sits at the end of the morpheme.
+    func infixed(by infix: BoundMorpheme,
+                 repairingWith strategy: @escaping (Syllable, Syllable, Bool) -> [Syllable]) -> Compound
+}
+
+public enum LinguisticRepairStrategy {
+    static func `default`(_ first: Syllable, _ second: Syllable, endOfWord: Bool) -> [Syllable] {
+        [first, second]
+    }
 }
 
 public extension String {
@@ -108,22 +131,49 @@ extension Morpheme: LinguisticRepresentable {
     typealias BoundMorpheme = Morpheme
     typealias Compound = Morpheme
 
-    func prefixed(by morpheme: Morpheme) -> Morpheme {
-        Morpheme(syllables: morpheme.syllables + self.syllables)
+    static func applyRepairStrategy(_ strategy: @escaping (Syllable, Syllable, Bool) -> [Syllable],
+                                    to syllableSet: [Syllable]) -> [Syllable] {
+        let chunks = syllableSet.chunks(ofCount: 2)
+        return chunks.enumerated().flatMap { (index, slice) in
+            guard let first = slice.first else { return Array(slice) }
+            if slice.count > 1, let last = slice.last {
+                return strategy(first, last, index == chunks.count - 1)
+            }
+            return strategy(first, first, true).dropLast()
+        }
     }
 
-    func suffixed(by morpheme: Morpheme) -> Morpheme {
-        Morpheme(syllables: self.syllables + morpheme.syllables)
+    func prefixed(
+        by morpheme: Morpheme,
+        repairingWith strategy: @escaping (Syllable, Syllable, Bool) -> [Syllable] = LinguisticRepairStrategy.default
+    ) -> Morpheme {
+        Morpheme(syllables: Morpheme.applyRepairStrategy(strategy, to: morpheme.syllables + self.syllables))
     }
 
-    func circumfixed(by morpheme: Morpheme) -> Morpheme {
+    func suffixed(
+        by morpheme: Morpheme,
+        repairingWith strategy: @escaping (Syllable, Syllable, Bool) -> [Syllable] = LinguisticRepairStrategy.default
+    ) -> Morpheme {
+        Morpheme(syllables: Morpheme.applyRepairStrategy(strategy, to: self.syllables + morpheme.syllables))
+    }
+
+    func circumfixed(
+        by morpheme: Morpheme,
+        repairingWith strategy: @escaping (Syllable, Syllable, Bool) -> [Syllable] = LinguisticRepairStrategy.default
+    ) -> Morpheme {
         guard let firstCircumfix = morpheme.syllables.first else { return self }
         let remainingCircumfix = Array(morpheme.syllables.dropFirst())
-        return Morpheme(syllables: [firstCircumfix] + self.syllables + remainingCircumfix)
+        return Morpheme(
+            syllables: Morpheme.applyRepairStrategy(strategy,
+                                                    to: [firstCircumfix] + self.syllables + remainingCircumfix)
+        )
     }
 
-    func infixed(by morpheme: Morpheme) -> Morpheme {
-        morpheme.circumfixed(by: self)
+    func infixed(
+        by morpheme: Morpheme,
+        repairingWith strategy: @escaping (Syllable, Syllable, Bool) -> [Syllable] = LinguisticRepairStrategy.default
+    ) -> Morpheme {
+        morpheme.circumfixed(by: self, repairingWith: strategy)
     }
 }
 

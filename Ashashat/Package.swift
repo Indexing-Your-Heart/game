@@ -14,9 +14,14 @@ let package = Package(
     ],
     dependencies: [
         .package(name: "SwiftGodot", path: "../SwiftGodot"),
+        .package(url: "https://github.com/apple/swift-algorithms", from: "1.0.0"),
     ],
     targets: [
-        .target(name: "AshashatCore"),
+        .target(
+            name: "AshashatCore",
+            dependencies: [
+                .product(name: "Algorithms", package: "swift-algorithms")
+            ]),
         .target(
             name: "Ashashat",
             dependencies: [

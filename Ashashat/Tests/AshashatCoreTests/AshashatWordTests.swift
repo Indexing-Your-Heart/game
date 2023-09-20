@@ -25,13 +25,21 @@ final class AshashatWordTests: XCTestCase {
     }
 
     func testPluralizationModifier() throws {
-        let word: some AshashatWord = {
+        let someThings: some AshashatWord = {
             AshashatPrimitive.thing
                 .pluralized(.some)
         }()
 
-        XCTAssertTrue(word is PluralizedAshashatWord<AshashatPrimitive>)
-        XCTAssertEqual(String(ashashatWord: word), "[iʔaʃaʃatsa]")
+        XCTAssertTrue(someThings is PluralizedAshashatWord<AshashatPrimitive>)
+        XCTAssertEqual(String(ashashatWord: someThings), "[iʔaʃaʃatasa]")
+
+        let nothing: some AshashatWord = {
+            AshashatPrimitive.thing
+                .pluralized(.none)
+        }()
+
+        XCTAssertTrue(nothing is PluralizedAshashatWord<AshashatPrimitive>)
+        XCTAssertEqual(String(ashashatWord: nothing), "[i:ʔaʃaʃat]")
     }
 
     func testPossessionModifier() throws {

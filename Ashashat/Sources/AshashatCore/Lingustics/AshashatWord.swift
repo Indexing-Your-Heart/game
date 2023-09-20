@@ -28,6 +28,28 @@ public protocol AshashatWord {
     var word: Word { get }
 }
 
+extension LinguisticRepairStrategy {
+    private static var remappings: [String: String] {
+        [
+            "t": "ta"
+        ]
+    }
+
+    private static func remap(_ syllable: Syllable) -> [Syllable] {
+        for (suffix, replacement) in self.remappings {
+            guard syllable.content.hasSuffix(suffix) else { continue }
+            let initialSyllable = Syllable(content: String(syllable.content.dropLast()))
+            let newSyllable = Syllable(content: replacement)
+            return [initialSyllable, newSyllable]
+        }
+        return [syllable]
+    }
+
+    static func ashashat(first: Syllable, second: Syllable, endOfWord: Bool) -> [Syllable] {
+        return remap(first) + (endOfWord ? [second] : remap(second))
+    }
+}
+
 public extension String {
     /// Creates a string represented by an [ʔaʃaʃat] word.
     ///
@@ -44,38 +66,38 @@ public extension String {
     }
 }
 
-public struct AnyAshashatWord<Content: LinguisticRepresentable> {
-    public enum MorphologicalOperator {
-        case prefix
-        case suffix
-        case infix
-        case circumfix
-    }
+//public struct AnyAshashatWord<Content: LinguisticRepresentable> {
+//    public enum MorphologicalOperator {
+//        case prefix
+//        case suffix
+//        case infix
+//        case circumfix
+//    }
+//
+//    var linguistics: Content
+//
+//    public func applying(
+//        operation: MorphologicalOperator,
+//        with morpheme: Content.BoundMorpheme
+//    ) -> AnyAshashatWord<Content.Compound> where Content == Content.Compound {
+//        switch operation {
+//        case .prefix:
+//            AnyAshashatWord(linguistics: linguistics.prefixed(by: morpheme))
+//        case .suffix:
+//            AnyAshashatWord(linguistics: linguistics.suffixed(by: morpheme))
+//        case .infix:
+//            AnyAshashatWord(linguistics: linguistics.infixed(by: morpheme))
+//        case .circumfix:
+//            AnyAshashatWord(linguistics: linguistics.circumfixed(by: morpheme))
+//        }
+//    }
+//}
 
-    var linguistics: Content
-
-    public func applying(
-        operation: MorphologicalOperator,
-        with morpheme: Content.BoundMorpheme
-    ) -> AnyAshashatWord<Content.Compound> where Content == Content.Compound {
-        switch operation {
-        case .prefix:
-            AnyAshashatWord(linguistics: linguistics.prefixed(by: morpheme))
-        case .suffix:
-            AnyAshashatWord(linguistics: linguistics.suffixed(by: morpheme))
-        case .infix:
-            AnyAshashatWord(linguistics: linguistics.infixed(by: morpheme))
-        case .circumfix:
-            AnyAshashatWord(linguistics: linguistics.circumfixed(by: morpheme))
-        }
-    }
-}
-
-extension AnyAshashatWord: AshashatWord {
-    public var word: some LinguisticRepresentable {
-        linguistics
-    }
-}
+//extension AnyAshashatWord: AshashatWord {
+//    public var word: some LinguisticRepresentable {
+//        linguistics
+//    }
+//}
 
 /// A representation of the [ʔaʃaʃat] primitive.
 ///

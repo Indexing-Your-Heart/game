@@ -28,7 +28,8 @@ struct PossessedAshashatWord<Owned: AshashatWord>: AshashatWord {
 
     var word: some LinguisticRepresentable {
         owningItem.word
-            .circumfixed(by: owningPrefix as! Owned.Word.BoundMorpheme)
+            .circumfixed(by: owningPrefix as! Owned.Word.BoundMorpheme,
+                         repairingWith: LinguisticRepairStrategy.ashashat)
     }
 }
 
