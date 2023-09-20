@@ -33,6 +33,7 @@ public struct Syllable {
 }
 
 extension Syllable: ExpressibleByStringLiteral {
+    /// Creates a syllable from a string literal.
     public init(stringLiteral value: StringLiteralType) {
         self.content = value
     }
@@ -45,7 +46,8 @@ public protocol LinguisticRepresentable {
     /// A lingustic representable that acts as a bound morpheme.
     ///
     /// Bound morphemes cannot stand on their own and must be accompanied with a free morpheme. This type is generally
-    /// used when altering a free morpheme, such as ``prefixed(by:)`` or ``circumfixed(by:)``.
+    /// used when altering a free morpheme, such as ``prefixed(by:repairingWith:)-7deeh`` or
+    /// ``circumfixed(by:repairingWith:)-5als7``.
     associatedtype BoundMorpheme: LinguisticRepresentable
 
     /// A linguistic representable that acts as a combined morpheme.
@@ -86,8 +88,8 @@ public protocol LinguisticRepresentable {
 
     /// Creates a new representable with an infix applied.
     ///
-    /// This method assumes that the bound morpheme will be inserted after the first syllable. Calling 
-    /// ``circumfixed(by:)`` on the bound morpheme to its root achieves the same effect:
+    /// This method assumes that the bound morpheme will be inserted after the first syllable. Calling
+    /// ``circumfixed(by:repairingWith:)-5als7`` on the bound morpheme to its root achieves the same effect:
     ///
     /// ```swift
     /// bound.circumfixed(by: root)
@@ -100,10 +102,76 @@ public protocol LinguisticRepresentable {
                  repairingWith strategy: @escaping (Syllable, Syllable, Bool) -> [Syllable]) -> Compound
 }
 
-public enum LinguisticRepairStrategy {
-    static func `default`(_ first: Syllable, _ second: Syllable, endOfWord: Bool) -> [Syllable] {
+public extension LinguisticRepresentable {
+    /// Creates a new representable with a prefix applied.
+    /// - Parameter prefix: The prefix that will be prefixed to the current representable.
+    /// - Parameter strategy: A phonological repair strategy to use. Defaults to the ``DefaultRepairStrategy``.
+    func prefixed(by prefix: BoundMorpheme,
+                  repairingWith strategy: PhonotacticRepairStrategy = .default) -> Compound {
+        self.prefixed(by: prefix, repairingWith: strategy.apply)
+    }
+
+    /// Creates a new representable with a suffix applied.
+    /// - Parameter suffix: The suffix that will be appended to the current representable.
+    /// - Parameter strategy: A phonological repair strategy to use. Defaults to the ``DefaultRepairStrategy``.
+    func suffixed(by suffix: BoundMorpheme,
+                  repairingWith strategy: PhonotacticRepairStrategy = .default) -> Compound {
+        self.suffixed(by: suffix, repairingWith: strategy.apply)
+    }
+
+    /// Creates a new representable with a circumfix applied.
+    ///
+    /// This method assumes that only the first syllable will be added to the front, with the remaining syllables
+    /// being appended to the end of the morpheme.
+    ///
+    /// - Parameter circumfix: The circumfix that will wrap the current representable.
+    /// - Parameter strategy: A phonological repair strategy to use. Defaults to the ``DefaultRepairStrategy``.
+    func circumfixed(by circumfix: BoundMorpheme,
+                     repairingWith strategy: PhonotacticRepairStrategy = .default) -> Compound {
+        self.circumfixed(by: circumfix, repairingWith: strategy.apply)
+    }
+
+    /// Creates a new representable with an infix applied.
+    ///
+    /// This method assumes that the bound morpheme will be inserted after the first syllable. Calling
+    /// ``circumfixed(by:repairingWith:)-6xeup`` on the bound morpheme to its root achieves the same effect:
+    ///
+    /// ```swift
+    /// bound.circumfixed(by: root)
+    /// ```
+    /// - Parameter infix: The infix that will be inserted into the current representable.
+    /// - Parameter strategy: A phonological repair strategy to use. Defaults to the ``DefaultRepairStrategy``.
+    func infixed(by infix: BoundMorpheme,
+                 repairingWith strategy: PhonotacticRepairStrategy = .default) -> Compound {
+        self.infixed(by: infix, repairingWith: strategy.apply)
+    }
+}
+
+/// A protocol that provides a phonotactic repair strategy between syllables.
+///
+/// Some languages have phonotactic rules for how syllables interact with each other in a morpheme. A repair strategy
+/// defines an approach for how to repair syllables to match these rules.
+///
+/// A default strategy is provided with the ``DefaultRepairStrategy``, which does no modifications.
+public protocol PhonotacticRepairStrategy {
+    /// Applies the repair strategy to the current two syllables.
+    /// - Parameter first: The first syllable in the pair that may need to be repaired.
+    /// - Parameter second: The second syllable in the pair that may need to be repaired.
+    /// - Parameter endOfWord: Whether the syllable pair appears at the end of the word. This is typically used to
+    ///   ignore a repair strategy if it doesn't apply to the ending.
+    func apply(_ first: Syllable, _ second: Syllable, endOfWord: Bool) -> [Syllable]
+}
+
+/// The default repair strategy, where no modifications are made.
+public struct DefaultRepairStrategy: PhonotacticRepairStrategy {
+    public func apply(_ first: Syllable, _ second: Syllable, endOfWord _: Bool) -> [Syllable] {
         [first, second]
     }
+}
+
+extension PhonotacticRepairStrategy where Self == DefaultRepairStrategy {
+    /// The default repair strategy.
+    public static var `default`: PhonotacticRepairStrategy { DefaultRepairStrategy() }
 }
 
 public extension String {
@@ -145,22 +213,19 @@ extension Morpheme: LinguisticRepresentable {
 
     func prefixed(
         by morpheme: Morpheme,
-        repairingWith strategy: @escaping (Syllable, Syllable, Bool) -> [Syllable] = LinguisticRepairStrategy.default
-    ) -> Morpheme {
+        repairingWith strategy: @escaping (Syllable, Syllable, Bool) -> [Syllable]) -> Morpheme {
         Morpheme(syllables: Morpheme.applyRepairStrategy(strategy, to: morpheme.syllables + self.syllables))
     }
 
     func suffixed(
         by morpheme: Morpheme,
-        repairingWith strategy: @escaping (Syllable, Syllable, Bool) -> [Syllable] = LinguisticRepairStrategy.default
-    ) -> Morpheme {
+        repairingWith strategy: @escaping (Syllable, Syllable, Bool) -> [Syllable]) -> Morpheme {
         Morpheme(syllables: Morpheme.applyRepairStrategy(strategy, to: self.syllables + morpheme.syllables))
     }
 
     func circumfixed(
         by morpheme: Morpheme,
-        repairingWith strategy: @escaping (Syllable, Syllable, Bool) -> [Syllable] = LinguisticRepairStrategy.default
-    ) -> Morpheme {
+        repairingWith strategy: @escaping (Syllable, Syllable, Bool) -> [Syllable]) -> Morpheme {
         guard let firstCircumfix = morpheme.syllables.first else { return self }
         let remainingCircumfix = Array(morpheme.syllables.dropFirst())
         return Morpheme(
@@ -171,8 +236,7 @@ extension Morpheme: LinguisticRepresentable {
 
     func infixed(
         by morpheme: Morpheme,
-        repairingWith strategy: @escaping (Syllable, Syllable, Bool) -> [Syllable] = LinguisticRepairStrategy.default
-    ) -> Morpheme {
+        repairingWith strategy: @escaping (Syllable, Syllable, Bool) -> [Syllable]) -> Morpheme {
         morpheme.circumfixed(by: self, repairingWith: strategy)
     }
 }

@@ -28,7 +28,18 @@ public protocol AshashatWord {
     var word: Word { get }
 }
 
-extension LinguisticRepairStrategy {
+/// A repair strategy specializing in phonotactic rules for [ʔaʃaʃat].
+///
+/// Typically, consonats cannot sit next to each other in the middle of a word. For example, `[i.ʔa.ʃa.ʃat.sa]` would
+/// be an invalid combination because of the last two syllables.
+///
+/// The specification notes that, in these cases, the syllable should be broken up into two separate syllables. In most
+/// cases, the `a` vowel is used:
+///
+/// ```
+/// [i.ʔa.ʃa.ʃat.sa] -> [i.ʔa.ʃa.ʃa.ta.sa]
+/// ```
+public struct AshashatRepairStrategy: PhonotacticRepairStrategy {
     private static var remappings: [String: String] {
         [
             "t": "ta"
@@ -45,9 +56,14 @@ extension LinguisticRepairStrategy {
         return [syllable]
     }
 
-    static func ashashat(first: Syllable, second: Syllable, endOfWord: Bool) -> [Syllable] {
-        return remap(first) + (endOfWord ? [second] : remap(second))
+    public func apply(_ first: Syllable, _ second: Syllable, endOfWord: Bool) -> [Syllable] {
+        return Self.remap(first) + (endOfWord ? [second] : Self.remap(second))
     }
+}
+
+extension PhonotacticRepairStrategy where Self == AshashatRepairStrategy {
+    /// The [ʔaʃaʃat] repair strategy.
+    public static var ashashat: PhonotacticRepairStrategy { AshashatRepairStrategy() }
 }
 
 public extension String {

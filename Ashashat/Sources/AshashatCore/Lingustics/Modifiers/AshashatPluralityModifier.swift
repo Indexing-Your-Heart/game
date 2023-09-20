@@ -63,7 +63,7 @@ struct PluralizedAshashatWord<SingularForm: AshashatWord>: AshashatWord {
         // Obel help us if we end up changing the underlying type of the plural modifier...
         singularForm.word
             .circumfixed(by: plural.word as! SingularForm.Word.BoundMorpheme, // swiftlint:disable:this force_cast
-                         repairingWith: LinguisticRepairStrategy.ashashat)
+                         repairingWith: .ashashat)
     }
 }
 
@@ -71,12 +71,12 @@ public extension AshashatWord {
     /// Marks the current word as a plural.
     ///
     /// Plural modifiers are applied as a circumfix to an existing primitive or modifier. For example, the following
-    /// word will produce "some things" (`[iʔaʃaʃatsa]`):
+    /// word will produce "some things" (`[iʔaʃaʃatasa]`):
     ///
     /// ```swift
     /// var word: some AshashatWord {
     ///     AshashatPrimitive.thing
-    ///         .pluralized(.some) // produces '[iʔaʃaʃatsa]'
+    ///         .pluralized(.some) // produces '[iʔaʃaʃatasa]'
     /// }
     /// ```
     ///
