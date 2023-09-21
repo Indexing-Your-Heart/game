@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "conlangkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://gitlab.com/marquiskurt/ConlangKit",
+      "state" : {
+        "branch" : "root",
+        "revision" : "aeb0a33be21179f0ba9eb480dc94a128fcaff23d"
+      }
+    },
+    {
       "identity" : "swift-algorithms",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-algorithms",

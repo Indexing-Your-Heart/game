@@ -15,11 +15,13 @@ let package = Package(
     dependencies: [
         .package(name: "SwiftGodot", path: "../SwiftGodot"),
         .package(url: "https://github.com/apple/swift-algorithms", from: "1.0.0"),
+        .package(url: "https://gitlab.com/marquiskurt/ConlangKit", branch: "root")
     ],
     targets: [
         .target(
             name: "AshashatCore",
             dependencies: [
+                "ConlangKit",
                 .product(name: "Algorithms", package: "swift-algorithms")
             ]),
         .target(
