@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://u077pytrgt12" path="res://resources/gui/ashashat_fnt.ttf" id="4_cywxo"]
 
 [node name="Control" type="Control"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,17 +23,22 @@ anchor_right = 1.0
 anchor_bottom = 0.093
 offset_bottom = 0.299998
 grow_horizontal = 2
-text = "Press a key on the keyboard to start typing..."
+text = "Press a key on the keyboard below to start typing..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Keyboard" parent="." instance=ExtResource("1_g456k")]
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.326875
+anchor_top = 0.226667
+anchor_right = 0.688125
+anchor_bottom = 0.82
+offset_top = -8.00001
+offset_right = -2.28882e-05
+offset_bottom = -7.99999
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TextField" type="Label" parent="."]
 layout_mode = 1

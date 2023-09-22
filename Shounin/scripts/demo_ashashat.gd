@@ -20,11 +20,12 @@ func _ready():
 		if key == "ashashat_key_ejective_k":
 			textField.text = textField.text + "K"
 			return
-		if key == "ashashat_key_repeat":
+		if key == "ashashat_key_repeater":
 			textField.text = textField.text + "*"
 			return
 		if key == "ashashat_key_duplicant":
 			textField.text = textField.text + "!"
 			return
 		textField.text = textField.text + key.trim_prefix("ashashat_key_")
+		return
 	)

@@ -1,184 +1,475 @@
-[gd_scene load_steps=4 format=3 uid="uid://ecxx1b6ggwda"]
+[gd_scene load_steps=128 format=3 uid="uid://ecxx1b6ggwda"]
 
 [ext_resource type="Theme" uid="uid://b2ym80ujimgm6" path="res://resources/gui/theme_ashashat.tres" id="1_dvw02"]
-[ext_resource type="FontFile" uid="uid://u077pytrgt12" path="res://resources/gui/ashashat_fnt.ttf" id="2_5sxfe"]
+[ext_resource type="Texture2D" uid="uid://bbli00kv62r61" path="res://resources/gui/keyboard/A_Normal.png" id="2_eksae"]
+[ext_resource type="Texture2D" uid="uid://cpuuect5nluqh" path="res://resources/gui/keyboard/A_Focus.png" id="3_c2y0h"]
+[ext_resource type="Texture2D" uid="uid://7xwwrqeaqa3e" path="res://resources/gui/keyboard/A_Press.png" id="4_gd236"]
+[ext_resource type="Texture2D" uid="uid://df44pq6bcfttf" path="res://resources/gui/keyboard/E_Normal.png" id="5_1mp4f"]
+[ext_resource type="Texture2D" uid="uid://c84j7m7orpn2q" path="res://resources/gui/keyboard/E_Focus.png" id="6_2xto7"]
+[ext_resource type="Texture2D" uid="uid://b4od7l1o2stkr" path="res://resources/gui/keyboard/E_Press.png" id="7_7kk7m"]
+[ext_resource type="Texture2D" uid="uid://b1foxgv7nsani" path="res://resources/gui/keyboard/I_Normal.png" id="8_gvfum"]
+[ext_resource type="Texture2D" uid="uid://c47gp1o32liq7" path="res://resources/gui/keyboard/I_Focus.png" id="9_78fxb"]
+[ext_resource type="Texture2D" uid="uid://bhw0d0b23rsea" path="res://resources/gui/keyboard/Delete_Normal.png" id="9_x3ijr"]
+[ext_resource type="Texture2D" uid="uid://d1smfhgj5b4fm" path="res://resources/gui/keyboard/I_Press.png" id="10_hpfqd"]
+[ext_resource type="Texture2D" uid="uid://c2d783wn1i6an" path="res://resources/gui/keyboard/U_Normal.png" id="11_5idro"]
+[ext_resource type="Texture2D" uid="uid://cf1me1pdwtik2" path="res://resources/gui/keyboard/U_Focus.png" id="12_7twr2"]
+[ext_resource type="Texture2D" uid="uid://v27l7hilu7vd" path="res://resources/gui/keyboard/U_Press.png" id="13_mqkul"]
+[ext_resource type="Texture2D" uid="uid://d02jdbjvm4ofn" path="res://resources/gui/keyboard/P_Normal.png" id="14_u3poq"]
+[ext_resource type="Texture2D" uid="uid://dvs5admys7n04" path="res://resources/gui/keyboard/Glottal_Normal.png" id="14_v8mfw"]
+[ext_resource type="Texture2D" uid="uid://d22eyju4cldv" path="res://resources/gui/keyboard/Delete_Focus.png" id="15_2a5ey"]
+[ext_resource type="Texture2D" uid="uid://5q7h2j382lhw" path="res://resources/gui/keyboard/Glottal_Focus.png" id="15_7t05o"]
+[ext_resource type="Texture2D" uid="uid://dnkbrghro4ooc" path="res://resources/gui/keyboard/P_Focus.png" id="15_dp5xb"]
+[ext_resource type="Texture2D" uid="uid://c18538llib60g" path="res://resources/gui/keyboard/Delete_Press.png" id="16_5gg6t"]
+[ext_resource type="Texture2D" uid="uid://y75flnsccqtp" path="res://resources/gui/keyboard/Glottal_Press.png" id="16_f5126"]
+[ext_resource type="Texture2D" uid="uid://ejf1a7olwtbl" path="res://resources/gui/keyboard/P_Press.png" id="16_phn0h"]
+[ext_resource type="Texture2D" uid="uid://d16d5kyqnkaw0" path="res://resources/gui/keyboard/B_Normal.png" id="17_2mdfy"]
+[ext_resource type="Texture2D" uid="uid://wblt31a6hedn" path="res://resources/gui/keyboard/Sh_Normal.png" id="17_7tlg1"]
+[ext_resource type="Texture2D" uid="uid://bredbxkanyhho" path="res://resources/gui/keyboard/Return_Normal.png" id="17_s112a"]
+[ext_resource type="Texture2D" uid="uid://doy3nb3t2ph2q" path="res://resources/gui/keyboard/Ejective_K_Normal.png" id="17_vt8et"]
+[ext_resource type="Texture2D" uid="uid://2twvur1cnief" path="res://resources/gui/keyboard/B_Focus.png" id="18_5axr4"]
+[ext_resource type="Texture2D" uid="uid://ciivwwmk34rp8" path="res://resources/gui/keyboard/Ejective_K_Focus.png" id="18_6op4w"]
+[ext_resource type="Texture2D" uid="uid://jj2jkfwnisim" path="res://resources/gui/keyboard/Return_Focus.png" id="18_atyf7"]
+[ext_resource type="Texture2D" uid="uid://c514fraj01t2k" path="res://resources/gui/keyboard/Sh_Focus.png" id="18_norco"]
+[ext_resource type="Texture2D" uid="uid://dyeamc8fus27h" path="res://resources/gui/keyboard/B_Press.png" id="19_7a7du"]
+[ext_resource type="Texture2D" uid="uid://g8j0muy5ghls" path="res://resources/gui/keyboard/Sh_Press.png" id="19_n37ft"]
+[ext_resource type="Texture2D" uid="uid://b0ts1b6ksmhus" path="res://resources/gui/keyboard/Ejective_K_Press.png" id="19_p7vtw"]
+[ext_resource type="Texture2D" uid="uid://fr2nv833qngb" path="res://resources/gui/keyboard/Return_Press.png" id="19_revtg"]
+[ext_resource type="Texture2D" uid="uid://b34pcc1qsw2ar" path="res://resources/gui/keyboard/Repeater_Normal.png" id="20_4mjd0"]
+[ext_resource type="Texture2D" uid="uid://pwkb15wp3cd3" path="res://resources/gui/keyboard/T_Normal.png" id="20_lu3i7"]
+[ext_resource type="Texture2D" uid="uid://bola8kbeor06b" path="res://resources/gui/keyboard/L_Normal.png" id="20_lxcvd"]
+[ext_resource type="Texture2D" uid="uid://dlyyxcwwc2o35" path="res://resources/gui/keyboard/L_Focus.png" id="21_gmilo"]
+[ext_resource type="Texture2D" uid="uid://b1etuwe1xij5u" path="res://resources/gui/keyboard/T_Focus.png" id="21_mt635"]
+[ext_resource type="Texture2D" uid="uid://c8hvdxgvm2x2j" path="res://resources/gui/keyboard/Repeater_Focus.png" id="21_nyy7x"]
+[ext_resource type="Texture2D" uid="uid://7rjj8ji1ukla" path="res://resources/gui/keyboard/L_Press.png" id="22_kcyky"]
+[ext_resource type="Texture2D" uid="uid://bbmdamdjegxyi" path="res://resources/gui/keyboard/Repeater_Press.png" id="22_qwxdn"]
+[ext_resource type="Texture2D" uid="uid://do715h7vf4ru1" path="res://resources/gui/keyboard/T_Press.png" id="22_vxepk"]
+[ext_resource type="Texture2D" uid="uid://cfdn5rct0k4to" path="res://resources/gui/keyboard/K_Normal.png" id="23_f7hyf"]
+[ext_resource type="Texture2D" uid="uid://2pwejsgp0lmf" path="res://resources/gui/keyboard/S_Normal.png" id="23_n7vdh"]
+[ext_resource type="Texture2D" uid="uid://j0m5o30cjbvh" path="res://resources/gui/keyboard/K_Focus.png" id="24_jx3ni"]
+[ext_resource type="Texture2D" uid="uid://dd0cgb4lqkv1l" path="res://resources/gui/keyboard/S_Focus.png" id="24_sbiok"]
+[ext_resource type="Texture2D" uid="uid://dww0r2d2r6xgy" path="res://resources/gui/keyboard/K_Press.png" id="25_nxbog"]
+[ext_resource type="Texture2D" uid="uid://2q2exnsexc45" path="res://resources/gui/keyboard/S_Press.png" id="25_oyc58"]
+[ext_resource type="Texture2D" uid="uid://dg1iro8obi16f" path="res://resources/gui/keyboard/Duplicant_Normal.png" id="26_0y1p2"]
+[ext_resource type="Texture2D" uid="uid://ccr05i5ssth4l" path="res://resources/gui/keyboard/N_Normal.png" id="26_282u3"]
+[ext_resource type="Texture2D" uid="uid://cumk4wafef46k" path="res://resources/gui/keyboard/Duplicant_Focus.png" id="27_afef1"]
+[ext_resource type="Texture2D" uid="uid://dx1yx2v1k78xd" path="res://resources/gui/keyboard/N_Focus.png" id="27_n0dyy"]
+[ext_resource type="Texture2D" uid="uid://br3w2v7rsb6u1" path="res://resources/gui/keyboard/Duplicant_Press.png" id="28_4l4bi"]
+[ext_resource type="Texture2D" uid="uid://ckhettusygrbn" path="res://resources/gui/keyboard/N_Press.png" id="28_o8mua"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3ecp"]
-bg_color = Color(0.101961, 0.529412, 0.968627, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_173mx"]
+texture = ExtResource("2_eksae")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y2vsu"]
+texture = ExtResource("3_c2y0h")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j8ng5"]
+texture = ExtResource("4_gd236")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0a1kn"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_844ea"]
+texture = ExtResource("5_1mp4f")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t27wf"]
+texture = ExtResource("6_2xto7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aso5q"]
+texture = ExtResource("7_7kk7m")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_blfb4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2n2qa"]
+texture = ExtResource("8_gvfum")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nxn13"]
+texture = ExtResource("9_78fxb")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sy61e"]
+texture = ExtResource("10_hpfqd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jx613"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7nj8y"]
+texture = ExtResource("11_5idro")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jrlbp"]
+texture = ExtResource("12_7twr2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h0lva"]
+texture = ExtResource("13_mqkul")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iwnib"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ae6g1"]
+texture = ExtResource("14_u3poq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xxa22"]
+texture = ExtResource("15_dp5xb")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3c1we"]
+texture = ExtResource("16_phn0h")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t3wxt"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qa7wq"]
+texture = ExtResource("17_2mdfy")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e22p1"]
+texture = ExtResource("18_5axr4")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_scb6t"]
+texture = ExtResource("19_7a7du")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f86fg"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x2c2v"]
+texture = ExtResource("20_lu3i7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0rp0u"]
+texture = ExtResource("21_mt635")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1jr75"]
+texture = ExtResource("22_vxepk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0vuaf"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uslwx"]
+texture = ExtResource("23_f7hyf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rygbu"]
+texture = ExtResource("24_jx3ni")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_46wo2"]
+texture = ExtResource("25_nxbog")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_76hkk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k0842"]
+texture = ExtResource("14_v8mfw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j8ldk"]
+texture = ExtResource("15_7t05o")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nnh4n"]
+texture = ExtResource("16_f5126")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wdbpi"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p2hnh"]
+texture = ExtResource("17_7tlg1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_52len"]
+texture = ExtResource("18_norco")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kqh6i"]
+texture = ExtResource("19_n37ft")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r0ybd"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3nnwf"]
+texture = ExtResource("20_lxcvd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m1g0g"]
+texture = ExtResource("21_gmilo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_04p2q"]
+texture = ExtResource("22_kcyky")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r2iml"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mg0hl"]
+texture = ExtResource("23_n7vdh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_84v6j"]
+texture = ExtResource("24_sbiok")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_drae5"]
+texture = ExtResource("25_oyc58")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w1fy1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p1rjr"]
+texture = ExtResource("26_282u3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h3orn"]
+texture = ExtResource("27_n0dyy")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sx2wq"]
+texture = ExtResource("28_o8mua")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wf574"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rb153"]
+texture = ExtResource("17_vt8et")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ieckv"]
+texture = ExtResource("18_6op4w")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n6ut2"]
+texture = ExtResource("19_p7vtw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u2b41"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_idw5b"]
+texture = ExtResource("20_4mjd0")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u0wvb"]
+texture = ExtResource("21_nyy7x")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2tydx"]
+texture = ExtResource("22_qwxdn")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ymggo"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_taql2"]
+texture = ExtResource("26_0y1p2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hn7c8"]
+texture = ExtResource("27_afef1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nyr3v"]
+texture = ExtResource("28_4l4bi")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hnfb1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_640mw"]
+texture = ExtResource("9_x3ijr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_to6xx"]
+texture = ExtResource("15_2a5ey")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8qyvs"]
+texture = ExtResource("16_5gg6t")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6ucy5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_84d6k"]
+texture = ExtResource("17_s112a")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6k7jx"]
+texture = ExtResource("18_atyf7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_53opv"]
+texture = ExtResource("19_revtg")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0qqm7"]
 
 [node name="Keyboard" type="AshashatKeyboardInterpreter"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+texture_filter = 1
 theme = ExtResource("1_dvw02")
 
 [node name="keyA" type="Button" parent="."]
 layout_mode = 0
-offset_left = 484.0
-offset_top = 286.0
-offset_right = 626.0
-offset_bottom = 410.0
-theme_override_font_sizes/font_size = 100
-text = "a"
+offset_left = 159.0
+offset_top = 128.0
+offset_right = 255.0
+offset_bottom = 224.0
+focus_mode = 1
+theme_override_styles/normal = SubResource("StyleBoxTexture_173mx")
+theme_override_styles/hover = SubResource("StyleBoxTexture_y2vsu")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_j8ng5")
+theme_override_styles/focus = SubResource("StyleBoxTexture_0a1kn")
 
 [node name="keyE" type="Button" parent="."]
 layout_mode = 0
-offset_left = 642.0
-offset_top = 286.0
-offset_right = 784.0
-offset_bottom = 410.0
-theme_override_font_sizes/font_size = 100
-text = "e
-"
+offset_left = 257.0
+offset_top = 128.0
+offset_right = 353.0
+offset_bottom = 224.0
+focus_mode = 1
+theme_override_styles/normal = SubResource("StyleBoxTexture_844ea")
+theme_override_styles/hover = SubResource("StyleBoxTexture_t27wf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_aso5q")
+theme_override_styles/focus = SubResource("StyleBoxTexture_blfb4")
 
 [node name="keyI" type="Button" parent="."]
 layout_mode = 0
-offset_left = 484.0
-offset_top = 426.0
-offset_right = 626.0
-offset_bottom = 550.0
-theme_override_font_sizes/font_size = 100
-text = "i"
+offset_left = 159.0
+offset_top = 226.0
+offset_right = 255.0
+offset_bottom = 322.0
+focus_mode = 1
+theme_override_styles/normal = SubResource("StyleBoxTexture_2n2qa")
+theme_override_styles/hover = SubResource("StyleBoxTexture_nxn13")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_sy61e")
+theme_override_styles/focus = SubResource("StyleBoxTexture_jx613")
 
 [node name="keyU" type="Button" parent="."]
 layout_mode = 0
-offset_left = 642.0
-offset_top = 426.0
-offset_right = 784.0
-offset_bottom = 550.0
-theme_override_fonts/font = ExtResource("2_5sxfe")
-theme_override_font_sizes/font_size = 100
-text = "u"
+offset_left = 257.0
+offset_top = 226.0
+offset_right = 353.0
+offset_bottom = 322.0
+focus_mode = 1
+theme_override_styles/normal = SubResource("StyleBoxTexture_7nj8y")
+theme_override_styles/hover = SubResource("StyleBoxTexture_jrlbp")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h0lva")
+theme_override_styles/focus = SubResource("StyleBoxTexture_iwnib")
 
 [node name="keyP" type="Button" parent="."]
 layout_mode = 0
-offset_left = 410.0
-offset_top = 205.0
-offset_right = 482.0
-offset_bottom = 278.0
-theme_override_font_sizes/font_size = 64
-text = "p
-"
+offset_left = 55.0
+offset_top = 21.0
+offset_right = 151.0
+offset_bottom = 117.0
+focus_mode = 1
+theme_override_styles/normal = SubResource("StyleBoxTexture_ae6g1")
+theme_override_styles/hover = SubResource("StyleBoxTexture_xxa22")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_3c1we")
+theme_override_styles/focus = SubResource("StyleBoxTexture_t3wxt")
 
 [node name="keyB" type="Button" parent="."]
 layout_mode = 0
-offset_left = 498.0
-offset_top = 205.0
-offset_right = 570.0
-offset_bottom = 278.0
-theme_override_font_sizes/font_size = 64
-text = "b
-"
+offset_left = 159.0
+offset_top = 21.0
+offset_right = 255.0
+offset_bottom = 117.0
+focus_mode = 1
+theme_override_styles/normal = SubResource("StyleBoxTexture_qa7wq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_e22p1")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_scb6t")
+theme_override_styles/focus = SubResource("StyleBoxTexture_f86fg")
 
 [node name="keyT" type="Button" parent="."]
 layout_mode = 0
-offset_left = 618.0
-offset_top = 205.0
-offset_right = 690.0
-offset_bottom = 278.0
-theme_override_font_sizes/font_size = 64
-text = "t
-"
+offset_left = 257.0
+offset_top = 21.0
+offset_right = 353.0
+offset_bottom = 117.0
+focus_mode = 1
+theme_override_styles/normal = SubResource("StyleBoxTexture_x2c2v")
+theme_override_styles/hover = SubResource("StyleBoxTexture_0rp0u")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1jr75")
+theme_override_styles/focus = SubResource("StyleBoxTexture_0vuaf")
 
 [node name="keyK" type="Button" parent="."]
 layout_mode = 0
-offset_left = 738.0
-offset_top = 205.0
-offset_right = 810.0
-offset_bottom = 278.0
-theme_override_font_sizes/font_size = 64
-text = "k"
+offset_left = 361.0
+offset_top = 21.0
+offset_right = 457.0
+offset_bottom = 117.0
+focus_mode = 1
+theme_override_styles/normal = SubResource("StyleBoxTexture_uslwx")
+theme_override_styles/hover = SubResource("StyleBoxTexture_rygbu")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_46wo2")
+theme_override_styles/focus = SubResource("StyleBoxTexture_76hkk")
 
 [node name="keyGlottal" type="Button" parent="."]
 layout_mode = 0
-offset_left = 795.0
-offset_top = 286.0
-offset_right = 867.0
-offset_bottom = 359.0
-theme_override_font_sizes/font_size = 64
-text = "ʔ"
+offset_left = 361.0
+offset_top = 128.0
+offset_right = 457.0
+offset_bottom = 224.0
+focus_mode = 1
+theme_override_styles/normal = SubResource("StyleBoxTexture_k0842")
+theme_override_styles/hover = SubResource("StyleBoxTexture_j8ldk")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_nnh4n")
+theme_override_styles/focus = SubResource("StyleBoxTexture_wdbpi")
 
 [node name="keySh" type="Button" parent="."]
 layout_mode = 0
-offset_left = 795.0
-offset_top = 452.0
-offset_right = 867.0
-offset_bottom = 525.0
-theme_override_font_sizes/font_size = 64
-text = "sh"
+offset_left = 361.0
+offset_top = 226.0
+offset_right = 457.0
+offset_bottom = 322.0
+focus_mode = 1
+theme_override_styles/normal = SubResource("StyleBoxTexture_p2hnh")
+theme_override_styles/hover = SubResource("StyleBoxTexture_52len")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_kqh6i")
+theme_override_styles/focus = SubResource("StyleBoxTexture_r0ybd")
 
 [node name="keyL" type="Button" parent="."]
 layout_mode = 0
-offset_left = 600.0
-offset_top = 566.0
-offset_right = 672.0
-offset_bottom = 639.0
-theme_override_font_sizes/font_size = 64
-text = "l"
+offset_left = 203.0
+offset_top = 334.0
+offset_right = 299.0
+offset_bottom = 430.0
+focus_mode = 1
+theme_override_styles/normal = SubResource("StyleBoxTexture_3nnwf")
+theme_override_styles/hover = SubResource("StyleBoxTexture_m1g0g")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_04p2q")
+theme_override_styles/focus = SubResource("StyleBoxTexture_r2iml")
 
 [node name="keyS" type="Button" parent="."]
 layout_mode = 0
-offset_left = 396.0
-offset_top = 452.0
-offset_right = 468.0
-offset_bottom = 525.0
-theme_override_font_sizes/font_size = 64
-text = "s"
+offset_left = 55.0
+offset_top = 226.0
+offset_right = 151.0
+offset_bottom = 322.0
+focus_mode = 1
+theme_override_styles/normal = SubResource("StyleBoxTexture_mg0hl")
+theme_override_styles/hover = SubResource("StyleBoxTexture_84v6j")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_drae5")
+theme_override_styles/focus = SubResource("StyleBoxTexture_w1fy1")
 
 [node name="keyN" type="Button" parent="."]
 layout_mode = 0
-offset_left = 396.0
-offset_top = 348.0
-offset_right = 468.0
-offset_bottom = 421.0
-theme_override_font_sizes/font_size = 64
-text = "n"
+offset_left = 55.0
+offset_top = 128.0
+offset_right = 151.0
+offset_bottom = 224.0
+focus_mode = 1
+theme_override_styles/normal = SubResource("StyleBoxTexture_p1rjr")
+theme_override_styles/hover = SubResource("StyleBoxTexture_h3orn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_sx2wq")
+theme_override_styles/focus = SubResource("StyleBoxTexture_wf574")
 
 [node name="keyEjectiveK" type="Button" parent="."]
 layout_mode = 0
-offset_left = 881.0
-offset_top = 339.0
-offset_right = 1057.0
-offset_bottom = 509.0
-theme_override_font_sizes/font_size = 128
-text = "K"
+offset_left = 467.0
+offset_top = 169.0
+offset_right = 563.0
+offset_bottom = 265.0
+focus_mode = 1
+theme_override_styles/normal = SubResource("StyleBoxTexture_rb153")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ieckv")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_n6ut2")
+theme_override_styles/focus = SubResource("StyleBoxTexture_u2b41")
 
 [node name="keyRepeat" type="Button" parent="."]
 layout_mode = 0
-offset_left = 885.0
-offset_top = 574.0
-offset_right = 957.0
-offset_bottom = 647.0
-theme_override_font_sizes/font_size = 64
-text = "*"
+offset_left = 369.0
+offset_top = 332.0
+offset_right = 465.0
+offset_bottom = 428.0
+focus_mode = 1
+theme_override_styles/normal = SubResource("StyleBoxTexture_idw5b")
+theme_override_styles/hover = SubResource("StyleBoxTexture_u0wvb")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2tydx")
+theme_override_styles/focus = SubResource("StyleBoxTexture_ymggo")
 
 [node name="keyDuplicant" type="Button" parent="."]
 layout_mode = 0
-offset_left = 965.0
-offset_top = 574.0
-offset_right = 1037.0
-offset_bottom = 647.0
-theme_override_font_sizes/font_size = 64
-text = "!"
+offset_left = 467.0
+offset_top = 332.0
+offset_right = 563.0
+offset_bottom = 428.0
+focus_mode = 1
+theme_override_styles/normal = SubResource("StyleBoxTexture_taql2")
+theme_override_styles/hover = SubResource("StyleBoxTexture_hn7c8")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_nyr3v")
+theme_override_styles/focus = SubResource("StyleBoxTexture_hnfb1")
 
 [node name="keyDelete" type="Button" parent="."]
 layout_mode = 0
-offset_left = 885.0
-offset_top = 659.0
-offset_right = 1237.0
-offset_bottom = 741.0
-theme_override_font_sizes/font_size = 32
-text = "ʔaʃakasuKabi*u"
+offset_left = 273.0
+offset_top = 430.0
+offset_right = 417.0
+offset_bottom = 526.0
+focus_mode = 1
+theme_override_styles/normal = SubResource("StyleBoxTexture_640mw")
+theme_override_styles/hover = SubResource("StyleBoxTexture_to6xx")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_8qyvs")
+theme_override_styles/focus = SubResource("StyleBoxTexture_6ucy5")
 
 [node name="keyReturn" type="Button" parent="."]
 layout_mode = 0
-offset_left = 1242.0
-offset_top = 659.0
-offset_right = 1560.0
-offset_bottom = 741.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_t3ecp")
-text = "ʔaʃakasuʃakuu"
+offset_left = 419.0
+offset_top = 430.0
+offset_right = 563.0
+offset_bottom = 526.0
+focus_mode = 1
+theme_override_styles/normal = SubResource("StyleBoxTexture_84d6k")
+theme_override_styles/hover = SubResource("StyleBoxTexture_6k7jx")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_53opv")
+theme_override_styles/focus = SubResource("StyleBoxTexture_0qqm7")
