@@ -139,27 +139,45 @@ text = "n"
 [node name="keyEjectiveK" type="Button" parent="."]
 layout_mode = 0
 offset_left = 881.0
-offset_top = 287.0
-offset_right = 1181.0
-offset_bottom = 550.0
+offset_top = 339.0
+offset_right = 1057.0
+offset_bottom = 509.0
 theme_override_font_sizes/font_size = 128
 text = "K"
 
+[node name="keyRepeat" type="Button" parent="."]
+layout_mode = 0
+offset_left = 885.0
+offset_top = 574.0
+offset_right = 957.0
+offset_bottom = 647.0
+theme_override_font_sizes/font_size = 64
+text = "*"
+
+[node name="keyDuplicant" type="Button" parent="."]
+layout_mode = 0
+offset_left = 965.0
+offset_top = 574.0
+offset_right = 1037.0
+offset_bottom = 647.0
+theme_override_font_sizes/font_size = 64
+text = "!"
+
 [node name="keyDelete" type="Button" parent="."]
 layout_mode = 0
-offset_left = 757.0
-offset_top = 691.0
-offset_right = 1109.0
-offset_bottom = 773.0
+offset_left = 885.0
+offset_top = 659.0
+offset_right = 1237.0
+offset_bottom = 741.0
 theme_override_font_sizes/font_size = 32
 text = "ʔaʃakasuKabi*u"
 
 [node name="keyReturn" type="Button" parent="."]
 layout_mode = 0
-offset_left = 1114.0
-offset_top = 691.0
-offset_right = 1432.0
-offset_bottom = 773.0
+offset_left = 1242.0
+offset_top = 659.0
+offset_right = 1560.0
+offset_bottom = 741.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_t3ecp")
