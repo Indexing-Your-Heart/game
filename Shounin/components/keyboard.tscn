@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://ecxx1b6ggwda"]
+
+[ext_resource type="Theme" uid="uid://dbup2qc6kea2t" path="res://resources/gui/theme.tres" id="1_ac5xj"]
+
+[node name="Keyboard" type="AshashatKeyboardInterpreter"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ac5xj")
+
+[node name="keyA" type="Button" parent="."]
+layout_mode = 0
+offset_left = 484.0
+offset_top = 286.0
+offset_right = 626.0
+offset_bottom = 410.0
+text = "a"
+
+[node name="keyE" type="Button" parent="."]
+layout_mode = 0
+offset_left = 642.0
+offset_top = 286.0
+offset_right = 784.0
+offset_bottom = 410.0
+text = "e
+"
+
+[node name="keyI" type="Button" parent="."]
+layout_mode = 0
+offset_left = 484.0
+offset_top = 426.0
+offset_right = 626.0
+offset_bottom = 550.0
+text = "i"
+
+[node name="keyU" type="Button" parent="."]
+layout_mode = 0
+offset_left = 642.0
+offset_top = 426.0
+offset_right = 784.0
+offset_bottom = 550.0
+text = "u"
+
+[node name="keyEjectiveK" type="Button" parent="."]
+layout_mode = 0
+offset_left = 801.0
+offset_top = 287.0
+offset_right = 1101.0
+offset_bottom = 550.0
+text = "k'"

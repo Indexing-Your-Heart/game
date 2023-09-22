@@ -9,7 +9,8 @@ where having a conlang may benefit the quality of the product. It includes its o
 extensibility that feels natural to developers that have experience in writing user interfaces declaratively, such as in
 React.js, SwiftUI, and Jetpack Compose.
 
-**AshashatCore** is the primary package that provides the tooling for creating words, phrases, and sentences.
+**AshashatCore** is the primary package that provides the tooling for creating words, phrases, and sentences, and it
+builds off ConlangKit to provide a fluid interface.
 
 > Important: Because [ʔaʃaʃat] has a unique writing system that is not easily romanized, words and morphemes written for
 > [ʔaʃaʃat] will be written using the International Phonetic Alphabet (IPA), which provides a one-to-one mapping for
@@ -43,13 +44,3 @@ The following types represent the small list of primitives that [ʔaʃaʃat] sup
 
 - ``AshashatPrimitive``
 - ``AshashatShape``
-
-### Linguistic Backing
-
-The following types are the foundational blocks that build up the [ʔaʃaʃat] word builder. They offer ai means to create
-linguistic morphemes in a polysynthetic manner.
-
-- ``LinguisticRepresentable``
-- ``PhonotacticRepairStrategy``
-- ``DefaultRepairStrategy``
-- ``Syllable``

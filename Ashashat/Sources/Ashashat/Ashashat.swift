@@ -16,4 +16,4 @@
 import SwiftGodot
 import SwiftGodotMacros
 
-#initSwiftExtension(cdecl: "libashashat_entry_point", types: [AshashatNode.self])
+#initSwiftExtension(cdecl: "libashashat_entry_point", types: [AshashatKeyboardInterpreter.self])

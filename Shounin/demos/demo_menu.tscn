@@ -53,3 +53,8 @@ flat = true
 layout_mode = 2
 text = "Jenson Scene Demo"
 flat = true
+
+[node name="AshashatDemo" type="Button" parent="Container/VBoxContainer"]
+layout_mode = 2
+text = "Ashashat Keyboard Demo"
+flat = true

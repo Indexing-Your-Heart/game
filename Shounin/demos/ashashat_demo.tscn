@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://wemw6prebajf"]
+
+[ext_resource type="Theme" uid="uid://dbup2qc6kea2t" path="res://resources/gui/theme.tres" id="1_0p5wj"]
+[ext_resource type="Script" path="res://scripts/demo_ashashat.gd" id="1_fg7vj"]
+[ext_resource type="PackedScene" uid="uid://ecxx1b6ggwda" path="res://components/keyboard.tscn" id="1_g456k"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_0p5wj")
+script = ExtResource("1_fg7vj")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.093
+offset_bottom = 0.299998
+grow_horizontal = 2
+text = "Press a key on the keyboard to start typing..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Keyboard" parent="." instance=ExtResource("1_g456k")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="TextField" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.91
+anchor_right = 1.003
+anchor_bottom = 1.0
+offset_top = -2.36034e-05
+offset_right = -0.800034
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_alignment = 1
+vertical_alignment = 1

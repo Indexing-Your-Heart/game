@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bhdu82yikkqf3"]
+[gd_scene load_steps=26 format=3 uid="uid://bhdu82yikkqf3"]
 
 [ext_resource type="Texture2D" uid="uid://b1d5u8txom028" path="res://resources/sprt_chelsea.png" id="2_r517x"]
 
@@ -214,8 +214,6 @@ states/Walk/node = SubResource("AnimationNodeBlendSpace2D_6nbye")
 states/Walk/position = Vector2(528, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_y410c"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_1f7q0")]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_upjym"]
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hyn65"]
 radius = 24.0
 height = 64.0
@@ -241,7 +239,6 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_u2fhk")
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_upjym")
 parameters/Idle/blend_position = Vector2(2.08165e-12, 2.08165e-12)
 parameters/Walk/blend_position = Vector2(2.08165e-12, 2.08165e-12)
 
