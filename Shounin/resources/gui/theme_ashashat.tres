@@ -1,0 +1,34 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://b2ym80ujimgm6"]
+
+[ext_resource type="FontFile" uid="uid://u077pytrgt12" path="res://resources/gui/ashashat_fnt.ttf" id="1_cx61m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rof10"]
+bg_color = Color(0.811765, 0.796078, 0.721569, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.827451, 0.309804, 0.14902, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 6.0
+expand_margin_top = 6.0
+expand_margin_right = 6.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w02an"]
+bg_color = Color(0.937255, 0.494118, 0.270588, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ull3"]
+bg_color = Color(0.811765, 0.796078, 0.721569, 1)
+
+[resource]
+default_font = ExtResource("1_cx61m")
+default_font_size = 24
+Button/colors/font_color = Color(0.160784, 0.0862745, 0.0470588, 1)
+Button/colors/font_focus_color = Color(0.827451, 0.309804, 0.14902, 1)
+Button/styles/focus = SubResource("StyleBoxFlat_rof10")
+Button/styles/hover = SubResource("StyleBoxFlat_w02an")
+Button/styles/normal = SubResource("StyleBoxFlat_6ull3")

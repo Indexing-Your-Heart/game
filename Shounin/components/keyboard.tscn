@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://ecxx1b6ggwda"]
+[gd_scene load_steps=4 format=3 uid="uid://ecxx1b6ggwda"]
 
-[ext_resource type="Theme" uid="uid://dbup2qc6kea2t" path="res://resources/gui/theme.tres" id="1_ac5xj"]
+[ext_resource type="Theme" uid="uid://b2ym80ujimgm6" path="res://resources/gui/theme_ashashat.tres" id="1_dvw02"]
+[ext_resource type="FontFile" uid="uid://u077pytrgt12" path="res://resources/gui/ashashat_fnt.ttf" id="2_5sxfe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3ecp"]
+bg_color = Color(0.101961, 0.529412, 0.968627, 1)
 
 [node name="Keyboard" type="AshashatKeyboardInterpreter"]
 anchors_preset = 15
@@ -8,7 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_ac5xj")
+theme = ExtResource("1_dvw02")
 
 [node name="keyA" type="Button" parent="."]
 layout_mode = 0
@@ -16,6 +20,7 @@ offset_left = 484.0
 offset_top = 286.0
 offset_right = 626.0
 offset_bottom = 410.0
+theme_override_font_sizes/font_size = 100
 text = "a"
 
 [node name="keyE" type="Button" parent="."]
@@ -24,6 +29,7 @@ offset_left = 642.0
 offset_top = 286.0
 offset_right = 784.0
 offset_bottom = 410.0
+theme_override_font_sizes/font_size = 100
 text = "e
 "
 
@@ -33,6 +39,7 @@ offset_left = 484.0
 offset_top = 426.0
 offset_right = 626.0
 offset_bottom = 550.0
+theme_override_font_sizes/font_size = 100
 text = "i"
 
 [node name="keyU" type="Button" parent="."]
@@ -41,12 +48,119 @@ offset_left = 642.0
 offset_top = 426.0
 offset_right = 784.0
 offset_bottom = 550.0
+theme_override_fonts/font = ExtResource("2_5sxfe")
+theme_override_font_sizes/font_size = 100
 text = "u"
+
+[node name="keyP" type="Button" parent="."]
+layout_mode = 0
+offset_left = 410.0
+offset_top = 205.0
+offset_right = 482.0
+offset_bottom = 278.0
+theme_override_font_sizes/font_size = 64
+text = "p
+"
+
+[node name="keyB" type="Button" parent="."]
+layout_mode = 0
+offset_left = 498.0
+offset_top = 205.0
+offset_right = 570.0
+offset_bottom = 278.0
+theme_override_font_sizes/font_size = 64
+text = "b
+"
+
+[node name="keyT" type="Button" parent="."]
+layout_mode = 0
+offset_left = 618.0
+offset_top = 205.0
+offset_right = 690.0
+offset_bottom = 278.0
+theme_override_font_sizes/font_size = 64
+text = "t
+"
+
+[node name="keyK" type="Button" parent="."]
+layout_mode = 0
+offset_left = 738.0
+offset_top = 205.0
+offset_right = 810.0
+offset_bottom = 278.0
+theme_override_font_sizes/font_size = 64
+text = "k"
+
+[node name="keyGlottal" type="Button" parent="."]
+layout_mode = 0
+offset_left = 795.0
+offset_top = 286.0
+offset_right = 867.0
+offset_bottom = 359.0
+theme_override_font_sizes/font_size = 64
+text = "ʔ"
+
+[node name="keySh" type="Button" parent="."]
+layout_mode = 0
+offset_left = 795.0
+offset_top = 452.0
+offset_right = 867.0
+offset_bottom = 525.0
+theme_override_font_sizes/font_size = 64
+text = "sh"
+
+[node name="keyL" type="Button" parent="."]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 566.0
+offset_right = 672.0
+offset_bottom = 639.0
+theme_override_font_sizes/font_size = 64
+text = "l"
+
+[node name="keyS" type="Button" parent="."]
+layout_mode = 0
+offset_left = 396.0
+offset_top = 452.0
+offset_right = 468.0
+offset_bottom = 525.0
+theme_override_font_sizes/font_size = 64
+text = "s"
+
+[node name="keyN" type="Button" parent="."]
+layout_mode = 0
+offset_left = 396.0
+offset_top = 348.0
+offset_right = 468.0
+offset_bottom = 421.0
+theme_override_font_sizes/font_size = 64
+text = "n"
 
 [node name="keyEjectiveK" type="Button" parent="."]
 layout_mode = 0
-offset_left = 801.0
+offset_left = 881.0
 offset_top = 287.0
-offset_right = 1101.0
+offset_right = 1181.0
 offset_bottom = 550.0
-text = "k'"
+theme_override_font_sizes/font_size = 128
+text = "K"
+
+[node name="keyDelete" type="Button" parent="."]
+layout_mode = 0
+offset_left = 757.0
+offset_top = 691.0
+offset_right = 1109.0
+offset_bottom = 773.0
+theme_override_font_sizes/font_size = 32
+text = "ʔaʃakasuKabi*u"
+
+[node name="keyReturn" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1114.0
+offset_top = 691.0
+offset_right = 1432.0
+offset_bottom = 773.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_t3ecp")
+text = "ʔaʃakasuʃakuu"
