@@ -16,4 +16,7 @@
 import SwiftGodot
 import SwiftGodotMacros
 
-#initSwiftExtension(cdecl: "libashashat_entry_point", types: [AshashatKeyboardInterpreter.self])
+let registerableTypes: [Wrapped.Type] = [AshashatKeyboardInterpreter.self,
+                                         AshashatNumpadInterpreter.self]
+
+#initSwiftExtension(cdecl: "libashashat_entry_point", types: registerableTypes)
