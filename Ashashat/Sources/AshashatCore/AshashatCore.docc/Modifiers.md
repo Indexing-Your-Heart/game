@@ -280,17 +280,22 @@ Speed modifiers are prefixes to primitives and modifiers that describe the speed
 
 ## Topics
 
+### Modifiers
+- ``AshashatModifier``
+
 ### Plurality and Possession
 
 - ``AshashatWord/pluralized(_:)``
 - ``AshashatPluralityModifier``
 - ``PluralizedAshashatWord``
 - ``AshashatWord/owning()``
+- ``AshashatWord/owning(properties:)``
 - ``PossessedAshashatWord``
+- ``PossessionAshashatWord``
 
 ### Grammatical Person
 
-- ``AshashatWord/grammaticalPerson(_:)``
+- ``AshashatModifier/grammaticalPerson(_:)``
 - ``AshashatGrammaticalPersonModifier``
 - ``GrammaticalPersonAshashatWord``
 

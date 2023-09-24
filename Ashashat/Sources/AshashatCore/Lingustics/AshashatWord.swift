@@ -29,6 +29,10 @@ public protocol AshashatWord {
     var word: Word { get }
 }
 
+/// A modifier in [ʔaʃaʃat].
+///
+/// This protocol is typically used to mark which words are considered modifiers, and it can be used to limit specific
+/// modifiers, such as ``AshashatModifier/grammaticalPerson(_:)``.
 public protocol AshashatModifier: AshashatWord {}
 
 /// A repair strategy specializing in phonotactic rules for [ʔaʃaʃat].
