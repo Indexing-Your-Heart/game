@@ -1,0 +1,157 @@
+[gd_scene load_steps=36 format=3 uid="uid://dwj644b4yi2u0"]
+
+[ext_resource type="Theme" uid="uid://b2ym80ujimgm6" path="res://resources/gui/theme_ashashat.tres" id="1_253x1"]
+[ext_resource type="Texture2D" uid="uid://cbf61wdsn8p7o" path="res://resources/gui/numpad/Number_Straight_Focus.png" id="2_2yc35"]
+[ext_resource type="Texture2D" uid="uid://xeq8ka2feo61" path="res://resources/gui/numpad/Number_Active_Press.png" id="3_jwxyi"]
+[ext_resource type="Texture2D" uid="uid://d1mi3l4jr5d1x" path="res://resources/gui/numpad/Number_Backslash_Normal.png" id="4_4ujbb"]
+[ext_resource type="Texture2D" uid="uid://bredbxkanyhho" path="res://resources/gui/keyboard/Return_Normal.png" id="5_k1m4f"]
+[ext_resource type="Texture2D" uid="uid://x8rjbarrey4l" path="res://resources/gui/numpad/Number_Slash_Normal.png" id="5_upkne"]
+[ext_resource type="Texture2D" uid="uid://jj2jkfwnisim" path="res://resources/gui/keyboard/Return_Focus.png" id="6_dqtfm"]
+[ext_resource type="Texture2D" uid="uid://b811stqpydsn1" path="res://resources/gui/numpad/Number_Backslash_Focus.png" id="6_gdmby"]
+[ext_resource type="Texture2D" uid="uid://bvfxpiyn7wpvt" path="res://resources/gui/numpad/Number_Slash_Focus.png" id="7_bh6nj"]
+[ext_resource type="Texture2D" uid="uid://fr2nv833qngb" path="res://resources/gui/keyboard/Return_Press.png" id="7_mic8t"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2qlrb"]
+load_path = "res://.godot/imported/Number_Straight_Normal.png-67b1cbe4940c0b6488acad978c73fb46.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ynpnf"]
+texture = SubResource("CompressedTexture2D_2qlrb")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x3i5c"]
+texture = ExtResource("2_2yc35")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n5cxn"]
+texture = ExtResource("3_jwxyi")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xgoi8"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_32625"]
+texture = ExtResource("4_4ujbb")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ifxh8"]
+texture = ExtResource("6_gdmby")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l62qq"]
+load_path = "res://.godot/imported/Number_Active_Press.png-452346ca8cf1efffb76fa5f32ce58b68.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cq75d"]
+texture = SubResource("CompressedTexture2D_l62qq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fb4fy"]
+texture = ExtResource("5_upkne")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_huncn"]
+texture = ExtResource("7_bh6nj")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qaco6"]
+load_path = "res://.godot/imported/Number_Active_Press.png-452346ca8cf1efffb76fa5f32ce58b68.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ws57w"]
+texture = SubResource("CompressedTexture2D_qaco6")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6esg6"]
+texture = ExtResource("5_upkne")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4yhuo"]
+texture = ExtResource("7_bh6nj")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_66rwd"]
+load_path = "res://.godot/imported/Number_Active_Press.png-452346ca8cf1efffb76fa5f32ce58b68.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eopmm"]
+texture = SubResource("CompressedTexture2D_66rwd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ubl4j"]
+texture = ExtResource("4_4ujbb")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_52383"]
+texture = ExtResource("6_gdmby")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tbwwy"]
+load_path = "res://.godot/imported/Number_Active_Press.png-452346ca8cf1efffb76fa5f32ce58b68.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_heuud"]
+texture = SubResource("CompressedTexture2D_tbwwy")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7cuom"]
+texture = ExtResource("5_k1m4f")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vsgvr"]
+texture = ExtResource("6_dqtfm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g408k"]
+texture = ExtResource("7_mic8t")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i6j7b"]
+
+[node name="Numpad" type="AshashatNumpadInterpreter"]
+texture_filter = 1
+theme = ExtResource("1_253x1")
+
+[node name="key1" type="Button" parent="."]
+layout_mode = 0
+offset_left = 56.0
+offset_right = 152.0
+offset_bottom = 96.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_ynpnf")
+theme_override_styles/hover = SubResource("StyleBoxTexture_x3i5c")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_n5cxn")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xgoi8")
+toggle_mode = true
+
+[node name="key2" type="Button" parent="."]
+layout_mode = 0
+offset_top = 104.0
+offset_right = 96.0
+offset_bottom = 200.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_32625")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ifxh8")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_cq75d")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xgoi8")
+toggle_mode = true
+
+[node name="key4" type="Button" parent="."]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 104.0
+offset_right = 208.0
+offset_bottom = 200.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_fb4fy")
+theme_override_styles/hover = SubResource("StyleBoxTexture_huncn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ws57w")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xgoi8")
+toggle_mode = true
+
+[node name="key8" type="Button" parent="."]
+layout_mode = 0
+offset_top = 216.0
+offset_right = 96.0
+offset_bottom = 312.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_6esg6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_4yhuo")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_eopmm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xgoi8")
+toggle_mode = true
+
+[node name="key16" type="Button" parent="."]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 216.0
+offset_right = 208.0
+offset_bottom = 312.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_ubl4j")
+theme_override_styles/hover = SubResource("StyleBoxTexture_52383")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_heuud")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xgoi8")
+toggle_mode = true
+
+[node name="keyReturn" type="Button" parent="."]
+offset_left = 32.0
+offset_top = 328.0
+offset_right = 176.0
+offset_bottom = 424.0
+focus_mode = 1
+theme_override_styles/normal = SubResource("StyleBoxTexture_7cuom")
+theme_override_styles/hover = SubResource("StyleBoxTexture_vsgvr")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_g408k")
+theme_override_styles/focus = SubResource("StyleBoxTexture_i6j7b")
