@@ -57,7 +57,7 @@ public class AshashatNumpadInterpreter: Control {
                 guard let key, let self else { return }
 
                 // If already pressed, remove the number from the count (i.e., turn off that bit).
-                self.internalValue += key.buttonPressed ? number * -1 : number
+                self.internalValue += key.buttonPressed ? number : number * -1
             }
         }
         keyReturn?.pressed.connect { [self] in
