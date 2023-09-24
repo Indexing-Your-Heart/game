@@ -58,3 +58,8 @@ flat = true
 layout_mode = 2
 text = "Ashashat Keyboard Demo"
 flat = true
+
+[node name="AshashatNumpadDemo" type="Button" parent="Container/VBoxContainer"]
+layout_mode = 2
+text = "Ashashat Numpad Demo"
+flat = true

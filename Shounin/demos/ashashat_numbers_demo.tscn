@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpw2oovtw77tk"]
+
+[ext_resource type="Theme" uid="uid://dbup2qc6kea2t" path="res://resources/gui/theme.tres" id="1_pk3db"]
+[ext_resource type="Script" path="res://scripts/demo_ashashat_numpad.gd" id="2_1xegt"]
+[ext_resource type="PackedScene" uid="uid://dwj644b4yi2u0" path="res://components/numpad.tscn" id="3_ccn7u"]
+
+[node name="Control" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_pk3db")
+script = ExtResource("2_1xegt")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.093
+offset_bottom = 0.299998
+grow_horizontal = 2
+text = "Use the numpad below to set a number..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Numpad" parent="." instance=ExtResource("3_ccn7u")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -103.0
+offset_top = -206.0
+offset_right = 111.0
+offset_bottom = 223.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextField" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.91
+anchor_right = 1.003
+anchor_bottom = 1.0
+offset_top = -2.36034e-05
+offset_right = -0.800034
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DEMO" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -161.0
+offset_bottom = 78.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 56
+text = "DEMO"
