@@ -128,3 +128,9 @@ integration_results_*.xml
 
 # Raw unswizzled assets
 Shounin/resources/characters/**.png
+
+# Dependency intermediates
+AnthroBase/xcbuild/
+Ashashat/xcbuild/
+Protractor/xcbuild/
+JensonGodotKit/xcbuild/
