@@ -81,8 +81,9 @@ public extension AshashatModifier {
     /// ```swift
     /// var word: some AshashatWord {
     ///     AshashatPrimitive.idea
-    ///         .owning()
-    ///         .grammaticalPerson(.first) // produces [bik'aʔaʃasu:p]
+    ///         .owning { word in
+    ///             word.grammaticalPerson(.first)
+    ///         } // produces [biʔaʃak'asu:p]
     /// }
     /// ```
     ///
