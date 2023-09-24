@@ -17,7 +17,7 @@ import ConlangKit
 import Foundation
 
 /// A modifier describing the different pluralities a word can take.
-public enum AshashatPluralityModifier: AshashatWord {
+public enum AshashatPluralityModifier: AshashatModifier {
     /// The amount is zero or non-existent.
     case none
 
@@ -49,14 +49,19 @@ public enum AshashatPluralityModifier: AshashatWord {
 /// An [ʔaʃaʃat] word that has been pluralized.
 ///
 /// This can only be constructed using the ``AshashatWord/pluralized(_:)`` modifier.
-struct PluralizedAshashatWord<SingularForm: AshashatWord>: AshashatWord {
+public struct PluralizedAshashatWord<SingularForm: AshashatWord>: AshashatWord {
     /// The plural modifier that applies to this word.
     var plural: AshashatPluralityModifier
 
     /// The singular form of the word being pluralized.
     var singularForm: SingularForm
 
-    var word: some LinguisticRepresentable {
+    internal init(plural: AshashatPluralityModifier, singularForm: SingularForm) {
+        self.plural = plural
+        self.singularForm = singularForm
+    }
+
+    public var word: some LinguisticRepresentable {
         // NOTE: The force case here must be applied to coerce the plural modifier's word to be treated as a bound
         // morpheme. This looks like some freaky type gymnastics, but it is technically true that plurals are bound
         // morphemes.
@@ -65,6 +70,17 @@ struct PluralizedAshashatWord<SingularForm: AshashatWord>: AshashatWord {
         singularForm.word
             .circumfixed(by: plural.word as! SingularForm.Word.BoundMorpheme, // swiftlint:disable:this force_cast
                          repairingWith: .ashashat)
+    }
+}
+
+extension PluralizedAshashatWord: CustomStringConvertible {
+    public var description: String {
+       """
+       ▿ PluralizedAshashatWord
+        - Amount: \(plural)
+        ▿ SingularForm: \(SingularForm.self)
+          \(indented: singularForm)
+       """
     }
 }
 

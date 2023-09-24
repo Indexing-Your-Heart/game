@@ -20,7 +20,7 @@ import Foundation
 ///
 /// Action modifiers are typically used to describe what can be done with a given word. For example, a _word_ would be
 /// considered a "speakable idea".
-public enum AshashatActionModifier: AshashatWord {
+public enum AshashatActionModifier: AshashatModifier {
     /// The word can be acted upon through speech.
     case speakable
 
@@ -90,18 +90,34 @@ public enum AshashatActionModifier: AshashatWord {
 /// An [ʔaʃaʃat] word that has an action associated with it.
 ///
 /// This cannot be constructed on its own, but can be used through ``AshashatWord/action(_:)``.
-struct ActionableAshashatWord<Object: AshashatWord>: AshashatWord {
+public struct ActionableAshashatWord<Object: AshashatWord>: AshashatWord {
     /// The action associated with the word.
     var action: AshashatActionModifier
 
     /// The word where the object applies.
     var object: Object
 
-    var word: some LinguisticRepresentable {
+    internal init(action: AshashatActionModifier, object: Object) {
+        self.action = action
+        self.object = object
+    }
+
+    public var word: some LinguisticRepresentable {
         // I swear to Obel, if I have to type another force cast...
         object.word
             .suffixed(by: action.word as! Object.Word.BoundMorpheme, // swiftlint:disable:this force_cast
                       repairingWith: .ashashat)
+    }
+}
+
+extension ActionableAshashatWord: CustomStringConvertible {
+    public var description: String {
+       """
+       ▿ ActionableAshashatWord
+        - Action: \(action)
+        ▿ Object: \(Object.self)
+          \(indented: object)
+       """
     }
 }
 
@@ -124,5 +140,27 @@ public extension AshashatWord {
     /// - Parameter action: The action to associate with the current word.
     func action(_ action: AshashatActionModifier) -> some AshashatWord {
         ActionableAshashatWord(action: action, object: self)
+    }
+
+    /// Marks an associated action with a word.
+    ///
+    /// Action modifiers are typically used to denote that a word can either perform an action type on its own, or it
+    /// contributes to something else that can perform that action type.
+    ///
+    /// For example, the following produces the word _word_, or a "speakable idea":
+    /// ```swift
+    /// var word: some AshashatWord {
+    ///     AshashatPrimitive.idea
+    ///         .action(.speakable) // produces [ʔaʃakasu]
+    /// }
+    /// ```
+    ///
+    /// Action modifiers are typically applied as suffixes to primitives and other modifiers.
+    ///
+    /// - Parameter action: The action to associate with the current word.
+    /// - Parameter properties: A closure that adds additional properties to the modifier.
+    func action(_ action: AshashatActionModifier,
+                properties builder: (AshashatActionModifier) -> some AshashatWord) -> some AshashatWord {
+        self.suffix(builder(action))
     }
 }

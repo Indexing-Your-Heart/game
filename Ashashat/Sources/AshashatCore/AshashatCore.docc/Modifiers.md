@@ -169,6 +169,114 @@ when no other action modifiers can accurately describe or categorize the primiti
 For instance, the word [ʔaʃa | nalu] transliterates to “doable idea”, which indicates that something can be done with
 the idea, but the action itself is unclear.
 
+### Logical conjunctions
+
+The logical conjunctions are infixes for primitives and/or modifiers that can be used to express negation or
+combinational logic, such as “red and blue”. In AshashatCore, this is represented by
+``AshashatLogicalConjunctionModifier``.
+
+| English conjunction | [ʔaʃaʃat] | Conjunction modifier case                    |
+| :------------------ | :-------- | :------------------------------------------- |
+| not                 | sukaʔ     | ``AshashatLogicalConjunctionModifier/not``   |
+| never               | sukak’aʔ  | ``AshashatLogicalConjunctionModifier/never`` |
+| and                 | suki      | ``AshashatLogicalConjunctionModifier/and``   |
+| or                  | suke      | ``AshashatLogicalConjunctionModifier/or``    |
+| exclusive or (xor)  | ʃukek’e   | ``AshashatLogicalConjunctionModifier/xor``   |
+
+
+For example, the modifier [ba | sukaʔa | bin] transliterates to “not markable”. Logical conjunctions can be expressed
+using the ``AshashatWord/logicalConjunction(using:)`` modifier:
+
+```swift
+let unmarkableIdea: some AshashatWord = {
+    AshashatPrimitive.idea
+        .action(.markable) { action in
+            action.logicalConjunction(using: .not)
+        } // produces [ʔaʃabasukaʔabin]
+}()
+```
+
+> Note: Both [sukak’aʔ] and [ʃukek’e] use intensified duplicants to express the extent of the logic; the last syllable
+> is reduplicated and intensified by replacing the [k] consonant with its ejective counterpart, [k’]. This approach to
+> these modifiers was taken to reduce the number of combinations needed to express these modifiers.
+
+## Scientific domains
+
+Scientific domain modifiers are circumfixes to primitives and/or modifiers used to denote a scientific quality about an
+item.
+
+| Scientific domain | [ʔaʃaʃat] |
+| :---------------- | :-------- |
+| natural           | isalu     |
+| chemical          | ikalu     |
+| electrical        | eʃaku     |
+| physical          | iʃalu     |
+
+
+For example, the word [e | siʃa | ʃaku] transliterates to “electrical slab”, which translates to *tablet (like iPad)*.
+
+## Size and scale
+
+Size and scale modifiers are suffixes to primitives and/or modifiers that describe the scale or size of an item.
+
+| Size or scale | [ʔaʃaʃat] |
+| :------------ | :-------- |
+| small         | ʃa        |
+| midsize       | ʃe        |
+| big           | ʃi        |
+| longwise      | k’aʃa     |
+| width wise    | k’iʃi     |
+
+
+For example, the word [siʃa | ʃa | k’iʃi | suki | ʃi | k’aʃa] transliterates to “slab that is small width wise and big
+lengthwise”, which translates to *line*.
+
+## Senses
+
+Sense modifiers are prefixes to primitives and/or modifiers that describe words with respect to the senses.
+
+| Sense        | [ʔaʃaʃat] |
+| :----------- | :-------- |
+| audio        | aʔa       |
+| visual       | iʔi       |
+| “sniff able” | eʔe       |
+| “taste able” | uʔu       |
+| tactile      | ik’i      |
+
+
+For example, the word [iʔi | ʔaʃ] transliterates to “visual idea”, which translates to *art*.
+
+## Colors
+
+Color modifiers are prefixes to primitives and modifiers that describe the color of an item. They can be combined using
+logical intensity operators and are **never** used to describe the race of a person.
+
+| Color  | [ʔaʃaʃat] |
+| :----- | :-------- |
+| red    | tata      |
+| orange | titi      |
+| yellow | tutu      |
+| green  | nana      |
+| blue   | nini      |
+| indigo | nene      |
+| purple | nunu      |
+| black  | ak’a      |
+| white  | aʃa       |
+
+
+For example, the word [titi | uʔu | ʔilin] transliterates to “red tastable/edible sphere”, which translates to *apple*.
+
+> Tip: To disambiguate between the fruit "apple" and the consumer electronics company "Apple, Inc.", “apple” will always
+> be written as described above. Apple Inc. is written as a name with repair strategies applied ([e:pulu]).
+
+## Speed
+
+Speed modifiers are prefixes to primitives and modifiers that describe the speed of an action or item in question.
+
+| Speed | [ʔaʃaʃat] |
+| :---- | :-------- |
+| slow  | ake       |
+| fast  | ak'i      |
 
 ## Topics
 
@@ -176,14 +284,25 @@ the idea, but the action itself is unclear.
 
 - ``AshashatWord/pluralized(_:)``
 - ``AshashatPluralityModifier``
+- ``PluralizedAshashatWord``
 - ``AshashatWord/owning()``
+- ``PossessedAshashatWord``
 
 ### Grammatical Person
 
 - ``AshashatWord/grammaticalPerson(_:)``
 - ``AshashatGrammaticalPersonModifier``
+- ``GrammaticalPersonAshashatWord``
 
 ### Actions
 
 - ``AshashatWord/action(_:)``
+- ``AshashatWord/action(_:properties:)``
 - ``AshashatActionModifier``
+- ``ActionableAshashatWord``
+
+### Logical Conjunctions
+
+- ``AshashatWord/logicalConjunction(using:)``
+- ``AshashatLogicalConjunctionModifier``
+- ``LogicalAshashatWord``

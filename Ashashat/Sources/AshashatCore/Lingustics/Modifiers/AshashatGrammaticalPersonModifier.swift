@@ -17,7 +17,7 @@ import ConlangKit
 import Foundation
 
 /// A modifier describing the grammatical person associated with the word.
-public enum AshashatGrammaticalPersonModifier: AshashatWord {
+public enum AshashatGrammaticalPersonModifier: AshashatModifier {
     /// The first person (i.e., the speaker).
     case first
 
@@ -42,21 +42,37 @@ public enum AshashatGrammaticalPersonModifier: AshashatWord {
 /// An [ʔaʃaʃat] word with an attached grammatical person.
 ///
 /// This can only be constructed using the ``AshashatWord/grammaticalPerson(_:)`` modifier.
-struct GrammaticalPersonAshashatWord<Reference: AshashatWord>: AshashatWord {
+public struct GrammaticalPersonAshashatWord<Reference: AshashatWord>: AshashatWord {
     /// The grammatical person associated with this word.
     var person: AshashatGrammaticalPersonModifier
 
     /// The reference word for which the grammatical person is assigned to.
     var reference: Reference
 
-    var word: some LinguisticRepresentable {
+    internal init(person: AshashatGrammaticalPersonModifier, reference: Reference) {
+        self.person = person
+        self.reference = reference
+    }
+
+    public var word: some LinguisticRepresentable {
         reference.word
             .prefixed(by: person.word as! Reference.Word.BoundMorpheme, // swiftlint:disable:this force_cast
                       repairingWith: .ashashat)
     }
 }
 
-public extension AshashatWord {
+extension GrammaticalPersonAshashatWord: CustomStringConvertible {
+    public var description: String {
+       """
+       ▿ PrefixedAshashatWord
+        - Person: \(person)
+        ▿ Reference: \(Reference.self)
+          \(indented: reference)
+       """
+    }
+}
+
+public extension AshashatModifier {
     /// Specifies an associated grammatical person.
     ///
     /// Grammtical person modifiers are applied as prefixes, typically for modifiers. For example, the following

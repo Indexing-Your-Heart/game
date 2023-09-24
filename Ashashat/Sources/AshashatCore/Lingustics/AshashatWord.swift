@@ -29,6 +29,8 @@ public protocol AshashatWord {
     var word: Word { get }
 }
 
+public protocol AshashatModifier: AshashatWord {}
+
 /// A repair strategy specializing in phonotactic rules for [ʔaʃaʃat].
 ///
 /// Typically, consonats cannot sit next to each other in the middle of a word. For example, `[i.ʔa.ʃa.ʃat.sa]` would
@@ -46,7 +48,8 @@ public struct AshashatRepairStrategy: PhonotacticRepairStrategy {
             "l": "lu",
             "n": "na",
             "t": "ta",
-            "ʃ": "ʃa"
+            "ʃ": "ʃa",
+            "ʔ": "ʔa"
         ]
     }
 
@@ -61,6 +64,9 @@ public struct AshashatRepairStrategy: PhonotacticRepairStrategy {
     }
 
     public func apply(_ first: Syllable, _ second: Syllable, endOfWord: Bool) -> [Syllable] {
+        if first == second, endOfWord {
+            return [first, second]
+        }
         return Self.remap(first) + (endOfWord ? [second] : Self.remap(second))
     }
 }

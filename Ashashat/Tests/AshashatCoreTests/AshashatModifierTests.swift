@@ -48,11 +48,14 @@ final class AshashatModifierTests: XCTestCase {
     func testGrammaticalPersonModifier() throws {
         let yourIdea: some AshashatWord = {
             AshashatPrimitive.idea
-                .owning()
-                .grammaticalPerson(.second)
+                .owning { word in
+                    word.grammaticalPerson(.second)
+                }
         }()
-        XCTAssertTrue(yourIdea is GrammaticalPersonAshashatWord<PossessedAshashatWord<AshashatPrimitive>>)
-        XCTAssertEqual(String(ashashatWord: yourIdea), "[bik'aʔaʃasu:p]")
+        XCTAssertTrue(
+            yourIdea is
+            CircumfixedAshashatWord<AshashatPrimitive, GrammaticalPersonAshashatWord<PossessionAshashatWord>>)
+        XCTAssertEqual(String(ashashatWord: yourIdea), "[biʔaʃak'asu:p]")
     }
 
     func testActionModifier() throws {
@@ -62,5 +65,17 @@ final class AshashatModifierTests: XCTestCase {
         }()
         XCTAssertTrue(word is ActionableAshashatWord<AshashatPrimitive>)
         XCTAssertEqual(String(ashashatWord: word), "[ʔaʃakasu]")
+    }
+
+    func testLogicalConjunctionModifier() throws {
+        let unmarkableIdea: some AshashatWord = {
+            AshashatPrimitive.idea
+                .action(.markable) { action in
+                    action.logicalConjunction(using: .not)
+                }
+        }()
+        XCTAssertTrue(
+            unmarkableIdea is SuffixedAshashatWord<AshashatPrimitive, LogicalAshashatWord<AshashatActionModifier>>)
+        XCTAssertEqual(String(ashashatWord: unmarkableIdea), "[ʔaʃabasukaʔabin]")
     }
 }

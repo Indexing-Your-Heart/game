@@ -16,20 +16,40 @@
 import ConlangKit
 import Foundation
 
+
 /// An [ʔaʃaʃat] word that is in its possesive form.
 ///
 /// This can only be constructed using the ``AshashatWord/owning()`` method.
-struct PossessedAshashatWord<Owned: AshashatWord>: AshashatWord {
+public struct PossessedAshashatWord<Owned: AshashatWord>: AshashatWord {
     /// The word in its non-possessive form.
     var owningItem: Owned
 
-    private var owningPrefix: some LinguisticRepresentable {
+    internal init(owningItem: Owned) {
+        self.owningItem = owningItem
+    }
+
+    public var word: some LinguisticRepresentable {
+        owningItem.word
+            .circumfixed(by: PossessionAshashatWord().word as! Owned.Word.BoundMorpheme, repairingWith: .ashashat)
+    }
+}
+
+/// A struct containing the [ʔaʃaʃat] prefix of the possessive modifier.
+public struct PossessionAshashatWord: AshashatModifier {
+    public var word: some LinguisticRepresentable {
         Morpheme(stringLiteral: "[k'a.su:p]")
     }
 
-    var word: some LinguisticRepresentable {
-        owningItem.word
-            .circumfixed(by: owningPrefix as! Owned.Word.BoundMorpheme, repairingWith: .ashashat)
+    internal init() {}
+}
+
+extension PossessedAshashatWord: CustomStringConvertible {
+    public var description: String {
+       """
+       ▿ PossessedAshashatWord
+        ▿ Owned: \(Owned.self)
+          \(indented: owningItem)
+       """
     }
 }
 
@@ -39,5 +59,13 @@ public extension AshashatWord {
     /// This is applied as a circumfix to an existing primitive or modifier.
     func owning() -> some AshashatWord {
         PossessedAshashatWord(owningItem: self)
+    }
+
+    /// Marks the word as a possessive.
+    ///
+    /// This is applied as a circumfix to an existing primitive or modifier.
+    /// - Parameter builder: A closure used to attach any modifier-only properties.
+    func owning(properties builder: (PossessionAshashatWord) -> some AshashatWord) -> some AshashatWord {
+        self.circumfix(builder(.init()))
     }
 }
