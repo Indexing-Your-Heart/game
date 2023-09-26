@@ -61,7 +61,7 @@ public class AshashatNumpadInterpreter: Control {
             }
         }
         keyReturn?.pressed.connect { [self] in
-            emitSignal(signal: Self.returnedSignalName, internalValue.toVariant())
+            emitSignal(Self.returnedSignalName, internalValue.toVariant())
         }
     }
 }

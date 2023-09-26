@@ -159,7 +159,7 @@ public class JensonTimeline: Node {
             if !finished {
                 finished.toggle()
                 GD.print("Timeline has finished.")
-                emitSignal(signal: JensonTimeline.timelineFinishedSignalName)
+                emitSignal(JensonTimeline.timelineFinishedSignalName)
             }
             GD.pushWarning("Attempted to move to an empty slot.")
             return
@@ -169,7 +169,7 @@ public class JensonTimeline: Node {
             setup(event: currentEvent)
         } else {
             GD.print("Timeline has completed.")
-            emitSignal(signal: JensonTimeline.timelineFinishedSignalName)
+            emitSignal(JensonTimeline.timelineFinishedSignalName)
         }
     }
 

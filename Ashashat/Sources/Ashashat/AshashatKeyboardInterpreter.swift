@@ -83,8 +83,7 @@ public class AshashatKeyboardInterpreter: Control {
     }
 
     private func pressKey(_ key: AshashatKeyboardKey) {
-        self.emitSignal(signal: AshashatKeyboardInterpreter.keyPressedSignalName,
-                        Variant(stringLiteral: key.keyCode))
+        self.emitSignal(AshashatKeyboardInterpreter.keyPressedSignalName, Variant(stringLiteral: key.keyCode))
     }
 }
 

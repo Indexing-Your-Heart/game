@@ -189,6 +189,6 @@ public class ProtractorDrawer: Node2D {
 
         let (name, accuracy) = recognizer.recognize()
         GD.print("Best guess:", name, "with accuracy:", accuracy)
-        emitSignal(signal: Self.recognizedSignalName, Variant(stringLiteral: name))
+        emitSignal(Self.recognizedSignalName, Variant(stringLiteral: name))
     }
 }
