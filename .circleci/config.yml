@@ -19,10 +19,18 @@ jobs:
     # See: https://circleci.com/docs/configuration-reference/#steps
     steps:
       - checkout
+      - run: git submodule sync
+      - run: git submodule update --init
       - run: brew install just aria2
       - run: |
           aria2c 'https://github.com/godotengine/godot/releases/download/4.1.1-stable/Godot_v4.1.1-stable_macos.universal.zip'
           unzip Godot_v4.1.1-stable_macos.universal.zip
+      - run: |
+          just fetch-remote-deps
+          just build-swift-godot
+      - run: |
+          just build-all-deps
+          just test-all-deps
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
