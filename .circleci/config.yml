@@ -33,6 +33,7 @@ jobs:
       - run: git submodule update --init
       - run: brew install just swiftlint
       - run: |
+          mkdir -p /tmp/bin
           echo 'null' >> /tmp/bin/godot
           chmod +x /tmp/bin/godot
           echo "export PATH='/tmp/bin:$PATH'" >> "$BASH_ENV"
