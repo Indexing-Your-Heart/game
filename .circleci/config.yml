@@ -33,9 +33,9 @@ jobs:
       - run: git submodule update --init
       - run: brew install just swiftlint
       - run: |
-          echo 'null' >> /tmp/godot
-          chmod +x /tmp/godot
-          echo "export PATH='/tmp/Godot.app/Contents/MacOS:$PATH'" >> "$BASH_ENV"
+          echo 'null' >> /tmp/bin/godot
+          chmod +x /tmp/bin/godot
+          echo "export PATH='/tmp/bin:$PATH'" >> "$BASH_ENV"
       - run: just lint
 
 workflows:
