@@ -78,4 +78,13 @@ final class AshashatModifierTests: XCTestCase {
             unmarkableIdea is SuffixedAshashatWord<AshashatPrimitive, LogicalAshashatWord<AshashatActionModifier>>)
         XCTAssertEqual(String(ashashatWord: unmarkableIdea), "[ʔaʃabasukaʔabin]")
     }
+
+    func testScientificDomainModifier() throws {
+        let iPad: some AshashatWord = {
+            AshashatShape.slab
+                .scientificDomain(.electrical)
+        }()
+        XCTAssertTrue(iPad is ScientificDomainAshashatWord<AshashatShape>)
+        XCTAssertEqual(String(ashashatWord: iPad), "[esiʃaʃaku]")
+    }
 }
