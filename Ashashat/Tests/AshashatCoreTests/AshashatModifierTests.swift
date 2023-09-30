@@ -87,4 +87,20 @@ final class AshashatModifierTests: XCTestCase {
         XCTAssertTrue(iPad is ScientificDomainAshashatWord<AshashatShape>)
         XCTAssertEqual(String(ashashatWord: iPad), "[esiʃaʃaku]")
     }
+
+    func testScaleModifier() throws {
+        let bigBall: some AshashatWord = {
+            AshashatShape.sphere
+                .scaled(to: .large)
+        }()
+        XCTAssertTrue(bigBall is ScaledAshashatWord<AshashatShape>)
+        XCTAssertEqual(String(ashashatWord: bigBall), "[ʔilinaʃi]")
+
+        let longSlab: some AshashatWord = {
+            AshashatShape.slab
+                .scaled(to: .medium, axis: .length)
+        }()
+        XCTAssertTrue(longSlab is ScaledAshashatWord<AshashatShape>)
+        XCTAssertEqual(String(ashashatWord: longSlab), "[siʃaʃek'aʃa]")
+    }
 }

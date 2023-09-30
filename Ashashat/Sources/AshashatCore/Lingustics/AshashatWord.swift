@@ -197,7 +197,7 @@ public enum AshashatShape: AshashatWord {
         case .cone:
             Morpheme(stringLiteral: "[k'i:.a]")
         case .sphere:
-            Morpheme(stringLiteral: "[?i.lin]")
+            Morpheme(stringLiteral: "[ʔi.lin]")
         }
     }
 }
