@@ -122,4 +122,13 @@ final class AshashatModifierTests: XCTestCase {
         XCTAssertTrue(apple is ColorizedAshashatWord<SenseAshashatWord<AshashatShape>>)
         XCTAssertEqual(String(ashashatWord: apple), "[tatauʔuʔilin]")
     }
+
+    func testSpeedModifier() throws {
+        let fastBall: some AshashatWord = {
+            AshashatShape.sphere
+                .speed(.fast)
+        }()
+        XCTAssertTrue(fastBall is MovingAshashatWord<AshashatShape>)
+        XCTAssertEqual(String(ashashatWord: fastBall), "[ak'iʔilin]")
+    }
 }
