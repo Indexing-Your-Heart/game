@@ -112,4 +112,14 @@ final class AshashatModifierTests: XCTestCase {
         XCTAssertTrue(art is SenseAshashatWord<AshashatPrimitive>)
         XCTAssertEqual(String(ashashatWord: art), "[iʔiʔaʃ]")
     }
+
+    func testColorModifier() throws {
+        let apple: some AshashatWord = {
+            AshashatShape.sphere
+                .sense(.tastable)
+                .color(.red)
+        }()
+        XCTAssertTrue(apple is ColorizedAshashatWord<SenseAshashatWord<AshashatShape>>)
+        XCTAssertEqual(String(ashashatWord: apple), "[tatauʔuʔilin]")
+    }
 }
