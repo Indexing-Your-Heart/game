@@ -36,6 +36,7 @@ jobs:
       - checkout
       - run: git submodule sync
       - run: git submodule update --init
+      - run: ls /tmp/workspace
       - run: cp -rf /tmp/workspace/sg/SwiftGodot.xcframework ./SwiftGodot
       - run: brew install just aria2
       - run: |
