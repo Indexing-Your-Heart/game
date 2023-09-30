@@ -25,6 +25,33 @@ jobs:
           root: workspace
           paths:
             - sg
+  integration_test:
+    macos:
+      xcode: 15.0.0
+    environment:
+      HOMEBREW_NO_AUTO_UPDATE: 1
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - checkout
+      - run: git submodule sync
+      - run: git submodule update --init
+      - run: cp -rf /tmp/workspace/sg ./SwiftGodot/SwiftGodot.xcframework
+      - run: brew install just aria2
+      - run: |
+          aria2c 'https://github.com/godotengine/godot/releases/download/4.1.1-stable/Godot_v4.1.1-stable_macos.universal.zip'
+          unzip Godot_v4.1.1-stable_macos.universal.zip
+          mv Godot.app /tmp/Godot.app
+          echo "export PATH='/tmp/Godot.app/Contents/MacOS:$PATH'" >> "$BASH_ENV"
+      - run: just fetch-tools
+      - run: just unswizzle-assets
+      - run: just build-all-deps
+      - run: just test-game
+      - run: |
+          mkdir -p /tmp/testresults/godot
+          cp integration_results_*.xml /tmp/testresults/godot
+      - store_test_results:
+          path: /tmp/testresults/godot
   unit_test:
     macos:
       xcode: 15.0.0
@@ -75,5 +102,8 @@ workflows:
       - build_swift_godot
       - lint
       - unit_test:
+          requires:
+            - build_swift_godot
+      - integration_test:
           requires:
             - build_swift_godot
