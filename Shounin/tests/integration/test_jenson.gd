@@ -24,7 +24,7 @@ func test_loads_into_dialogue():
 	
 	var speaker = test_scene.find_child("Single Speaker",true, false) as TextureRect
 	assert_not_null(speaker.texture)
-	assert_eq(speaker.texture.resource_path, "res://resources/characters/Chelsea0.png")
+	assert_eq(speaker.texture.resource_path, "res://resources/characters/chels_0.png")
 
 ## Test that the timeline advances when the action timeline_next is triggered.
 func test_timeline_advances():
