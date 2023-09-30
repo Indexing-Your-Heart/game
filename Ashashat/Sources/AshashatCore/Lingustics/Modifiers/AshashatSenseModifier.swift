@@ -47,6 +47,17 @@ public struct SenseAshashatWord<Reference: AshashatWord>: AshashatWord {
     }
 }
 
+extension SenseAshashatWord: CustomStringConvertible {
+    public var description: String {
+       """
+       ▿ SenseAshashatWord
+        - Sense: \(sense)
+        ▿ Reference: \(Reference.self)
+          \(indented: reference)
+       """
+    }
+}
+
 public extension AshashatWord {
     func sense(_ sense: AshashatSenseModifier) -> some AshashatWord {
         SenseAshashatWord(sense: sense, reference: self)
