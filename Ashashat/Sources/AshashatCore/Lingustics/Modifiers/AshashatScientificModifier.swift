@@ -16,10 +16,18 @@
 import Foundation
 import ConlangKit
 
+/// A modifier that represents scientific domains in [ʔaʃaʃat].
 public enum AshashatScientificModifier: AshashatModifier {
+    /// The item or word has natural or biological properties to it.
     case natural
+
+    /// The item or word has physical properties to it.
     case physical
+
+    /// The item or word has chemical properties to it.
     case chemical
+
+    /// The item or word has electrical properties to it.
     case electrical
 
     public var word: some LinguisticRepresentable {
@@ -36,6 +44,9 @@ public enum AshashatScientificModifier: AshashatModifier {
     }
 }
 
+/// A word that has an associated scientific domain.
+///
+/// This can only be constructed through the ``AshashatWord/scientificDomain(_:)`` modifier.
 public struct ScientificDomainAshashatWord<Object: AshashatWord>: AshashatWord {
     var domain: AshashatScientificModifier
     var reference: Object
@@ -63,6 +74,18 @@ extension ScientificDomainAshashatWord: CustomStringConvertible {
 }
 
 public extension AshashatWord {
+    /// Associates the word with a given scientific domain.
+    ///
+    /// Scientific domains are applied as circumfixes to a word. For example, the following produces "tablet/iPad":
+    ///
+    /// ```swift
+    /// let iPad: some AshashatWord = {
+    ///     AshashatShape.slab
+    ///         .scientificDomain(.electrical)
+    /// }()
+    /// ```
+    ///
+    /// - Parameter domain: The scientific domain that the word applies to.
     func scientificDomain(_ domain: AshashatScientificModifier) -> some AshashatWord {
         ScientificDomainAshashatWord(domain: domain, reference: self)
     }

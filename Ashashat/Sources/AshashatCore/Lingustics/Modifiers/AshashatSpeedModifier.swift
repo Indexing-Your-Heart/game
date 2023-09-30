@@ -16,8 +16,12 @@
 import Foundation
 import ConlangKit
 
+/// A modifier containing [ʔaʃaʃat] speeds.
 public enum AshashatSpeedModifier: AshashatModifier {
+    /// A slow speed.
     case slow
+
+    /// A fast speed.
     case fast
 
     public var word: some LinguisticRepresentable {
@@ -30,6 +34,9 @@ public enum AshashatSpeedModifier: AshashatModifier {
     }
 }
 
+/// An [ʔaʃaʃat] word with an associated speed.
+///
+/// This can only be constructed using the ``AshashatWord/speed(_:)`` modifier.
 public struct MovingAshashatWord<Mass: AshashatWord>: AshashatWord {
     var speed: AshashatSpeedModifier
     var mass: Mass
@@ -58,6 +65,18 @@ extension MovingAshashatWord: CustomStringConvertible {
 }
 
 public extension AshashatWord {
+    /// Applies a speed modifier to the word.
+    ///
+    /// Speed modifiers are applied as prefixes to a given word. For example, the following will produce "fast ball":
+    ///
+    /// ```swift
+    /// let fastBall: some AshashatWord = {
+    ///     AshashatShape.sphere
+    ///         .speed(.fast)
+    /// }()
+    /// ```
+    ///
+    /// - Parameter speed: The speed at which the item moves.
     func speed(_ speed: AshashatSpeedModifier) -> some AshashatWord {
         MovingAshashatWord(speed: speed, mass: self)
     }

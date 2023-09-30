@@ -16,9 +16,15 @@
 import ConlangKit
 import Foundation
 
+/// A modifier that contains scaleable sizes in [ʔaʃaʃat].
 public enum AshashatScaleModifier: AshashatModifier {
+    /// A small scale or size.
     case small
+
+    /// A medium scale or size.
     case medium
+
+    /// A large scale or size.
     case large
 
     public var word: some LinguisticRepresentable {
@@ -33,8 +39,12 @@ public enum AshashatScaleModifier: AshashatModifier {
     }
 }
 
+/// A modifer that specifies an axis for a scale or size in [ʔaʃaʃat].
 public enum AshashatScaleAxisModifier: AshashatModifier {
+    /// Applies along a word's length.
     case length
+
+    /// Applies along a word's width.
     case width
 
     public var word: some LinguisticRepresentable {
@@ -47,6 +57,9 @@ public enum AshashatScaleAxisModifier: AshashatModifier {
     }
 }
 
+/// An [ʔaʃaʃat] word with an associated scale, with an optional axis.
+///
+/// This can only be constructed with the ``scaled(to:axis:)`` modifier.
 public struct ScaledAshashatWord<Reference: AshashatWord>: AshashatWord {
     var scale: AshashatScaleModifier
     var axis: AshashatScaleAxisModifier?
@@ -88,6 +101,20 @@ extension ScaledAshashatWord: CustomStringConvertible {
 }
 
 public extension AshashatWord {
+    /// Applies a scale to a specified word.
+    ///
+    /// Scales/sizes are applied as suffixes to a word, along with an axis if specified. For example, the following
+    /// produces "big ball":
+    ///
+    /// ```swift
+    /// let bigBall: some AshashatWord = {
+    ///     AshashatShape.sphere
+    ///         .scaled(to: .large)
+    /// }()
+    /// ```
+    ///
+    /// - Parameter scale: The scale or size of the word.
+    /// - Parameter axis: The axis of which the scale applies, if applicable.
     func scaled(to scale: AshashatScaleModifier, axis: AshashatScaleAxisModifier? = nil) -> some AshashatWord {
         ScaledAshashatWord(scale: scale, axis: axis, reference: self)
     }

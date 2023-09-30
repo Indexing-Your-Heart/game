@@ -16,11 +16,21 @@
 import Foundation
 import ConlangKit
 
+/// A modifier containing [ʔaʃaʃat] senses.
 public enum AshashatSenseModifier: AshashatModifier {
+    /// The word or item can be heard, or it produces sound.
     case audio
+
+    /// The word or item can be seen, or it produces visual content.
     case visual
+
+    /// The word or item can be smelled, or it produces a fragrance.
     case sniffable
+
+    /// The word or item can be tasted.
     case tastable
+
+    /// The word or item can be touched, or it touches another item.
     case tactile
 
     public var word: some LinguisticRepresentable {
@@ -39,6 +49,9 @@ public enum AshashatSenseModifier: AshashatModifier {
     }
 }
 
+/// A word with an associated sense.
+///
+/// This can only be constructed with the ``AshashatWord/sense(_:)`` modifier.
 public struct SenseAshashatWord<Reference: AshashatWord>: AshashatWord {
     var sense: AshashatSenseModifier
     var reference: Reference
@@ -67,6 +80,19 @@ extension SenseAshashatWord: CustomStringConvertible {
 }
 
 public extension AshashatWord {
+    /// Associates the word with a specified sense.
+    ///
+    /// Senses are applied as prefixes to a word. For example, the following produces "apple":
+    ///
+    /// ```swift
+    /// let apple: some AshashatWord = {
+    ///     AshashatShape.sphere
+    ///         .sense(.tastable)
+    ///         .color(.red)
+    /// }()
+    /// ```
+    ///
+    /// - Parameter sense: The sense to associate with this word.
     func sense(_ sense: AshashatSenseModifier) -> some AshashatWord {
         SenseAshashatWord(sense: sense, reference: self)
     }

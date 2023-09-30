@@ -16,15 +16,33 @@
 import Foundation
 import ConlangKit
 
+/// A modifier that represents colors in [ʔaʃaʃat].
 public enum AshashatColorModifier: AshashatModifier {
+    /// A red color.
     case red
+
+    /// An orange color.
     case orange
+
+    /// A yellow color.
     case yellow
+
+    /// A green color.
     case green
+
+    /// A blue color.
     case blue
+
+    /// An indigo color.
     case indigo
+
+    /// A purple color.
     case pruple
+
+    /// A black color.
     case black
+
+    /// A white color.
     case white
 
     public var word: some LinguisticRepresentable {
@@ -51,6 +69,10 @@ public enum AshashatColorModifier: AshashatModifier {
     }
 }
 
+/// A word with an associated color.
+///
+/// This can only be constructed with the ``AshashatWord/color(_:)`` or ``AshashatWord/color(_:propertiesBuilder:)``
+/// modifiers.
 public struct ColorizedAshashatWord<UncoloredItem: AshashatWord>: AshashatWord {
     var color: AshashatColorModifier
     var uncoloredItem: UncoloredItem
@@ -79,10 +101,38 @@ extension ColorizedAshashatWord: CustomStringConvertible {
 }
 
 public extension AshashatWord {
+    /// Associates the word with a specified color.
+    ///
+    /// Colors are applied as prefixes to a word. For example, the following produces "apple":
+    ///
+    /// ```swift
+    /// let apple: some AshashatWord = {
+    ///     AshashatShape.sphere
+    ///         .sense(.tastable)
+    ///         .color(.red)
+    /// }()
+    /// ```
+    ///
+    /// - Parameter color: The color to associated with the word.
     func color(_ color: AshashatColorModifier) -> some AshashatWord {
         ColorizedAshashatWord(color: color, uncoloredItem: self)
     }
 
+    /// Associates the word with a specified color.
+    ///
+    /// Colors are applied as prefixes to a word. For example, the following produces "apple":
+    ///
+    /// ```swift
+    /// let apple: some AshashatWord = {
+    ///     AshashatShape.sphere
+    ///         .sense(.tastable)
+    ///         .color(.red)
+    /// }()
+    /// ```
+    ///
+    /// - Parameter color: The color to associated with the word.
+    /// - Parameter propertiesBuilder: A closure that transforms the color. Use this for modifiers that require
+    ///   modifying an existing modifier.
     func color(
         _ color: AshashatColorModifier,
         propertiesBuilder: @escaping (AshashatColorModifier) -> some AshashatWord

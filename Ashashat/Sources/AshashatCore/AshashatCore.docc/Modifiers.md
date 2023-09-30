@@ -113,11 +113,11 @@ Grammatical person modifiers, prefixes to primitives and/or modifiers, are used 
 and recipient. They are also also stand-ins for pronouns. In AshashatCore, this is represented with the 
 ``AshashatGrammaticalPersonModifier`` type.
 
-| English grammatical person | [ʔaʃaʃat] | Grammatical person type case                 |
-| :------------------------- | :-------- | :------------------------------------------- |
-| first person               | ba        | ``AshashatGrammaticalPersonModifier/first``  |
-| second person              | bi        | ``AshashatGrammaticalPersonModifier/second`` |
-| third person               | bu        | ``AshashatGrammaticalPersonModifier/third``  |
+| English grammatical person | [ʔaʃaʃat] |
+| :------------------------- | :-------- |
+| first person               | ba        |
+| second person              | bi        |
+| third person               | bu        |
 
 > Pronouns do not take a gender as the gender is “type erased” away, hereby recognizing everyone as a person.
 
@@ -138,17 +138,17 @@ let yourIdea: some AshashatWord = {
 Action modifiers describe that a certain action can be done on or with the item in question. They are suffixes to
 primitives and/or modifiers. In AshashatCore, this is represented as the ``AshashatActionModifier`` type.
 
-| English action | [ʔaʃaʃat] | Action modifier type case              |
-| :------------- | :-------- | :------------------------------------- |
-| speakable      | kasu      | ``AshashatActionModifier/speakable``   |
-| markable       | babin     | ``AshashatActionModifier/markable``    |
-| writable       | bapen     | ``AshashatActionModifier/writeable``   |
-| destroyable    | k’abi:    | ``AshashatActionModifier/destroyable`` |
-| craftable      | pabil     | ``AshashatActionModifier/craftable``   |
-| performable    | ʃasu      | ``AshashatActionModifier/performable`` |
-| movable        | ʃaku      | ``AshashatActionModifier/movable``     |
-| doable         | nalu      | ``AshashatActionModifier/doable``      |
-| able to exist  | nalu:     | ``AshashatActionModifier/existing``    |
+| English action | [ʔaʃaʃat] |
+| :------------- | :-------- |
+| speakable      | kasu      |
+| markable       | babin     |
+| writable       | bapen     |
+| destroyable    | k’abi:    |
+| craftable      | pabil     |
+| performable    | ʃasu      |
+| movable        | ʃaku      |
+| doable         | nalu      |
+| able to exist  | nalu:     |
 
 
 For example, the word [ʔaʃa | kasu] transliterates to “speakable idea”, which translates to *word*. Action modifiers can
@@ -175,13 +175,13 @@ The logical conjunctions are infixes for primitives and/or modifiers that can be
 combinational logic, such as “red and blue”. In AshashatCore, this is represented by
 ``AshashatLogicalConjunctionModifier``.
 
-| English conjunction | [ʔaʃaʃat] | Conjunction modifier case                    |
-| :------------------ | :-------- | :------------------------------------------- |
-| not                 | sukaʔ     | ``AshashatLogicalConjunctionModifier/not``   |
-| never               | sukak’aʔ  | ``AshashatLogicalConjunctionModifier/never`` |
-| and                 | suki      | ``AshashatLogicalConjunctionModifier/and``   |
-| or                  | suke      | ``AshashatLogicalConjunctionModifier/or``    |
-| exclusive or (xor)  | ʃukek’e   | ``AshashatLogicalConjunctionModifier/xor``   |
+| English conjunction | [ʔaʃaʃat] |
+| :------------------ | :-------- |
+| not                 | sukaʔ     |
+| never               | sukak’aʔ  |
+| and                 | suki      |
+| or                  | suke      |
+| exclusive or (xor)  | ʃukek’e   |
 
 
 For example, the modifier [ba | sukaʔa | bin] transliterates to “not markable”. Logical conjunctions can be expressed
@@ -203,7 +203,7 @@ let unmarkableIdea: some AshashatWord = {
 ## Scientific domains
 
 Scientific domain modifiers are circumfixes to primitives and/or modifiers used to denote a scientific quality about an
-item.
+item. In AshashatCore, this is represented using ``AshashatScientificModifier``.
 
 | Scientific domain | [ʔaʃaʃat] |
 | :---------------- | :-------- |
@@ -214,10 +214,19 @@ item.
 
 
 For example, the word [e | siʃa | ʃaku] transliterates to “electrical slab”, which translates to *tablet (like iPad)*.
+In AshashatCore, the ``AshashatWord/scientificDomain(_:)`` can be used to accomplish this:
+
+```swift
+let iPad: some AshashatWord = {
+    AshashatShape.slab
+        .scientificDomain(.electrical)
+}()
+```
 
 ## Size and scale
 
-Size and scale modifiers are suffixes to primitives and/or modifiers that describe the scale or size of an item.
+Size and scale modifiers are suffixes to primitives and/or modifiers that describe the scale or size of an item. In
+AshashatCore, this is represented with a ``AshashatScaleModifier`` and an ``AshashatScaleAxisModifier``, respectively.
 
 | Size or scale | [ʔaʃaʃat] |
 | :------------ | :-------- |
@@ -229,11 +238,19 @@ Size and scale modifiers are suffixes to primitives and/or modifiers that descri
 
 
 For example, the word [siʃa | ʃa | k’iʃi | suki | ʃi | k’aʃa] transliterates to “slab that is small width wise and big
-lengthwise”, which translates to *line*.
+lengthwise”, which translates to *line*. In AshashatCore, ``AshashatWord/scaled(to:axis:)`` can be used:
+
+```swift
+let longSlab: some AshashatWord = {
+    AshashatShape.slab
+        .scaled(to: .medium, axis: .length)
+}()
+```
 
 ## Senses
 
-Sense modifiers are prefixes to primitives and/or modifiers that describe words with respect to the senses.
+Sense modifiers are prefixes to primitives and/or modifiers that describe words with respect to the senses. In 
+AshashatCore, this is represented by ``AshashatSenseModifier``.
 
 | Sense        | [ʔaʃaʃat] |
 | :----------- | :-------- |
@@ -244,12 +261,21 @@ Sense modifiers are prefixes to primitives and/or modifiers that describe words 
 | tactile      | ik’i      |
 
 
-For example, the word [iʔi | ʔaʃ] transliterates to “visual idea”, which translates to *art*.
+For example, the word [iʔi | ʔaʃ] transliterates to “visual idea”, which translates to *art*. In AshashatCore, the
+``AshashatWord/sense(_:)`` modifier can be used:
+
+```swift
+let art: some AshashatWord = {
+    AshashatPrimitive.idea
+        .sense(.visual)
+}()
+```
 
 ## Colors
 
 Color modifiers are prefixes to primitives and modifiers that describe the color of an item. They can be combined using
-logical intensity operators and are **never** used to describe the race of a person.
+logical intensity operators and are **never** used to describe the race of a person. In AshashatCore, this is 
+represented by ``AshashatColorModifier``.
 
 | Color  | [ʔaʃaʃat] |
 | :----- | :-------- |
@@ -265,18 +291,37 @@ logical intensity operators and are **never** used to describe the race of a per
 
 
 For example, the word [titi | uʔu | ʔilin] transliterates to “red tastable/edible sphere”, which translates to *apple*.
+In AshashatCore, the ``AshashatWord/color(_:)`` and/or ``AshashatWord/action(_:properties:)`` modifiers can be used:
+
+```swift
+let apple: some AshashatWord = {
+    AshashatShape.sphere
+        .sense(.tastable)
+        .color(.red)
+}()
+```
 
 > Tip: To disambiguate between the fruit "apple" and the consumer electronics company "Apple, Inc.", “apple” will always
 > be written as described above. Apple Inc. is written as a name with repair strategies applied ([e:pulu]).
 
 ## Speed
 
-Speed modifiers are prefixes to primitives and modifiers that describe the speed of an action or item in question.
+Speed modifiers are prefixes to primitives and modifiers that describe the speed of an action or item in question. In
+AshashatCore, this is represented by ``AshashatSpeedModifier``.
 
 | Speed | [ʔaʃaʃat] |
 | :---- | :-------- |
 | slow  | ake       |
 | fast  | ak'i      |
+
+In AshashatCore, the ``AshashatWord/speed(_:)`` modifier can be used:
+
+```swift
+let fastBall: some AshashatWord = {
+    AshashatShape.sphere
+        .speed(.fast)
+}()
+```
 
 ## Topics
 
@@ -311,3 +356,35 @@ Speed modifiers are prefixes to primitives and modifiers that describe the speed
 - ``AshashatWord/logicalConjunction(using:)``
 - ``AshashatLogicalConjunctionModifier``
 - ``LogicalAshashatWord``
+
+### Scientific Domain
+
+- ``AshashatWord/scientificDomain(_:)``
+- ``AshashatScientificModifier``
+- ``ScientificDomainAshashatWord``
+
+### Size and Scale
+
+- ``AshashatWord/scaled(to:axis:)``
+- ``AshashatScaleModifier``
+- ``AshashatScaleAxisModifier``
+- ``ScaledAshashatWord``
+
+### Senses
+
+- ``AshashatWord/sense(_:)``
+- ``AshashatSenseModifier``
+- ``SenseAshashatWord``
+
+### Color
+
+- ``AshashatWord/color(_:)``
+- ``AshashatWord/color(_:propertiesBuilder:)``
+- ``AshashatColorModifier``
+- ``ColorizedAshashatWord``
+
+### Speed
+
+- ``AshashatWord/speed(_:)``
+- ``AshashatSpeedModifier``
+- ``MovingAshashatWord``
