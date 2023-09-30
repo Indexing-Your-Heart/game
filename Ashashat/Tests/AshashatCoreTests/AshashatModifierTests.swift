@@ -103,4 +103,13 @@ final class AshashatModifierTests: XCTestCase {
         XCTAssertTrue(longSlab is ScaledAshashatWord<AshashatShape>)
         XCTAssertEqual(String(ashashatWord: longSlab), "[siʃaʃek'aʃa]")
     }
+
+    func testSenseModifier() throws {
+        let art: some AshashatWord = {
+            AshashatPrimitive.idea
+                .sense(.visual)
+        }()
+        XCTAssertTrue(art is SenseAshashatWord<AshashatPrimitive>)
+        XCTAssertEqual(String(ashashatWord: art), "[iʔiʔaʃ]")
+    }
 }
