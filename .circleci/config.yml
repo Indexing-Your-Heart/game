@@ -36,8 +36,7 @@ jobs:
       - checkout
       - run: git submodule sync
       - run: git submodule update --init
-      - run: ls /tmp/workspace
-      - run: cp -rf /tmp/workspace/sg/SwiftGodot.xcframework ./SwiftGodot
+      - run: cp -rf /tmp/workspace/sg ./SwiftGodot/SwiftGodot.xcframework
       - run: brew install just aria2
       - run: |
           aria2c 'https://github.com/godotengine/godot/releases/download/4.1.1-stable/Godot_v4.1.1-stable_macos.universal.zip'
