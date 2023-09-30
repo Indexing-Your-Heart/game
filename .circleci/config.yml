@@ -30,8 +30,9 @@ jobs:
       - run: |
           just fetch-remote-deps
           just build-swift-godot
-      - run: |
-          just test-all-deps
+      - run: just test-all-deps-ci
+      - store_test_results:
+          path: /tmp/testresults
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows

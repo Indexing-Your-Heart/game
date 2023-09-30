@@ -30,6 +30,8 @@ dep_cache := "~/Library/Developer/Xcode/DerivedData/itanium"
 # The editor when updating packages.
 dep_editor := `which xed`
 
+dep_test_args := "'--parallel --num-workers=1'"
+
 # The date and time the action was performed.
 exec_date := `date "+%d-%m-%Y.%H-%M-%S"`
 
@@ -111,16 +113,20 @@ format-dep +DEPENDENCIES:
 format-all-deps:
 	just format-dep Protractor AnthroBase JensonGodotKit
 
-# Test a specified set of dependencies
-test-dep +DEPENDENCIES:
+# Test a specified dependency
+test-dep DEPENDENCY SWIFT_ARGS=dep_test_args:
 	#!/bin/sh
-	for DEPENDENCY in {{DEPENDENCIES}}; do
-		cd $DEPENDENCY && swift test && rm -rf .build && cd ..
-	done
+	cd {{DEPENDENCY}} && swift test {{SWIFT_ARGS}} && rm -rf .build && cd ..
 
 # Test all dependencies
 test-all-deps:
 	just test-dep Protractor
+
+# Test all dependencies and store their results for CI.
+test-all-deps-ci:
+	mkdir -p /tmp/testresults
+	just test-dep Protractor '--parallel --num-workers=1 --xunit-output /tmp/testresults/Protractor.xml'
+	just test-dep Ashashat '--parallel --num-workers=1 --xunit-output /tmp/testresults/Ashashat.xml'
 
 # Runs the integration tests through Godot.
 test-game:

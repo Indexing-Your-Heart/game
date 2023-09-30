@@ -38,9 +38,6 @@ let package = Package(
                 .unsafeFlags(["-Xlinker", "-undefined", "-Xlinker", "dynamic_lookup"])
             ]),
         .testTarget(name: "AshashatCoreTests",
-                    dependencies: ["AshashatCore"]),
-        .testTarget(
-            name: "AshashatTests",
-            dependencies: ["Ashashat"]),
+                    dependencies: ["AshashatCore"])
     ]
 )
