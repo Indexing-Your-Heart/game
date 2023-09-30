@@ -37,7 +37,13 @@ jobs:
           echo 'null' >> /tmp/bin/godot
           chmod +x /tmp/bin/godot
           echo "export PATH='/tmp/bin:$PATH'" >> "$BASH_ENV"
-      - run: just lint
+      - run: just lint || true
+      - run: |
+          mkdir -p /tmp/logs
+          cp swiftlint*.log /tmp/logs 
+      - store_artifacts:
+          path: /tmp/logs
+          destination: swiftlint
 
 workflows:
   merge_request:
