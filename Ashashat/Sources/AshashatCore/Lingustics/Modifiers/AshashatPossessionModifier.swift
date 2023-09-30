@@ -16,7 +16,6 @@
 import ConlangKit
 import Foundation
 
-
 /// An [ʔaʃaʃat] word that is in its possesive form.
 ///
 /// This can only be constructed using the ``AshashatWord/owning()`` method.

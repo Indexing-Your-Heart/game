@@ -1,0 +1,4 @@
+disabled_rules:
+  - unneeded_synthesized_initializer
+  - identifier_name
+  - force_cast

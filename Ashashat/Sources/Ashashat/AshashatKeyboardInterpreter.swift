@@ -47,7 +47,7 @@ public class AshashatKeyboardInterpreter: Control {
     @SceneTree(path: "keyRepeat") private var keyRepeat: Button?
     @SceneTree(path: "keyDuplicant") private var keyDuplicant: Button?
 
-    private lazy var keyMapping: [AshashatKeyboardKey : Button?] = {
+    private lazy var keyMapping: [AshashatKeyboardKey: Button?] = {
         [
             .a: self.keyA,
             .i: self.keyI,

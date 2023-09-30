@@ -156,7 +156,7 @@ edit-just:
 
 # Runs SwiftLint on library code
 lint:
-	swiftlint lint --config .swiftlint.yml --output swiftlint_{{exec_date}}.log
+	swiftlint lint --output swiftlint_{{exec_date}}.log
 
 # Unswizzles protected images
 unswizzle-assets:

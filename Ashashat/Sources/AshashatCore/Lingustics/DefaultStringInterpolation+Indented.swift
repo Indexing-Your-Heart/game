@@ -19,6 +19,7 @@ import Foundation
 // Thanks @AnthonyMDev
 extension DefaultStringInterpolation {
     mutating func appendInterpolation<T>(indented string: T) {
+        // swiftlint:disable:next compiler_protocol_init
         let indent = String(stringInterpolation: self).reversed().prefix { " \t".contains($0) }
         let root = String(describing: string)
         appendLiteral(
