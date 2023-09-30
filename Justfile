@@ -46,6 +46,13 @@ build-all-deps:
 	just build-dep '-a -f' AnthroBase
 	just build-dep '-a -f' JensonGodotKit
 
+# Build all dependencies for CI
+build-all-deps-ci:
+	just build-dep '-t mac -a -l ProtractorGodotInterop' Protractor
+	just build-dep '-t mac -a -f' Ashashat
+	just build-dep '-t mac -a -f' AnthroBase
+	just build-dep '-t mac -a -f' JensonGodotKit
+
 # Builds the SwiftGodot xcframework.
 build-swift-godot:
 	#!/bin/sh

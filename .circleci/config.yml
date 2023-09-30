@@ -45,7 +45,7 @@ jobs:
           echo "export PATH='/tmp/Godot.app/Contents/MacOS:$PATH'" >> "$BASH_ENV"
       - run: just fetch-tools
       - run: just unswizzle-assets
-      - run: just build-all-deps
+      - run: just build-all-deps-ci
       - run: just test-game
       - run: |
           mkdir -p /tmp/testresults/godot
