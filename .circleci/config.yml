@@ -19,12 +19,12 @@ jobs:
       - run: |
           just fetch-remote-deps
           just build-swift-godot
-      - run: mkdir -p workspace
-      - run: cp -rf SwiftGodot/SwiftGodot.xcframework/ workspace/
+      - run: mkdir -p workspace/sg/
+      - run: cp -rf SwiftGodot/SwiftGodot.xcframework/ workspace/sg/
       - persist_to_workspace:
           root: workspace
           paths:
-            - SwiftGodot.xcframework
+            - sg
   unit_test:
     macos:
       xcode: 15.0.0
@@ -36,7 +36,7 @@ jobs:
       - checkout
       - run: git submodule sync
       - run: git submodule update --init
-      - run: cp -rf /tmp/workspace/SwiftGodot.xcframework ./SwiftGodot
+      - run: cp -rf /tmp/workspace/sg/SwiftGodot.xcframework ./SwiftGodot
       - run: brew install just aria2
       - run: |
           aria2c 'https://github.com/godotengine/godot/releases/download/4.1.1-stable/Godot_v4.1.1-stable_macos.universal.zip'
