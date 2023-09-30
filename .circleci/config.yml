@@ -27,7 +27,7 @@ jobs:
           unzip Godot_v4.1.1-stable_macos.universal.zip
           echo "export PATH=$(pwd)/Godot.app/Content/MacOS:$PATH" >> "$BASH_ENV"
       - run: |
-          which godot
+          ls -l
           just fetch-remote-deps
           just build-swift-godot
       - run: |
