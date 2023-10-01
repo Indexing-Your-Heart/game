@@ -46,6 +46,15 @@ jobs:
       - run: just fetch-tools
       - run: just unswizzle-assets
       - run: just build-all-deps-ci
+      - run: |
+          mkdir -p /tmp/buildlogs/
+          mv AnthroBase*.log /tmp/buildlogs/
+          mv Protractor*.log /tmp/buildlogs/
+          mv JensonGodot*.log /tmp/buildlogs/
+          mv Ashashat*.log /tmp/buildlogs/
+      - store_artifacts:
+          path: /tmp/buildlogs
+          destination: dependency_builds
       - run: just test-game
       - run: |
           mkdir -p /tmp/testresults/godot
