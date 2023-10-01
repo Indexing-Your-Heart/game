@@ -31,7 +31,7 @@ understand the mysteries of the obelisk.
 
 1. Start by cloning the repository using `gh repo clone` or `git clone --recursive`.
 2. Next, run `just fetch-tools` to fetch the other tools needed to build the game.
-3. Then, run just build-all-deps` to build the required dependencies for the internal
+3. Then, run `just build-all-deps` to build the required dependencies for the internal
    extensions that the main game uses.
 4. Finally, run `just unswizzle-assets` to unswizzle the assets in the game's resources so
    that the game can be built normally.
