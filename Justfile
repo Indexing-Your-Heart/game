@@ -41,17 +41,17 @@ build-dep LIB_FLAGS +DEPENDENCIES: (fetch-remote-deps)
 
 # Build all dependencies
 build-all-deps:
-	just build-dep '-a -l ProtractorGodotInterop' Protractor
-	just build-dep '-a -f' Ashashat
-	just build-dep '-a -f' AnthroBase
-	just build-dep '-a -f' JensonGodotKit
+	just build-dep '-l ProtractorGodotInterop' Protractor
+	just build-dep '-f' Ashashat
+	just build-dep '-f' AnthroBase
+	just build-dep '-f' JensonGodotKit
 
 # Build all dependencies for CI
 build-all-deps-ci:
-	just build-dep '-t mac -a -l ProtractorGodotInterop' Protractor
-	just build-dep '-t mac -a -f' Ashashat
-	just build-dep '-t mac -a -f' AnthroBase
-	just build-dep '-t mac -a -f' JensonGodotKit
+	just build-dep '-t mac -l ProtractorGodotInterop' Protractor
+	just build-dep '-t mac -f' Ashashat
+	just build-dep '-t mac -f' AnthroBase
+	just build-dep '-t mac -f' JensonGodotKit
 
 # Cleans alls dependencies, logs, etc.
 clean:

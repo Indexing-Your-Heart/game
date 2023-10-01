@@ -18,7 +18,6 @@ __target="all"
 __autoclean=true
 __preclean=true
 __library=""
-__incl_rosetta=true
 
 __fbold=$(tput bold)
 __freset=$(tput sgr0)
@@ -27,14 +26,13 @@ __freset=$(tput sgr0)
 help() {
 	echo "Builds the corresponding dependency libraries."
 	echo
-	echo "Syntax: build-libs [-d|f|h|a|l <libname>|t <ios|mac|all>] [LIBRARY]"
+	echo "Syntax: build-libs [-d|f|h|l <libname>|t <ios|mac|all>] [LIBRARY]"
 	echo "options:"
 	echo "d     Skips running cleanup tasks."
 	echo "h     Print this Help."
 	echo "t     Builds libraries for the specified target."
 	echo "l     The output library name."
 	echo "f     Skips deleting existing dependency files before building."
-    echo "a     Skips builds for Intel Macs."
 	echo
 }
 
@@ -64,20 +62,10 @@ build_mac_lib() {
 	echo "${__fbold}Building library [$1] for macOS.${__freset}"
 	echo "- Step: arm64"
 	swift build --configuration release --triple arm64-apple-macosx >> ../$1_build.log
-    if [ $__incl_rosetta = true ]; then
-        echo "- Step: x86_64"
-        swift build --configuration release --triple x86_64-apple-macosx >> ../$1_build.log
-        echo "Copying [$1] library binaries to Shounin/bin."
-        lipo -create -output "../Shounin/bin/mac/lib$1.dylib" \
-            ".build/arm64-apple-macosx/release/lib$1.dylib" \
-            ".build/x86_64-apple-macosx/release/lib$1.dylib"
-    else
-        echo "NOTE: Skipped step for x86_64."
-        echo "Copying [$1] library binaries to Shounin/bin."
-        cp ".build/arm64-apple-macosx/release/lib$1.dylib" ../Shounin/bin/mac
-    fi
+	echo "Copying [$1] library binaries to Shounin/bin."
+	cp ".build/arm64-apple-macosx/release/lib$1.dylib" ../Shounin/bin/mac
 	if ! [ -e "Shounin/bin/mac/SwiftGodot.framework" ]; then
-		cp -rf "../SwiftGodot/SwiftGodot.xcframework/macos-arm64_x86_64/SwiftGodot.framework" "../Shounin/bin/mac/"
+		cp -rf "../SwiftGodot/SwiftGodot.xcframework/macos-arm64/SwiftGodot.framework" "../Shounin/bin/mac/"
 	fi
 	echo "Library built [$1] for macOS."
 	if [ "$__autoclean" = true ]; then
@@ -124,7 +112,7 @@ build_lib() {
 }
 
 # Parses options before reading list of files.
-while getopts ":dfhal:t:" option; do
+while getopts ":dfhl:t:" option; do
 	case $option in
 		h)
 	   		help
@@ -143,8 +131,6 @@ while getopts ":dfhal:t:" option; do
 			__library="$OPTARG";;
 		t)
 			__target="$OPTARG";;
-        a)
-            __incl_rosetta=false;;
 		\?)
 			echo "Err: invalid options"
 			exit 1;;
