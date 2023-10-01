@@ -21,6 +21,7 @@ jobs:
   integration_test:
     macos:
       xcode: 15.0.0
+      resource_class: macos.m1.medium.gen2
     environment:
       HOMEBREW_NO_AUTO_UPDATE: 1
     steps:
@@ -49,6 +50,7 @@ jobs:
   unit_test:
     macos:
       xcode: 15.0.0
+      resource_class: macos.m1.medium.gen2
     environment:
       HOMEBREW_NO_AUTO_UPDATE: 1
     steps:
@@ -65,6 +67,7 @@ jobs:
   lint:
     macos:
       xcode: 15.0.0
+      resource_class: macos.m1.medium.gen2
     environment:
       HOMEBREW_NO_AUTO_UPDATE: 1
     steps:
