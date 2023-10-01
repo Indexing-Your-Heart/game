@@ -19,7 +19,7 @@ understand the mysteries of the obelisk.
 **Required Tools**
 
 - Xcode 15 or later
-- macOS 14 (Sonoma) or later
+- An Apple Silicion Mac running macOS 14 (Sonoma) or later
 - Just (`brew install just`)
 - Godot 4.1.x
 
@@ -31,8 +31,8 @@ understand the mysteries of the obelisk.
 
 1. Start by cloning the repository using `gh repo clone` or `git clone --recursive`.
 2. Next, run `just fetch-tools` to fetch the other tools needed to build the game.
-3. Then, run `just build-swift-godot` and `just build-all-deps` to build the required
-   dependencies for the internal extensions that the main game uses.
+3. Then, run just build-all-deps` to build the required dependencies for the internal
+   extensions that the main game uses.
 4. Finally, run `just unswizzle-assets` to unswizzle the assets in the game's resources so
    that the game can be built normally.
 
@@ -47,6 +47,10 @@ and distributed.
 > pointing to the Godot binary in your `PATH`. Edit this variable to match the path
 > of your Godot binary if this doesn't match, or update `PATH` to include the Godot
 > binary.
+
+> **Important**  
+> This game only supports building for Macs running on Apple Silicon or iPhone and
+> iPad.
 
 ### Editing Dependencies
 
@@ -116,8 +120,8 @@ list by invoking `just -l`.
 ```
 Available recipes:
     build-all-deps           # Build all dependencies
+    build-all-deps-ci        # Build all dependencies for CI
     build-dep LIB_FLAGS +DEPENDENCIES # Build a specified set of dependencies with some flags
-    build-swift-godot        # Builds the SwiftGodot xcframework.
     clean                    # Cleans alls dependencies, logs, etc.
     clean-all-deps           # Cleans all dependencies
     clean-dep +DEPENDENCIES  # Cleans a specified set of dependencies
@@ -135,9 +139,11 @@ Available recipes:
     format-dep +DEPENDENCIES # Formats the source files in a specified set of dependencies
     lint                     # Runs SwiftLint on library code
     test-all-deps            # Test all dependencies
-    test-dep +DEPENDENCIES   # Test a specified set of dependencies
+    test-all-deps-ci         # Test all dependencies and store their results for CI.
+    test-dep DEPENDENCY SWIFT_ARGS=dep_test_args # Test a specified dependency
     test-game                # Runs the integration tests through Godot.
     unswizzle-assets         # Unswizzles protected images
+
 ```
 
 > **Note**  
