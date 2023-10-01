@@ -12,5 +12,6 @@ func before_each():
 func test_player_moves():
 	var orig_position = Vector2(test_scene.player.position.x, test_scene.player.position.y)
 	_sender.action_down("move_right").hold_for(2).wait(.1)
+	Input.flush_buffered_events()
 	await wait_seconds(3, "Player movement")
 	assert_ne(test_scene.player.position, orig_position)

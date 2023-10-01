@@ -137,7 +137,8 @@ test-all-deps-ci:
 
 # Runs the integration tests through Godot.
 test-game:
-	{{gdengine}} {{godot_args}} -s -d addons/gut/gut_cmdln.gd \
+	{{gdengine}} {{godot_args}} --headless \
+	-s -d addons/gut/gut_cmdln.gd \
 	-gdir=res://tests -gprefix=test_ -gsuffix=.gd -gexit -ginclude_subdirs \
 	-gjunit_xml_file=../integration_results_{{exec_date}}.xml -glog=2
 

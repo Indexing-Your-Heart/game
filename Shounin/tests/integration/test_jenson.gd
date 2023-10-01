@@ -7,6 +7,7 @@ func before_each():
 	test_scene = load("res://tests/scenes/jenson_testcase.tscn").instantiate()
 	add_child_autoqfree(test_scene)
 	await wait_seconds(2, "Loading initial scene")
+	Input.flush_buffered_events()
 
 ## Test that the dialogue loads from the test script, and that the images are set.
 func test_loads_into_dialogue():
@@ -29,6 +30,7 @@ func test_loads_into_dialogue():
 ## Test that the timeline advances when the action timeline_next is triggered.
 func test_timeline_advances():
 	_sender.action_down("timeline_next").hold_for(.1).wait(.3)
+	Input.flush_buffered_events()
 	await wait_for_signal(_sender.idle, 5)
 	
 	var who = test_scene.find_child("Who Label", true, false) as Label
@@ -46,6 +48,7 @@ func test_timeline_quickpass():
 		.hold_for(.1) \
 		.action_up("timeline_next") \
 		.action_down("timeline_next")
+	Input.flush_buffered_events()
 	await wait_for_signal(_sender.idle, 5)
 	
 	var what = test_scene.find_child("What Label", true, false) as Label
