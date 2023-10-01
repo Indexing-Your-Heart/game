@@ -24,9 +24,6 @@ godot_args := "--path Shounin"
 # The text editor to open when writing files.
 editor := 'subl'
 
-# The path where the package cache is stored.
-dep_cache := "~/Library/Developer/Xcode/DerivedData/itanium"
-
 # The editor when updating packages.
 dep_editor := `which xed`
 
@@ -87,7 +84,7 @@ fetch-remote-deps:
 format-dep +DEPENDENCIES:
 	#!/bin/sh
 	for DEPENDENCY in {{DEPENDENCIES}}; do
-		swiftformat "$DEPENDENCY/Sources" --swiftversion 5.8
+		swiftformat "$DEPENDENCY/Sources" --swiftversion 5.9
 	done
 
 # Formats source files in all dependencies
@@ -102,6 +99,7 @@ test-dep DEPENDENCY SWIFT_ARGS=dep_test_args:
 # Test all dependencies
 test-all-deps:
 	just test-dep Protractor
+	just test-dep Ashashat
 
 # Test all dependencies and store their results for CI.
 test-all-deps-ci:
