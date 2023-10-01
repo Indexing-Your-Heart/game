@@ -45,7 +45,7 @@ extension JensonTimeline {
     func setScriptPath(args: [Variant]) -> Variant? {
         ClassInfo.withCheckedProperty(named: "script_path", in: args) { arg in
             script = String(arg)
-            if !Engine.shared.isEditorHint() {
+            if !Engine.isEditorHint() {
                 loadScript()
             }
         }

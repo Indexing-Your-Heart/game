@@ -96,7 +96,7 @@ public class JensonTimeline: Node {
 
         choiceTemplate = menu?.getChild(idx: 0) as? Button
 
-        guard !Engine.shared.isEditorHint() else { return }
+        guard !Engine.isEditorHint() else { return }
         menu?.visible = false
         choiceTemplate?.visible = false
         whoLabel?.text = ""
@@ -118,7 +118,7 @@ public class JensonTimeline: Node {
     }
 
     override public func _input(event: InputEvent) {
-        if event.isActionPressed(action: .timelineNext) || Input.shared.isMouseButtonPressed(button: .left) {
+        if event.isActionPressed(action: .timelineNext) || Input.isMouseButtonPressed(button: .left) {
             handleNextEvent()
         }
     }
@@ -174,7 +174,7 @@ public class JensonTimeline: Node {
     }
 
     func preloadRefreshedData() {
-        guard !Engine.shared.isEditorHint(), let first = timeline.first else { return }
+        guard !Engine.isEditorHint(), let first = timeline.first else { return }
         if first.type != .refresh {
             GD.pushWarning("Next event doesn't require initial setup.")
             return

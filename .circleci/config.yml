@@ -31,12 +31,9 @@ jobs:
     environment:
       HOMEBREW_NO_AUTO_UPDATE: 1
     steps:
-      - attach_workspace:
-          at: /tmp/workspace
       - checkout
       - run: git submodule sync
       - run: git submodule update --init
-      - run: cp -rf /tmp/workspace/sg ./SwiftGodot/SwiftGodot.xcframework
       - run: brew install just aria2
       - run: |
           aria2c 'https://github.com/godotengine/godot/releases/download/4.1.1-stable/Godot_v4.1.1-stable_macos.universal.zip'
@@ -48,10 +45,7 @@ jobs:
       - run: just build-all-deps-ci
       - run: |
           mkdir -p /tmp/buildlogs/
-          mv AnthroBase*.log /tmp/buildlogs/
-          mv Protractor*.log /tmp/buildlogs/
-          mv JensonGodot*.log /tmp/buildlogs/
-          mv Ashashat*.log /tmp/buildlogs/
+          mv *_build.log /tmp/buildlogs/
       - store_artifacts:
           path: /tmp/buildlogs
           destination: dependency_builds
@@ -67,12 +61,9 @@ jobs:
     environment:
       HOMEBREW_NO_AUTO_UPDATE: 1
     steps:
-      - attach_workspace:
-          at: /tmp/workspace
       - checkout
       - run: git submodule sync
       - run: git submodule update --init
-      - run: cp -rf /tmp/workspace/sg ./SwiftGodot/SwiftGodot.xcframework
       - run: brew install just aria2
       - run: |
           aria2c 'https://github.com/godotengine/godot/releases/download/4.1.1-stable/Godot_v4.1.1-stable_macos.universal.zip'
@@ -108,11 +99,6 @@ jobs:
 workflows:
   merge_request:
     jobs:
-      - build_swift_godot
       - lint
-      - unit_test:
-          requires:
-            - build_swift_godot
-      - integration_test:
-          requires:
-            - build_swift_godot
+      - unit_test
+      - integration_test

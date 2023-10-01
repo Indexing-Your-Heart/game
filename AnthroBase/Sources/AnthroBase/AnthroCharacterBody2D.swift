@@ -41,11 +41,11 @@ public class AnthroCharacterBody2D: CharacterBody2D {
     public var speed: Double
 
     private var movementVector: Vector2 {
-        Input.shared.getVector(negativeX: "move_left",
-                               positiveX: "move_right",
-                               negativeY: "move_up",
-                               positiveY: "move_down")
-            .normalized()
+        Input.getVector(negativeX: "move_left",
+                        positiveX: "move_right",
+                        negativeY: "move_up",
+                        positiveY: "move_down")
+        .normalized()
     }
 
     public required init() {
@@ -62,7 +62,7 @@ public class AnthroCharacterBody2D: CharacterBody2D {
     }
 
     override public func _physicsProcess(delta: Double) {
-        if Engine.shared.isEditorHint() { return }
+        if Engine.isEditorHint() { return }
         if movementVector != Vector2.zero {
             updateBlendingProperties(with: movementVector)
             animationState?.travel(toNode: StringName("Walk"), resetOnTeleport: false)
