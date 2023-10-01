@@ -22,6 +22,11 @@ __library=""
 __fbold=$(tput bold)
 __freset=$(tput sgr0)
 
+__swiftbuilddir="../.mbuild"
+__swiftcachedir="../.mcache"
+__xcodebuilddir="../.mxcbuild"
+__xcodecachedir="../.mxcache"
+
 # Prints the help message.
 help() {
 	echo "Builds the corresponding dependency libraries."
@@ -40,38 +45,30 @@ help() {
 build_ios_lib() {
 	echo "${__fbold}Building library [$1] for iOS.${__freset}"
 	xcodebuild -scheme "$1" -destination 'generic/platform=iOS' \
-		-derivedDataPath xcbuild -skipPackagePluginValidation \
-		-clonedSourcePackagesDirPath ~/Library/Developer/Xcode/DerivedData/itanium \
+		-derivedDataPath $__xcodebuilddir -skipPackagePluginValidation \
+		-clonedSourcePackagesDirPath $__xcodecachedir \
 		-configuration Release >> ../$1_build.log
 	echo "Copying [$1] library binaries to Shounin/bin."
-	cp -rf "xcbuild/Build/Products/Release-iphoneos/PackageFrameworks/$1.framework" \
-		"../Shounin/bin/ios/$1.framework"
+	buildpath="$__xcodebuilddir/Build/Products/Release-iphoneos/PackageFrameworks"
+	cp -rf "$buildpath/$1.framework" "../Shounin/bin/ios/$1.framework"
 	if ! [ -e "Shounin/bin/ios/SwiftGodot.framework" ]; then
-		cp -rf "../SwiftGodot/SwiftGodot.xcframework/ios-arm64/SwiftGodot.framework" \
-			"../Shounin/bin/ios/"
+		cp -rf "$buildpath/SwiftGodot.framework" "../Shounin/bin/ios/SwiftGodot.framework"
 	fi
 	echo "Library built [$1] for iOS."
-	if [ "$__autoclean" = true ]; then
-		echo "Cleaning up intermediates from [$1]."
-		rm -rf xcbuild
-	fi
 }
 
 # Builds the libraries for macOS (dylib) x86_64 and arm64 into a single library.
 build_mac_lib() {
 	echo "${__fbold}Building library [$1] for macOS.${__freset}"
-	echo "- Step: arm64"
-	swift build --configuration release --triple arm64-apple-macosx >> ../$1_build.log
+	swift build --configuration release --triple arm64-apple-macosx \
+		--scratch-path $__swiftbuilddir --cache-path $__swiftcachedir >> ../$1_build.log
 	echo "Copying [$1] library binaries to Shounin/bin."
-	cp ".build/arm64-apple-macosx/release/lib$1.dylib" ../Shounin/bin/mac
+	buildpath="$__swiftbuilddir/arm64-apple-macosx/release"
+	cp "$buildpath/lib$1.dylib" ../Shounin/bin/mac
 	if ! [ -e "Shounin/bin/mac/SwiftGodot.framework" ]; then
-		cp -rf "../SwiftGodot/SwiftGodot.xcframework/macos-arm64/SwiftGodot.framework" "../Shounin/bin/mac/"
+		cp -rf "$buildpath/SwiftGodot.framework" "../Shounin/bin/mac/"
 	fi
 	echo "Library built [$1] for macOS."
-	if [ "$__autoclean" = true ]; then
-		echo "Cleaning up intermediates from [$1]."
-		rm -rf .build
-	fi
 }
 
 # Builds the Swift package dynamic libraries and copies the files into Shounin.

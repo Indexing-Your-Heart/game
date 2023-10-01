@@ -58,21 +58,9 @@ clean:
 	just clean-all-deps
 	just clean-logs
 
-# Cleans a specified set of dependencies
-clean-dep +DEPENDENCIES:
-	#!/bin/sh
-	for DEPENDENCY in {{DEPENDENCIES}}; do
-		cd $DEPENDENCY && rm -rf .build xcbuild && cd ..
-	done
-
 # Cleans all dependencies
 clean-all-deps:
-	just clean-dep Protractor
-	just clean-dep Ashashat
-	just clean-dep AnthroBase
-	just clean-dep JensonGodotKit
-	rm -rf {{dep_cache}}
-	rm -f *_build.log
+	rm -rf .mbuild .mxbuild .mcache .mxcache *_build.log
 
 # Cleans all logs built from a Just command.
 clean-logs:
