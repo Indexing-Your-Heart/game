@@ -53,20 +53,6 @@ build-all-deps-ci:
 	just build-dep '-t mac -a -f' AnthroBase
 	just build-dep '-t mac -a -f' JensonGodotKit
 
-# Builds the SwiftGodot xcframework.
-build-swift-godot:
-	#!/bin/sh
-	cd SwiftGodot-Source
-	touch nodeploy
-	VERSION="nodeploy" NOTES="./nodeploy" SWIFT_GODOT_NODEPLOY=true make build-release
-	rm -r nodeploy
-	cd ..
-	cp -rf ~/sg-builds/SwiftGodot.xcframework SwiftGodot
-	if [ -z "$SKIP_CLEAN" ]; then
-		rm -rf ~/sg-builds
-		rm SwiftGodot-Source/Package.resolved
-	fi
-
 # Cleans alls dependencies, logs, etc.
 clean:
 	just clean-all-deps
