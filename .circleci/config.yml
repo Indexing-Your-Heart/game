@@ -9,10 +9,11 @@ jobs:
     steps:
       - run: brew install just aria2
       - run: |
+          mkdir -p workspace/godot
+          cd workspace/godot
           aria2c 'https://github.com/godotengine/godot/releases/download/4.1.1-stable/Godot_v4.1.1-stable_macos.universal.zip'
           unzip Godot_v4.1.1-stable_macos.universal.zip
-          mkdir -p /tmp/workspace/godot
-          mv Godot.app /tmp/workspace/godot/Godot.app
+          rm Godot_v4.1.1-stable_macos.universal.zip
       - persist_to_workspace:
           root: workspace
           paths:
