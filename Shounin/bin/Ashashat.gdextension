@@ -3,8 +3,8 @@ entry_symbol = "libashashat_entry_point"
 compatibility_minimum = 4.1
 
 [libraries]
-macos.debug = "res://bin/mac/Ashashat.framework"
-macos.release = "res://bin/mac/Ashashat.framework"
+macos.debug = "res://bin/mac/libAshashat.dylib"
+macos.release = "res://bin/mac/libAshashat.dylib"
 ios.debug = "res://bin/ios/Ashashat.framework"
 ios.release = "res://bin/ios/Ashashat.framework"
 

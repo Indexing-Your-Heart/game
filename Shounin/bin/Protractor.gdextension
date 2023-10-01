@@ -3,7 +3,7 @@ entry_symbol = "libprotractor_entry_point"
 compatibility_minimum = 4.1
 
 [libraries]
-macos.debug = "res://bin/mac/ProtractorGodotInterop.framework"
-macos.release = "res://bin/mac/ProtractorGodotInterop.framework"
+macos.debug = "res://bin/mac/libProtractorGodotInterop.dylib"
+macos.release = "res://bin/mac/libProtractorGodotInterop.dylib"
 ios.debug = "res://bin/ios/ProtractorGodotInterop.framework"
 ios.release = "res://bin/ios/ProtractorGodotInterop.framework"

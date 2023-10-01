@@ -47,7 +47,7 @@ build_ios_lib() {
 	cp -rf "xcbuild/Build/Products/Release-iphoneos/PackageFrameworks/$1.framework" \
 		"../Shounin/bin/ios/$1.framework"
 	if ! [ -e "Shounin/bin/ios/SwiftGodot.framework" ]; then
-		cp -rf "xcbuild/Build/Products/Release-iphoneos/PackageFrameworks/SwiftGodot.framework" \
+		cp -rf "../SwiftGodot/SwiftGodot.xcframework/ios-arm64/SwiftGodot.framework" \
 			"../Shounin/bin/ios/"
 	fi
 	echo "Library built [$1] for iOS."
@@ -60,21 +60,17 @@ build_ios_lib() {
 # Builds the libraries for macOS (dylib) x86_64 and arm64 into a single library.
 build_mac_lib() {
 	echo "${__fbold}Building library [$1] for macOS.${__freset}"
-	xcodebuild -scheme "$1" -destination 'platform=macOS,arch=arm64' \
-		-derivedDataPath xcbuild -skipPackagePluginValidation \
-		-clonedSourcePackagesDirPath ~/Library/Developer/Xcode/DerivedData/itanium \
-		-configuration Release ARCHS=arm64 >> ../$1_build.log
+	echo "- Step: arm64"
+	swift build --configuration release --triple arm64-apple-macosx >> ../$1_build.log
 	echo "Copying [$1] library binaries to Shounin/bin."
-	cp -rf "xcbuild/Build/Products/Release/PackageFrameworks/$1.framework" \
-		"../Shounin/bin/mac/$1.framework"
+	cp ".build/arm64-apple-macosx/release/lib$1.dylib" ../Shounin/bin/mac
 	if ! [ -e "Shounin/bin/mac/SwiftGodot.framework" ]; then
-		cp -rf "xcbuild/Build/Products/Release/PackageFrameworks/SwiftGodot.framework" \
-			"../Shounin/bin/mac/"
+		cp -rf "../SwiftGodot/SwiftGodot.xcframework/macos-arm64/SwiftGodot.framework" "../Shounin/bin/mac/"
 	fi
 	echo "Library built [$1] for macOS."
 	if [ "$__autoclean" = true ]; then
 		echo "Cleaning up intermediates from [$1]."
-		rm -rf xcbuild
+		rm -rf .build
 	fi
 }
 
