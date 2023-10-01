@@ -67,7 +67,6 @@ jobs:
   lint:
     macos:
       xcode: 15.0.0
-      resource_class: macos.m1.medium.gen1
     environment:
       HOMEBREW_NO_AUTO_UPDATE: 1
     steps:
@@ -93,10 +92,14 @@ workflows:
       - lint:
           requires:
             - download_godot
-      - unit_test:
-          requires:
-            - download_godot
-      - integration_test:
-          requires:
-            - download_godot
-            - unit_test
+
+# TODO: Enable unit and integration tests once CircleCI offers M1 machines to customers for free
+# (see https://discuss.circleci.com/t/macos-intel-support-deprecation-in-january-2024/48718).
+
+      # - unit_test:
+      #     requires:
+      #       - download_godot
+      # - integration_test:
+      #     requires:
+      #       - download_godot
+      #       - unit_test
