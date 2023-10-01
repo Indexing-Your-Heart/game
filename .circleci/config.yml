@@ -1,45 +1,35 @@
 version: 2.1
 
 jobs:
-  build_swift_godot:
+  download_godot:
     macos:
       xcode: 15.0.0
     environment:
       HOMEBREW_NO_AUTO_UPDATE: 1
     steps:
-      - checkout
-      - run: git submodule sync
-      - run: git submodule update --init
       - run: brew install just aria2
       - run: |
           aria2c 'https://github.com/godotengine/godot/releases/download/4.1.1-stable/Godot_v4.1.1-stable_macos.universal.zip'
           unzip Godot_v4.1.1-stable_macos.universal.zip
-          mv Godot.app /tmp/Godot.app
-          echo "export PATH='/tmp/Godot.app/Contents/MacOS:$PATH'" >> "$BASH_ENV"
-      - run: |
-          just fetch-remote-deps
-          just build-swift-godot
-      - run: mkdir -p workspace/sg/
-      - run: cp -rf SwiftGodot/SwiftGodot.xcframework/ workspace/sg/
+          mkdir -p /tmp/workspace/godot
+          mv Godot.app /tmp/workspace/godot/Godot.app
       - persist_to_workspace:
           root: workspace
           paths:
-            - sg
+            - godot
   integration_test:
     macos:
       xcode: 15.0.0
     environment:
       HOMEBREW_NO_AUTO_UPDATE: 1
     steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - run: echo "export PATH='/tmp/workspace/godot/Godot.app/Contents/MacOS:$PATH'" >> "$BASH_ENV"
       - checkout
       - run: git submodule sync
       - run: git submodule update --init
-      - run: brew install just aria2
-      - run: |
-          aria2c 'https://github.com/godotengine/godot/releases/download/4.1.1-stable/Godot_v4.1.1-stable_macos.universal.zip'
-          unzip Godot_v4.1.1-stable_macos.universal.zip
-          mv Godot.app /tmp/Godot.app
-          echo "export PATH='/tmp/Godot.app/Contents/MacOS:$PATH'" >> "$BASH_ENV"
+      - run: brew install just
       - run: just fetch-tools
       - run: just unswizzle-assets
       - run: just build-all-deps-ci
@@ -61,15 +51,13 @@ jobs:
     environment:
       HOMEBREW_NO_AUTO_UPDATE: 1
     steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - run: echo "export PATH='/tmp/workspace/godot/Godot.app/Contents/MacOS:$PATH'" >> "$BASH_ENV"
       - checkout
       - run: git submodule sync
       - run: git submodule update --init
-      - run: brew install just aria2
-      - run: |
-          aria2c 'https://github.com/godotengine/godot/releases/download/4.1.1-stable/Godot_v4.1.1-stable_macos.universal.zip'
-          unzip Godot_v4.1.1-stable_macos.universal.zip
-          mv Godot.app /tmp/Godot.app
-          echo "export PATH='/tmp/Godot.app/Contents/MacOS:$PATH'" >> "$BASH_ENV"
+      - run: brew install just
       - run: just test-all-deps-ci
       - store_test_results:
           path: /tmp/testresults
@@ -79,15 +67,13 @@ jobs:
     environment:
       HOMEBREW_NO_AUTO_UPDATE: 1
     steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - run: echo "export PATH='/tmp/workspace/godot/Godot.app/Contents/MacOS:$PATH'" >> "$BASH_ENV"
       - checkout
       - run: git submodule sync
       - run: git submodule update --init
       - run: brew install just swiftlint
-      - run: |
-          mkdir -p /tmp/bin
-          echo 'null' >> /tmp/bin/godot
-          chmod +x /tmp/bin/godot
-          echo "export PATH='/tmp/bin:$PATH'" >> "$BASH_ENV"
       - run: just lint || true
       - run: |
           mkdir -p /tmp/logs
@@ -99,6 +85,14 @@ jobs:
 workflows:
   merge_request:
     jobs:
-      - lint
-      - unit_test
-      - integration_test
+      - download_godot
+      - lint:
+          requires:
+            - download_godot
+      - unit_test:
+          requires:
+            - download_godot
+      - integration_test:
+          requires:
+            - download_godot
+            - unit_test
