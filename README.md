@@ -124,7 +124,6 @@ Available recipes:
     build-dep LIB_FLAGS +DEPENDENCIES # Build a specified set of dependencies with some flags
     clean                    # Cleans alls dependencies, logs, etc.
     clean-all-deps           # Cleans all dependencies
-    clean-dep +DEPENDENCIES  # Cleans a specified set of dependencies
     clean-logs               # Cleans all logs built from a Just command.
     codesign-deps IDENTITY   # Codesigns the dependency dylibs.
     dry-run                  # Dry run the game locally
