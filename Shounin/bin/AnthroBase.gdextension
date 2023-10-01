@@ -3,7 +3,7 @@ entry_symbol = "libanthrobase_entry_point"
 compatibility_minimum = 4.1
 
 [libraries]
-macos.debug = "res://bin/mac/libAnthroBase.dylib"
-macos.release = "res://bin/mac/libAnthroBase.dylib"
+macos.debug = "res://bin/mac/AnthroBase.framework"
+macos.release = "res://bin/mac/AnthroBase.framework"
 ios.debug = "res://bin/ios/AnthroBase.framework"
 ios.release = "res://bin/ios/AnthroBase.framework"
