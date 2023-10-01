@@ -15,7 +15,6 @@
 #  details.
 
 __target="all"
-__autoclean=true
 __preclean=true
 __library=""
 
@@ -31,9 +30,8 @@ __xcodecachedir="../.mxcache"
 help() {
 	echo "Builds the corresponding dependency libraries."
 	echo
-	echo "Syntax: build-libs [-d|f|h|l <libname>|t <ios|mac|all>] [LIBRARY]"
+	echo "Syntax: build-libs [-f|h|l <libname>|t <ios|mac|all>] [LIBRARY]"
 	echo "options:"
-	echo "d     Skips running cleanup tasks."
 	echo "h     Print this Help."
 	echo "t     Builds libraries for the specified target."
 	echo "l     The output library name."
@@ -109,16 +107,11 @@ build_lib() {
 }
 
 # Parses options before reading list of files.
-while getopts ":dfhl:t:" option; do
+while getopts ":fhl:t:" option; do
 	case $option in
 		h)
 	   		help
 			exit;;
-		d)
-			__autoclean=false;;
-		m)
-			__maconly=true
-			__iosonly=false;;
 		i)
 			__maconly=false
 			__iosonly=true;;
