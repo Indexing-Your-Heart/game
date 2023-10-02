@@ -27,7 +27,7 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "SwiftGodot",
-            url: "https://gitlab.com/indexing-your-heart/SwiftGodot/-/releases/v1.0.0-alpha21/downloads/SwiftGodot.xcframework.zip",
+            url: "https://gitlab.com/indexing-your-heart/SwiftGodotCore/-/releases/v1.0.0-alpha21/downloads/SwiftGodot.xcframework.zip",
             checksum: "54e9723beb8aad113651d5f27156c1d8aee4a1c3ceb1add1c02f835be1ba99be"),
         .macro(
             name: "SwiftGodotMacroLibrary",
