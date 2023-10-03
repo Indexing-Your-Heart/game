@@ -3,7 +3,7 @@
     {
       "identity" : "conlangkit",
       "kind" : "remoteSourceControl",
-      "location" : "https://gitlab.com/marquiskurt/ConlangKit",
+      "location" : "https://gitlab.com/Indexing-Your-Heart/core-dependencies/ConlangKit",
       "state" : {
         "branch" : "root",
         "revision" : "9344e5543af4e77aa236f09c056ff0e54f5f942a"

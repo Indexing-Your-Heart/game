@@ -15,7 +15,7 @@ let package = Package(
     dependencies: [
         .package(name: "SwiftGodot", path: "../SwiftGodot"),
         .package(url: "https://github.com/apple/swift-algorithms", from: "1.0.0"),
-        .package(url: "https://gitlab.com/marquiskurt/ConlangKit", branch: "root")
+        .package(url: "https://gitlab.com/Indexing-Your-Heart/core-dependencies/ConlangKit", branch: "root")
     ],
     targets: [
         .target(
