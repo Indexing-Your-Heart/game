@@ -73,7 +73,7 @@ edit-dep DEPENDENCY:
 
 # Fetches the marteau toolchain
 fetch-tools:
-	brew tap indexing-your-heart/packages
+	brew tap indexing-your-heart/packages https://gitlab.com/indexing-your-heart/homebrew-packages
 	brew install marteau
 
 # Fetches remote dependencies from Git submodules

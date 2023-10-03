@@ -148,7 +148,7 @@ Available recipes:
 > **Note**  
 > To install Marteau from Homebrew automatically, run `just fetch-tools`. More information
 > use Marteau can be found on the source code repository for Marteau at
-> https://gitlab.com/Indexing-Your-Heart/Marteau.
+> https://gitlab.com/Indexing-Your-Heart/build-tools/Marteau.
 
 ## Found an issue?
 
