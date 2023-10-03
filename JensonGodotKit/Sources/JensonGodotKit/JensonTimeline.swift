@@ -16,7 +16,6 @@
 import Foundation
 import JensonKit
 import SwiftGodot
-import SwiftGodotMacros
 
 /// A Godot node that registers a Jenson timeline and attempts to update any children UI elements to reflect the current
 /// event in the story.

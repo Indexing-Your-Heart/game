@@ -14,7 +14,6 @@
 //  details.
 
 import SwiftGodot
-import SwiftGodotMacros
 
 let registerableTypes: [Wrapped.Type] = [AshashatKeyboardInterpreter.self,
                                          AshashatNumpadInterpreter.self]

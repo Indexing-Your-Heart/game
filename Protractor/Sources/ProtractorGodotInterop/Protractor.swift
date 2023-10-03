@@ -14,6 +14,5 @@
 //  details.
 
 import SwiftGodot
-import SwiftGodotMacros
 
 #initSwiftExtension(cdecl: "libprotractor_entry_point", types: [ProtractorDrawer.self])

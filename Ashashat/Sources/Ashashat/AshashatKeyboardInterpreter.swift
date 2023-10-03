@@ -15,7 +15,6 @@
 
 import Foundation
 import SwiftGodot
-import SwiftGodotMacros
 
 /// A virtual keyboard that sends characters in the [ʔaʃaʃat] language.
 ///

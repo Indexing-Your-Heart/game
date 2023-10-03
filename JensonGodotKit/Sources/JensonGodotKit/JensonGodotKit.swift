@@ -15,6 +15,5 @@
 
 import JensonKit
 import SwiftGodot
-import SwiftGodotMacros
 
 #initSwiftExtension(cdecl: "libjensongodotkit_entry_point", types: [JensonTimeline.self])

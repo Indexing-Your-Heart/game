@@ -16,7 +16,6 @@
 import Foundation
 import Protractor
 import SwiftGodot
-import SwiftGodotMacros
 
 /// A node that allows drawing lines that can be matched with a list of recognized gestures.
 ///

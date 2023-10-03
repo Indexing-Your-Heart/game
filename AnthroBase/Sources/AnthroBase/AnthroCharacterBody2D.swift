@@ -15,7 +15,6 @@
 
 import Foundation
 import SwiftGodot
-import SwiftGodotMacros
 
 @NativeHandleDiscarding
 public class AnthroCharacterBody2D: CharacterBody2D {

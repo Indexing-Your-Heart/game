@@ -15,7 +15,6 @@
 
 import Foundation
 import SwiftGodot
-import SwiftGodotMacros
 
 /// A virtual number pad represented in the [ʔaʃaʃat] language.
 ///

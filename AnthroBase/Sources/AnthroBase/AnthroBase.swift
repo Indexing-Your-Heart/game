@@ -14,6 +14,5 @@
 //  details.
 
 import SwiftGodot
-import SwiftGodotMacros
 
 #initSwiftExtension(cdecl: "libanthrobase_entry_point", types: [AnthroCharacterBody2D.self])

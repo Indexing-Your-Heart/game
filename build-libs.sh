@@ -49,8 +49,8 @@ build_ios_lib() {
 	echo "Copying [$1] library binaries to Shounin/bin."
 	buildpath="$__xcodebuilddir/Build/Products/Release-iphoneos/PackageFrameworks"
 	cp -rf "$buildpath/$1.framework" "../Shounin/bin/ios/$1.framework"
-	if ! [ -e "Shounin/bin/ios/SwiftGodot.framework" ]; then
-		cp -rf "$buildpath/SwiftGodot.framework" "../Shounin/bin/ios/SwiftGodot.framework"
+	if ! [ -e "Shounin/bin/ios/SwiftGodotCore.framework" ]; then
+		cp -rf "$buildpath/SwiftGodotCore.framework" "../Shounin/bin/ios/SwiftGodotCore.framework"
 	fi
 	echo "Library built [$1] for iOS."
 }
@@ -63,8 +63,8 @@ build_mac_lib() {
 	echo "Copying [$1] library binaries to Shounin/bin."
 	buildpath="$__swiftbuilddir/arm64-apple-macosx/release"
 	cp "$buildpath/lib$1.dylib" ../Shounin/bin/mac
-	if ! [ -e "Shounin/bin/mac/SwiftGodot.framework" ]; then
-		cp -rf "$buildpath/SwiftGodot.framework" "../Shounin/bin/mac/"
+	if ! [ -e "Shounin/bin/mac/SwiftGodotCore.framework" ]; then
+		cp -rf "$buildpath/SwiftGodotCore.framework" "../Shounin/bin/mac/"
 	fi
 	echo "Library built [$1] for macOS."
 }
@@ -129,14 +129,14 @@ done
 
 shift "$((OPTIND-1))"
 
-if [[ -e "Shounin/bin/mac/SwiftGodot.framework" && $__preclean = true ]]; then
+if [[ -e "Shounin/bin/mac/SwiftGodotCore.framework" && $__preclean = true ]]; then
 	echo "Removing old Swift Godot framework. This will be rebuilt."
-	rm -rf Shounin/bin/SwiftGodot.framework
+	rm -rf Shounin/bin/SwiftGodotCore.framework
 fi
 
-if [[ -e "Shounin/bin/ios/SwiftGodot.framework" && $__preclean = true ]]; then
+if [[ -e "Shounin/bin/ios/SwiftGodotCore.framework" && $__preclean = true ]]; then
 	echo "Removing old Swift Godot framework. This will be rebuilt."
-	rm -rf Shounin/bin/SwiftGodot.framework
+	rm -rf Shounin/bin/SwiftGodotCore.framework
 fi
 
 build_lib "$1"

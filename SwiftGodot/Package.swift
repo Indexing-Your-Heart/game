@@ -4,13 +4,17 @@
 import PackageDescription
 import CompilerPluginSupport
 
+let swiftGodotCoreTag = "v1.0.0-alpha21-DEVELOPMENT-SNAPSHOT-2023-10-02-a"
+
 let package = Package(
     name: "SwiftGodot",
     platforms: [.macOS(.v13), .iOS(.v16)],
     products: [
+        .library(name: "SwiftGodot",
+                 targets: ["SwiftGodot"]),
         .library(
-            name: "SwiftGodot",
-            targets: ["SwiftGodot"]),
+            name: "SwiftGodotCore",
+            targets: ["SwiftGodotCore"]),
         .library(
             name: "SwiftGodotMacros",
             targets: ["SwiftGodotMacros"]
@@ -25,10 +29,11 @@ let package = Package(
                  from: "509.0.0"),
     ],
     targets: [
+        .target(name: "SwiftGodot", dependencies: ["SwiftGodotCore", "SwiftGodotMacros"]),
         .binaryTarget(
-            name: "SwiftGodot",
-            url: "https://gitlab.com/indexing-your-heart/SwiftGodotCore/-/releases/v1.0.0-alpha21/downloads/SwiftGodot.xcframework.zip",
-            checksum: "54e9723beb8aad113651d5f27156c1d8aee4a1c3ceb1add1c02f835be1ba99be"),
+            name: "SwiftGodotCore",
+            url: "https://gitlab.com/indexing-your-heart/SwiftGodotCore/-/releases/\(swiftGodotCoreTag)/downloads/SwiftGodotCore.xcframework.zip",
+            checksum: "3fc0178aa7d041b9b6e599453257f8e85217f68472c728b842a2325d7c5156eb"),
         .macro(
             name: "SwiftGodotMacroLibrary",
             dependencies: [
@@ -37,7 +42,7 @@ let package = Package(
             ]
         ),
         .target(name: "SwiftGodotMacros",
-                dependencies: ["SwiftGodotMacroLibrary", .target(name: "SwiftGodot")]),
+                dependencies: ["SwiftGodotMacroLibrary", .target(name: "SwiftGodotCore")]),
         .executableTarget(name: "SwiftGodotMacrosClient", dependencies: ["SwiftGodotMacros"]),
         .testTarget(
             name: "SwiftGodotMacrosTests",
