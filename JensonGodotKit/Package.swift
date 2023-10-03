@@ -12,7 +12,8 @@ let package = Package(
             targets: ["JensonGodotKit"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/Indexing-Your-Heart/JensonKit", branch: "root"),
+        .package(url: "https://gitlab.com/Indexing-Your-Heart/core-dependencies/JensonKit",
+                 branch: "root"),
         .package(name: "SwiftGodot", path: "../SwiftGodot")
     ],
     targets: [
