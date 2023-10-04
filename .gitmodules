@@ -3,4 +3,4 @@
 	url = https://github.com/Ark2000/panku_console
 [submodule "SwiftGodot"]
 	path = SwiftGodot
-	url = https://gitlab.com/indexing-your-heart/swiftgodot
+	url = https://gitlab.com/indexing-your-heart/engine/swiftgodot
