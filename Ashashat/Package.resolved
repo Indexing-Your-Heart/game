@@ -1,12 +1,21 @@
 {
   "pins" : [
     {
+      "identity" : "ashashatkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://gitlab.com/Indexing-Your-Heart/core-dependencies/AshashatKit",
+      "state" : {
+        "revision" : "d8996228884656476a7ecc8b92935a9984f49d5d",
+        "version" : "1.0.0-DEVELOPMENT-SNAPSHOT-2023-10-03-b"
+      }
+    },
+    {
       "identity" : "conlangkit",
       "kind" : "remoteSourceControl",
-      "location" : "https://gitlab.com/marquiskurt/ConlangKit",
+      "location" : "https://gitlab.com/Indexing-Your-Heart/core-dependencies/ConlangKit",
       "state" : {
-        "branch" : "root",
-        "revision" : "9344e5543af4e77aa236f09c056ff0e54f5f942a"
+        "revision" : "9344e5543af4e77aa236f09c056ff0e54f5f942a",
+        "version" : "1.0.0-DEVELOPMENT-SNAPSHOT-2023-10-03-a"
       }
     },
     {
