@@ -1,19 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpw2oovtw77tk"]
+[gd_scene load_steps=3 format=3 uid="uid://dpw2oovtw77tk"]
 
 [ext_resource type="Theme" uid="uid://dbup2qc6kea2t" path="res://resources/gui/theme.tres" id="1_pk3db"]
-[ext_resource type="Script" path="res://scripts/demo_ashashat_numpad.gd" id="2_1xegt"]
 [ext_resource type="PackedScene" uid="uid://dwj644b4yi2u0" path="res://components/numpad.tscn" id="3_ccn7u"]
 
-[node name="Control" type="Control"]
+[node name="Control" type="DemoAshashatNumpad"]
 texture_filter = 1
-layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_pk3db")
-script = ExtResource("2_1xegt")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

@@ -8,13 +8,16 @@
          location = "group:Shounin/bin/AnthroBase.gdextension">
       </FileRef>
       <FileRef
+         location = "group:Shounin/bin/Ashashat.gdextension">
+      </FileRef>
+      <FileRef
+         location = "group:Shounin/bin/Demoscene.gdextension">
+      </FileRef>
+      <FileRef
          location = "group:Shounin/bin/JensonGodotKit.gdextension">
       </FileRef>
       <FileRef
          location = "group:Shounin/bin/Protractor.gdextension">
-      </FileRef>
-      <FileRef
-         location = "group:Shounin/bin/Ashashat.gdextension">
       </FileRef>
    </Group>
    <FileRef
@@ -56,6 +59,9 @@
    </FileRef>
    <FileRef
       location = "group:Ashashat">
+   </FileRef>
+   <FileRef
+      location = "group:Demoscene">
    </FileRef>
    <FileRef
       location = "group:Protractor">

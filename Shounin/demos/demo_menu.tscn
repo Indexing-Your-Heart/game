@@ -1,15 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://ckyyjw47ox00g"]
+[gd_scene load_steps=2 format=3 uid="uid://ckyyjw47ox00g"]
 
 [ext_resource type="Theme" uid="uid://dbup2qc6kea2t" path="res://resources/gui/theme.tres" id="1_du0j6"]
-[ext_resource type="Script" path="res://scripts/demo_menu.gd" id="2_8g1px"]
 
-[node name="DemoMenu" type="Window"]
+[node name="DemoMenu" type="DemosceneUI"]
 title = "Demos"
 position = Vector2i(600, 300)
 size = Vector2i(400, 300)
 popup_window = true
 theme = ExtResource("1_du0j6")
-script = ExtResource("2_8g1px")
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = 15
