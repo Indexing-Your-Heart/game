@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://gitlab.com/Indexing-Your-Heart/core-dependencies/AshashatKit",
       "state" : {
-        "revision" : "051e98c000d48e3083326ee6eea71c9d0bc560bb",
-        "version" : "1.0.0-DEVELOPMENT-SNAPSHOT-2023-10-03-a"
+        "revision" : "d8996228884656476a7ecc8b92935a9984f49d5d",
+        "version" : "1.0.0-DEVELOPMENT-SNAPSHOT-2023-10-03-b"
       }
     },
     {
@@ -34,6 +34,15 @@
       "state" : {
         "revision" : "b14b7f4c528c942f121c8b860b9410b2bf57825e",
         "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "swift-log",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-log.git",
+      "state" : {
+        "revision" : "532d8b529501fb73a2455b179e0bbb6d49b652ed",
+        "version" : "1.5.3"
       }
     },
     {
