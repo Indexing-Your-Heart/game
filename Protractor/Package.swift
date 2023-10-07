@@ -23,7 +23,6 @@ let package = Package(
         .target(
             name: "ProtractorGodotInterop",
             dependencies: ["SwiftGodot", "Protractor", .product(name: "Logging", package: "swift-log")],
-            swiftSettings: [.unsafeFlags(["-suppress-warnings"])],
             linkerSettings: [.unsafeFlags(["-Xlinker", "-undefined","-Xlinker", "dynamic_lookup"])]),
         .testTarget(
             name: "ProtractorTests",

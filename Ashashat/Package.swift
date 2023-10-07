@@ -20,9 +20,6 @@ let package = Package(
         .target(
             name: "Ashashat",
             dependencies: ["AshashatKit", "SwiftGodot"],
-            swiftSettings: [
-                .unsafeFlags(["-suppress-warnings"])
-            ],
             linkerSettings: [
                 .unsafeFlags(["-Xlinker", "-undefined", "-Xlinker", "dynamic_lookup"])
             ])

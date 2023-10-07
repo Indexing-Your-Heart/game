@@ -58,7 +58,7 @@ extension DemoProtractor {
                      className: StringName("\(DemoProtractor.self)"),
                      hint: .multilineText,
                      hintStr: "",
-                     usage: .propertyUsageDefault)
+                     usage: .default)
         ]
 
         classInfo.registerMethod(name: "_callable_templateRecognized",

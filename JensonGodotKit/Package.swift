@@ -20,7 +20,6 @@ let package = Package(
         .target(
             name: "JensonGodotKit",
             dependencies: ["SwiftGodot", "JensonKit", .product(name: "SwiftGodotMacros", package: "SwiftGodot")],
-            swiftSettings: [.unsafeFlags(["-suppress-warnings"])],
             linkerSettings: [.unsafeFlags(["-Xlinker", "-undefined","-Xlinker", "dynamic_lookup"])])
     ]
 )

@@ -27,7 +27,7 @@ extension ProtractorDrawer {
                      className: StringName("\(ProtractorDrawer.self)"),
                      hint: .typeString,
                      hintStr: "The gesture pattern that was recognized.",
-                     usage: .propertyUsageDefault)
+                     usage: .default)
         ]
         classInfo.registerSignal(name: recognizedSignalName, arguments: recognizedSignalProps)
 

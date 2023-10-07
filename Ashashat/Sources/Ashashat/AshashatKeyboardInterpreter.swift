@@ -97,7 +97,7 @@ extension AshashatKeyboardInterpreter {
                      className: StringName("\(AshashatKeyboardInterpreter.self)"),
                      hint: .typeString,
                      hintStr: "The key that was pressed.",
-                     usage: .propertyUsageDefault)
+                     usage: .default)
         ]
         classInfo.registerSignal(name: keyPressedSignalName, arguments: keyPressedSignalProps)
     }()

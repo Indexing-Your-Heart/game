@@ -128,7 +128,6 @@ public class ProtractorDrawer: Node2D {
     }
 
     private func setupFrame() {
-        guard let frameResource: Texture2D = GD.load(path: "res://resources/pb_border.png") else { return }
         frame.texture = #texture2DLiteral("res://resources/pb_border.png")
         frame.textureFilter = .nearest
         frame.zIndex = -1
@@ -139,9 +138,9 @@ public class ProtractorDrawer: Node2D {
     private func setupLine() {
         addChild(node: visibleLine)
         visibleLine.antialiased = true
-        visibleLine.endCapMode = .lineCapRound
-        visibleLine.beginCapMode = .lineCapRound
-        visibleLine.jointMode = .lineJointRound
+        visibleLine.endCapMode = .round
+        visibleLine.beginCapMode = .round
+        visibleLine.jointMode = .round
     }
 
     private func drawingBounds(of size: Vector2) -> CollisionShape2D {

@@ -76,7 +76,7 @@ extension AshashatNumpadInterpreter {
                      className: StringName("\(AshashatNumpadInterpreter.self)"),
                      hint: .range,
                      hintStr: "0,31,1",
-                     usage: .propertyUsageDefault)
+                     usage: .default)
         ]
         classInfo.registerSignal(name: returnedSignalName, arguments: returnedSignalProps)
     }()

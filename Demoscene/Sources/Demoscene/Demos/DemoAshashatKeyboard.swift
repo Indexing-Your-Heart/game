@@ -82,7 +82,7 @@ extension DemoAshashatKeyboard {
                      className: StringName("\(DemoAshashatKeyboard.self)"),
                      hint: .multilineText,
                      hintStr: "",
-                     usage: .propertyUsageDefault)
+                     usage: .default)
         ]
 
         classInfo.registerMethod(name: "_callable_keyPressed",

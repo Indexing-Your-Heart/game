@@ -29,9 +29,6 @@ let package = Package(
                 .product(name: "Logging", package: "swift-log"),
                 .product(name: "ProtractorGodotInterop", package: "Protractor")
             ],
-            swiftSettings: [
-                .unsafeFlags(["-suppress-warnings"])
-            ],
             linkerSettings: [
                 .unsafeFlags(["-Xlinker", "-undefined","-Xlinker", "dynamic_lookup"])
             ])

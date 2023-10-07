@@ -60,7 +60,7 @@ extension DemoAshashatNumpad {
                      className: StringName("\(DemoAshashatNumpad.self)"),
                      hint: .range,
                      hintStr: "0,31,1",
-                     usage: .propertyUsageDefault)
+                     usage: .default)
         ]
 
         classInfo.registerMethod(name: "_callable_numpadReturned",

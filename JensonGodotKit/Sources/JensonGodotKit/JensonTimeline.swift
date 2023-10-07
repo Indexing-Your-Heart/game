@@ -116,7 +116,7 @@ public class JensonTimeline: Node {
     }
 
     override public func _input(event: InputEvent) {
-        if event.isActionPressed(action: .timelineNext) || Input.isMouseButtonPressed(button: .left) {
+        if Input.isActionPressed(action: .timelineNext) || Input.isMouseButtonPressed(button: .left) {
             handleNextEvent()
         }
     }
@@ -139,7 +139,7 @@ public class JensonTimeline: Node {
         do {
             let reader = try JensonReader(resource: script ?? "")
             guard let file = try reader?.decode() else {
-                GD.pushError("Decoded file for \(script) returned nil.")
+                GD.pushError("Decoded file for \(String(describing: script)) returned nil.")
                 return
             }
             timeline = file.timeline
