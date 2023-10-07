@@ -29,6 +29,13 @@ class DemoProtractor: DemoBaseNode {
     override func _ready() {
         super._ready()
         drawer?.connect(signal: "recognized", callable: #methodName(templateRecognized))
+        LibDemoscene.logger.warning(
+            """
+            Protractor has been deprecated and will be removed.
+
+            Future puzzles should be using [ʔaʃaʃat] instead.
+            """
+        )
     }
 
     @Callable
