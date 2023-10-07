@@ -7,5 +7,3 @@ macos.debug = "res://bin/mac/libDemoscene.dylib"
 macos.release = "res://bin/mac/libDemoscene.dylib"
 ios.debug = "res://bin/ios/Demoscene.framework"
 ios.release = "res://bin/ios/Demoscene.framework"
-
-

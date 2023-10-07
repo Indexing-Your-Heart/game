@@ -7,3 +7,9 @@ macos.debug = "res://bin/mac/libAnthroBase.dylib"
 macos.release = "res://bin/mac/libAnthroBase.dylib"
 ios.debug = "res://bin/ios/AnthroBase.framework"
 ios.release = "res://bin/ios/AnthroBase.framework"
+
+[dependencies]
+macos = { "res://bin/mac/SwiftGodotCore.framework" : "" }
+macos.template_release = { "res://bin/mac/SwiftGodotCore.framework" : "" }
+ios = { "res://bin/ios/SwiftGodotCore.framework" : "" }
+ios.template_release = { "res://bin/ios/SwiftGodotCore.framework" : "" }
