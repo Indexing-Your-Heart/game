@@ -20,9 +20,6 @@ class DemosceneUI: Window {
     @SceneTree(path: "Container/VBoxContainer/EnvironmentDemo")
     var buttonEnvironment: Button?
 
-    @SceneTree(path: "Container/VBoxContainer/ProtractorDemo")
-    var buttonProtractor: Button?
-
     @SceneTree(path: "Container/VBoxContainer/JensonDemo")
     var buttonJenson: Button?
 
@@ -35,7 +32,6 @@ class DemosceneUI: Window {
     private lazy var mapping: [String: Button?] = {
         [
             "environment_demo": buttonEnvironment,
-            "protractor_demo": buttonProtractor,
             "jenson_demo": buttonJenson,
             "ashashat_demo": buttonAshashat,
             "ashashat_numbers_demo": buttonAshashatNumpad

@@ -42,11 +42,6 @@ layout_mode = 2
 text = "Environment Demo"
 flat = true
 
-[node name="ProtractorDemo" type="Button" parent="Container/VBoxContainer"]
-layout_mode = 2
-text = "Protractor Demo"
-flat = true
-
 [node name="JensonDemo" type="Button" parent="Container/VBoxContainer"]
 layout_mode = 2
 text = "Jenson Scene Demo"
