@@ -48,9 +48,9 @@ build_ios_lib() {
 		-configuration Release >> ../$1_build.log
 	echo "Copying [$1] library binaries to Shounin/bin."
 	buildpath="$__xcodebuilddir/Build/Products/Release-iphoneos/PackageFrameworks"
-	cp -rf "$buildpath/$1.framework" "../Shounin/bin/ios/$1.framework"
+	cp -af "$buildpath/$1.framework" "../Shounin/bin/ios/$1.framework"
 	if ! [ -e "Shounin/bin/ios/SwiftGodotCore.framework" ]; then
-		cp -rf "$buildpath/SwiftGodotCore.framework" "../Shounin/bin/ios/SwiftGodotCore.framework"
+		cp -af "$buildpath/SwiftGodotCore.framework" "../Shounin/bin/ios/SwiftGodotCore.framework"
 	fi
 	echo "Library built [$1] for iOS."
 }
@@ -64,7 +64,7 @@ build_mac_lib() {
 	buildpath="$__swiftbuilddir/arm64-apple-macosx/release"
 	cp "$buildpath/lib$1.dylib" ../Shounin/bin/mac
 	if ! [ -e "Shounin/bin/mac/SwiftGodotCore.framework" ]; then
-		cp -rf "$buildpath/SwiftGodotCore.framework" "../Shounin/bin/mac/"
+		cp -af "$buildpath/SwiftGodotCore.framework" "../Shounin/bin/mac/"
 	fi
 	echo "Library built [$1] for macOS."
 }
