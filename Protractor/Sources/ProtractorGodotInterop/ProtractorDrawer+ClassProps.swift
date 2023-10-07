@@ -16,7 +16,7 @@
 import SwiftGodot
 
 extension ProtractorDrawer {
-    static var initClass: Void = {
+    static func initializeClass() {
         let classInfo = ClassInfo<ProtractorDrawer>(name: "ProtractorDrawer")
 
         // MARK: Signal Registration
@@ -50,5 +50,5 @@ extension ProtractorDrawer {
                                    prefix: "debug",
                                    getter: ProtractorDrawer.getDebugPrintPaths,
                                    setter: ProtractorDrawer.setDebugPrintPaths)
-    }()
+    }
 }

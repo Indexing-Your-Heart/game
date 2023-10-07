@@ -44,7 +44,7 @@ public class AshashatNumpadInterpreter: Control {
     }()
 
     public required init() {
-        AshashatNumpadInterpreter.initClass
+        AshashatNumpadInterpreter.initializeClass()
         super.init()
     }
 
@@ -65,7 +65,7 @@ public class AshashatNumpadInterpreter: Control {
 }
 
 extension AshashatNumpadInterpreter {
-    static var initClass: Void = {
+    static func initializeClass() {
         let className = StringName(stringLiteral: "\(AshashatNumpadInterpreter.self)")
         let classInfo = ClassInfo<AshashatNumpadInterpreter>(name: className)
 
@@ -79,5 +79,5 @@ extension AshashatNumpadInterpreter {
                      usage: .default)
         ]
         classInfo.registerSignal(name: returnedSignalName, arguments: returnedSignalProps)
-    }()
+    }
 }

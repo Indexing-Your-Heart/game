@@ -69,7 +69,7 @@ public class AshashatKeyboardInterpreter: Control {
     }()
 
     required init() {
-        AshashatKeyboardInterpreter.initClass
+        AshashatKeyboardInterpreter.initializeClass()
         super.init()
     }
 
@@ -86,7 +86,7 @@ public class AshashatKeyboardInterpreter: Control {
 }
 
 extension AshashatKeyboardInterpreter {
-    static var initClass: Void = {
+    static func initializeClass() {
         let className = StringName(stringLiteral: "\(AshashatKeyboardInterpreter.self)")
         let classInfo = ClassInfo<AshashatKeyboardInterpreter>(name: className)
 
@@ -100,5 +100,5 @@ extension AshashatKeyboardInterpreter {
                      usage: .default)
         ]
         classInfo.registerSignal(name: keyPressedSignalName, arguments: keyPressedSignalProps)
-    }()
+    }
 }

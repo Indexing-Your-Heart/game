@@ -16,7 +16,7 @@
 import SwiftGodot
 
 extension AnthroCharacterBody2D {
-    static var initClass: Void = {
+    static func initializeClass() {
         let classInfo = ClassInfo<AnthroCharacterBody2D>(name: "AnthroCharacterBody2D")
         classInfo.registerEnum(named: "character",
                                for: Character.self,
@@ -41,7 +41,7 @@ extension AnthroCharacterBody2D {
                               prefix: "movement",
                               getter: AnthroCharacterBody2D.getFriction,
                               setter: AnthroCharacterBody2D.setFriction)
-    }()
+    }
 
     public func getAcceleration(args _: [Variant]) -> Variant? {
         Variant(Int(acceleration))

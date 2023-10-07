@@ -22,13 +22,13 @@ class DemoProtractor: DemoBaseNode {
     @SceneTree(path: "CanvasLayer/Label") var debugLabel: Label?
 
     required init() {
-        DemoProtractor.initClass
+        DemoProtractor.initializeClass()
         super.init()
     }
 
     override func _ready() {
         super._ready()
-        drawer?.connect(signal: "recognized", callable: #methodName(templateRecognized))
+        _ = drawer?.connect(signal: "recognized", callable: #methodName(templateRecognized))
         LibDemoscene.logger.warning(
             """
             Protractor has been deprecated and will be removed.
@@ -48,7 +48,7 @@ class DemoProtractor: DemoBaseNode {
 }
 
 extension DemoProtractor {
-    static var initClass: Void = {
+    static func initializeClass() {
         let className = StringName(stringLiteral: "\(DemoProtractor.self)")
         let classInfo = ClassInfo<DemoProtractor>(name: className)
 
@@ -66,5 +66,5 @@ extension DemoProtractor {
                                  returnValue: nil,
                                  arguments: recognizedSignalProps,
                                  function: DemoProtractor._callable_templateRecognized)
-    }()
+    }
 }

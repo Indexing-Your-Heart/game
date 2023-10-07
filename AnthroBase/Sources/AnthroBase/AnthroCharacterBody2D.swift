@@ -47,7 +47,7 @@ public class AnthroCharacterBody2D: CharacterBody2D {
     }
 
     public required init() {
-        AnthroCharacterBody2D.initClass
+        AnthroCharacterBody2D.initializeClass()
         friction = 100
         speed = 200
         acceleration = 250
@@ -69,7 +69,7 @@ public class AnthroCharacterBody2D: CharacterBody2D {
             animationState?.travel(toNode: StringName("Idle"), resetOnTeleport: false)
             velocity = velocity.moveToward(to: .zero, delta: friction)
         }
-        moveAndSlide()
+        _ = moveAndSlide()
         super._physicsProcess(delta: delta)
     }
 

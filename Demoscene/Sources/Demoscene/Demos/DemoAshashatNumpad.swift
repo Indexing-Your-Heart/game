@@ -25,21 +25,21 @@ class DemoAshashatNumpad: DemoBaseControl {
     var textField: Label?
 
     required init() {
-        DemoAshashatNumpad.initClass
+        DemoAshashatNumpad.initializeClass()
         super.init()
     }
 
     override func _ready() {
         super._ready()
-        numpad?.connect(signal: "numpad_returned", callable: #methodName(numpadReturned))
+        _ = numpad?.connect(signal: "numpad_returned", callable: #methodName(numpadReturned))
         LibDemoscene.logger.debug(
-            "Registered connections: \(numpad?.getSignalConnectionList(signal: "numpad_returned"))")
+            "Registered connections: \(String(describing: numpad?.getSignalConnectionList(signal: "numpad_returned")))")
     }
 
     override func _unhandledInput(event: InputEvent?) {
         if Input.isActionPressed(action: "cancel") {
             LibDemoscene.logger.info("Received message to return to menu.")
-            getTree()?.changeSceneToFile(path: "res://demos/demo_menu.tscn")
+            _ = getTree()?.changeSceneToFile(path: "res://demos/demo_menu.tscn")
         }
     }
 
@@ -50,7 +50,7 @@ class DemoAshashatNumpad: DemoBaseControl {
 }
 
 extension DemoAshashatNumpad {
-    static let initClass: Void = {
+    static func initializeClass() {
         let className = StringName(stringLiteral: "\(DemoAshashatNumpad.self)")
         let classInfo = ClassInfo<DemoAshashatNumpad>(name: className)
 
@@ -68,5 +68,5 @@ extension DemoAshashatNumpad {
                                  returnValue: nil,
                                  arguments: returnedSignalProps,
                                  function: DemoAshashatNumpad._callable_numpadReturned)
-    }()
+    }
 }

@@ -25,19 +25,19 @@ class DemoAshashatKeyboard: DemoBaseControl {
     var textContents: String = ""
 
     required init() {
-        DemoAshashatKeyboard.initClass
+        DemoAshashatKeyboard.initializeClass()
         super.init()
     }
 
     override func _ready() {
         super._ready()
-        keyboard?.connect(signal: "key_pressed", callable: #methodName(keyPressed))
+        _ = keyboard?.connect(signal: "key_pressed", callable: #methodName(keyPressed))
     }
 
     override func _unhandledInput(event: InputEvent?) {
         if Input.isActionPressed(action: "cancel") {
             LibDemoscene.logger.info("Received message to return to menu.")
-            getTree()?.changeSceneToFile(path: "res://demos/demo_menu.tscn")
+            _ = getTree()?.changeSceneToFile(path: "res://demos/demo_menu.tscn")
         }
     }
 
@@ -49,7 +49,7 @@ class DemoAshashatKeyboard: DemoBaseControl {
         }
 
         guard let textField else {
-            LibDemoscene.logger.error("Text field is not initialized: \(textField)")
+            LibDemoscene.logger.error("Text field is not initialized: \(String(describing: textField))")
             return
         }
 
@@ -72,7 +72,7 @@ class DemoAshashatKeyboard: DemoBaseControl {
 }
 
 extension DemoAshashatKeyboard {
-    static var initClass: Void = {
+    static func initializeClass() {
         let className = StringName(stringLiteral: "\(DemoAshashatKeyboard.self)")
         let classInfo = ClassInfo<DemoAshashatKeyboard>(name: className)
 
@@ -90,5 +90,5 @@ extension DemoAshashatKeyboard {
                                  returnValue: nil,
                                  arguments: keyPressedSignalProps,
                                  function: DemoAshashatKeyboard._callable_keyPressed)
-    }()
+    }
 }

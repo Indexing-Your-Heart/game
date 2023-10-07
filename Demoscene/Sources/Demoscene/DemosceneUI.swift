@@ -62,6 +62,6 @@ class DemosceneUI: Window {
 
     private func switchToDemo(named demo: String) {
         LibDemoscene.logger.debug("Received message to open demo: \(demo)")
-        getTree()?.changeSceneToFile(path: "res://demos/\(demo).tscn")
+        _ = getTree()?.changeSceneToFile(path: "res://demos/\(demo).tscn")
     }
 }

@@ -24,7 +24,7 @@ class DemoBaseControl: Control {
     override func _unhandledInput(event: InputEvent?) {
         if Input.isActionPressed(action: "cancel") {
             LibDemoscene.logger.info("Received message to return to menu.")
-            getTree()?.changeSceneToFile(path: "res://demos/demo_menu.tscn")
+            _ = getTree()?.changeSceneToFile(path: "res://demos/demo_menu.tscn")
         }
         super._unhandledInput(event: event)
     }
@@ -39,7 +39,7 @@ class DemoBaseNode: Node {
     override func _unhandledInput(event: InputEvent?) {
         if Input.isActionPressed(action: "cancel") {
             LibDemoscene.logger.info("Received message to return to menu.")
-            getTree()?.changeSceneToFile(path: "res://demos/demo_menu.tscn")
+            _ = getTree()?.changeSceneToFile(path: "res://demos/demo_menu.tscn")
         }
         super._unhandledInput(event: event)
     }

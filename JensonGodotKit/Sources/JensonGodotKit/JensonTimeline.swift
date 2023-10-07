@@ -83,7 +83,7 @@ public class JensonTimeline: Node {
     private var whatLabel: Label?
 
     public required init() {
-        JensonTimeline.initClass
+        JensonTimeline.initializeClass()
         super.init()
     }
 

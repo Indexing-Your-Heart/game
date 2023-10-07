@@ -21,23 +21,23 @@ class DemoJensonTimeline: DemoBaseControl {
     @SceneTree(path: "JensonTimeline") var timeline: JensonTimeline?
 
     required init() {
-        DemoJensonTimeline.initClass
+        DemoJensonTimeline.initializeClass()
         super.init()
     }
 
     override func _ready() {
         super._ready()
-        timeline?.connect(signal: "timeline_finished", callable: #methodName(timelineFinished))
+        _ = timeline?.connect(signal: "timeline_finished", callable: #methodName(timelineFinished))
     }
 
     @Callable func timelineFinished() {
         LibDemoscene.logger.debug("Timeline finished. Sending back to demo menu.")
-        getTree()?.changeSceneToFile(path: "res://demos/demo_menu.tscn")
+        _ = getTree()?.changeSceneToFile(path: "res://demos/demo_menu.tscn")
     }
 }
 
 extension DemoJensonTimeline {
-    static var initClass: Void = {
+    static func initializeClass() {
         let className = StringName(stringLiteral: "\(DemoJensonTimeline.self)")
         let classInfo = ClassInfo<DemoJensonTimeline>(name: className)
 
@@ -46,5 +46,5 @@ extension DemoJensonTimeline {
                                  returnValue: nil,
                                  arguments: [],
                                  function: DemoJensonTimeline._callable_timelineFinished)
-    }()
+    }
 }

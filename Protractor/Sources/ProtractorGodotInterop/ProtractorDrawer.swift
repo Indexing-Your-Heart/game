@@ -49,7 +49,7 @@ public class ProtractorDrawer: Node2D {
 
     /// Generates an instance of the drawer node in the Godot scene.
     public required init() {
-        ProtractorDrawer.initClass
+        ProtractorDrawer.initializeClass()
         drawingArea = Area2D()
         visibleLine = Line2D()
         super.init()
