@@ -4,6 +4,3 @@
 [submodule "SwiftGodot"]
 	path = SwiftGodot
 	url = https://gitlab.com/indexing-your-heart/engine/swiftgodot
-[submodule "Protractor"]
-	path = Protractor
-	url = https://gitlab.com/indexing-your-heart/core-dependencies/Protractor
