@@ -16,7 +16,8 @@ let package = Package(
         .package(name: "SwiftGodot", path: "../SwiftGodot"),
         .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0"),
         .package(name: "Ashashat", path: "../Ashashat"),
-        .package(name: "JensonGodotKit", path: "../JensonGodotKit")
+        .package(name: "JensonGodotKit", path: "../JensonGodotKit"),
+        .package(name: "Protractor", path: "../Protractor")
     ],
     targets: [
         .target(
@@ -25,7 +26,8 @@ let package = Package(
                 "SwiftGodot",
                 "Ashashat",
                 "JensonGodotKit",
-                .product(name: "Logging", package: "swift-log")
+                .product(name: "Logging", package: "swift-log"),
+                .product(name: "ProtractorGodotInterop", package: "Protractor")
             ],
             swiftSettings: [
                 .unsafeFlags(["-suppress-warnings"])
