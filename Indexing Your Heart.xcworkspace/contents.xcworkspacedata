@@ -26,13 +26,6 @@
       name = "Supporting Files">
       <Group
          location = "container:"
-         name = "GitHub Workflows">
-         <FileRef
-            location = "group:.github/workflows/unit_tests.yml">
-         </FileRef>
-      </Group>
-      <Group
-         location = "container:"
          name = "Godot Extensions">
          <FileRef
             location = "group:Shounin/bin/AnthroBase.gdextension">
@@ -45,9 +38,6 @@
          </FileRef>
          <FileRef
             location = "group:Shounin/bin/JensonGodotKit.gdextension">
-         </FileRef>
-         <FileRef
-            location = "group:Shounin/bin/Protractor.gdextension">
          </FileRef>
       </Group>
    </Group>

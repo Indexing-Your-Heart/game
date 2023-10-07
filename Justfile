@@ -38,7 +38,6 @@ build-dep LIB_FLAGS +DEPENDENCIES: (fetch-remote-deps)
 
 # Build all dependencies
 build-all-deps:
-	just build-dep '-l ProtractorGodotInterop' Protractor
 	just build-dep '-f' Demoscene
 	just build-dep '-f' Ashashat
 	just build-dep '-f' AnthroBase
@@ -46,7 +45,6 @@ build-all-deps:
 
 # Build all dependencies for CI
 build-all-deps-ci:
-	just build-dep '-t mac -l ProtractorGodotInterop' Protractor
 	just build-dep '-t mac -f' Demoscene
 	just build-dep '-t mac -f' Ashashat
 	just build-dep '-t mac -f' AnthroBase
