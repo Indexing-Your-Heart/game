@@ -15,7 +15,15 @@
 
 import SwiftGodot
 
-let registerableTypes: [Wrapped.Type] = [AshashatKeyboardInterpreter.self,
-                                         AshashatNumpadInterpreter.self]
-
-#initSwiftExtension(cdecl: "libashashat_entry_point", types: registerableTypes)
+@GodotMain
+class LibAshashat: GodotExtensionDelegate {
+    var nodeTypes: [Wrapped.Type] = [
+        AshashatNumpadInterpreter.self,
+        AshashatKeyboardInterpreter.self
+    ]
+    func extensionDidInitialize(at level: GDExtension.InitializationLevel) {
+        for type in nodeTypes {
+            register(type: type)
+        }
+    }
+}

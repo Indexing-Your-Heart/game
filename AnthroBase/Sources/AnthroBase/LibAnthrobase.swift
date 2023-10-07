@@ -1,5 +1,5 @@
 //
-//  AntroBase.swift
+//  LibAnthrobase.swift
 //  Indexing Your Heart
 //
 //  Created by Marquis Kurt on 5/27/23.
@@ -15,4 +15,15 @@
 
 import SwiftGodot
 
-#initSwiftExtension(cdecl: "libanthrobase_entry_point", types: [AnthroCharacterBody2D.self])
+@GodotMain
+class LibAnthrobase: GodotExtensionDelegate {
+    var nodeTypes: [Wrapped.Type] = [
+        AnthroCharacterBody2D.self
+    ]
+
+    func extensionDidInitialize(at level: SwiftGodotCore.GDExtension.InitializationLevel) {
+        for type in nodeTypes {
+            register(type: type)
+        }
+    }
+}

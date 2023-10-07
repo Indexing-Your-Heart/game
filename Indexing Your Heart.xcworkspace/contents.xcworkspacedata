@@ -64,9 +64,9 @@
       location = "group:Demoscene">
    </FileRef>
    <FileRef
-      location = "group:Protractor">
+      location = "group:JensonGodotKit">
    </FileRef>
    <FileRef
-      location = "group:JensonGodotKit">
+      location = "group:Protractor">
    </FileRef>
 </Workspace>

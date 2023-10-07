@@ -15,4 +15,18 @@
 
 import SwiftGodot
 
-#initSwiftExtension(cdecl: "libprotractor_entry_point", types: [ProtractorDrawer.self])
+@GodotMain
+class LibProtractor: GodotExtensionDelegate {
+    func extensionWillInitialize() {
+        GD.pushWarning(
+            """
+            ProtractorGodotInterop is deprecated and will be removed in a future update.
+
+            Future puzzles should utilize the Ashashat library.
+            """
+        )
+    }
+    func extensionDidInitialize(at level: GDExtension.InitializationLevel) {
+        register(type: ProtractorDrawer.self)
+    }
+}

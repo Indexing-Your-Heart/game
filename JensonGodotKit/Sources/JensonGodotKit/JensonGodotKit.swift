@@ -16,4 +16,9 @@
 import JensonKit
 import SwiftGodot
 
-#initSwiftExtension(cdecl: "libjensongodotkit_entry_point", types: [JensonTimeline.self])
+@GodotMain
+class LibJensonGodotKit: GodotExtensionDelegate {
+    func extensionDidInitialize(at level: GDExtension.InitializationLevel) {
+        register(type: JensonTimeline.self)
+    }
+}
