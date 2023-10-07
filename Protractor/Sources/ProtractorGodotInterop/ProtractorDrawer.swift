@@ -88,9 +88,9 @@ public class ProtractorDrawer: Node2D {
             do {
                 recognizer.dropTemplates()
                 try recognizer.insertTemplates(reading: protractorTemplate)
-                GD.print("Loaded templates:", recognizer.templates.map(\.name))
+                LibProtractor.logger.debug("Loaded templates: \(recognizer.templates.map(\.name))")
             } catch {
-                GD.pushError("Failed to add template:", error.localizedDescription)
+                LibProtractor.logger.error("Failed to load templates: \(error.localizedDescription)")
             }
         }
     }
@@ -114,13 +114,13 @@ public class ProtractorDrawer: Node2D {
 
             // Register touch events for touchscreens/iOS.
             if event.getClass() == "\(InputEventScreenTouch.self)" {
-                GD.print("Registering touch event for starting")
+                LibProtractor.logger.debug("Registering touch event to start drawing.")
                 self.startDrawing(with: event)
                 return
             }
 
             if event.getClass() == "\(InputEventScreenDrag.self)" {
-                GD.print("Registering touch event for drawing")
+                LibProtractor.logger.debug("Registering touch event to continue drawing.")
                 self.continueDrawing(with: event)
                 return
             }
@@ -177,16 +177,16 @@ public class ProtractorDrawer: Node2D {
 
         if debugPrintPaths {
             let printedPoints = visibleLine.points.map { [Int($0.x), Int($0.y)] }
-            GD.print("Drawn Path:", printedPoints)
+            LibProtractor.logger.debug("Received drawn path: \(printedPoints)")
         }
 
         guard !recognizer.templates.isEmpty else {
-            GD.pushWarning("Recognizer templates are empty.")
+            LibProtractor.logger.warning("List of templates is empty.")
             return
         }
 
         let (name, accuracy) = recognizer.recognize()
-        GD.print("Best guess:", name, "with accuracy:", accuracy)
+        LibProtractor.logger.info("Bues guess is: \(name) with accuracy: \(accuracy)")
         emitSignal(Self.recognizedSignalName, Variant(stringLiteral: name))
     }
 }

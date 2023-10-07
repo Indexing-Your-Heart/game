@@ -13,11 +13,17 @@
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
 
+import Logging
 import SwiftGodot
 
 @GodotMain
 class LibProtractor: GodotExtensionDelegate {
+    static var logger = Logger(label: "godotengine.swiftgodot.libprotractor")
     func extensionWillInitialize() {
+        LoggingSystem.bootstrap(GodotLogger.init)
+    }
+    func extensionDidInitialize(at level: GDExtension.InitializationLevel) {
+        register(type: ProtractorDrawer.self)
         GD.pushWarning(
             """
             ProtractorGodotInterop is deprecated and will be removed in a future update.
@@ -25,8 +31,5 @@ class LibProtractor: GodotExtensionDelegate {
             Future puzzles should utilize the Ashashat library.
             """
         )
-    }
-    func extensionDidInitialize(at level: GDExtension.InitializationLevel) {
-        register(type: ProtractorDrawer.self)
     }
 }

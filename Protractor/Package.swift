@@ -16,12 +16,13 @@ let package = Package(
     ],
     dependencies: [
         .package(name: "SwiftGodot", path: "../SwiftGodot"),
+        .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0"),
     ],
     targets: [
         .target(name: "Protractor"),
         .target(
             name: "ProtractorGodotInterop",
-            dependencies: ["SwiftGodot", "Protractor", .product(name: "SwiftGodotMacros", package: "SwiftGodot")],
+            dependencies: ["SwiftGodot", "Protractor", .product(name: "Logging", package: "swift-log")],
             swiftSettings: [.unsafeFlags(["-suppress-warnings"])],
             linkerSettings: [.unsafeFlags(["-Xlinker", "-undefined","-Xlinker", "dynamic_lookup"])]),
         .testTarget(
