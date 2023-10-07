@@ -49,6 +49,10 @@ class DemosceneUI: Window {
     override func _ready() {
         super._ready()
 
+        closeRequested.connect { [weak self] in
+            self?.getTree()?.quit()
+        }
+
         for (demoName, button) in mapping {
             button?.pressed.connect { [weak self] in
                 self?.switchToDemo(named: demoName)
