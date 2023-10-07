@@ -15,7 +15,8 @@
 
 import SwiftGodot
 
-enum AshashatKeyboardKey: String, CaseIterable {
+/// An enumeration that represents a key on the [ʔaʃaʃat] keyboard.
+public enum AshashatKeyboardKey: String, CaseIterable {
     case a, i, e, u
     case p, b, t, k, n, s, l
     case ejectiveK = "ejective_k"
@@ -23,7 +24,10 @@ enum AshashatKeyboardKey: String, CaseIterable {
     case repeater, duplicant
     case `return`, delete
 
-    var keyValue: String {
+    /// The key's value.
+    ///
+    /// When appending to a text field, this value should be used.
+    public var keyValue: String {
         switch self {
         case .repeater: ":"
         case .duplicant: "!"
@@ -35,12 +39,40 @@ enum AshashatKeyboardKey: String, CaseIterable {
         }
     }
 
-    var keyCode: String {
+    /// The key's value as rendered using the [ʔaʃaʃat] fonts.
+    ///
+    /// [iʔaʃakasubapenasate] renders characters using font ligatures. As such, typically, some key combinations don't
+    /// necessarily match ``keyValue``.
+    ///
+    /// This should be used for labels that set their font to be a variant of the [iʔaʃakasubapenasate] family.
+    public var fontRenderedValue: String {
+        switch self {
+        case .repeater:
+            return "*"
+        case .ejectiveK:
+            return "K"
+        case .sh:
+            return "sh"
+        default:
+            return self.keyValue
+        }
+    }
+
+    /// The key's registered key code.
+    ///
+    /// When ``AshashatKeyboardInterpreter/keyPressedSignalName`` emits, this value will be provided as an argument.
+    public var keyCode: String {
         "ashashat_key_\(self.rawValue)"
+    }
+
+    /// Initializes a key, deriving from its key code.
+    /// - Parameter keyCode: The key code the key should decode from.
+    public init?(keyCode: String) {
+        self.init(rawValue: keyCode.replacingOccurrences(of: "ashashat_key_", with: ""))
     }
 }
 
-extension AshashatKeyboardKey {
+public extension AshashatKeyboardKey {
     static var vowels: [AshashatKeyboardKey] {
         [.a, .e, .i, .u]
     }

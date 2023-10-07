@@ -1,20 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://wemw6prebajf"]
+[gd_scene load_steps=4 format=3 uid="uid://wemw6prebajf"]
 
 [ext_resource type="Theme" uid="uid://dbup2qc6kea2t" path="res://resources/gui/theme.tres" id="1_0p5wj"]
-[ext_resource type="Script" path="res://scripts/demo_ashashat.gd" id="1_fg7vj"]
 [ext_resource type="PackedScene" uid="uid://ecxx1b6ggwda" path="res://components/keyboard.tscn" id="1_g456k"]
 [ext_resource type="FontFile" uid="uid://u077pytrgt12" path="res://resources/gui/ashashat_fnt.ttf" id="4_cywxo"]
 
-[node name="Control" type="Control"]
+[node name="Control" type="DemoAshashatKeyboard"]
 texture_filter = 1
-layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_0p5wj")
-script = ExtResource("1_fg7vj")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
