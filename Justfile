@@ -89,7 +89,7 @@ format-dep +DEPENDENCIES:
 
 # Formats source files in all dependencies
 format-all-deps:
-	just format-dep Protractor AnthroBase JensonGodotKit
+	just format-dep Ashashat AnthroBase Demoscene JensonGodotKit
 
 # Test a specified dependency
 test-dep DEPENDENCY SWIFT_ARGS=dep_test_args:
@@ -98,13 +98,11 @@ test-dep DEPENDENCY SWIFT_ARGS=dep_test_args:
 
 # Test all dependencies
 test-all-deps:
-	just test-dep Protractor
 	just test-dep Ashashat
 
 # Test all dependencies and store their results for CI.
 test-all-deps-ci:
 	mkdir -p /tmp/testresults
-	just test-dep Protractor '--parallel --num-workers=1 --xunit-output /tmp/testresults/Protractor.xml'
 	just test-dep Ashashat '--parallel --num-workers=1 --xunit-output /tmp/testresults/Ashashat.xml'
 
 # Runs the integration tests through Godot.
