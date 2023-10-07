@@ -31,7 +31,7 @@ class DemoAshashatNumpad: Control {
 
     override func _ready() {
         super._ready()
-        numpad?.connect(signal: "numpad_returned", callable: Callable(object: self, method: "numpadReturned"))
+        numpad?.connect(signal: "numpad_returned", callable: #methodName(numpadReturned))
         LibDemoscene.logger.debug(
             "Registered connections: \(numpad?.getSignalConnectionList(signal: "numpad_returned"))")
     }
@@ -43,17 +43,10 @@ class DemoAshashatNumpad: Control {
         }
     }
 
-    func numpadReturned(args: [Variant]) -> Variant? {
-        ClassInfo.withCheckedProperty(named: "value", in: args) { value in
-            guard let realValue = Int(value) else {
-                LibDemoscene.logger.error("Expected numpad return type to contain a value, received nil instead.")
-                return
-            }
-            LibDemoscene.logger.debug("Received value: \(realValue)")
-            textField?.text = "Entered value: \(realValue)"
-        }
+    @Callable func numpadReturned(value: Int) {
+        LibDemoscene.logger.debug("Received value: \(value)")
+        textField?.text = "Entered value: \(value)"
     }
-
 }
 
 extension DemoAshashatNumpad {
@@ -70,10 +63,10 @@ extension DemoAshashatNumpad {
                      usage: .propertyUsageDefault)
         ]
 
-        classInfo.registerMethod(name: "numpadReturned",
+        classInfo.registerMethod(name: "_callable_numpadReturned",
                                  flags: .default,
                                  returnValue: nil,
                                  arguments: returnedSignalProps,
-                                 function: DemoAshashatNumpad.numpadReturned)
+                                 function: DemoAshashatNumpad._callable_numpadReturned)
     }()
 }

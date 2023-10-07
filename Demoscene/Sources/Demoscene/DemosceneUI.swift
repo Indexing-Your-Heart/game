@@ -37,8 +37,8 @@ class DemosceneUI: Window {
             "environment_demo": buttonEnvironment,
             "protractor_demo": buttonProtractor,
             "jenson_demo": buttonJenson,
-            "ashahsat_demo": buttonAshashat,
-            "ashahsat_numbers_demo": buttonAshashatNumpad
+            "ashashat_demo": buttonAshashat,
+            "ashashat_numbers_demo": buttonAshashatNumpad
         ]
     }()
 
