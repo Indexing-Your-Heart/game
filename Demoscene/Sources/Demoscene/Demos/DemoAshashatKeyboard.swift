@@ -17,7 +17,7 @@ import Ashashat
 import SwiftGodot
 
 @NativeHandleDiscarding
-class DemoAshashatKeyboard: Control {
+class DemoAshashatKeyboard: DemoBaseControl {
     @SceneTree(path: "Keyboard") var keyboard: AshashatKeyboardInterpreter?
     @SceneTree(path: "Label") var label: Label?
     @SceneTree(path: "TextField") var textField: Label?

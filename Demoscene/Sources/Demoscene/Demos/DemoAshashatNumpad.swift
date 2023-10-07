@@ -17,7 +17,7 @@ import Ashashat
 import SwiftGodot
 
 @NativeHandleDiscarding
-class DemoAshashatNumpad: Control {
+class DemoAshashatNumpad: DemoBaseControl {
     @SceneTree(path: "Numpad")
     var numpad: AshashatNumpadInterpreter?
 

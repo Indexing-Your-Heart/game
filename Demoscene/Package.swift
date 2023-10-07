@@ -16,6 +16,7 @@ let package = Package(
         .package(name: "SwiftGodot", path: "../SwiftGodot"),
         .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0"),
         .package(name: "Ashashat", path: "../Ashashat"),
+        .package(name: "JensonGodotKit", path: "../JensonGodotKit")
     ],
     targets: [
         .target(
@@ -23,6 +24,7 @@ let package = Package(
             dependencies: [
                 "SwiftGodot",
                 "Ashashat",
+                "JensonGodotKit",
                 .product(name: "Logging", package: "swift-log")
             ],
             swiftSettings: [

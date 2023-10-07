@@ -21,6 +21,9 @@ class LibDemoscene: GodotExtensionDelegate {
     static var logger = Logger(label: "godotengine.swiftgodot.libdemoscene")
 
     var allNodes: [Wrapped.Type] = [
+        DemoBaseNode.self,
+        DemoBaseControl.self,
+        DemoJensonTimeline.self,
         DemoAshashatKeyboard.self,
         DemoAshashatNumpad.self,
         DemosceneUI.self
