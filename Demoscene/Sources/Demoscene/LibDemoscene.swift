@@ -23,7 +23,6 @@ class LibDemoscene: GodotExtensionDelegate {
     var allNodes: [Wrapped.Type] = [
         DemoBaseNode.self,
         DemoBaseControl.self,
-        DemoProtractor.self,
         DemoJensonTimeline.self,
         DemoAshashatKeyboard.self,
         DemoAshashatNumpad.self,

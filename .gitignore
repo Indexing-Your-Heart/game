@@ -129,6 +129,9 @@ integration_results_*.xml
 # Raw unswizzled assets
 Shounin/resources/characters/**.png
 
+# Licensed content
+Shounin/resources/gui/salmon/*
+
 # Dependency intermediates
 .mbuild
 .mxcbuild
