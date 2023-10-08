@@ -130,7 +130,7 @@ integration_results_*.xml
 Shounin/resources/characters/**.png
 
 # Licensed content
-Shounin/resources/gui/salmon/*
+Shounin/resources/gui/salmon/*.ttf
 
 # Dependency intermediates
 .mbuild
