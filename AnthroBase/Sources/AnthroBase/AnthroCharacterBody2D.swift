@@ -23,6 +23,11 @@ public class AnthroCharacterBody2D: CharacterBody2D {
         case obel
     }
 
+    enum PlayerState: Equatable {
+        case idle
+        case walking
+    }
+
     @SceneTree(path: "Sprite")
     var sprite: Sprite2D?
 
@@ -37,6 +42,8 @@ public class AnthroCharacterBody2D: CharacterBody2D {
     public var character: Character = .chelsea
     public var friction: Double
     public var speed: Double
+
+    var currentState = PlayerState.idle
 
     private var movementVector: Vector2 {
         Input.getVector(negativeX: "move_left",
@@ -57,18 +64,20 @@ public class AnthroCharacterBody2D: CharacterBody2D {
     override public func _ready() {
         super._ready()
         animationState = animationTree?.get(property: StringName("parameters/playback")).asObject()
+        LibAnthrobase.logger.debug("Animation state is: \(String(describing: animationState))")
     }
 
     override public func _physicsProcess(delta: Double) {
         if Engine.isEditorHint() { return }
         if movementVector != Vector2.zero {
+            currentState = .walking
             updateBlendingProperties(with: movementVector)
-            animationState?.travel(toNode: StringName("Walk"), resetOnTeleport: false)
             velocity = (movementVector * Vector2(x: acceleration, y: acceleration)).limitLength(length: speed)
         } else {
-            animationState?.travel(toNode: StringName("Idle"), resetOnTeleport: false)
+            currentState = .idle
             velocity = velocity.moveToward(to: .zero, delta: friction)
         }
+        updateAnimationContditions()
         _ = moveAndSlide()
         super._physicsProcess(delta: delta)
     }
@@ -90,5 +99,12 @@ public class AnthroCharacterBody2D: CharacterBody2D {
 
         animationTree.set(property: StringName("parameters/Idle/blend_position"), value: Variant(vector))
         animationTree.set(property: StringName("parameters/Walk/blend_position"), value: Variant(vector))
+    }
+
+    private func updateAnimationContditions() {
+        animationTree?.set(property: "parameters/conditions/idling",
+                           value: (currentState == .idle).toVariant())
+        animationTree?.set(property: "parameters/conditions/walking",
+                           value: (currentState == .walking).toVariant())
     }
 }

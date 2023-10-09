@@ -12,12 +12,16 @@ let package = Package(
             targets: ["AnthroBase"]),
     ],
     dependencies: [
+        .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0"),
         .package(name: "SwiftGodot", path: "../SwiftGodot"),
     ],
     targets: [
         .target(
             name: "AnthroBase",
-            dependencies: ["SwiftGodot", .product(name: "SwiftGodotMacros", package: "SwiftGodot")],
+            dependencies: [
+                "SwiftGodot",
+                .product(name: "Logging", package: "swift-log")
+            ],
             linkerSettings: [.unsafeFlags(["-Xlinker", "-undefined","-Xlinker", "dynamic_lookup"])]),
     ]
 )

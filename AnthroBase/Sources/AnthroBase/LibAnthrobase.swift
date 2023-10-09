@@ -13,13 +13,20 @@
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
 
+import Logging
 import SwiftGodot
 
 @GodotMain
 class LibAnthrobase: GodotExtensionDelegate {
+    static var logger = Logger(label: "godotengine.swiftgodot.anthrobase")
+
     var nodeTypes: [Wrapped.Type] = [
         AnthroCharacterBody2D.self
     ]
+
+    func extensionWillInitialize() {
+        LoggingSystem.bootstrap(GodotLogger.init)
+    }
 
     func extensionDidInitialize(at level: SwiftGodotCore.GDExtension.InitializationLevel) {
         for type in nodeTypes {

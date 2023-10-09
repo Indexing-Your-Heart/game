@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bhdu82yikkqf3"]
+[gd_scene load_steps=27 format=3 uid="uid://bhdu82yikkqf3"]
 
 [ext_resource type="Texture2D" uid="uid://b1d5u8txom028" path="res://resources/sprt_chelsea.png" id="2_r517x"]
 
@@ -19,6 +19,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_8ss7f"]
 resource_name = "idle_back"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -50,6 +51,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_yabg5"]
 resource_name = "idle_left"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -81,6 +83,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_fvpil"]
 resource_name = "run_back"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -96,6 +99,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_hvy7l"]
 resource_name = "run_forward"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -111,6 +115,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_w8jqm"]
 resource_name = "run_left"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -126,6 +131,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_y4to3"]
 resource_name = "run_right"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -198,21 +204,28 @@ blend_point_3/node = SubResource("AnimationNodeAnimation_sc3aj")
 blend_point_3/pos = Vector2(-1, 0)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y410c"]
-reset = false
-switch_mode = 2
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7tdbl"]
+advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1f7q0"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kqhc4"]
 reset = false
-switch_mode = 2
+advance_mode = 2
+advance_condition = &"walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1gt4t"]
+reset = false
+advance_mode = 2
+advance_condition = &"idling"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_u2fhk"]
-states/End/position = Vector2(686, 100)
+states/End/position = Vector2(652, 96.3086)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_etor2")
-states/Idle/position = Vector2(383, 100)
+states/Idle/position = Vector2(369.5, 99.2968)
+states/Start/position = Vector2(243.5, 99.1797)
 states/Walk/node = SubResource("AnimationNodeBlendSpace2D_6nbye")
-states/Walk/position = Vector2(528, 100)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_y410c"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_1f7q0")]
+states/Walk/position = Vector2(529.5, 98.5547)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_7tdbl"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_kqhc4"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_1gt4t")]
+graph_offset = Vector2(-192.136, 0)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hyn65"]
 radius = 24.0
@@ -239,8 +252,10 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_u2fhk")
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/Idle/blend_position = Vector2(2.08165e-12, 2.08165e-12)
-parameters/Walk/blend_position = Vector2(2.08165e-12, 2.08165e-12)
+parameters/conditions/idling = false
+parameters/conditions/walking = false
+parameters/Idle/blend_position = Vector2(-0.270228, 0.134199)
+parameters/Walk/blend_position = Vector2(-0.212883, -0.207792)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 14)
