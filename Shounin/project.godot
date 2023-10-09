@@ -30,6 +30,7 @@ window/size/viewport_width=1600
 window/size/viewport_height=900
 window/size/mode=3
 window/stretch/mode="viewport"
+window/size/mode.debug=2
 
 [editor_plugins]
 
@@ -81,4 +82,4 @@ timeline_next={
 [rendering]
 
 textures/vram_compression/import_s3tc_bptc=true
-environment/defaults/default_clear_color=Color(0.0627451, 0.0745098, 0.109804, 1)
+environment/defaults/default_clear_color=Color(0.235294, 0.639216, 0.698039, 1)
