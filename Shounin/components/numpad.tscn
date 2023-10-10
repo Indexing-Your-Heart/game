@@ -86,6 +86,11 @@ texture = ExtResource("7_mic8t")
 
 [node name="Numpad" type="AshashatNumpadInterpreter"]
 texture_filter = 1
+anchors_preset = -1
+anchor_right = 0.133
+anchor_bottom = 0.479
+offset_right = -212.8
+offset_bottom = -431.1
 theme = ExtResource("1_253x1")
 
 [node name="key1" type="Button" parent="."]

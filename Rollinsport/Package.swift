@@ -1,32 +1,32 @@
 // swift-tools-version: 5.9
+// The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
-    name: "Ashashat",
+    name: "Rollinsport",
     platforms: [.macOS(.v13), .iOS(.v16)],
     products: [
         .library(
-            name: "Ashashat",
+            name: "Rollinsport",
             type: .dynamic,
-            targets: ["Ashashat"]),
+            targets: ["Rollinsport"]),
     ],
     dependencies: [
         .package(name: "SwiftGodot", path: "../SwiftGodot"),
-        .package(url: "https://gitlab.com/Indexing-Your-Heart/core-dependencies/AshashatKit",
-                 from: "1.0.0-DEVELOPMENT-SNAPSHOT-2023-10-03-b"),
+        .package(name: "Ashashat", path: "../Ashashat"),
         .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0"),
     ],
     targets: [
         .target(
-            name: "Ashashat",
+            name: "Rollinsport",
             dependencies: [
-                "AshashatKit",
                 "SwiftGodot",
+                "Ashashat",
                 .product(name: "Logging", package: "swift-log")
             ],
             linkerSettings: [
                 .unsafeFlags(["-Xlinker", "-undefined", "-Xlinker", "dynamic_lookup"])
-            ])
+            ]),
     ]
 )

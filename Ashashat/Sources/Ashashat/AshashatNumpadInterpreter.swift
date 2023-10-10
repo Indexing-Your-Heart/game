@@ -62,6 +62,14 @@ public class AshashatNumpadInterpreter: Control {
             emitSignal(Self.returnedSignalName, internalValue.toVariant())
         }
     }
+
+    @Callable
+    public func clear() {
+        internalValue = 0
+        for (_, key) in mapping {
+            key?.buttonPressed = false
+        }
+    }
 }
 
 extension AshashatNumpadInterpreter {
@@ -79,5 +87,10 @@ extension AshashatNumpadInterpreter {
                      usage: .default)
         ]
         classInfo.registerSignal(name: returnedSignalName, arguments: returnedSignalProps)
+        classInfo.registerMethod(name: "clear",
+                                 flags: .default,
+                                 returnValue: nil,
+                                 arguments: [],
+                                 function: AshashatNumpadInterpreter._callable_clear)
     }
 }

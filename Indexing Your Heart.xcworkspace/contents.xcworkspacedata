@@ -39,6 +39,9 @@
          <FileRef
             location = "group:Shounin/bin/JensonGodotKit.gdextension">
          </FileRef>
+         <FileRef
+            location = "group:Shounin/bin/Rollinsport.gdextension">
+         </FileRef>
       </Group>
    </Group>
    <FileRef
@@ -52,5 +55,8 @@
    </FileRef>
    <FileRef
       location = "group:JensonGodotKit">
+   </FileRef>
+   <FileRef
+      location = "group:Rollinsport">
    </FileRef>
 </Workspace>

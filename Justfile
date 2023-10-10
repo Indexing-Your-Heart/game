@@ -38,26 +38,39 @@ build-dep LIB_FLAGS +DEPENDENCIES: (fetch-remote-deps)
 
 # Build all dependencies
 build-all-deps:
-	just build-dep '-f' Demoscene
+	# Atoms
 	just build-dep '-f' Ashashat
 	just build-dep '-f' AnthroBase
 	just build-dep '-f' JensonGodotKit
 
+	# Molecules
+	just build-dep '-f' Demoscene
+	just build-dep '-f' Rollinsport
+
 # Build all dependencies for CI
 build-all-deps-ci:
-	just build-dep '-t mac -f' Demoscene
+	# Atoms
 	just build-dep '-t mac -f' Ashashat
 	just build-dep '-t mac -f' AnthroBase
 	just build-dep '-t mac -f' JensonGodotKit
+
+	# Molecules
+	just build-dep '-t mac -f' Demoscene
+	just build-dep '-t mac -f' Rollinsport
 
 # Cleans alls dependencies, logs, etc.
 clean:
 	just clean-all-deps
 	just clean-logs
+	just clean-dylibs
 
 # Cleans all dependencies
 clean-all-deps:
 	rm -rf .mbuild .mxbuild .mcache .mxcache *_build.log
+
+# Removes any built dylib files
+clean-dylibs:
+	rm -rf Shounin/bin/mac/* Shounin/bin/ios/*
 
 # Cleans all logs built from a Just command.
 clean-logs:

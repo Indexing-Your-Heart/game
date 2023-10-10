@@ -1,0 +1,9 @@
+[configuration]
+entry_symbol = "librollinsport_entry_point"
+compatibility_minimum = 4.1
+
+[libraries]
+macos.debug = "res://bin/mac/libRollinsport.dylib"
+macos.release = "res://bin/mac/libRollinsport.dylib"
+ios.debug = "res://bin/ios/Rollinsport.framework"
+ios.release = "res://bin/ios/Rollinsport.framework"

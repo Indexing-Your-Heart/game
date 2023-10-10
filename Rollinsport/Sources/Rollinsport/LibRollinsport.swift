@@ -1,8 +1,8 @@
 //
-//  Ashashat.swift
+//  LibRollinsport.swift
 //  Indexing Your Heart
 //
-//  Created by Marquis Kurt on 9/17/23.
+//  Created by Marquis Kurt on 10/09/23.
 //
 //  This file is part of Indexing Your Heart.
 //
@@ -17,13 +17,11 @@ import Logging
 import SwiftGodot
 
 @GodotMain
-class LibAshashat: GodotExtensionDelegate {
-    static var logger = Logger(label: "godotengine.swiftgodot.ashashat")
+class LibRollinsport: GodotExtensionDelegate {
+    static var logger = Logger(label: "godotengine.swiftgodot.rollinsport")
 
-    var nodeTypes: [Wrapped.Type] = [
-        AshashatNumpadInterpreter.self,
-        AshashatKeyboardInterpreter.self,
-        AshashatNumpadPuzzleField.self
+    var allNodeTypes: [Wrapped.Type] = [
+        NumberPuzzleNode.self
     ]
 
     func extensionWillInitialize() {
@@ -31,7 +29,7 @@ class LibAshashat: GodotExtensionDelegate {
     }
 
     func extensionDidInitialize(at level: GDExtension.InitializationLevel) {
-        for type in nodeTypes {
+        for type in allNodeTypes {
             register(type: type)
         }
     }
