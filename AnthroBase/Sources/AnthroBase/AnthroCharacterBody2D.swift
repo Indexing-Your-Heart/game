@@ -61,13 +61,23 @@ public class AnthroCharacterBody2D: CharacterBody2D {
         super.init()
     }
 
-    override public func _ready() {
+    public override func _ready() {
         super._ready()
         animationState = animationTree?.get(property: StringName("parameters/playback")).asObject()
         LibAnthrobase.logger.debug("Animation state is: \(String(describing: animationState))")
     }
 
-    override public func _physicsProcess(delta: Double) {
+    public override func _input(event: InputEvent) {
+        super._input(event: event)
+
+        // FIXME: This will inevitably cause a crash. Check the GitHub issue!
+        // See: https://github.com/migueldeicaza/SwiftGodot/issues/157
+        if OS.getName() == "iOS", event.isClass("InputEventScreenTouch") {
+            LibAnthrobase.logger.debug("Received touch event: \(event)")
+        }
+    }
+
+    public override func _physicsProcess(delta: Double) {
         if Engine.isEditorHint() { return }
         if movementVector != Vector2.zero {
             currentState = .walking
