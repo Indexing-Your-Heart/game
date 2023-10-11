@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Indexing Your Heart"
+config/tags=PackedStringArray("development")
 run/main_scene="res://demos/demo_menu.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.png"

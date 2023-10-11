@@ -61,12 +61,15 @@ public class NumberPuzzleNode: Node2D {
     }
 
     @Callable func numpadFieldEditingChanged(_ value: Int) {
-        guard eligibleToLaunch else { return }
-        if value != expectedSolution, let numpadField {
+        guard eligibleToLaunch, let numpadField else { return }
+        if value != expectedSolution {
             LibRollinsport.logger.debug(
                 "Expected solution and input mismatch: \(value) is not equal to \(expectedSolution)")
             numpadField.flashIncorrect()
+            return
         }
+        numpadField.markCorrect()
+        LibRollinsport.logger.debug("Solution and expectations match (\(value) == \(expectedSolution))")
     }
 }
 
@@ -127,41 +130,5 @@ extension NumberPuzzleNode {
                                    prefix: "world",
                                    getter: NumberPuzzleNode.getNumpadFieldPath,
                                    setter: NumberPuzzleNode.setNumpadFieldPath)
-    }
-}
-
-extension ClassInfo {
-    func registerNodePath(named name: String,
-                          prefix: String? = nil,
-                          getter: @escaping ClassInfoFunction,
-                          setter: @escaping ClassInfoFunction) {
-        let registeredPrefix = prefix ?? "\(T.self)"
-        let property = PropInfo(propertyType: .nodePath,
-                                propertyName: StringName("\(registeredPrefix)_\(name)"),
-                                className: StringName("\(T.self)"),
-                                hint: .nodePathValidTypes,
-                                hintStr: "",
-                                usage: .default)
-        registerSetter(prefix: registeredPrefix, name: name, property: property, setter: setter)
-        registerGetter(prefix: registeredPrefix, name: name, property: property, getter: getter)
-        registerProperty(property,
-                         getter: StringName("\(registeredPrefix)_get_\(name)"),
-                         setter: StringName("\(registeredPrefix)_set_\(name)"))
-    }
-
-    private func registerGetter(prefix: String, name: String, property: PropInfo, getter: @escaping ClassInfoFunction) {
-        registerMethod(name: StringName("\(prefix)_get_\(name)"),
-                       flags: .default,
-                       returnValue: property,
-                       arguments: [],
-                       function: getter)
-    }
-
-    private func registerSetter(prefix: String, name: String, property: PropInfo, setter: @escaping ClassInfoFunction) {
-        registerMethod(name: StringName("\(prefix)_set_\(name)"),
-                       flags: .default,
-                       returnValue: nil,
-                       arguments: [property],
-                       function: setter)
     }
 }

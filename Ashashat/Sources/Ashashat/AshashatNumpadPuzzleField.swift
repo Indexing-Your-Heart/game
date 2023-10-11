@@ -39,11 +39,16 @@ public class AshashatNumpadPuzzleField: Control {
         numberLabel?.text = "???"
         animator?.stop()
         numpad?.clear()
+        numberLabel?.modulate = .white
         LibAshashat.logger.debug("Value reset to: \(currentValue)")
     }
 
     @Callable public func flashIncorrect() {
         animator?.play(name: "incorrect")
+    }
+
+    @Callable public func markCorrect() {
+        animator?.play(name: "correct")
     }
 
     @Callable func numpadReturned(_ value: Int) {
@@ -83,5 +88,10 @@ extension AshashatNumpadPuzzleField {
                                  returnValue: nil,
                                  arguments: [],
                                  function: AshashatNumpadPuzzleField._callable_clear)
+        classInfo.registerMethod(name: "mark_correct",
+                                 flags: .default,
+                                 returnValue: nil,
+                                 arguments: [],
+                                 function: AshashatNumpadPuzzleField._callable_markCorrect)
     }
 }
