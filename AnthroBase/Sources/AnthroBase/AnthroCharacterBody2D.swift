@@ -70,10 +70,10 @@ public class AnthroCharacterBody2D: CharacterBody2D {
     public override func _input(event: InputEvent) {
         super._input(event: event)
 
-        // FIXME: This will inevitably cause a crash. Check the GitHub issue!
-        // See: https://github.com/migueldeicaza/SwiftGodot/issues/157
-        if OS.getName() == "iOS", event.isClass("InputEventScreenTouch") {
-            LibAnthrobase.logger.debug("Received touch event: \(event)")
+        if event.isClass("\(InputEventScreenTouch.self)") {
+            let position = Vector2(event.get(property: "position")) ?? .zero
+            LibAnthrobase.logger.debug("Attempting to move to: \(position)")
+            moveToward(destination: position)
         }
     }
 
@@ -99,6 +99,16 @@ public class AnthroCharacterBody2D: CharacterBody2D {
         case .obel:
             sprite?.texture = #texture2DLiteral("res://resources/sprt_obel.png")
         }
+    }
+
+    // TODO: Current implementation is janky. Can we have nicer movements?
+    func moveToward(destination: Vector2) {
+        currentState = .walking
+        if let transform = getViewport()?.canvasTransform.affineInverse() {
+            globalPosition = globalPosition.moveToward(to: transform * destination, delta: speed)
+            return
+        }
+        globalPosition = globalPosition.moveToward(to: destination, delta: speed)
     }
 
     private func updateBlendingProperties(with vector: Vector2) {
