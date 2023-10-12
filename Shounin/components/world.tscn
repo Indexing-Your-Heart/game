@@ -49,10 +49,10 @@ layer_3/tile_data = PackedInt32Array(196641, 524289, 7, 262177, 524289, 8, 19664
 player_character = 1
 z_index = 1
 z_as_relative = false
+position = Vector2(955, 214)
 scale = Vector2(1, 1)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(1.5, 1.5)
 
 [node name="PuzzlePoint-1" parent="." instance=ExtResource("4_58b54")]
 puzzle_data_expected_solution = 1

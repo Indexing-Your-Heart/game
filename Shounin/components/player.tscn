@@ -260,3 +260,7 @@ parameters/Walk/blend_position = Vector2(-0.212883, -0.207792)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 22)
 shape = SubResource("CapsuleShape2D_hyn65")
+
+[node name="Navigator" type="NavigationAgent2D" parent="."]
+path_desired_distance = 4.0
+target_desired_distance = 4.0

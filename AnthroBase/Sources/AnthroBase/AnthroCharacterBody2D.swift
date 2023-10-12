@@ -26,23 +26,21 @@ public class AnthroCharacterBody2D: CharacterBody2D {
     enum PlayerState: Equatable {
         case idle
         case walking
+        case navigating // used for navigation
     }
-
-    @SceneTree(path: "Sprite")
-    var sprite: Sprite2D?
-
-    @SceneTree(path: "Sprite/AnimationTree")
-    var animationTree: AnimationTree?
-
-    @SceneTree(path: "Sprite/AnimationPlayer")
-    var animationPlayer: AnimationPlayer?
-    var animationState: AnimationNodeStateMachinePlayback?
 
     public var acceleration: Float
     public var character: Character = .chelsea
     public var friction: Double
     public var speed: Double
 
+    @SceneTree(path: "Camera") var camera: Camera2D?
+    @SceneTree(path: "Sprite/AnimationTree") var animationTree: AnimationTree?
+    @SceneTree(path: "Sprite/AnimationPlayer") var animationPlayer: AnimationPlayer?
+    @SceneTree(path: "Navigator") var navigator: NavigationAgent2D?
+    @SceneTree(path: "Sprite") var sprite: Sprite2D?
+
+    var animationState: AnimationNodeStateMachinePlayback?
     var currentState = PlayerState.idle
 
     private var movementVector: Vector2 {
@@ -65,31 +63,52 @@ public class AnthroCharacterBody2D: CharacterBody2D {
         super._ready()
         animationState = animationTree?.get(property: StringName("parameters/playback")).asObject()
         LibAnthrobase.logger.debug("Animation state is: \(String(describing: animationState))")
+
+        navigator?.pathDesiredDistance = 4
+        navigator?.targetDesiredDistance = 4
     }
 
     public override func _input(event: InputEvent) {
         super._input(event: event)
-
-        if event.isClass("\(InputEventScreenTouch.self)") {
-            let position = Vector2(event.get(property: "position")) ?? .zero
-            LibAnthrobase.logger.debug("Attempting to move to: \(position)")
-            moveToward(destination: position)
+        if event.isClass("\(InputEventScreenTouch.self)"), event.isPressed() {
+            var newPosition = Vector2(event.get(property: "position")) ?? .zero
+            if let transform = getViewport()?.canvasTransform {
+                newPosition = newPosition * transform
+            }
+            getTree()?.physicsFrame.connect { [weak self] in
+                _ = self?.callDeferred(method: "move_toward", newPosition.toVariant())
+            }
         }
     }
 
     public override func _physicsProcess(delta: Double) {
+        super._physicsProcess(delta: delta)
         if Engine.isEditorHint() { return }
+        if currentState == .navigating {
+            navigateToNextTarget()
+            updateAnimationConditions()
+            return
+        }
+
         if movementVector != Vector2.zero {
             currentState = .walking
             updateBlendingProperties(with: movementVector)
-            velocity = (movementVector * Vector2(x: acceleration, y: acceleration)).limitLength(length: speed)
+            velocity = accelerated(initial: movementVector)
         } else {
             currentState = .idle
             velocity = velocity.moveToward(to: .zero, delta: friction)
         }
-        updateAnimationContditions()
+        updateAnimationConditions()
         _ = moveAndSlide()
-        super._physicsProcess(delta: delta)
+    }
+
+    func accelerated(initial: Vector2, normalized: Bool = false) -> Vector2 {
+        var movement = initial
+        if normalized {
+            movement = movement.normalized()
+        }
+        let acceleration = Vector2(x: acceleration, y: acceleration)
+        return (movement * acceleration).limitLength(length: speed)
     }
 
     func changeSprites() {
@@ -101,14 +120,29 @@ public class AnthroCharacterBody2D: CharacterBody2D {
         }
     }
 
-    // TODO: Current implementation is janky. Can we have nicer movements?
-    func moveToward(destination: Vector2) {
-        currentState = .walking
-        if let transform = getViewport()?.canvasTransform.affineInverse() {
-            globalPosition = globalPosition.moveToward(to: transform * destination, delta: speed)
+    @Callable func moveToward(destination: Vector2) {
+        currentState = .navigating
+        navigator?.targetPosition = destination
+    }
+
+    func navigateToNextTarget() {
+        guard let navigator else {
+            LibAnthrobase.logger.warning("Navigator has (somehow) become nil. Stopping.")
+            currentState = .idle
             return
         }
-        globalPosition = globalPosition.moveToward(to: destination, delta: speed)
+
+        let nextPosition = navigator.getNextPathPosition()
+        if navigator.isTargetReached() || nextPosition == globalPosition {
+            currentState = .idle
+            return
+        }
+
+        let currentPosition = globalPosition
+        let newVelocity = nextPosition - currentPosition
+        updateBlendingProperties(with: accelerated(initial: newVelocity, normalized: true))
+        velocity = newVelocity
+        _ = moveAndSlide()
     }
 
     private func updateBlendingProperties(with vector: Vector2) {
@@ -121,10 +155,10 @@ public class AnthroCharacterBody2D: CharacterBody2D {
         animationTree.set(property: StringName("parameters/Walk/blend_position"), value: Variant(vector))
     }
 
-    private func updateAnimationContditions() {
+    private func updateAnimationConditions() {
         animationTree?.set(property: "parameters/conditions/idling",
                            value: (currentState == .idle).toVariant())
         animationTree?.set(property: "parameters/conditions/walking",
-                           value: (currentState == .walking).toVariant())
+                           value: (currentState != .idle).toVariant())
     }
 }

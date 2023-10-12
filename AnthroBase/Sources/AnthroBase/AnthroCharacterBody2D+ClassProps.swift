@@ -18,6 +18,22 @@ import SwiftGodot
 extension AnthroCharacterBody2D {
     static func initializeClass() {
         let classInfo = ClassInfo<AnthroCharacterBody2D>(name: "AnthroCharacterBody2D")
+        
+
+        let moveTowardProps = [
+            PropInfo(propertyType: .vector2,
+                     propertyName: "destination",
+                     className: StringName("\(AnthroCharacterBody2D.self)"),
+                     hint: .expression,
+                     hintStr: "",
+                     usage: .default)
+        ]
+        classInfo.registerMethod(name: "move_toward",
+                                 flags: .default,
+                                 returnValue: nil,
+                                 arguments: moveTowardProps,
+                                 function: AnthroCharacterBody2D._callable_moveToward)
+
         classInfo.registerEnum(named: "character",
                                for: Character.self,
                                prefix: "player",
