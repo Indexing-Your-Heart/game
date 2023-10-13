@@ -61,6 +61,10 @@ public class AnthroCharacterBody2D: CharacterBody2D {
 
     public override func _ready() {
         super._ready()
+
+        // Disable playback in editor so we're not running into constant saves...
+        animationTree?.active = !Engine.isEditorHint()
+
         animationState = animationTree?.get(property: StringName("parameters/playback")).asObject()
         LibAnthrobase.logger.debug("Animation state is: \(String(describing: animationState))")
 

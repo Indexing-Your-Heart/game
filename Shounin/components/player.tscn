@@ -238,6 +238,7 @@ scale = Vector2(0.5, 0.5)
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
 texture_repeat = 1
+position = Vector2(0, -42)
 texture = ExtResource("2_r517x")
 hframes = 12
 vframes = 5
@@ -251,14 +252,13 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="Sprite"]
 tree_root = SubResource("AnimationNodeStateMachine_u2fhk")
 anim_player = NodePath("../AnimationPlayer")
-active = true
 parameters/conditions/idling = false
 parameters/conditions/walking = false
-parameters/Idle/blend_position = Vector2(-0.270228, 0.134199)
+parameters/Idle/blend_position = Vector2(-0.000395417, 0.766234)
 parameters/Walk/blend_position = Vector2(-0.212883, -0.207792)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 22)
+position = Vector2(0, -20)
 shape = SubResource("CapsuleShape2D_hyn65")
 
 [node name="Navigator" type="NavigationAgent2D" parent="."]

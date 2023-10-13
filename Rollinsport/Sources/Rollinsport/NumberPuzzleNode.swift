@@ -41,7 +41,11 @@ public class NumberPuzzleNode: Node2D {
         }
 
         // TODO: Errors should be handled here. (or ignored, when try? is adopted)
-        _ = numpadField?.connect(signal: "editing_changed", callable: #methodName(numpadFieldEditingChanged))
+        if numpadField?.isConnected(signal: "editing_changed",
+                                    callable: #methodName(numpadFieldEditingChanged)) != true {
+            _ = numpadField?.connect(signal: "editing_changed",
+                                     callable: #methodName(numpadFieldEditingChanged))
+        }
         _ = detectionRing?.bodyEntered.connect { [weak self] body in
             self?.bodyEnteredRange(body: body)
         }
@@ -56,6 +60,11 @@ public class NumberPuzzleNode: Node2D {
         super._unhandledKeyInput(event: event)
         if Input.isActionPressed(action: "interact"), eligibleToLaunch {
             numpadField?.show()
+            return
+        }
+        if Input.isActionPressed(action: "cancel"), eligibleToLaunch {
+            numpadField?.hide()
+            return
         }
     }
 
