@@ -68,13 +68,16 @@ public class AnthroCharacterBody2D: CharacterBody2D {
         navigator?.targetDesiredDistance = 4
     }
 
-    public override func _input(event: InputEvent) {
-        super._input(event: event)
+    public override func _unhandledInput(event: InputEvent?) {
+        super._unhandledInput(event: event)
+        guard let event else { return }
+
         if event.isClass("\(InputEventScreenTouch.self)"), event.isPressed() {
             var newPosition = Vector2(event.get(property: "position")) ?? .zero
             if let transform = getViewport()?.canvasTransform {
                 newPosition = newPosition * transform
             }
+
             getTree()?.physicsFrame.connect { [weak self] in
                 _ = self?.callDeferred(method: "move_toward", newPosition.toVariant())
             }

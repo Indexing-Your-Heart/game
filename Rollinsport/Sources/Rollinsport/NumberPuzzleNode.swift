@@ -43,8 +43,7 @@ public class NumberPuzzleNode: Node2D {
         // TODO: Errors should be handled here. (or ignored, when try? is adopted)
         _ = numpadField?.connect(signal: "editing_changed", callable: #methodName(numpadFieldEditingChanged))
         _ = detectionRing?.bodyEntered.connect { [weak self] body in
-            self?.eligibleToLaunch = body.isClass("AnthroCharacterBody2D")
-            LibRollinsport.logger.debug("Expected solution for current body is: \(self?.expectedSolution ?? 0)")
+            self?.bodyEnteredRange(body: body)
         }
         _ = detectionRing?.bodyExited.connect { [weak self] _ in
             self?.eligibleToLaunch = false
@@ -70,6 +69,17 @@ public class NumberPuzzleNode: Node2D {
         }
         numpadField.markCorrect()
         LibRollinsport.logger.debug("Solution and expectations match (\(value) == \(expectedSolution))")
+    }
+
+    func bodyEnteredRange(body: Node2D) {
+        self.eligibleToLaunch = body.isClass("AnthroCharacterBody2D")
+        LibRollinsport.logger.debug("Expected solution for current body is: \(expectedSolution)")
+
+        // If the player has entered this area, and there's a touch screen, we can assume that they likely want to
+        // interact with the puzzle.
+        if DisplayServer.isTouchscreenAvailable(), eligibleToLaunch {
+            self.numpadField?.show()
+        }
     }
 }
 

@@ -9,11 +9,6 @@
 z_as_relative = false
 y_sort_enabled = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="NumpadPuzzleField" parent="CanvasLayer" instance=ExtResource("1_3idrq")]
-visible = false
-
 [node name="TileMap" type="TileMap" parent="."]
 z_as_relative = false
 y_sort_enabled = true
@@ -53,6 +48,11 @@ position = Vector2(955, 214)
 scale = Vector2(1, 1)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="NumpadPuzzleField" parent="CanvasLayer" instance=ExtResource("1_3idrq")]
+visible = false
 
 [node name="PuzzlePoint-1" parent="." instance=ExtResource("4_58b54")]
 puzzle_data_expected_solution = 1
