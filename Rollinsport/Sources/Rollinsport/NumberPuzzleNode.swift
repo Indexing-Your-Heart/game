@@ -56,8 +56,8 @@ public class NumberPuzzleNode: Node2D {
         }
     }
 
-    public override func _unhandledKeyInput(event: InputEvent?) {
-        super._unhandledKeyInput(event: event)
+    public override func _unhandledInput(event: InputEvent?) {
+        super._unhandledInput(event: event)
         if Input.isActionPressed(action: "interact"), eligibleToLaunch {
             numpadField?.show()
             return
