@@ -32,12 +32,22 @@ dep_test_args := "'--parallel --num-workers=1'"
 # The date and time the action was performed.
 exec_date := `date "+%d-%m-%Y.%H-%M-%S"`
 
-# Build a specified set of dependencies with some flags
+# WARN: build-dep has been renamed to build-extension.
 build-dep LIB_FLAGS +DEPENDENCIES: (fetch-remote-deps)
-	./build-libs.sh {{LIB_FLAGS}} {{DEPENDENCIES}}
+	echo "WARN: build-dep has been renamed to build-extension."
+	just build-extension {{LIB_FLAGS}} {{DEPENDENCIES}}
 
-# Build all dependencies
+# Build a specified set of extensions.
+build-extension LIB_FLAGS +EXTENSIONS: (fetch-remote-deps)
+	./build-libs.sh {{LIB_FLAGS}} {{EXTENSIONS}}
+
+# WARN: build-all-deps has been renamed to build-extensions.
 build-all-deps:
+	echo "WARN: build-all-deps has been renamed to build-extensions."
+	just build-extensions
+
+# Builds all the game's extensions for macOS and iOS.
+build-extensions:
 	# Atoms
 	just build-dep '-f' Ashashat
 	just build-dep '-f' AnthroBase
@@ -47,8 +57,13 @@ build-all-deps:
 	just build-dep '-f' Demoscene
 	just build-dep '-f' Rollinsport
 
-# Build all dependencies for CI
+# WARN: build-all-deps-ci has been renamed to build-extensions-ci.
 build-all-deps-ci:
+	echo "WARN: build-all-deps-ci has been renamed to build-extensions-ci."
+	just build-extensions-ci
+
+# Build all extensions for CI
+build-extensions-ci:
 	# Atoms
 	just build-dep '-t mac -f' Ashashat
 	just build-dep '-t mac -f' AnthroBase
@@ -60,12 +75,17 @@ build-all-deps-ci:
 
 # Cleans alls dependencies, logs, etc.
 clean:
-	just clean-all-deps
+	just clean-extensions
 	just clean-logs
 	just clean-dylibs
 
-# Cleans all dependencies
+# WARN: clean-all-deps has been renamed to clean-extensions.
 clean-all-deps:
+	echo "WARN: clean-all-deps has been renamed to clean-extensions."
+	just clean-extensions
+
+# Cleans all built extensions, build folders, and cache.
+clean-extensions:
 	rm -rf .mbuild .mxbuild .mcache .mxcache *_build.log
 
 # Removes any built dylib files
@@ -77,11 +97,17 @@ clean-logs:
 	rm -f *_build.log swiftlint_*.log
 
 # Codesigns the dependency dylibs.
-codesign-deps IDENTITY:
+codesign-extensions IDENTITY:
 	codesign -s "{{IDENTITY}}" Shounin/bin/mac/*.dylib
 
-# Opens the dependent package in dep_editor for editing.
+# WARN: codesign-deps has been renamed to codesign-extensions.
+codesign-deps IDENTITY:
+	echo "WARN: codesign-deps has been renamed to codesign-extensions."
+	codesign -s "{{IDENTITY}}" Shounin/bin/mac/*.dylib
+
+# WARN: edit-dep is deprecated and will be removed
 edit-dep DEPENDENCY:
+	echo "WARN: edit-dep is deprecated and will be removed."
 	{{dep_editor}} {{DEPENDENCY}}
 
 # Fetches the marteau toolchain
@@ -93,28 +119,51 @@ fetch-tools:
 fetch-remote-deps:
 	git submodule update --init --recursive --remote
 
-# Formats the source files in a specified set of dependencies
+# WARN: format-dep has been renamed to format-extension
 format-dep +DEPENDENCIES:
+	echo "WARN: format-dep has been renamed to format-extension"
+
+# Formats the source files in a specified set of extensions
+format-extension +EXTENSIONS:
 	#!/bin/sh
-	for DEPENDENCY in {{DEPENDENCIES}}; do
-		swiftformat "$DEPENDENCY/Sources" --swiftversion 5.9
+	for EXTENSION in {{EXTENSIONS}}; do
+		swiftformat "$EXTENSION/Sources" --swiftversion 5.9
 	done
 
-# Formats source files in all dependencies
+# WARN: format-all-deps has been renamed to format-extensions
 format-all-deps:
-	just format-dep Ashashat AnthroBase Demoscene JensonGodotKit Rollinsport
+	echo "WARN: format-all-deps has been renamed to format-extensions"
 
-# Test a specified dependency
-test-dep DEPENDENCY SWIFT_ARGS=dep_test_args:
+# Formats source files in all extensions
+format-extensions:
+	just format-extension Ashashat AnthroBase Demoscene JensonGodotKit Rollinsport
+
+# Test a specified extension
+test-extension DEPENDENCY SWIFT_ARGS=dep_test_args:
 	#!/bin/sh
 	cd {{DEPENDENCY}} && swift test {{SWIFT_ARGS}} && rm -rf .build && cd ..
 
-# Test all dependencies
-test-all-deps:
+# Test all extensions
+test-extensions:
 	just test-dep Ashashat
 
-# Test all dependencies and store their results for CI.
+# WARN: test-dep has been renamed to test-extension
+test-dep DEPENDENCY SWIFT_ARGS=dep_test_args:
+	echo "WARN: test-dep has been renamed to test-extension"
+	test-extension {{DEPENDENCY}} {{SWIFT_ARGS}}
+
+# WARN: test-all-deps has been renamed to test-extensions
+test-all-deps:
+	echo "WARN: test-all-deps has been renamed to test-extensions"
+	just test-extensions
+
+# WARN: test-all-deps-ci has been renamed to test-extensions-ci
 test-all-deps-ci:
+	echo "WARN: test-all-deps-ci has been renamed to test-extensions-ci"
+	just test-extensions-ci
+
+# Test all extensions and store their results for CI.
+test-extensions-ci:
 	mkdir -p /tmp/testresults
 	just test-dep Ashashat '--parallel --num-workers=1 --xunit-output /tmp/testresults/Ashashat.xml'
 
@@ -133,8 +182,9 @@ dry-run:
 edit-build-lib:
 	{{editor}} ./build-libs.sh
 
-# Edits dependencies in Xcode
+# WARN: edit-deps is deprecated and will be removed.
 edit-deps:
+	echo "WARN: edit-deps is deprecated and will be removed."
 	xed Indexing\ Your\ Heart.xcworkspace
 
 # Open Godot editor

@@ -31,7 +31,7 @@ understand the mysteries of the obelisk.
 
 1. Start by cloning the repository using `gh repo clone` or `git clone --recursive`.
 2. Next, run `just fetch-tools` to fetch the other tools needed to build the game.
-3. Then, run `just build-all-deps` to build the required dependencies for the internal
+3. Then, run `just build-extensions` to build the required dependencies for the internal
    extensions that the main game uses.
 4. Finally, run `just unswizzle-assets` to unswizzle the assets in the game's resources so
    that the game can be built normally.
@@ -54,18 +54,18 @@ and distributed.
 
 ### Editing Dependencies
 
-If you need to edit any of the dependent libraries, you can run `just edit-deps` or
-open the Indexing Your Heart.xcworkspace file. This will open Xcode with all the
-Swift packages used to build the libraries that the Godot project utilizes.
+If you need to edit any of the dependent libraries, you can the Indexing Your
+Heart.xcworkspace file. This will open Xcode with all the Swift packages used
+to build the libraries that the Godot project utilizes.
 
-To rebuild all dependencies after making adjustments, run `just build-all-deps`.
+To rebuild all dependencies after making adjustments, run `just build-extensions`.
 The correct build flags will be applied to ensure binaries for macOS and iOS are
-available. Likewise, you can call either `just build-dep` or run `.build-libs.sh` to
-build a given dependency.
+available. Likewise, you can call either `just build-extension` or run
+`.build-libs.sh` to build a given dependency.
 
 > **Note**  
 > Before running the game, make sure that the dylib dependencies are signed by
-> running `just codesign-deps` and provide your codesigning identity:
+> running `just codesign-extensions` and provide your codesigning identity:
 > 
 > ```
 > just codesign-deps "Developer ID Application: John Appleseed (...)"
@@ -119,35 +119,47 @@ list by invoking `just -l`.
 
 ```
 Available recipes:
-    build-all-deps           # Build all dependencies
-    build-all-deps-ci        # Build all dependencies for CI
-    build-dep LIB_FLAGS +DEPENDENCIES # Build a specified set of dependencies with some flags
-    clean                    # Cleans alls dependencies, logs, etc.
-    clean-all-deps           # Cleans all dependencies
-    clean-logs               # Cleans all logs built from a Just command.
-    codesign-deps IDENTITY   # Codesigns the dependency dylibs.
-    dry-run                  # Dry run the game locally
-    edit-build-lib           # Edits the script that builds libraries
-    edit-dep DEPENDENCY      # Opens the dependent package in dep_editor for editing.
-    edit-deps                # Edits dependencies in Xcode
-    edit-game                # Open Godot editor
-    edit-just                # Edits this Justfile
-    fetch-remote-deps        # Fetches remote dependencies from Git submodules
-    fetch-tools              # Fetches the marteau toolchain
-    format-all-deps          # Formats source files in all dependencies
-    format-dep +DEPENDENCIES # Formats the source files in a specified set of dependencies
-    lint                     # Runs SwiftLint on library code
-    test-all-deps            # Test all dependencies
-    test-all-deps-ci         # Test all dependencies and store their results for CI.
-    test-dep DEPENDENCY SWIFT_ARGS=dep_test_args # Test a specified dependency
-    test-game                # Runs the integration tests through Godot.
-    unswizzle-assets         # Unswizzles protected images
+    build-all-deps               # WARN: build-all-deps has been renamed to build-extensions.
+    build-all-deps-ci            # WARN: build-all-deps-ci has been renamed to build-extensions-ci.
+    build-dep LIB_FLAGS +DEPENDENCIES # WARN: build-dep has been renamed to build-extension.
+    build-extension LIB_FLAGS +EXTENSIONS # Build a specified set of extensions.
+    build-extensions             # Builds all the game's extensions for macOS and iOS.
+    build-extensions-ci          # Build all extensions for CI
+    clean                        # Cleans alls dependencies, logs, etc.
+    clean-all-deps               # WARN: clean-all-deps has been renamed to clean-extensions.
+    clean-dylibs                 # Removes any built dylib files
+    clean-extensions             # Cleans all built extensions, build folders, and cache.
+    clean-logs                   # Cleans all logs built from a Just command.
+    codesign-deps IDENTITY       # WARN: codesign-deps has been renamed to codesign-extensions.
+    codesign-extensions IDENTITY # Codesigns the dependency dylibs.
+    dry-run                      # Dry run the game locally
+    edit-build-lib               # Edits the script that builds libraries
+    edit-dep DEPENDENCY          # WARN: edit-dep is deprecated and will be removed
+    edit-deps                    # WARN: edit-deps is deprecated and will be removed.
+    edit-game                    # Open Godot editor
+    edit-just                    # Edits this Justfile
+    fetch-remote-deps            # Fetches remote dependencies from Git submodules
+    fetch-tools                  # Fetches the marteau toolchain
+    format-all-deps              # WARN: format-all-deps has been renamed to format-extensions
+    format-dep +DEPENDENCIES     # WARN: format-dep has been renamed to format-extension
+    format-extension +EXTENSIONS # Formats the source files in a specified set of extensions
+    format-extensions            # Formats source files in all extensions
+    lint                         # Runs SwiftLint on library code
+    test-all-deps                # WARN: test-all-deps has been renamed to test-extensions
+    test-all-deps-ci             # WARN: test-all-deps-ci has been renamed to test-extensions-ci
+    test-dep DEPENDENCY SWIFT_ARGS=dep_test_args # WARN: test-dep has been renamed to test-extension
+    test-extension DEPENDENCY SWIFT_ARGS=dep_test_args # Test a specified extension
+    test-extensions              # Test all extensions
+    test-extensions-ci           # Test all extensions and store their results for CI.
+    test-game                    # Runs the integration tests through Godot.
+    unswizzle-assets             # Unswizzles protected images
 
 ```
 
 > **Note**  
-> To install Marteau from Homebrew automatically, run `just fetch-tools`. More information
-> use Marteau can be found on the source code repository for Marteau at
+> To install Marteau from Homebrew automatically, run `just fetch-tools`. More
+> information on how to use Marteau can be found on the source code repository
+> for Marteau at
 > https://gitlab.com/Indexing-Your-Heart/build-tools/Marteau.
 
 ## Found an issue?
@@ -178,7 +190,7 @@ Additionally, it contains libraries and projects under ethical-source licenses:
 
 Finally, it contains other assets with custom licenses:
 
-- Modern Interiors: LimeZu (see licensed in Assets/Tilesets/README.txt)
+- Modern Exteriors: LimeZu (see license in Assets/Tilesets/README.txt)
 
 You can also view the full list of contributors in the
 [CONTRIBUTORS.md](./CONTRIBUTORS.md) file.
