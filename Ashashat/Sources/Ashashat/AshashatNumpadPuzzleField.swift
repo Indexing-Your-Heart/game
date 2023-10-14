@@ -17,6 +17,16 @@ import SwiftGodot
 
 @NativeHandleDiscarding
 public class AshashatNumpadPuzzleField: Control {
+    public enum AnimationName: String {
+        case correct
+        case incorrect
+        case reset = "RESET"
+
+        var stringName: StringName {
+            StringName(rawValue)
+        }
+    }
+
     public static var editingChangedSignalName = StringName("editing_changed")
     @SceneTree(path: "VStack/NumberLabel") var numberLabel: Label?
     @SceneTree(path: "VStack/HStack/Numpad") var numpad: AshashatNumpadInterpreter?
@@ -44,17 +54,28 @@ public class AshashatNumpadPuzzleField: Control {
     }
 
     @Callable public func flashIncorrect() {
-        animator?.play(name: "incorrect")
+        runAnimation(named: .incorrect)
     }
 
     @Callable public func markCorrect() {
-        animator?.play(name: "correct")
+        runAnimation(named: .correct)
     }
 
     @Callable func numpadReturned(_ value: Int) {
         numberLabel?.text = String(value)
         currentValue = value
         emitSignal(Self.editingChangedSignalName, currentValue.toVariant())
+    }
+
+    func runAnimation(named animationName: AnimationName) {
+        guard let animator else {
+            LibAshashat.logger.error("Cannot call an animation on a nil player.")
+            return
+        }
+        if animator.isPlaying() {
+            animator.stop(keepState: false)
+        }
+        animator.play(name: animationName.stringName)
     }
 }
 

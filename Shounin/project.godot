@@ -11,8 +11,9 @@ config_version=5
 [application]
 
 config/name="Indexing Your Heart"
+config/description="A Witness-like puzzle game with story elements for Mac, iPhone, and iPad."
 config/tags=PackedStringArray("development")
-run/main_scene="res://demos/demo_menu.tscn"
+run/main_scene="res://components/world.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.png"
 config/macos_native_icon="res://icon.icns"
