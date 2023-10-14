@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cyad5gefi0uhh"]
 
-[ext_resource type="PackedScene" uid="uid://d3xhnxqyltvn6" path="res://components/jenson_ui.tscn" id="1_gn541"]
+[ext_resource type="PackedScene" uid="uid://d3xhnxqyltvn6" path="res://components/ui/jenson_ui.tscn" id="1_gn541"]
 
 [node name="JensonScene" type="DemoJensonTimeline"]
 anchors_preset = 15

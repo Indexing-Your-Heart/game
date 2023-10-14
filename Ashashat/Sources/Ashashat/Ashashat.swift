@@ -23,7 +23,8 @@ class LibAshashat: GodotExtensionDelegate {
     var nodeTypes: [Wrapped.Type] = [
         AshashatNumpadInterpreter.self,
         AshashatKeyboardInterpreter.self,
-        AshashatNumpadPuzzleField.self
+        AshashatNumpadPuzzleField.self,
+        AshashatTextField.self
     ]
 
     func extensionWillInitialize() {

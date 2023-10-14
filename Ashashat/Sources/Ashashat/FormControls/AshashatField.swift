@@ -84,7 +84,11 @@ public extension AshashatField {
     /// Emits a speficied signal to an input field's listeners.
     /// - Parameter signal: The signal to emit.
     func sendActions(for signal: AshashatFieldSignal) {
-        self.emitSignal(signal.stringName, currentValue.toVariant())
+        if signal.requiresCurrentValue {
+            self.emitSignal(signal.stringName, currentValue.toVariant())
+            return
+        }
+        self.emitSignal(signal.stringName)
     }
 
     /// Registers the clear method to Godot.
@@ -194,6 +198,8 @@ public enum AshashatFieldSignal: String, CaseIterable {
     case editingChanged = "editing_changed"
 
     /// A signal that emits when editing has ended.
+    ///
+    /// This signal will also provide the current value as an argument.
     case editingDidEnd = "editing_did_end"
 
     /// The string name that represents the signal.
@@ -204,7 +210,7 @@ public enum AshashatFieldSignal: String, CaseIterable {
     /// Whether the signal references the current input value.
     public var requiresCurrentValue: Bool {
         switch self {
-        case .editingChanged:
+        case .editingChanged, .editingDidEnd:
             true
         default:
             false
