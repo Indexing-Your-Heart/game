@@ -18,8 +18,8 @@ import SwiftGodot
 
 @NativeHandleDiscarding
 public class NumberPuzzleNode: Node2D {
-    public var expectedSolution: Int = 0
-    public var numpadFieldPath: NodePath = ""
+    @Autovariant public var expectedSolution: Int = 0
+    @Autovariant public var numpadFieldPath: NodePath = ""
 
     @SceneTree(path: "Area2D") var detectionRing: Area2D?
     var numpadField: AshashatNumpadPuzzleField?
@@ -41,11 +41,12 @@ public class NumberPuzzleNode: Node2D {
         }
 
         // TODO: Errors should be handled here. (or ignored, when try? is adopted)
-        if numpadField?.isConnected(signal: "editing_changed",
-                                    callable: #methodName(numpadFieldEditingChanged)) != true {
-            _ = numpadField?.connect(signal: "editing_changed",
-                                     callable: #methodName(numpadFieldEditingChanged))
+        do {
+            try numpadField?.connectIfPresent(#methodName(numpadFieldEditingChanged), to: "editing_changed")
+        } catch {
+            LibRollinsport.logger.error("Failed to connect 'editing_changed' signal: \(error.localizedDescription)")
         }
+
         _ = detectionRing?.bodyEntered.connect { [weak self] body in
             self?.bodyEnteredRange(body: body)
         }
@@ -93,31 +94,6 @@ public class NumberPuzzleNode: Node2D {
 }
 
 extension NumberPuzzleNode {
-    public func getNumpadFieldPath(args: [Variant]) -> Variant? {
-        Variant(numpadFieldPath)
-    }
-
-    public func getExpectedSolution(args: [Variant]) -> Variant? {
-        Variant(expectedSolution)
-    }
-
-    public func setNumpadFieldPath(args: [Variant]) -> Variant? {
-        ClassInfo.withCheckedProperty(named: "puzzleData", in: args) { arg in
-            guard let realValue = NodePath(arg) else {
-                LibRollinsport.logger.error("Retrieved value is nil (or type cast failed): \(arg)")
-                return
-            }
-            numpadFieldPath = realValue
-        }
-    }
-
-    public func setExpectedSolution(args: [Variant]) -> Variant? {
-        ClassInfo.withCheckedProperty(named: "expectedSolution", in: args) { arg in
-            expectedSolution = Int(arg) ?? 0
-            LibRollinsport.logger.debug("Number node named '\(name)' set expected solution to: \(expectedSolution)")
-        }
-    }
-
     static func initializeClass() {
         let className = StringName(stringLiteral: "\(NumberPuzzleNode.self)")
         let classInfo = ClassInfo<NumberPuzzleNode>(name: className)
@@ -141,13 +117,13 @@ extension NumberPuzzleNode {
         classInfo.registerInt(named: "expected_solution",
                               range: 0...31,
                               prefix: "puzzle_data",
-                              getter: NumberPuzzleNode.getExpectedSolution,
-                              setter: NumberPuzzleNode.setExpectedSolution)
+                              getter: NumberPuzzleNode._getVariant_expectedSolution,
+                              setter: NumberPuzzleNode._setVariant_expectedSolution)
 
         classInfo.addPropertyGroup(name: "World References", prefix: "world")
         classInfo.registerNodePath(named: "numpad_field",
                                    prefix: "world",
-                                   getter: NumberPuzzleNode.getNumpadFieldPath,
-                                   setter: NumberPuzzleNode.setNumpadFieldPath)
+                                   getter: NumberPuzzleNode._getVariant_numpadFieldPath,
+                                   setter: NumberPuzzleNode._setVariant_numpadFieldPath)
     }
 }

@@ -27,37 +27,13 @@ extension JensonTimeline {
         classInfo.registerSignal(name: JensonTimeline.timelineFinishedSignalName)
         classInfo.registerFilePicker(named: "script_path",
                                      allowedTypes: [.jenson],
-                                     getter: JensonTimeline.getScriptPath,
-                                     setter: JensonTimeline.setScriptPath)
+                                     getter: JensonTimeline._getVariant_script,
+                                     setter: JensonTimeline._setVariant_script)
 
         classInfo.addPropertyGroup(name: "Debugging", prefix: "debug")
         classInfo.registerCheckbox(named: "display_commentary",
                                    prefix: "debug",
-                                   getter: JensonTimeline.getDebugCommentary,
-                                   setter: JensonTimeline.setDebugCommentary)
-    }
-
-    func getScriptPath(args _: [Variant]) -> Variant? {
-        Variant(stringLiteral: script ?? "")
-    }
-
-    func setScriptPath(args: [Variant]) -> Variant? {
-        ClassInfo.withCheckedProperty(named: "script_path", in: args) { arg in
-            script = String(arg)
-            if !Engine.isEditorHint() {
-                loadScript()
-            }
-        }
-    }
-
-    func getDebugCommentary(args _: [Variant]) -> Variant? {
-        Variant(displayCommentary)
-    }
-
-    func setDebugCommentary(args: [Variant]) -> Variant? {
-        ClassInfo.withCheckedProperty(named: "display_commentary", in: args) { arg in
-            GD.print(Bool(arg) as Any)
-            displayCommentary = Bool(arg) ?? false
-        }
+                                   getter: JensonTimeline._getVariant_displayCommentary,
+                                   setter: JensonTimeline._setVariant_displayCommentary)
     }
 }

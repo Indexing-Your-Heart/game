@@ -49,10 +49,16 @@ public class JensonTimeline: Node {
     }
 
     /// Whether comment events should be displayed.
-    public var displayCommentary = false
+    @Autovariant public var displayCommentary: Bool = false
 
     /// The script being loaded into the timeline.
-    public var script: String?
+    @Autovariant public var script: String = "" {
+        didSet {
+            if !Engine.isEditorHint() {
+                loadScript()
+            }
+        }
+    }
 
     @SceneTree(path: ChildPath.animationPlayer.rawValue)
     private var animator: AnimationPlayer?
@@ -137,7 +143,7 @@ public class JensonTimeline: Node {
 
     func loadScript() {
         do {
-            let reader = try JensonReader(resource: script ?? "")
+            let reader = try JensonReader(resource: script)
             guard let file = try reader?.decode() else {
                 GD.pushError("Decoded file for \(String(describing: script)) returned nil.")
                 return

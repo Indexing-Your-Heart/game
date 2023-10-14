@@ -42,10 +42,17 @@ help() {
 # Builds the libraries for iOS (framework).
 build_ios_lib() {
 	echo "${__fbold}Building library [$1] for iOS.${__freset}"
-	xcodebuild -scheme "$1" -destination 'generic/platform=iOS' \
-		-derivedDataPath $__xcodebuilddir -skipPackagePluginValidation \
-		-clonedSourcePackagesDirPath $__xcodecachedir \
-		-configuration Release >> ../$1_build.log
+    if [ ! command -v xcpretty &> /dev/null ]; then
+    	xcodebuild -scheme "$1" -destination 'generic/platform=iOS' \
+            -derivedDataPath $__xcodebuilddir -skipPackagePluginValidation \
+            -clonedSourcePackagesDirPath $__xcodecachedir \
+            -configuration Release >> ../$1_build.log
+    else
+        xcodebuild -scheme "$1" -destination 'generic/platform=iOS' \
+            -derivedDataPath $__xcodebuilddir -skipPackagePluginValidation \
+            -clonedSourcePackagesDirPath $__xcodecachedir \
+            -configuration Release | xcpretty
+    fi
 	echo "Copying [$1] library binaries to Shounin/bin."
 	buildpath="$__xcodebuilddir/Build/Products/Release-iphoneos/PackageFrameworks"
 	cp -af "$buildpath/$1.framework" "../Shounin/bin/ios/$1.framework"
