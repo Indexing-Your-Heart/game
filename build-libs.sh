@@ -42,7 +42,7 @@ help() {
 # Builds the libraries for iOS (framework).
 build_ios_lib() {
 	echo "${__fbold}Building library [$1] for iOS.${__freset}"
-    if [ ! command -v xcpretty &> /dev/null ]; then
+    if [ ! command -v xcbeautify &> /dev/null ]; then
     	xcodebuild -scheme "$1" -destination 'generic/platform=iOS' \
             -derivedDataPath $__xcodebuilddir -skipPackagePluginValidation \
             -clonedSourcePackagesDirPath $__xcodecachedir \
@@ -51,7 +51,7 @@ build_ios_lib() {
         xcodebuild -scheme "$1" -destination 'generic/platform=iOS' \
             -derivedDataPath $__xcodebuilddir -skipPackagePluginValidation \
             -clonedSourcePackagesDirPath $__xcodecachedir \
-            -configuration Release | xcpretty
+            -configuration Release | xcbeautify
     fi
 	echo "Copying [$1] library binaries to Shounin/bin."
 	buildpath="$__xcodebuilddir/Build/Products/Release-iphoneos/PackageFrameworks"
@@ -65,8 +65,13 @@ build_ios_lib() {
 # Builds the libraries for macOS (dylib) x86_64 and arm64 into a single library.
 build_mac_lib() {
 	echo "${__fbold}Building library [$1] for macOS.${__freset}"
-	swift build --configuration release --triple arm64-apple-macosx \
-		--scratch-path $__swiftbuilddir --cache-path $__swiftcachedir >> ../$1_build.log
+    if [ ! command -v xcbeautify &> /dev/null ]; then
+        swift build --configuration release --triple arm64-apple-macosx \
+            --scratch-path $__swiftbuilddir --cache-path $__swiftcachedir >> ../$1_build.log
+    else
+        swift build --configuration release --triple arm64-apple-macosx \
+            --scratch-path $__swiftbuilddir --cache-path $__swiftcachedir | xcbeautify
+    fi
 	echo "Copying [$1] library binaries to Shounin/bin."
 	buildpath="$__swiftbuilddir/arm64-apple-macosx/release"
 	cp "$buildpath/lib$1.dylib" ../Shounin/bin/mac
