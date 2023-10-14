@@ -15,6 +15,7 @@
 
 import SwiftGodot
 
+/// A character body that represents an anthropomorphic character in game.
 @NativeHandleDiscarding
 public class AnthroCharacterBody2D: CharacterBody2D {
     @PickerNameProvider
@@ -29,10 +30,17 @@ public class AnthroCharacterBody2D: CharacterBody2D {
         case navigating // used for navigation
     }
 
-    public var acceleration: Float
+    /// The character that this player represents.
     public var character: Character = .chelsea
-    public var friction: Double
-    public var speed: Double
+
+    /// The rate at which the character will accelerate.
+    @Autovariant public var acceleration: Int
+
+    /// The scalar friction force the player receives.
+    @Autovariant public var friction: Int
+
+    /// The speed at which the player will move.
+    @Autovariant public var speed: Int
 
     @SceneTree(path: "Camera") var camera: Camera2D?
     @SceneTree(path: "Sprite/AnimationTree") var animationTree: AnimationTree?
@@ -103,7 +111,7 @@ public class AnthroCharacterBody2D: CharacterBody2D {
             velocity = accelerated(initial: movementVector)
         } else {
             currentState = .idle
-            velocity = velocity.moveToward(to: .zero, delta: friction)
+            velocity = velocity.moveToward(to: .zero, delta: Double(friction))
         }
         updateAnimationConditions()
         _ = moveAndSlide()
@@ -114,8 +122,9 @@ public class AnthroCharacterBody2D: CharacterBody2D {
         if normalized {
             movement = movement.normalized()
         }
-        let acceleration = Vector2(x: acceleration, y: acceleration)
-        return (movement * acceleration).limitLength(length: speed)
+        let accelFloat = Float(acceleration)
+        let acceleration = Vector2(x: accelFloat, y: accelFloat)
+        return (movement * acceleration).limitLength(length: Double(speed))
     }
 
     func changeSprites() {
