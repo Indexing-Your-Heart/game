@@ -102,7 +102,7 @@ format-dep +DEPENDENCIES:
 
 # Formats source files in all dependencies
 format-all-deps:
-	just format-dep Ashashat AnthroBase Demoscene JensonGodotKit
+	just format-dep Ashashat AnthroBase Demoscene JensonGodotKit Rollinsport
 
 # Test a specified dependency
 test-dep DEPENDENCY SWIFT_ARGS=dep_test_args:

@@ -33,29 +33,27 @@ public class AshashatNumpadInterpreter: Control {
     @SceneTree(path: "keyReturn") private var keyReturn: Button?
 
     private var internalValue: Int = 0
-    private lazy var mapping: [Int: Button?] = {
-        [
-            1: self.key1,
-            2: self.key2,
-            4: self.key4,
-            8: self.key8,
-            16: self.key16
-        ]
-    }()
+    private lazy var mapping: [Int: Button?] = [
+        1: self.key1,
+        2: self.key2,
+        4: self.key4,
+        8: self.key8,
+        16: self.key16
+    ]
 
     public required init() {
         AshashatNumpadInterpreter.initializeClass()
         super.init()
     }
 
-    public override func _ready() {
+    override public func _ready() {
         super._ready()
         for (number, key) in mapping {
             key?.pressed.connect { [weak self] in
                 guard let key, let self else { return }
 
                 // If already pressed, remove the number from the count (i.e., turn off that bit).
-                self.internalValue += key.buttonPressed ? number : number * -1
+                internalValue += key.buttonPressed ? number : number * -1
             }
         }
         keyReturn?.pressed.connect { [self] in
@@ -78,6 +76,7 @@ extension AshashatNumpadInterpreter {
         let classInfo = ClassInfo<AshashatNumpadInterpreter>(name: className)
 
         // MARK: Signal Registration
+
         let returnedSignalProps = [
             PropInfo(propertyType: .int,
                      propertyName: StringName("value"),

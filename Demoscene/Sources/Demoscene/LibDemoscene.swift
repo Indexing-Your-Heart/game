@@ -44,7 +44,5 @@ class LibDemoscene: GodotExtensionDelegate {
         }
     }
 
-    func extensionWillDeinitialize(at level: GDExtension.InitializationLevel) {
-
-    }
+    func extensionWillDeinitialize(at _: GDExtension.InitializationLevel) {}
 }

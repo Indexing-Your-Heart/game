@@ -18,7 +18,6 @@ import SwiftGodot
 extension AnthroCharacterBody2D {
     static func initializeClass() {
         let classInfo = ClassInfo<AnthroCharacterBody2D>(name: "AnthroCharacterBody2D")
-        
 
         let moveTowardProps = [
             PropInfo(propertyType: .vector2,

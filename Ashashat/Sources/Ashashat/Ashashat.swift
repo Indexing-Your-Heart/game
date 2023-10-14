@@ -30,7 +30,7 @@ class LibAshashat: GodotExtensionDelegate {
         LoggingSystem.bootstrap(GodotLogger.init)
     }
 
-    func extensionDidInitialize(at level: GDExtension.InitializationLevel) {
+    func extensionDidInitialize(at _: GDExtension.InitializationLevel) {
         for type in nodeTypes {
             register(type: type)
         }

@@ -48,7 +48,7 @@ public class AnthroCharacterBody2D: CharacterBody2D {
                         positiveX: "move_right",
                         negativeY: "move_up",
                         positiveY: "move_down")
-        .normalized()
+            .normalized()
     }
 
     public required init() {
@@ -59,7 +59,7 @@ public class AnthroCharacterBody2D: CharacterBody2D {
         super.init()
     }
 
-    public override func _ready() {
+    override public func _ready() {
         super._ready()
 
         // Disable playback in editor so we're not running into constant saves...
@@ -72,7 +72,7 @@ public class AnthroCharacterBody2D: CharacterBody2D {
         navigator?.targetDesiredDistance = 4
     }
 
-    public override func _unhandledInput(event: InputEvent?) {
+    override public func _unhandledInput(event: InputEvent?) {
         super._unhandledInput(event: event)
         guard let event else { return }
 
@@ -88,7 +88,7 @@ public class AnthroCharacterBody2D: CharacterBody2D {
         }
     }
 
-    public override func _physicsProcess(delta: Double) {
+    override public func _physicsProcess(delta: Double) {
         super._physicsProcess(delta: delta)
         if Engine.isEditorHint() { return }
         if currentState == .navigating {

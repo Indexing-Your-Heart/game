@@ -29,7 +29,7 @@ public class AshashatNumpadPuzzleField: Control {
         super.init()
     }
 
-    public override func _ready() {
+    override public func _ready() {
         _ = numpad?.connect(signal: AshashatNumpadInterpreter.returnedSignalName,
                             callable: #methodName(numpadReturned))
     }

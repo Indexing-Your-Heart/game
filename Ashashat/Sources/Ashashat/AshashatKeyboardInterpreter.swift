@@ -1,5 +1,5 @@
 //
-//  AshashatNode.swift
+//  AshashatKeyboardInterpreter.swift
 //  Indexing Your Heart
 //
 //  Created by Marquis Kurt on 9/17/23.
@@ -45,28 +45,26 @@ public class AshashatKeyboardInterpreter: Control {
     @SceneTree(path: "keyRepeat") private var keyRepeat: Button?
     @SceneTree(path: "keyDuplicant") private var keyDuplicant: Button?
 
-    private lazy var keyMapping: [AshashatKeyboardKey: Button?] = {
-        [
-            .a: self.keyA,
-            .i: self.keyI,
-            .e: self.keyE,
-            .u: self.keyU,
-            .p: self.keyP,
-            .b: self.keyB,
-            .t: self.keyT,
-            .k: self.keyK,
-            .l: self.keyL,
-            .s: self.keyS,
-            .n: self.keyN,
-            .sh: self.keySh,
-            .glottal: self.keyGlottal,
-            .ejectiveK: self.keyEjectiveK,
-            .return: self.keyReturn,
-            .delete: self.keyDelete,
-            .repeater: self.keyRepeat,
-            .duplicant: self.keyDuplicant
-        ]
-    }()
+    private lazy var keyMapping: [AshashatKeyboardKey: Button?] = [
+        .a: self.keyA,
+        .i: self.keyI,
+        .e: self.keyE,
+        .u: self.keyU,
+        .p: self.keyP,
+        .b: self.keyB,
+        .t: self.keyT,
+        .k: self.keyK,
+        .l: self.keyL,
+        .s: self.keyS,
+        .n: self.keyN,
+        .sh: self.keySh,
+        .glottal: self.keyGlottal,
+        .ejectiveK: self.keyEjectiveK,
+        .return: self.keyReturn,
+        .delete: self.keyDelete,
+        .repeater: self.keyRepeat,
+        .duplicant: self.keyDuplicant
+    ]
 
     required init() {
         AshashatKeyboardInterpreter.initializeClass()
@@ -81,7 +79,7 @@ public class AshashatKeyboardInterpreter: Control {
     }
 
     private func pressKey(_ key: AshashatKeyboardKey) {
-        self.emitSignal(AshashatKeyboardInterpreter.keyPressedSignalName, Variant(stringLiteral: key.keyCode))
+        emitSignal(AshashatKeyboardInterpreter.keyPressedSignalName, Variant(stringLiteral: key.keyCode))
     }
 }
 
@@ -91,6 +89,7 @@ extension AshashatKeyboardInterpreter {
         let classInfo = ClassInfo<AshashatKeyboardInterpreter>(name: className)
 
         // MARK: Signal Registration
+
         let keyPressedSignalProps = [
             PropInfo(propertyType: .string,
                      propertyName: StringName("key"),

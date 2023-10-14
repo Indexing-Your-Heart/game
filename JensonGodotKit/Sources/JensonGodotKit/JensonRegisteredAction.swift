@@ -17,11 +17,10 @@ import SwiftGodot
 
 enum JensonRegisteredAction: String {
     case timelineNext = "timeline_next"
-    
 }
 
 extension Input {
     static func isActionPressed(action: JensonRegisteredAction) -> Bool {
-        return Input.isActionPressed(action: StringName(action.rawValue))
+        Input.isActionPressed(action: StringName(action.rawValue))
     }
 }

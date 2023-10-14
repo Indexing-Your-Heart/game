@@ -15,6 +15,7 @@ included:
   - Protractor/Sources/
   - AnthroBase/Sources/
   - JensonGodotKit/Sources/
+  - Rollinsport/Sources/
 
 type_name:
   allowed_symbols: ["_"]

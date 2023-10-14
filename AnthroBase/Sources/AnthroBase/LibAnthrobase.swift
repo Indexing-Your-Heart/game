@@ -28,7 +28,7 @@ class LibAnthrobase: GodotExtensionDelegate {
         LoggingSystem.bootstrap(GodotLogger.init)
     }
 
-    func extensionDidInitialize(at level: SwiftGodotCore.GDExtension.InitializationLevel) {
+    func extensionDidInitialize(at _: SwiftGodotCore.GDExtension.InitializationLevel) {
         for type in nodeTypes {
             register(type: type)
         }

@@ -1,5 +1,5 @@
 //
-//  AshashatKeboardKey.swift
+//  AshashatKeyboardKey.swift
 //  Indexing Your Heart
 //
 //  Created by Marquis Kurt on 9/21/23.
@@ -35,7 +35,7 @@ public enum AshashatKeyboardKey: String, CaseIterable {
         case .sh: "ʃ"
         case .glottal: "ʔ"
         case .delete, .return: ""
-        default: self.rawValue
+        default: rawValue
         }
     }
 
@@ -48,13 +48,13 @@ public enum AshashatKeyboardKey: String, CaseIterable {
     public var fontRenderedValue: String {
         switch self {
         case .repeater:
-            return "*"
+            "*"
         case .ejectiveK:
-            return "K"
+            "K"
         case .sh:
-            return "sh"
+            "sh"
         default:
-            return self.keyValue
+            keyValue
         }
     }
 
@@ -62,7 +62,7 @@ public enum AshashatKeyboardKey: String, CaseIterable {
     ///
     /// When ``AshashatKeyboardInterpreter/keyPressedSignalName`` emits, this value will be provided as an argument.
     public var keyCode: String {
-        "ashashat_key_\(self.rawValue)"
+        "ashashat_key_\(rawValue)"
     }
 
     /// Initializes a key, deriving from its key code.

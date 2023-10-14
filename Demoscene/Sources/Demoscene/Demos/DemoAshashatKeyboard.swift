@@ -34,7 +34,7 @@ class DemoAshashatKeyboard: DemoBaseControl {
         _ = keyboard?.connect(signal: "key_pressed", callable: #methodName(keyPressed))
     }
 
-    override func _unhandledInput(event: InputEvent?) {
+    override func _unhandledInput(event _: InputEvent?) {
         if Input.isActionPressed(action: "cancel") {
             LibDemoscene.logger.info("Received message to return to menu.")
             _ = getTree()?.changeSceneToFile(path: "res://demos/demo_menu.tscn")

@@ -31,7 +31,7 @@ public class NumberPuzzleNode: Node2D {
         super.init()
     }
 
-    public override func _ready() {
+    override public func _ready() {
         super._ready()
 
         numpadField = getNode(path: numpadFieldPath) as? AshashatNumpadPuzzleField
@@ -57,7 +57,7 @@ public class NumberPuzzleNode: Node2D {
         }
     }
 
-    public override func _unhandledInput(event: InputEvent?) {
+    override public func _unhandledInput(event: InputEvent?) {
         super._unhandledInput(event: event)
         if Input.isActionPressed(action: "interact"), eligibleToLaunch {
             numpadField?.show()
@@ -72,8 +72,8 @@ public class NumberPuzzleNode: Node2D {
     @Callable func numpadFieldEditingChanged(_ value: Int) {
         guard eligibleToLaunch, let numpadField else { return }
         if value != expectedSolution {
-            LibRollinsport.logger.debug(
-                "Expected solution and input mismatch: \(value) is not equal to \(expectedSolution)")
+            LibRollinsport.logger
+                .debug("Expected solution and input mismatch: \(value) is not equal to \(expectedSolution)")
             numpadField.flashIncorrect()
             return
         }
@@ -82,13 +82,13 @@ public class NumberPuzzleNode: Node2D {
     }
 
     func bodyEnteredRange(body: Node2D) {
-        self.eligibleToLaunch = body.isClass("AnthroCharacterBody2D")
+        eligibleToLaunch = body.isClass("AnthroCharacterBody2D")
         LibRollinsport.logger.debug("Expected solution for current body is: \(expectedSolution)")
 
         // If the player has entered this area, and there's a touch screen, we can assume that they likely want to
         // interact with the puzzle.
         if DisplayServer.isTouchscreenAvailable(), eligibleToLaunch {
-            self.numpadField?.show()
+            numpadField?.show()
         }
     }
 }
@@ -115,7 +115,7 @@ extension NumberPuzzleNode {
 
         classInfo.addPropertyGroup(name: "Puzzle Data", prefix: "puzzle_data")
         classInfo.registerInt(named: "expected_solution",
-                              range: 0...31,
+                              range: 0 ... 31,
                               prefix: "puzzle_data",
                               getter: NumberPuzzleNode._getVariant_expectedSolution,
                               setter: NumberPuzzleNode._setVariant_expectedSolution)

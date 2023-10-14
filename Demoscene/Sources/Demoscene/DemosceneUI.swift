@@ -29,14 +29,12 @@ class DemosceneUI: Window {
     @SceneTree(path: "Container/VBoxContainer/AshashatNumpadDemo")
     var buttonAshashatNumpad: Button?
 
-    private lazy var mapping: [String: Button?] = {
-        [
-            "environment_demo": buttonEnvironment,
-            "jenson_demo": buttonJenson,
-            "ashashat_demo": buttonAshashat,
-            "ashashat_numbers_demo": buttonAshashatNumpad
-        ]
-    }()
+    private lazy var mapping: [String: Button?] = [
+        "environment_demo": buttonEnvironment,
+        "jenson_demo": buttonJenson,
+        "ashashat_demo": buttonAshashat,
+        "ashashat_numbers_demo": buttonAshashatNumpad
+    ]
 
     required init() {
         super.init()
