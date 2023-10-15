@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3mug4awe8fdd"]
+[gd_scene load_steps=7 format=3 uid="uid://d3mug4awe8fdd"]
 
 [ext_resource type="PackedScene" uid="uid://ba8hn6o0mkfnp" path="res://components/molecules/numpad_puzzle.tscn" id="1_3idrq"]
 [ext_resource type="TileSet" uid="uid://cguee8ucqpwh1" path="res://resources/tilesets/all_tiles.tres" id="1_4ygrc"]
 [ext_resource type="PackedScene" uid="uid://bhdu82yikkqf3" path="res://components/atoms/player.tscn" id="1_h05bn"]
+[ext_resource type="PackedScene" uid="uid://cfqryghyys3rp" path="res://components/molecules/keyboard_puzzle.tscn" id="3_lcmyv"]
 [ext_resource type="PackedScene" uid="uid://rjqjadf4jjje" path="res://components/molecules/puzzle_point_number.tscn" id="4_58b54"]
+[ext_resource type="PackedScene" uid="uid://cr6fbwm4gfihn" path="res://components/molecules/puzzle_point_word.tscn" id="5_td85v"]
 
 [node name="World" type="Node2D"]
 z_as_relative = false
@@ -56,6 +58,9 @@ scale = Vector2(1, 1)
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PuzzleKeyboard" parent="CanvasLayer" instance=ExtResource("3_lcmyv")]
+visible = false
 
 [node name="NumpadPuzzleField" parent="CanvasLayer" instance=ExtResource("1_3idrq")]
 visible = false
@@ -125,3 +130,60 @@ position = Vector2(2088, -508)
 puzzle_data_expected_solution = 18
 world_numpad_field = NodePath("../../CanvasLayer/NumpadPuzzleField")
 position = Vector2(984, 740)
+
+[node name="Primitives" type="Node" parent="."]
+
+[node name="PuzzlePoint-Ellipse" parent="Primitives" instance=ExtResource("5_td85v")]
+puzzle_data_expected_solution = "puk'"
+world_text_field = NodePath("../../CanvasLayer/PuzzleKeyboard")
+position = Vector2(216, 3091)
+
+[node name="PuzzlePoint-Polygon" parent="Primitives" instance=ExtResource("5_td85v")]
+puzzle_data_expected_solution = "tasubi"
+world_text_field = NodePath("../../CanvasLayer/PuzzleKeyboard")
+position = Vector2(408, 2803)
+
+[node name="PuzzlePoint-Box" parent="Primitives" instance=ExtResource("5_td85v")]
+puzzle_data_expected_solution = "biba"
+world_text_field = NodePath("../../CanvasLayer/PuzzleKeyboard")
+position = Vector2(312, 2323)
+
+[node name="PuzzlePoint-Cylinder" parent="Primitives" instance=ExtResource("5_td85v")]
+puzzle_data_expected_solution = "kabatui"
+world_text_field = NodePath("../../CanvasLayer/PuzzleKeyboard")
+position = Vector2(-168, 2226)
+
+[node name="PuzzlePoint-Idea" parent="Primitives" instance=ExtResource("5_td85v")]
+puzzle_data_expected_solution = "ʔaʃ"
+world_text_field = NodePath("../../CanvasLayer/PuzzleKeyboard")
+position = Vector2(120, 1939)
+
+[node name="PuzzlePoint-Thing" parent="Primitives" instance=ExtResource("5_td85v")]
+puzzle_data_expected_solution = "ʔaʃaʃat"
+world_text_field = NodePath("../../CanvasLayer/PuzzleKeyboard")
+position = Vector2(456, 1939)
+
+[node name="PuzzlePoint-Person" parent="Primitives" instance=ExtResource("5_td85v")]
+puzzle_data_expected_solution = "pubaʃ"
+world_text_field = NodePath("../../CanvasLayer/PuzzleKeyboard")
+position = Vector2(120, 1651)
+
+[node name="PuzzlePoint-Animal" parent="Primitives" instance=ExtResource("5_td85v")]
+puzzle_data_expected_solution = "bupeʃ"
+world_text_field = NodePath("../../CanvasLayer/PuzzleKeyboard")
+position = Vector2(456, 1651)
+
+[node name="PuzzlePoint-Pyramid" parent="Primitives" instance=ExtResource("5_td85v")]
+puzzle_data_expected_solution = "ikutet"
+world_text_field = NodePath("../../CanvasLayer/PuzzleKeyboard")
+position = Vector2(-24, 1219)
+
+[node name="PuzzlePoint-Cone" parent="Primitives" instance=ExtResource("5_td85v")]
+puzzle_data_expected_solution = "ik':a"
+world_text_field = NodePath("../../CanvasLayer/PuzzleKeyboard")
+position = Vector2(456, 1268)
+
+[node name="PuzzlePoint-Sphere" parent="Primitives" instance=ExtResource("5_td85v")]
+puzzle_data_expected_solution = "ʔilin"
+world_text_field = NodePath("../../CanvasLayer/PuzzleKeyboard")
+position = Vector2(744, 1123)

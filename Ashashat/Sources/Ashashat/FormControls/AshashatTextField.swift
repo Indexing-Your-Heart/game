@@ -22,7 +22,7 @@ public class AshashatTextField: Control, AshashatValidatedField {
     public typealias InputValue = String
 
     public var currentValue: String = ""
-    @SceneTree(path: "VStack/TextLabel") public var label: Label?
+    @SceneTree(path: "VStack/PanelContainer/TextLabel") public var label: Label?
     @SceneTree(path: "VStack/HStack/Keyboard") public var inputMechanism: AshashatKeyboardInterpreter?
     @SceneTree(path: "Animator") public var animator: AnimationPlayer?
 
@@ -39,8 +39,9 @@ public class AshashatTextField: Control, AshashatValidatedField {
     @Callable public func clear() {
         currentValue = ""
         label?.text = ""
-        label?.modulate = .white
         animator?.stop(keepState: false)
+        label?.modulate = .white
+        runAnimation(named: .reset)
     }
 
     @Callable public func flashIncorrect() {
@@ -66,11 +67,13 @@ public class AshashatTextField: Control, AshashatValidatedField {
         case .delete:
             textField.text = String(textField.text.dropLast())
             currentValue = String(currentValue.dropLast())
+            sendActions(for: .editingChanged)
         case .return:
             sendActions(for: .editingDidEnd)
         default:
             textField.text += ashashatKey.fontRenderedValue
             currentValue += ashashatKey.keyValue
+            sendActions(for: .editingChanged)
         }
     }
 

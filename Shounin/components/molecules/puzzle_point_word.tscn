@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cr6fbwm4gfihn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3visf"]
+radius = 68.1175
+
+[node name="Word Puzzle Point" type="WordPuzzleNode"]
+z_index = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_3visf")

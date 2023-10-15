@@ -21,7 +21,8 @@ class LibRollinsport: GodotExtensionDelegate {
     static var logger = Logger(label: "godotengine.swiftgodot.rollinsport")
 
     var allNodeTypes: [Wrapped.Type] = [
-        NumberPuzzleNode.self
+        NumberPuzzleNode.self,
+        WordPuzzleNode.self
     ]
 
     func extensionWillInitialize() {
