@@ -31,7 +31,7 @@ class DemoAshashatNumpad: DemoBaseControl {
 
     override func _ready() {
         super._ready()
-        _ = numpad?.connect(signal: "numpad_returned", callable: #methodName(numpadReturned))
+        try? numpad?.connect(signal: "numpad_returned", callable: #methodName(numpadReturned))
         LibDemoscene.logger
             .debug("Registered connections: \(String(describing: numpad?.getSignalConnectionList(signal: "numpad_returned")))")
     }
@@ -39,7 +39,7 @@ class DemoAshashatNumpad: DemoBaseControl {
     override func _unhandledInput(event _: InputEvent?) {
         if Input.isActionPressed(action: "cancel") {
             LibDemoscene.logger.info("Received message to return to menu.")
-            _ = getTree()?.changeSceneToFile(path: "res://demos/demo_menu.tscn")
+            try? getTree()?.changeSceneToFile(path: "res://demos/demo_menu.tscn")
         }
     }
 

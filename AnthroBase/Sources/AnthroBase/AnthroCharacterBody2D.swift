@@ -90,9 +90,14 @@ public class AnthroCharacterBody2D: CharacterBody2D {
                 newPosition = newPosition * transform // swiftlint:disable:this shorthand_operator
             }
 
-            getTree()?.physicsFrame.connect { [weak self] in
-                _ = self?.callDeferred(method: "move_toward", newPosition.toVariant())
+            do {
+                try getTree()?.physicsFrame.connect { [weak self] in
+                    _ = self?.callDeferred(method: "move_toward", newPosition.toVariant())
+                }
+            } catch {
+                LibAnthrobase.logger.error("Unable to connect signal: \(error)")
             }
+
         }
     }
 

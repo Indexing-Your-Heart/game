@@ -49,16 +49,26 @@ public class AshashatNumpadInterpreter: Control {
     override public func _ready() {
         super._ready()
         for (number, key) in mapping {
-            key?.pressed.connect { [weak self] in
-                guard let key, let self else { return }
+            do {
+                try key?.pressed.connect { [weak self] in
+                    guard let key, let self else { return }
 
-                // If already pressed, remove the number from the count (i.e., turn off that bit).
-                internalValue += key.buttonPressed ? number : number * -1
+                    // If already pressed, remove the number from the count (i.e., turn off that bit).
+                    internalValue += key.buttonPressed ? number : number * -1
+                }
+            } catch {
+                LibAshashat.logger.error("Failed to connect press for key '\(number)': \(error)")
             }
+
         }
-        keyReturn?.pressed.connect { [self] in
-            emitSignal(Self.returnedSignalName, internalValue.toVariant())
+        do {
+            try keyReturn?.pressed.connect { [self] in
+                try? emitSignal(Self.returnedSignalName, internalValue.toVariant())
+            }
+        } catch {
+            LibAshashat.logger.error("Failed to connect press for key 'return': \(error)")
         }
+
     }
 
     @Callable

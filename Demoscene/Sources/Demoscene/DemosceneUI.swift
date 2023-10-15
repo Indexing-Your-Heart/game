@@ -43,12 +43,12 @@ class DemosceneUI: Window {
     override func _ready() {
         super._ready()
 
-        closeRequested.connect { [weak self] in
+        _ = try? closeRequested.connect { [weak self] in
             self?.getTree()?.quit()
         }
 
         for (demoName, button) in mapping {
-            button?.pressed.connect { [weak self] in
+            _ = try? button?.pressed.connect { [weak self] in
                 self?.switchToDemo(named: demoName)
             }
         }
@@ -56,6 +56,6 @@ class DemosceneUI: Window {
 
     private func switchToDemo(named demo: String) {
         LibDemoscene.logger.debug("Received message to open demo: \(demo)")
-        _ = getTree()?.changeSceneToFile(path: "res://demos/\(demo).tscn")
+        try? getTree()?.changeSceneToFile(path: "res://demos/\(demo).tscn")
     }
 }

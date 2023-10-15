@@ -46,11 +46,11 @@ public class WordPuzzleNode: Node2D {
             LibRollinsport.logger.error("Failed to connect signal: \(error.localizedDescription)")
         }
 
-        _ = detectionRing?.bodyEntered.connect { [weak self] body in
+        _ = try? detectionRing?.bodyEntered.connect { [weak self] body in
             self?.bodyEnteredRange(body: body)
         }
 
-        _ = detectionRing?.bodyExited.connect { [weak self] _ in
+        _ = try? detectionRing?.bodyExited.connect { [weak self] _ in
             self?.eligibleToLaunch = false
             self?.textField?.clear()
             self?.textField?.hide()
@@ -123,7 +123,7 @@ extension WordPuzzleNode {
                                  function: WordPuzzleNode._callable_textFieldEditingChanged)
 
         classInfo.addPropertyGroup(name: "Puzzle Data", prefix: "puzzle_data")
-        classInfo.regsiterTextView(named: "expected_solution",
+        classInfo.registerTextView(named: "expected_solution",
                                    prefix: "puzzle_data",
                                    getter: WordPuzzleNode._getVariant_expectedSolution,
                                    setter: WordPuzzleNode._setVariant_expectedSolution)

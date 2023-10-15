@@ -46,10 +46,10 @@ public class NumberPuzzleNode: Node2D {
             LibRollinsport.logger.error("Failed to connect 'editing_changed' signal: \(error.localizedDescription)")
         }
 
-        _ = detectionRing?.bodyEntered.connect { [weak self] body in
+        _ = try? detectionRing?.bodyEntered.connect { [weak self] body in
             self?.bodyEnteredRange(body: body)
         }
-        _ = detectionRing?.bodyExited.connect { [weak self] _ in
+        _ = try? detectionRing?.bodyExited.connect { [weak self] _ in
             self?.eligibleToLaunch = false
             self?.numpadField?.clear()
             self?.numpadField?.hide()

@@ -74,12 +74,16 @@ public class AshashatKeyboardInterpreter: Control {
     override public func _ready() {
         super._ready()
         for (ashashatKey, keyButton) in keyMapping {
-            keyButton?.pressed.connect { [self] in pressKey(ashashatKey) }
+            do {
+                try keyButton?.pressed.connect { [self] in pressKey(ashashatKey) }
+            } catch {
+                LibAshashat.logger.error("Failed to connect press for key '\(ashashatKey)': \(error)")
+            }
         }
     }
 
     private func pressKey(_ key: AshashatKeyboardKey) {
-        emitSignal(AshashatKeyboardInterpreter.keyPressedSignalName, Variant(stringLiteral: key.keyCode))
+        try? emitSignal(AshashatKeyboardInterpreter.keyPressedSignalName, Variant(stringLiteral: key.keyCode))
     }
 }
 

@@ -67,13 +67,13 @@ public class AshashatTextField: Control, AshashatValidatedField {
         case .delete:
             textField.text = String(textField.text.dropLast())
             currentValue = String(currentValue.dropLast())
-            sendActions(for: .editingChanged)
+            try? sendActions(for: .editingChanged)
         case .return:
-            sendActions(for: .editingDidEnd)
+            try? sendActions(for: .editingDidEnd)
         default:
             textField.text += ashashatKey.fontRenderedValue
             currentValue += ashashatKey.keyValue
-            sendActions(for: .editingChanged)
+            try? sendActions(for: .editingChanged)
         }
     }
 

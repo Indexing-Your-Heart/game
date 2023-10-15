@@ -83,12 +83,12 @@ public protocol AshashatFieldValidationRegistering {
 public extension AshashatField {
     /// Emits a speficied signal to an input field's listeners.
     /// - Parameter signal: The signal to emit.
-    func sendActions(for signal: AshashatFieldSignal) {
+    func sendActions(for signal: AshashatFieldSignal) throws {
         if signal.requiresCurrentValue {
-            emitSignal(signal.stringName, currentValue.toVariant())
+            try emitSignal(signal.stringName, currentValue.toVariant())
             return
         }
-        emitSignal(signal.stringName)
+        try emitSignal(signal.stringName)
     }
 
     /// Adds a target listener for a specified signal.

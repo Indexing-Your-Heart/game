@@ -32,8 +32,8 @@ public class AshashatNumpadPuzzleField: Control, AshashatValidatedField {
     }
 
     override public func _ready() {
-        _ = inputMechanism?.connect(signal: AshashatNumpadInterpreter.returnedSignalName,
-                                    callable: #methodName(inputReturned))
+        try? inputMechanism?.connect(signal: AshashatNumpadInterpreter.returnedSignalName,
+                                     callable: #methodName(inputReturned))
     }
 
     @Callable public func clear() {
@@ -56,7 +56,7 @@ public class AshashatNumpadPuzzleField: Control, AshashatValidatedField {
     @Callable public func inputReturned(value: Int) {
         label?.text = String(value)
         currentValue = value
-        sendActions(for: .editingChanged)
+        try? sendActions(for: .editingChanged)
     }
 }
 

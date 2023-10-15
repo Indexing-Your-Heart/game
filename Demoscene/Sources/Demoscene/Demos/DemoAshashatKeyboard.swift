@@ -31,13 +31,13 @@ class DemoAshashatKeyboard: DemoBaseControl {
 
     override func _ready() {
         super._ready()
-        _ = keyboard?.connect(signal: "key_pressed", callable: #methodName(keyPressed))
+        try? keyboard?.connect(signal: "key_pressed", callable: #methodName(keyPressed))
     }
 
     override func _unhandledInput(event _: InputEvent?) {
         if Input.isActionPressed(action: "cancel") {
             LibDemoscene.logger.info("Received message to return to menu.")
-            _ = getTree()?.changeSceneToFile(path: "res://demos/demo_menu.tscn")
+            try? getTree()?.changeSceneToFile(path: "res://demos/demo_menu.tscn")
         }
     }
 

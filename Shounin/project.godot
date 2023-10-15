@@ -41,6 +41,10 @@ window/size/mode.debug=0
 
 enabled=PackedStringArray("res://addons/panku_console/plugin.cfg", "res://addons/gut/plugin.cfg")
 
+[filesystem]
+
+import/blender/enabled=false
+
 [gui]
 
 fonts/dynamic_fonts/use_oversampling=false

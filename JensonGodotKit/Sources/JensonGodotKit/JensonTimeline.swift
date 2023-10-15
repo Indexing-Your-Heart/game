@@ -163,7 +163,7 @@ public class JensonTimeline: Node {
             if !finished {
                 finished.toggle()
                 GD.print("Timeline has finished.")
-                emitSignal(JensonTimeline.timelineFinishedSignalName)
+                try? emitSignal(JensonTimeline.timelineFinishedSignalName)
             }
             GD.pushWarning("Attempted to move to an empty slot.")
             return
@@ -173,7 +173,7 @@ public class JensonTimeline: Node {
             setup(event: currentEvent)
         } else {
             GD.print("Timeline has completed.")
-            emitSignal(JensonTimeline.timelineFinishedSignalName)
+            try? emitSignal(JensonTimeline.timelineFinishedSignalName)
         }
     }
 
@@ -277,7 +277,7 @@ public class JensonTimeline: Node {
         question.options.map(\.name).forEach { choiceName in
             if let newButton = choiceTemplate?.duplicate() as? Button {
                 newButton.text = choiceName
-                newButton.pressed.connect { [weak self] in
+                _ = try? newButton.pressed.connect { [weak self] in
                     self?.menu?.visible = false
                     guard let events = self?.choices[choiceName] else {
                         GD.pushWarning("No option with key '\(choiceName)' exists. No new events will be inserted.")

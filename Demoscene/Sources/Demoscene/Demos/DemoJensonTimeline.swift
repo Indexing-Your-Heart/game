@@ -27,12 +27,12 @@ class DemoJensonTimeline: DemoBaseControl {
 
     override func _ready() {
         super._ready()
-        _ = timeline?.connect(signal: "timeline_finished", callable: #methodName(timelineFinished))
+        try? timeline?.connect(signal: "timeline_finished", callable: #methodName(timelineFinished))
     }
 
     @Callable func timelineFinished() {
         LibDemoscene.logger.debug("Timeline finished. Sending back to demo menu.")
-        _ = getTree()?.changeSceneToFile(path: "res://demos/demo_menu.tscn")
+        try? getTree()?.changeSceneToFile(path: "res://demos/demo_menu.tscn")
     }
 }
 
