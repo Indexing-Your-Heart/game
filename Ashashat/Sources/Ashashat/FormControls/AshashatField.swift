@@ -85,10 +85,10 @@ public extension AshashatField {
     /// - Parameter signal: The signal to emit.
     func sendActions(for signal: AshashatFieldSignal) {
         if signal.requiresCurrentValue {
-            self.emitSignal(signal.stringName, currentValue.toVariant())
+            emitSignal(signal.stringName, currentValue.toVariant())
             return
         }
-        self.emitSignal(signal.stringName)
+        emitSignal(signal.stringName)
     }
 
     /// Adds a target listener for a specified signal.
@@ -122,21 +122,21 @@ public extension AshashatField {
     /// Registers the editing signals to Godot.
     /// - Parameter classInfo: The class information object to register the signals to.
     /// - Parameter value: The property information describing the input value.
-    static func registerEditingSignals<T: AshashatFieldRegistering>(using classInfo: ClassInfo<T>, value: PropInfo) {
+    static func registerEditingSignals(using classInfo: ClassInfo<some AshashatFieldRegistering>, value: PropInfo) {
         for signal in AshashatFieldSignal.allCases {
-            classInfo.registerSignal(name: signal.stringName, arguments: signal.requiresCurrentValue ? [value]: [])
+            classInfo.registerSignal(name: signal.stringName, arguments: signal.requiresCurrentValue ? [value] : [])
         }
     }
 
     /// Registers all methods and signals of the input field to Godot.
     /// - Parameter classInfo: The class information object to register the methods and signals to.
     /// - Parameter value: The property information describing the input value.
-    static func registerField<T>(
-        using classInfo: ClassInfo<T>, value: PropInfo
-    ) where T: AshashatFieldRegistering & AshashatFieldValidationRegistering {
-        Self.registerClear(using: classInfo)
-        Self.registerEditingSignals(using: classInfo, value: value)
-        Self.registerInputReturned(using: classInfo, value: value)
+    static func registerField(using classInfo: ClassInfo<some AshashatFieldRegistering &
+                                  AshashatFieldValidationRegistering>,
+    value: PropInfo) {
+        registerClear(using: classInfo)
+        registerEditingSignals(using: classInfo, value: value)
+        registerInputReturned(using: classInfo, value: value)
     }
 }
 
@@ -148,7 +148,7 @@ public extension AshashatField where Self: AshashatFieldValidating {
         animator.stop(keepState: false)
         animator.play(name: name.stringName)
     }
-    
+
     /// Registers the `flash_incorrect` and `mark_correct` methods to Godot.
     /// - Parameter classInfo: The class information object that the method will be registered to.
     static func registerValidationMethods<T: AshashatFieldValidationRegistering>(using classInfo: ClassInfo<T>) {
@@ -167,13 +167,13 @@ public extension AshashatField where Self: AshashatFieldValidating {
     /// Registers all methods and signals of the input field to Godot.
     /// - Parameter classInfo: The class information object to register the methods and signals to.
     /// - Parameter value: The property information describing the input value.
-    static func registerField<T>(
-        using classInfo: ClassInfo<T>, value: PropInfo
-    ) where T: AshashatFieldRegistering & AshashatFieldValidationRegistering {
-        Self.registerClear(using: classInfo)
-        Self.registerValidationMethods(using: classInfo)
-        Self.registerEditingSignals(using: classInfo, value: value)
-        Self.registerInputReturned(using: classInfo, value: value)
+    static func registerField(using classInfo: ClassInfo<some AshashatFieldRegistering &
+                                  AshashatFieldValidationRegistering>,
+    value: PropInfo) {
+        registerClear(using: classInfo)
+        registerValidationMethods(using: classInfo)
+        registerEditingSignals(using: classInfo, value: value)
+        registerInputReturned(using: classInfo, value: value)
     }
 }
 
@@ -190,7 +190,7 @@ public enum AshashatFieldAnimationName: String {
 
     /// The string name that represents this animation.
     public var stringName: StringName {
-        StringName(self.rawValue)
+        StringName(rawValue)
     }
 }
 
@@ -211,7 +211,7 @@ public enum AshashatFieldSignal: String, CaseIterable {
 
     /// The string name that represents the signal.
     public var stringName: StringName {
-        StringName(self.rawValue)
+        StringName(rawValue)
     }
 
     /// Whether the signal references the current input value.

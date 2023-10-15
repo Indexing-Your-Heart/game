@@ -33,7 +33,7 @@ public class AshashatNumpadPuzzleField: Control, AshashatValidatedField {
 
     override public func _ready() {
         _ = inputMechanism?.connect(signal: AshashatNumpadInterpreter.returnedSignalName,
-                            callable: #methodName(inputReturned))
+                                    callable: #methodName(inputReturned))
     }
 
     @Callable public func clear() {

@@ -31,7 +31,7 @@ public class WordPuzzleNode: Node2D {
         super.init()
     }
 
-    public override func _ready() {
+    override public func _ready() {
         super._ready()
         textField = getNode(path: textFieldPath) as? AshashatTextField
         if textField == nil {
@@ -50,7 +50,7 @@ public class WordPuzzleNode: Node2D {
             self?.bodyEnteredRange(body: body)
         }
 
-        _ = detectionRing?.bodyExited.connect { [weak self] body in
+        _ = detectionRing?.bodyExited.connect { [weak self] _ in
             self?.eligibleToLaunch = false
             self?.textField?.clear()
             self?.textField?.hide()
@@ -124,9 +124,9 @@ extension WordPuzzleNode {
 
         classInfo.addPropertyGroup(name: "Puzzle Data", prefix: "puzzle_data")
         classInfo.regsiterTextView(named: "expected_solution",
-                                    prefix: "puzzle_data",
-                                    getter: WordPuzzleNode._getVariant_expectedSolution,
-                                    setter: WordPuzzleNode._setVariant_expectedSolution)
+                                   prefix: "puzzle_data",
+                                   getter: WordPuzzleNode._getVariant_expectedSolution,
+                                   setter: WordPuzzleNode._setVariant_expectedSolution)
 
         classInfo.addPropertyGroup(name: "World References", prefix: "world")
         classInfo.registerNodePath(named: "text_field",

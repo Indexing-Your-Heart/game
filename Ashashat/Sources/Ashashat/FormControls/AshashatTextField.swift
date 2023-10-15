@@ -31,7 +31,7 @@ public class AshashatTextField: Control, AshashatValidatedField {
         super.init()
     }
 
-    public override func _ready() {
+    override public func _ready() {
         super._ready()
         try? inputMechanism?.connectIfPresent(#methodName(keyPressed), to: "key_pressed")
     }
@@ -77,7 +77,7 @@ public class AshashatTextField: Control, AshashatValidatedField {
         }
     }
 
-    @Callable public func inputReturned(value: String) {}
+    @Callable public func inputReturned(value _: String) {}
 }
 
 extension AshashatTextField {
@@ -96,12 +96,12 @@ extension AshashatTextField {
                                  flags: .default,
                                  returnValue: nil,
                                  arguments: [
-                                    PropInfo(propertyType: .string,
-                                             propertyName: StringName("key"),
-                                             className: StringName("\(AshashatTextField.self)"),
-                                             hint: .typeString,
-                                             hintStr: "",
-                                             usage: .default)
+                                     PropInfo(propertyType: .string,
+                                              propertyName: StringName("key"),
+                                              className: StringName("\(AshashatTextField.self)"),
+                                              hint: .typeString,
+                                              hintStr: "",
+                                              usage: .default)
                                  ],
                                  function: AshashatTextField._callable_keyPressed)
     }

@@ -87,7 +87,7 @@ public class AnthroCharacterBody2D: CharacterBody2D {
         if event.isClass("\(InputEventScreenTouch.self)"), event.isPressed() {
             var newPosition = Vector2(event.get(property: "position")) ?? .zero
             if let transform = getViewport()?.canvasTransform {
-                newPosition = newPosition * transform
+                newPosition = newPosition * transform // swiftlint:disable:this shorthand_operator
             }
 
             getTree()?.physicsFrame.connect { [weak self] in

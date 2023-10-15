@@ -40,7 +40,6 @@ public class NumberPuzzleNode: Node2D {
             return
         }
 
-        // TODO: Errors should be handled here. (or ignored, when try? is adopted)
         do {
             try numpadField?.addTarget(for: .editingChanged, #methodName(numpadFieldEditingChanged))
         } catch {
