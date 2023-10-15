@@ -91,6 +91,13 @@ public extension AshashatField {
         self.emitSignal(signal.stringName)
     }
 
+    /// Adds a target listener for a specified signal.
+    /// - Parameter signal: The signal the target listener will listen for.
+    /// - Parameter method: The method that will be invoked when the signal is emitted.
+    func addTarget(for signal: AshashatFieldSignal, _ method: Callable) throws {
+        try connectIfPresent(method, to: signal.stringName)
+    }
+
     /// Registers the clear method to Godot.
     /// - Parameter classInfo: The class information object that the method will be registered to.
     static func registerClear<T: AshashatFieldRegistering>(using classInfo: ClassInfo<T>) {

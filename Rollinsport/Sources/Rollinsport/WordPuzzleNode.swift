@@ -40,10 +40,10 @@ public class WordPuzzleNode: Node2D {
         }
 
         do {
-            try textField?.connectIfPresent(#methodName(textFieldEditingDidEnd), to: "editing_did_end")
-            try textField?.connectIfPresent(#methodName(textFieldEditingChanged), to: "editing_changed")
+            try textField?.addTarget(for: .editingChanged, #methodName(textFieldEditingChanged))
+            try textField?.addTarget(for: .editingDidEnd, #methodName(textFieldEditingDidEnd))
         } catch {
-            LibRollinsport.logger.error("Failed to connect 'editing_did_end' signal: \(error.localizedDescription)")
+            LibRollinsport.logger.error("Failed to connect signal: \(error.localizedDescription)")
         }
 
         _ = detectionRing?.bodyEntered.connect { [weak self] body in

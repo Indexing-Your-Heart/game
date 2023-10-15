@@ -42,7 +42,7 @@ public class NumberPuzzleNode: Node2D {
 
         // TODO: Errors should be handled here. (or ignored, when try? is adopted)
         do {
-            try numpadField?.connectIfPresent(#methodName(numpadFieldEditingChanged), to: "editing_changed")
+            try numpadField?.addTarget(for: .editingChanged, #methodName(numpadFieldEditingChanged))
         } catch {
             LibRollinsport.logger.error("Failed to connect 'editing_changed' signal: \(error.localizedDescription)")
         }

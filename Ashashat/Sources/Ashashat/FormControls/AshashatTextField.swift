@@ -84,6 +84,7 @@ extension AshashatTextField {
     static func initializeClass() {
         let className = StringName(stringLiteral: "\(AshashatTextField.self)")
         let classInfo = ClassInfo<AshashatTextField>(name: className)
+
         Self.registerField(using: classInfo,
                            value: PropInfo(propertyType: .string,
                                            propertyName: StringName("value"),
