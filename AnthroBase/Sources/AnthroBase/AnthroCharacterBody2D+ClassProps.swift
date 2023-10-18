@@ -15,9 +15,33 @@
 
 import SwiftGodot
 
+extension AnthroCharacterBody2D: GodotInspectable {
+    public typealias T = AnthroCharacterBody2D
+    public static var inspector: Inspector<T> {
+        Inspector {
+            Picker("character",
+                   for: Character.self,
+                   property: #autoProperty(object: AnthroCharacterBody2D.self, "character"))
+            Group<AnthroCharacterBody2D>("Movement", prefix: "movement_") {
+                NumberRange("speed",
+                            limit: 1 ... 1000,
+                            stride: 5,
+                            property: #autoProperty(object: AnthroCharacterBody2D.self, "speed"))
+                NumberRange("acceleration",
+                            limit: 1 ... 1000,
+                            property: #autoProperty(object: AnthroCharacterBody2D.self, "acceleration"))
+                NumberRange("friction",
+                            limit: 1 ... 1000,
+                            property: #autoProperty(object: AnthroCharacterBody2D.self, "friction"))
+            }
+        }
+    }
+}
+
 extension AnthroCharacterBody2D {
     static func initializeClass() {
         let classInfo = ClassInfo<AnthroCharacterBody2D>(name: "AnthroCharacterBody2D")
+        classInfo.registerInspector()
 
         let moveTowardProps = [
             PropInfo(propertyType: .vector2,
@@ -32,40 +56,5 @@ extension AnthroCharacterBody2D {
                                  returnValue: nil,
                                  arguments: moveTowardProps,
                                  function: AnthroCharacterBody2D._callable_moveToward)
-
-        classInfo.registerEnum(named: "character",
-                               for: Character.self,
-                               prefix: "player",
-                               getter: AnthroCharacterBody2D.getCharacter,
-                               setter: AnthroCharacterBody2D.setCharacter)
-
-        classInfo.addPropertyGroup(name: "Movement", prefix: "movement_")
-        classInfo.registerInt(named: "acceleration",
-                              range: 1 ... 1000,
-                              stride: 5,
-                              prefix: "movement",
-                              getter: AnthroCharacterBody2D._getVariant_acceleration,
-                              setter: AnthroCharacterBody2D._setVariant_acceleration)
-        classInfo.registerInt(named: "speed",
-                              range: 1 ... 1000,
-                              prefix: "movement",
-                              getter: AnthroCharacterBody2D._getVariant_speed,
-                              setter: AnthroCharacterBody2D._setVariant_speed)
-        classInfo.registerInt(named: "friction",
-                              range: 1 ... 1000,
-                              prefix: "movement",
-                              getter: AnthroCharacterBody2D._getVariant_friction,
-                              setter: AnthroCharacterBody2D._setVariant_friction)
-    }
-
-    func getCharacter(args _: [Variant]) -> Variant? {
-        Variant(character.rawValue)
-    }
-
-    func setCharacter(args: [Variant]) -> Variant? {
-        ClassInfo.withCheckedProperty(named: "character", in: args) { arg in
-            character = Character(rawValue: Int(arg) ?? 0) ?? .chelsea
-            changeSprites()
-        }
     }
 }

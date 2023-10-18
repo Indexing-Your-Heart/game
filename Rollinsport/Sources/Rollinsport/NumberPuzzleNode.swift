@@ -92,10 +92,27 @@ public class NumberPuzzleNode: Node2D {
     }
 }
 
+extension NumberPuzzleNode: GodotInspectable {
+    public static var inspector: Inspector<NumberPuzzleNode> {
+        Inspector {
+            Group<NumberPuzzleNode>("Puzzle Data", prefix: "puzzle_data") {
+                NumberRange("expected_solution",
+                            limit: 0 ... 31,
+                            property: #autoProperty(object: NumberPuzzleNode.self, "expectedSolution"))
+            }
+            Group<NumberPuzzleNode>("World References", prefix: "world") {
+                NodePathPicker("numpad_field",
+                               property: #autoProperty(object: NumberPuzzleNode.self, "numpadFieldPath"))
+            }
+        }
+    }
+}
+
 extension NumberPuzzleNode {
     static func initializeClass() {
         let className = StringName(stringLiteral: "\(NumberPuzzleNode.self)")
         let classInfo = ClassInfo<NumberPuzzleNode>(name: className)
+        classInfo.registerInspector()
 
         let editingChangedProps = [
             PropInfo(propertyType: .int,
@@ -111,18 +128,5 @@ extension NumberPuzzleNode {
                                  returnValue: nil,
                                  arguments: editingChangedProps,
                                  function: NumberPuzzleNode._callable_numpadFieldEditingChanged)
-
-        classInfo.addPropertyGroup(name: "Puzzle Data", prefix: "puzzle_data")
-        classInfo.registerInt(named: "expected_solution",
-                              range: 0 ... 31,
-                              prefix: "puzzle_data",
-                              getter: NumberPuzzleNode._getVariant_expectedSolution,
-                              setter: NumberPuzzleNode._setVariant_expectedSolution)
-
-        classInfo.addPropertyGroup(name: "World References", prefix: "world")
-        classInfo.registerNodePath(named: "numpad_field",
-                                   prefix: "world",
-                                   getter: NumberPuzzleNode._getVariant_numpadFieldPath,
-                                   setter: NumberPuzzleNode._setVariant_numpadFieldPath)
     }
 }

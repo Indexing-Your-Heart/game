@@ -31,7 +31,9 @@ public class AnthroCharacterBody2D: CharacterBody2D {
     }
 
     /// The character that this player represents.
-    public var character: Character = .chelsea
+    @AutovariantEnum public var character: Character = .chelsea {
+        didSet { changeSprites() }
+    }
 
     /// The rate at which the character will accelerate.
     @Autovariant public var acceleration: Int

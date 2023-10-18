@@ -97,10 +97,26 @@ public class WordPuzzleNode: Node2D {
     }
 }
 
+extension WordPuzzleNode: GodotInspectable {
+    static public var inspector: Inspector<WordPuzzleNode> {
+        Inspector {
+            Group<WordPuzzleNode>("Puzzle Data", prefix: "puzzle_data") {
+                Text(name: "expected_solution",
+                     multiline: true,
+                     property: #autoProperty(object: WordPuzzleNode.self, "expectedSolution"))
+            }
+            Group<WordPuzzleNode>("World References", prefix: "world") {
+                NodePathPicker("text_field", property: #autoProperty(object: WordPuzzleNode.self, "textFieldPath"))
+            }
+        }
+    }
+}
+
 extension WordPuzzleNode {
     static func initializeClass() {
         let className = StringName("\(WordPuzzleNode.self)")
         let classInfo = ClassInfo<WordPuzzleNode>(name: className)
+        classInfo.registerInspector()
 
         let editingChangedProps = [
             PropInfo(propertyType: .string,
@@ -121,17 +137,5 @@ extension WordPuzzleNode {
                                  returnValue: nil,
                                  arguments: editingChangedProps,
                                  function: WordPuzzleNode._callable_textFieldEditingChanged)
-
-        classInfo.addPropertyGroup(name: "Puzzle Data", prefix: "puzzle_data")
-        classInfo.registerTextView(named: "expected_solution",
-                                   prefix: "puzzle_data",
-                                   getter: WordPuzzleNode._getVariant_expectedSolution,
-                                   setter: WordPuzzleNode._setVariant_expectedSolution)
-
-        classInfo.addPropertyGroup(name: "World References", prefix: "world")
-        classInfo.registerNodePath(named: "text_field",
-                                   prefix: "world",
-                                   getter: WordPuzzleNode._getVariant_textFieldPath,
-                                   setter: WordPuzzleNode._setVariant_textFieldPath)
     }
 }

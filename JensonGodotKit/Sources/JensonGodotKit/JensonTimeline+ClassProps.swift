@@ -21,19 +21,22 @@ extension UTType {
     static var jenson = UTType(filenameExtension: "jenson")!
 }
 
+extension JensonTimeline: GodotInspectable {
+    static public var inspector: Inspector<JensonTimeline> {
+        Inspector {
+            FilePicker("script_path", for: [.jenson], property: #autoProperty(object: JensonTimeline.self, "script"))
+            Group<JensonTimeline>("Debugging", prefix: "debug") {
+                Toggle("display_commentary",
+                       property: #autoProperty(object: JensonTimeline.self, "displayCommentary"))
+            }
+        }
+    }
+}
+
 extension JensonTimeline {
     static func initializeClass() {
         let classInfo = ClassInfo<JensonTimeline>(name: StringName("\(JensonTimeline.self)"))
+        classInfo.registerInspector()
         classInfo.registerSignal(name: JensonTimeline.timelineFinishedSignalName)
-        classInfo.registerFilePicker(named: "script_path",
-                                     allowedTypes: [.jenson],
-                                     getter: JensonTimeline._getVariant_script,
-                                     setter: JensonTimeline._setVariant_script)
-
-        classInfo.addPropertyGroup(name: "Debugging", prefix: "debug")
-        classInfo.registerCheckbox(named: "display_commentary",
-                                   prefix: "debug",
-                                   getter: JensonTimeline._getVariant_displayCommentary,
-                                   setter: JensonTimeline._setVariant_displayCommentary)
     }
 }
