@@ -49,13 +49,13 @@ build-all-deps:
 # Builds all the game's extensions for macOS and iOS.
 build-extensions:
 	# Atoms
-	just build-dep '-f' Ashashat
-	just build-dep '-f' AnthroBase
-	just build-dep '-f' JensonGodotKit
+	just build-extension '-f' Ashashat
+	just build-extension '-f' AnthroBase
+	just build-extension '-f' JensonGodotKit
 
 	# Molecules
-	just build-dep '-f' Demoscene
-	just build-dep '-f' Rollinsport
+	just build-extension '-f' Demoscene
+	just build-extension '-f' Rollinsport
 
 # WARN: build-all-deps-ci has been renamed to build-extensions-ci.
 build-all-deps-ci:

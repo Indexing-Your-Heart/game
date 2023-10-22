@@ -137,3 +137,7 @@ Shounin/resources/gui/salmon/*.ttf
 .mxcbuild
 .mcache
 .mxcache
+
+# Export and distribution
+.xcexport/
+.dist/

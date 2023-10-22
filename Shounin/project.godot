@@ -18,10 +18,6 @@ config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.png"
 config/macos_native_icon="res://icon.icns"
 
-[autoload]
-
-Panku="*res://addons/panku_console/console.tscn"
-
 [debug]
 
 shapes/collision/shape_color=Color(1, 1, 1, 0.419608)
@@ -39,7 +35,7 @@ window/size/mode.debug=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/panku_console/plugin.cfg", "res://addons/gut/plugin.cfg")
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")
 
 [filesystem]
 

@@ -143,12 +143,12 @@ shift "$((OPTIND-1))"
 
 if [[ -e "Shounin/bin/mac/SwiftGodotCore.framework" && $__preclean = true ]]; then
 	echo "Removing old Swift Godot framework. This will be rebuilt."
-	rm -rf Shounin/bin/SwiftGodotCore.framework
+	rm -rf Shounin/bin/mac/SwiftGodotCore.framework
 fi
 
 if [[ -e "Shounin/bin/ios/SwiftGodotCore.framework" && $__preclean = true ]]; then
 	echo "Removing old Swift Godot framework. This will be rebuilt."
-	rm -rf Shounin/bin/SwiftGodotCore.framework
+	rm -rf Shounin/bin/ios/SwiftGodotCore.framework
 fi
 
 build_lib "$1"
