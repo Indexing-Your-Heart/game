@@ -384,7 +384,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = FQQXSP79X3;
 				EXECUTABLE_NAME = "Indexing Your Heart";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -393,6 +393,7 @@
 				);
 				INFOPLIST_FILE = "Indexing Your Heart/Indexing Your Heart-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Indexing Your Heart";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.puzzle-games";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -424,7 +425,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Automatic;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = FQQXSP79X3;
 				EXECUTABLE_NAME = "Indexing Your Heart";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -433,6 +434,7 @@
 				);
 				INFOPLIST_FILE = "Indexing Your Heart/Indexing Your Heart-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Indexing Your Heart";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.puzzle-games";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
