@@ -141,3 +141,4 @@ Shounin/resources/gui/salmon/*.ttf
 # Export and distribution
 .xcexport/
 .dist/
+Indexing Your Heart/**.pck
