@@ -1,0 +1,482 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 54;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1FF8DBB11FBA9DE1009DE660 /* dummy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1FF8DBB01FBA9DE1009DE660 /* dummy.cpp */; };
+		9039D3BE24C093AC0020482C /* MoltenVK in Frameworks */ = {isa = PBXBuildFile; fileRef = 9039D3BD24C093AC0020482C /* MoltenVK */; };
+		90DD2D9E24B36E8000717FE1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90DD2D9D24B36E8000717FE1 /* Launch Screen.storyboard */; };
+		9517E6432AE5B181004FD9EE /* ios in Resources */ = {isa = PBXBuildFile; fileRef = 9517E6422AE5B181004FD9EE /* ios */; };
+		9517E64E2AE5B194004FD9EE /* AnthroBase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9517E6442AE5B194004FD9EE /* AnthroBase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9517E6502AE5B194004FD9EE /* Ashashat.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9517E6452AE5B194004FD9EE /* Ashashat.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9517E6522AE5B194004FD9EE /* Demoscene.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9517E6462AE5B194004FD9EE /* Demoscene.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9517E6542AE5B194004FD9EE /* JensonGodotKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9517E6472AE5B194004FD9EE /* JensonGodotKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9517E6562AE5B195004FD9EE /* Logging_35C93DA702091ECE_PackageProduct.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9517E6482AE5B194004FD9EE /* Logging_35C93DA702091ECE_PackageProduct.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9517E6582AE5B195004FD9EE /* ProtractorGodotInterop.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9517E6492AE5B194004FD9EE /* ProtractorGodotInterop.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9517E65A2AE5B195004FD9EE /* Rollinsport.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9517E64A2AE5B194004FD9EE /* Rollinsport.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9517E65C2AE5B195004FD9EE /* SwiftGodot_6FA7224D83C68214_PackageProduct.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9517E64B2AE5B194004FD9EE /* SwiftGodot_6FA7224D83C68214_PackageProduct.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9517E65E2AE5B195004FD9EE /* SwiftGodotCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9517E64C2AE5B194004FD9EE /* SwiftGodotCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9517E6602AE5B1D8004FD9EE /* AnthroBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9517E6442AE5B194004FD9EE /* AnthroBase.framework */; };
+		9517E6612AE5B1D8004FD9EE /* Ashashat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9517E6452AE5B194004FD9EE /* Ashashat.framework */; };
+		9517E6622AE5B1D8004FD9EE /* Demoscene.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9517E6462AE5B194004FD9EE /* Demoscene.framework */; };
+		9517E6632AE5B1D8004FD9EE /* JensonGodotKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9517E6472AE5B194004FD9EE /* JensonGodotKit.framework */; };
+		9517E6642AE5B1D8004FD9EE /* Logging_35C93DA702091ECE_PackageProduct.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9517E6482AE5B194004FD9EE /* Logging_35C93DA702091ECE_PackageProduct.framework */; };
+		9517E6652AE5B1D8004FD9EE /* ProtractorGodotInterop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9517E6492AE5B194004FD9EE /* ProtractorGodotInterop.framework */; };
+		9517E6662AE5B1D8004FD9EE /* Rollinsport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9517E64A2AE5B194004FD9EE /* Rollinsport.framework */; };
+		9517E6672AE5B1D8004FD9EE /* SwiftGodot_6FA7224D83C68214_PackageProduct.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9517E64B2AE5B194004FD9EE /* SwiftGodot_6FA7224D83C68214_PackageProduct.framework */; };
+		9517E6682AE5B1D8004FD9EE /* SwiftGodotCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9517E64C2AE5B194004FD9EE /* SwiftGodotCore.framework */; };
+		D07CD44E1C5D589C00B7FB28 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D07CD44D1C5D589C00B7FB28 /* Images.xcassets */; };
+		D0BCFE4618AEBDA2004A7AAE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0BCFE4418AEBDA2004A7AAE /* InfoPlist.strings */; };
+		D0BCFE7818AEBFEB004A7AAE /* Indexing Your Heart.pck in Resources */ = {isa = PBXBuildFile; fileRef = D0BCFE7718AEBFEB004A7AAE /* Indexing Your Heart.pck */; };
+		DEADBEEF2F582BE20003B888 /* godot in Frameworks */ = {isa = PBXBuildFile; fileRef = DEADBEEF1F582BE20003B888 /* godot */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9517E65F2AE5B195004FD9EE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9517E65C2AE5B195004FD9EE /* SwiftGodot_6FA7224D83C68214_PackageProduct.framework in Embed Frameworks */,
+				9517E64E2AE5B194004FD9EE /* AnthroBase.framework in Embed Frameworks */,
+				9517E65A2AE5B195004FD9EE /* Rollinsport.framework in Embed Frameworks */,
+				9517E6502AE5B194004FD9EE /* Ashashat.framework in Embed Frameworks */,
+				9517E6582AE5B195004FD9EE /* ProtractorGodotInterop.framework in Embed Frameworks */,
+				9517E6542AE5B194004FD9EE /* JensonGodotKit.framework in Embed Frameworks */,
+				9517E65E2AE5B195004FD9EE /* SwiftGodotCore.framework in Embed Frameworks */,
+				9517E6522AE5B194004FD9EE /* Demoscene.framework in Embed Frameworks */,
+				9517E6562AE5B195004FD9EE /* Logging_35C93DA702091ECE_PackageProduct.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1FF4C1881F584E6300A41E41 /* Indexing Your Heart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Indexing Your Heart.entitlements"; sourceTree = "<group>"; };
+		1FF8DBB01FBA9DE1009DE660 /* dummy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dummy.cpp; sourceTree = "<group>"; };
+		9039D3BD24C093AC0020482C /* MoltenVK */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MoltenVK; path = MoltenVK.xcframework; sourceTree = "<group>"; };
+		90DD2D9D24B36E8000717FE1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		9517E6422AE5B181004FD9EE /* ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ios; path = ../Shounin/bin/ios; sourceTree = "<group>"; };
+		9517E6442AE5B194004FD9EE /* AnthroBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AnthroBase.framework; path = ../Shounin/bin/ios/AnthroBase.framework; sourceTree = "<group>"; };
+		9517E6452AE5B194004FD9EE /* Ashashat.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ashashat.framework; path = ../Shounin/bin/ios/Ashashat.framework; sourceTree = "<group>"; };
+		9517E6462AE5B194004FD9EE /* Demoscene.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Demoscene.framework; path = ../Shounin/bin/ios/Demoscene.framework; sourceTree = "<group>"; };
+		9517E6472AE5B194004FD9EE /* JensonGodotKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JensonGodotKit.framework; path = ../Shounin/bin/ios/JensonGodotKit.framework; sourceTree = "<group>"; };
+		9517E6482AE5B194004FD9EE /* Logging_35C93DA702091ECE_PackageProduct.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Logging_35C93DA702091ECE_PackageProduct.framework; path = ../Shounin/bin/ios/Logging_35C93DA702091ECE_PackageProduct.framework; sourceTree = "<group>"; };
+		9517E6492AE5B194004FD9EE /* ProtractorGodotInterop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ProtractorGodotInterop.framework; path = ../Shounin/bin/ios/ProtractorGodotInterop.framework; sourceTree = "<group>"; };
+		9517E64A2AE5B194004FD9EE /* Rollinsport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Rollinsport.framework; path = ../Shounin/bin/ios/Rollinsport.framework; sourceTree = "<group>"; };
+		9517E64B2AE5B194004FD9EE /* SwiftGodot_6FA7224D83C68214_PackageProduct.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGodot_6FA7224D83C68214_PackageProduct.framework; path = ../Shounin/bin/ios/SwiftGodot_6FA7224D83C68214_PackageProduct.framework; sourceTree = "<group>"; };
+		9517E64C2AE5B194004FD9EE /* SwiftGodotCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGodotCore.framework; path = ../Shounin/bin/ios/SwiftGodotCore.framework; sourceTree = "<group>"; };
+		D07CD44D1C5D589C00B7FB28 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D0BCFE3418AEBDA2004A7AAE /* Indexing Your Heart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Indexing Your Heart.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0BCFE4318AEBDA2004A7AAE /* Indexing Your Heart-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Indexing Your Heart-Info.plist"; sourceTree = "<group>"; };
+		D0BCFE4518AEBDA2004A7AAE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D0BCFE7718AEBFEB004A7AAE /* Indexing Your Heart.pck */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Indexing Your Heart.pck"; sourceTree = "<group>"; };
+		DEADBEEF1F582BE20003B888 /* godot */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = godot; path = "Indexing Your Heart.xcframework"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D0BCFE3118AEBDA2004A7AAE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9039D3BE24C093AC0020482C /* MoltenVK in Frameworks */,
+				DEADBEEF2F582BE20003B888 /* godot in Frameworks */,
+				9517E6602AE5B1D8004FD9EE /* AnthroBase.framework in Frameworks */,
+				9517E6612AE5B1D8004FD9EE /* Ashashat.framework in Frameworks */,
+				9517E6622AE5B1D8004FD9EE /* Demoscene.framework in Frameworks */,
+				9517E6632AE5B1D8004FD9EE /* JensonGodotKit.framework in Frameworks */,
+				9517E6642AE5B1D8004FD9EE /* Logging_35C93DA702091ECE_PackageProduct.framework in Frameworks */,
+				9517E6652AE5B1D8004FD9EE /* ProtractorGodotInterop.framework in Frameworks */,
+				9517E6662AE5B1D8004FD9EE /* Rollinsport.framework in Frameworks */,
+				9517E6672AE5B1D8004FD9EE /* SwiftGodot_6FA7224D83C68214_PackageProduct.framework in Frameworks */,
+				9517E6682AE5B1D8004FD9EE /* SwiftGodotCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D0BCFE2B18AEBDA2004A7AAE = {
+			isa = PBXGroup;
+			children = (
+				9517E6422AE5B181004FD9EE /* ios */,
+				D0BCFE7718AEBFEB004A7AAE /* Indexing Your Heart.pck */,
+				D0BCFE4118AEBDA2004A7AAE /* Indexing Your Heart */,
+				D0BCFE3618AEBDA2004A7AAE /* Frameworks */,
+				D0BCFE3518AEBDA2004A7AAE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D0BCFE3518AEBDA2004A7AAE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D0BCFE3418AEBDA2004A7AAE /* Indexing Your Heart.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D0BCFE3618AEBDA2004A7AAE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9517E6442AE5B194004FD9EE /* AnthroBase.framework */,
+				9517E6452AE5B194004FD9EE /* Ashashat.framework */,
+				9517E6462AE5B194004FD9EE /* Demoscene.framework */,
+				9517E6472AE5B194004FD9EE /* JensonGodotKit.framework */,
+				9517E6482AE5B194004FD9EE /* Logging_35C93DA702091ECE_PackageProduct.framework */,
+				9517E6492AE5B194004FD9EE /* ProtractorGodotInterop.framework */,
+				9517E64A2AE5B194004FD9EE /* Rollinsport.framework */,
+				9517E64B2AE5B194004FD9EE /* SwiftGodot_6FA7224D83C68214_PackageProduct.framework */,
+				9517E64C2AE5B194004FD9EE /* SwiftGodotCore.framework */,
+				9039D3BD24C093AC0020482C /* MoltenVK */,
+				DEADBEEF1F582BE20003B888 /* godot */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D0BCFE4118AEBDA2004A7AAE /* Indexing Your Heart */ = {
+			isa = PBXGroup;
+			children = (
+				90DD2D9D24B36E8000717FE1 /* Launch Screen.storyboard */,
+				1FF4C1881F584E6300A41E41 /* Indexing Your Heart.entitlements */,
+				D07CD44D1C5D589C00B7FB28 /* Images.xcassets */,
+				D0BCFE4218AEBDA2004A7AAE /* Supporting Files */,
+				1FF8DBB01FBA9DE1009DE660 /* dummy.cpp */,
+			);
+			path = "Indexing Your Heart";
+			sourceTree = "<group>";
+		};
+		D0BCFE4218AEBDA2004A7AAE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D0BCFE4318AEBDA2004A7AAE /* Indexing Your Heart-Info.plist */,
+				D0BCFE4418AEBDA2004A7AAE /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D0BCFE3318AEBDA2004A7AAE /* Indexing Your Heart */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0BCFE7118AEBDA3004A7AAE /* Build configuration list for PBXNativeTarget "Indexing Your Heart" */;
+			buildPhases = (
+				D0BCFE3018AEBDA2004A7AAE /* Sources */,
+				D0BCFE3118AEBDA2004A7AAE /* Frameworks */,
+				D0BCFE3218AEBDA2004A7AAE /* Resources */,
+				9517E65F2AE5B195004FD9EE /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Indexing Your Heart";
+			productName = "Indexing Your Heart";
+			productReference = D0BCFE3418AEBDA2004A7AAE /* Indexing Your Heart.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D0BCFE2C18AEBDA2004A7AAE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+				ORGANIZATIONNAME = GodotEngine;
+				TargetAttributes = {
+					D0BCFE3318AEBDA2004A7AAE = {
+						DevelopmentTeam = FQQXSP79X3;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+						};
+					};
+				};
+			};
+			buildConfigurationList = D0BCFE2F18AEBDA2004A7AAE /* Build configuration list for PBXProject "Indexing Your Heart" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D0BCFE2B18AEBDA2004A7AAE;
+			productRefGroup = D0BCFE3518AEBDA2004A7AAE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D0BCFE3318AEBDA2004A7AAE /* Indexing Your Heart */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D0BCFE3218AEBDA2004A7AAE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D07CD44E1C5D589C00B7FB28 /* Images.xcassets in Resources */,
+				D0BCFE7818AEBFEB004A7AAE /* Indexing Your Heart.pck in Resources */,
+				90DD2D9E24B36E8000717FE1 /* Launch Screen.storyboard in Resources */,
+				D0BCFE4618AEBDA2004A7AAE /* InfoPlist.strings in Resources */,
+				9517E6432AE5B181004FD9EE /* ios in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D0BCFE3018AEBDA2004A7AAE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FF8DBB11FBA9DE1009DE660 /* dummy.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D0BCFE4418AEBDA2004A7AAE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0BCFE4518AEBDA2004A7AAE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D0BCFE6F18AEBDA3004A7AAE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/**";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_CLASSIC_1000 = "";
+				LD_CLASSIC_1100 = "";
+				LD_CLASSIC_1200 = "";
+				LD_CLASSIC_1300 = "";
+				LD_CLASSIC_1400 = "";
+				LD_CLASSIC_1500 = "-ld_classic";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(LD_CLASSIC_$(XCODE_VERSION_MAJOR))  ";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D0BCFE7018AEBDA3004A7AAE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_BITCODE = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/**";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_CLASSIC_1000 = "";
+				LD_CLASSIC_1100 = "";
+				LD_CLASSIC_1200 = "";
+				LD_CLASSIC_1300 = "";
+				LD_CLASSIC_1400 = "";
+				LD_CLASSIC_1500 = "-ld_classic";
+				OTHER_LDFLAGS = "$(LD_CLASSIC_$(XCODE_VERSION_MAJOR))  ";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D0BCFE7218AEBDA3004A7AAE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Indexing Your Heart/Indexing Your Heart.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				CURRENT_PROJECT_VERSION = 16;
+				DEVELOPMENT_TEAM = FQQXSP79X3;
+				EXECUTABLE_NAME = "Indexing Your Heart";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../Shounin/bin/ios",
+				);
+				INFOPLIST_FILE = "Indexing Your Heart/Indexing Your Heart-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Indexing Your Heart";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/**",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = art.indexingyourhe.game;
+				PRODUCT_NAME = "Indexing Your Heart";
+				PROVISIONING_PROFILE = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 x86_64";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D0BCFE7318AEBDA3004A7AAE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Indexing Your Heart/Indexing Your Heart.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Automatic;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				CURRENT_PROJECT_VERSION = 16;
+				DEVELOPMENT_TEAM = FQQXSP79X3;
+				EXECUTABLE_NAME = "Indexing Your Heart";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../Shounin/bin/ios",
+				);
+				INFOPLIST_FILE = "Indexing Your Heart/Indexing Your Heart-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Indexing Your Heart";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/**",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = art.indexingyourhe.game;
+				PRODUCT_NAME = "Indexing Your Heart";
+				PROVISIONING_PROFILE = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 x86_64";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D0BCFE2F18AEBDA2004A7AAE /* Build configuration list for PBXProject "Indexing Your Heart" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0BCFE6F18AEBDA3004A7AAE /* Debug */,
+				D0BCFE7018AEBDA3004A7AAE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D0BCFE7118AEBDA3004A7AAE /* Build configuration list for PBXNativeTarget "Indexing Your Heart" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0BCFE7218AEBDA3004A7AAE /* Debug */,
+				D0BCFE7318AEBDA3004A7AAE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D0BCFE2C18AEBDA2004A7AAE /* Project object */;
+}

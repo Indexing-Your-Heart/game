@@ -10,6 +10,9 @@
    <FileRef
       location = "group:CONTRIBUTORS.md">
    </FileRef>
+   <FileRef
+      location = "group:Indexing Your Heart/Indexing Your Heart.xcodeproj">
+   </FileRef>
    <Group
       location = "container:"
       name = "Build Scripts">

@@ -32,19 +32,9 @@ dep_test_args := "'--parallel --num-workers=1'"
 # The date and time the action was performed.
 exec_date := `date "+%d-%m-%Y.%H-%M-%S"`
 
-# WARN: build-dep has been renamed to build-extension.
-build-dep LIB_FLAGS +DEPENDENCIES: (fetch-remote-deps)
-	echo "WARN: build-dep has been renamed to build-extension."
-	just build-extension {{LIB_FLAGS}} {{DEPENDENCIES}}
-
 # Build a specified set of extensions.
 build-extension LIB_FLAGS +EXTENSIONS: (fetch-remote-deps)
 	./build-libs.sh {{LIB_FLAGS}} {{EXTENSIONS}}
-
-# WARN: build-all-deps has been renamed to build-extensions.
-build-all-deps:
-	echo "WARN: build-all-deps has been renamed to build-extensions."
-	just build-extensions
 
 # Builds all the game's extensions for macOS and iOS.
 build-extensions:
@@ -57,10 +47,8 @@ build-extensions:
 	just build-extension '-f' Demoscene
 	just build-extension '-f' Rollinsport
 
-# WARN: build-all-deps-ci has been renamed to build-extensions-ci.
-build-all-deps-ci:
-	echo "WARN: build-all-deps-ci has been renamed to build-extensions-ci."
-	just build-extensions-ci
+	# Cleanup
+	just copy-extension-dependencies
 
 # Build all extensions for CI
 build-extensions-ci:
@@ -73,16 +61,14 @@ build-extensions-ci:
 	just build-dep '-t mac -f' Demoscene
 	just build-dep '-t mac -f' Rollinsport
 
+	# Cleanup
+	just copy-extension-dependencies
+
 # Cleans alls dependencies, logs, etc.
 clean:
 	just clean-extensions
 	just clean-logs
 	just clean-dylibs
-
-# WARN: clean-all-deps has been renamed to clean-extensions.
-clean-all-deps:
-	echo "WARN: clean-all-deps has been renamed to clean-extensions."
-	just clean-extensions
 
 # Cleans all built extensions, build folders, and cache.
 clean-extensions:
@@ -100,15 +86,16 @@ clean-logs:
 codesign-extensions IDENTITY:
 	codesign -s "{{IDENTITY}}" Shounin/bin/mac/*.dylib
 
-# WARN: codesign-deps has been renamed to codesign-extensions.
-codesign-deps IDENTITY:
-	echo "WARN: codesign-deps has been renamed to codesign-extensions."
-	codesign -s "{{IDENTITY}}" Shounin/bin/mac/*.dylib
-
-# WARN: edit-dep is deprecated and will be removed
-edit-dep DEPENDENCY:
-	echo "WARN: edit-dep is deprecated and will be removed."
-	{{dep_editor}} {{DEPENDENCY}}
+# Copies the extensions and their dependencies into the iOS folder.
+copy-extension-dependencies:
+	#!/bin/zsh
+	if [ -e ".mxcbuild/Build/Products/Release-iphoneos/PackageFrameworks" ]; then
+		for framework in ".mxcbuild/Build/Products/Release-iphoneos/PackageFrameworks/"; do
+			cp -af $framework "Shounin/bin/ios/"
+		done
+	else
+		echo "Frameworks are not built, or building failed. Aborting."
+	fi
 
 # Fetches the marteau toolchain
 fetch-tools:
@@ -119,20 +106,12 @@ fetch-tools:
 fetch-remote-deps:
 	git submodule update --init --recursive --remote
 
-# WARN: format-dep has been renamed to format-extension
-format-dep +DEPENDENCIES:
-	echo "WARN: format-dep has been renamed to format-extension"
-
 # Formats the source files in a specified set of extensions
 format-extension +EXTENSIONS:
 	#!/bin/sh
 	for EXTENSION in {{EXTENSIONS}}; do
 		swiftformat "$EXTENSION/Sources" --swiftversion 5.9
 	done
-
-# WARN: format-all-deps has been renamed to format-extensions
-format-all-deps:
-	echo "WARN: format-all-deps has been renamed to format-extensions"
 
 # Formats source files in all extensions
 format-extensions:
@@ -146,21 +125,6 @@ test-extension DEPENDENCY SWIFT_ARGS=dep_test_args:
 # Test all extensions
 test-extensions:
 	just test-dep Ashashat
-
-# WARN: test-dep has been renamed to test-extension
-test-dep DEPENDENCY SWIFT_ARGS=dep_test_args:
-	echo "WARN: test-dep has been renamed to test-extension"
-	test-extension {{DEPENDENCY}} {{SWIFT_ARGS}}
-
-# WARN: test-all-deps has been renamed to test-extensions
-test-all-deps:
-	echo "WARN: test-all-deps has been renamed to test-extensions"
-	just test-extensions
-
-# WARN: test-all-deps-ci has been renamed to test-extensions-ci
-test-all-deps-ci:
-	echo "WARN: test-all-deps-ci has been renamed to test-extensions-ci"
-	just test-extensions-ci
 
 # Test all extensions and store their results for CI.
 test-extensions-ci:
@@ -181,11 +145,6 @@ dry-run:
 # Edits the script that builds libraries
 edit-build-lib:
 	{{editor}} ./build-libs.sh
-
-# WARN: edit-deps is deprecated and will be removed.
-edit-deps:
-	echo "WARN: edit-deps is deprecated and will be removed."
-	xed Indexing\ Your\ Heart.xcworkspace
 
 # Open Godot editor
 edit-game:

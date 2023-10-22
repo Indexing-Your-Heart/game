@@ -32,6 +32,8 @@ window/size/window_height_override=1575
 window/stretch/mode="viewport"
 mouse_cursor/custom_image="res://resources/gui/cursor.png"
 window/size/mode.debug=0
+window/handheld/orientation.ios=4
+window/stretch/aspect.mobile="expand"
 
 [editor_plugins]
 

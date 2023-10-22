@@ -30,7 +30,7 @@ class LibDemoscene: GodotExtensionDelegate {
     ]
 
     func extensionWillInitialize() {
-        LoggingSystem.bootstrap(GodotLogger.init)
+//        LoggingSystem.bootstrap(GodotLogger.init)
     }
 
     func extensionDidInitialize(at level: GDExtension.InitializationLevel) {

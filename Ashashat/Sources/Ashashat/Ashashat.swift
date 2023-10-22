@@ -28,7 +28,7 @@ class LibAshashat: GodotExtensionDelegate {
     ]
 
     func extensionWillInitialize() {
-        LoggingSystem.bootstrap(GodotLogger.init)
+//        LoggingSystem.bootstrap(GodotLogger.init)
     }
 
     func extensionDidInitialize(at _: GDExtension.InitializationLevel) {

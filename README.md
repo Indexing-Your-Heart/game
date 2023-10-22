@@ -81,6 +81,17 @@ with the following caveats/requirements:
 - **The JSON files in the data folder must be included.** Add `data/*.json` to the
   required paths to export in the Resources tab of each target you'd like to build
   for.
+  
+#### Extra Information for iOS
+
+The iOS project in the Indexing Your Heart workspace is all set up to build the game
+for iOS on a physical device, along with publishing to TestFlight or the App Store.
+The following are some tips/instructions to build for iOS using the provided project:
+
+- Rather than exporting a new iOS project, create an iOS export template and export the
+  PCK file to the 'Indexing Your Heart' directory.
+- If you have rebuilt extensions by calling `just build-extensions`, be sure to add any
+  frameworks not already present to the build settings, embedding and signing them.
 
 ### Using Salmon 9 Fonts
 
@@ -119,35 +130,24 @@ list by invoking `just -l`.
 
 ```
 Available recipes:
-    build-all-deps               # WARN: build-all-deps has been renamed to build-extensions.
-    build-all-deps-ci            # WARN: build-all-deps-ci has been renamed to build-extensions-ci.
-    build-dep LIB_FLAGS +DEPENDENCIES # WARN: build-dep has been renamed to build-extension.
     build-extension LIB_FLAGS +EXTENSIONS # Build a specified set of extensions.
     build-extensions             # Builds all the game's extensions for macOS and iOS.
     build-extensions-ci          # Build all extensions for CI
     clean                        # Cleans alls dependencies, logs, etc.
-    clean-all-deps               # WARN: clean-all-deps has been renamed to clean-extensions.
     clean-dylibs                 # Removes any built dylib files
     clean-extensions             # Cleans all built extensions, build folders, and cache.
     clean-logs                   # Cleans all logs built from a Just command.
-    codesign-deps IDENTITY       # WARN: codesign-deps has been renamed to codesign-extensions.
     codesign-extensions IDENTITY # Codesigns the dependency dylibs.
+    copy-extension-dependencies  # Copies the extensions and their dependencies into the iOS folder.
     dry-run                      # Dry run the game locally
     edit-build-lib               # Edits the script that builds libraries
-    edit-dep DEPENDENCY          # WARN: edit-dep is deprecated and will be removed
-    edit-deps                    # WARN: edit-deps is deprecated and will be removed.
     edit-game                    # Open Godot editor
     edit-just                    # Edits this Justfile
     fetch-remote-deps            # Fetches remote dependencies from Git submodules
     fetch-tools                  # Fetches the marteau toolchain
-    format-all-deps              # WARN: format-all-deps has been renamed to format-extensions
-    format-dep +DEPENDENCIES     # WARN: format-dep has been renamed to format-extension
     format-extension +EXTENSIONS # Formats the source files in a specified set of extensions
     format-extensions            # Formats source files in all extensions
     lint                         # Runs SwiftLint on library code
-    test-all-deps                # WARN: test-all-deps has been renamed to test-extensions
-    test-all-deps-ci             # WARN: test-all-deps-ci has been renamed to test-extensions-ci
-    test-dep DEPENDENCY SWIFT_ARGS=dep_test_args # WARN: test-dep has been renamed to test-extension
     test-extension DEPENDENCY SWIFT_ARGS=dep_test_args # Test a specified extension
     test-extensions              # Test all extensions
     test-extensions-ci           # Test all extensions and store their results for CI.
