@@ -224,10 +224,11 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$(SRCROOT)/Indexing Your Heart.pck",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\n    export PATH=\"/Applications/Godot.app/Contents/MacOS:$PATH\"\nfi\n\nif which godot > /dev/null; then\n    godot --headless --path ../Shounin --export-pack iOS ../Indexing\\ Your\\ Heart/Indexing\\ Your\\ Heart.pck\nelse\n    echo \"warning: Godot is not installed (or not located in /Applications).\"\nfi\n";
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\n    export PATH=\"/Applications/Godot.app/Contents/MacOS:$PATH\"\nfi\n\nif which godot > /dev/null; then\n    godot --headless --path ../Shounin --export-pack iOS data.pck\n    mv ../Shounin/data.pck \"$SCRIPT_OUTPUT_FILE_0\"\nelse\n    echo \"warning: Godot is not installed (or not located in /Applications).\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -385,6 +386,7 @@
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = FQQXSP79X3;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				EXECUTABLE_NAME = "Indexing Your Heart";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -426,6 +428,7 @@
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = FQQXSP79X3;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				EXECUTABLE_NAME = "Indexing Your Heart";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
