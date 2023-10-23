@@ -10,7 +10,6 @@
 		1FF8DBB11FBA9DE1009DE660 /* dummy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1FF8DBB01FBA9DE1009DE660 /* dummy.cpp */; };
 		9039D3BE24C093AC0020482C /* MoltenVK in Frameworks */ = {isa = PBXBuildFile; fileRef = 9039D3BD24C093AC0020482C /* MoltenVK */; };
 		90DD2D9E24B36E8000717FE1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90DD2D9D24B36E8000717FE1 /* Launch Screen.storyboard */; };
-		9517E6432AE5B181004FD9EE /* ios in Resources */ = {isa = PBXBuildFile; fileRef = 9517E6422AE5B181004FD9EE /* ios */; };
 		95F4AE222AE5E7D300461374 /* AnthroBase in Frameworks */ = {isa = PBXBuildFile; productRef = 95F4AE212AE5E7D300461374 /* AnthroBase */; };
 		95F4AE252AE5E7F400461374 /* AnthroBase in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 95F4AE212AE5E7D300461374 /* AnthroBase */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		95F4AE292AE5E80600461374 /* Ashashat in Frameworks */ = {isa = PBXBuildFile; productRef = 95F4AE282AE5E80600461374 /* Ashashat */; };
@@ -50,7 +49,6 @@
 		1FF8DBB01FBA9DE1009DE660 /* dummy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dummy.cpp; sourceTree = "<group>"; };
 		9039D3BD24C093AC0020482C /* MoltenVK */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MoltenVK; path = MoltenVK.xcframework; sourceTree = "<group>"; };
 		90DD2D9D24B36E8000717FE1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		9517E6422AE5B181004FD9EE /* ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ios; path = ../Shounin/bin/ios; sourceTree = "<group>"; };
 		D07CD44D1C5D589C00B7FB28 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D0BCFE3418AEBDA2004A7AAE /* Indexing Your Heart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Indexing Your Heart.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0BCFE4318AEBDA2004A7AAE /* Indexing Your Heart-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Indexing Your Heart-Info.plist"; sourceTree = "<group>"; };
@@ -80,7 +78,6 @@
 		D0BCFE2B18AEBDA2004A7AAE = {
 			isa = PBXGroup;
 			children = (
-				9517E6422AE5B181004FD9EE /* ios */,
 				D0BCFE7718AEBFEB004A7AAE /* Indexing Your Heart.pck */,
 				D0BCFE4118AEBDA2004A7AAE /* Indexing Your Heart */,
 				D0BCFE3618AEBDA2004A7AAE /* Frameworks */,
@@ -207,7 +204,6 @@
 				D0BCFE7818AEBFEB004A7AAE /* Indexing Your Heart.pck in Resources */,
 				90DD2D9E24B36E8000717FE1 /* Launch Screen.storyboard in Resources */,
 				D0BCFE4618AEBDA2004A7AAE /* InfoPlist.strings in Resources */,
-				9517E6432AE5B181004FD9EE /* ios in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
