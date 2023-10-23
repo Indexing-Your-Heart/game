@@ -15,6 +15,10 @@
 
 import SwiftGodot
 
+#if canImport(AudioToolbox)
+import AudioToolbox
+#endif
+
 /// A virtual number pad represented in the [ʔaʃaʃat] language.
 ///
 /// Whenever the return key is pressed, the `numpad_returned` signal is emitted with the final value as a number
@@ -52,7 +56,11 @@ public class AshashatNumpadInterpreter: Control {
             do {
                 try key?.pressed.connect { [weak self] in
                     guard let key, let self else { return }
-
+                    
+                    #if canImport(AudioToolbox)
+                    AudioServicesPlaySystemSound(
+                        key.buttonPressed ? AshashatKeyboardKey.a.keySoundId : AshashatKeyboardKey.delete.keySoundId)
+                    #endif
                     // If already pressed, remove the number from the count (i.e., turn off that bit).
                     internalValue += key.buttonPressed ? number : number * -1
                 }
@@ -63,6 +71,9 @@ public class AshashatNumpadInterpreter: Control {
         }
         do {
             try keyReturn?.pressed.connect { [self] in
+                #if canImport(AudioToolbox)
+                AudioServicesPlaySystemSound(AshashatKeyboardKey.return.keySoundId)
+                #endif
                 try? emitSignal(Self.returnedSignalName, internalValue.toVariant())
             }
         } catch {

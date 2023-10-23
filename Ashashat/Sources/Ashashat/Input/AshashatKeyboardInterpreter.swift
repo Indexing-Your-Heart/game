@@ -15,6 +15,10 @@
 
 import SwiftGodot
 
+#if canImport(AudioToolbox)
+import AudioToolbox
+#endif
+
 /// A virtual keyboard that sends characters in the [ʔaʃaʃat] language.
 ///
 /// Whenever a key is pressed, the `key_pressed` signal is emitted, allowing responders to listen for key events.
@@ -83,6 +87,10 @@ public class AshashatKeyboardInterpreter: Control {
     }
 
     private func pressKey(_ key: AshashatKeyboardKey) {
+        #if canImport(AudioToolbox)
+        LibAshashat.logger.debug("Playing keyboard sound with ID: \(key.keySoundId)")
+        AudioServicesPlaySystemSound(key.keySoundId)
+        #endif
         try? emitSignal(AshashatKeyboardInterpreter.keyPressedSignalName, Variant(stringLiteral: key.keyCode))
     }
 }

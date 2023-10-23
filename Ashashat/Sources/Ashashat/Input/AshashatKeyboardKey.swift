@@ -15,6 +15,10 @@
 
 import SwiftGodot
 
+#if canImport(AudioToolbox)
+import AudioToolbox
+#endif
+
 /// An enumeration that represents a key on the [ʔaʃaʃat] keyboard.
 public enum AshashatKeyboardKey: String, CaseIterable {
     case a, i, e, u
@@ -85,3 +89,18 @@ public extension AshashatKeyboardKey {
         [.repeater, .duplicant]
     }
 }
+
+#if canImport(AudioToolbox)
+extension AshashatKeyboardKey {
+    var keySoundId: UInt32 {
+        switch self {
+        case .delete:
+            1155
+        case .return:
+            1156
+        default:
+            1104
+        }
+    }
+}
+#endif
