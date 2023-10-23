@@ -88,10 +88,14 @@ The iOS project in the Indexing Your Heart workspace is all set up to build the 
 for iOS on a physical device, along with publishing to TestFlight or the App Store.
 The following are some tips/instructions to build for iOS using the provided project:
 
-- Rather than exporting a new iOS project, create an iOS export template and export the
-  PCK file to the 'Indexing Your Heart' directory.
-- If you have rebuilt extensions by calling `just build-extensions`, be sure to add any
-  frameworks not already present to the build settings, embedding and signing them.
+- As part of the build phases, a new pack file (Indexing Your Heart.pck) and the
+  extensions will be built and embedded. You do not need to run `build-extensions` to
+  prepare the iOS build.
+- The default Godot xcframework (named `libgodot.ios.release.xcframework`) and MoltenVK
+  frameworks are needed, if they are not provided already. These can be extracted from
+  the [iOS export template][ios-export-templates].
+
+[ios-export-templates]: https://github.com/godotengine/godot/releases/download/4.1.2-stable/Godot_v4.1.2-stable_export_templates.tpz
 
 ### Using Salmon 9 Fonts
 

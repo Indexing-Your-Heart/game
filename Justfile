@@ -53,13 +53,13 @@ build-extensions:
 # Build all extensions for CI
 build-extensions-ci:
 	# Atoms
-	just build-dep '-t mac -f' Ashashat
-	just build-dep '-t mac -f' AnthroBase
-	just build-dep '-t mac -f' JensonGodotKit
+	just build-extension '-t mac -f' Ashashat
+	just build-extension '-t mac -f' AnthroBase
+	just build-extension '-t mac -f' JensonGodotKit
 
 	# Molecules
-	just build-dep '-t mac -f' Demoscene
-	just build-dep '-t mac -f' Rollinsport
+	just build-extension '-t mac -f' Demoscene
+	just build-extension '-t mac -f' Rollinsport
 
 	# Cleanup
 	just copy-extension-dependencies
@@ -90,6 +90,7 @@ codesign-extensions IDENTITY:
 copy-extension-dependencies:
 	#!/bin/zsh
 	if [ -e ".mxcbuild/Build/Products/Release-iphoneos/PackageFrameworks" ]; then
+		rm -rf "Shounin/bin/ios/**"
 		for framework in ".mxcbuild/Build/Products/Release-iphoneos/PackageFrameworks/"; do
 			cp -af $framework "Shounin/bin/ios/"
 		done
