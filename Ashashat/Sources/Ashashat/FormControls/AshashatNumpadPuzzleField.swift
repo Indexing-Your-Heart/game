@@ -20,8 +20,8 @@ public class AshashatNumpadPuzzleField: Control, AshashatValidatedField {
     public typealias InputMechanism = AshashatNumpadInterpreter
     public typealias InputValue = Int
 
-    @SceneTree(path: "VStack/NumberLabel") public var label: Label?
-    @SceneTree(path: "VStack/HStack/Numpad") public var inputMechanism: AshashatNumpadInterpreter?
+    @SceneTree(path: "VStack/PanelContainer/NumberLabel") public var label: Label?
+    @SceneTree(path: "VStack/Numpad") public var inputMechanism: AshashatNumpadInterpreter?
     @SceneTree(path: "Animator") public var animator: AnimationPlayer?
 
     public var currentValue: Int = 0

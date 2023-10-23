@@ -78,7 +78,7 @@ offset_right = 1.99997
 offset_bottom = 0.400012
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
+alignment = 2
 
 [node name="Spacer" type="Control" parent="VStack"]
 custom_minimum_size = Vector2(2.08165e-12, 200)
