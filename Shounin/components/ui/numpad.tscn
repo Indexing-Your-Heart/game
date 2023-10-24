@@ -97,8 +97,8 @@ theme = ExtResource("1_253x1")
 [node name="key1" type="Button" parent="."]
 layout_mode = 0
 offset_left = 56.0
-offset_right = 152.0
-offset_bottom = 96.0
+offset_right = 168.0
+offset_bottom = 112.0
 focus_neighbor_left = NodePath("../key16")
 focus_neighbor_right = NodePath("../key2")
 focus_next = NodePath("../key2")
@@ -112,9 +112,9 @@ toggle_mode = true
 [node name="key2" type="Button" parent="."]
 layout_mode = 0
 offset_left = 112.0
-offset_top = 104.0
-offset_right = 208.0
-offset_bottom = 200.0
+offset_top = 112.0
+offset_right = 224.0
+offset_bottom = 224.0
 focus_neighbor_left = NodePath("../key16")
 focus_neighbor_top = NodePath("../key1")
 focus_neighbor_bottom = NodePath("../key4")
@@ -129,9 +129,9 @@ toggle_mode = true
 [node name="key4" type="Button" parent="."]
 layout_mode = 0
 offset_left = 112.0
-offset_top = 216.0
-offset_right = 208.0
-offset_bottom = 312.0
+offset_top = 224.0
+offset_right = 224.0
+offset_bottom = 336.0
 focus_neighbor_left = NodePath("../key8")
 focus_neighbor_top = NodePath("../key2")
 focus_neighbor_bottom = NodePath("../keyReturn")
@@ -145,9 +145,9 @@ toggle_mode = true
 
 [node name="key8" type="Button" parent="."]
 layout_mode = 0
-offset_top = 216.0
-offset_right = 96.0
-offset_bottom = 312.0
+offset_top = 224.0
+offset_right = 112.0
+offset_bottom = 336.0
 focus_neighbor_top = NodePath("../key16")
 focus_neighbor_right = NodePath("../key4")
 focus_neighbor_bottom = NodePath("../keyReturn")
@@ -161,9 +161,9 @@ toggle_mode = true
 
 [node name="key16" type="Button" parent="."]
 layout_mode = 0
-offset_top = 104.0
-offset_right = 96.0
-offset_bottom = 200.0
+offset_top = 112.0
+offset_right = 112.0
+offset_bottom = 224.0
 focus_neighbor_top = NodePath("../key1")
 focus_neighbor_right = NodePath("../key2")
 focus_neighbor_bottom = NodePath("../key8")
@@ -178,9 +178,9 @@ toggle_mode = true
 [node name="keyReturn" type="Button" parent="."]
 layout_mode = 0
 offset_left = 32.0
-offset_top = 328.0
-offset_right = 176.0
-offset_bottom = 424.0
+offset_top = 336.0
+offset_right = 192.0
+offset_bottom = 448.0
 focus_next = NodePath("../key1")
 focus_previous = NodePath("../key16")
 focus_mode = 1

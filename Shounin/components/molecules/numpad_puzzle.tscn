@@ -68,11 +68,11 @@ theme = ExtResource("1_wigx5")
 [node name="VStack" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.85
+anchor_left = 0.824
 anchor_top = 0.036
 anchor_right = 0.98
 anchor_bottom = 0.964
-offset_left = -3.8147e-05
+offset_left = -0.400097
 offset_top = -0.399999
 offset_right = -3.05176e-05
 offset_bottom = 0.399958
@@ -94,7 +94,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Numpad" parent="VStack" instance=ExtResource("2_i63ja")]
-custom_minimum_size = Vector2(208, 432)
+custom_minimum_size = Vector2(224, 448)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3

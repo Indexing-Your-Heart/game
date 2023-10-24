@@ -68,14 +68,14 @@ theme = ExtResource("1_6saaq")
 [node name="VStack" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.626
-anchor_top = 0.036
+anchor_left = 0.578
+anchor_top = 0.011
 anchor_right = 0.98
-anchor_bottom = 0.964
-offset_left = 0.399925
-offset_top = -0.400002
-offset_right = 1.99997
-offset_bottom = 0.400012
+anchor_bottom = 0.988
+offset_left = 0.199986
+offset_top = 0.1
+offset_right = 4.99997
+offset_bottom = -0.200032
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 2
@@ -102,7 +102,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="Keyboard" parent="VStack/HStack" instance=ExtResource("2_aef43")]
-custom_minimum_size = Vector2(568, 542)
+custom_minimum_size = Vector2(648, 606)
 layout_mode = 2
 
 [node name="Animator" type="AnimationPlayer" parent="."]

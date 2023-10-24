@@ -56,6 +56,9 @@ position = Vector2(349, 3221)
 scale = Vector2(1, 1)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

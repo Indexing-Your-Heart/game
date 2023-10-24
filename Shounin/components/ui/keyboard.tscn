@@ -260,10 +260,10 @@ theme = ExtResource("1_dvw02")
 
 [node name="keyA" type="Button" parent="."]
 layout_mode = 0
-offset_left = 159.0
-offset_top = 128.0
-offset_right = 255.0
-offset_bottom = 224.0
+offset_left = 171.0
+offset_top = 132.0
+offset_right = 283.0
+offset_bottom = 244.0
 focus_mode = 1
 theme_override_styles/normal = SubResource("StyleBoxTexture_173mx")
 theme_override_styles/hover = SubResource("StyleBoxTexture_y2vsu")
@@ -272,10 +272,10 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_0a1kn")
 
 [node name="keyE" type="Button" parent="."]
 layout_mode = 0
-offset_left = 257.0
-offset_top = 128.0
-offset_right = 353.0
-offset_bottom = 224.0
+offset_left = 285.0
+offset_top = 132.0
+offset_right = 397.0
+offset_bottom = 244.0
 focus_mode = 1
 theme_override_styles/normal = SubResource("StyleBoxTexture_844ea")
 theme_override_styles/hover = SubResource("StyleBoxTexture_t27wf")
@@ -284,10 +284,10 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_blfb4")
 
 [node name="keyI" type="Button" parent="."]
 layout_mode = 0
-offset_left = 159.0
-offset_top = 226.0
-offset_right = 255.0
-offset_bottom = 322.0
+offset_left = 171.0
+offset_top = 246.0
+offset_right = 283.0
+offset_bottom = 358.0
 focus_mode = 1
 theme_override_styles/normal = SubResource("StyleBoxTexture_2n2qa")
 theme_override_styles/hover = SubResource("StyleBoxTexture_nxn13")
@@ -296,10 +296,10 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_jx613")
 
 [node name="keyU" type="Button" parent="."]
 layout_mode = 0
-offset_left = 257.0
-offset_top = 226.0
-offset_right = 353.0
-offset_bottom = 322.0
+offset_left = 285.0
+offset_top = 246.0
+offset_right = 397.0
+offset_bottom = 358.0
 focus_mode = 1
 theme_override_styles/normal = SubResource("StyleBoxTexture_7nj8y")
 theme_override_styles/hover = SubResource("StyleBoxTexture_jrlbp")
@@ -310,8 +310,8 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_iwnib")
 layout_mode = 0
 offset_left = 55.0
 offset_top = 21.0
-offset_right = 151.0
-offset_bottom = 117.0
+offset_right = 167.0
+offset_bottom = 133.0
 focus_mode = 1
 theme_override_styles/normal = SubResource("StyleBoxTexture_ae6g1")
 theme_override_styles/hover = SubResource("StyleBoxTexture_xxa22")
@@ -320,10 +320,10 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_t3wxt")
 
 [node name="keyB" type="Button" parent="."]
 layout_mode = 0
-offset_left = 159.0
+offset_left = 171.0
 offset_top = 21.0
-offset_right = 255.0
-offset_bottom = 117.0
+offset_right = 283.0
+offset_bottom = 133.0
 focus_mode = 1
 theme_override_styles/normal = SubResource("StyleBoxTexture_qa7wq")
 theme_override_styles/hover = SubResource("StyleBoxTexture_e22p1")
@@ -332,10 +332,10 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_f86fg")
 
 [node name="keyT" type="Button" parent="."]
 layout_mode = 0
-offset_left = 257.0
+offset_left = 285.0
 offset_top = 21.0
-offset_right = 353.0
-offset_bottom = 117.0
+offset_right = 397.0
+offset_bottom = 133.0
 focus_mode = 1
 theme_override_styles/normal = SubResource("StyleBoxTexture_x2c2v")
 theme_override_styles/hover = SubResource("StyleBoxTexture_0rp0u")
@@ -344,10 +344,10 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_0vuaf")
 
 [node name="keyK" type="Button" parent="."]
 layout_mode = 0
-offset_left = 361.0
+offset_left = 401.0
 offset_top = 21.0
-offset_right = 457.0
-offset_bottom = 117.0
+offset_right = 513.0
+offset_bottom = 133.0
 focus_mode = 1
 theme_override_styles/normal = SubResource("StyleBoxTexture_uslwx")
 theme_override_styles/hover = SubResource("StyleBoxTexture_rygbu")
@@ -356,10 +356,10 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_76hkk")
 
 [node name="keyGlottal" type="Button" parent="."]
 layout_mode = 0
-offset_left = 361.0
-offset_top = 128.0
-offset_right = 457.0
-offset_bottom = 224.0
+offset_left = 401.0
+offset_top = 132.0
+offset_right = 513.0
+offset_bottom = 244.0
 focus_mode = 1
 theme_override_styles/normal = SubResource("StyleBoxTexture_k0842")
 theme_override_styles/hover = SubResource("StyleBoxTexture_j8ldk")
@@ -368,10 +368,10 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_wdbpi")
 
 [node name="keySh" type="Button" parent="."]
 layout_mode = 0
-offset_left = 361.0
-offset_top = 226.0
-offset_right = 457.0
-offset_bottom = 322.0
+offset_left = 401.0
+offset_top = 246.0
+offset_right = 513.0
+offset_bottom = 358.0
 focus_mode = 1
 theme_override_styles/normal = SubResource("StyleBoxTexture_p2hnh")
 theme_override_styles/hover = SubResource("StyleBoxTexture_52len")
@@ -380,10 +380,10 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_r0ybd")
 
 [node name="keyL" type="Button" parent="."]
 layout_mode = 0
-offset_left = 203.0
-offset_top = 334.0
-offset_right = 299.0
-offset_bottom = 430.0
+offset_left = 171.0
+offset_top = 362.0
+offset_right = 283.0
+offset_bottom = 474.0
 focus_mode = 1
 theme_override_styles/normal = SubResource("StyleBoxTexture_3nnwf")
 theme_override_styles/hover = SubResource("StyleBoxTexture_m1g0g")
@@ -393,9 +393,9 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_r2iml")
 [node name="keyS" type="Button" parent="."]
 layout_mode = 0
 offset_left = 55.0
-offset_top = 226.0
-offset_right = 151.0
-offset_bottom = 322.0
+offset_top = 246.0
+offset_right = 167.0
+offset_bottom = 358.0
 focus_mode = 1
 theme_override_styles/normal = SubResource("StyleBoxTexture_mg0hl")
 theme_override_styles/hover = SubResource("StyleBoxTexture_84v6j")
@@ -405,9 +405,9 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_w1fy1")
 [node name="keyN" type="Button" parent="."]
 layout_mode = 0
 offset_left = 55.0
-offset_top = 128.0
-offset_right = 151.0
-offset_bottom = 224.0
+offset_top = 132.0
+offset_right = 167.0
+offset_bottom = 244.0
 focus_mode = 1
 theme_override_styles/normal = SubResource("StyleBoxTexture_p1rjr")
 theme_override_styles/hover = SubResource("StyleBoxTexture_h3orn")
@@ -416,10 +416,10 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_wf574")
 
 [node name="keyEjectiveK" type="Button" parent="."]
 layout_mode = 0
-offset_left = 467.0
-offset_top = 169.0
-offset_right = 563.0
-offset_bottom = 265.0
+offset_left = 523.0
+offset_top = 132.0
+offset_right = 635.0
+offset_bottom = 244.0
 focus_mode = 1
 theme_override_styles/normal = SubResource("StyleBoxTexture_rb153")
 theme_override_styles/hover = SubResource("StyleBoxTexture_ieckv")
@@ -428,10 +428,10 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_u2b41")
 
 [node name="keyRepeat" type="Button" parent="."]
 layout_mode = 0
-offset_left = 369.0
-offset_top = 332.0
-offset_right = 465.0
-offset_bottom = 428.0
+offset_left = 401.0
+offset_top = 362.0
+offset_right = 513.0
+offset_bottom = 474.0
 focus_mode = 1
 theme_override_styles/normal = SubResource("StyleBoxTexture_idw5b")
 theme_override_styles/hover = SubResource("StyleBoxTexture_u0wvb")
@@ -440,10 +440,10 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_ymggo")
 
 [node name="keyDuplicant" type="Button" parent="."]
 layout_mode = 0
-offset_left = 467.0
-offset_top = 332.0
-offset_right = 563.0
-offset_bottom = 428.0
+offset_left = 523.0
+offset_top = 362.0
+offset_right = 635.0
+offset_bottom = 474.0
 focus_mode = 1
 theme_override_styles/normal = SubResource("StyleBoxTexture_taql2")
 theme_override_styles/hover = SubResource("StyleBoxTexture_hn7c8")
@@ -452,10 +452,10 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_hnfb1")
 
 [node name="keyDelete" type="Button" parent="."]
 layout_mode = 0
-offset_left = 273.0
-offset_top = 430.0
-offset_right = 417.0
-offset_bottom = 526.0
+offset_left = 306.0
+offset_top = 474.0
+offset_right = 466.0
+offset_bottom = 586.0
 focus_mode = 1
 theme_override_styles/normal = SubResource("StyleBoxTexture_640mw")
 theme_override_styles/hover = SubResource("StyleBoxTexture_to6xx")
@@ -464,10 +464,10 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_6ucy5")
 
 [node name="keyReturn" type="Button" parent="."]
 layout_mode = 0
-offset_left = 419.0
-offset_top = 430.0
-offset_right = 563.0
-offset_bottom = 526.0
+offset_left = 475.0
+offset_top = 474.0
+offset_right = 635.0
+offset_bottom = 586.0
 focus_mode = 1
 theme_override_styles/normal = SubResource("StyleBoxTexture_84d6k")
 theme_override_styles/hover = SubResource("StyleBoxTexture_6k7jx")
