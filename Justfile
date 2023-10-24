@@ -89,6 +89,7 @@ codesign-extensions IDENTITY:
 # Copies the extensions and their dependencies into the iOS folder.
 copy-extension-dependencies:
 	#!/bin/zsh
+	cp .mbuild/release/*.dylib Shounin/bin/mac
 	if [ -e ".mxcbuild/Build/Products/Release-iphoneos/PackageFrameworks" ]; then
 		rm -rf "Shounin/bin/ios/**"
 		for framework in ".mxcbuild/Build/Products/Release-iphoneos/PackageFrameworks/"; do
@@ -97,6 +98,11 @@ copy-extension-dependencies:
 	else
 		echo "Frameworks are not built, or building failed. Aborting."
 	fi
+
+# Creates a distribution package for the Mac App Store or TestFlight.
+distribute-mac-app-store PROVISION ENTITLEMENTS:
+	./export_mas.sh {{PROVISION}} {{ENTITLEMENTS}}
+	open .dist
 
 # Fetches the marteau toolchain
 fetch-tools:

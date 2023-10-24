@@ -27,6 +27,9 @@
    <Group
       location = "container:"
       name = "Supporting Files">
+      <FileRef
+         location = "group:Entitlements.entitlements">
+      </FileRef>
       <Group
          location = "container:"
          name = "Godot Extensions">

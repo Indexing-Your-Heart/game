@@ -143,6 +143,7 @@ Available recipes:
     clean-logs                   # Cleans all logs built from a Just command.
     codesign-extensions IDENTITY # Codesigns the dependency dylibs.
     copy-extension-dependencies  # Copies the extensions and their dependencies into the iOS folder.
+    distribute-mac-app-store PROVISION ENTITLEMENTS # Creates a distribution package for the Mac App Store or TestFlight.
     dry-run                      # Dry run the game locally
     edit-build-lib               # Edits the script that builds libraries
     edit-game                    # Open Godot editor
