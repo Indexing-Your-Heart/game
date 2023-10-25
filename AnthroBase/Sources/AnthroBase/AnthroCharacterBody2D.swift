@@ -52,6 +52,7 @@ public class AnthroCharacterBody2D: CharacterBody2D {
 
     var animationState: AnimationNodeStateMachinePlayback?
     var currentState = PlayerState.idle
+    var indicator: Sprite2D?
 
     private var movementVector: Vector2 {
         Input.getVector(negativeX: "move_left",
@@ -103,6 +104,14 @@ public class AnthroCharacterBody2D: CharacterBody2D {
         }
     }
 
+    override public func _process(delta: Double) {
+        super._process(delta: delta)
+
+        if let indicator, globalPosition.distanceTo(to: indicator.position) < 32 {
+            indicator.visible = false
+        }
+    }
+
     override public func _physicsProcess(delta: Double) {
         super._physicsProcess(delta: delta)
         if Engine.isEditorHint() { return }
@@ -143,21 +152,41 @@ public class AnthroCharacterBody2D: CharacterBody2D {
         }
     }
 
+    func createTapIndicator(at destination: Vector2) {
+        let newSprite = Sprite2D()
+        newSprite.texture = #texture2DLiteral("res://resources/gui/tap_indicator.png")
+        newSprite.textureFilter = .nearest
+        newSprite.globalPosition = destination
+        newSprite.name = "#TAPINDICATOR"
+        newSprite.scale = .init(x: 2, y: 2)
+        getParent()?.addChild(node: newSprite)
+        indicator = newSprite
+    }
+    
     @Callable func moveToward(destination: Vector2) {
         currentState = .navigating
         navigator?.targetPosition = destination
+
+        if let indicator {
+            indicator.visible = true
+            indicator.globalPosition = destination
+        } else {
+            createTapIndicator(at: destination)
+        }
     }
 
     func navigateToNextTarget() {
         guard let navigator else {
             LibAnthrobase.logger.warning("Navigator has (somehow) become nil. Stopping.")
             currentState = .idle
+            indicator?.visible = false
             return
         }
 
         let nextPosition = navigator.getNextPathPosition()
         if navigator.isTargetReached() || nextPosition == globalPosition {
             currentState = .idle
+            indicator?.visible = false
             return
         }
 
