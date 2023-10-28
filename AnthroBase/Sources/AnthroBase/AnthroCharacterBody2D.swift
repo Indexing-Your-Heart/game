@@ -90,7 +90,7 @@ public class AnthroCharacterBody2D: CharacterBody2D {
         if event.isClass("\(InputEventScreenTouch.self)"), event.isPressed() {
             var newPosition = Vector2(event.get(property: "position")) ?? .zero
             if let transform = getViewport()?.canvasTransform {
-                newPosition = newPosition * transform // swiftlint:disable:this shorthand_operator
+                newPosition *= transform
             }
 
             do {
@@ -139,8 +139,7 @@ public class AnthroCharacterBody2D: CharacterBody2D {
             movement = movement.normalized()
         }
         let accelFloat = Float(acceleration)
-        let acceleration = Vector2(x: accelFloat, y: accelFloat)
-        return (movement * acceleration).limitLength(length: Double(speed))
+        return (movement * accelFloat).limitLength(length: Double(speed))
     }
 
     func changeSprites() {
