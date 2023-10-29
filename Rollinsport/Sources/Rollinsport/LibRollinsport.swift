@@ -22,7 +22,8 @@ class LibRollinsport: GodotExtensionDelegate {
 
     var allNodeTypes: [Wrapped.Type] = [
         NumberPuzzleNode.self,
-        WordPuzzleNode.self
+        WordPuzzleNode.self,
+        RollinsportWorld2D.self
     ]
 
     func extensionWillInitialize() {

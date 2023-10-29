@@ -414,6 +414,11 @@ font = ExtResource("5_17auv")
 font_size = 27
 
 [node name="JensonTimeline" type="JensonTimeline"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -423,7 +428,7 @@ libraries = {
 [node name="Background" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
 texture_filter = 4
-anchors_preset = 15
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -433,7 +438,7 @@ stretch_mode = 6
 
 [node name="Single Speaker" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
-anchors_preset = -1
+layout_mode = 0
 anchor_left = 0.25
 anchor_right = 0.75
 anchor_bottom = 1.0
@@ -445,7 +450,7 @@ stretch_mode = 5
 
 [node name="Left Speaker" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
-anchors_preset = -1
+layout_mode = 0
 anchor_right = 0.5
 anchor_bottom = 1.0
 grow_vertical = 2
@@ -454,7 +459,7 @@ stretch_mode = 5
 
 [node name="Right Speaker" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
-anchors_preset = -1
+layout_mode = 0
 anchor_left = 0.5
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -465,7 +470,7 @@ stretch_mode = 5
 
 [node name="Choice Menu" type="VBoxContainer" parent="."]
 visible = false
-anchors_preset = -1
+layout_mode = 0
 anchor_left = 0.219
 anchor_right = 0.781
 anchor_bottom = 1.0
@@ -479,12 +484,13 @@ alignment = 1
 visible = false
 layout_mode = 2
 theme = ExtResource("2_m83yl")
+theme_override_font_sizes/font_size = 27
 text = "Template Button"
 
 [node name="Dialogue Tape" type="ColorRect" parent="."]
 self_modulate = Color(1, 1, 1, 0)
 material = SubResource("ShaderMaterial_462t8")
-anchors_preset = -1
+layout_mode = 0
 anchor_top = 0.666
 anchor_right = 1.0
 anchor_bottom = 1.0

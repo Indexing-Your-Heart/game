@@ -19,7 +19,7 @@ import SwiftGodot
 /// A Godot node that registers a Jenson timeline and attempts to update any children UI elements to reflect the current
 /// event in the story.
 @NativeHandleDiscarding
-public class JensonTimeline: Node {
+public class JensonTimeline: Control {
     static var timelineFinishedSignalName = StringName("timeline_finished")
 
     enum AnimationName: String {
@@ -225,6 +225,10 @@ public class JensonTimeline: Node {
                 return
             }
             speakerLeft?.texture = tex
+
+            // TODO: Perhaps we can be smarter about this in the future, so we know WHEN to flip this instead of just
+            // flipping it all the time...
+            speakerLeft?.flipH = true
         case .speakerRight:
             guard let tex: Texture2D = GD.load(path: "res://resources/characters/\(trigger.resourceName).png") else {
                 GD.pushWarning("Unable to find image resource \(trigger.resourceName).")

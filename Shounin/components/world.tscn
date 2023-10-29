@@ -1,14 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3mug4awe8fdd"]
+[gd_scene load_steps=9 format=3 uid="uid://d3mug4awe8fdd"]
 
 [ext_resource type="PackedScene" uid="uid://ba8hn6o0mkfnp" path="res://components/molecules/numpad_puzzle.tscn" id="1_3idrq"]
 [ext_resource type="TileSet" uid="uid://cguee8ucqpwh1" path="res://resources/tilesets/all_tiles.tres" id="1_4ygrc"]
 [ext_resource type="PackedScene" uid="uid://bhdu82yikkqf3" path="res://components/atoms/player.tscn" id="1_h05bn"]
+[ext_resource type="PackedScene" uid="uid://d3xhnxqyltvn6" path="res://components/ui/jenson_ui.tscn" id="3_er6wq"]
 [ext_resource type="PackedScene" uid="uid://cfqryghyys3rp" path="res://components/molecules/keyboard_puzzle.tscn" id="3_lcmyv"]
 [ext_resource type="PackedScene" uid="uid://rjqjadf4jjje" path="res://components/molecules/puzzle_point_number.tscn" id="4_58b54"]
 [ext_resource type="PackedScene" uid="uid://cr6fbwm4gfihn" path="res://components/molecules/puzzle_point_word.tscn" id="5_td85v"]
 [ext_resource type="PackedScene" uid="uid://crqpswoan71sf" path="res://components/atoms/obel.tscn" id="7_hf5k8"]
 
-[node name="World" type="Node2D"]
+[node name="World" type="RollinsportWorld2D"]
 z_as_relative = false
 y_sort_enabled = true
 
@@ -52,7 +53,7 @@ layer_4/tile_data = PackedInt32Array(196642, 524289, 7, -393183, 393217, 9, 7209
 [node name="Player" parent="." instance=ExtResource("1_h05bn")]
 z_index = 1
 y_sort_enabled = false
-position = Vector2(232, 4145)
+position = Vector2(481, 1441)
 scale = Vector2(1, 1)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -61,6 +62,9 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Reader" parent="CanvasLayer" instance=ExtResource("3_er6wq")]
+script_path = "res://data/preamble.jenson"
 
 [node name="PuzzleKeyboard" parent="CanvasLayer" instance=ExtResource("3_lcmyv")]
 visible = false

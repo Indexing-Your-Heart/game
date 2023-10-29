@@ -19,6 +19,15 @@
       }
     },
     {
+      "identity" : "jensonkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://gitlab.com/Indexing-Your-Heart/core-dependencies/JensonKit",
+      "state" : {
+        "branch" : "root",
+        "revision" : "b43391d788468fd5ee4f02d035b58bd6038256f6"
+      }
+    },
+    {
       "identity" : "swift-algorithms",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-algorithms",
