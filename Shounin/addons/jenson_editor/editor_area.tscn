@@ -1,0 +1,135 @@
+[gd_scene load_steps=5 format=3 uid="uid://tb8i6sls68hr"]
+
+[ext_resource type="Texture2D" uid="uid://dlapfxmnr5cjj" path="res://addons/jenson_editor/icons/book.svg" id="1_gtap7"]
+[ext_resource type="Script" path="res://addons/jenson_editor/jenson_highlighter.gd" id="2_4npta"]
+[ext_resource type="Texture2D" uid="uid://devqe1xeym1vo" path="res://addons/jenson_editor/icons/MakeFloating.svg" id="2_ay1kh"]
+
+[sub_resource type="CodeHighlighter" id="CodeHighlighter_ftwmd"]
+number_color = Color(0.627451, 1, 0.878431, 1)
+symbol_color = Color(0.737255, 0.737255, 0.737255, 1)
+color_regions = {
+"\" \"": Color(0.988235, 0.929412, 0.631373, 1)
+}
+script = ExtResource("2_4npta")
+
+[node name="Editor" type="JensonEditor"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Menu" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="MenuBar" type="MenuBar" parent="VBoxContainer/Menu"]
+layout_mode = 2
+size_flags_vertical = 3
+flat = true
+prefer_global_menu = false
+
+[node name="File" type="PopupMenu" parent="VBoxContainer/Menu/MenuBar"]
+item_count = 4
+item_0/text = "Open..."
+item_0/id = 0
+item_1/text = "Close"
+item_1/id = 1
+item_1/disabled = true
+item_2/text = "Save"
+item_2/id = 2
+item_2/disabled = true
+item_3/text = "Save As..."
+item_3/id = 3
+item_3/disabled = true
+
+[node name="Save" type="FileDialog" parent="VBoxContainer/Menu/MenuBar"]
+initial_position = 1
+size = Vector2i(900, 400)
+min_size = Vector2i(600, 300)
+ok_button_text = "Save"
+filters = PackedStringArray("*.jenson")
+
+[node name="Open" type="FileDialog" parent="VBoxContainer/Menu/MenuBar"]
+title = "Open a File"
+initial_position = 1
+size = Vector2i(900, 400)
+min_size = Vector2i(600, 300)
+ok_button_text = "Open"
+file_mode = 0
+filters = PackedStringArray("*.jenson")
+
+[node name="View" type="PopupMenu" parent="VBoxContainer/Menu/MenuBar"]
+item_count = 2
+item_0/text = "Show Spaces"
+item_0/checkable = 1
+item_0/checked = true
+item_0/id = 0
+item_1/text = "Show Tabs"
+item_1/checkable = 1
+item_1/id = 1
+
+[node name="StoryTitle" type="Label" parent="VBoxContainer/Menu"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DocPortal" type="Button" parent="VBoxContainer/Menu"]
+layout_mode = 2
+tooltip_text = "Opens the documentation for the Jenson format."
+text = "Online Docs"
+icon = ExtResource("1_gtap7")
+flat = true
+
+[node name="FloatWindow" type="Button" parent="VBoxContainer/Menu"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+tooltip_text = "Opens this editor in an external window."
+icon = ExtResource("2_ay1kh")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="EditorSplit" type="HSplitContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextEditor" type="CodeEdit" parent="VBoxContainer/EditorSplit"]
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Open a dialogue file to edit..."
+draw_spaces = true
+syntax_highlighter = SubResource("CodeHighlighter_ftwmd")
+scroll_smooth = true
+scroll_past_end_of_file = true
+minimap_draw = true
+minimap_width = 200
+caret_blink = true
+line_folding = true
+gutters_draw_line_numbers = true
+code_completion_enabled = true
+indent_use_spaces = true
+indent_automatic = true
+auto_brace_completion_enabled = true
+auto_brace_completion_highlight_matching = true
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="StatusBar" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="CurrentFile" type="Label" parent="VBoxContainer/StatusBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "No file open"
+vertical_alignment = 1
+
+[node name="SaveState" type="Label" parent="VBoxContainer/StatusBar"]
+layout_mode = 2
+horizontal_alignment = 2

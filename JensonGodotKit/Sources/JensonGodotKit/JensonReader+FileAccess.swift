@@ -27,3 +27,16 @@ public extension JensonReader {
         self.init(data)
     }
 }
+
+public extension JensonWriter {
+    /// Writes the Jenson file to a specified Godot resource path.
+    /// - Parameter path: The path to the file to write to.
+    func write(resource path: String) throws {
+        let data = try data()
+        let encodedString = data.base64EncodedString(options: .lineLength64Characters)
+
+        let fileAccess = FileAccess.open(path: path, flags: .write)
+        fileAccess?.storeString(encodedString)
+        fileAccess?.close()
+    }
+}

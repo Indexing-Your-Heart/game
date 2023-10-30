@@ -118,6 +118,8 @@ Story Source/**.md
 # Prebuilt libraries
 Shounin/bin/**/*.dylib
 Shounin/bin/**/*.framework
+Shounin/addons/**/*.dylib
+Shounin/addons/**/*.framework
 old/
 *.xcframework
 

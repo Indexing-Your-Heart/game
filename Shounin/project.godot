@@ -37,7 +37,7 @@ window/stretch/aspect.mobile="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/jenson_editor/plugin.cfg")
 
 [filesystem]
 
