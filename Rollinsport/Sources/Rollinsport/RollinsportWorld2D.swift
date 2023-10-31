@@ -19,6 +19,7 @@ import SwiftGodot
 @NativeHandleDiscarding
 class RollinsportWorld2D: Node2D {
     @SceneTree(path: "CanvasLayer/Reader") var reader: JensonTimeline?
+    @SceneTree(path: "CanvasLayer/Overlay") var overlay: ColorRect?
 
     required init() {
         Self.initializeClass()
@@ -41,6 +42,22 @@ class RollinsportWorld2D: Node2D {
             return
         }
         reader.hide()
+        hideOverlayIfPresent()
+    }
+
+    func hideOverlayIfPresent() {
+        guard let overlay, let tween = getTree()?.createTween(), overlay.color.alpha > 0 else { return }
+        _ = tween.tweenProperty(object: overlay,
+                                property: "color",
+                                finalVal: Color.transparent.toVariant(),
+                                duration: 0.5)
+    }
+
+    // TODO: Test, Test, Test!
+    func displayJensonScript(named scriptName: String) {
+        guard let overlay, let tween = getTree()?.createTween() else { return }
+        _ = tween.tweenProperty(object: overlay, property: "color", finalVal: Color.black.toVariant(), duration: 1.5)
+        reader?.script = "res://data/\(scriptName).jenson"
     }
 }
 
