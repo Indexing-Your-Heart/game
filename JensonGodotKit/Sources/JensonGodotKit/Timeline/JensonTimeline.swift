@@ -22,6 +22,14 @@ import SwiftGodot
 public class JensonTimeline: Control {
     static var timelineFinishedSignalName = StringName("timeline_finished")
 
+    enum TimelineState {
+        case initial
+        case loaded
+        case started
+        case playing
+        case ended
+    }
+
     enum AnimationName: String {
         case startTimeline = "start_timeline"
         case speech
@@ -68,8 +76,6 @@ public class JensonTimeline: Control {
     private var choices = [String: [JensonEvent]]()
     private var choiceTemplate: Button?
     private var currentEvent: JensonEvent?
-    private var finished = false
-    private var initialized = false
 
     @SceneTree(path: ChildPath.choiceMenu.rawValue)
     private var menu: VBoxContainer?
@@ -87,6 +93,8 @@ public class JensonTimeline: Control {
     private var timeline = [JensonEvent]()
     private var whoLabel: Label?
     private var whatLabel: Label?
+
+    private var state = TimelineState.initial
 
     public required init() {
         JensonTimeline.initializeClass()
@@ -114,9 +122,10 @@ public class JensonTimeline: Control {
         }
 
         preloadRefreshedData()
+        state = .started
         animator?.play(name: AnimationName.startTimeline.stringName)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { [weak self] in
-            self?.initialized = true
+            self?.state = .playing
             self?.next()
         }
     }
@@ -133,9 +142,9 @@ public class JensonTimeline: Control {
             return
         }
         if let menu, menu.visible { return }
-        if animator.isPlaying(), animator.currentAnimation != AnimationName.startTimeline.rawValue, let whatLabel {
-            animator.stop()
-            whatLabel.visibleRatio = 1
+        if state == .started { return }
+        if animator.isPlaying(), animator.currentAnimation != AnimationName.startTimeline.rawValue {
+            skipAnimation()
             return
         }
         next()
@@ -153,6 +162,7 @@ public class JensonTimeline: Control {
                 GD.pushWarning("The file loaded, but the timeline is empty.")
                 return
             }
+            state = .loaded
         } catch {
             GD.pushError("Failed to load reader for script", error.localizedDescription)
         }
@@ -160,8 +170,8 @@ public class JensonTimeline: Control {
 
     func next() {
         guard !timeline.isEmpty else {
-            if !finished {
-                finished.toggle()
+            if state != .ended {
+                state = .ended
                 GD.print("Timeline has finished.")
                 try? emitSignal(JensonTimeline.timelineFinishedSignalName)
             }
@@ -173,6 +183,7 @@ public class JensonTimeline: Control {
             setup(event: currentEvent)
         } else {
             GD.print("Timeline has completed.")
+            state = .ended
             try? emitSignal(JensonTimeline.timelineFinishedSignalName)
         }
     }
@@ -185,7 +196,6 @@ public class JensonTimeline: Control {
         }
         GD.print("Running initial refresh contents.")
         next()
-        initialized = true
     }
 
     func refreshScene(using triggers: [JensonRefreshContent]) {
@@ -197,7 +207,7 @@ public class JensonTimeline: Control {
                 GD.pushWarning("Unsupported refresh kind: \(trig.kind.rawValue). This trigger will be skipped.")
             }
         }
-        guard initialized else { return }
+        guard ![TimelineState.ended, TimelineState.initial].contains(state) else { return }
         next()
     }
 
@@ -295,5 +305,16 @@ public class JensonTimeline: Control {
             }
         }
         menu.visible = true
+    }
+
+    func skipAnimation() {
+        guard let animator else { return }
+        animator.stop()
+        whoLabel?.visibleRatio = 1
+        whatLabel?.visibleRatio = 1
+        backgroundLayer?.modulate = Color.white
+        speakerSingle?.modulate = Color.white
+        speakerLeft?.modulate = Color.white
+        speakerRight?.modulate = Color.white
     }
 }
