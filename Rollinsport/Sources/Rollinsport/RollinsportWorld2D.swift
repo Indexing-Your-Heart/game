@@ -23,6 +23,8 @@ class RollinsportWorld2D: Node2D {
     @SceneTree(path: "CanvasLayer/Reader") var reader: JensonTimeline?
     @SceneTree(path: "CanvasLayer/Overlay") var overlay: ColorRect?
 
+    var readScripts = [String]()
+
     required init() {
         Self.initializeClass()
         super.init()
@@ -30,8 +32,14 @@ class RollinsportWorld2D: Node2D {
 
     override func _ready() {
         super._ready()
-
         guard !Engine.isEditorHint() else { return }
+        WorldDataObserver.shared.loadData(into: self)
+
+        if let currentScript = reader?.script, readScripts.contains(currentScript) {
+            reader?.hide()
+            hideOverlayIfPresent()
+        }
+
         do {
             try reader?.connect(signal: "timeline_finished", callable: #methodName(timelineFinished))
         } catch {
@@ -43,8 +51,6 @@ class RollinsportWorld2D: Node2D {
         } catch {
             LibRollinsport.logger.error("Failed to subscribe to message bus: \(error.localizedDescription)")
         }
-
-        WorldDataObserver.shared.loadData(into: self)
     }
 
     @Callable func timelineFinished() {
@@ -52,6 +58,7 @@ class RollinsportWorld2D: Node2D {
             LibRollinsport.logger.error("Timeline finished receiver called with no target.")
             return
         }
+        readScripts.append(reader.script)
         reader.hide()
         hideOverlayIfPresent()
     }
@@ -74,7 +81,9 @@ class RollinsportWorld2D: Node2D {
     @Callable func puzzleSolved(id: String) {
         guard let player else { return }
         let codablePosition = WorldDataBlob.Position(vector2: player.globalPosition)
-        WorldDataObserver.shared.saveData(blob: .init(playerPosition: codablePosition))
+        WorldDataObserver.shared.saveData(
+            blob: .init(playerPosition: codablePosition,
+                        readScripts: readScripts))
     }
 }
 

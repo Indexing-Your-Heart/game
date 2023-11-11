@@ -15,57 +15,21 @@
 
 import SwiftGodot
 
-@NativeHandleDiscarding
-class WorldDataObserver: Node {
-    static var shared = WorldDataObserver()
-
-    required init() {
-        super.init()
-    }
-
-    func saveData(blob: WorldDataBlob) {
-        let encoder = JSONEncoder()
-        do {
-            let data = try encoder.encode(blob)
-            let stringContent = String(data: data, encoding: .utf8)
-
-            guard let file = FileAccess.open(path: "user://savedata", flags: .write) else {
-                LibRollinsport.logger.error("Save data is either missing, or it cannot be opened for writing.")
-                return
-            }
-            file.storeString(stringContent ?? "{}")
-            file.close()
-        } catch {
-            LibRollinsport.logger.error("Failed to save data: \(error.localizedDescription)")
-        }
-    }
-
-    func loadData(into world: RollinsportWorld2D) {
-        let file = FileAccess.open(path: "user://savedata", flags: .read)
-        let stringContent = file?.getAsText() ?? "{}"
-        guard let data = stringContent.data(using: .utf8) else { return }
-        let decoder = JSONDecoder()
-        do {
-            let decodedData = try decoder.decode(WorldDataBlob.self, from: data)
-            world.player?.globalPosition = Vector2(codablePosition: decodedData.playerPosition)
-        } catch {
-            LibRollinsport.logger.error("Failed to load data: \(error.localizedDescription)")
-        }
-    }
-}
-
-extension Vector2 {
-    init(codablePosition: WorldDataBlob.Position) {
-        self.init(x: codablePosition.x, y: codablePosition.y)
-    }
-}
-
 struct WorldDataBlob: Codable {
     struct Position: Codable {
         var x: Float
         var y: Float
     }
+
     var playerPosition: Position
+    var readScripts: [String]
+}
+
+
+extension Vector2 {
+    init(codablePosition: WorldDataBlob.Position) {
+        self.init(x: codablePosition.x, y: codablePosition.y)
+    }
 }
 
 extension WorldDataBlob.Position {
