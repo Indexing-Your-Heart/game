@@ -18,8 +18,10 @@ import SwiftGodot
 
 @NativeHandleDiscarding
 public class NumberPuzzleNode: Node2D {
+    static var solvedSignalName: StringName = "puzzle_solved"
     @Autovariant public var expectedSolution: Int = 0
     @Autovariant public var numpadFieldPath: NodePath = ""
+    @Autovariant public var puzzleId: String = ""
 
     @SceneTree(path: "Area2D") var detectionRing: Area2D?
     var numpadField: AshashatNumpadPuzzleField?
@@ -78,6 +80,11 @@ public class NumberPuzzleNode: Node2D {
         }
         numpadField.markCorrect()
         LibRollinsport.logger.debug("Solution and expectations match (\(value) == \(expectedSolution))")
+        do {
+            try RollinsportMessageBus.shared.notify(.puzzleSolved(id: puzzleId))
+        } catch {
+            LibRollinsport.logger.error("Failed to notify message bus: \(error.localizedDescription)")
+        }
     }
 
     func bodyEnteredRange(body: Node2D) {
@@ -99,6 +106,7 @@ extension NumberPuzzleNode: GodotInspectable {
                 NumberRange("expected_solution",
                             limit: 0 ... 31,
                             property: #autoProperty(object: NumberPuzzleNode.self, "expectedSolution"))
+                Text(name: "puzzle_id", property: #autoProperty(object: NumberPuzzleNode.self, "puzzleId"))
             }
             Group<NumberPuzzleNode>("World References", prefix: "world") {
                 NodePathPicker("numpad_field",
@@ -117,9 +125,17 @@ extension NumberPuzzleNode {
         let editingChangedProps = [
             PropInfo(propertyType: .int,
                      propertyName: StringName("value"),
-                     className: StringName("\(NumberPuzzleNode.self)"),
+                     className: className,
                      hint: .range,
                      hintStr: "0,31,1",
+                     usage: .default)
+        ]
+        let solvedSignalProps = [
+            PropInfo(propertyType: .string,
+                     propertyName: "puzzle_id",
+                     className: className,
+                     hint: .typeString,
+                     hintStr: "",
                      usage: .default)
         ]
 

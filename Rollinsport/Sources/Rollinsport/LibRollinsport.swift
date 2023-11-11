@@ -23,16 +23,26 @@ class LibRollinsport: GodotExtensionDelegate {
     var allNodeTypes: [Wrapped.Type] = [
         NumberPuzzleNode.self,
         WordPuzzleNode.self,
-        RollinsportWorld2D.self
+        RollinsportWorld2D.self,
+
+        // Register the singleton types as well, so Godot's aware of what they are.
+        // As to why this can't be done with registering the singleton itself is beyond me.
+        WorldDataObserver.self,
+        RollinsportMessageBus.self
     ]
 
     func extensionWillInitialize() {
         LoggingSystem.bootstrap(GodotLogger.init)
     }
 
-    func extensionDidInitialize(at _: GDExtension.InitializationLevel) {
+    func extensionDidInitialize(at level: GDExtension.InitializationLevel) {
+        guard level == .scene else { return }
         for type in allNodeTypes {
             register(type: type)
         }
+        Engine.registerSingleton(name: StringName("\(WorldDataObserver.self)"),
+                                 instance: WorldDataObserver.shared)
+        Engine.registerSingleton(name: StringName("\(RollinsportMessageBus.self)"),
+                                 instance: RollinsportMessageBus.shared)
     }
 }

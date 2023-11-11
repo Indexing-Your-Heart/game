@@ -13,11 +13,13 @@
 //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
 //  details.
 
+import AnthroBase
 import JensonGodotKit
 import SwiftGodot
 
 @NativeHandleDiscarding
 class RollinsportWorld2D: Node2D {
+    @SceneTree(path: "Player") var player: AnthroCharacterBody2D?
     @SceneTree(path: "CanvasLayer/Reader") var reader: JensonTimeline?
     @SceneTree(path: "CanvasLayer/Overlay") var overlay: ColorRect?
 
@@ -29,11 +31,20 @@ class RollinsportWorld2D: Node2D {
     override func _ready() {
         super._ready()
 
+        guard !Engine.isEditorHint() else { return }
         do {
             try reader?.connect(signal: "timeline_finished", callable: #methodName(timelineFinished))
         } catch {
             LibRollinsport.logger.error("Failed to connect to reader's end signal: \(error.localizedDescription)")
         }
+
+        do {
+            try RollinsportMessageBus.shared.registerSubscriber(#methodName(puzzleSolved), to: .puzzleSolved(id: ""))
+        } catch {
+            LibRollinsport.logger.error("Failed to subscribe to message bus: \(error.localizedDescription)")
+        }
+
+        WorldDataObserver.shared.loadData(into: self)
     }
 
     @Callable func timelineFinished() {
@@ -59,6 +70,12 @@ class RollinsportWorld2D: Node2D {
         _ = tween.tweenProperty(object: overlay, property: "color", finalVal: Color.black.toVariant(), duration: 1.5)
         reader?.script = "res://data/\(scriptName).jenson"
     }
+
+    @Callable func puzzleSolved(id: String) {
+        guard let player else { return }
+        let codablePosition = WorldDataBlob.Position(vector2: player.globalPosition)
+        WorldDataObserver.shared.saveData(blob: .init(playerPosition: codablePosition))
+    }
 }
 
 extension RollinsportWorld2D {
@@ -66,10 +83,24 @@ extension RollinsportWorld2D {
         let className = StringName("\(RollinsportWorld2D.self)")
         let classInfo = ClassInfo<RollinsportWorld2D>(name: className)
 
+        let solvedSignalProps = [
+            PropInfo(propertyType: .string,
+                     propertyName: "puzzle_id",
+                     className: className,
+                     hint: .typeString,
+                     hintStr: "",
+                     usage: .default)
+        ]
+
         classInfo.registerMethod(name: "_callable_timelineFinished",
                                  flags: .default,
                                  returnValue: nil,
                                  arguments: [],
                                  function: RollinsportWorld2D._callable_timelineFinished)
+        classInfo.registerMethod(name: "_callable_puzzleSolved",
+                                 flags: .default,
+                                 returnValue: nil,
+                                 arguments: solvedSignalProps,
+                                 function: RollinsportWorld2D._callable_puzzleSolved)
     }
 }
