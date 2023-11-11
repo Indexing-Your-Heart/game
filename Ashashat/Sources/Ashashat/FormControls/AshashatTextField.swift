@@ -36,6 +36,13 @@ public class AshashatTextField: Control, AshashatValidatedField {
         try? inputMechanism?.connectIfPresent(#methodName(keyPressed), to: "key_pressed")
     }
 
+    @Callable public func prefill(_ value: String) {
+        currentValue = value
+
+        // TODO: Revisit this and see if we need to transform the string to render correctly...
+        label?.text = value
+    }
+
     @Callable public func clear() {
         currentValue = ""
         label?.text = ""

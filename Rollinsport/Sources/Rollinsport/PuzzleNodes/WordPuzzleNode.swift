@@ -42,6 +42,12 @@ public class WordPuzzleNode: Node2D {
         }
 
         do {
+            try RollinsportMessageBus.shared.registerSubscriber(#methodName(solutionFound), to: .foundSolution(id: ""))
+        } catch {
+            LibRollinsport.logger.error("Failed to subscribe to message bus: \(error.localizedDescription)")
+        }
+
+        do {
             try textField?.addTarget(for: .editingChanged, #methodName(textFieldEditingChanged))
             try textField?.addTarget(for: .editingDidEnd, #methodName(textFieldEditingDidEnd))
         } catch {
@@ -76,6 +82,12 @@ public class WordPuzzleNode: Node2D {
         LibRollinsport.logger.debug("Expected solution for current body is: \(expectedSolution)")
         textField?.clear()
 
+        do {
+            try RollinsportMessageBus.shared.notify(.requestForSolve(id: puzzleId))
+        } catch {
+            LibRollinsport.logger.error("Failed to send message: \(error.localizedDescription)")
+        }
+
         // If the player has entered this area, and there's a touch screen, we can assume that they likely want to
         // interact with the puzzle.
         if DisplayServer.isTouchscreenAvailable(), eligibleToLaunch {
@@ -101,6 +113,12 @@ public class WordPuzzleNode: Node2D {
             LibRollinsport.logger.error("Failed to notify message bus: \(error.localizedDescription)")
         }
         textField.markCorrect()
+    }
+
+    @Callable func solutionFound(id: String) {
+        guard id == puzzleId else { return }
+        textField?.prefill(expectedSolution)
+        textField?.markCorrect()
     }
 }
 
@@ -153,5 +171,10 @@ extension WordPuzzleNode {
                                  returnValue: nil,
                                  arguments: editingChangedProps,
                                  function: WordPuzzleNode._callable_textFieldEditingChanged)
+        classInfo.registerMethod(name: "_callable_solutionFound",
+                                 flags: .default,
+                                 returnValue: nil,
+                                 arguments: editingChangedProps,
+                                 function: WordPuzzleNode._callable_solutionFound)
     }
 }

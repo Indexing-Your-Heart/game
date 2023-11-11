@@ -43,6 +43,12 @@ public class NumberPuzzleNode: Node2D {
         }
 
         do {
+            try RollinsportMessageBus.shared.registerSubscriber(#methodName(solutionFound), to: .foundSolution(id: ""))
+        } catch {
+            LibRollinsport.logger.error("Failed to subscribe to message bus: \(error.localizedDescription)")
+        }
+
+        do {
             try numpadField?.addTarget(for: .editingChanged, #methodName(numpadFieldEditingChanged))
         } catch {
             LibRollinsport.logger.error("Failed to connect 'editing_changed' signal: \(error.localizedDescription)")
@@ -91,11 +97,23 @@ public class NumberPuzzleNode: Node2D {
         eligibleToLaunch = body.isClass("AnthroCharacterBody2D")
         LibRollinsport.logger.debug("Expected solution for current body is: \(expectedSolution)")
 
+        do {
+            try RollinsportMessageBus.shared.notify(.requestForSolve(id: puzzleId))
+        } catch {
+            LibRollinsport.logger.error("Failed to send message: \(error.localizedDescription)")
+        }
+
         // If the player has entered this area, and there's a touch screen, we can assume that they likely want to
         // interact with the puzzle.
         if DisplayServer.isTouchscreenAvailable(), eligibleToLaunch {
             numpadField?.show()
         }
+    }
+
+    @Callable func solutionFound(id: String) {
+        guard id == puzzleId else { return }
+        numpadField?.prefill(expectedSolution)
+        numpadField?.markCorrect()
     }
 }
 
@@ -144,5 +162,10 @@ extension NumberPuzzleNode {
                                  returnValue: nil,
                                  arguments: editingChangedProps,
                                  function: NumberPuzzleNode._callable_numpadFieldEditingChanged)
+        classInfo.registerMethod(name: "_callable_solutionFound",
+                                 flags: .default,
+                                 returnValue: nil,
+                                 arguments: editingChangedProps,
+                                 function: NumberPuzzleNode._callable_solutionFound)
     }
 }

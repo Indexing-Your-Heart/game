@@ -144,3 +144,7 @@ Shounin/resources/gui/salmon/*.ttf
 .xcexport/
 .dist/
 Indexing Your Heart/**.pck
+
+# Other editors
+.fleet/
+.vscode/

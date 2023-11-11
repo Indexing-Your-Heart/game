@@ -26,7 +26,7 @@ class RollinsportMessageBus: Node {
 
     func notify(_ message: RollinsportMessage) throws {
         switch message {
-        case .puzzleSolved(let id):
+        case .puzzleSolved(let id), .foundSolution(let id), .requestForSolve(let id):
             try emitSignal(message.signal, Variant(id))
         }
     }
@@ -51,10 +51,16 @@ extension RollinsportMessageBus {
 // MARK: - Messages
 
 enum RollinsportMessage {
+    case requestForSolve(id: String)
+    case foundSolution(id: String)
     case puzzleSolved(id: String)
 
     var signal: StringName {
         switch self {
+        case .requestForSolve:
+            return "request_for_solve"
+        case .foundSolution:
+            return "found_solution"
         case .puzzleSolved:
             return "puzzle_solved"
         }
@@ -63,7 +69,7 @@ enum RollinsportMessage {
 
 extension RollinsportMessage: CaseIterable {
     static var allCases: [RollinsportMessage] {
-        [.puzzleSolved(id: "")]
+        [.puzzleSolved(id: ""), .requestForSolve(id: ""), .foundSolution(id: "")]
     }
 }
 
@@ -71,7 +77,7 @@ extension RollinsportMessage {
     var propertyInformation: [PropInfo] {
         let className = StringName("\(RollinsportMessageBus.self)")
         return switch self {
-        case .puzzleSolved:
+        case .puzzleSolved, .requestForSolve, .foundSolution:
             [
                 PropInfo(propertyType: .string,
                          propertyName: self.signal,

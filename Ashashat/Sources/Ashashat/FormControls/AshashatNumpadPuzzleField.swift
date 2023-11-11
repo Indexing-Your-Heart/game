@@ -36,6 +36,11 @@ public class AshashatNumpadPuzzleField: Control, AshashatValidatedField {
                                      callable: #methodName(inputReturned))
     }
 
+    @Callable public func prefill(_ value: Int) {
+        currentValue = value
+        label?.text = "\(currentValue)"
+    }
+
     @Callable public func clear() {
         currentValue = 0
         label?.text = "???"

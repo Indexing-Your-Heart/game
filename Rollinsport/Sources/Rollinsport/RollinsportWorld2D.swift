@@ -49,6 +49,7 @@ class RollinsportWorld2D: Node2D {
 
         do {
             try RollinsportMessageBus.shared.registerSubscriber(#methodName(puzzleSolved), to: .puzzleSolved(id: ""))
+            try RollinsportMessageBus.shared.registerSubscriber(#methodName(requestForSolve), to: .requestForSolve(id: ""))
         } catch {
             LibRollinsport.logger.error("Failed to subscribe to message bus: \(error.localizedDescription)")
         }
@@ -88,6 +89,15 @@ class RollinsportWorld2D: Node2D {
                         readScripts: readScripts,
                         solvedPuzzles: solvedPuzzles))
     }
+
+    @Callable func requestForSolve(id: String) {
+        if !solvedPuzzles.contains(id) { return }
+        do {
+            try RollinsportMessageBus.shared.notify(.foundSolution(id: id))
+        } catch {
+            LibRollinsport.logger.error("Failed to send message: \(error.localizedDescription)")
+        }
+    }
 }
 
 extension RollinsportWorld2D {
@@ -114,5 +124,10 @@ extension RollinsportWorld2D {
                                  returnValue: nil,
                                  arguments: solvedSignalProps,
                                  function: RollinsportWorld2D._callable_puzzleSolved)
+        classInfo.registerMethod(name: "_callable_requestForSolve",
+                                 flags: .default,
+                                 returnValue: nil,
+                                 arguments: solvedSignalProps,
+                                 function: RollinsportWorld2D._callable_requestForSolve)
     }
 }

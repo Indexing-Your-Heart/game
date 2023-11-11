@@ -38,6 +38,9 @@ public protocol AshashatField: Node, AshashatFieldRegistering {
     /// Clears the current input.
     func clear()
 
+    /// Prefills the current input with a specified value.
+    func prefill(_ value: InputValue)
+
     /// Processed the current returned value.
     func inputReturned(value: InputValue)
 }
@@ -48,6 +51,11 @@ public protocol AshashatFieldRegistering {
     ///
     /// - Note: It is not recommended to call this method directly.
     func _callable_clear(args: [Variant]) -> Variant?
+
+    /// A wrapper for the ``AshashatField/prefill(_:)`` method suitable for Godot registration.
+    ///
+    /// - Note: It is not recommended to call this method directly.
+    func _callable_prefill(args: [Variant]) -> Variant?
 
     /// A wrapper for the ``AshashatField/inputReturned(value:)`` method suitable for Godot registration.
     ///
@@ -108,6 +116,16 @@ public extension AshashatField {
                                  function: T._callable_clear)
     }
 
+    /// Registers the clear method to Godot.
+    /// - Parameter classInfo: The class information object that the method will be registered to.
+    static func registerPrefill<T: AshashatFieldRegistering>(using classInfo: ClassInfo<T>, value: PropInfo) {
+        classInfo.registerMethod(name: "prefill",
+                                 flags: .default,
+                                 returnValue: nil,
+                                 arguments: [value],
+                                 function: T._callable_clear)
+    }
+
     /// Registers the inputReturned method to Godot.
     /// - Parameter classInfo: The class information object that the method will be registered to.
     /// - Parameter value: The property information describing the input value.
@@ -135,6 +153,7 @@ public extension AshashatField {
                                   AshashatFieldValidationRegistering>,
     value: PropInfo) {
         registerClear(using: classInfo)
+        registerPrefill(using: classInfo, value: value)
         registerEditingSignals(using: classInfo, value: value)
         registerInputReturned(using: classInfo, value: value)
     }
