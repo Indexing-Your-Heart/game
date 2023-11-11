@@ -22,7 +22,8 @@ struct WorldDataBlob: Codable {
     }
 
     var playerPosition: Position
-    var readScripts: [String]
+    var readScripts: Set<String>
+    var solvedPuzzles: Set<String>
 }
 
 

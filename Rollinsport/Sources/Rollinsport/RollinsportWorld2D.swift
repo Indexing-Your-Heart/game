@@ -23,7 +23,8 @@ class RollinsportWorld2D: Node2D {
     @SceneTree(path: "CanvasLayer/Reader") var reader: JensonTimeline?
     @SceneTree(path: "CanvasLayer/Overlay") var overlay: ColorRect?
 
-    var readScripts = [String]()
+    var readScripts = Set<String>()
+    var solvedPuzzles = Set<String>()
 
     required init() {
         Self.initializeClass()
@@ -58,7 +59,7 @@ class RollinsportWorld2D: Node2D {
             LibRollinsport.logger.error("Timeline finished receiver called with no target.")
             return
         }
-        readScripts.append(reader.script)
+        readScripts.insert(reader.script)
         reader.hide()
         hideOverlayIfPresent()
     }
@@ -80,10 +81,12 @@ class RollinsportWorld2D: Node2D {
 
     @Callable func puzzleSolved(id: String) {
         guard let player else { return }
+        solvedPuzzles.insert(id)
         let codablePosition = WorldDataBlob.Position(vector2: player.globalPosition)
         WorldDataObserver.shared.saveData(
             blob: .init(playerPosition: codablePosition,
-                        readScripts: readScripts))
+                        readScripts: readScripts,
+                        solvedPuzzles: solvedPuzzles))
     }
 }
 

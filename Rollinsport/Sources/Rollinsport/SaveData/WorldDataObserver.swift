@@ -49,6 +49,7 @@ class WorldDataObserver: Node {
             let saveData = try decoder.decode(WorldDataBlob.self, from: data)
             world.player?.globalPosition = Vector2(codablePosition: saveData.playerPosition)
             world.readScripts = saveData.readScripts
+            world.solvedPuzzles = saveData.solvedPuzzles
         } catch {
             LibRollinsport.logger.error("Failed to load data: \(error.localizedDescription)")
         }
