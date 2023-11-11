@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://d3xhnxqyltvn6"]
+[gd_scene load_steps=10 format=3 uid="uid://d3xhnxqyltvn6"]
 
 [ext_resource type="Theme" uid="uid://dbup2qc6kea2t" path="res://resources/gui/theme.tres" id="2_m83yl"]
-[ext_resource type="Shader" path="res://addons/panku_console/res/shader/simple_fast_blur.gdshader" id="3_rp7l7"]
 [ext_resource type="FontFile" uid="uid://denodl601fl1p" path="res://resources/gui/salmon/s_serif_bold.ttf" id="4_8t5am"]
 [ext_resource type="FontFile" uid="uid://cimxh7xd43ehl" path="res://resources/gui/salmon/s_sans_regular.ttf" id="5_17auv"]
 
@@ -399,11 +398,6 @@ _data = {
 "start_timeline": SubResource("Animation_3ybv0")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_462t8"]
-shader = ExtResource("3_rp7l7")
-shader_parameter/lod = 3.5
-shader_parameter/modulate = Color(0.0588235, 0.0666667, 0.0666667, 0.784314)
-
 [sub_resource type="LabelSettings" id="LabelSettings_4q5km"]
 font = ExtResource("4_8t5am")
 font_size = 36
@@ -488,8 +482,6 @@ theme_override_font_sizes/font_size = 27
 text = "Template Button"
 
 [node name="Dialogue Tape" type="ColorRect" parent="."]
-self_modulate = Color(1, 1, 1, 0)
-material = SubResource("ShaderMaterial_462t8")
 layout_mode = 0
 anchor_top = 0.666
 anchor_right = 1.0
@@ -497,6 +489,7 @@ anchor_bottom = 1.0
 offset_top = -0.400008
 grow_horizontal = 2
 grow_vertical = 0
+color = Color(0, 0, 0, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Dialogue Tape"]
 layout_mode = 1

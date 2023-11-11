@@ -62,6 +62,7 @@ class RollinsportWorld2D: Node2D {
         }
         readScripts.insert(reader.script)
         reader.hide()
+        reader.processMode = .disabled
         hideOverlayIfPresent()
     }
 
@@ -78,6 +79,7 @@ class RollinsportWorld2D: Node2D {
         guard let overlay, let tween = getTree()?.createTween() else { return }
         _ = tween.tweenProperty(object: overlay, property: "color", finalVal: Color.black.toVariant(), duration: 1.5)
         reader?.script = "res://data/\(scriptName).jenson"
+        reader?.processMode = .inherit
     }
 
     @Callable func puzzleSolved(id: String) {

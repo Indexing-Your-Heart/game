@@ -130,7 +130,9 @@ public class JensonTimeline: Control {
         }
     }
 
-    override public func _input(event _: InputEvent) {
+    override public func _input(event: InputEvent) {
+        super._input(event: event)
+        if !visible { return }
         if Input.isActionPressed(action: .timelineNext) || Input.isMouseButtonPressed(button: .left) {
             handleNextEvent()
         }
