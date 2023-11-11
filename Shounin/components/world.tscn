@@ -84,65 +84,78 @@ visible = false
 
 [node name="PuzzlePoint-1" parent="Numbers" instance=ExtResource("4_58b54")]
 puzzle_data_expected_solution = 1
+puzzle_data_puzzle_id = "pzl_num_1"
 world_numpad_field = NodePath("../../CanvasLayer/NumpadPuzzleField")
 position = Vector2(71, -77)
 
 [node name="PuzzlePoint-2" parent="Numbers" instance=ExtResource("4_58b54")]
 puzzle_data_expected_solution = 2
+puzzle_data_puzzle_id = "pzl_num_2"
 world_numpad_field = NodePath("../../CanvasLayer/NumpadPuzzleField")
 position = Vector2(599, -220)
 
 [node name="PuzzlePoint-4" parent="Numbers" instance=ExtResource("4_58b54")]
 puzzle_data_expected_solution = 4
+puzzle_data_puzzle_id = "pzl_num_3"
 world_numpad_field = NodePath("../../CanvasLayer/NumpadPuzzleField")
 position = Vector2(168, -460)
 
 [node name="PuzzlePoint-8" parent="Numbers" instance=ExtResource("4_58b54")]
 puzzle_data_expected_solution = 8
+puzzle_data_puzzle_id = "pzl_num_4"
 world_numpad_field = NodePath("../../CanvasLayer/NumpadPuzzleField")
 position = Vector2(696, -460)
 
 [node name="PuzzlePoint-3" parent="Numbers" instance=ExtResource("4_58b54")]
 puzzle_data_expected_solution = 3
+puzzle_data_puzzle_id = "pzl_num_5"
 world_numpad_field = NodePath("../../CanvasLayer/NumpadPuzzleField")
 position = Vector2(1176, -316)
 
 [node name="PuzzlePoint-7" parent="Numbers" instance=ExtResource("4_58b54")]
 puzzle_data_expected_solution = 7
+puzzle_data_puzzle_id = "pzl_num_6"
 world_numpad_field = NodePath("../../CanvasLayer/NumpadPuzzleField")
 position = Vector2(1176, -28)
 
 [node name="PuzzlePoint-9" parent="Numbers" instance=ExtResource("4_58b54")]
 puzzle_data_expected_solution = 9
+puzzle_data_puzzle_id = "pzl_num_7"
 world_numpad_field = NodePath("../../CanvasLayer/NumpadPuzzleField")
 position = Vector2(1416, 260)
 
 [node name="PuzzlePoint-16" parent="Numbers" instance=ExtResource("4_58b54")]
 puzzle_data_expected_solution = 16
+puzzle_data_puzzle_id = "pzl_num_8"
 world_numpad_field = NodePath("../../CanvasLayer/NumpadPuzzleField")
 position = Vector2(1032, 404)
 
 [node name="PuzzlePoint-8-2" parent="Numbers" instance=ExtResource("4_58b54")]
 puzzle_data_expected_solution = 8
+puzzle_data_puzzle_id = "pzl_num_9"
 world_numpad_field = NodePath("../../CanvasLayer/NumpadPuzzleField")
 position = Vector2(1608, 548)
 
 [node name="PuzzlePoint-19" parent="Numbers" instance=ExtResource("4_58b54")]
 puzzle_data_expected_solution = 19
+puzzle_data_puzzle_id = "pzl_num_10"
 world_numpad_field = NodePath("../../CanvasLayer/NumpadPuzzleField")
 position = Vector2(1848, 211)
 
 [node name="PuzzlePoint-30" parent="Numbers" instance=ExtResource("4_58b54")]
 puzzle_data_expected_solution = 30
+puzzle_data_puzzle_id = "pzl_num_11"
 world_numpad_field = NodePath("../../CanvasLayer/NumpadPuzzleField")
 position = Vector2(1800, -220)
 
 [node name="PuzzlePoint-0" parent="Numbers" instance=ExtResource("4_58b54")]
+puzzle_data_puzzle_id = "pzl_num_12"
 world_numpad_field = NodePath("../../CanvasLayer/NumpadPuzzleField")
 position = Vector2(2088, -508)
 
 [node name="PuzzlePoint-EP" parent="Numbers" instance=ExtResource("4_58b54")]
 puzzle_data_expected_solution = 18
+puzzle_data_puzzle_id = "pzl_num_meta"
 world_numpad_field = NodePath("../../CanvasLayer/NumpadPuzzleField")
 position = Vector2(984, 740)
 
@@ -150,56 +163,67 @@ position = Vector2(984, 740)
 
 [node name="PuzzlePoint-Ellipse" parent="Primitives" instance=ExtResource("5_td85v")]
 puzzle_data_expected_solution = "puk'"
+puzzle_data_puzzle_id = "pzl_prim_1"
 world_text_field = NodePath("../../CanvasLayer/PuzzleKeyboard")
 position = Vector2(263, 3954)
 
 [node name="PuzzlePoint-Polygon" parent="Primitives" instance=ExtResource("5_td85v")]
 puzzle_data_expected_solution = "tasubi"
+puzzle_data_puzzle_id = "pzl_prim_2"
 world_text_field = NodePath("../../CanvasLayer/PuzzleKeyboard")
 position = Vector2(455, 3666)
 
 [node name="PuzzlePoint-Box" parent="Primitives" instance=ExtResource("5_td85v")]
 puzzle_data_expected_solution = "biba"
+puzzle_data_puzzle_id = "pzl_prim_3"
 world_text_field = NodePath("../../CanvasLayer/PuzzleKeyboard")
 position = Vector2(359, 3186)
 
 [node name="PuzzlePoint-Cylinder" parent="Primitives" instance=ExtResource("5_td85v")]
 puzzle_data_expected_solution = "kabatui"
+puzzle_data_puzzle_id = "pzl_prim_4"
 world_text_field = NodePath("../../CanvasLayer/PuzzleKeyboard")
 position = Vector2(-121, 3089)
 
 [node name="PuzzlePoint-Idea" parent="Primitives" instance=ExtResource("5_td85v")]
 puzzle_data_expected_solution = "ʔaʃ"
+puzzle_data_puzzle_id = "pzl_prim_5"
 world_text_field = NodePath("../../CanvasLayer/PuzzleKeyboard")
 position = Vector2(167, 2802)
 
 [node name="PuzzlePoint-Thing" parent="Primitives" instance=ExtResource("5_td85v")]
 puzzle_data_expected_solution = "ʔaʃaʃat"
+puzzle_data_puzzle_id = "pzl_prim_6"
 world_text_field = NodePath("../../CanvasLayer/PuzzleKeyboard")
 position = Vector2(503, 2802)
 
 [node name="PuzzlePoint-Person" parent="Primitives" instance=ExtResource("5_td85v")]
 puzzle_data_expected_solution = "pubaʃ"
+puzzle_data_puzzle_id = "pzl_prim_7"
 world_text_field = NodePath("../../CanvasLayer/PuzzleKeyboard")
 position = Vector2(167, 2514)
 
 [node name="PuzzlePoint-Animal" parent="Primitives" instance=ExtResource("5_td85v")]
 puzzle_data_expected_solution = "bupeʃ"
+puzzle_data_puzzle_id = "pzl_prim_8"
 world_text_field = NodePath("../../CanvasLayer/PuzzleKeyboard")
 position = Vector2(503, 2514)
 
 [node name="PuzzlePoint-Pyramid" parent="Primitives" instance=ExtResource("5_td85v")]
 puzzle_data_expected_solution = "ikutet"
+puzzle_data_puzzle_id = "pzl_prim_9"
 world_text_field = NodePath("../../CanvasLayer/PuzzleKeyboard")
 position = Vector2(23, 2082)
 
 [node name="PuzzlePoint-Cone" parent="Primitives" instance=ExtResource("5_td85v")]
 puzzle_data_expected_solution = "ik':a"
+puzzle_data_puzzle_id = "pzl_prim_10"
 world_text_field = NodePath("../../CanvasLayer/PuzzleKeyboard")
 position = Vector2(503, 2131)
 
 [node name="PuzzlePoint-Sphere" parent="Primitives" instance=ExtResource("5_td85v")]
 puzzle_data_expected_solution = "ʔilin"
+puzzle_data_puzzle_id = "pzl_prim_11"
 world_text_field = NodePath("../../CanvasLayer/PuzzleKeyboard")
 position = Vector2(791, 1986)
 
