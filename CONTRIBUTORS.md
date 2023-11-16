@@ -1,6 +1,7 @@
 # Contributors
 
-Many thanks to the following contributors for helping make **Indexing Your Heart** possible.
+Many thanks to the following contributors for helping make
+**Indexing Your Heart** possible.
 
 - Phildjii
 - LimeZu
@@ -8,8 +9,8 @@ Many thanks to the following contributors for helping make **Indexing Your Heart
 
 ## Supporters on Ko-fi
 
-Special thanks to those who support me on Ko-fi and/or GitHub Sponsors. You can support me on Ko-fi
-by going to https://ko-fi.com/marquiskurt.
+Special thanks to those who support me on Ko-fi and/or GitHub Sponsors. You can
+support me on Ko-fi by going to https://ko-fi.com/marquiskurt.
 
 - nd
 - SuspiciousYak
