@@ -1,6 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://bhdu82yikkqf3"]
+[gd_scene load_steps=32 format=3 uid="uid://bhdu82yikkqf3"]
 
+[ext_resource type="AudioStream" uid="uid://cbdsqqlgadnsu" path="res://resources/sounds/fs_grass_01.mp3" id="2_706ek"]
 [ext_resource type="Texture2D" uid="uid://b1d5u8txom028" path="res://resources/sprt_chelsea.png" id="2_r517x"]
+[ext_resource type="AudioStream" uid="uid://dce471k7dy1hn" path="res://resources/sounds/fs_grass_02.mp3" id="3_5sx88"]
+[ext_resource type="AudioStream" uid="uid://dv1vydkaow476" path="res://resources/sounds/fs_grass_03.mp3" id="4_1vfms"]
+[ext_resource type="AudioStream" uid="uid://cjvcb5unsdcx4" path="res://resources/sounds/fs_grass_04.mp3" id="5_1xbye"]
 
 [sub_resource type="Animation" id="Animation_shu7v"]
 length = 0.001
@@ -231,6 +235,18 @@ graph_offset = Vector2(-192.136, 0)
 radius = 16.0
 height = 44.0
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_if7a2"]
+streams_count = 4
+random_pitch = 1.0
+stream_0/stream = ExtResource("2_706ek")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("3_5sx88")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("4_1vfms")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("5_1xbye")
+stream_3/weight = 1.0
+
 [node name="Player" type="AnthroCharacterBody2D"]
 y_sort_enabled = true
 scale = Vector2(0.5, 0.5)
@@ -266,3 +282,6 @@ path_desired_distance = 4.0
 target_desired_distance = 4.0
 avoidance_enabled = true
 radius = 48.0
+
+[node name="Footsteps" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_if7a2")

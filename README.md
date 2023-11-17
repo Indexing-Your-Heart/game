@@ -200,6 +200,7 @@ Additionally, it contains libraries and projects under ethical-source licenses:
 Finally, it contains other assets with custom licenses:
 
 - Modern Exteriors: LimeZu (see license in Assets/Tilesets/README.txt)
+- Footsteps Pack: ElvGames (see https://elv-games.itch.io/footsteps-sound-fx)
 
 You can also view the full list of contributors in the
 [CONTRIBUTORS.md](./CONTRIBUTORS.md) file.

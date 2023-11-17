@@ -49,6 +49,7 @@ public class AnthroCharacterBody2D: CharacterBody2D {
     @SceneTree(path: "Sprite/AnimationPlayer") var animationPlayer: AnimationPlayer?
     @SceneTree(path: "Navigator") var navigator: NavigationAgent2D?
     @SceneTree(path: "Sprite") var sprite: Sprite2D?
+    @SceneTree(path: "Footsteps") var footstepsStream: AudioStreamPlayer2D?
 
     var animationState: AnimationNodeStateMachinePlayback?
     var currentState = PlayerState.idle
@@ -117,7 +118,7 @@ public class AnthroCharacterBody2D: CharacterBody2D {
         if Engine.isEditorHint() { return }
         if currentState == .navigating {
             navigateToNextTarget()
-            updateAnimationConditions()
+            updateStateConditions()
             return
         }
 
@@ -129,7 +130,7 @@ public class AnthroCharacterBody2D: CharacterBody2D {
             currentState = .idle
             velocity = velocity.moveToward(to: .zero, delta: Double(friction))
         }
-        updateAnimationConditions()
+        updateStateConditions()
         _ = moveAndSlide()
     }
 
@@ -202,14 +203,22 @@ public class AnthroCharacterBody2D: CharacterBody2D {
             return
         }
 
-        animationTree.set(property: StringName("parameters/Idle/blend_position"), value: Variant(vector))
-        animationTree.set(property: StringName("parameters/Walk/blend_position"), value: Variant(vector))
+        animationTree["parameters/Idle/blend_position"] = Variant(vector)
+        animationTree["parameters/Walk/blend_position"] = Variant(vector)
     }
 
-    private func updateAnimationConditions() {
-        animationTree?.set(property: "parameters/conditions/idling",
-                           value: (currentState == .idle).toVariant())
-        animationTree?.set(property: "parameters/conditions/walking",
-                           value: (currentState != .idle).toVariant())
+    private func updateStateConditions() {
+        animationTree?["parameters/conditions/idling"] = (currentState == .idle).toVariant()
+        animationTree?["parameters/conditions/walking"] = (currentState != .idle).toVariant()
+
+        switch currentState {
+        case .idle:
+            footstepsStream?.stop()
+            break
+        default:
+            if footstepsStream?.isPlaying() != true {
+                footstepsStream?.play()
+            }
+        }
     }
 }
