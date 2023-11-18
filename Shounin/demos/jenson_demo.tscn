@@ -12,3 +12,5 @@ grow_vertical = 2
 [node name="JensonTimeline" parent="." instance=ExtResource("1_gn541")]
 script_path = "res://data/test_scpt.jenson"
 debug_display_commentary = true
+layout_mode = 0
+anchors_preset = 0

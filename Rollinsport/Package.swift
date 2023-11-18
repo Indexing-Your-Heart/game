@@ -3,6 +3,8 @@
 
 import PackageDescription
 
+let m = Package()
+
 let package = Package(
     name: "Rollinsport",
     platforms: [.macOS(.v13), .iOS(.v16)],

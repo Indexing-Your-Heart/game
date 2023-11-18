@@ -43,8 +43,8 @@ public class JensonTimeline: Control {
         case animationPlayer = "AnimationPlayer"
         case background = "Background"
         case choiceMenu = "Choice Menu"
-        case leftSpeaker = "Left Speaker"
-        case rightSpeaker = "Right Speaker"
+        case leftSpeaker = "Multi Speakers/Left Speaker"
+        case rightSpeaker = "Multi Speakers/Right Speaker"
         case singleSpeaker = "Single Speaker"
     }
 
