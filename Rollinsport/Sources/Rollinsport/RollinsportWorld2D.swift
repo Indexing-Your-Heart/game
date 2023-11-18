@@ -49,7 +49,10 @@ class RollinsportWorld2D: Node2D {
 
         do {
             try RollinsportMessageBus.shared.registerSubscriber(#methodName(puzzleSolved), to: .puzzleSolved(id: ""))
-            try RollinsportMessageBus.shared.registerSubscriber(#methodName(requestForSolve), to: .requestForSolve(id: ""))
+            try RollinsportMessageBus.shared.registerSubscriber(#methodName(requestForSolve),
+                                                                to: .requestForSolve(id: ""))
+            try RollinsportMessageBus.shared.registerSubscriber(#methodName(applicationWillBecomeInactive),
+                                                                to: .appWillBecomeInactive)
         } catch {
             LibRollinsport.logger.error("Failed to subscribe to message bus: \(error.localizedDescription)")
         }
@@ -100,6 +103,15 @@ class RollinsportWorld2D: Node2D {
             LibRollinsport.logger.error("Failed to send message: \(error.localizedDescription)")
         }
     }
+
+    @Callable func applicationWillBecomeInactive() {
+        guard let player else { return }
+        let codablePosition = WorldDataBlob.Position(vector2: player.globalPosition)
+        WorldDataObserver.shared.saveData(
+            blob: .init(playerPosition: codablePosition,
+                        readScripts: readScripts,
+                        solvedPuzzles: solvedPuzzles))
+    }
 }
 
 extension RollinsportWorld2D {
@@ -131,5 +143,10 @@ extension RollinsportWorld2D {
                                  returnValue: nil,
                                  arguments: solvedSignalProps,
                                  function: RollinsportWorld2D._callable_requestForSolve)
+        classInfo.registerMethod(name: "_callable_applicationWillBecomeInactive",
+                                 flags: .default,
+                                 returnValue: nil,
+                                 arguments: [],
+                                 function: RollinsportWorld2D._callable_applicationWillBecomeInactive)
     }
 }

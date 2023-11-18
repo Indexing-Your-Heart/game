@@ -15,12 +15,25 @@
 
 import SwiftGodot
 
+#if canImport(UIKit)
+import UIKit
+#endif
+
 @NativeHandleDiscarding
 class RollinsportMessageBus: Node {
     static var shared = RollinsportMessageBus()
 
+    #if canImport(UIKit)
+    private var appDelegate: RollinsportApplicationDelegator?
+    #endif
+
     required init() {
         Self.initializeClass()
+
+        #if canImport(UIKit)
+        self.appDelegate = RollinsportApplicationDelegator()
+        #endif
+
         super.init()
     }
 
@@ -28,13 +41,14 @@ class RollinsportMessageBus: Node {
         switch message {
         case .puzzleSolved(let id), .foundSolution(let id), .requestForSolve(let id):
             try emitSignal(message.signal, Variant(id))
+        case .appBecameActive, .appWillBecomeInactive, .appEnteredBackground, .appWillEnterForeground:
+            try emitSignal(message.signal)
         }
     }
 
     func registerSubscriber(_ callable: Callable, to message: RollinsportMessage) throws {
         try connect(signal: message.signal, callable: callable)
     }
-
 }
 
 extension RollinsportMessageBus {
@@ -54,6 +68,10 @@ enum RollinsportMessage {
     case requestForSolve(id: String)
     case foundSolution(id: String)
     case puzzleSolved(id: String)
+    case appBecameActive
+    case appWillBecomeInactive
+    case appWillEnterForeground
+    case appEnteredBackground
 
     var signal: StringName {
         switch self {
@@ -63,13 +81,29 @@ enum RollinsportMessage {
             return "found_solution"
         case .puzzleSolved:
             return "puzzle_solved"
+        case .appBecameActive:
+            return "app_became_active"
+        case .appWillBecomeInactive:
+            return "app_will_become_inactive"
+        case .appEnteredBackground:
+            return "app_entered_background"
+        case .appWillEnterForeground:
+            return "app_will_enter_foreground"
         }
     }
 }
 
 extension RollinsportMessage: CaseIterable {
     static var allCases: [RollinsportMessage] {
-        [.puzzleSolved(id: ""), .requestForSolve(id: ""), .foundSolution(id: "")]
+        [
+            .puzzleSolved(id: ""),
+            .requestForSolve(id: ""),
+            .foundSolution(id: ""),
+            .appBecameActive,
+            .appWillBecomeInactive,
+            .appEnteredBackground,
+            .appWillEnterForeground
+        ]
     }
 }
 
@@ -86,6 +120,8 @@ extension RollinsportMessage {
                          hintStr: "",
                          usage: .default)
             ]
+        case .appBecameActive, .appWillBecomeInactive, .appEnteredBackground, .appWillEnterForeground:
+            []
         }
     }
 }
