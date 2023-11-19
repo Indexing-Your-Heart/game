@@ -89,17 +89,37 @@ build_mac_lib() {
 	echo "Library built [$1] for macOS."
 }
 
-# Builds the Swift package dynamic libraries and copies the files into Shounin.
-build_lib() {
-	echo "Building for target: $__target."
+# Logs when the build began.
+log_start() {
 	if [[ -z $__library ]]; then
 		echo "Build Log for $1" >> $1_build.log
 		echo "Start: $(date)" >> $1_build.log
-
+	
 	else
 		echo "Build Log for $__library (Host: $1)" >> "${__library}_build.log"
 		echo "Start: $(date)" >> "${__library}_build.log"
 	fi
+}
+
+# Logs when the build ended.
+log_end() {
+	if [[ -z $__library ]]; then
+		echo "Build finished" >> $1_build.log
+		echo "End: $(date)" >> $1_build.log
+	
+	else
+		echo "Build finished" >> "${__library}_build.log"
+		echo "End: $(date)" >> "${__library}_build.log"
+	fi
+}
+
+# Builds the Swift package dynamic libraries and copies the files into Shounin.
+build_lib() {
+	echo "Building for target: $__target."
+	if ! { [ -z "$NOVA_TASK_NAME" ] && [ command -v xcbeautify &> /dev/null ]; }; then
+		log_start
+	fi
+
 	cd "$1"
 	if [[ "$__target" = "all" || "$__target" = "mac" ]]; then
 		if [[ -z $__library ]]; then
@@ -116,13 +136,8 @@ build_lib() {
 		fi
 	fi
 	cd ..
-	if [[ -z $__library ]]; then
-		echo "Build finished" >> $1_build.log
-		echo "End: $(date)" >> $1_build.log
-
-	else
-		echo "Build finished" >> "${__library}_build.log"
-		echo "End: $(date)" >> "${__library}_build.log"
+	if ! { [ -z "$NOVA_TASK_NAME" ] && [ command -v xcbeautify &> /dev/null ]; }; then
+		log_end
 	fi
 }
 
