@@ -1,5 +1,5 @@
 class_name JensonTestcase
-extends Control
+extends CanvasLayer
 
 @onready var timeline: JensonTimeline = $JensonTimeline
 
