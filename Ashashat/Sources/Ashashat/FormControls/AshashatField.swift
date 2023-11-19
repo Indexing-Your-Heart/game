@@ -45,6 +45,8 @@ public protocol AshashatField: Node, AshashatFieldRegistering {
     func inputReturned(value: InputValue)
 }
 
+// swiftlint:disable identifier_name
+
 /// A protocol that defines registrations methods an input field can adopt to register to Godot.
 public protocol AshashatFieldRegistering {
     /// A wrapper for the ``AshashatField/clear()`` method suitable for Godot registration.
@@ -63,6 +65,8 @@ public protocol AshashatFieldRegistering {
     func _callable_inputReturned(args: [Variant]) -> Variant?
 }
 
+// swiftlint:enable identifier_name
+
 /// A protocol that defines validation mechanisms for an [ʔaʃaʃat] input field.
 public protocol AshashatFieldValidating: Node, AshashatFieldValidationRegistering {
     /// An animation player used to play validation animations.
@@ -74,6 +78,8 @@ public protocol AshashatFieldValidating: Node, AshashatFieldValidationRegisterin
     /// Plays an animation indicating the input is valid.
     func markCorrect()
 }
+
+// swiftlint:disable identifier_name
 
 /// A protocol that defines registration methods in an input field can adopt to register to Godot for validation.
 public protocol AshashatFieldValidationRegistering {
@@ -87,6 +93,8 @@ public protocol AshashatFieldValidationRegistering {
     /// - Note: It is not recommended to call this method directly.
     func _callable_markCorrect(args: [Variant]) -> Variant?
 }
+
+// swiftlint:enable identifier_name
 
 public extension AshashatField {
     /// Emits a speficied signal to an input field's listeners.
@@ -149,9 +157,7 @@ public extension AshashatField {
     /// Registers all methods and signals of the input field to Godot.
     /// - Parameter classInfo: The class information object to register the methods and signals to.
     /// - Parameter value: The property information describing the input value.
-    static func registerField(using classInfo: ClassInfo<some AshashatFieldRegistering &
-                                  AshashatFieldValidationRegistering>,
-    value: PropInfo) {
+    static func registerField(using classInfo: ClassInfo<some AshashatValidatedField>, value: PropInfo) {
         registerClear(using: classInfo)
         registerPrefill(using: classInfo, value: value)
         registerEditingSignals(using: classInfo, value: value)
@@ -186,9 +192,7 @@ public extension AshashatField where Self: AshashatFieldValidating {
     /// Registers all methods and signals of the input field to Godot.
     /// - Parameter classInfo: The class information object to register the methods and signals to.
     /// - Parameter value: The property information describing the input value.
-    static func registerField(using classInfo: ClassInfo<some AshashatFieldRegistering &
-                                  AshashatFieldValidationRegistering>,
-    value: PropInfo) {
+    static func registerField(using classInfo: ClassInfo<some AshashatValidatedField>, value: PropInfo) {
         registerClear(using: classInfo)
         registerValidationMethods(using: classInfo)
         registerEditingSignals(using: classInfo, value: value)

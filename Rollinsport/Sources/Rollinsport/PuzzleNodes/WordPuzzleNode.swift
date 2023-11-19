@@ -123,7 +123,7 @@ public class WordPuzzleNode: Node2D {
 }
 
 extension WordPuzzleNode: GodotInspectable {
-    static public var inspector: Inspector<WordPuzzleNode> {
+    public static var inspector: Inspector<WordPuzzleNode> {
         Inspector {
             Group<WordPuzzleNode>("Puzzle Data", prefix: "puzzle_data") {
                 Text(name: "expected_solution",
@@ -147,14 +147,6 @@ extension WordPuzzleNode {
         let editingChangedProps = [
             PropInfo(propertyType: .string,
                      propertyName: "value",
-                     className: className,
-                     hint: .typeString,
-                     hintStr: "",
-                     usage: .default)
-        ]
-        let solvedSignalProps = [
-            PropInfo(propertyType: .string,
-                     propertyName: "puzzle_id",
                      className: className,
                      hint: .typeString,
                      hintStr: "",

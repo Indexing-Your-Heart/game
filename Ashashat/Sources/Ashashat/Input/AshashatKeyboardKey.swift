@@ -21,10 +21,13 @@ import AudioToolbox
 
 /// An enumeration that represents a key on the [ʔaʃaʃat] keyboard.
 public enum AshashatKeyboardKey: String, CaseIterable {
+    // swiftlint:disable identifier_name
     case a, i, e, u
     case p, b, t, k, n, s, l
     case ejectiveK = "ejective_k"
     case sh, glottal
+    // swiftlint:enable identifier_name
+
     case repeater, duplicant
     case `return`, delete
 

@@ -33,7 +33,7 @@ public class AshashatTextField: Control, AshashatValidatedField {
 
     override public func _ready() {
         super._ready()
-        try? inputMechanism?.connectIfPresent(#methodName(keyPressed), to: "key_pressed")
+        try? inputMechanism?.connect(signal: "key_pressed", callable: #methodName(keyPressed))
     }
 
     @Callable public func prefill(_ value: String) {

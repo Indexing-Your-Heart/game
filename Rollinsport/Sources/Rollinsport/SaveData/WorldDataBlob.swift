@@ -17,15 +17,14 @@ import SwiftGodot
 
 struct WorldDataBlob: Codable {
     struct Position: Codable {
-        var x: Float
-        var y: Float
+        var x: Float // swiftlint:disable:this identifier_name
+        var y: Float // swiftlint:disable:this identifier_name
     }
 
     var playerPosition: Position
     var readScripts: Set<String>
     var solvedPuzzles: Set<String>
 }
-
 
 extension Vector2 {
     init(codablePosition: WorldDataBlob.Position) {

@@ -16,6 +16,7 @@
 import SwiftGodot
 
 extension AnthroCharacterBody2D: GodotInspectable {
+    // swiftlint:disable:next type_name
     public typealias T = AnthroCharacterBody2D
     public static var inspector: Inspector<T> {
         Inspector {

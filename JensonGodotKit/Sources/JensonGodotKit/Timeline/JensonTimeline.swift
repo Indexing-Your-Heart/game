@@ -20,41 +20,12 @@ import SwiftGodot
 /// event in the story.
 @NativeHandleDiscarding
 public class JensonTimeline: Control {
+    typealias TimelineState = JensonGodotTimelineState
+    typealias AnimationName = JensonGodotAnimationName
+    typealias ChildPath = JensonGodotChildPath
+    typealias ImageRefreshPriorityLayer = JensonGodotImageRefreshPriorityLayer
+
     static var timelineFinishedSignalName = StringName("timeline_finished")
-
-    enum TimelineState {
-        case initial
-        case loaded
-        case started
-        case playing
-        case ended
-    }
-
-    enum AnimationName: String {
-        case startTimeline = "start_timeline"
-        case speech
-
-        var stringName: StringName {
-            StringName(stringLiteral: rawValue)
-        }
-    }
-
-    enum ChildPath: String {
-        case animationPlayer = "AnimationPlayer"
-        case background = "Background"
-        case choiceMenu = "Choice Menu"
-        case leftSpeaker = "Multi Speakers/Left Speaker"
-        case rightSpeaker = "Multi Speakers/Right Speaker"
-        case singleSpeaker = "Single Speaker"
-    }
-
-    enum ImageRefreshPriorityLayer: Int {
-        case background = -1
-        case speakerSingle = 0
-        case speakerLeft = 1
-        case speakerRight = 2
-        case unknown = -999
-    }
 
     /// Whether comment events should be displayed.
     @Autovariant public var displayCommentary: Bool = false
@@ -68,32 +39,20 @@ public class JensonTimeline: Control {
         }
     }
 
-    @SceneTree(path: ChildPath.animationPlayer.rawValue)
-    private var animator: AnimationPlayer?
+    @SceneTree(path: ChildPath.animationPlayer.rawValue) private var animator: AnimationPlayer?
+    @SceneTree(path: ChildPath.background.rawValue) private var backgroundLayer: TextureRect?
+    @SceneTree(path: ChildPath.choiceMenu.rawValue) private var menu: VBoxContainer?
+    @SceneTree(path: ChildPath.leftSpeaker.rawValue) private var speakerLeft: TextureRect?
+    @SceneTree(path: ChildPath.rightSpeaker.rawValue) private var speakerRight: TextureRect?
+    @SceneTree(path: ChildPath.singleSpeaker.rawValue) private var speakerSingle: TextureRect?
 
-    @SceneTree(path: ChildPath.background.rawValue)
-    private var backgroundLayer: TextureRect?
     private var choices = [String: [JensonEvent]]()
     private var choiceTemplate: Button?
     private var currentEvent: JensonEvent?
-
-    @SceneTree(path: ChildPath.choiceMenu.rawValue)
-    private var menu: VBoxContainer?
-
     private var reader: JensonReader?
-
-    @SceneTree(path: ChildPath.leftSpeaker.rawValue)
-    private var speakerLeft: TextureRect?
-
-    @SceneTree(path: ChildPath.rightSpeaker.rawValue)
-    private var speakerRight: TextureRect?
-
-    @SceneTree(path: ChildPath.singleSpeaker.rawValue)
-    private var speakerSingle: TextureRect?
     private var timeline = [JensonEvent]()
     private var whoLabel: Label?
     private var whatLabel: Label?
-
     private var state = TimelineState.initial
 
     public required init() {
@@ -201,12 +160,12 @@ public class JensonTimeline: Control {
     }
 
     func refreshScene(using triggers: [JensonRefreshContent]) {
-        triggers.forEach { trig in
-            switch trig.kind {
+        for trigger in triggers {
+            switch trigger.kind {
             case .image:
-                refreshImageLayer(with: trig)
+                refreshImageLayer(with: trigger)
             default:
-                GD.pushWarning("Unsupported refresh kind: \(trig.kind.rawValue). This trigger will be skipped.")
+                GD.pushWarning("Unsupported refresh kind: \(trigger.kind.rawValue). This trigger will be skipped.")
             }
         }
         guard ![TimelineState.ended, TimelineState.initial].contains(state) else { return }
@@ -284,26 +243,15 @@ public class JensonTimeline: Control {
     func setupQuestion(question: JensonQuestion) {
         guard let menu else { return }
         choices.removeAll()
-        question.options.forEach { choice in
+        for choice in question.options {
             choices[choice.name] = choice.events
         }
-        menu.getChildren()
-            .filter { child in child != choiceTemplate }
-            .forEach(menu.removeChild(node:))
-        question.options.map(\.name).forEach { choiceName in
+        for child in menu.getChildren() where child != choiceTemplate {
+            menu.removeChild(node: child)
+        }
+        for choiceName in question.options.map(\.name) {
             if let newButton = choiceTemplate?.duplicate() as? Button {
-                newButton.text = choiceName
-                _ = try? newButton.pressed.connect { [weak self] in
-                    self?.menu?.visible = false
-                    guard let events = self?.choices[choiceName] else {
-                        GD.pushWarning("No option with key '\(choiceName)' exists. No new events will be inserted.")
-                        return
-                    }
-                    self?.timeline.insert(contentsOf: events, at: 0)
-                    self?.next()
-                }
-                newButton.visible = true
-                menu.addChild(node: newButton)
+                setupButton(newButton, with: choiceName)
             }
         }
         menu.visible = true
@@ -312,11 +260,29 @@ public class JensonTimeline: Control {
     func skipAnimation() {
         guard let animator else { return }
         animator.stop()
-        whoLabel?.visibleRatio = 1
-        whatLabel?.visibleRatio = 1
-        backgroundLayer?.modulate = Color.white
-        speakerSingle?.modulate = Color.white
-        speakerLeft?.modulate = Color.white
-        speakerRight?.modulate = Color.white
+
+        for label in [whoLabel, whatLabel] {
+            label?.visibleRatio = 1
+        }
+
+        for layer in [backgroundLayer, speakerSingle, speakerLeft, speakerRight] {
+            layer?.modulate = Color.white
+        }
+    }
+
+    private func setupButton(_ newButton: Button, with choiceName: String) {
+        guard let menu else { return }
+        newButton.text = choiceName
+        newButton.visible = true
+        _ = try? newButton.pressed.connect { [weak self] in
+            self?.menu?.visible = false
+            guard let events = self?.choices[choiceName] else {
+                GD.pushWarning("No option with key '\(choiceName)' exists. No new events will be inserted.")
+                return
+            }
+            self?.timeline.insert(contentsOf: events, at: 0)
+            self?.next()
+        }
+        menu.addChild(node: newButton)
     }
 }

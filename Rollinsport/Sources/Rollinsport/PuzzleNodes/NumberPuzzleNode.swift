@@ -148,14 +148,6 @@ extension NumberPuzzleNode {
                      hintStr: "0,31,1",
                      usage: .default)
         ]
-        let solvedSignalProps = [
-            PropInfo(propertyType: .string,
-                     propertyName: "puzzle_id",
-                     className: className,
-                     hint: .typeString,
-                     hintStr: "",
-                     usage: .default)
-        ]
 
         classInfo.registerMethod(name: "_callable_numpadFieldEditingChanged",
                                  flags: .default,

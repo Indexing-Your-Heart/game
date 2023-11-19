@@ -101,7 +101,6 @@ public class AnthroCharacterBody2D: CharacterBody2D {
             } catch {
                 LibAnthrobase.logger.error("Unable to connect signal: \(error)")
             }
-
         }
     }
 
@@ -162,7 +161,7 @@ public class AnthroCharacterBody2D: CharacterBody2D {
         getParent()?.addChild(node: newSprite)
         indicator = newSprite
     }
-    
+
     @Callable func moveToward(destination: Vector2) {
         currentState = .navigating
         navigator?.targetPosition = destination
@@ -214,7 +213,6 @@ public class AnthroCharacterBody2D: CharacterBody2D {
         switch currentState {
         case .idle:
             footstepsStream?.stop()
-            break
         default:
             if footstepsStream?.isPlaying() != true {
                 footstepsStream?.play()

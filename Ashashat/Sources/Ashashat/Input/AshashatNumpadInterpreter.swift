@@ -56,30 +56,28 @@ public class AshashatNumpadInterpreter: Control {
             do {
                 try key?.pressed.connect { [weak self] in
                     guard let key, let self else { return }
-                    
-                    #if canImport(AudioToolbox)
-                    AudioServicesPlaySystemSound(
-                        key.buttonPressed ? AshashatKeyboardKey.a.keySoundId : AshashatKeyboardKey.delete.keySoundId)
-                    #endif
+
+#if canImport(AudioToolbox)
+                    AudioServicesPlaySystemSound(key.buttonPressed ? AshashatKeyboardKey.a
+                        .keySoundId : AshashatKeyboardKey.delete.keySoundId)
+#endif
                     // If already pressed, remove the number from the count (i.e., turn off that bit).
                     internalValue += key.buttonPressed ? number : number * -1
                 }
             } catch {
                 LibAshashat.logger.error("Failed to connect press for key '\(number)': \(error)")
             }
-
         }
         do {
             try keyReturn?.pressed.connect { [self] in
-                #if canImport(AudioToolbox)
+#if canImport(AudioToolbox)
                 AudioServicesPlaySystemSound(AshashatKeyboardKey.return.keySoundId)
-                #endif
+#endif
                 try? emitSignal(Self.returnedSignalName, internalValue.toVariant())
             }
         } catch {
             LibAshashat.logger.error("Failed to connect press for key 'return': \(error)")
         }
-
     }
 
     @Callable
