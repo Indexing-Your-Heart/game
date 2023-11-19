@@ -21,6 +21,10 @@ enum JensonGodotTimelineState {
     case started
     case playing
     case ended
+
+    static var unsafeRefreshStates: [JensonGodotTimelineState] {
+        [.initial, .loaded, .ended]
+    }
 }
 
 enum JensonGodotAnimationName: String {

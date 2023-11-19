@@ -168,7 +168,7 @@ public class JensonTimeline: Control {
                 GD.pushWarning("Unsupported refresh kind: \(trigger.kind.rawValue). This trigger will be skipped.")
             }
         }
-        guard ![TimelineState.ended, TimelineState.initial].contains(state) else { return }
+        guard !TimelineState.unsafeRefreshStates.contains(state) else { return }
         next()
     }
 
