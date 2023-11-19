@@ -1,0 +1,5 @@
+[*.swift]
+max_line_length=120
+
+[*.{md,txt}]
+max_line_length=80
