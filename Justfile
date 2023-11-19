@@ -163,7 +163,12 @@ edit-just:
 
 # Runs SwiftLint on library code
 lint:
-	swiftlint lint --output swiftlint_{{exec_date}}.log
+	#!/bin/sh
+	if [ ! -z "$NOVA_TASK_NAME" ]; then
+		swiftlint lint
+	else
+		swiftlint lint --output swiftlint_{{exec_date}}.log
+	fi
 
 # Unswizzles protected images
 unswizzle-assets:

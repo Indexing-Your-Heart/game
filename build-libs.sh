@@ -47,6 +47,11 @@ build_ios_lib() {
             -derivedDataPath $__xcodebuilddir -skipPackagePluginValidation \
             -clonedSourcePackagesDirPath $__xcodecachedir \
             -configuration Release >> ../$1_build.log
+	elif [ ! -z "$NOVA_TASK_NAME" ]; then
+		xcodebuild -scheme "$1" -destination 'generic/platform=iOS' \
+		-derivedDataPath $__xcodebuilddir -skipPackagePluginValidation \
+		-clonedSourcePackagesDirPath $__xcodecachedir \
+		-configuration Release
     else
         xcodebuild -scheme "$1" -destination 'generic/platform=iOS' \
             -derivedDataPath $__xcodebuilddir -skipPackagePluginValidation \
@@ -68,6 +73,9 @@ build_mac_lib() {
     if [ ! command -v xcbeautify &> /dev/null ]; then
         swift build --configuration release --triple arm64-apple-macosx \
             --scratch-path $__swiftbuilddir --cache-path $__swiftcachedir >> ../$1_build.log
+	elif [ ! -z "$NOVA_TASK_NAME" ]; then
+		swift build --configuration release --triple arm64-apple-macosx \
+		--scratch-path $__swiftbuilddir --cache-path $__swiftcachedir
     else
         swift build --configuration release --triple arm64-apple-macosx \
             --scratch-path $__swiftbuilddir --cache-path $__swiftcachedir | xcbeautify
