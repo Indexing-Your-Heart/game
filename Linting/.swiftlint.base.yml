@@ -57,3 +57,8 @@ custom_rules:
       - comment
     message: "There is no god, only Obel."
     severity: warning
+  for_each:
+    name: "Prefer For Loops"
+    regex: "(.forEach\\s?[\\{\\(])"
+    message: "Use a for loop instead of forEach to iterate."
+    severity: warning
