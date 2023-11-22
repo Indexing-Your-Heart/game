@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 #
 #  export_mas.sh
 #  Indexing Your Heart
@@ -31,12 +31,12 @@ provisionprofile=$1
 entitlements=$2
 
 unzip .dist/IndexingYourHeart-MAS.zip -d .dist/
-cp $1 ".dist/Indexing Your Heart.app/Contents/embedded.provisionprofile"
+cp provisionprofile ".dist/Indexing Your Heart.app/Contents/embedded.provisionprofile"
 codesign -s "Apple Distribution" -f --timestamp \
 	".dist/Indexing Your Heart.app/Contents/Frameworks/SwiftGodotCore.framework"
 codesign -s "Apple Distribution" -f --timestamp \
 	.dist/Indexing\ Your\ Heart.app/Contents/Frameworks/lib*.dylib
 codesign -s "Apple Distribution" -f --timestamp -o runtime \
-	--entitlements $2 ".dist/Indexing Your Heart.app"
-productbuild --sign "3rd Party Mac Developer Installer: Marquis Kurt (FQQXSP79X3)" \
+	--entitlements entitlements ".dist/Indexing Your Heart.app"
+productbuild --sign "3rd Party Mac Developer Installer" \
 	--component ".dist/Indexing Your Heart.app" /Applications .dist/IndexingYourHeart.pkg
