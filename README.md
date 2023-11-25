@@ -118,6 +118,10 @@ the game, replace the following files with the corresponding family variants:
   Regular
 - **Serif (Bold)** (`Shounin/resources/gui/salmon/s_serif_bold.ttf`): Salmon
   Serif 9 Bold
+- **Typewriter** (`Shounin/resources/gui/salmon/s_typewriter_regular.ttf`): Salmon
+  Typewriter 9 Regular
+- **Typewriter (Bold)** (`Shounin/resources/gui/salmon/s_typewriter_regular.ttf`):
+  Salmon Typewriter 9 Bold
 
 If you have not purchased the font and would like to do so, you can find the
 font on Phildjii's page on Itch.io at https://phildjii.itch.io/salmon-family.

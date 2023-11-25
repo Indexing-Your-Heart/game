@@ -272,7 +272,7 @@ public class JensonTimeline: Control {
 
     private func setupButton(_ newButton: Button, with choiceName: String) {
         guard let menu else { return }
-        newButton.text = choiceName
+        newButton.text = choiceName.uppercased()
         newButton.visible = true
         _ = try? newButton.pressed.connect { [weak self] in
             self?.menu?.visible = false

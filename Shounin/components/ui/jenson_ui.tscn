@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://d3xhnxqyltvn6"]
+[gd_scene load_steps=11 format=3 uid="uid://d3xhnxqyltvn6"]
 
 [ext_resource type="Theme" uid="uid://dbup2qc6kea2t" path="res://resources/gui/theme.tres" id="2_m83yl"]
-[ext_resource type="FontFile" uid="uid://denodl601fl1p" path="res://resources/gui/salmon/s_serif_bold.ttf" id="4_8t5am"]
-[ext_resource type="FontFile" uid="uid://cimxh7xd43ehl" path="res://resources/gui/salmon/s_sans_regular.ttf" id="5_17auv"]
+[ext_resource type="FontVariation" uid="uid://6wx5exwfyd5f" path="res://resources/gui/typewriter_bold_font.tres" id="3_ern7x"]
+[ext_resource type="FontVariation" uid="uid://dstlje76bbo1t" path="res://resources/gui/typewriter_regular_font.tres" id="3_h3uwv"]
 
 [sub_resource type="Animation" id="Animation_iwom0"]
 length = 0.001
@@ -398,14 +398,22 @@ _data = {
 "start_timeline": SubResource("Animation_3ybv0")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ubefd"]
+bg_color = Color(0.192157, 0.160784, 0.184314, 0.847059)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [sub_resource type="LabelSettings" id="LabelSettings_4q5km"]
-font = ExtResource("4_8t5am")
+font = ExtResource("3_ern7x")
 font_size = 36
-font_color = Color(0.0588235, 0.635294, 0.509804, 1)
+font_color = Color(0.513726, 0.737255, 0.980392, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_1608h"]
-font = ExtResource("5_17auv")
+font = ExtResource("3_h3uwv")
 font_size = 27
+font_color = Color(0.760784, 0.709804, 0.682353, 1)
 
 [node name="JensonTimeline" type="JensonTimeline"]
 anchors_preset = 15
@@ -480,21 +488,23 @@ grow_vertical = 2
 alignment = 1
 
 [node name="Template Button" type="Button" parent="Choice Menu"]
-visible = false
+custom_minimum_size = Vector2(2.08165e-12, 56)
 layout_mode = 2
 theme = ExtResource("2_m83yl")
+theme_override_colors/font_color = Color(0.760784, 0.709804, 0.682353, 1)
+theme_override_fonts/font = ExtResource("3_h3uwv")
 theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_ubefd")
 text = "Template Button"
 
 [node name="Dialogue Tape" type="ColorRect" parent="."]
-layout_mode = 0
-anchor_top = 0.666
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.604
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -0.400008
-grow_horizontal = 2
-grow_vertical = 0
-color = Color(0, 0, 0, 1)
+offset_top = 0.399971
+color = Color(0.2, 0.160784, 0.184314, 0.980392)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Dialogue Tape"]
 layout_mode = 1
@@ -512,6 +522,7 @@ grow_vertical = 2
 layout_mode = 2
 text = "John Smith"
 label_settings = SubResource("LabelSettings_4q5km")
+uppercase = true
 
 [node name="What Label" type="Label" parent="Dialogue Tape/VBoxContainer"]
 layout_mode = 2
