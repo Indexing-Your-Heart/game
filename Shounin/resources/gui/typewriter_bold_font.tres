@@ -1,0 +1,10 @@
+[gd_resource type="FontVariation" load_steps=3 format=3 uid="uid://6wx5exwfyd5f"]
+
+[ext_resource type="FontFile" uid="uid://calmq42k0ui6e" path="res://resources/gui/salmon/s_typewriter_bold.ttf" id="1_i0xg8"]
+
+[sub_resource type="SystemFont" id="SystemFont_rylu2"]
+font_weight = 700
+
+[resource]
+base_font = ExtResource("1_i0xg8")
+fallbacks = Array[Font]([SubResource("SystemFont_rylu2")])
