@@ -20,7 +20,7 @@ if test x$2 = x; then
    exit 1
 fi
 
-rm -rf .dist/*.app .dist/*.pkg ||:
+rm -rf .dist/*.app .dist/*.pkg .dist/.DS_Store ||:
 
 if [ ! -f .dist/IndexingYourHeart-MAS.zip ]; then
 	echo "Indexing Your Heart Mac App Store product not built. Aborting."
@@ -31,12 +31,12 @@ provisionprofile=$1
 entitlements=$2
 
 unzip .dist/IndexingYourHeart-MAS.zip -d .dist/
-cp provisionprofile ".dist/Indexing Your Heart.app/Contents/embedded.provisionprofile"
+cp "$provisionprofile" ".dist/Indexing Your Heart.app/Contents/embedded.provisionprofile"
 codesign -s "Apple Distribution" -f --timestamp \
 	".dist/Indexing Your Heart.app/Contents/Frameworks/SwiftGodotCore.framework"
 codesign -s "Apple Distribution" -f --timestamp \
 	.dist/Indexing\ Your\ Heart.app/Contents/Frameworks/lib*.dylib
 codesign -s "Apple Distribution" -f --timestamp -o runtime \
-	--entitlements entitlements ".dist/Indexing Your Heart.app"
+	--entitlements "$entitlements" ".dist/Indexing Your Heart.app"
 productbuild --sign "3rd Party Mac Developer Installer" \
 	--component ".dist/Indexing Your Heart.app" /Applications .dist/IndexingYourHeart.pkg
