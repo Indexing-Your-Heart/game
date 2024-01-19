@@ -1,0 +1,19 @@
+{
+  "editor.default_syntax" : "swift",
+  "index.use_scm_ignored_files" : false,
+  "spm-tasks.shared-package-cache" : ".mcache",
+  "spm-tasks.shared-package-config" : "debug",
+  "spm-tasks.shared-package-scratch" : ".mbuild",
+  "todo.workspace-ignore-names" : [
+
+  ],
+  "todo.workspace-ignore-paths" : [
+    ".mbuild",
+    ".mxcbuild",
+    "\/Users\/marquis\/Developer\/IndexingYourHeart\/Shounin\/addons",
+    "SwiftGodot"
+  ],
+  "workspace.art_style" : 0,
+  "workspace.color" : 14,
+  "workspace.name" : "Indexing Your Heart"
+}

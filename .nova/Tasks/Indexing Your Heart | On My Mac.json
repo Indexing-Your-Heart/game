@@ -1,0 +1,25 @@
+{
+  "actions" : {
+    "build" : {
+      "enabled" : true,
+      "preActions" : [
+        {
+          "name" : "SwiftLint",
+          "script" : "#!\/bin\/sh\nif [[ \"$(uname -m)\" == arm64 ]]; then\n\texport PATH=\"\/opt\/homebrew\/bin:$PATH\"\nfi\n\nif which swiftlint > \/dev\/null; then\n  swiftlint --config .swiftlint.yml || true\nelse\n  echo \"warning: SwiftLint not installed, download from https:\/\/github.com\/realm\/SwiftLint\"\nfi",
+          "type" : "runScript"
+        }
+      ],
+      "script" : "#!\/bin\/zsh\njust build-extensions-ci"
+    },
+    "clean" : {
+      "enabled" : true,
+      "script" : "just clean"
+    },
+    "run" : {
+      "enabled" : true,
+      "script" : "#!\/bin\/zsh\n\njust dry-run"
+    }
+  },
+  "buildBeforeRunning" : true,
+  "openLogOnRun" : "fail"
+}

@@ -1,0 +1,13 @@
+{
+  "actions" : {
+    "build" : {
+      "enabled" : true,
+      "script" : "#!\/bin\/zsh\njust build-extensions-ci"
+    },
+    "run" : {
+      "enabled" : true,
+      "script" : "#!\/bin\/zsh\njust test-extensions\njust test-game"
+    }
+  },
+  "openLogOnRun" : "finish"
+}

@@ -1,0 +1,18 @@
+{
+  "clips" : [
+    {
+      "content" : "\/\/\n\/\/  $FILENAME\n\/\/  Indexing Your Heart\n\/\/\n\/\/  Created by Marquis Kurt on $DATE.\n\/\/\n\/\/  This file is part of Indexing Your Heart.\n\/\/\n\/\/  Indexing Your Heart is non-violent software: you can use, redistribute, and\/or modify it under the terms of the\n\/\/  CNPLv7+ as found in the LICENSE file in the source code root directory or at\n\/\/  <https:\/\/git.pixie.town\/thufie\/npl-builder>.\n\/\/\n\/\/  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for\n\/\/  details.\n",
+      "name" : "Copyright Header",
+      "scope" : "editor",
+      "syntax" : "swift",
+      "trigger" : "chead"
+    },
+    {
+      "content" : "@NativeHandleDiscarding\nclass ${:NodeName}: ${:NodeType} {\n\trequired init() {\n\t\tSelf.initializeClass()\n\t\tsuper.init()\n\t}\n}\n\nextension ${:NodeName} {\n\tstatic func initializeClass() {\n\t\tlet className = StringName(\"\\(${:NodeName}.self)\")\n\t\tlet classInfo = ClassInfo<${:NodeName}>(name: className)\n\t}\n}",
+      "name" : "Godot Node",
+      "scope" : "editor",
+      "syntax" : "swift",
+      "trigger" : "gnode"
+    }
+  ]
+}

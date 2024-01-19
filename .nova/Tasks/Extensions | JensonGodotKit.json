@@ -1,0 +1,22 @@
+{
+  "actions" : {
+    "build" : {
+      "postActions" : [
+        {
+          "script" : "#!\/bin\/sh\ncp .mbuild\/release\/libJensonGodotKit.dylib Shounin\/bin\/mac\/",
+          "type" : "runScript"
+        }
+      ]
+    }
+  },
+  "extension" : {
+    "identifier" : "net.marquiskurt.spm-tasks",
+    "name" : "Swift Tasks"
+  },
+  "extensionTemplate" : "swiftBuild",
+  "extensionValues" : {
+    "package-config" : "release",
+    "package-path" : "JensonGodotKit",
+    "use-shared-settings" : false
+  }
+}

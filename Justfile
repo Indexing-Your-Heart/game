@@ -34,7 +34,7 @@ exec_date := `date "+%d-%m-%Y.%H-%M-%S"`
 
 # Build a specified set of extensions.
 build-extension LIB_FLAGS +EXTENSIONS: (fetch-remote-deps)
-	./build-libs.sh {{LIB_FLAGS}} {{EXTENSIONS}}
+	scripts/build-libs.sh {{LIB_FLAGS}} {{EXTENSIONS}}
 
 # Builds all the game's extensions for macOS and iOS.
 build-extensions:
@@ -96,12 +96,12 @@ copy-extension-dependencies:
 			cp -af $framework "Shounin/bin/ios/"
 		done
 	else
-		echo "Frameworks are not built, or building failed. Aborting."
+		echo "[iOS]: Frameworks are not built, or building failed. Skipping."
 	fi
 
 # Creates a distribution package for the Mac App Store or TestFlight.
 distribute-mac-app-store PROVISION ENTITLEMENTS:
-	./export_mas.sh {{PROVISION}} {{ENTITLEMENTS}}
+	scripts/export_mas.sh {{PROVISION}} {{ENTITLEMENTS}}
 	open .dist
 
 # Fetches the marteau toolchain
