@@ -7,6 +7,11 @@ meets a mysterious obelisk creature with an existential crisis. Learn the
 [ʔaʃaʃat] language with cleverly crafted puzzles and understand the mysteries of
 the obelisk.
 
+> **Important**  
+> This branch contains pre-release changes as the project is migrated to the
+> .NET framework. Not all parts of the game may work correctly, and some
+> additional work may need to be done to ensure successful compilation.
+
 > **Warning**  
 > This project is a work in progress. Game mechanics, lore, and other parts of
 > the game are still a work in progress and may not be representative of the
