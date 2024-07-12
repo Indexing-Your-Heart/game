@@ -1,7 +1,0 @@
-[configuration]
-entry_symbol = "jensoneditorextension_entry_point"
-compatibility_minimum = "4.1"
-
-[libraries]
-macos.debug = "res://addons/jenson_editor/libJensonEditor.dylib"
-macos.release = "res://addons/jenson_editor/libJensonEditor.dylib"

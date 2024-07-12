@@ -14,7 +14,7 @@ config/name="Indexing Your Heart"
 config/description="A Witness-like puzzle game with story elements for Mac, iPhone, and iPad."
 config/tags=PackedStringArray("development", "swift")
 run/main_scene="res://components/world.tscn"
-config/features=PackedStringArray("4.1", "Mobile")
+config/features=PackedStringArray("4.2", "C#", "Mobile")
 config/icon="res://icon.png"
 config/macos_native_icon="res://icon.icns"
 
@@ -36,9 +36,13 @@ window/handheld/orientation.ios=4
 window/stretch/aspect.mobile="expand"
 window/stretch/aspect.debug="expand"
 
+[dotnet]
+
+project/assembly_name="Indexing Your Heart"
+
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/jenson_editor/plugin.cfg")
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")
 
 [filesystem]
 
