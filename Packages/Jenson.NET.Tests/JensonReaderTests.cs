@@ -59,5 +59,51 @@ namespace Jenson.NET.Tests
             Assert.Equal("Hello World", document.story.title);
             Assert.Equal(["Marquis Kurt", "John Smith"], document.story.authors);
         }
+
+        [Fact]
+        public void Test_Parse_FullStory()
+        {
+            JensonReader reader = new("""
+            jenson {
+                story {
+                    name "Hello World"
+                    authors "Marquis Kurt" "John Smith"
+                    chapter 1 name="Nocens Mulier"
+                    copyright "(C) 2024 Marquis Kurt and friends."
+                }
+
+                timeline {}
+            }
+            """);
+            JensonDocument document = reader.Parse();
+            Assert.NotNull(document);
+            Assert.Equal("Hello World", document.story.title);
+            Assert.Equal(["Marquis Kurt", "John Smith"], document.story.authors);
+            Assert.Equal(1, document.story.chapter?.chapterNumber);
+            Assert.Equal("Nocens Mulier", document.story.chapter?.title);
+        }
+
+        [Fact]
+        public void Test_Parse_FullStory_MissingChapterNumber()
+        {
+            JensonReader reader = new("""
+            jenson {
+                story {
+                    name "Hello World"
+                    authors "Marquis Kurt" "John Smith"
+                    chapter name="Nocens Mulier"
+                    copyright "(C) 2024 Marquis Kurt and friends."
+                }
+
+                timeline {}
+            }
+            """);
+            JensonDocument document = reader.Parse();
+            Assert.NotNull(document);
+            Assert.Equal("Hello World", document.story.title);
+            Assert.Equal(["Marquis Kurt", "John Smith"], document.story.authors);
+            Assert.Equal(0, document.story.chapter?.chapterNumber);
+            Assert.Equal("Nocens Mulier", document.story.chapter?.title);
+        }
     }
 }

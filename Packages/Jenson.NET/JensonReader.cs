@@ -66,7 +66,25 @@ namespace Jenson.NET
                 where author.GetType() == typeof(KdlString)
                 select author.ToRawKdlString();
 
-            return new Story(name, authorsQuery.ToArray(), null, null);
+            var chapterNode = storyNode.GetKdlNodeByIdentifier("chapter");
+            StoryChapter? chapter = null;
+            if (chapterNode != null)
+            {
+                chapter = ParseChapterFromNode(chapterNode);
+            }
+
+            return new Story(name, authorsQuery.ToArray(), chapter, null);
+        }
+
+        private static StoryChapter ParseChapterFromNode(KdlNode node)
+        {
+            string chapterTitle = node.Properties["name"].ToRawKdlString() ?? "Untitled Chapter";
+            int chapterNumber = 0;
+
+            int chapterNumberValue;
+            if (node.Arguments.Any() && int.TryParse(node.Arguments[0].ToRawKdlString(), out chapterNumberValue) == true)
+                chapterNumber = chapterNumberValue;
+            return new StoryChapter(chapterNumber, chapterTitle);
         }
     }
 }
