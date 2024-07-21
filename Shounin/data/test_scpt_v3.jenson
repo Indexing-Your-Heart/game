@@ -9,5 +9,17 @@ jenson {
         narration "I am narrating the current story."
         dialogue who="Amy" "Who are you talking to?"
         dialogue who="Me" "Uh, no one..."
+
+        question "Please select an option" {
+            choice "Foo" {
+                narration "I selected foo."
+            }
+
+            choice "Bar" {
+                narration "I chose bar."
+            }
+        }
+
+        narration "Bye."
     }
 }

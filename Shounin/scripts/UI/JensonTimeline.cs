@@ -47,7 +47,7 @@ namespace IndexingYourHeart.UI
         [Export(PropertyHint.File, "*.jenson")]
         public string Script = "";
 
-        private Dictionary<string, IJensonEvent> choices = new();
+        private Dictionary<string, List<IJensonEvent>> choices = new();
         private Button choiceTemplate;
         private IJensonEvent currentEvent;
         private JensonReader reader;
@@ -200,6 +200,28 @@ namespace IndexingYourHeart.UI
             }
         }
 
+        private void SetupButton(Button button, string choiceName)
+        {
+            button.Text = choiceName.ToUpper();
+            button.Visible = true;
+            button.Pressed += delegate
+            {
+                menu.Visible = false;
+                if (!choices.ContainsKey(choiceName))
+                    return;
+                var events = choices[choiceName];
+                var mergedTimeline = events;
+                foreach (var timelineEvent in timeline)
+                {
+                    mergedTimeline.Add(timelineEvent);
+                }
+                timeline = mergedTimeline;
+                Next();
+            };
+
+            menu.AddChild(button);
+        }
+
         private void SetupWithCurrentEvent()
         {
             animator.Stop();
@@ -209,10 +231,16 @@ namespace IndexingYourHeart.UI
                     SetupNarration();
                     break;
                 case JensonEventType.Dialogue:
-                    SetupDialogue();
+                    SetupDialogueWithCurrentEvent();
                     break;
                 case JensonEventType.Refresh:
                     RefreshSceneWithCurrentEvent();
+                    break;
+                case JensonEventType.Question:
+                    QuestionEvent question = (QuestionEvent)currentEvent;
+                    DialogueEvent questionDialogue = new DialogueEvent(question.Who, question.What);
+                    SetupDialogue(questionDialogue);
+                    SetupQuestion();
                     break;
                 default:
                     GD.PushWarning($"Unknown event type: {currentEvent.EventType}. Skipping.");
@@ -221,7 +249,15 @@ namespace IndexingYourHeart.UI
             }
         }
 
-        private void SetupDialogue()
+        private void SetupDialogue(DialogueEvent dialogue)
+        {
+            whoLabel.Text = dialogue.Who;
+            whatLabel.Text = dialogue.What;
+            SkipImageModulation();
+            animator.Play("speech", (double)dialogue.What.Length / 4);
+        }
+
+        private void SetupDialogueWithCurrentEvent()
         {
             DialogueEvent dialogue = (DialogueEvent)currentEvent;
             whoLabel.Text = dialogue.Who;
@@ -237,6 +273,29 @@ namespace IndexingYourHeart.UI
             whoLabel.Text = "";
             SkipImageModulation();
             animator.Play("speech", (double)narration.What.Length / 4);
+        }
+
+        private void SetupQuestion()
+        {
+            QuestionEvent question = (QuestionEvent)currentEvent;
+            choices.Clear();
+            foreach (var choice in question.Choices)
+            {
+                choices[choice.What] = choice.Events.ToList();
+            }
+
+            foreach (var child in menu.GetChildren().Where((child) => child != choiceTemplate))
+            {
+                menu.RemoveChild(child);
+            }
+
+            foreach (var choiceName in question.Choices.Select((choice) => choice.What))
+            {
+                Button newButton = (Button)choiceTemplate.Duplicate();
+                SetupButton(newButton, choiceName);
+            }
+
+            menu.Visible = true;
         }
 
         private void SkipAnimation()

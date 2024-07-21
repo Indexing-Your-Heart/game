@@ -105,7 +105,11 @@ namespace Jenson.NET
                         continue;
                     case "question":
                         string questionContent = child.Arguments.First().ToRawKdlString();
-                        string questionWho = child.Properties["who"].ToRawKdlString() ?? "";
+                        string questionWho = "";
+                        if (child.Properties.ContainsKey("who"))
+                        {
+                            questionWho = child.Properties["who"].ToRawKdlString();
+                        }
 
                         if (child.Children == null)
                             continue;
