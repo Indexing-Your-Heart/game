@@ -5,6 +5,7 @@ jenson {
     }
 
     timeline {
+        refresh "Remains" kind="image" priority=-1
         narration "I am narrating the current story."
         dialogue who="Amy" "Who are you talking to?"
         dialogue who="Me" "Uh, no one..."
