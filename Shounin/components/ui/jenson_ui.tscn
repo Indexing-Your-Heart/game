@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://d3xhnxqyltvn6"]
+[gd_scene load_steps=12 format=3 uid="uid://d3xhnxqyltvn6"]
 
+[ext_resource type="Script" path="res://scripts/UI/JensonTimeline.cs" id="1_8tixa"]
 [ext_resource type="Theme" uid="uid://dbup2qc6kea2t" path="res://resources/gui/theme.tres" id="2_m83yl"]
 [ext_resource type="FontVariation" uid="uid://6wx5exwfyd5f" path="res://resources/gui/typewriter_bold_font.tres" id="3_ern7x"]
 [ext_resource type="FontVariation" uid="uid://dstlje76bbo1t" path="res://resources/gui/typewriter_regular_font.tres" id="3_h3uwv"]
@@ -415,12 +416,14 @@ font = ExtResource("3_h3uwv")
 font_size = 27
 font_color = Color(0.760784, 0.709804, 0.682353, 1)
 
-[node name="JensonTimeline" type="JensonTimeline"]
+[node name="JensonTimeline" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_8tixa")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -430,7 +433,8 @@ libraries = {
 [node name="Background" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
 texture_filter = 4
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -440,7 +444,8 @@ stretch_mode = 6
 
 [node name="Single Speaker" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.25
 anchor_right = 0.75
 anchor_bottom = 1.0
@@ -477,7 +482,8 @@ stretch_mode = 5
 
 [node name="Choice Menu" type="VBoxContainer" parent="."]
 visible = false
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.219
 anchor_right = 0.781
 anchor_bottom = 1.0
@@ -525,6 +531,7 @@ label_settings = SubResource("LabelSettings_4q5km")
 uppercase = true
 
 [node name="What Label" type="Label" parent="Dialogue Tape/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 text = "Through many births, I have wandered on and on, searching for, but never finding, the builder of this house."
 label_settings = SubResource("LabelSettings_1608h")

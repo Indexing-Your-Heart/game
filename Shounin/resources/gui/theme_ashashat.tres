@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=5 format=3 uid="uid://b2ym80ujimgm6"]
 
-[ext_resource type="FontFile" uid="uid://u077pytrgt12" path="res://resources/gui/ashashat_fnt.ttf" id="1_cx61m"]
+[ext_resource type="FontFile" uid="uid://covkibsgnc860" path="res://resources/gui/ashashat_fnt.ttf" id="1_cx61m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rof10"]
 bg_color = Color(0.811765, 0.796078, 0.721569, 1)

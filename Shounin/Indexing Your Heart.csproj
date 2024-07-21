@@ -4,4 +4,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>IndexingYourHeart</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Packages\Jenson.NET\Jenson.NET.csproj" />
+  </ItemGroup>
 </Project>

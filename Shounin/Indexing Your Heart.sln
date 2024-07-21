@@ -1,0 +1,19 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Indexing Your Heart", "Indexing Your Heart.csproj", "{CDABC136-B4C9-443F-AD7F-E261457B1796}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CDABC136-B4C9-443F-AD7F-E261457B1796}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDABC136-B4C9-443F-AD7F-E261457B1796}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDABC136-B4C9-443F-AD7F-E261457B1796}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{CDABC136-B4C9-443F-AD7F-E261457B1796}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{CDABC136-B4C9-443F-AD7F-E261457B1796}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{CDABC136-B4C9-443F-AD7F-E261457B1796}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+EndGlobal

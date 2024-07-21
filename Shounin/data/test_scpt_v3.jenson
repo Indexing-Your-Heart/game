@@ -1,0 +1,12 @@
+jenson {
+    story {
+        name "Indexing Your Heart"
+        authors "Marquis Kurt"
+    }
+
+    timeline {
+        narration "I am narrating the current story."
+        dialogue who="Amy" "Who are you talking to?"
+        dialogue who="Me" "Uh, no one..."
+    }
+}
