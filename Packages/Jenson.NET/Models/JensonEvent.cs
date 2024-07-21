@@ -15,12 +15,6 @@
 //  details.
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Jenson.NET.Models
 {
     public enum JensonEventType
@@ -35,5 +29,15 @@ namespace Jenson.NET.Models
     public interface IJensonEvent
     {
         public JensonEventType EventType { get; }
+    }
+
+    public record DialogueEvent(string who, string what): IJensonEvent
+    {
+        public JensonEventType EventType => JensonEventType.Dialogue;
+    }
+
+    public record NarrationEvent(string what) : IJensonEvent
+    {
+        public JensonEventType EventType => JensonEventType.Narration;
     }
 }

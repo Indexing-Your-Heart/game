@@ -17,6 +17,7 @@
 
 using Kadlet;
 using Jenson.NET.Models;
+using System.Collections;
 
 namespace Jenson.NET
 {
@@ -36,7 +37,7 @@ namespace Jenson.NET
         {
             if (string.IsNullOrEmpty(_sourceContents))
                 throw new JensonReaderException(JensonReaderException.EmptyMessage);
-            
+
             KdlReader reader = new KdlReader();
             KdlDocument document = reader.Parse(_sourceContents);
 
@@ -60,7 +61,40 @@ namespace Jenson.NET
             KdlNode storyNode = jensonNode.GetKdlNodeByIdentifier("story")!;
             Story storyMetadata = ParseStoryFromNode(storyNode);
 
-            return new JensonDocument(storyMetadata, []);
+            KdlNode timeline = jensonNode.GetKdlNodeByIdentifier("timeline")!;
+            IJensonEvent[] jensonEvents = ParseTimelineFromNode(timeline);
+
+            return new JensonDocument(storyMetadata, jensonEvents);
+        }
+
+        private static IJensonEvent[] ParseTimelineFromNode(KdlNode timeline)
+        {
+            List<IJensonEvent> jensonEvents = [];
+            if (timeline.Children == null)
+                return [];
+
+            foreach (KdlNode child in timeline.Children.Nodes)
+            {
+                switch (child.Identifier)
+                {
+                    case "dialogue":
+                        string speaker = child.Properties["who"].ToRawKdlString();
+                        string dialogueContent = child.Arguments.First().ToRawKdlString();
+
+                        DialogueEvent dialogue = new(speaker, dialogueContent);
+                        jensonEvents.Add(dialogue);
+                        continue;
+                    case "narration":
+                        string narrationContent = child.Arguments.First().ToRawKdlString();
+                        NarrationEvent narration = new(narrationContent);
+                        jensonEvents.Add(narration);
+                        continue;
+                    default:
+                        break;
+                }
+            }
+
+            return jensonEvents.ToArray();
         }
 
         private static bool GuardChildrenExist(KdlNode node, string[] childrenIdentifiers)

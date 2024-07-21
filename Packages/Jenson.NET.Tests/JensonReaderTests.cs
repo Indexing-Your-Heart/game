@@ -111,10 +111,17 @@ namespace Jenson.NET.Tests
             var firstEvent = document.timeline[0];
             Assert.NotNull(firstEvent);
             Assert.Equal(JensonEventType.Dialogue, firstEvent.EventType);
+            DialogueEvent dialogue = (DialogueEvent)firstEvent;
+            Assert.NotNull(dialogue);
+            Assert.Equal("Renate", dialogue.who);
+            Assert.Equal("Hold me...", dialogue.what);
 
             var lastEvent = document.timeline[1];
             Assert.NotNull(lastEvent);
             Assert.Equal(JensonEventType.Narration, lastEvent.EventType);
+            NarrationEvent narration = (NarrationEvent)lastEvent;
+            Assert.NotNull(narration);
+            Assert.Equal("The woman fumbles around in the dark.", narration.what);
         }
 
         [Fact]
