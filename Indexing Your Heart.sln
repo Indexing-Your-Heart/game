@@ -5,9 +5,14 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Indexing Your Heart", "Shounin\Indexing Your Heart.csproj", "{6E062E22-3EE5-481A-AF0A-B0F6B17DA028}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jenson.NET", "Packages\Jenson.NET\Jenson.NET.csproj", "{13B1672B-7C3A-4785-9B48-0C6F8001119C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jenson.NET", "Packages\Jenson.NET\Jenson.NET.csproj", "{13B1672B-7C3A-4785-9B48-0C6F8001119C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jenson.NET.Tests", "Packages\Jenson.NET.Tests\Jenson.NET.Tests.csproj", "{1F28C022-9D9F-424D-88F3-3E2722F5382C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jenson.NET.Tests", "Packages\Jenson.NET.Tests\Jenson.NET.Tests.csproj", "{1F28C022-9D9F-424D-88F3-3E2722F5382C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{840FBB32-5123-465D-83D1-386C53277F28}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

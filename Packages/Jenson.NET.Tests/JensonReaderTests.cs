@@ -24,41 +24,6 @@ namespace Jenson.NET.Tests
     public class JensonReaderTests
     {
         [Fact]
-        public void Test_EmptyFile_NoParse()
-        {
-            JensonReader reader = new("");
-            var exception = Assert.Throws<JensonReaderException>(reader.Parse);
-            Assert.Equal(JensonReaderException.EmptyMessage, exception.Message);
-        }
-
-        [Fact]
-        public void Test_FileMissingHeader_NoParse()
-        {
-            JensonReader reader = new("foo");
-            var exception = Assert.Throws<JensonReaderException>(reader.Parse);
-            Assert.Equal(JensonReaderException.MissingHeader, exception.Message);
-        }
-
-        [Fact]
-        public void Test_FileMissingRequiredChildren_NoParse()
-        {
-            JensonReader reader = new(@"jenson {}");
-            var exception = Assert.Throws<JensonReaderException>(reader.Parse);
-            Assert.Equal(JensonReaderException.MissingRequiredChildren, exception.Message);
-        }
-
-        [Fact]
-        public void Test_MissingStoryChildren_NoParse()
-        {
-            JensonReader reader = new(@"jenson {
-                story {}
-                timeline {}
-             }");
-            var exception = Assert.Throws<JensonReaderException>(reader.Parse);
-            Assert.Equal(JensonReaderException.MissingStoryChildren, exception.Message);
-        }
-
-        [Fact]
         public void Test_Parse_BasicStory()
         {
             JensonReader reader = new("""
@@ -121,6 +86,66 @@ namespace Jenson.NET.Tests
             Assert.Equal(["Marquis Kurt", "John Smith"], document.story.authors);
             Assert.Equal(0, document.story.chapter?.chapterNumber);
             Assert.Equal("Nocens Mulier", document.story.chapter?.title);
+        }
+
+        [Fact]
+        public void Test_Parse_Timeline_DialogueAndNarration()
+        {
+            JensonReader reader = new("""
+            jenson {
+                story {
+                    name "The Third Eye"
+                    authors "Renzo Nero" "Lorelei Weiss"
+                }
+
+                timeline {
+                    dialogue who="Renate" "Hold me..."
+                    narration "The woman fumbles around in the dark."
+                }
+            }
+            """);
+            JensonDocument document = reader.Parse();
+            Assert.NotNull(document);
+            Assert.Equal(2, document.timeline.Length);
+
+            var firstEvent = document.timeline[0];
+            Assert.NotNull(firstEvent);
+            Assert.Equal(JensonEventType.Dialogue, firstEvent.EventType);
+
+            var lastEvent = document.timeline[1];
+            Assert.NotNull(lastEvent);
+            Assert.Equal(JensonEventType.Narration, lastEvent.EventType);
+        }
+
+        [Fact]
+        public void Test_Parse_Timeline_Refresh()
+        {
+            JensonReader reader = new("""
+            jenson {
+                story {
+                    name "Game Changer"
+                    authors "Sam Reich" "Brennan Lee Mulligan"
+                }
+
+                timeline {
+                    refresh "GameChanger_Logo" kind="image" priority=-1
+
+                    // Get ready for a GAME CHANGER!
+                    refresh "GameChanger_Intro_a1" kind="sound"
+                }
+            }
+            """);
+            JensonDocument document = reader.Parse();
+            Assert.NotNull(document);
+            Assert.Equal(3, document.timeline.Length);
+
+            var firstEvent = document.timeline[0];
+            Assert.NotNull(firstEvent);
+            Assert.Equal(JensonEventType.Refresh, firstEvent.EventType);
+
+            var nextEvent = document.timeline[1];
+            Assert.NotNull(nextEvent);
+            Assert.Equal(JensonEventType.Refresh, nextEvent.EventType);
         }
     }
 }

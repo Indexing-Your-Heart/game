@@ -1,9 +1,9 @@
 ﻿#region Copyright
 //
-//  JensonModels.cs
+//  JensonEvent.cs
 //  Indexing Your Heart
 //
-//  Created by Marquis Kurt on 14/7/2024.
+//  Created by Marquis Kurt on 21/7/2024.
 //
 //  This file is part of Indexing Your Heart.
 //
@@ -15,10 +15,25 @@
 //  details.
 #endregion
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace Jenson.NET.Models
 {
-    public record StoryChapter(int chapterNumber, string title);
-    public record Story(string title, string[] authors, StoryChapter? chapter, string? copyright);
+    public enum JensonEventType
+    {
+        Narration,
+        Dialogue,
+        Refresh,
+        Question,
+        Choice
+    }
 
-    public record JensonDocument(Story story, IJensonEvent[] timeline);
+    public interface IJensonEvent
+    {
+        public JensonEventType EventType { get; }
+    }
 }
