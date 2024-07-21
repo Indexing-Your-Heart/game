@@ -132,6 +132,7 @@ namespace Jenson.NET.Tests
 
                     // Get ready for a GAME CHANGER!
                     refresh "GameChanger_Intro_a1" kind="sound"
+                    dialogue who="Sam" "Get ready for a GAME CHANGER!"
                 }
             }
             """);
@@ -146,6 +147,33 @@ namespace Jenson.NET.Tests
             var nextEvent = document.timeline[1];
             Assert.NotNull(nextEvent);
             Assert.Equal(JensonEventType.Refresh, nextEvent.EventType);
+        }
+
+        [Fact]
+        void Test_Parse_Timeline_QuestionAndChoice()
+        {
+            JensonReader reader = new("""
+            jenson {
+                story {
+                    name "A Whole New World"
+                    authors "Marquis Kurt"
+                }
+
+                timeline {
+                    question who="Amy" "No, really, who's there?" {
+                        choice "Me!" {  }
+                        choice "A ghost..." {  }
+                    }
+                }
+            }
+            """);
+            JensonDocument document = reader.Parse();
+            Assert.NotNull(document);
+            Assert.Single(document.timeline);
+
+            var firstEvent = document.timeline[0];
+            Assert.NotNull(firstEvent);
+            Assert.Equal(JensonEventType.Question, firstEvent.EventType);
         }
     }
 }
