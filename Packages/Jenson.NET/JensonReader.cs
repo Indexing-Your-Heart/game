@@ -103,6 +103,25 @@ namespace Jenson.NET
                         RefreshEvent refreshEvent = new(contentToRefresh, refreshKind, priority);
                         jensonEvents.Add(refreshEvent);
                         continue;
+                    case "question":
+                        string questionContent = child.Arguments.First().ToRawKdlString();
+                        string questionWho = child.Properties["who"].ToRawKdlString() ?? "";
+
+                        if (child.Children == null)
+                            continue;
+
+                        List<ChoiceEvent> choices = [];
+                        foreach (KdlNode choiceChild in child.Children.Nodes.Where((node) => node.Identifier == "choice"))
+                        {
+                            string choiceText = choiceChild.Arguments.First().ToRawKdlString();
+                            IJensonEvent[] childEvents = ParseTimelineFromNode(choiceChild);
+                            ChoiceEvent choiceEvent = new(choiceText, childEvents);
+                            choices.Add(choiceEvent);
+                        }
+
+                        QuestionEvent questionEvent = new(questionContent, choices.ToArray(), questionWho);
+                        jensonEvents.Add(questionEvent);
+                        continue;
                     default:
                         break;
                 }

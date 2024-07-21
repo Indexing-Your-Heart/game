@@ -113,15 +113,15 @@ namespace Jenson.NET.Tests
             Assert.Equal(JensonEventType.Dialogue, firstEvent.EventType);
             DialogueEvent dialogue = (DialogueEvent)firstEvent;
             Assert.NotNull(dialogue);
-            Assert.Equal("Renate", dialogue.who);
-            Assert.Equal("Hold me...", dialogue.what);
+            Assert.Equal("Renate", dialogue.Who);
+            Assert.Equal("Hold me...", dialogue.What);
 
             var lastEvent = document.timeline[1];
             Assert.NotNull(lastEvent);
             Assert.Equal(JensonEventType.Narration, lastEvent.EventType);
             NarrationEvent narration = (NarrationEvent)lastEvent;
             Assert.NotNull(narration);
-            Assert.Equal("The woman fumbles around in the dark.", narration.what);
+            Assert.Equal("The woman fumbles around in the dark.", narration.What);
         }
 
         [Fact]
@@ -153,9 +153,9 @@ namespace Jenson.NET.Tests
 
             RefreshEvent imageRefreshEvent = (RefreshEvent)firstEvent;
             Assert.NotNull(imageRefreshEvent);
-            Assert.Equal("GameChanger_Logo", imageRefreshEvent.what);
-            Assert.Equal("image", imageRefreshEvent.kind);
-            Assert.Equal(-1, imageRefreshEvent.priority);
+            Assert.Equal("GameChanger_Logo", imageRefreshEvent.What);
+            Assert.Equal("image", imageRefreshEvent.Kind);
+            Assert.Equal(-1, imageRefreshEvent.Priority);
 
             var nextEvent = document.timeline[1];
             Assert.NotNull(nextEvent);
@@ -163,9 +163,9 @@ namespace Jenson.NET.Tests
 
             RefreshEvent soundRefreshEvent = (RefreshEvent)nextEvent;
             Assert.NotNull(soundRefreshEvent);
-            Assert.Equal("GameChanger_Intro_a1", soundRefreshEvent.what);
-            Assert.Equal("sound", soundRefreshEvent.kind);
-            Assert.Equal(0, soundRefreshEvent.priority);
+            Assert.Equal("GameChanger_Intro_a1", soundRefreshEvent.What);
+            Assert.Equal("sound", soundRefreshEvent.Kind);
+            Assert.Equal(0, soundRefreshEvent.Priority);
         }
 
         [Fact]
@@ -193,6 +193,15 @@ namespace Jenson.NET.Tests
             var firstEvent = document.timeline[0];
             Assert.NotNull(firstEvent);
             Assert.Equal(JensonEventType.Question, firstEvent.EventType);
+
+            QuestionEvent questionEvent = (QuestionEvent)firstEvent;
+            Assert.NotNull(questionEvent);
+            Assert.Equal("Amy", questionEvent.Who);
+            Assert.Equal("No, really, who's there?", questionEvent.What);
+            Assert.Equal(2, questionEvent.Choices.Length);
+
+            string[] choiceNames = ["Me!", "A ghost..."];
+            Assert.Equal(choiceNames, questionEvent.Choices.Select((choiceEvent) => choiceEvent.What));
         }
     }
 }

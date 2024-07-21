@@ -31,18 +31,28 @@ namespace Jenson.NET.Models
         public JensonEventType EventType { get; }
     }
 
-    public record DialogueEvent(string who, string what): IJensonEvent
+    public record DialogueEvent(string Who, string What): IJensonEvent
     {
         public JensonEventType EventType => JensonEventType.Dialogue;
     }
 
-    public record NarrationEvent(string what) : IJensonEvent
+    public record NarrationEvent(string What) : IJensonEvent
     {
         public JensonEventType EventType => JensonEventType.Narration;
     }
 
-    public record RefreshEvent(string what, string kind, int priority = 0) : IJensonEvent
+    public record RefreshEvent(string What, string Kind, int Priority = 0) : IJensonEvent
     {
         public JensonEventType EventType => JensonEventType.Refresh;
+    }
+
+    public record QuestionEvent(string What, ChoiceEvent[] Choices, string Who=""): IJensonEvent
+    {
+        public JensonEventType EventType => JensonEventType.Question;
+    }
+
+    public record ChoiceEvent(string What, IJensonEvent[] Events): IJensonEvent
+    {
+        public JensonEventType EventType => JensonEventType.Choice;
     }
 }
