@@ -89,6 +89,20 @@ namespace Jenson.NET
                         NarrationEvent narration = new(narrationContent);
                         jensonEvents.Add(narration);
                         continue;
+                    case "refresh":
+                        string refreshKind = child.Properties["kind"].ToRawKdlString();
+                        int priority = 0;
+
+                        int priorityOut;
+                        if (child.Properties.ContainsKey("priority") && int.TryParse(child.Properties["priority"].ToRawKdlString(), out priorityOut))
+                        {
+                            priority = priorityOut;
+                        }
+
+                        string contentToRefresh = child.Arguments.First().ToRawKdlString();
+                        RefreshEvent refreshEvent = new(contentToRefresh, refreshKind, priority);
+                        jensonEvents.Add(refreshEvent);
+                        continue;
                     default:
                         break;
                 }

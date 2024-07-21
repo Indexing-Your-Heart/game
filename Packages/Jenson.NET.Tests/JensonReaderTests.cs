@@ -151,9 +151,21 @@ namespace Jenson.NET.Tests
             Assert.NotNull(firstEvent);
             Assert.Equal(JensonEventType.Refresh, firstEvent.EventType);
 
+            RefreshEvent imageRefreshEvent = (RefreshEvent)firstEvent;
+            Assert.NotNull(imageRefreshEvent);
+            Assert.Equal("GameChanger_Logo", imageRefreshEvent.what);
+            Assert.Equal("image", imageRefreshEvent.kind);
+            Assert.Equal(-1, imageRefreshEvent.priority);
+
             var nextEvent = document.timeline[1];
             Assert.NotNull(nextEvent);
             Assert.Equal(JensonEventType.Refresh, nextEvent.EventType);
+
+            RefreshEvent soundRefreshEvent = (RefreshEvent)nextEvent;
+            Assert.NotNull(soundRefreshEvent);
+            Assert.Equal("GameChanger_Intro_a1", soundRefreshEvent.what);
+            Assert.Equal("sound", soundRefreshEvent.kind);
+            Assert.Equal(0, soundRefreshEvent.priority);
         }
 
         [Fact]

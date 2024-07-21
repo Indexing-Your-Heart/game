@@ -40,4 +40,9 @@ namespace Jenson.NET.Models
     {
         public JensonEventType EventType => JensonEventType.Narration;
     }
+
+    public record RefreshEvent(string what, string kind, int priority = 0) : IJensonEvent
+    {
+        public JensonEventType EventType => JensonEventType.Refresh;
+    }
 }
