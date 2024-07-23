@@ -28,7 +28,9 @@ namespace IndexingYourHeart.Tests
         [TestCase]
         public void JensonTimelineInitialState()
         {
-
+            var timeline = AutoFree(new JensonTimeline());
+            AssertObject(timeline).IsNotNull();
+            AssertThat(timeline.CurrentTimelineState).IsEqual(JensonTimeline.TimelineState.Initial);
         }
 
         [TestCase]
