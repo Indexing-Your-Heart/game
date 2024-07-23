@@ -43,11 +43,15 @@ project/solution_directory="../"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/gdUnit4/plugin.cfg")
 
 [filesystem]
 
 import/blender/enabled=false
+
+[gdunit4]
+
+settings/test/test_lookup_folder="scripts"
 
 [gui]
 

@@ -18,23 +18,50 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using IndexingYourHeart.Utils;
 using Jenson.NET;
 using Jenson.NET.Models;
 
 namespace IndexingYourHeart.UI
 {
+    /// <summary>
+    /// A node that can display a Jenson script for dialogue or other story-based elements.
+    /// </summary>
     public partial class JensonTimeline : Control
     {
-        private enum TimelineState
+        /// <summary>
+        ///  A representation of the various states the current timeline can be in.
+        /// </summary>
+        public enum TimelineState
         {
+            /// <summary>
+            /// The initial state, where the node has been created, but the script hasn't been loaded yet.
+            /// </summary>
             Initial,
+
+            /// <summary>
+            /// The script has been loaded, but the timeline hasn't started execution yet.
+            /// </summary>
             Loaded,
+
+            /// <summary>
+            /// The script has been loaded and the timeline has started execution. This state is typically also used to
+            /// indicate that the starting animation is playing, and any interactions should be ignored.
+            /// </summary>
             Started,
+
+            /// <summary>
+            /// The script has been loaded and the timeline is actively playing events.
+            /// </summary>
             Playing,
+
+            /// <summary>
+            /// The timeline has finished execution, and there are no more timeline events to read.
+            /// </summary>
             Ended
         }
 
-        private enum ImageRefreshPriorityLayer
+        public enum ImageRefreshPriorityLayer
         {
             Background = -1,
             SpeakerSingle = 0,
@@ -44,15 +71,23 @@ namespace IndexingYourHeart.UI
 
         private static TimelineState[] UnsafeRefreshStates => [TimelineState.Initial, TimelineState.Loaded, TimelineState.Ended];
 
+        /// <summary>
+        /// The path to the timeline script to load. Ideally set in the editor, but can be manually instantiated.
+        /// </summary>
         [Export(PropertyHint.File, "*.jenson")]
         public string Script = "";
+
+        /// <summary>
+        /// The current state of the timeline.
+        /// </summary>
+        public TimelineState CurrentTimelineState => _timelineState;
 
         private Dictionary<string, List<IJensonEvent>> choices = new();
         private Button choiceTemplate;
         private IJensonEvent currentEvent;
         private JensonReader reader;
         private List<IJensonEvent> timeline;
-        private TimelineState timelineState = TimelineState.Initial;
+        private TimelineState _timelineState = TimelineState.Initial;
 
         #region Children Nodes
         private AnimationPlayer animator;
@@ -65,7 +100,6 @@ namespace IndexingYourHeart.UI
         private Label whatLabel;
         #endregion
 
-        // Called when the node enters the scene tree for the first time.
         public override void _Ready()
         {
             animator = GetNode<AnimationPlayer>("AnimationPlayer");
@@ -85,21 +119,22 @@ namespace IndexingYourHeart.UI
             whoLabel.Text = "";
             whatLabel.Text = "";
 
+            // Listen for when the animation finishes rather than using a dispatch queue.
             animator.AnimationFinished += delegate
             {
-                if (timelineState == TimelineState.Started)
+                if (_timelineState == TimelineState.Started)
                 {
-                    timelineState = TimelineState.Playing;
+                    _timelineState = TimelineState.Playing;
                     Next();
                 }
             };
 
-            CreateReaderFromScript();
+            LoadScript();
 
             if (timeline.First().EventType == JensonEventType.Refresh)
                 Next();
 
-            timelineState = TimelineState.Started;
+            _timelineState = TimelineState.Started;
             animator.Play("start_timeline");
         }
 
@@ -112,17 +147,20 @@ namespace IndexingYourHeart.UI
                 HandleNextEvent();
         }
 
-        private void CreateReaderFromScript()
+        /// <summary>
+        /// Loads the current script into the timeline node.
+        /// </summary>
+        public void LoadScript()
         {
             using var file = FileAccess.Open(Script, FileAccess.ModeFlags.Read);
             reader = new JensonReader(file.GetAsText());
             timeline = reader.Parse().timeline.ToList();
-            timelineState = TimelineState.Loaded;
+            _timelineState = TimelineState.Loaded;
         }
 
         private void HandleNextEvent()
         {
-            if (animator == null || menu.Visible || timelineState == TimelineState.Started)
+            if (animator == null || menu.Visible || _timelineState == TimelineState.Started)
                 return;
             if (animator.IsPlaying() && animator.CurrentAnimation != "start_timeline")
             {
@@ -136,19 +174,23 @@ namespace IndexingYourHeart.UI
         {
             if (timeline.Count == 0)
             {
-                if (timelineState != TimelineState.Ended)
-                {
-                    timelineState = TimelineState.Ended;
-                    GD.Print("Timeline has finished.");
-                    EmitSignal(SignalName.TimelineFinished);
-                    return;
-                }
-                GD.PushWarning("Attempted to move to an empty slot.");
+                HandleEmptyTimeline();
                 return;
             }
-            currentEvent = timeline[0];
-            timeline.RemoveAt(0);
+            currentEvent = timeline.RemoveFirst();
             SetupWithCurrentEvent();
+        }
+
+        private void HandleEmptyTimeline()
+        {
+            if (_timelineState != TimelineState.Ended)
+            {
+                _timelineState = TimelineState.Ended;
+                GD.Print("Timeline has finished.");
+                EmitSignal(SignalName.TimelineFinished);
+                return;
+            }
+            GD.PushWarning("Attempted to move to an empty slot.");
         }
 
         private void RefreshSceneWithCurrentEvent()
@@ -163,7 +205,7 @@ namespace IndexingYourHeart.UI
                     GD.PushWarning($"Unsupported refresh kind: {refreshEvent.Kind}. This trigger will be skipped.");
                     break;
             }
-            if (UnsafeRefreshStates.Contains(timelineState))
+            if (UnsafeRefreshStates.Contains(_timelineState))
                 return;
             Next();
         }

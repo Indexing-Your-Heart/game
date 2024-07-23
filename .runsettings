@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+	<RunConfiguration>
+		<EnvironmentVariables>
+			<GODOT_BIN>C:\Users\marqu\AppData\Local\Godot\Versions\Godot_v4.2.2-stable_mono_win64\Godot_v4.2.2-stable_mono_win64.exe</GODOT_BIN>
+		</EnvironmentVariables>
+	</RunConfiguration>
+</RunSettings>
