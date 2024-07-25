@@ -156,6 +156,7 @@ namespace IndexingYourHeart.UI
             reader = new JensonReader(file.GetAsText());
             timeline = reader.Parse().timeline.ToList();
             _timelineState = TimelineState.Loaded;
+            EmitSignal(SignalName.TimelineLoaded);
         }
 
         private void HandleNextEvent()

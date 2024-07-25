@@ -20,26 +20,26 @@ using GdUnit4;
 using static GdUnit4.Assertions;
 using IndexingYourHeart.UI;
 
-namespace IndexingYourHeart.Tests
+namespace IndexingYourHeart.Tests.Unit
 {
     [TestSuite]
-    public class JensonTimelineTests
+    public class JensonTimeline_UnitTests
     {
         [TestCase]
-        public void JensonTimelineInitialState()
+        public void Test_JensonTimelineInitialState()
         {
             var timeline = AutoFree(new JensonTimeline());
             AssertObject(timeline).IsNotNull();
-            AssertThat(timeline.CurrentTimelineState).IsEqual(JensonTimeline.TimelineState.Initial);
+            AssertThat(timeline!.CurrentTimelineState).IsEqual(JensonTimeline.TimelineState.Initial);
         }
 
         [TestCase]
-        public void JensonTimelineLoads()
+        public void Test_JensonTimelineLoads()
         {
             var timeline = AutoFree(new JensonTimeline());
             AssertObject(timeline).IsNotNull();
-            timeline.Script = "res://data/test_scpt_v3.jenson";
-            timeline.LoadScript();
+            timeline!.Script = "res://data/test_scpt_v3.jenson";
+            timeline!.LoadScript();
 
             AssertThat(timeline.CurrentTimelineState).IsEqual(JensonTimeline.TimelineState.Loaded);
         }
