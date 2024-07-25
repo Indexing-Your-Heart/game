@@ -140,11 +140,11 @@ namespace IndexingYourHeart.UI
 
         public override void _Input(InputEvent @event)
         {
-            base._Input(@event);
             if (!Visible)
                 return;
             if (Input.IsActionPressed("timeline_next") || Input.IsMouseButtonPressed(MouseButton.Left))
                 HandleNextEvent();
+            base._Input(@event);
         }
 
         /// <summary>
@@ -307,6 +307,7 @@ namespace IndexingYourHeart.UI
             whatLabel.Text = dialogue.What;
             SkipImageModulation();
             animator.Play("speech", (double)dialogue.What.Length / 4);
+            EmitSignal(SignalName.TimelineDialogueFired, whoLabel.Text, whatLabel.Text);
         }
 
         private void SetupNarration()
@@ -316,6 +317,7 @@ namespace IndexingYourHeart.UI
             whoLabel.Text = "";
             SkipImageModulation();
             animator.Play("speech", (double)narration.What.Length / 4);
+            EmitSignal(SignalName.TimelineDialogueFired, "<#narration#>", whatLabel.Text);
         }
 
         private void SetupQuestion()
@@ -360,6 +362,9 @@ namespace IndexingYourHeart.UI
 
         [Signal]
         public delegate void TimelineLoadedEventHandler();
+
+        [Signal]
+        public delegate void TimelineDialogueFiredEventHandler(string Who, string What);
 
         [Signal]
         public delegate void TimelineFinishedEventHandler();

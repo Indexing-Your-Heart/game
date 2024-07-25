@@ -22,19 +22,16 @@ namespace IndexingYourHeart.Tests.Backing
 {
     public partial class JensonTimeline_IntegrationTestNode : CanvasLayer
     {
-        public JensonTimeline Timeline;
+        private JensonTimeline Timeline;
+        private string[] dialogue;
 
         public override void _Ready()
         {
             Timeline = GetNode<JensonTimeline>("JensonTimeline");
-            Timeline.TimelineLoaded += delegate
+            Timeline.TimelineDialogueFired += (Who, What) =>
             {
-                EmitSignal(SignalName.JensonTimeline_Loaded_);
-            };
-
-            Timeline.TimelineFinished += delegate
-            {
-                GetTree().Quit();
+                GD.Print("Wow!");
+                dialogue = [Who, What];
             };
         }
 
@@ -43,7 +40,9 @@ namespace IndexingYourHeart.Tests.Backing
             return Timeline.CurrentTimelineState;
         }
 
-        [Signal]
-        public delegate void JensonTimeline_Loaded_EventHandler();
+        public string[] GetTimelineDialogue()
+        {
+            return dialogue;
+        }
     }
 }
