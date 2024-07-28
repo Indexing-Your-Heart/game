@@ -229,7 +229,7 @@ namespace IndexingYourHeart.UI
                 case (int)ImageRefreshPriorityLayer.SpeakerLeft:
                     string speakerLeftPath = $"res://resources/characters/{refreshEvent.What}.png";
                     Texture2D speakerLeftTexture = GD.Load<Texture2D>(speakerLeftPath);
-                    speakerSingle.Texture = speakerLeftTexture;
+                    speakerLeft.Texture = speakerLeftTexture;
                     speakerLeft.FlipH = true;
                     break;
                 case (int)ImageRefreshPriorityLayer.SpeakerRight:

@@ -12,4 +12,4 @@ grow_vertical = 2
 
 [node name="JensonTimeline" parent="." instance=ExtResource("1_gn541")]
 layout_mode = 1
-Script = "res://data/test_scpt_v3.jenson"
+Script = "res://data/preamble_v3.jenson"
