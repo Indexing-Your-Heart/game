@@ -1,12 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://djkfs5yk2c2fq"]
 
-[ext_resource type="Script" path="res://tests/backing/environment_testcase.gd" id="1_njuhd"]
+[ext_resource type="Script" path="res://scripts/Tests/Backing/AnthroPlayer_IntegrationTestNode.cs" id="1_uylhu"]
 [ext_resource type="PackedScene" uid="uid://bhdu82yikkqf3" path="res://components/atoms/player.tscn" id="3_loj12"]
 [ext_resource type="TileSet" uid="uid://cguee8ucqpwh1" path="res://resources/tilesets/all_tiles.tres" id="3_mc0ej"]
 
 [node name="Environment" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_njuhd")
+script = ExtResource("1_uylhu")
 
 [node name="Player" parent="." instance=ExtResource("3_loj12")]
 z_index = 1

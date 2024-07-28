@@ -1,23 +1,23 @@
 ﻿#region Copyright
-// //
-// //  AnthroPlayer.cs
-// //  Indexing Your Heart
-// //
-// //  Created by Marquis Kurt on 28/07/2024.
-// //
-// //  This file is part of Indexing Your Heart.
-// //
-// //  Indexing Your Heart is non-violent software: you can use, redistribute, and/or modify it under the terms of the
-// //  CNPLv7+ as found in the LICENSE file in the source code root directory or at
-// //  <https://git.pixie.town/thufie/npl-builder>.
-// //
-// //  Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
-// //  details.
+//
+// AnthroPlayer.cs
+// Indexing Your Heart
+// 
+// Created by Marquis Kurt on 28/07/2024.
+//
+// This file is part of Indexing Your Heart.
+//
+// Indexing Your Heart is non-violent software: you can use, redistribute, and/or modify it under the terms of the
+// CNPLv7+ as found in the LICENSE file in the source code root directory or at
+// <https://git.pixie.town/thufie/npl-builder>.
+//
+// Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
+// details.
 #endregion
 
 using Godot;
 
-namespace IndexingYourHeart.scripts.Entities;
+namespace IndexingYourHeart.Entities;
 
 [Tool]
 public partial class AnthroPlayer : CharacterBody2D
@@ -43,10 +43,12 @@ public partial class AnthroPlayer : CharacterBody2D
         set
         {
             _character = value;
-            ChangeSprites();
+            if (!Engine.IsEditorHint())
+                ChangeSprites();
         }
     }
 
+    [ExportCategory("Physics")]
     [Export] public int Acceleration = 250;
     [Export] public int Friction = 100;
     [Export] public int Speed = 200;
