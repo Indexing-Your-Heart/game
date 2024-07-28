@@ -35,7 +35,6 @@ public partial class AnthroPlayer : CharacterBody2D
         Navigating
     }
 
-    // TODO: Make this an export category.
     [Export]
     public Character CurrentCharacter
     {
