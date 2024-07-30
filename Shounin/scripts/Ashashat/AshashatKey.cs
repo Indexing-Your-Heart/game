@@ -54,11 +54,11 @@ public static class AshashatKeyExtensions
         AshashatKey.L => "l",
         AshashatKey.Sh => "ʃ",
         AshashatKey.Glottal => "ʔ",
+        AshashatKey.EjectiveK => "k'",
         
         // Special keys
         AshashatKey.Repeater => ":",
         AshashatKey.Duplicant => "!",
-        AshashatKey.EjectiveK => "k'",
         
         // Keys with no values
         _ => ""
