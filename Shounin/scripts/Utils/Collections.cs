@@ -17,15 +17,20 @@
 
 using System.Collections.Generic;
 
-namespace IndexingYourHeart.Utils
+namespace IndexingYourHeart.Utils;
+
+public static class CollectionUtils
 {
-    public static class CollectionUtils
+    /// <summary>
+    /// Retrieves the first item in the list after removing it from the array.
+    /// </summary>
+    /// <param name="list">The list to remove the first item from.</param>
+    /// <typeparam name="T">The type of the list's elements.</typeparam>
+    /// <returns>The first item in the list, or null if the list is empty.</returns>
+    public static T RemoveFirst<T>(this List<T> list)
     {
-       public static T RemoveFirst<T>(this List<T> list)
-        {
-            var firstItem = list[0];
-            list.RemoveAt(0);
-            return firstItem;
-        }
+        T firstItem = list[0];
+        list.RemoveAt(0);
+        return firstItem;
     }
 }
