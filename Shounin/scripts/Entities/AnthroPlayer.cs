@@ -19,22 +19,46 @@ using Godot;
 
 namespace IndexingYourHeart.Entities;
 
+/// <summary>
+/// A character node that the player controls and interacts with.
+/// </summary>
 [Tool]
 public partial class AnthroPlayer : CharacterBody2D
 {
-    public enum Character : int
+    /// <summary>
+    /// A representation of the different characters the player can be.
+    /// </summary>
+    public enum Character
     {
         Chelsea,
         Obel
     }
 
+    /// <summary>
+    /// The player's current movement state.
+    /// </summary>
     public enum PlayerState
     {
+        /// <summary>
+        /// The player is idle and not actively moving.
+        /// </summary>
         Idle,
+        
+        /// <summary>
+        /// The player is currently walking around with manual controls. Used for the desktop versions of the game, or
+        /// versions of a game with manual control mechanisms such as keyboard and mouse, controller, etc.
+        /// </summary>
         Walking,
+        
+        /// <summary>
+        /// The player is currently walking toward a target automatically. Used for the mobile versions of the game.
+        /// </summary>
         Navigating
     }
-
+    
+    /// <summary>
+    /// The player's current character model.
+    /// </summary>
     [Export]
     public Character CurrentCharacter
     {
@@ -46,11 +70,24 @@ public partial class AnthroPlayer : CharacterBody2D
                 ChangeSprites();
         }
     }
-
+    
+    #region Physics
+    /// <summary>
+    /// The rate at which the player will accelerate.
+    /// </summary>
     [ExportCategory("Physics")]
     [Export] public int Acceleration = 250;
+    
+    /// <summary>
+    /// The rate at which the player will encounter friction.
+    /// </summary>
     [Export] public int Friction = 100;
+    
+    /// <summary>
+    /// The rate at which the player moves.
+    /// </summary>
     [Export] public int Speed = 200;
+    #endregion
 
     #region Children
 
