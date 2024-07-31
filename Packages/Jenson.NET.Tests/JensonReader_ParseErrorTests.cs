@@ -28,7 +28,7 @@ namespace Jenson.NET.Tests
         {
             JensonReader reader = new("");
             var exception = Assert.Throws<JensonReaderException>(reader.Parse);
-            Assert.Equal(JensonReaderException.EmptyMessage, exception.Message);
+            Assert.Equal(JensonReaderException.KnownCase.EmptyOrNull.Description(), exception.Message);
         }
 
         [Fact]
@@ -36,7 +36,7 @@ namespace Jenson.NET.Tests
         {
             JensonReader reader = new("foo");
             var exception = Assert.Throws<JensonReaderException>(reader.Parse);
-            Assert.Equal(JensonReaderException.MissingHeader, exception.Message);
+            Assert.Equal(JensonReaderException.KnownCase.MissingHeader.Description(), exception.Message);
         }
 
         [Fact]
@@ -44,7 +44,7 @@ namespace Jenson.NET.Tests
         {
             JensonReader reader = new(@"jenson {}");
             var exception = Assert.Throws<JensonReaderException>(reader.Parse);
-            Assert.Equal(JensonReaderException.MissingRequiredChildren, exception.Message);
+            Assert.Equal(JensonReaderException.KnownCase.MissingRequiredChildren.Description(), exception.Message);
         }
 
         [Fact]
@@ -55,7 +55,7 @@ namespace Jenson.NET.Tests
                 timeline {}
              }");
             var exception = Assert.Throws<JensonReaderException>(reader.Parse);
-            Assert.Equal(JensonReaderException.MissingStoryChildren, exception.Message);
+            Assert.Equal(JensonReaderException.KnownCase.MissingStoryChildren.Description(), exception.Message);
         }
     }
 }

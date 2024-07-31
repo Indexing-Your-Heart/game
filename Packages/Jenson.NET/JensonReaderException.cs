@@ -15,14 +15,53 @@
 //  details.
 #endregion
 
+using Jenson.NET;
+
+/// <summary>
+/// An exception thrown by the <see cref="Jenson.NET.JensonReader"/> class when an error occurs during reading a
+/// Jenson document.
+/// </summary>
 [Serializable]
 public class JensonReaderException : Exception
 {
-    public const string EmptyMessage = "File is empty or null.";
-    public const string MissingHeader = "File has no Jenson header.";
-    public const string MissingRequiredChildren = "File is missing required children: timeline, story.";
-    public const string MissingStoryChildren = "The story block is missing its required children: name, authors.";
-    public const string KdlReaderError = "The KDL document parser encountered an error.";
+    /// <summary>
+    /// An enumeration representing the known cases of exceptions that the reader can throw.
+    /// </summary>
+    public enum KnownCase
+    {
+        /// <summary>
+        /// The file is either empty or null.
+        /// </summary>
+        EmptyOrNull,
+        
+        /// <summary>
+        /// The file is missing the <c>jenson</c> header.
+        /// </summary>
+        MissingHeader,
+        
+        /// <summary>
+        /// The file is missing one or more of its required children: <c>story</c>, <c>timeline</c>.
+        /// </summary>
+        MissingRequiredChildren,
+        
+        /// <summary>
+        /// The <c>story</c> block in the file is missing one or more of its required children: <c>name</c>,
+        /// <c>authors</c>.
+        /// </summary>
+        MissingStoryChildren,
+        
+        /// <summary>
+        /// The internal KDL parser encountered an error preventing the completion of parsing.
+        /// </summary>
+        /// <seealso cref="Kadlet.KdlException"/>
+        KdlReaderError
+    }
+
+    /// <summary>
+    /// Creates a Jenson reader exception, using a known exception case.
+    /// </summary>
+    /// <param name="knownCase">The known exception case to throw.</param>
+    public JensonReaderException(KnownCase knownCase) : base(message: knownCase.Description()) { }
 
     public JensonReaderException() { }
     public JensonReaderException(string message) : base(message) { }

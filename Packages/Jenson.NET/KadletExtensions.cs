@@ -21,18 +21,29 @@ namespace Jenson.NET
 {
     public static class KadletExtensions
     {
+        /// <summary>
+        /// Gets the raw string of the current value.
+        /// </summary>
+        /// <param name="value">The value to get the raw string of.</param>
+        /// <returns>
+        /// Returns the raw string of the current value. For string values, the string is returned without quotation
+        /// marks. Other types will return their normal values.
+        /// </returns>
         public static string ToRawKdlString(this KdlValue value)
         {
-            if (value.GetType() != typeof(KdlString))
-                return value.ToKdlString();
-            return value.ToKdlString().Replace("\"", String.Empty);
+            return value.GetType() != typeof(KdlString) ? value.ToKdlString() : value.ToKdlString().Replace("\"", string.Empty);
         }
 
+        /// <summary>
+        /// Retrieves a child KDL node by its identifier.
+        /// </summary>
+        /// <param name="node">The node to search its children for the specified node.</param>
+        /// <param name="identifier">The identifier of the node to retrieve.</param>
+        /// <returns>The first node whose identifier matches the query, or null if no nodes are found.</returns>
         public static KdlNode? GetKdlNodeByIdentifier(this KdlNode node, string identifier)
         {
-            return node.Children?.Nodes
-                .Where(node => node.Identifier == identifier)
-                .FirstOrDefault();
+            return (node.Children?.Nodes)
+                .FirstOrDefault(node => node.Identifier == identifier);
         }
     }
 }
