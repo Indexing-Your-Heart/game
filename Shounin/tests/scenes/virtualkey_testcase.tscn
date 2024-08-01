@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1mrpmg08sabd"]
+
+[ext_resource type="Script" path="res://scripts/Tests/Backing/VirtualKeyContainer_UnitTestNode.cs" id="1_53xgf"]
+[ext_resource type="PackedScene" uid="uid://68a3v71i7a5p" path="res://components/atoms/virtualkey.tscn" id="1_g1l5n"]
+
+[node name="Virtual Key Container" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_next = NodePath("Key")
+script = ExtResource("1_53xgf")
+
+[node name="Key" parent="." instance=ExtResource("1_g1l5n")]
+clip_contents = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+Key = 0
