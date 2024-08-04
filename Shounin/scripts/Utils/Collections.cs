@@ -33,4 +33,11 @@ public static class CollectionUtils
         list.RemoveAt(0);
         return firstItem;
     }
+
+    public static T RemoveLast<T>(this List<T> list)
+    {
+        T lastItem = list[^1];
+        list.RemoveAt(list.Count - 1);
+        return lastItem;
+    }
 }

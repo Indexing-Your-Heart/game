@@ -14,6 +14,8 @@
 // details.
 #endregion
 
+using System;
+
 namespace IndexingYourHeart.Ashashat;
 
 public enum AshashatKey
@@ -22,6 +24,37 @@ public enum AshashatKey
     P, B, T, K, N, S, L,
     EjectiveK, Sh, Glottal,
     Repeater, Duplicant, Return, Delete
+}
+
+public static class AshashatKeyUtils
+{
+    public static AshashatKey KeyFromKeyCode(string keyCode) => keyCode switch
+    {
+        "ashashat_key_a" => AshashatKey.A,
+        "ashashat_key_e" => AshashatKey.E,
+        "ashashat_key_i" => AshashatKey.I,
+        "ashashat_key_u" => AshashatKey.U,
+        
+        "ashashat_key_b" => AshashatKey.B,
+        "ashashat_key_p" => AshashatKey.P,
+        "ashashat_key_t" => AshashatKey.T,
+        "ashashat_key_k" => AshashatKey.K,
+        "ashashat_key_n" => AshashatKey.N,
+        "ashashat_key_s" => AshashatKey.S,
+        "ashashat_key_l" => AshashatKey.L,
+        
+        "ashashat_key_k'" => AshashatKey.EjectiveK,
+        "ashashat_key_ʃ" => AshashatKey.Sh,
+        "ashashat_key_ʔ" => AshashatKey.Glottal,
+        
+        "ashashat_key_:" => AshashatKey.Repeater,
+        "ashashat_key_!" => AshashatKey.Duplicant,
+        
+        "ashashat_key_delete" => AshashatKey.Delete,
+        "ashashat_key_return" => AshashatKey.Return,
+        
+        _ => throw new ArgumentException("Key code not recognized.")
+    };
 }
 
 public static class AshashatKeyExtensions
@@ -89,5 +122,10 @@ public static class AshashatKeyExtensions
     /// </remarks>
     /// <param name="key">The key to get the key code of.</param>
     /// <returns>The key's registered key code.</returns>
-    public static string KeyCode(this AshashatKey key) => $"ashashat_key_{KeyValue(key)}";
+    public static string KeyCode(this AshashatKey key) => key switch
+    {
+        AshashatKey.Delete => "ashashat_key_delete",
+        AshashatKey.Return => "ashashat_key_return",
+        _ => $"ashashat_key_{KeyValue(key)}"
+    };
 }

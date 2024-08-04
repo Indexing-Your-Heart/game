@@ -29,12 +29,6 @@ public partial class AshashatKeyboard : VBoxContainer
 
 		Node specialsRow = GetNode("Specials Row");
 		AttachKeyListenerToChildren(specialsRow);
-
-		KeyPressed += (KeyCode) =>
-		{
-			GD.Print($"Key {KeyCode} was pressed!");
-		};
-
 	}
 
 	private void AttachKeyListenerToChildren(Node parent)
