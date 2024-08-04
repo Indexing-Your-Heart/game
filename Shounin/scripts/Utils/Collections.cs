@@ -34,6 +34,12 @@ public static class CollectionUtils
         return firstItem;
     }
 
+    /// <summary>
+    /// Retrieves the last item in the list after removing it from the array.
+    /// </summary>
+    /// <param name="list">The list to remove the last item from.</param>
+    /// <typeparam name="T">The type of the list's elements.</typeparam>
+    /// <returns>The last item in the list, or null if the list is empty.</returns>
     public static T RemoveLast<T>(this List<T> list)
     {
         T lastItem = list[^1];
