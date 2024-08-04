@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://68a3v71i7a5p"]
+[gd_scene load_steps=10 format=3 uid="uid://68a3v71i7a5p"]
 
 [ext_resource type="Script" path="res://scripts/Ashashat/VirtualAshashatKey.cs" id="1_lngkc"]
 [ext_resource type="Theme" uid="uid://b2ym80ujimgm6" path="res://resources/gui/theme_ashashat.tres" id="1_whuf2"]
@@ -6,25 +6,31 @@
 [ext_resource type="Texture2D" uid="uid://dfj6aet8t5jwu" path="res://resources/gui/keyboard/Delete_Focus.png" id="3_ukui4"]
 [ext_resource type="Texture2D" uid="uid://donic1e105wwb" path="res://resources/gui/keyboard/Delete_Press.png" id="4_o6qym"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k3dqa"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ulqvq"]
 texture = ExtResource("2_hu5pc")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wvcmo"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8bq2f"]
 texture = ExtResource("3_ukui4")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5d3vv"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wlsfj"]
 texture = ExtResource("4_o6qym")
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bqqku"]
+texture = ExtResource("3_ukui4")
+
 [node name="Virtual Ashashat Key" type="Button"]
+custom_minimum_size = Vector2(160, 112)
 anchors_preset = -1
 anchor_right = 0.1
 anchor_bottom = 0.124444
+offset_right = 160.0
+offset_bottom = 112.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_whuf2")
-theme_override_styles/normal = SubResource("StyleBoxTexture_k3dqa")
-theme_override_styles/hover = SubResource("StyleBoxTexture_wvcmo")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_5d3vv")
-theme_override_styles/focus = SubResource("StyleBoxTexture_wvcmo")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ulqvq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_8bq2f")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wlsfj")
+theme_override_styles/focus = SubResource("StyleBoxTexture_bqqku")
 script = ExtResource("1_lngkc")
 metadata/_edit_use_anchors_ = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=3 uid="uid://ecxx1b6ggwda"]
+[gd_scene load_steps=130 format=3 uid="uid://ecxx1b6ggwda"]
 
 [ext_resource type="Theme" uid="uid://b2ym80ujimgm6" path="res://resources/gui/theme_ashashat.tres" id="1_dvw02"]
 [ext_resource type="Script" path="res://scripts/Ashashat/AshashatKeyboard.cs" id="2_3he8j"]
@@ -58,167 +58,221 @@
 [ext_resource type="Texture2D" uid="uid://donic1e105wwb" path="res://resources/gui/keyboard/Delete_Press.png" id="53_0o7wi"]
 [ext_resource type="Texture2D" uid="uid://c7g2vdsrhauo" path="res://resources/gui/keyboard/Return_Press.png" id="53_scl4b"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7gb0a"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2lp35"]
 texture = ExtResource("14_u3poq")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e4432"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n8frt"]
 texture = ExtResource("15_dp5xb")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_14ipk"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lshmo"]
 texture = ExtResource("16_phn0h")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jw6bh"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_56rd7"]
+texture = ExtResource("15_dp5xb")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gu11u"]
 texture = ExtResource("17_2mdfy")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a1hsi"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fodyw"]
 texture = ExtResource("18_5axr4")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4dd4t"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6s85j"]
 texture = ExtResource("19_7a7du")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ygkdo"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m38hb"]
+texture = ExtResource("18_5axr4")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vmmec"]
 texture = ExtResource("20_lu3i7")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eee6v"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pyjmh"]
 texture = ExtResource("21_mt635")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5wgry"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2kyu0"]
 texture = ExtResource("22_vxepk")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eflv7"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u64lo"]
+texture = ExtResource("21_mt635")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4jhqv"]
 texture = ExtResource("23_f7hyf")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xk7dd"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_klrfu"]
 texture = ExtResource("24_jx3ni")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8nvuo"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_755jq"]
 texture = ExtResource("25_nxbog")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3bh4w"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dkffr"]
+texture = ExtResource("24_jx3ni")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_781h5"]
 texture = ExtResource("26_282u3")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_678mf"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oecb6"]
 texture = ExtResource("27_n0dyy")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p3fpx"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_37ep0"]
 texture = ExtResource("28_o8mua")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yqi7t"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uxhml"]
+texture = ExtResource("27_n0dyy")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fh81n"]
 texture = ExtResource("2_eksae")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cu72a"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kb3xv"]
 texture = ExtResource("3_c2y0h")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8qxrq"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qmcdm"]
 texture = ExtResource("4_gd236")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pjpo3"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kurrn"]
+texture = ExtResource("3_c2y0h")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_370g7"]
 texture = ExtResource("5_1mp4f")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qss2y"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3dym1"]
 texture = ExtResource("6_2xto7")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ncxki"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xlks8"]
 texture = ExtResource("7_7kk7m")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kcc3o"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_juuhc"]
+texture = ExtResource("6_2xto7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hs7lw"]
 texture = ExtResource("14_v8mfw")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jbacj"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ftcga"]
 texture = ExtResource("15_7t05o")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8hjs4"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rvus0"]
 texture = ExtResource("16_f5126")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j68v2"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b1wd5"]
+texture = ExtResource("15_7t05o")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0nf0o"]
 texture = ExtResource("17_vt8et")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8fglg"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wcsrc"]
 texture = ExtResource("18_6op4w")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4qbtj"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xhhcq"]
 texture = ExtResource("19_p7vtw")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1e1hq"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uc2xk"]
+texture = ExtResource("18_6op4w")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1q486"]
 texture = ExtResource("23_n7vdh")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tw0tp"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v7emh"]
 texture = ExtResource("24_sbiok")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kork2"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4fhnd"]
 texture = ExtResource("25_oyc58")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6fte4"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6mq37"]
+texture = ExtResource("24_sbiok")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ywaw7"]
 texture = ExtResource("8_gvfum")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gt0gs"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gk6ax"]
 texture = ExtResource("9_78fxb")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_88lrv"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wna6x"]
 texture = ExtResource("10_hpfqd")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oqsls"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xlbcl"]
+texture = ExtResource("9_78fxb")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d7yp7"]
 texture = ExtResource("11_5idro")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6te7e"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_trivy"]
 texture = ExtResource("12_7twr2")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0bjcd"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u28dv"]
 texture = ExtResource("13_mqkul")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8er2g"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a84ut"]
+texture = ExtResource("12_7twr2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_86gux"]
 texture = ExtResource("17_7tlg1")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ko2kf"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_54neg"]
 texture = ExtResource("18_norco")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_amncq"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oghaw"]
 texture = ExtResource("19_n37ft")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c7c7b"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4xy63"]
+texture = ExtResource("18_norco")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ylmhw"]
 texture = ExtResource("42_8hwdr")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d20ut"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o3jaw"]
 texture = ExtResource("43_2gmdu")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wb6jf"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pkgmb"]
 texture = ExtResource("44_61t0a")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aynns"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ky5ty"]
+texture = ExtResource("43_2gmdu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rfhht"]
 texture = ExtResource("45_3fquc")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_if0cl"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_duats"]
 texture = ExtResource("46_233i1")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yxvir"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8ilo1"]
 texture = ExtResource("47_umk84")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_653g3"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uk1i5"]
+texture = ExtResource("46_233i1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kn8rk"]
 texture = ExtResource("48_kvgey")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1heax"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aejqk"]
 texture = ExtResource("49_4mt52")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cy4nx"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gwtg7"]
 texture = ExtResource("50_i7x5q")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p31ha"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h43ni"]
+texture = ExtResource("49_4mt52")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k7aja"]
 texture = ExtResource("51_s448j")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t01fk"]
 texture = ExtResource("52_4cj5t")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2gglo"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_miwaf"]
 texture = ExtResource("53_0o7wi")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t461y"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2jpas"]
+texture = ExtResource("52_4cj5t")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e8hp1"]
 texture = ExtResource("51_7mtav")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0qng3"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ryymq"]
 texture = ExtResource("52_h5vra")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xohws"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kam4s"]
 texture = ExtResource("53_scl4b")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vgi3h"]
+texture = ExtResource("52_h5vra")
 
 [node name="Keyboard" type="VBoxContainer"]
 texture_filter = 1
@@ -238,37 +292,37 @@ columns = 5
 [node name="P Key" parent="Main Grid" instance=ExtResource("2_aquo5")]
 custom_minimum_size = Vector2(112, 112)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_7gb0a")
-theme_override_styles/hover = SubResource("StyleBoxTexture_e4432")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_14ipk")
-theme_override_styles/focus = SubResource("StyleBoxTexture_e4432")
+theme_override_styles/normal = SubResource("StyleBoxTexture_2lp35")
+theme_override_styles/hover = SubResource("StyleBoxTexture_n8frt")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_lshmo")
+theme_override_styles/focus = SubResource("StyleBoxTexture_56rd7")
 Key = 4
 
 [node name="B Key" parent="Main Grid" instance=ExtResource("2_aquo5")]
 custom_minimum_size = Vector2(112, 112)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_jw6bh")
-theme_override_styles/hover = SubResource("StyleBoxTexture_a1hsi")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_4dd4t")
-theme_override_styles/focus = SubResource("StyleBoxTexture_a1hsi")
+theme_override_styles/normal = SubResource("StyleBoxTexture_gu11u")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fodyw")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_6s85j")
+theme_override_styles/focus = SubResource("StyleBoxTexture_m38hb")
 Key = 5
 
 [node name="T Key" parent="Main Grid" instance=ExtResource("2_aquo5")]
 custom_minimum_size = Vector2(112, 112)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_ygkdo")
-theme_override_styles/hover = SubResource("StyleBoxTexture_eee6v")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_5wgry")
-theme_override_styles/focus = SubResource("StyleBoxTexture_eee6v")
+theme_override_styles/normal = SubResource("StyleBoxTexture_vmmec")
+theme_override_styles/hover = SubResource("StyleBoxTexture_pyjmh")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2kyu0")
+theme_override_styles/focus = SubResource("StyleBoxTexture_u64lo")
 Key = 6
 
 [node name="K Key" parent="Main Grid" instance=ExtResource("2_aquo5")]
 custom_minimum_size = Vector2(112, 112)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_eflv7")
-theme_override_styles/hover = SubResource("StyleBoxTexture_xk7dd")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_8nvuo")
-theme_override_styles/focus = SubResource("StyleBoxTexture_xk7dd")
+theme_override_styles/normal = SubResource("StyleBoxTexture_4jhqv")
+theme_override_styles/hover = SubResource("StyleBoxTexture_klrfu")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_755jq")
+theme_override_styles/focus = SubResource("StyleBoxTexture_dkffr")
 Key = 7
 
 [node name="Empty" type="Control" parent="Main Grid"]
@@ -278,82 +332,82 @@ layout_mode = 2
 [node name="N Key" parent="Main Grid" instance=ExtResource("2_aquo5")]
 custom_minimum_size = Vector2(112, 112)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_3bh4w")
-theme_override_styles/hover = SubResource("StyleBoxTexture_678mf")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_p3fpx")
-theme_override_styles/focus = SubResource("StyleBoxTexture_678mf")
+theme_override_styles/normal = SubResource("StyleBoxTexture_781h5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_oecb6")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_37ep0")
+theme_override_styles/focus = SubResource("StyleBoxTexture_uxhml")
 Key = 8
 
 [node name="A Key" parent="Main Grid" instance=ExtResource("2_aquo5")]
 custom_minimum_size = Vector2(112, 112)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_yqi7t")
-theme_override_styles/hover = SubResource("StyleBoxTexture_cu72a")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_8qxrq")
-theme_override_styles/focus = SubResource("StyleBoxTexture_cu72a")
+theme_override_styles/normal = SubResource("StyleBoxTexture_fh81n")
+theme_override_styles/hover = SubResource("StyleBoxTexture_kb3xv")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_qmcdm")
+theme_override_styles/focus = SubResource("StyleBoxTexture_kurrn")
 Key = 0
 
 [node name="E Key" parent="Main Grid" instance=ExtResource("2_aquo5")]
 custom_minimum_size = Vector2(112, 112)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_pjpo3")
-theme_override_styles/hover = SubResource("StyleBoxTexture_qss2y")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_ncxki")
-theme_override_styles/focus = SubResource("StyleBoxTexture_qss2y")
+theme_override_styles/normal = SubResource("StyleBoxTexture_370g7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_3dym1")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_xlks8")
+theme_override_styles/focus = SubResource("StyleBoxTexture_juuhc")
 Key = 2
 
 [node name="Glottal Key" parent="Main Grid" instance=ExtResource("2_aquo5")]
 custom_minimum_size = Vector2(112, 112)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_kcc3o")
-theme_override_styles/hover = SubResource("StyleBoxTexture_jbacj")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_8hjs4")
-theme_override_styles/focus = SubResource("StyleBoxTexture_jbacj")
+theme_override_styles/normal = SubResource("StyleBoxTexture_hs7lw")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ftcga")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_rvus0")
+theme_override_styles/focus = SubResource("StyleBoxTexture_b1wd5")
 Key = 13
 
 [node name="Ejective K Key" parent="Main Grid" instance=ExtResource("2_aquo5")]
 custom_minimum_size = Vector2(112, 112)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_j68v2")
-theme_override_styles/hover = SubResource("StyleBoxTexture_8fglg")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_4qbtj")
-theme_override_styles/focus = SubResource("StyleBoxTexture_8fglg")
+theme_override_styles/normal = SubResource("StyleBoxTexture_0nf0o")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wcsrc")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_xhhcq")
+theme_override_styles/focus = SubResource("StyleBoxTexture_uc2xk")
 Key = 11
 
 [node name="S Key" parent="Main Grid" instance=ExtResource("2_aquo5")]
 custom_minimum_size = Vector2(112, 112)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_1e1hq")
-theme_override_styles/hover = SubResource("StyleBoxTexture_tw0tp")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_kork2")
-theme_override_styles/focus = SubResource("StyleBoxTexture_tw0tp")
+theme_override_styles/normal = SubResource("StyleBoxTexture_1q486")
+theme_override_styles/hover = SubResource("StyleBoxTexture_v7emh")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_4fhnd")
+theme_override_styles/focus = SubResource("StyleBoxTexture_6mq37")
 Key = 9
 
 [node name="I Key" parent="Main Grid" instance=ExtResource("2_aquo5")]
 custom_minimum_size = Vector2(112, 112)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_6fte4")
-theme_override_styles/hover = SubResource("StyleBoxTexture_gt0gs")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_88lrv")
-theme_override_styles/focus = SubResource("StyleBoxTexture_gt0gs")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ywaw7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_gk6ax")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wna6x")
+theme_override_styles/focus = SubResource("StyleBoxTexture_xlbcl")
 Key = 1
 
 [node name="U Key" parent="Main Grid" instance=ExtResource("2_aquo5")]
 custom_minimum_size = Vector2(112, 112)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_oqsls")
-theme_override_styles/hover = SubResource("StyleBoxTexture_6te7e")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_0bjcd")
-theme_override_styles/focus = SubResource("StyleBoxTexture_6te7e")
+theme_override_styles/normal = SubResource("StyleBoxTexture_d7yp7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_trivy")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_u28dv")
+theme_override_styles/focus = SubResource("StyleBoxTexture_a84ut")
 Key = 3
 
 [node name="Sh Key" parent="Main Grid" instance=ExtResource("2_aquo5")]
 custom_minimum_size = Vector2(112, 112)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_8er2g")
-theme_override_styles/hover = SubResource("StyleBoxTexture_ko2kf")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_amncq")
-theme_override_styles/focus = SubResource("StyleBoxTexture_ko2kf")
+theme_override_styles/normal = SubResource("StyleBoxTexture_86gux")
+theme_override_styles/hover = SubResource("StyleBoxTexture_54neg")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_oghaw")
+theme_override_styles/focus = SubResource("StyleBoxTexture_4xy63")
 Key = 12
 
 [node name="Empty2" type="Control" parent="Main Grid"]
@@ -367,10 +421,10 @@ layout_mode = 2
 [node name="L Key" parent="Main Grid" instance=ExtResource("2_aquo5")]
 custom_minimum_size = Vector2(112, 112)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_c7c7b")
-theme_override_styles/hover = SubResource("StyleBoxTexture_d20ut")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_wb6jf")
-theme_override_styles/focus = SubResource("StyleBoxTexture_d20ut")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ylmhw")
+theme_override_styles/hover = SubResource("StyleBoxTexture_o3jaw")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_pkgmb")
+theme_override_styles/focus = SubResource("StyleBoxTexture_ky5ty")
 Key = 10
 
 [node name="Empty4" type="Control" parent="Main Grid"]
@@ -380,19 +434,19 @@ layout_mode = 2
 [node name="Repeater Key" parent="Main Grid" instance=ExtResource("2_aquo5")]
 custom_minimum_size = Vector2(112, 112)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_aynns")
-theme_override_styles/hover = SubResource("StyleBoxTexture_if0cl")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_yxvir")
-theme_override_styles/focus = SubResource("StyleBoxTexture_if0cl")
+theme_override_styles/normal = SubResource("StyleBoxTexture_rfhht")
+theme_override_styles/hover = SubResource("StyleBoxTexture_duats")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_8ilo1")
+theme_override_styles/focus = SubResource("StyleBoxTexture_uk1i5")
 Key = 14
 
 [node name="Duplicant Key" parent="Main Grid" instance=ExtResource("2_aquo5")]
 custom_minimum_size = Vector2(112, 112)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_653g3")
-theme_override_styles/hover = SubResource("StyleBoxTexture_1heax")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_cy4nx")
-theme_override_styles/focus = SubResource("StyleBoxTexture_1heax")
+theme_override_styles/normal = SubResource("StyleBoxTexture_kn8rk")
+theme_override_styles/hover = SubResource("StyleBoxTexture_aejqk")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_gwtg7")
+theme_override_styles/focus = SubResource("StyleBoxTexture_h43ni")
 Key = 15
 
 [node name="Specials Row" type="HBoxContainer" parent="."]
@@ -405,16 +459,16 @@ size_flags_horizontal = 3
 [node name="Delete Key" parent="Specials Row" instance=ExtResource("2_aquo5")]
 custom_minimum_size = Vector2(160, 112)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_p31ha")
+theme_override_styles/normal = SubResource("StyleBoxTexture_k7aja")
 theme_override_styles/hover = SubResource("StyleBoxTexture_t01fk")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_2gglo")
-theme_override_styles/focus = SubResource("StyleBoxTexture_t01fk")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_miwaf")
+theme_override_styles/focus = SubResource("StyleBoxTexture_2jpas")
 
 [node name="Return Key" parent="Specials Row" instance=ExtResource("2_aquo5")]
 custom_minimum_size = Vector2(160, 112)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_t461y")
-theme_override_styles/hover = SubResource("StyleBoxTexture_0qng3")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_xohws")
-theme_override_styles/focus = SubResource("StyleBoxTexture_0qng3")
+theme_override_styles/normal = SubResource("StyleBoxTexture_e8hp1")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ryymq")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_kam4s")
+theme_override_styles/focus = SubResource("StyleBoxTexture_vgi3h")
 Key = 16

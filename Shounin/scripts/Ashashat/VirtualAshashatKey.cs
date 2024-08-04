@@ -15,19 +15,13 @@
 #endregion
 
 using Godot;
+using IndexingYourHeart.UI;
 
 namespace IndexingYourHeart.Ashashat;
 
 [Tool]
 public partial class VirtualAshashatKey : Button
 {
-    internal struct KeyTextures
-    {
-        internal string Normal;
-        internal string Pressed;
-        internal string Focused;
-    }
-    
     [Export]
     public AshashatKey Key
     {
@@ -49,20 +43,8 @@ public partial class VirtualAshashatKey : Button
 
     private void AssignKeyTextures()
     {
-        var keyTextures = TextureForCurrentKey();
-        
-        var normalTextureStyle = new StyleBoxTexture();
-        normalTextureStyle.Texture = GD.Load<Texture2D>(keyTextures.Normal);
-        Set("theme_override_styles/normal", normalTextureStyle);
-
-        var pressedTextureStyle = new StyleBoxTexture();
-        pressedTextureStyle.Texture = GD.Load<Texture2D>(keyTextures.Pressed);
-        Set("theme_override_styles/pressed", pressedTextureStyle);
-
-        var focusedTextureStyle = new StyleBoxTexture();
-        focusedTextureStyle.Texture = GD.Load<Texture2D>(keyTextures.Focused);
-        Set("theme_override_styles/focus", focusedTextureStyle);
-        Set("theme_override_styles/hover", focusedTextureStyle);
+        KeyTextures keyTextures = TextureForCurrentKey();
+        keyTextures.AssignStyleBoxTexturesToControl(this);
 
         Size = SizeForCurrentKey();
         CustomMinimumSize = SizeForCurrentKey();
