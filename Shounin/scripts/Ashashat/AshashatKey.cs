@@ -14,8 +14,6 @@
 // details.
 #endregion
 
-using System;
-
 namespace IndexingYourHeart.Ashashat;
 
 public enum AshashatKey

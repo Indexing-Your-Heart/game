@@ -67,14 +67,6 @@ color = Color(0, 0, 0, 1)
 [node name="Reader" parent="CanvasLayer" instance=ExtResource("3_er6wq")]
 
 [node name="PuzzleKeyboard" parent="CanvasLayer" instance=ExtResource("3_lcmyv")]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-editor_description = ""
-script = null
 
 [node name="NumpadPuzzleField" parent="CanvasLayer" instance=ExtResource("1_3idrq")]
 _import_path = NodePath("")
