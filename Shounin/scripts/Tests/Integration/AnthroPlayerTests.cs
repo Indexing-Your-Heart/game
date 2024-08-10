@@ -1,6 +1,6 @@
 ﻿#region Copyright
 //
-// AnthroPlayer_IntegrationTests.cs
+// AnthroPlayerTests.cs
 // Indexing Your Heart
 //
 // Created by Marquis Kurt on 28/07/2024.
@@ -24,7 +24,7 @@ using IndexingYourHeart.Tests.Backing;
 namespace IndexingYourHeart.Tests.Integration;
 
 [TestSuite]
-public class AnthroPlayer_IntegrationTests
+public class AnthroPlayerTests
 {
     private ISceneRunner runner;
 

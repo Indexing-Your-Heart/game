@@ -23,7 +23,7 @@ using IndexingYourHeart.UI;
 namespace IndexingYourHeart.Tests.Unit
 {
     [TestSuite]
-    public class JensonTimeline_UnitTests
+    public class JensonTimelineTests
     {
         [TestCase]
         public void Test_JensonTimelineInitialState()

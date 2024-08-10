@@ -28,7 +28,7 @@ using IndexingYourHeart.Tests.Backing;
 namespace IndexingYourHeart.Tests.Integration
 {
     [TestSuite]
-    public class JensonTimeline_IntegrationTests
+    public class JensonTimelineTests
     {
         private ISceneRunner _runner;
 
