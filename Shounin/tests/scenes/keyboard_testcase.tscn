@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxe41wo67brcg"]
+
+[ext_resource type="Script" path="res://scripts/Tests/Backing/AshashatKeyboard_UnitTestNode.cs" id="1_2gujt"]
+[ext_resource type="PackedScene" uid="uid://ecxx1b6ggwda" path="res://components/ui/keyboard.tscn" id="2_67gqi"]
+
+[node name="Keyboard Testcase" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2gujt")
+
+[node name="Keyboard" parent="." instance=ExtResource("2_67gqi")]
+layout_mode = 0
+anchors_preset = 0

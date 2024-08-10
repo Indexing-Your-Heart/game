@@ -18,8 +18,6 @@ using Godot;
 
 namespace IndexingYourHeart.Ashashat;
 
-// TODO: Write unit tests for this!
-
 public partial class AshashatKeyboard : VBoxContainer
 {
 	public override void _Ready()
