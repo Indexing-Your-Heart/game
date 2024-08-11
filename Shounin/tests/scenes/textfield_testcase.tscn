@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhsbk4td6rxot"]
+
+[ext_resource type="Script" path="res://scripts/Tests/Backing/PuzzleTextField_IntegrationTestNode.cs" id="1_2igip"]
+[ext_resource type="PackedScene" uid="uid://cfqryghyys3rp" path="res://components/molecules/keyboard_puzzle.tscn" id="1_iqprc"]
+
+[node name="Puzzle Text Field Testcase" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2igip")
+
+[node name="Puzzle Keyboard" parent="." instance=ExtResource("1_iqprc")]
+layout_mode = 1

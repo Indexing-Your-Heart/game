@@ -40,7 +40,7 @@ public class AshashatNumpadTests
         AssertObject(numpadRunner).IsNotNull();
         await numpadRunner.AwaitMillis(150);
 
-        PressActiveKey();
+        await PressActiveKey();
 
         var currentValue = (int)await numpadRunner.InvokeAsync(nameof(TestEnvironment.GetCurrentValue));
         AssertInt(currentValue).IsEqual(1);
@@ -52,12 +52,12 @@ public class AshashatNumpadTests
         AssertObject(numpadRunner).IsNotNull();
         await numpadRunner.AwaitMillis(150);
 
-        PressActiveKey();
+        await PressActiveKey();
         
         numpadRunner.SimulateActionPressed("ui_focus_next");
         await numpadRunner.SimulateFrames(10);
 
-        PressActiveKey();
+        await PressActiveKey();
         
         var initialValue = (int)await numpadRunner.InvokeAsync(nameof(TestEnvironment.GetCurrentValue));
         AssertInt(initialValue).IsEqual(3);
@@ -76,7 +76,7 @@ public class AshashatNumpadTests
         AssertObject(numpadRunner).IsNotNull();
         await numpadRunner.AwaitMillis(150);
 
-        PressActiveKey();
+        await PressActiveKey();
 
         // Cycle to get to the return key.
         for (var i = 0; i < 5; i++)
@@ -85,7 +85,7 @@ public class AshashatNumpadTests
             await numpadRunner.SimulateFrames(10);
         }
 
-        PressActiveKey();
+        await PressActiveKey();
         var returnedValue = (int)await numpadRunner.InvokeAsync(nameof(TestEnvironment.GetReturnedValue));
         AssertInt(returnedValue).IsEqual(1);
     }

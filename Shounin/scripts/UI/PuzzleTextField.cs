@@ -21,8 +21,6 @@ using IndexingYourHeart.Utils;
 
 namespace IndexingYourHeart.UI;
 
-// TODO: Write unit tests for this!
-
 public partial class PuzzleTextField : Control
 {
     #region Children
@@ -42,6 +40,14 @@ public partial class PuzzleTextField : Control
         keyboard.KeyPressed += ProcessKeyInput;
     }
 
+    /// <summary>
+    /// Ensure that the keyboard has the current input focus.
+    /// </summary>
+    public void GrabKeyboardFocus()
+    {
+        keyboard.GetNode<Control>("Main Grid/P Key").GrabFocus();
+    }
+
     private void ProcessKeyInput(string keyCode)
     {
         AshashatKey key = AshashatKeyUtils.KeyFromKeyCode(keyCode);
@@ -58,6 +64,7 @@ public partial class PuzzleTextField : Control
                 AshashatKey mostRecentKey = keyHistory.RemoveLast();
                 currentText = currentText.TrimSuffix(mostRecentKey.KeyValue());
                 currentRenderedText = currentRenderedText.TrimSuffix(mostRecentKey.FontRenderedValue());
+                EmitSignal(SignalName.TextFieldChangedInput, currentText);
                 break;
             case AshashatKey.Return:
                 EmitSignal(SignalName.TextFieldReturned, currentText);
@@ -66,11 +73,15 @@ public partial class PuzzleTextField : Control
                 currentText += key.KeyValue();
                 currentRenderedText += key.FontRenderedValue();
                 keyHistory.Add(key);
+                EmitSignal(SignalName.TextFieldChangedInput, currentText);
                 break;
         }
 
         textLabel.Text = currentRenderedText;
     }
+
+    [Signal]
+    public delegate void TextFieldChangedInputEventHandler(string updatedText);
 
     [Signal]
     public delegate void TextFieldReturnedEventHandler(string finalText);
