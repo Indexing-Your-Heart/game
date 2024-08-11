@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3mug4awe8fdd"]
+[gd_scene load_steps=8 format=3 uid="uid://d3mug4awe8fdd"]
 
 [ext_resource type="PackedScene" uid="uid://ba8hn6o0mkfnp" path="res://components/molecules/numpad_puzzle.tscn" id="1_3idrq"]
 [ext_resource type="TileSet" uid="uid://cguee8ucqpwh1" path="res://resources/tilesets/all_tiles.tres" id="1_4ygrc"]
 [ext_resource type="PackedScene" uid="uid://bhdu82yikkqf3" path="res://components/atoms/player.tscn" id="1_h05bn"]
 [ext_resource type="PackedScene" uid="uid://cfqryghyys3rp" path="res://components/molecules/keyboard_puzzle.tscn" id="3_lcmyv"]
 [ext_resource type="PackedScene" uid="uid://rjqjadf4jjje" path="res://components/molecules/puzzle_point_number.tscn" id="4_58b54"]
+[ext_resource type="PackedScene" uid="uid://cr6fbwm4gfihn" path="res://components/molecules/puzzle_point_word.tscn" id="5_td85v"]
 [ext_resource type="PackedScene" uid="uid://crqpswoan71sf" path="res://components/atoms/obel.tscn" id="7_hf5k8"]
 
 [node name="World" type="Node2D"]
@@ -55,7 +56,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="PuzzleKeyboard" parent="CanvasLayer" instance=ExtResource("3_lcmyv")]
+[node name="Puzzle Keyboard" parent="CanvasLayer" instance=ExtResource("3_lcmyv")]
 visible = false
 
 [node name="NumpadPuzzleField" parent="CanvasLayer" instance=ExtResource("1_3idrq")]
@@ -141,6 +142,72 @@ ExpectedSolution = 18
 PuzzleId = "pzl_numbers_ep"
 
 [node name="Primitives" type="Node" parent="."]
+
+[node name="Primitives Ellipse" parent="Primitives" instance=ExtResource("5_td85v")]
+position = Vector2(264, 3955)
+TextField = NodePath("../../CanvasLayer/Puzzle Keyboard")
+ExpectedSolution = "puk'"
+PuzzleId = "pzl_primitives_1"
+
+[node name="Primitives Polygon" parent="Primitives" instance=ExtResource("5_td85v")]
+position = Vector2(457, 3667)
+TextField = NodePath("../../CanvasLayer/Puzzle Keyboard")
+ExpectedSolution = "tasubi"
+PuzzleId = "pzl_primitives_2"
+
+[node name="Primitives Box" parent="Primitives" instance=ExtResource("5_td85v")]
+position = Vector2(360, 3186)
+TextField = NodePath("../../CanvasLayer/Puzzle Keyboard")
+ExpectedSolution = "biba"
+PuzzleId = "pzl_primitives_3"
+
+[node name="Primitives Cylinder" parent="Primitives" instance=ExtResource("5_td85v")]
+position = Vector2(-120, 3091)
+TextField = NodePath("../../CanvasLayer/Puzzle Keyboard")
+ExpectedSolution = "kabatui"
+PuzzleId = "pzl_primitives_4"
+
+[node name="Primitives Idea" parent="Primitives" instance=ExtResource("5_td85v")]
+position = Vector2(169, 2803)
+TextField = NodePath("../../CanvasLayer/Puzzle Keyboard")
+ExpectedSolution = "ʔaʃ"
+PuzzleId = "pzl_primitives_5"
+
+[node name="Primitives Thing" parent="Primitives" instance=ExtResource("5_td85v")]
+position = Vector2(504, 2802)
+TextField = NodePath("../../CanvasLayer/Puzzle Keyboard")
+ExpectedSolution = "ʔaʃaʃat"
+PuzzleId = "pzl_primitives_6"
+
+[node name="Primitives Person" parent="Primitives" instance=ExtResource("5_td85v")]
+position = Vector2(168, 2516)
+TextField = NodePath("../../CanvasLayer/Puzzle Keyboard")
+ExpectedSolution = "pubaʃ"
+PuzzleId = "pzl_primitives_7"
+
+[node name="Primitives Animal" parent="Primitives" instance=ExtResource("5_td85v")]
+position = Vector2(503, 2515)
+TextField = NodePath("../../CanvasLayer/Puzzle Keyboard")
+ExpectedSolution = "bupaʃ"
+PuzzleId = "pzl_primitives_8"
+
+[node name="Primitives Pyramid" parent="Primitives" instance=ExtResource("5_td85v")]
+position = Vector2(24, 2083)
+TextField = NodePath("../../CanvasLayer/Puzzle Keyboard")
+ExpectedSolution = "ikutet"
+PuzzleId = "pzl_primitives_9"
+
+[node name="Primitives Cone" parent="Primitives" instance=ExtResource("5_td85v")]
+position = Vector2(505, 2130)
+TextField = NodePath("../../CanvasLayer/Puzzle Keyboard")
+ExpectedSolution = "ik':a"
+PuzzleId = "pzl_primitives_10"
+
+[node name="Primitives Sphere" parent="Primitives" instance=ExtResource("5_td85v")]
+position = Vector2(792, 1986)
+TextField = NodePath("../../CanvasLayer/Puzzle Keyboard")
+ExpectedSolution = "ʔilin"
+PuzzleId = "pzl_primitives_11"
 
 [node name="Obel" parent="." instance=ExtResource("7_hf5k8")]
 position = Vector2(480, 1392)

@@ -1,10 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://cr6fbwm4gfihn"]
+[gd_scene load_steps=3 format=3 uid="uid://cr6fbwm4gfihn"]
+
+[ext_resource type="Script" path="res://scripts/Mechanics/WordPuzzle.cs" id="1_ksn21"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3visf"]
 radius = 68.1175
 
-[node name="Word Puzzle Point" type="WordPuzzleNode"]
+[node name="Word Puzzle Point" type="Node2D"]
 z_index = 2
+script = ExtResource("1_ksn21")
 
 [node name="Area2D" type="Area2D" parent="."]
 

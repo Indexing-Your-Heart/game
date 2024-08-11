@@ -29,6 +29,7 @@ public partial class PuzzleTextField : Control
     #region Children
     private Label textLabel;
     private AshashatKeyboard keyboard;
+    private AnimationPlayer animationPlayer;
     #endregion
     
     private string currentText;
@@ -40,7 +41,15 @@ public partial class PuzzleTextField : Control
         base._Ready();
         textLabel = GetNode<Label>("VStack/PanelContainer/TextLabel");
         keyboard = GetNode<AshashatKeyboard>("VStack/HStack/Keyboard");
+        animationPlayer = GetNode<AnimationPlayer>("Animator");
         keyboard.KeyPressed += ProcessKeyInput;
+    }
+
+    public void Clear()
+    {
+        currentText = "";
+        currentRenderedText = "";
+        textLabel.Text = "";
     }
 
     /// <summary>
@@ -49,6 +58,23 @@ public partial class PuzzleTextField : Control
     public void GrabKeyboardFocus()
     {
         keyboard.GetNode<Control>("Main Grid/P Key").GrabFocus();
+    }
+
+    public void MarkCorrect()
+    {
+        animationPlayer.Stop(false);
+        animationPlayer.Play("correct");
+    }
+
+    public void MarkIncorrect()
+    {
+        animationPlayer.Stop(false);
+        animationPlayer.Play("incorrect");
+    }
+
+    public void StopAnimations()
+    {
+        animationPlayer.Stop(false);
     }
 
     private void ProcessKeyInput(string keyCode)

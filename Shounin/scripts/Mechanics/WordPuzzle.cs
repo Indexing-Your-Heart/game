@@ -1,5 +1,5 @@
 ﻿#region Copyright
-// NumberPuzzle.cs
+// WordPuzzle.cs
 // Indexing Your Heart
 // 
 // Created by Marquis Kurt on 11/08/2024.
@@ -22,64 +22,56 @@ namespace IndexingYourHeart.Mechanics;
 
 // TODO: Write integration tests!
 
-public partial class NumberPuzzle : Node2D
+public partial class WordPuzzle : Node2D
 {
     [Export]
-    public NodePath Numpad;
+    public NodePath TextField;
     
     [ExportGroup("Puzzle Data")]
-    [Export(PropertyHint.Range, "0,31,1")]
-    public int ExpectedSolution;
+    [Export]
+    public string ExpectedSolution;
 
     [Export]
     public string PuzzleId;
 
-    private bool eligibleToLaunch;
-    private PuzzleNumpadField puzzleFieldNumpad;
-
     private Area2D detectionRing;
+    private PuzzleTextField textField;
+    private bool eligibleToLaunch = false;
 
     public override void _Ready()
     {
         base._Ready();
+
         detectionRing = GetNode<Area2D>("Area2D");
-        puzzleFieldNumpad = GetNode<PuzzleNumpadField>(Numpad);
+        textField = GetNode<PuzzleTextField>(TextField);
+
+        textField.TextFieldReturned += TextFieldReturned;
+        textField.TextFieldChangedInput += delegate
+        {
+            textField.StopAnimations();
+        };
 
         detectionRing.BodyEntered += BodyEnteredRange;
         detectionRing.BodyExited += delegate
         {
             eligibleToLaunch = false;
-            puzzleFieldNumpad.Hide();
-            puzzleFieldNumpad.Clear();
-        };
-
-        puzzleFieldNumpad.EditingChanged += value =>
-        {
-            if (!eligibleToLaunch)
-                return;
-            if (value != ExpectedSolution)
-            {
-                puzzleFieldNumpad.MarkIncorrect();
-                return;
-            }
-            puzzleFieldNumpad.MarkCorrect();
-            
-            // TODO: Send signal for puzzle solved here.
-            
+            textField.Clear();
+            textField.Hide();
         };
     }
 
     public override void _UnhandledInput(InputEvent @event)
     {
+        base._UnhandledInput(@event);
         if (Input.IsActionPressed("interact") && eligibleToLaunch)
         {
-            puzzleFieldNumpad.Show();
+            textField.Show();
             return;
         }
 
         if (Input.IsActionPressed("cancel") && eligibleToLaunch)
         {
-            puzzleFieldNumpad.Hide();
+            textField.Hide();
             return;
         }
     }
@@ -87,12 +79,27 @@ public partial class NumberPuzzle : Node2D
     private void BodyEnteredRange(Node2D body)
     {
         eligibleToLaunch = body is AnthroPlayer;
-        
-        // TODO: Send signal for requesting a puzzle solve.
+        textField.Clear();
         
         if (DisplayServer.IsTouchscreenAvailable() && eligibleToLaunch)
         {
-            puzzleFieldNumpad.Show();
+            textField.Show();
         }
+    }
+
+    private void TextFieldReturned(string value)
+    {
+        if (!eligibleToLaunch)
+            return;
+
+        if (value != ExpectedSolution)
+        {
+            textField.MarkIncorrect();
+            return;
+        }
+        
+        // TODO: Add signal emission for complete.
+
+        textField.MarkCorrect();
     }
 }
