@@ -1,25 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3mug4awe8fdd"]
+[gd_scene load_steps=7 format=3 uid="uid://d3mug4awe8fdd"]
 
 [ext_resource type="PackedScene" uid="uid://ba8hn6o0mkfnp" path="res://components/molecules/numpad_puzzle.tscn" id="1_3idrq"]
 [ext_resource type="TileSet" uid="uid://cguee8ucqpwh1" path="res://resources/tilesets/all_tiles.tres" id="1_4ygrc"]
 [ext_resource type="PackedScene" uid="uid://bhdu82yikkqf3" path="res://components/atoms/player.tscn" id="1_h05bn"]
-[ext_resource type="PackedScene" uid="uid://d3xhnxqyltvn6" path="res://components/ui/jenson_ui.tscn" id="3_er6wq"]
 [ext_resource type="PackedScene" uid="uid://cfqryghyys3rp" path="res://components/molecules/keyboard_puzzle.tscn" id="3_lcmyv"]
 [ext_resource type="PackedScene" uid="uid://rjqjadf4jjje" path="res://components/molecules/puzzle_point_number.tscn" id="4_58b54"]
-[ext_resource type="PackedScene" uid="uid://cr6fbwm4gfihn" path="res://components/molecules/puzzle_point_word.tscn" id="5_td85v"]
 [ext_resource type="PackedScene" uid="uid://crqpswoan71sf" path="res://components/atoms/obel.tscn" id="7_hf5k8"]
 
-[node name="World" type="RollinsportWorld2D"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-editor_description = ""
+[node name="World" type="Node2D"]
 z_as_relative = false
 y_sort_enabled = true
-script = null
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -43,20 +33,21 @@ layer_4/z_index = 1
 layer_4/tile_data = PackedInt32Array(196642, 524289, 7, -393183, 393217, 9, 720924, 393217, 7, 131078, 720898, 76, 262154, 720898, 76, 1310721, 196608, 53, 1310722, 262144, 53, 1245190, 1245184, 39, 1245197, 1703936, 53, 1310739, 1703936, 53, 4390906, 1441792, 37, 3538940, 1376256, 37, 2883581, 262144, 54, 4390910, 1507328, 38, 3801088, 1900544, 59, 4063232, 1376256, 37, 2949121, 524289, 4, 3801089, 524288, 77, 3407874, 1900544, 59, 2818051, 1310720, 39, 3080196, 1441792, 37, 4063236, 1441792, 37, 3801095, 1769472, 61, 2883592, 262144, 54, 2555913, 1507328, 38, 3997705, 1703936, 53, 4194314, 1376256, 37, 2686988, 327680, 6, 3276813, 1376256, 37, 3211279, 1507328, 38, 3997712, 1703936, 53, 1638398, 1310720, 39, 2228244, 1310720, 39, 2490368, 1310720, 39, 2097150, 1376256, 37, 2424836, 1376256, 37, 1703937, 1376256, 37, 2031635, 1376256, 37, 2424842, 1376256, 39, 1900566, 1376256, 39, 1835006, 1507328, 38, 2424829, 1507328, 38, 2686980, 1507328, 38, 2359313, 1507328, 38, 1507346, 1507328, 38, 1507347, 1507328, 38, 1900540, 1507328, 39, 2228224, 1507328, 39, 2490366, 1507328, 39, 2490382, 1507328, 39, 2490388, 1507328, 39)
 
 [node name="Player" parent="." instance=ExtResource("1_h05bn")]
+z_index = 1
 y_sort_enabled = false
-scale = Vector2(1, 1)
-script = null
+position = Vector2(479, 1449)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera" type="Camera2D" parent="Player"]
+scale = Vector2(2, 2)
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Overlay" type="ColorRect" parent="CanvasLayer"]
 process_mode = 4
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -64,263 +55,92 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Reader" parent="CanvasLayer" instance=ExtResource("3_er6wq")]
-
 [node name="PuzzleKeyboard" parent="CanvasLayer" instance=ExtResource("3_lcmyv")]
+visible = false
 
 [node name="NumpadPuzzleField" parent="CanvasLayer" instance=ExtResource("1_3idrq")]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-editor_description = ""
-script = null
+visible = false
 
 [node name="Numbers" type="Node" parent="."]
 
-[node name="PuzzlePoint-1" parent="Numbers" instance=ExtResource("4_58b54")]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-editor_description = ""
-script = null
+[node name="Numbers 1" parent="Numbers" instance=ExtResource("4_58b54")]
+position = Vector2(72, -77)
+Numpad = NodePath("../../CanvasLayer/NumpadPuzzleField")
+ExpectedSolution = 1
+PuzzleId = "pzl_numbers_1"
 
-[node name="PuzzlePoint-2" parent="Numbers" instance=ExtResource("4_58b54")]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-editor_description = ""
-script = null
+[node name="Numbers 2" parent="Numbers" instance=ExtResource("4_58b54")]
+position = Vector2(600, -220)
+Numpad = NodePath("../../CanvasLayer/NumpadPuzzleField")
+ExpectedSolution = 2
+PuzzleId = "pzl_numbers_2"
 
-[node name="PuzzlePoint-4" parent="Numbers" instance=ExtResource("4_58b54")]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-editor_description = ""
-script = null
+[node name="Numbers 4" parent="Numbers" instance=ExtResource("4_58b54")]
+position = Vector2(168, -459)
+Numpad = NodePath("../../CanvasLayer/NumpadPuzzleField")
+ExpectedSolution = 4
+PuzzleId = "pzl_numbers_3"
 
-[node name="PuzzlePoint-8" parent="Numbers" instance=ExtResource("4_58b54")]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-editor_description = ""
-script = null
+[node name="Numbers 8" parent="Numbers" instance=ExtResource("4_58b54")]
+position = Vector2(697, -460)
+Numpad = NodePath("../../CanvasLayer/NumpadPuzzleField")
+ExpectedSolution = 8
+PuzzleId = "pzl_numbers_4"
 
-[node name="PuzzlePoint-3" parent="Numbers" instance=ExtResource("4_58b54")]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-editor_description = ""
-script = null
+[node name="Numbers 3" parent="Numbers" instance=ExtResource("4_58b54")]
+position = Vector2(1176, -317)
+Numpad = NodePath("../../CanvasLayer/NumpadPuzzleField")
+ExpectedSolution = 3
+PuzzleId = "pzl_numbers_5"
 
-[node name="PuzzlePoint-7" parent="Numbers" instance=ExtResource("4_58b54")]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-editor_description = ""
-script = null
+[node name="Numbers 7" parent="Numbers" instance=ExtResource("4_58b54")]
+position = Vector2(1177, -27)
+Numpad = NodePath("../../CanvasLayer/NumpadPuzzleField")
+ExpectedSolution = 7
+PuzzleId = "pzl_numbers_6"
 
-[node name="PuzzlePoint-9" parent="Numbers" instance=ExtResource("4_58b54")]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-editor_description = ""
-script = null
+[node name="Numbers 9" parent="Numbers" instance=ExtResource("4_58b54")]
+position = Vector2(1416, 260)
+Numpad = NodePath("../../CanvasLayer/NumpadPuzzleField")
+ExpectedSolution = 9
+PuzzleId = "pzl_numbers_7"
 
-[node name="PuzzlePoint-16" parent="Numbers" instance=ExtResource("4_58b54")]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-editor_description = ""
-script = null
+[node name="Numbers 16" parent="Numbers" instance=ExtResource("4_58b54")]
+position = Vector2(1032, 403)
+Numpad = NodePath("../../CanvasLayer/NumpadPuzzleField")
+ExpectedSolution = 16
+PuzzleId = "pzl_numbers_8"
 
-[node name="PuzzlePoint-8-2" parent="Numbers" instance=ExtResource("4_58b54")]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-editor_description = ""
-script = null
+[node name="Numbers 8b" parent="Numbers" instance=ExtResource("4_58b54")]
+position = Vector2(1608, 547)
+Numpad = NodePath("../../CanvasLayer/NumpadPuzzleField")
+ExpectedSolution = 8
+PuzzleId = "pzl_numbers_9"
 
-[node name="PuzzlePoint-19" parent="Numbers" instance=ExtResource("4_58b54")]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-editor_description = ""
-script = null
+[node name="Numbers 19" parent="Numbers" instance=ExtResource("4_58b54")]
+position = Vector2(1848, 211)
+Numpad = NodePath("../../CanvasLayer/NumpadPuzzleField")
+ExpectedSolution = 19
+PuzzleId = "pzl_numbers_10"
 
-[node name="PuzzlePoint-30" parent="Numbers" instance=ExtResource("4_58b54")]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-editor_description = ""
-script = null
+[node name="Numbers 30" parent="Numbers" instance=ExtResource("4_58b54")]
+position = Vector2(1800, -221)
+Numpad = NodePath("../../CanvasLayer/NumpadPuzzleField")
+ExpectedSolution = 30
+PuzzleId = "pzl_numbers_11"
 
-[node name="PuzzlePoint-0" parent="Numbers" instance=ExtResource("4_58b54")]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-editor_description = ""
-script = null
+[node name="Numbers 0" parent="Numbers" instance=ExtResource("4_58b54")]
+position = Vector2(2088, -508)
+Numpad = NodePath("../../CanvasLayer/NumpadPuzzleField")
+PuzzleId = "pzl_numbers_finale"
 
-[node name="PuzzlePoint-EP" parent="Numbers" instance=ExtResource("4_58b54")]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-editor_description = ""
-script = null
+[node name="Numbers EP" parent="Numbers" instance=ExtResource("4_58b54")]
+position = Vector2(984, 738)
+Numpad = NodePath("../../CanvasLayer/NumpadPuzzleField")
+ExpectedSolution = 18
+PuzzleId = "pzl_numbers_ep"
 
 [node name="Primitives" type="Node" parent="."]
-
-[node name="PuzzlePoint-Ellipse" parent="Primitives" instance=ExtResource("5_td85v")]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-editor_description = ""
-script = null
-
-[node name="PuzzlePoint-Polygon" parent="Primitives" instance=ExtResource("5_td85v")]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-editor_description = ""
-script = null
-
-[node name="PuzzlePoint-Box" parent="Primitives" instance=ExtResource("5_td85v")]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-editor_description = ""
-script = null
-
-[node name="PuzzlePoint-Cylinder" parent="Primitives" instance=ExtResource("5_td85v")]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-editor_description = ""
-script = null
-
-[node name="PuzzlePoint-Idea" parent="Primitives" instance=ExtResource("5_td85v")]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-editor_description = ""
-script = null
-
-[node name="PuzzlePoint-Thing" parent="Primitives" instance=ExtResource("5_td85v")]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-editor_description = ""
-script = null
-
-[node name="PuzzlePoint-Person" parent="Primitives" instance=ExtResource("5_td85v")]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-editor_description = ""
-script = null
-
-[node name="PuzzlePoint-Animal" parent="Primitives" instance=ExtResource("5_td85v")]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-editor_description = ""
-script = null
-
-[node name="PuzzlePoint-Pyramid" parent="Primitives" instance=ExtResource("5_td85v")]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-editor_description = ""
-script = null
-
-[node name="PuzzlePoint-Cone" parent="Primitives" instance=ExtResource("5_td85v")]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-editor_description = ""
-script = null
-
-[node name="PuzzlePoint-Sphere" parent="Primitives" instance=ExtResource("5_td85v")]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-editor_description = ""
-script = null
 
 [node name="Obel" parent="." instance=ExtResource("7_hf5k8")]
 position = Vector2(480, 1392)

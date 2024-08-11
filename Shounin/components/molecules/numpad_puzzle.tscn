@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://ba8hn6o0mkfnp"]
+[gd_scene load_steps=8 format=3 uid="uid://ba8hn6o0mkfnp"]
 
 [ext_resource type="Theme" uid="uid://dbup2qc6kea2t" path="res://resources/gui/theme.tres" id="1_wigx5"]
 [ext_resource type="PackedScene" uid="uid://dwj644b4yi2u0" path="res://components/ui/numpad.tscn" id="2_i63ja"]
+[ext_resource type="Script" path="res://scripts/UI/PuzzleNumpadField.cs" id="2_ydp2o"]
 
 [sub_resource type="Animation" id="Animation_l066x"]
 length = 0.001
@@ -56,14 +57,16 @@ _data = {
 "incorrect": SubResource("Animation_wuvgy")
 }
 
-[node name="NumpadPuzzleField" type="AshashatNumpadPuzzleField"]
+[node name="NumpadPuzzleField" type="Control"]
 texture_filter = 1
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_wigx5")
+script = ExtResource("2_ydp2o")
 
 [node name="VStack" type="VBoxContainer" parent="."]
 layout_mode = 1

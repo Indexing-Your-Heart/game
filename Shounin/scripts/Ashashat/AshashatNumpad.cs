@@ -103,6 +103,16 @@ public partial class AshashatNumpad : Control
         KeyReturn.Pressed += () => EmitSignal(SignalName.NumpadReturned, currentValue);
     }
 
+    public void Clear()
+    {
+        currentValue = 0;
+        KeyOne.ButtonPressed = false;
+        KeyTwo.ButtonPressed = false;
+        KeyFour.ButtonPressed = false;
+        KeyEight.ButtonPressed = false;
+        KeySixteen.ButtonPressed = false;
+    }
+
     private static KeyTextures GetTexturesForKey(NumpadKey key)
     {
         string textureName = GetTextureNameForKey(key);
