@@ -18,12 +18,31 @@ using Godot;
 
 namespace IndexingYourHeart.UI;
 
+/// <summary>
+/// A structure that contains textures for a key on a keyboard.
+/// </summary>
 public struct KeyTextures
 {
+    /// <summary>
+    /// The path to the texture when the key is in its normal (unactivated) state.
+    /// </summary>
     public string Normal;
+    
+    /// <summary>
+    /// The path to the texture when the key is actively focused.
+    /// </summary>
     public string Focused;
+    
+    /// <summary>
+    /// The path to the texture when the key is activated.
+    /// </summary>
     public string Pressed;
 
+    /// <summary>
+    /// Applies all available textures to the specified control. Style box textures are created to override the styles
+    /// for the normal, pressed, and focus states.
+    /// </summary>
+    /// <param name="control">The control to apply the textures to.</param>
     public void AssignStyleBoxTexturesToControl(Control control)
     {
         var normalTextureStyle = new StyleBoxTexture();

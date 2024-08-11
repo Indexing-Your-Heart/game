@@ -18,6 +18,9 @@ using Godot;
 
 namespace IndexingYourHeart.Ashashat;
 
+/// <summary>
+/// A node capable of emulating a keyboard for the ʔaʃaʃat language.
+/// </summary>
 public partial class AshashatKeyboard : VBoxContainer
 {
 	public override void _Ready()
@@ -41,6 +44,10 @@ public partial class AshashatKeyboard : VBoxContainer
 		}
 	}
 
+	/// <summary>
+	///  A signal emitted whenever one of the keys are pressed. Text input readers should utilize this to construct or
+	/// modify language strings.
+	/// </summary>
 	[Signal]
 	public delegate void KeyPressedEventHandler(string KeyCode);
 }

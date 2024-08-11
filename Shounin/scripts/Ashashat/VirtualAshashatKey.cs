@@ -19,9 +19,15 @@ using IndexingYourHeart.UI;
 
 namespace IndexingYourHeart.Ashashat;
 
+/// <summary>
+/// A control that represents an individual key on the ʔaʃaʃat keyboard.
+/// </summary>
 [Tool]
 public partial class VirtualAshashatKey : Button
 {
+    /// <summary>
+    /// The key value this control represents.
+    /// </summary>
     [Export]
     public AshashatKey Key
     {
@@ -78,6 +84,9 @@ public partial class VirtualAshashatKey : Button
         };
     }
 
+    /// <summary>
+    /// A signal emitted when this key is pressed.
+    /// </summary>
     [Signal]
     public delegate void KeyPressedEventHandler(string keyCode);
 }

@@ -19,8 +19,14 @@ using IndexingYourHeart.UI;
 
 namespace IndexingYourHeart.Ashashat;
 
+/// <summary>
+/// A node capable of storing numeric values represented by ʔaʃaʃat's numbering system.
+/// </summary>
 public partial class AshashatNumpad : Control
 {
+    /// <summary>
+    /// An enumeration representing the various keys in the numpad.
+    /// </summary>
     public enum NumpadKey
     {
         One, Two, Four, Eight, Sixteen, Return
@@ -132,9 +138,16 @@ public partial class AshashatNumpad : Control
         NumpadKey.Return => "Return"
     };
 
+    /// <summary>
+    /// A signal emitted when a key is pressed on the numpad.
+    /// </summary>
     [Signal]
     public delegate void KeyPressedEventHandler(int currentValue);
 
+    /// <summary>
+    /// A signal emitted when the Return key is pressed on the numpad. Readers should leverage this value as it
+    /// represents the final value, rather than the currently present value.
+    /// </summary>
     [Signal]
     public delegate void NumpadReturnedEventHandler(int finalValue);
 }

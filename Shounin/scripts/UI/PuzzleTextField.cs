@@ -21,6 +21,9 @@ using IndexingYourHeart.Utils;
 
 namespace IndexingYourHeart.UI;
 
+/// <summary>
+/// A control that provides a text input and keyboard in the ʔaʃaʃat language.
+/// </summary>
 public partial class PuzzleTextField : Control
 {
     #region Children
@@ -80,9 +83,15 @@ public partial class PuzzleTextField : Control
         textLabel.Text = currentRenderedText;
     }
 
+    /// <summary>
+    /// A signal emitted when the text value of the text field changes, either from addition or deletion.
+    /// </summary>
     [Signal]
     public delegate void TextFieldChangedInputEventHandler(string updatedText);
 
+    /// <summary>
+    /// A signal emitted when the Return key is pressed on the keyboard to indicate a final value.
+    /// </summary>
     [Signal]
     public delegate void TextFieldReturnedEventHandler(string finalText);
 }
