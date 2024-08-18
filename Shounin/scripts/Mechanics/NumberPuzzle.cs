@@ -17,6 +17,7 @@
 using Godot;
 using IndexingYourHeart.Entities;
 using IndexingYourHeart.UI;
+using IndexingYourHeart.Utils;
 
 namespace IndexingYourHeart.Mechanics;
 
@@ -64,8 +65,17 @@ public partial class NumberPuzzle : Node2D
             }
             puzzleFieldNumpad.MarkCorrect();
             
-            // TODO: Send signal for puzzle solved here.
-            
+            RollinsportMessageBus.Instance.SendMessage(
+                RollinsportMessageBus.PuzzleSolutionMessage.PuzzleSolved,
+                PuzzleId
+            );
+        };
+
+        RollinsportMessageBus.Instance.FoundSolution += id =>
+        {
+            if (!eligibleToLaunch || id != PuzzleId)
+                return;
+            puzzleFieldNumpad.Prefill(ExpectedSolution);
         };
     }
 
@@ -87,8 +97,11 @@ public partial class NumberPuzzle : Node2D
     private void BodyEnteredRange(Node2D body)
     {
         eligibleToLaunch = body is AnthroPlayer;
-        
-        // TODO: Send signal for requesting a puzzle solve.
+
+        RollinsportMessageBus.Instance.SendMessage(
+            RollinsportMessageBus.PuzzleSolutionMessage.RequestForSolution,
+            PuzzleId
+        );
         
         if (DisplayServer.IsTouchscreenAvailable() && eligibleToLaunch)
         {
