@@ -1,8 +1,0 @@
-parent_config: Linting/.swiftlint.base.yml
-
-included:
-- Ashashat/Sources/
-- Protractor/Sources/
-- AnthroBase/Sources/
-- JensonGodotKit/Sources/
-- Rollinsport/Sources/
