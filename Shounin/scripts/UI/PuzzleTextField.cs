@@ -59,7 +59,7 @@ public partial class PuzzleTextField : Control
     {
         keyboard.GetNode<Control>("Main Grid/P Key").GrabFocus();
     }
-
+    
     public void MarkCorrect()
     {
         animationPlayer.Stop(false);
@@ -70,6 +70,14 @@ public partial class PuzzleTextField : Control
     {
         animationPlayer.Stop(false);
         animationPlayer.Play("incorrect");
+    }
+
+    public void Prefill(string text)
+    {
+        currentText = text;
+        
+        // TODO: Make sure to transform this to a font-rendered version.
+        textLabel.Text = currentText;
     }
 
     public void StopAnimations()

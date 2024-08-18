@@ -17,6 +17,7 @@
 using Godot;
 using IndexingYourHeart.Entities;
 using IndexingYourHeart.UI;
+using IndexingYourHeart.Utils;
 
 namespace IndexingYourHeart.Mechanics;
 
@@ -58,6 +59,13 @@ public partial class WordPuzzle : Node2D
             textField.Clear();
             textField.Hide();
         };
+
+        RollinsportMessageBus.Instance.FoundSolution += id =>
+        {
+            if (!eligibleToLaunch || id != PuzzleId)
+                return;
+            textField.Prefill(ExpectedSolution);
+        };
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -80,6 +88,10 @@ public partial class WordPuzzle : Node2D
     {
         eligibleToLaunch = body is AnthroPlayer;
         textField.Clear();
+
+        RollinsportMessageBus.Instance.SendMessage(
+            RollinsportMessageBus.PuzzleSolutionMessage.RequestForSolution,
+            PuzzleId);
         
         if (DisplayServer.IsTouchscreenAvailable() && eligibleToLaunch)
         {
@@ -97,8 +109,8 @@ public partial class WordPuzzle : Node2D
             textField.MarkIncorrect();
             return;
         }
-        
-        // TODO: Add signal emission for complete.
+
+        RollinsportMessageBus.Instance.SendMessage(RollinsportMessageBus.PuzzleSolutionMessage.PuzzleSolved, PuzzleId);
 
         textField.MarkCorrect();
     }
