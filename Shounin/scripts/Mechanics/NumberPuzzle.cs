@@ -21,8 +21,6 @@ using IndexingYourHeart.Utils;
 
 namespace IndexingYourHeart.Mechanics;
 
-// TODO: Write integration tests!
-
 public partial class NumberPuzzle : Node2D
 {
     [Export]
