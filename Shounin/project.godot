@@ -145,3 +145,5 @@ switch_character={
 textures/vram_compression/import_s3tc_bptc=true
 textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0.235294, 0.639216, 0.698039, 1)
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true
