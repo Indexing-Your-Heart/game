@@ -24,14 +24,14 @@ using IndexingYourHeart.Tests.Backing;
 namespace IndexingYourHeart.Tests.Integration;
 
 [TestSuite]
-public class AnthroPlayerTests
+public class AnthroPlayerTests : IGameTestSuite
 {
-    private ISceneRunner runner;
+    public ISceneRunner Runner { get; set; }
 
     [BeforeTest]
     public void Setup()
     {
-        runner = ISceneRunner.Load("res://tests/scenes/environment_testcase.tscn");
+        this.CreateRunner("res://tests/scenes/environment_testcase.tscn");
     }
     
     [TestCase]
@@ -39,11 +39,11 @@ public class AnthroPlayerTests
     {
         Vector2 origin = GetPlayerVector();
         AssertThat(origin).IsNotNull();
-        await runner.AwaitMillis(2000);
+        await Runner.AwaitMillis(2000);
 
-        runner.SimulateKeyPress(Key.A);
-        await runner.SimulateFrames(20);
-        runner.SimulateKeyRelease(Key.A);
+        Runner.SimulateKeyPress(Key.A);
+        await Runner.SimulateFrames(20);
+        Runner.SimulateKeyRelease(Key.A);
         
         Vector2 newPosition = GetPlayerVector();
         AssertThat(newPosition).IsNotNull();
@@ -52,8 +52,8 @@ public class AnthroPlayerTests
 
     private Vector2 GetPlayerVector()
     {
-        float xPosition = (float)runner.Invoke(nameof(AnthroPlayer_IntegrationTestNode.GetPlayerPositionX));
-        float yPosition = (float)runner.Invoke(nameof(AnthroPlayer_IntegrationTestNode.GetPlayerPositionY));
+        float xPosition = (float)Runner.Invoke(nameof(AnthroPlayer_IntegrationTestNode.GetPlayerPositionX));
+        float yPosition = (float)Runner.Invoke(nameof(AnthroPlayer_IntegrationTestNode.GetPlayerPositionY));
         
         return new Vector2(xPosition, yPosition);
     }

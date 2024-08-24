@@ -23,68 +23,62 @@ using TestEnvironment = IndexingYourHeart.Tests.Backing.PuzzleTextField_Integrat
 namespace IndexingYourHeart.Tests.Integration;
 
 [TestSuite]
-public class PuzzleTextFieldTests
+public class PuzzleTextFieldTests : IGameTestSuite
 {
-    private ISceneRunner textFieldRunner;
+    public ISceneRunner Runner { get; set; }
 
     [BeforeTest]
-    public void Setup()
+    public async Task Setup()
     {
-        textFieldRunner = ISceneRunner.Load("res://tests/scenes/textfield_testcase.tscn");
+        this.CreateRunner("res://tests/scenes/textfield_testcase.tscn");
+        await Runner.AwaitMillis(150);
     }
     
     [TestCase]
     public async Task TestKeyboardPressChangesInput()
     {
-        AssertObject(textFieldRunner).IsNotNull();
-        await textFieldRunner.AwaitMillis(150);
-
         await PressActiveKey();
 
-        var currentText = (string)await textFieldRunner.InvokeAsync(nameof(TestEnvironment.GetCurrentText));
+        var currentText = (string)await Runner.InvokeAsync(nameof(TestEnvironment.GetCurrentText));
         AssertString(currentText).IsEqual("p");
     }
 
     [TestCase]
     public async Task TestKeyboardProcessesFullInput()
     {
-        AssertObject(textFieldRunner).IsNotNull();
-        await textFieldRunner.AwaitMillis(150);
-
         await TypeAshashatWord();
         
-        var currentText = (string)await textFieldRunner.InvokeAsync(nameof(TestEnvironment.GetCurrentText));
+        var currentText = (string)await Runner.InvokeAsync(nameof(TestEnvironment.GetCurrentText));
         AssertString(currentText).Equals("ʔaʃaʃat");
 
         // Rendered text should differ slightly to the current text value.
-        var renderedText = (string)await textFieldRunner.InvokeAsync(nameof(TestEnvironment.GetCurrentRenderedText));
+        var renderedText = (string)await Runner.InvokeAsync(nameof(TestEnvironment.GetCurrentRenderedText));
         AssertString(renderedText).Equals("ʔashashat");
     }
 
     [TestCase]
     public async Task TestKeyboardDeletions()
     {
-        AssertObject(textFieldRunner).IsNotNull();
-        await textFieldRunner.AwaitMillis(150);
+        
 
         await TypeAshashatWord(navigateToDelete: true);
         await PressActiveKey();
         
-        var currentText = (string)await textFieldRunner.InvokeAsync(nameof(TestEnvironment.GetCurrentText));
-        var renderedText = (string)await textFieldRunner.InvokeAsync(nameof(TestEnvironment.GetCurrentRenderedText));
+        var currentText = (string)await Runner.InvokeAsync(nameof(TestEnvironment.GetCurrentText));
+        var renderedText = (string)await Runner.InvokeAsync(nameof(TestEnvironment.GetCurrentRenderedText));
         AssertString(currentText).Equals("ʔaʃaʃa");
         AssertString(renderedText).Equals("ʔashasha");
 
         await PressActiveKey();
-        currentText = (string)await textFieldRunner.InvokeAsync(nameof(TestEnvironment.GetCurrentText));
-        renderedText = (string)await textFieldRunner.InvokeAsync(nameof(TestEnvironment.GetCurrentRenderedText));
+        currentText = (string)await Runner.InvokeAsync(nameof(TestEnvironment.GetCurrentText));
+        renderedText = (string)await Runner.InvokeAsync(nameof(TestEnvironment.GetCurrentRenderedText));
         AssertString(currentText).Equals("ʔaʃaʃ");
         AssertString(renderedText).Equals("ʔashash");
         
         // Verify double-wide characters are deleted correctly for font-rendered values.
         await PressActiveKey();
-        currentText = (string)await textFieldRunner.InvokeAsync(nameof(TestEnvironment.GetCurrentText));
-        renderedText = (string)await textFieldRunner.InvokeAsync(nameof(TestEnvironment.GetCurrentRenderedText));
+        currentText = (string)await Runner.InvokeAsync(nameof(TestEnvironment.GetCurrentText));
+        renderedText = (string)await Runner.InvokeAsync(nameof(TestEnvironment.GetCurrentRenderedText));
         AssertString(currentText).Equals("ʔaʃa");
         AssertString(renderedText).Equals("ʔasha");
     }
@@ -92,35 +86,21 @@ public class PuzzleTextFieldTests
     private async Task TypeAshashatWord(bool navigateToDelete = false)
     {
         // Type "?ashashat".
-        await RunActionSequence(["ui_right", "ui_right", "ui_right", "ui_down", "ui_accept"]);  // p -> glottal
-        await RunActionSequence(["ui_left", "ui_left", "ui_accept"]);                           // glottal -> a
-        await RunActionSequence(["ui_down", "ui_right", "ui_right", "ui_accept"]);              // a -> sh
-        await RunActionSequence(["ui_left", "ui_left", "ui_up", "ui_accept"]);                  // sh -> a
-        await RunActionSequence(["ui_down", "ui_right", "ui_right", "ui_accept"]);              // a -> sh
-        await RunActionSequence(["ui_left", "ui_left", "ui_up", "ui_accept"]);                  // sh -> a
-        await RunActionSequence(["ui_up", "ui_right", "ui_accept"]);                            // a -> t
+        await this.PerformActionSequence(["ui_right", "ui_right", "ui_right", "ui_down", "ui_accept"]);  // p -> glottal
+        await this.PerformActionSequence(["ui_left", "ui_left", "ui_accept"]);                           // glottal -> a
+        await this.PerformActionSequence(["ui_down", "ui_right", "ui_right", "ui_accept"]);              // a -> sh
+        await this.PerformActionSequence(["ui_left", "ui_left", "ui_up", "ui_accept"]);                  // sh -> a
+        await this.PerformActionSequence(["ui_down", "ui_right", "ui_right", "ui_accept"]);              // a -> sh
+        await this.PerformActionSequence(["ui_left", "ui_left", "ui_up", "ui_accept"]);                  // sh -> a
+        await this.PerformActionSequence(["ui_up", "ui_right", "ui_accept"]);                            // a -> t
 
         if (navigateToDelete)
-            await RunActionSequence(["ui_down", "ui_down", "ui_right", "ui_down", "ui_down"]);
-    }
-
-    private async Task RunActionSequence(string[] sequence)
-    {
-        foreach (var action in sequence)
-        {
-            await RunAction(action);
-        }
-    }
-
-    private async Task RunAction(string actionName)
-    {
-        textFieldRunner.SimulateActionPressed(actionName);
-        await textFieldRunner.SimulateFrames(10);
+            await this.PerformActionSequence(["ui_down", "ui_down", "ui_right", "ui_down", "ui_down"]);
     }
 
     private async Task PressActiveKey()
     {
-        textFieldRunner.SimulateActionPressed("ui_accept");
-        await textFieldRunner.SimulateFrames(10);
+        Runner.SimulateActionPressed("ui_accept");
+        await Runner.SimulateFrames(10);
     }
 }

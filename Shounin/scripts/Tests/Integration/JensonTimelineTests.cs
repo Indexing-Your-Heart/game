@@ -17,68 +17,62 @@
 
 #endregion
 
-using Godot;
 using GdUnit4;
 using static GdUnit4.Assertions;
 using IndexingYourHeart.UI;
 using System.Threading.Tasks;
 using GdUnit4.Asserts;
-using IndexingYourHeart.Tests.Backing;
 
-namespace IndexingYourHeart.Tests.Integration
+namespace IndexingYourHeart.Tests.Integration;
+
+[TestSuite]
+public class JensonTimelineTests : IGameTestSuite
 {
-    [TestSuite]
-    public class JensonTimelineTests
+    public ISceneRunner Runner { get; set; }
+
+    [Before]
+    public void Setup()
     {
-        private ISceneRunner _runner;
-
-        [Before]
-        public void Setup()
-        {
-            _runner = ISceneRunner.Load("res://tests/scenes/jenson_testcase.tscn");
-        }
-        
-        [TestCase]
-        public void Test_SceneLoads_EntersStartedState()
-        {
-            AssertObject(_runner).IsNotNull();
-            var timelineState = (int)_runner.Invoke("GetTimelineState");
-            AssertInt(timelineState).MatchesTimelineState(JensonTimeline.TimelineState.Started);
-        }
-
-        [TestCase]
-        public async Task Test_SceneLoads_EntersPlayingState()
-        {
-            AssertObject(_runner).IsNotNull();
-            await _runner.AwaitMillis(1500); // Ensure first scene plays.
-
-            var timelineState = (int)await _runner.InvokeAsync("GetTimelineState");
-            AssertInt(timelineState).MatchesTimelineState(JensonTimeline.TimelineState.Playing);
-
-            var timelineDialogue = (string[])await _runner.InvokeAsync("GetTimelineDialogue");
-            AssertThat(timelineDialogue).IsEqual(["<#narration#>", "I am narrating the current story."]);
-        }
-
-        [TestCase]
-        public async Task Test_SceneAdvances()
-        {
-            AssertObject(_runner).IsNotNull();
-            await _runner.AwaitMillis(3000); // Increased time to let dialogue pan out.
-
-            _runner.SimulateActionPressed("timeline_next");
-            await _runner.AwaitIdleFrame();
-
-            var timelineDialogue = (string[])await _runner.InvokeAsync("GetTimelineDialogue");
-            AssertThat(timelineDialogue).IsEqual(["Amy", "Who are you talking to?"]);
-        }
+        this.CreateRunner("res://tests/scenes/jenson_testcase.tscn");
+    }
+    
+    [TestCase]
+    public void Test_SceneLoads_EntersStartedState()
+    {
+        var timelineState = (int)Runner.Invoke("GetTimelineState");
+        AssertInt(timelineState).MatchesTimelineState(JensonTimeline.TimelineState.Started);
     }
 
-    static class JensonTimeline_IntegrationTests_Extensions
+    [TestCase]
+    public async Task Test_SceneLoads_EntersPlayingState()
     {
-        public static IAssertBase<int> MatchesTimelineState(this INumberAssert<int> assert,
-            JensonTimeline.TimelineState timelineState)
-        {
-            return assert.IsEqual((int)timelineState);
-        }
+        await Runner.AwaitMillis(1500); // Ensure first scene plays.
+
+        var timelineState = (int)await Runner.InvokeAsync("GetTimelineState");
+        AssertInt(timelineState).MatchesTimelineState(JensonTimeline.TimelineState.Playing);
+
+        var timelineDialogue = (string[])await Runner.InvokeAsync("GetTimelineDialogue");
+        AssertThat(timelineDialogue).IsEqual(["<#narration#>", "I am narrating the current story."]);
+    }
+
+    [TestCase]
+    public async Task Test_SceneAdvances()
+    {
+        await Runner.AwaitMillis(3000); // Increased time to let dialogue pan out.
+
+        Runner.SimulateActionPressed("timeline_next");
+        await Runner.AwaitIdleFrame();
+
+        var timelineDialogue = (string[])await Runner.InvokeAsync("GetTimelineDialogue");
+        AssertThat(timelineDialogue).IsEqual(["Amy", "Who are you talking to?"]);
+    }
+}
+
+static class JensonTimeline_IntegrationTests_Extensions
+{
+    public static IAssertBase<int> MatchesTimelineState(this INumberAssert<int> assert,
+        JensonTimeline.TimelineState timelineState)
+    {
+        return assert.IsEqual((int)timelineState);
     }
 }

@@ -24,75 +24,67 @@ using TestEnvironment = IndexingYourHeart.Tests.Backing.AshashatNumpad_UnitTestN
 namespace IndexingYourHeart.Tests.Unit;
 
 [TestSuite]
-public class AshashatNumpadTests
+public class AshashatNumpadTests : IGameTestSuite
 {
-    private ISceneRunner numpadRunner;
+    public ISceneRunner Runner { get; set; }
 
     [BeforeTest]
-    public void Setup()
+    public async Task Setup()
     {
-        numpadRunner = ISceneRunner.Load("res://tests/scenes/numpad_testcase.tscn");
+        this.CreateRunner("res://tests/scenes/numpad_testcase.tscn");
+        await Runner.AwaitMillis(150);
     }
     
     [TestCase]
     public async Task TestNumpadPressesKey()
     {
-        AssertObject(numpadRunner).IsNotNull();
-        await numpadRunner.AwaitMillis(150);
-
         await PressActiveKey();
 
-        var currentValue = (int)await numpadRunner.InvokeAsync(nameof(TestEnvironment.GetCurrentValue));
+        var currentValue = (int)await Runner.InvokeAsync(nameof(TestEnvironment.GetCurrentValue));
         AssertInt(currentValue).IsEqual(1);
     }
 
     [TestCase]
     public async Task TestNumpadToggle()
     {
-        AssertObject(numpadRunner).IsNotNull();
-        await numpadRunner.AwaitMillis(150);
+        await PressActiveKey();
+        
+        Runner.SimulateActionPressed("ui_focus_next");
+        await Runner.SimulateFrames(10);
 
         await PressActiveKey();
         
-        numpadRunner.SimulateActionPressed("ui_focus_next");
-        await numpadRunner.SimulateFrames(10);
-
-        await PressActiveKey();
-        
-        var initialValue = (int)await numpadRunner.InvokeAsync(nameof(TestEnvironment.GetCurrentValue));
+        var initialValue = (int)await Runner.InvokeAsync(nameof(TestEnvironment.GetCurrentValue));
         AssertInt(initialValue).IsEqual(3);
         
         // NOTE: Pressing the key again should "turn off" the corresponding bit in the number string.
-        numpadRunner.SimulateActionPressed("ui_accept");
-        await numpadRunner.SimulateFrames(10);
+        Runner.SimulateActionPressed("ui_accept");
+        await Runner.SimulateFrames(10);
         
-        var nextValue = (int)await numpadRunner.InvokeAsync(nameof(TestEnvironment.GetCurrentValue));
+        var nextValue = (int)await Runner.InvokeAsync(nameof(TestEnvironment.GetCurrentValue));
         AssertInt(nextValue).IsEqual(1);
     }
 
     [TestCase]
     public async Task TestNumpadReturns()
     {
-        AssertObject(numpadRunner).IsNotNull();
-        await numpadRunner.AwaitMillis(150);
-
         await PressActiveKey();
 
         // Cycle to get to the return key.
         for (var i = 0; i < 5; i++)
         {
-            numpadRunner.SimulateActionPressed("ui_focus_next");
-            await numpadRunner.SimulateFrames(10);
+            Runner.SimulateActionPressed("ui_focus_next");
+            await Runner.SimulateFrames(10);
         }
 
         await PressActiveKey();
-        var returnedValue = (int)await numpadRunner.InvokeAsync(nameof(TestEnvironment.GetReturnedValue));
+        var returnedValue = (int)await Runner.InvokeAsync(nameof(TestEnvironment.GetReturnedValue));
         AssertInt(returnedValue).IsEqual(1);
     }
 
     private async Task PressActiveKey()
     {
-        numpadRunner.SimulateActionPressed("ui_accept");
-        await numpadRunner.SimulateFrames(10);
+        Runner.SimulateActionPressed("ui_accept");
+        await Runner.SimulateFrames(10);
     }
 }
