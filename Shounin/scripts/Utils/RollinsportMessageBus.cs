@@ -16,6 +16,11 @@
 
 using Godot;
 using Godot.Collections;
+using IndexingYourHeart.Mechanics;
+using System;
+using System.IO;
+using System.Linq;
+using FileAccess = Godot.FileAccess;
 
 namespace IndexingYourHeart.Utils;
 
@@ -28,22 +33,63 @@ public partial class RollinsportMessageBus : Node
         FoundSolution,
         PuzzleSolved
     }
+
+    public enum PlayerManagementMessage
+    {
+        RequestPlayerLocation,
+        LocationReported
+    }
     
     public static RollinsportMessageBus Instance { get; private set; }
 
-    private Array<string> puzzles = [];
+    private Array<string> _puzzles = [];
+    private Vector2 _playerGlobalPosition = Vector2.Zero;
+
+    private const string PlayerfileLocation = "user://Playerfile";
 
     public override void _Ready()
     {
         Instance = this;
 
+        LoadFromSaveData();
+
         RequestForSolution += (id) =>
         {
-            if (!puzzles.Contains(id))
+            if (!_puzzles.Contains(id))
                 return;
             SendMessage(PuzzleSolutionMessage.FoundSolution, id);
         };
-        PuzzleSolved += puzzles.Add;
+        PuzzleSolved += _puzzles.Add;
+
+        PlayerLocationReported += (globalPosition) => _playerGlobalPosition = globalPosition;
+        
+        // Save the player data to a file when exiting.
+        TreeExiting += () => SendMessage(PlayerManagementMessage.RequestPlayerLocation, _playerGlobalPosition);
+        TreeExited += SaveDataToFile;
+
+    }
+
+    private void SaveDataToFile()
+    {
+        Playerfile savedPlayerFile = new([_playerGlobalPosition.X, _playerGlobalPosition.Y], _puzzles.ToArray());
+        using FileAccess saveFile = FileAccess.Open(PlayerfileLocation, FileAccess.ModeFlags.Write);
+        saveFile.StoreString(savedPlayerFile.ToJson());
+    }
+
+    private void LoadFromSaveData()
+    {
+        if (!FileAccess.FileExists(PlayerfileLocation))
+            return;
+        
+        using FileAccess file = FileAccess.Open(PlayerfileLocation, FileAccess.ModeFlags.Read);
+        string textContents = file.GetAsText();
+        Playerfile playerFile = Playerfile.Deserialized(textContents);
+
+        _puzzles = new Array<string>(playerFile.SolvedPuzzles);
+        Vector2 globalPosition = playerFile.RealizedPlayerPosition();
+        _playerGlobalPosition = globalPosition;
+
+        CallDeferred("emit_signal", nameof(SignalName.RequestPlayerReposition), globalPosition);
     }
 
     public void SendMessage(PuzzleSolutionMessage message, string puzzleId)
@@ -59,9 +105,38 @@ public partial class RollinsportMessageBus : Node
             case PuzzleSolutionMessage.PuzzleSolved:
                 EmitSignal(SignalName.PuzzleSolved, puzzleId);
                 break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(message), message, null);
         }
     }
+
+    public void SendMessage(PlayerManagementMessage message, Vector2 position)
+    {
+        switch (message)
+        {
+            case PlayerManagementMessage.LocationReported:
+                EmitSignal(SignalName.PlayerLocationReported, position);
+                break;
+            case PlayerManagementMessage.RequestPlayerLocation:
+                EmitSignal(SignalName.RequestPlayerLocation);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(message), message, null);
+        }
+    }
+
+    #region Player Management Signals
+    [Signal]
+    public delegate void RequestPlayerLocationEventHandler();
+
+    [Signal]
+    public delegate void PlayerLocationReportedEventHandler(Vector2 globalPosition);
+
+    [Signal]
+    public delegate void RequestPlayerRepositionEventHandler(Vector2 globalPosition);
+    #endregion
     
+    #region Puzzle Solution Signals
     [Signal]
     public delegate void RequestForSolutionEventHandler(string puzzleId);
 
@@ -70,4 +145,5 @@ public partial class RollinsportMessageBus : Node
 
     [Signal]
     public delegate void PuzzleSolvedEventHandler(string puzzleId);
+    #endregion
 }

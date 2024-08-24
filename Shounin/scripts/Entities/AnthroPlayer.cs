@@ -16,6 +16,7 @@
 #endregion
 
 using Godot;
+using IndexingYourHeart.Utils;
 
 namespace IndexingYourHeart.Entities;
 
@@ -91,21 +92,21 @@ public partial class AnthroPlayer : CharacterBody2D
 
     #region Children
 
-    private Camera2D camera;
-    private AnimationTree animationTree;
-    private AnimationPlayer animationPlayer;
-    private NavigationAgent2D navigator;
-    private Sprite2D sprite;
-    private AudioStreamPlayer2D footstepsStream;
+    private Camera2D _camera;
+    private AnimationTree _animationTree;
+    private AnimationPlayer _animationPlayer;
+    private NavigationAgent2D _navigator;
+    private Sprite2D _sprite;
+    private AudioStreamPlayer2D _footstepsStream;
 
     #endregion
 
-    private AnimationNodeStateMachinePlayback animationState;
-    private PlayerState playerState;
-    private Sprite2D indicator;
+    private AnimationNodeStateMachinePlayback _animationState;
+    private PlayerState _playerState;
+    private Sprite2D _indicator;
     private Character _character = Character.Chelsea;
 
-    private Vector2 movementVector => Input.GetVector(
+    private static Vector2 movementVector => Input.GetVector(
         "move_left", "move_right", "move_up", "move_down")
         .Normalized();
 
@@ -113,18 +114,29 @@ public partial class AnthroPlayer : CharacterBody2D
     {
         base._Ready();
 
-        camera = GetNode<Camera2D>("Camera");
-        animationTree = GetNode<AnimationTree>("Sprite/AnimationTree");
-        animationPlayer = GetNode<AnimationPlayer>("Sprite/AnimationPlayer");
-        navigator = GetNode<NavigationAgent2D>("Navigator");
-        sprite = GetNode<Sprite2D>("Sprite");
-        footstepsStream = GetNode<AudioStreamPlayer2D>("Footsteps");
+        _camera = GetNode<Camera2D>("Camera");
+        _animationTree = GetNode<AnimationTree>("Sprite/AnimationTree");
+        _animationPlayer = GetNode<AnimationPlayer>("Sprite/AnimationPlayer");
+        _navigator = GetNode<NavigationAgent2D>("Navigator");
+        _sprite = GetNode<Sprite2D>("Sprite");
+        _footstepsStream = GetNode<AudioStreamPlayer2D>("Footsteps");
 
-        animationTree.Active = !Engine.IsEditorHint();
-        animationState = (AnimationNodeStateMachinePlayback)animationTree.Get("parameters/playback");
+        _animationTree.Active = !Engine.IsEditorHint();
+        _animationState = (AnimationNodeStateMachinePlayback)_animationTree.Get("parameters/playback");
 
-        navigator.PathDesiredDistance = 4;
-        navigator.TargetDesiredDistance = 4;
+        _navigator.PathDesiredDistance = 4;
+        _navigator.TargetDesiredDistance = 4;
+
+        RollinsportMessageBus.Instance.RequestPlayerReposition += (globalPosition) =>
+        {
+            GlobalPosition = globalPosition;
+        };
+
+        RollinsportMessageBus.Instance.RequestPlayerLocation += delegate
+        {
+            RollinsportMessageBus.Instance.SendMessage(
+                RollinsportMessageBus.PlayerManagementMessage.LocationReported, GlobalPosition);
+        };
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -132,7 +144,7 @@ public partial class AnthroPlayer : CharacterBody2D
         base._UnhandledInput(@event);
 
         if (!@event.IsClass("InputEventScreenTouch") || !@event.IsPressed()) return;
-        Vector2 newPosition = (Vector2)@event.Get("position");
+        var newPosition = (Vector2)@event.Get("position");
         newPosition *= GetViewport().CanvasTransform;
 
         GetTree().PhysicsFrame += () => CallDeferred(nameof(MoveToward), newPosition);
@@ -141,8 +153,8 @@ public partial class AnthroPlayer : CharacterBody2D
     public override void _Process(double delta)
     {
         base._Process(delta);
-        if (indicator != null && GlobalPosition.DistanceTo(indicator.Position) < 32)
-            indicator.Visible = false;
+        if (_indicator != null && GlobalPosition.DistanceTo(_indicator.Position) < 32)
+            _indicator.Visible = false;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -151,7 +163,7 @@ public partial class AnthroPlayer : CharacterBody2D
         if (Engine.IsEditorHint())
             return;
 
-        if (playerState == PlayerState.Navigating)
+        if (_playerState == PlayerState.Navigating)
         {
             NavigateToNextTarget();
             UpdateStateConditions();
@@ -160,13 +172,13 @@ public partial class AnthroPlayer : CharacterBody2D
 
         if (movementVector != Vector2.Zero)
         {
-            playerState = PlayerState.Walking;
+            _playerState = PlayerState.Walking;
             UpdateBlendingProperties(movementVector);
             Velocity = Accelerated(movementVector);
         }
         else
         {
-            playerState = PlayerState.Idle;
+            _playerState = PlayerState.Idle;
             Velocity = Velocity.MoveToward(Vector2.Zero, Friction);
         }
         UpdateStateConditions();
@@ -184,23 +196,23 @@ public partial class AnthroPlayer : CharacterBody2D
 
     private void ChangeSprites()
     {
-        sprite.Texture = _character switch
+        _sprite.Texture = _character switch
         {
             Character.Chelsea => GD.Load<Texture2D>("res://resources/sprt_chelsea.png"),
             Character.Obel => GD.Load<Texture2D>("res://resources/sprt_obel.png"),
-            _ => sprite.Texture
+            _ => _sprite.Texture
         };
     }
 
     private void MoveToward(Vector2 destination)
     {
-        playerState = PlayerState.Navigating;
-        navigator.TargetPosition = destination;
+        _playerState = PlayerState.Navigating;
+        _navigator.TargetPosition = destination;
 
-        if (indicator != null)
+        if (_indicator != null)
         {
-            indicator.Visible = true;
-            indicator.GlobalPosition = destination;
+            _indicator.Visible = true;
+            _indicator.GlobalPosition = destination;
         }
         else
         {
@@ -212,17 +224,17 @@ public partial class AnthroPlayer : CharacterBody2D
             newSprite.Scale = new Vector2(2, 2);
             newSprite.ZIndex = 4;
             GetParent().AddChild(newSprite);
-            indicator = newSprite;
+            _indicator = newSprite;
         }
     }
 
     private void NavigateToNextTarget()
     {
-        Vector2 nextPosition = navigator.GetNextPathPosition();
-        if (navigator.IsTargetReached() || nextPosition == GlobalPosition)
+        Vector2 nextPosition = _navigator.GetNextPathPosition();
+        if (_navigator.IsTargetReached() || nextPosition == GlobalPosition)
         {
-            playerState = PlayerState.Idle;
-            indicator.Visible = false;
+            _playerState = PlayerState.Idle;
+            _indicator.Visible = false;
             return;
         }
 
@@ -234,26 +246,26 @@ public partial class AnthroPlayer : CharacterBody2D
     
     private void UpdateBlendingProperties(Vector2 vector)
     {
-        animationTree.Set("parameters/Idle/blend_position", vector);
-        animationTree.Set("parameters/Walk/blend_position", vector);
+        _animationTree.Set("parameters/Idle/blend_position", vector);
+        _animationTree.Set("parameters/Walk/blend_position", vector);
     }
 
     private void UpdateStateConditions()
     {
-        animationTree.Set("parameters/conditions/idling", playerState == PlayerState.Idle);
-        animationTree.Set("parameters/conditions/walking", playerState != PlayerState.Idle);
+        _animationTree.Set("parameters/conditions/idling", _playerState == PlayerState.Idle);
+        _animationTree.Set("parameters/conditions/walking", _playerState != PlayerState.Idle);
         
-        switch (playerState)
+        switch (_playerState)
         {
             case PlayerState.Idle:
-                footstepsStream.Stop();
+                _footstepsStream.Stop();
                 break;
             
             case PlayerState.Walking:
             case PlayerState.Navigating:
             default:
-                if (!footstepsStream.Playing)
-                    footstepsStream.Play();
+                if (!_footstepsStream.Playing)
+                    _footstepsStream.Play();
                 break;
         }
     }
