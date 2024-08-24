@@ -23,103 +23,62 @@ using TestEnvironment = IndexingYourHeart.Tests.Backing.NumberPuzzle_Integration
 namespace IndexingYourHeart.Tests.Integration;
 
 [TestSuite]
-public class NumberPuzzleTests
+public class NumberPuzzleTests: IPuzzleEmbeddedTest
 {
-    private ISceneRunner _runner;
+    public ISceneRunner Runner { get; set; }
 
     [BeforeTest]
-    public void Setup()
+    public async Task Setup()
     {
-        _runner = ISceneRunner.Load("res://tests/scenes/puzzle_numpad_testcase.tscn");
+        this.CreateRunner("res://tests/scenes/puzzle_numpad_testcase.tscn");
+        await Runner.AwaitMillis(300);
     }
     
     [TestCase]
     public async Task TestPuzzleInFocus()
     {
-        AssertObject(_runner).IsNotNull();
-        await _runner.AwaitMillis(300);
+        await this.ApproachPuzzle();
 
-        await ApproachPuzzle();
-
-        var puzzleVisible = (bool)await _runner.InvokeAsync(nameof(TestEnvironment.PuzzleVisible));
+        var puzzleVisible = (bool)await Runner.InvokeAsync(nameof(TestEnvironment.PuzzleVisible));
         AssertBool(puzzleVisible).IsTrue();
     }
 
     [TestCase]
     public async Task TestPuzzleLosesFocus()
     {
-        AssertObject(_runner).IsNotNull();
-        await _runner.AwaitMillis(300);
-
-        await ApproachPuzzle();
+        await this.ApproachPuzzle();
         
         // Move away from the puzzle.
-        _runner.SimulateActionPress("move_left");
-        await _runner.AwaitMillis(1500);
-        _runner.SimulateActionRelease("move_left");
-        await _runner.AwaitIdleFrame();
+        Runner.SimulateActionPress("move_left");
+        await Runner.AwaitMillis(1500);
+        Runner.SimulateActionRelease("move_left");
+        await Runner.AwaitIdleFrame();
 
-        var puzzleVisible = (bool)await _runner.InvokeAsync(nameof(TestEnvironment.PuzzleVisible));
+        var puzzleVisible = (bool)await Runner.InvokeAsync(nameof(TestEnvironment.PuzzleVisible));
         AssertBool(puzzleVisible).IsFalse();
     }
 
     [TestCase]
     public async Task TestPuzzleSolve()
     {
-        AssertObject(_runner).IsNotNull();
-        await _runner.AwaitMillis(300);
-        
-        await ApproachPuzzle();
-        await _runner.InvokeAsync(nameof(TestEnvironment.GrabNumpadFocus));
+        await this.ApproachPuzzle();
+        await Runner.InvokeAsync(nameof(TestEnvironment.GrabNumpadFocus));
 
-        await SimulateActionSequence(["ui_accept", "ui_right", "ui_down", "ui_down", "ui_accept"], 150);
+        await this.PerformActionSequence(["ui_accept", "ui_right", "ui_down", "ui_down", "ui_accept"], 150);
         
-        var puzzleSolved = (bool)await _runner.InvokeAsync(nameof(TestEnvironment.PuzzleSolved));
+        var puzzleSolved = (bool)await Runner.InvokeAsync(nameof(TestEnvironment.PuzzleSolved));
         AssertBool(puzzleSolved).IsTrue();
     }
 
     [TestCase]
     public async Task TestPuzzleSolveIncorrect()
     {
-        AssertObject(_runner).IsNotNull();
-        await _runner.AwaitMillis(300);
-        
-        await ApproachPuzzle();
-        await _runner.InvokeAsync(nameof(TestEnvironment.GrabNumpadFocus));
+        await this.ApproachPuzzle();
+        await Runner.InvokeAsync(nameof(TestEnvironment.GrabNumpadFocus));
 
-        await SimulateActionSequence(["ui_right", "ui_accept", "ui_down", "ui_down", "ui_accept"], 150);
+        await this.PerformActionSequence(["ui_right", "ui_accept", "ui_down", "ui_down", "ui_accept"], 150);
         
-        var puzzleSolved = (bool)await _runner.InvokeAsync(nameof(TestEnvironment.PuzzleSolved));
+        var puzzleSolved = (bool)await Runner.InvokeAsync(nameof(TestEnvironment.PuzzleSolved));
         AssertBool(puzzleSolved).IsFalse();
-    }
-    
-
-    private async Task ApproachPuzzle()
-    {
-        // Move toward the puzzle.
-        _runner.SimulateActionPress("move_right");
-        await _runner.AwaitMillis(1500);
-        _runner.SimulateActionRelease("move_right");
-        await _runner.AwaitIdleFrame();
-        
-        // Trigger the puzzle UI to appear, if we're in range.
-        _runner.SimulateActionPressed("interact");
-        await _runner.AwaitIdleFrame();
-    }
-
-    private async Task SimulateActionSequence(string[] actions, uint delay = 0)
-    {
-        foreach (string action in actions)
-        {
-            _runner.SimulateActionPressed(action);
-            if (delay > 0)
-            {
-                await _runner.AwaitMillis(delay);
-            }
-            else
-            {
-                await _runner.AwaitIdleFrame();
-            }
-        }
     }
 }

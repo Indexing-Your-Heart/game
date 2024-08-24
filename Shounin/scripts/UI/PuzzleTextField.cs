@@ -53,8 +53,12 @@ public partial class PuzzleTextField : Control
     }
 
     /// <summary>
-    /// Ensure that the keyboard has the current input focus.
+    /// Ensure that the keyboard has the current input focus. The P key (i.e., the first key on the keyboard) will be the key that
+    /// gains UI focus.
     /// </summary>
+    /// <remarks>
+    /// Typically used for UI automation tests and other accessibility calls.
+    /// </remarks>
     public void GrabKeyboardFocus()
     {
         keyboard.GetNode<Control>("Main Grid/P Key").GrabFocus();

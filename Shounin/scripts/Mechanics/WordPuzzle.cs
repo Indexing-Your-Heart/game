@@ -21,30 +21,47 @@ using IndexingYourHeart.Utils;
 
 namespace IndexingYourHeart.Mechanics;
 
-// TODO: Write integration tests!
-
+/// <summary>
+/// A node that contains a word puzzle fixture which can be interacted with by approaching it and pressing the interact key.
+/// </summary>
 public partial class WordPuzzle : Node2D
 {
+    /// <summary>
+    /// The node path to the text field to attach in the scene tree.
+    /// </summary>
     [Export]
-    public NodePath TextField;
+    public NodePath TextFieldPath;
     
+    /// <summary>
+    /// The text value of the expected solution.
+    /// </summary>
     [ExportGroup("Puzzle Data")]
     [Export]
     public string ExpectedSolution;
 
+    /// <summary>
+    /// A unique identifier for the puzzle.
+    /// </summary>
+    /// <remarks>
+    /// Systems such as the <see cref="RollinsportMessageBus"/> leverage this information to save and restore puzzle data.
+    /// </remarks>
     [Export]
     public string PuzzleId;
+    
+    /// <summary>
+    /// The text field driving the puzzle interaction, derived from <see cref="TextFieldPath"/>.
+    /// </summary>
+    public PuzzleTextField textField { get; private set; }
 
-    private Area2D detectionRing;
-    private PuzzleTextField textField;
-    private bool eligibleToLaunch = false;
+    private Area2D _detectionRing;
+    private bool _eligibleToLaunch = false;
 
     public override void _Ready()
     {
         base._Ready();
 
-        detectionRing = GetNode<Area2D>("Area2D");
-        textField = GetNode<PuzzleTextField>(TextField);
+        _detectionRing = GetNode<Area2D>("Area2D");
+        textField = GetNode<PuzzleTextField>(TextFieldPath);
 
         textField.TextFieldReturned += TextFieldReturned;
         textField.TextFieldChangedInput += delegate
@@ -52,17 +69,17 @@ public partial class WordPuzzle : Node2D
             textField.StopAnimations();
         };
 
-        detectionRing.BodyEntered += BodyEnteredRange;
-        detectionRing.BodyExited += delegate
+        _detectionRing.BodyEntered += BodyEnteredRange;
+        _detectionRing.BodyExited += delegate
         {
-            eligibleToLaunch = false;
+            _eligibleToLaunch = false;
             textField.Clear();
             textField.Hide();
         };
 
         RollinsportMessageBus.Instance.FoundSolution += id =>
         {
-            if (!eligibleToLaunch || id != PuzzleId)
+            if (!_eligibleToLaunch || id != PuzzleId)
                 return;
             textField.Prefill(ExpectedSolution);
         };
@@ -71,29 +88,27 @@ public partial class WordPuzzle : Node2D
     public override void _UnhandledInput(InputEvent @event)
     {
         base._UnhandledInput(@event);
-        if (Input.IsActionPressed("interact") && eligibleToLaunch)
+        
+        if (Input.IsActionPressed("interact") && _eligibleToLaunch)
         {
             textField.Show();
             return;
         }
 
-        if (Input.IsActionPressed("cancel") && eligibleToLaunch)
-        {
-            textField.Hide();
-            return;
-        }
+        if (!Input.IsActionPressed("cancel") || !_eligibleToLaunch) return;
+        textField.Hide();
     }
 
     private void BodyEnteredRange(Node2D body)
     {
-        eligibleToLaunch = body is AnthroPlayer;
+        _eligibleToLaunch = body is AnthroPlayer;
         textField.Clear();
 
         RollinsportMessageBus.Instance.SendMessage(
             RollinsportMessageBus.PuzzleSolutionMessage.RequestForSolution,
             PuzzleId);
         
-        if (DisplayServer.IsTouchscreenAvailable() && eligibleToLaunch)
+        if (DisplayServer.IsTouchscreenAvailable() && _eligibleToLaunch)
         {
             textField.Show();
         }
@@ -101,7 +116,7 @@ public partial class WordPuzzle : Node2D
 
     private void TextFieldReturned(string value)
     {
-        if (!eligibleToLaunch)
+        if (!_eligibleToLaunch)
             return;
 
         if (value != ExpectedSolution)
