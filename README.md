@@ -1,11 +1,10 @@
 # Indexing Your Heart (Codename "Head Over Heels")
 
 **Indexing Your Heart** is an upcoming hybrid Witness-like puzzle game and
-visual novel for iPhone, iPad, and Mac. Follow Chelsea Roslyn, a lovable
-anthro-coyote, as she explores the mountains towering over New Rollinsport and
-meets a mysterious obelisk creature with an existential crisis. Learn the
-[ʔaʃaʃat] language with cleverly crafted puzzles and understand the mysteries of
-the obelisk.
+visual novel. Follow Chelsea Roslyn, a lovable anthro-coyote, as she explores the 
+mountains towering over New Rollinsport and meets a mysterious obelisk creature
+with an existential crisis. Learn the [ʔaʃaʃat] language with cleverly crafted
+puzzles and understand the mysteries of the obelisk.
 
 > **Warning**  
 > This project is a work in progress. Game mechanics, lore, and other parts of
