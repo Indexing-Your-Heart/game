@@ -32,130 +32,18 @@ dep_test_args := "'--parallel --num-workers=1'"
 # The date and time the action was performed.
 exec_date := `date "+%d-%m-%Y.%H-%M-%S"`
 
-# Build a specified set of extensions.
-build-extension LIB_FLAGS +EXTENSIONS: (fetch-remote-deps)
-	scripts/build-libs.sh {{LIB_FLAGS}} {{EXTENSIONS}}
-
-# Builds all the game's extensions for macOS and iOS.
-build-extensions:
-	# Atoms
-	just build-extension '-f' Ashashat
-	just build-extension '-f' AnthroBase
-	just build-extension '-f' JensonGodotKit
-
-	# Molecules
-	just build-extension '-f' Demoscene
-	just build-extension '-f' Rollinsport
-
-	# Cleanup
-	just copy-extension-dependencies
-
-# Build all extensions for CI
-build-extensions-ci:
-	# Atoms
-	just build-extension '-t mac -f' Ashashat
-	just build-extension '-t mac -f' AnthroBase
-	just build-extension '-t mac -f' JensonGodotKit
-
-	# Molecules
-	just build-extension '-t mac -f' Demoscene
-	just build-extension '-t mac -f' Rollinsport
-
-	# Cleanup
-	just copy-extension-dependencies
-
-# Cleans alls dependencies, logs, etc.
-clean:
-	just clean-extensions
-	just clean-logs
-	just clean-dylibs
-
-# Cleans all built extensions, build folders, and cache.
-clean-extensions:
-	rm -rf .mbuild .mxbuild .mcache .mxcache *_build.log
-
-# Removes any built dylib files
-clean-dylibs:
-	rm -rf Shounin/bin/mac/* Shounin/bin/ios/*
-
-# Cleans all logs built from a Just command.
-clean-logs:
-	rm -f *_build.log swiftlint_*.log
-
 # Codesigns the dependency dylibs.
 codesign-extensions IDENTITY:
 	codesign -s "{{IDENTITY}}" Shounin/bin/mac/*.dylib
-
-# Copies the extensions and their dependencies into the iOS folder.
-copy-extension-dependencies:
-	#!/bin/zsh
-	cp .mbuild/release/*.dylib Shounin/bin/mac
-	if [ -e ".mxcbuild/Build/Products/Release-iphoneos/PackageFrameworks" ]; then
-		rm -rf "Shounin/bin/ios/**"
-		for framework in ".mxcbuild/Build/Products/Release-iphoneos/PackageFrameworks/"; do
-			cp -af $framework "Shounin/bin/ios/"
-		done
-	else
-		echo "[iOS]: Frameworks are not built, or building failed. Skipping."
-	fi
 
 # Creates a distribution package for the Mac App Store or TestFlight.
 distribute-mac-app-store PROVISION ENTITLEMENTS:
 	scripts/export_mas.sh {{PROVISION}} {{ENTITLEMENTS}}
 	open .dist
 
-# Fetches the marteau toolchain
-fetch-tools:
-	brew tap indexing-your-heart/packages https://gitlab.com/indexing-your-heart/homebrew-packages
-	brew install marteau
-
-# Fetches remote dependencies from Git submodules
-fetch-remote-deps:
-	git submodule update --init --recursive --remote
-
-# Formats the source files in a specified set of extensions
-format-extension +EXTENSIONS:
-	#!/bin/sh
-	for EXTENSION in {{EXTENSIONS}}; do
-		swiftformat "$EXTENSION/Sources" --swiftversion 5.9
-	done
-
-# Formats source files in all extensions
-format-extensions:
-	just format-extension Ashashat AnthroBase Demoscene JensonGodotKit Rollinsport
-
-# Test a specified extension
-test-extension DEPENDENCY SWIFT_ARGS=dep_test_args:
-	#!/bin/sh
-	cd {{DEPENDENCY}} && swift test {{SWIFT_ARGS}} && rm -rf .build && cd ..
-
-# Test all extensions
-test-extensions:
-	just test-extension Ashashat
-
-# Test all extensions and store their results for CI.
-test-extensions-ci:
-	mkdir -p /tmp/testresults
-	just test-dep Ashashat '--parallel --num-workers=1 --xunit-output /tmp/testresults/Ashashat.xml'
-
-# Runs the integration tests through Godot.
-test-game:
-	{{gdengine}} {{godot_args}} -s -d addons/gut/gut_cmdln.gd \
-	-gdir=res://tests -gprefix=test_ -gsuffix=.gd -gexit -ginclude_subdirs \
-	-gjunit_xml_file=../integration_results_{{exec_date}}.xml -glog=2
-
-test-game-ci:
-	{{gdengine}} {{godot_args}} --headless \
-	-s -d addons/gut/gut_cmdln.gd \
-	-gdir=res://tests -gprefix=test_ -gsuffix=.gd -gexit -ginclude_subdirs
-
 # Dry run the game locally
 dry-run:
 	{{gdengine}} {{godot_args}}
-
-# Edits the script that builds libraries
-edit-build-lib:
-	{{editor}} ./build-libs.sh
 
 # Open Godot editor
 edit-game:
@@ -164,15 +52,6 @@ edit-game:
 # Edits this Justfile
 edit-just:
 	{{editor}} {{justfile()}}
-
-# Runs SwiftLint on library code
-lint:
-	#!/bin/sh
-	if [ ! -z "$NOVA_TASK_NAME" ]; then
-		swiftlint lint
-	else
-		swiftlint lint --output swiftlint_{{exec_date}}.log
-	fi
 
 # Unswizzles protected images
 unswizzle-assets:
