@@ -21,47 +21,62 @@ using IndexingYourHeart.Utils;
 
 namespace IndexingYourHeart.Mechanics;
 
+/// <summary>
+/// A node that provides a puzzle using the numpad.
+/// </summary>
 public partial class NumberPuzzle : Node2D
 {
+    /// <summary>
+    /// The node path to the numpad to attach in the scene tree.
+    /// </summary>
     [Export]
     public NodePath Numpad;
     
+    /// <summary>
+    /// The numeric value of the expected solution.
+    /// </summary>
     [ExportGroup("Puzzle Data")]
     [Export(PropertyHint.Range, "0,31,1")]
     public int ExpectedSolution;
 
+    /// <summary>
+    /// A unique identifier for the puzzle.
+    /// </summary>
+    /// <remarks>
+    /// Systems such as the <see cref="RollinsportMessageBus"/> leverage this information to save and restore puzzle data.
+    /// </remarks>
     [Export]
     public string PuzzleId;
 
-    private bool eligibleToLaunch;
-    private PuzzleNumpadField puzzleFieldNumpad;
+    private bool _eligibleToLaunch;
+    private PuzzleNumpadField _puzzleFieldNumpad;
 
-    private Area2D detectionRing;
+    private Area2D _detectionRing;
 
     public override void _Ready()
     {
         base._Ready();
-        detectionRing = GetNode<Area2D>("Area2D");
-        puzzleFieldNumpad = GetNode<PuzzleNumpadField>(Numpad);
+        _detectionRing = GetNode<Area2D>("Area2D");
+        _puzzleFieldNumpad = GetNode<PuzzleNumpadField>(Numpad);
 
-        detectionRing.BodyEntered += BodyEnteredRange;
-        detectionRing.BodyExited += delegate
+        _detectionRing.BodyEntered += BodyEnteredRange;
+        _detectionRing.BodyExited += delegate
         {
-            eligibleToLaunch = false;
-            puzzleFieldNumpad.Hide();
-            puzzleFieldNumpad.Clear();
+            _eligibleToLaunch = false;
+            _puzzleFieldNumpad.Hide();
+            _puzzleFieldNumpad.Clear();
         };
 
-        puzzleFieldNumpad.EditingChanged += value =>
+        _puzzleFieldNumpad.EditingChanged += value =>
         {
-            if (!eligibleToLaunch)
+            if (!_eligibleToLaunch)
                 return;
             if (value != ExpectedSolution)
             {
-                puzzleFieldNumpad.MarkIncorrect();
+                _puzzleFieldNumpad.MarkIncorrect();
                 return;
             }
-            puzzleFieldNumpad.MarkCorrect();
+            _puzzleFieldNumpad.MarkCorrect();
             
             RollinsportMessageBus.Instance.SendMessage(
                 RollinsportMessageBus.PuzzleSolutionMessage.PuzzleSolved,
@@ -71,39 +86,39 @@ public partial class NumberPuzzle : Node2D
 
         RollinsportMessageBus.Instance.FoundSolution += id =>
         {
-            if (!eligibleToLaunch || id != PuzzleId)
+            if (!_eligibleToLaunch || id != PuzzleId)
                 return;
-            puzzleFieldNumpad.Prefill(ExpectedSolution);
+            _puzzleFieldNumpad.Prefill(ExpectedSolution);
         };
     }
 
     public override void _UnhandledInput(InputEvent @event)
     {
-        if (Input.IsActionPressed("interact") && eligibleToLaunch)
+        if (Input.IsActionPressed("interact") && _eligibleToLaunch)
         {
-            puzzleFieldNumpad.Show();
+            _puzzleFieldNumpad.Show();
             return;
         }
 
-        if (Input.IsActionPressed("cancel") && eligibleToLaunch)
+        if (Input.IsActionPressed("cancel") && _eligibleToLaunch)
         {
-            puzzleFieldNumpad.Hide();
+            _puzzleFieldNumpad.Hide();
             return;
         }
     }
 
     private void BodyEnteredRange(Node2D body)
     {
-        eligibleToLaunch = body is AnthroPlayer;
+        _eligibleToLaunch = body is AnthroPlayer;
 
         RollinsportMessageBus.Instance.SendMessage(
             RollinsportMessageBus.PuzzleSolutionMessage.RequestForSolution,
             PuzzleId
         );
         
-        if (DisplayServer.IsTouchscreenAvailable() && eligibleToLaunch)
+        if (DisplayServer.IsTouchscreenAvailable() && _eligibleToLaunch)
         {
-            puzzleFieldNumpad.Show();
+            _puzzleFieldNumpad.Show();
         }
     }
 }
