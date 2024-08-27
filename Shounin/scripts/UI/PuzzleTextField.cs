@@ -27,29 +27,32 @@ namespace IndexingYourHeart.UI;
 public partial class PuzzleTextField : Control
 {
     #region Children
-    private Label textLabel;
-    private AshashatKeyboard keyboard;
-    private AnimationPlayer animationPlayer;
+    private Label _textLabel;
+    private AshashatKeyboard _keyboard;
+    private AnimationPlayer _animationPlayer;
     #endregion
     
-    private string currentText;
-    private string currentRenderedText;
-    private readonly List<AshashatKey> keyHistory = [];
+    private string _currentText;
+    private string _currentRenderedText;
+    private readonly List<AshashatKey> _keyHistory = [];
 
     public override void _Ready()
     {
         base._Ready();
-        textLabel = GetNode<Label>("VStack/PanelContainer/TextLabel");
-        keyboard = GetNode<AshashatKeyboard>("VStack/HStack/Keyboard");
-        animationPlayer = GetNode<AnimationPlayer>("Animator");
-        keyboard.KeyPressed += ProcessKeyInput;
+        _textLabel = GetNode<Label>("VStack/PanelContainer/TextLabel");
+        _keyboard = GetNode<AshashatKeyboard>("VStack/HStack/Keyboard");
+        _animationPlayer = GetNode<AnimationPlayer>("Animator");
+        _keyboard.KeyPressed += ProcessKeyInput;
     }
 
+    /// <summary>
+    /// Clears the current field.
+    /// </summary>
     public void Clear()
     {
-        currentText = "";
-        currentRenderedText = "";
-        textLabel.Text = "";
+        _currentText = "";
+        _currentRenderedText = "";
+        _textLabel.Text = "";
     }
 
     /// <summary>
@@ -61,32 +64,45 @@ public partial class PuzzleTextField : Control
     /// </remarks>
     public void GrabKeyboardFocus()
     {
-        keyboard.GetNode<Control>("Main Grid/P Key").GrabFocus();
+        _keyboard.GetNode<Control>("Main Grid/P Key").GrabFocus();
     }
     
+    /// <summary>
+    /// Mark the field as the correct solution.
+    /// </summary>
     public void MarkCorrect()
     {
-        animationPlayer.Stop(false);
-        animationPlayer.Play("correct");
+        _animationPlayer.Stop();
+        _animationPlayer.Play("correct");
     }
 
+    /// <summary>
+    /// Mark the field as the incorrect solution.
+    /// </summary>
     public void MarkIncorrect()
     {
-        animationPlayer.Stop(false);
-        animationPlayer.Play("incorrect");
+        _animationPlayer.Stop();
+        _animationPlayer.Play("incorrect");
     }
 
+    /// <summary>
+    /// Prefill the text field with a value.
+    /// </summary>
+    /// <param name="text">The value to prefill into the text field.</param>
     public void Prefill(string text)
     {
-        currentText = text;
+        _currentText = text;
         
         // TODO: Make sure to transform this to a font-rendered version.
-        textLabel.Text = currentText;
+        _textLabel.Text = _currentText;
     }
 
+    /// <summary>
+    /// Stops all animations from playing on the text field.
+    /// </summary>
     public void StopAnimations()
     {
-        animationPlayer.Stop(false);
+        _animationPlayer.Stop();
     }
 
     private void ProcessKeyInput(string keyCode)
@@ -95,30 +111,30 @@ public partial class PuzzleTextField : Control
         switch (key)
         {
             case AshashatKey.Delete:
-                if (keyHistory.Count == 0)
+                if (_keyHistory.Count == 0)
                 {
-                    currentText = "";
-                    currentRenderedText = "";
-                    textLabel.Text = "";
+                    _currentText = "";
+                    _currentRenderedText = "";
+                    _textLabel.Text = "";
                     return;
                 }
-                AshashatKey mostRecentKey = keyHistory.RemoveLast();
-                currentText = currentText.TrimSuffix(mostRecentKey.KeyValue());
-                currentRenderedText = currentRenderedText.TrimSuffix(mostRecentKey.FontRenderedValue());
-                EmitSignal(SignalName.TextFieldChangedInput, currentText);
+                AshashatKey mostRecentKey = _keyHistory.RemoveLast();
+                _currentText = _currentText.TrimSuffix(mostRecentKey.KeyValue());
+                _currentRenderedText = _currentRenderedText.TrimSuffix(mostRecentKey.FontRenderedValue());
+                EmitSignal(SignalName.TextFieldChangedInput, _currentText);
                 break;
             case AshashatKey.Return:
-                EmitSignal(SignalName.TextFieldReturned, currentText);
+                EmitSignal(SignalName.TextFieldReturned, _currentText);
                 break;
             default:
-                currentText += key.KeyValue();
-                currentRenderedText += key.FontRenderedValue();
-                keyHistory.Add(key);
-                EmitSignal(SignalName.TextFieldChangedInput, currentText);
+                _currentText += key.KeyValue();
+                _currentRenderedText += key.FontRenderedValue();
+                _keyHistory.Add(key);
+                EmitSignal(SignalName.TextFieldChangedInput, _currentText);
                 break;
         }
 
-        textLabel.Text = currentRenderedText;
+        _textLabel.Text = _currentRenderedText;
     }
 
     /// <summary>

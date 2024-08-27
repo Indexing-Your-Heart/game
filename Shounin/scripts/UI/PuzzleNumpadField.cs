@@ -19,57 +19,79 @@ using IndexingYourHeart.Ashashat;
 
 namespace IndexingYourHeart.UI;
 
+/// <summary>
+/// A control that provides a numpad and corresponding field displaying its current value.
+/// </summary>
 public partial class PuzzleNumpadField : Control
 {
-    private Label label;
-    private AshashatNumpad numpad;
-    private AnimationPlayer animator;
+    private Label _label;
+    private AshashatNumpad _numpad;
+    private AnimationPlayer _animator;
 
+    /// <summary>
+    /// The current value stored in the field.
+    /// </summary>
     public int CurrentValue = 0;
 
     public override void _Ready()
     {
         base._Ready();
         
-        label = GetNode<Label>("VStack/PanelContainer/NumberLabel");
-        numpad = GetNode<AshashatNumpad>("VStack/Numpad");
-        animator = GetNode<AnimationPlayer>("Animator");
+        _label = GetNode<Label>("VStack/PanelContainer/NumberLabel");
+        _numpad = GetNode<AshashatNumpad>("VStack/Numpad");
+        _animator = GetNode<AnimationPlayer>("Animator");
 
-        numpad.NumpadReturned += value =>
+        _numpad.NumpadReturned += value =>
         {
-            label.Text = $"{value}";
+            _label.Text = $"{value}";
             CurrentValue = value;
             EmitSignal(SignalName.EditingChanged, CurrentValue);
         };
     }
 
+    /// <summary>
+    /// Clear the contents of the field and reset the numpad.
+    /// </summary>
     public void Clear()
     {
         CurrentValue = 0;
-        label.Text = "???";
-        animator.Stop();
-        numpad.Clear();
-        label.Modulate = Colors.White;
+        _label.Text = "???";
+        _animator.Stop();
+        _numpad.Clear();
+        _label.Modulate = Colors.White;
     }
 
+    /// <summary>
+    /// Mark the current field as the correct solution.
+    /// </summary>
     public void MarkCorrect()
     {
-        animator.Stop(false);
-        animator.Play("correct");
+        _animator.Stop();
+        _animator.Play("correct");
     }
 
+    /// <summary>
+    /// Mark the current field as the incorrect solution.
+    /// </summary>
     public void MarkIncorrect()
     {
-        animator.Stop(false);
-        animator.Play("incorrect");
+        _animator.Stop();
+        _animator.Play("incorrect");
     }
 
+    /// <summary>
+    /// Prefills the field with a specified value.
+    /// </summary>
+    /// <param name="newValue">The value to prefill in the field.</param>
     public void Prefill(int newValue)
     {
         CurrentValue = newValue;
-        label.Text = $"{CurrentValue}";
+        _label.Text = $"{CurrentValue}";
     }
 
+    /// <summary>
+    /// A signal emitted whenever the value in the field changes.
+    /// </summary>
     [Signal]
     public delegate void EditingChangedEventHandler(int value);
 }
