@@ -24,22 +24,67 @@ using FileAccess = Godot.FileAccess;
 
 namespace IndexingYourHeart.Utils;
 
+/// <summary>
+/// A class responsible for delegating messages sent across nodes and scenes in a simple manner.
+/// </summary>
+/// <remarks>
+/// <para>
+/// The message bus is typically used for interdependent messages that apply across various systems, such as listening for when
+/// puzzles are solved or saving/loading the world state. Normally, the shared <see cref="Instance"/> is referenced to handle
+/// event listeners.
+/// </para>
+///
+/// <para>
+/// Messages should be sent via the <c>SendMessage</c> methods, rather than using <see cref="Node.EmitSignal"/>, as these methods
+/// guarantee type safety and limit the scope of the message contents:
+/// <code>
+/// RollinsportMessageBus.Instance.SendMessage(PuzzleSolutionMessage.RequestForSolution, "pzl_example");
+/// </code>
+/// </para>
+/// </remarks>
 [GlobalClass]
 public partial class RollinsportMessageBus : Node
 {
+    /// <summary>
+    /// Messages that are specific to puzzle solutions. These messages will often provide the puzzle's ID.
+    /// </summary>
     public enum PuzzleSolutionMessage
     {
+        /// <summary>
+        /// A puzzle is querying whether it has already been solved by the player per the player file.
+        /// </summary>
         RequestForSolution,
+        
+        /// <summary>
+        /// A puzzle has been found in the completed list.
+        /// </summary>
         FoundSolution,
+        
+        /// <summary>
+        /// A puzzle was recently solved.
+        /// </summary>
         PuzzleSolved
     }
 
+    /// <summary>
+    /// Messages that are specific to player management.
+    /// </summary>
     public enum PlayerManagementMessage
     {
+        /// <summary>
+        /// A query for the player's current location is being requested.
+        /// </summary>
         RequestPlayerLocation,
+        
+        /// <summary>
+        /// The player's location is being reported.
+        /// </summary>
         LocationReported
     }
     
+    /// <summary>
+    /// A shared instance of the message bus for globally setting event listeners.
+    /// </summary>
     public static RollinsportMessageBus Instance { get; private set; }
 
     private Array<string> _puzzles = [];
@@ -68,6 +113,49 @@ public partial class RollinsportMessageBus : Node
         TreeExited += SaveDataToFile;
 
     }
+    
+    /// <summary>
+    /// Send a message to the message bus, passing it to all its listeners.
+    /// </summary>
+    /// <param name="message">The message to send to the message bus's listeners.</param>
+    /// <param name="puzzleId">The ID of the puzzle to provide with the message.</param>
+    public void SendMessage(PuzzleSolutionMessage message, string puzzleId)
+    {
+        switch (message)
+        {
+            case PuzzleSolutionMessage.RequestForSolution:
+                EmitSignal(SignalName.RequestForSolution, puzzleId);
+                break;
+            case PuzzleSolutionMessage.FoundSolution:
+                EmitSignal(SignalName.FoundSolution, puzzleId);
+                break;
+            case PuzzleSolutionMessage.PuzzleSolved:
+                EmitSignal(SignalName.PuzzleSolved, puzzleId);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(message), message, null);
+        }
+    }
+
+    /// <summary>
+    /// Send a message to the message bus, passing it to all its listeners.
+    /// </summary>
+    /// <param name="message">The message to send to the message bus's listeners.</param>
+    /// <param name="position">The player's current position (or <c>Vector2.Zero</c>) to provide with the message.</param>
+    public void SendMessage(PlayerManagementMessage message, Vector2 position)
+    {
+        switch (message)
+        {
+            case PlayerManagementMessage.LocationReported:
+                EmitSignal(SignalName.PlayerLocationReported, position);
+                break;
+            case PlayerManagementMessage.RequestPlayerLocation:
+                EmitSignal(SignalName.RequestPlayerLocation);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(message), message, null);
+        }
+    }
 
     private void SaveDataToFile()
     {
@@ -92,57 +180,51 @@ public partial class RollinsportMessageBus : Node
         CallDeferred("emit_signal", nameof(SignalName.RequestPlayerReposition), globalPosition);
     }
 
-    public void SendMessage(PuzzleSolutionMessage message, string puzzleId)
-    {
-        switch (message)
-        {
-            case PuzzleSolutionMessage.RequestForSolution:
-                EmitSignal(SignalName.RequestForSolution, puzzleId);
-                break;
-            case PuzzleSolutionMessage.FoundSolution:
-                EmitSignal(SignalName.FoundSolution, puzzleId);
-                break;
-            case PuzzleSolutionMessage.PuzzleSolved:
-                EmitSignal(SignalName.PuzzleSolved, puzzleId);
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(message), message, null);
-        }
-    }
-
-    public void SendMessage(PlayerManagementMessage message, Vector2 position)
-    {
-        switch (message)
-        {
-            case PlayerManagementMessage.LocationReported:
-                EmitSignal(SignalName.PlayerLocationReported, position);
-                break;
-            case PlayerManagementMessage.RequestPlayerLocation:
-                EmitSignal(SignalName.RequestPlayerLocation);
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(message), message, null);
-        }
-    }
-
     #region Player Management Signals
+    /// <summary>
+    /// A signal emitted whenever the player's location is requested (i.e.,
+    /// <see cref="PlayerManagementMessage.RequestPlayerLocation"/> was sent to the message bus).
+    /// </summary>
     [Signal]
     public delegate void RequestPlayerLocationEventHandler();
 
+    /// <summary>
+    /// A signal emitted whenever the player's location is being reported (i.e.,
+    /// <see cref="PlayerManagementMessage.LocationReported"/> was sent to the message bus). The player's location is provided as
+    /// its single argument.
+    /// </summary>
     [Signal]
     public delegate void PlayerLocationReportedEventHandler(Vector2 globalPosition);
 
+    /// <summary>
+    /// A signal emitted whenever a request is made to reposition the player.
+    /// </summary>
+    /// <remarks>
+    /// This is a receiver-only signal.
+    /// </remarks>
     [Signal]
     public delegate void RequestPlayerRepositionEventHandler(Vector2 globalPosition);
     #endregion
     
     #region Puzzle Solution Signals
+    /// <summary>
+    /// A signal emitted whenever a puzzle or system is querying whether it has been solved by the player before (i.e.,
+    /// <see cref="PuzzleSolutionMessage.RequestForSolution"/> was sent to the message bus).
+    /// </summary>
     [Signal]
     public delegate void RequestForSolutionEventHandler(string puzzleId);
 
+    /// <summary>
+    /// A signal emitted whenever a system has detected a puzzle that has been solved already (i.e.,
+    /// <see cref="PuzzleSolutionMessage.FoundSolution"/> was send to the message bus).
+    /// </summary>
     [Signal]
     public delegate void FoundSolutionEventHandler(string puzzleId);
 
+    /// <summary>
+    /// A signal emitted whenever a puzzle has been solved (i.e., <see cref="PuzzleSolutionMessage.PuzzleSolved"/> was sent to the
+    /// message bus).
+    /// </summary>
     [Signal]
     public delegate void PuzzleSolvedEventHandler(string puzzleId);
     #endregion
