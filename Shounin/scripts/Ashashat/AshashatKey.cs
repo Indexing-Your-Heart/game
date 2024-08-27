@@ -18,6 +18,9 @@ using System;
 
 namespace IndexingYourHeart.Ashashat;
 
+/// <summary>
+/// A virtual enumeration of a key on the [ʔaʃaʃat] keyboard.
+/// </summary>
 public enum AshashatKey
 {
     A, I, E, U,
@@ -28,6 +31,12 @@ public enum AshashatKey
 
 public static class AshashatKeyUtils
 {
+    /// <summary>
+    /// Gets the corresponding key value from a key code.
+    /// </summary>
+    /// <param name="keyCode">The key code to convert into an <see cref="AshashatKey"/>.</param>
+    /// <returns>The corresponding key enumeration.</returns>
+    /// <exception cref="ArgumentException">Thrown when the string isn't a valid key code.</exception>
     public static AshashatKey KeyFromKeyCode(string keyCode) => keyCode switch
     {
         "ashashat_key_a" => AshashatKey.A,

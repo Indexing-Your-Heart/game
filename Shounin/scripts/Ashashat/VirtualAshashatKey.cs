@@ -49,6 +49,9 @@ public partial class VirtualAshashatKey : Button
 
     private void AssignKeyTextures()
     {
+        // Don't assign textures or adjust sizes when in tool mode, to prevent constant changes to scenes that rely on it.
+        if (Engine.IsEditorHint()) return;
+        
         KeyTextures keyTextures = TextureForCurrentKey();
         keyTextures.AssignStyleBoxTexturesToControl(this);
 

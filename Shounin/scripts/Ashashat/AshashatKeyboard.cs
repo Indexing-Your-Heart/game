@@ -39,8 +39,8 @@ public partial class AshashatKeyboard : VBoxContainer
 			if (node.Name.ToString().StartsWith("Empty") || node.Name == "Spacer")
 				continue;
 
-			VirtualAshashatKey key = (VirtualAshashatKey)node;
-			key.KeyPressed += (KeyCode) => EmitSignal(SignalName.KeyPressed, KeyCode);
+			var key = (VirtualAshashatKey)node;
+			key.KeyPressed += keyCode => EmitSignal(SignalName.KeyPressed, keyCode);
 		}
 	}
 
@@ -49,5 +49,5 @@ public partial class AshashatKeyboard : VBoxContainer
 	/// modify language strings.
 	/// </summary>
 	[Signal]
-	public delegate void KeyPressedEventHandler(string KeyCode);
+	public delegate void KeyPressedEventHandler(string keyCode);
 }

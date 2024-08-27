@@ -20,7 +20,7 @@ using IndexingYourHeart.UI;
 namespace IndexingYourHeart.Ashashat;
 
 /// <summary>
-/// A node capable of storing numeric values represented by ʔaʃaʃat's numbering system.
+/// A node capable of storing numeric values represented by [ʔaʃaʃat]'s numbering system.
 /// </summary>
 public partial class AshashatNumpad : Control
 {
@@ -33,84 +33,87 @@ public partial class AshashatNumpad : Control
     }
     
     #region Children
-    private Button KeyOne;
-    private Button KeyTwo;
-    private Button KeyFour;
-    private Button KeyEight;
-    private Button KeySixteen;
-    private Button KeyReturn;
+    private Button _keyOne;
+    private Button _keyTwo;
+    private Button _keyFour;
+    private Button _keyEight;
+    private Button _keySixteen;
+    private Button _keyReturn;
     #endregion
 
-    private int currentValue = 0;
+    private int _currentValue = 0;
 
     public override void _Ready()
     {
-        KeyOne = GetNode<Button>("key1");
-        KeyTwo = GetNode<Button>("key2");
-        KeyFour = GetNode<Button>("key4");
-        KeyEight = GetNode<Button>("key8");
-        KeySixteen = GetNode<Button>("key16");
-        KeyReturn = GetNode<Button>("keyReturn");
+        _keyOne = GetNode<Button>("key1");
+        _keyTwo = GetNode<Button>("key2");
+        _keyFour = GetNode<Button>("key4");
+        _keyEight = GetNode<Button>("key8");
+        _keySixteen = GetNode<Button>("key16");
+        _keyReturn = GetNode<Button>("keyReturn");
 
         KeyTextures oneKey = GetTexturesForKey(NumpadKey.One);
-        oneKey.AssignStyleBoxTexturesToControl(KeyOne);
+        oneKey.AssignStyleBoxTexturesToControl(_keyOne);
 
         KeyTextures twoKey = GetTexturesForKey(NumpadKey.Two);
-        twoKey.AssignStyleBoxTexturesToControl(KeyTwo);
+        twoKey.AssignStyleBoxTexturesToControl(_keyTwo);
 
         KeyTextures fourKey = GetTexturesForKey(NumpadKey.Four);
-        fourKey.AssignStyleBoxTexturesToControl(KeyFour);
+        fourKey.AssignStyleBoxTexturesToControl(_keyFour);
 
         KeyTextures eightKey = GetTexturesForKey(NumpadKey.Eight);
-        eightKey.AssignStyleBoxTexturesToControl(KeyEight);
+        eightKey.AssignStyleBoxTexturesToControl(_keyEight);
 
         KeyTextures sixteenKey = GetTexturesForKey(NumpadKey.Sixteen);
-        sixteenKey.AssignStyleBoxTexturesToControl(KeySixteen);
+        sixteenKey.AssignStyleBoxTexturesToControl(_keySixteen);
 
         KeyTextures returnKey = GetTexturesForKey(NumpadKey.Return);
-        returnKey.AssignStyleBoxTexturesToControl(KeyReturn);
+        returnKey.AssignStyleBoxTexturesToControl(_keyReturn);
 
-        KeyOne.Pressed += delegate
+        _keyOne.Pressed += delegate
         {
-            currentValue += KeyOne.ButtonPressed ? 1 : -1;
-            EmitSignal(SignalName.KeyPressed, currentValue);
+            _currentValue += _keyOne.ButtonPressed ? 1 : -1;
+            EmitSignal(SignalName.KeyPressed, _currentValue);
         };
         
-        KeyTwo.Pressed += delegate
+        _keyTwo.Pressed += delegate
         {
-            currentValue += KeyTwo.ButtonPressed ? 2 : -2;
-            EmitSignal(SignalName.KeyPressed, currentValue);
+            _currentValue += _keyTwo.ButtonPressed ? 2 : -2;
+            EmitSignal(SignalName.KeyPressed, _currentValue);
         };
         
-        KeyFour.Pressed += delegate
+        _keyFour.Pressed += delegate
         {
-            currentValue += KeyFour.ButtonPressed ? 4 : -4;
-            EmitSignal(SignalName.KeyPressed, currentValue);
+            _currentValue += _keyFour.ButtonPressed ? 4 : -4;
+            EmitSignal(SignalName.KeyPressed, _currentValue);
         };
         
-        KeyEight.Pressed += delegate
+        _keyEight.Pressed += delegate
         {
-            currentValue += KeyEight.ButtonPressed ? 8 : -8;
-            EmitSignal(SignalName.KeyPressed, currentValue);
+            _currentValue += _keyEight.ButtonPressed ? 8 : -8;
+            EmitSignal(SignalName.KeyPressed, _currentValue);
         };
         
-        KeySixteen.Pressed += delegate
+        _keySixteen.Pressed += delegate
         {
-            currentValue += KeySixteen.ButtonPressed ? 16 : -16;
-            EmitSignal(SignalName.KeyPressed, currentValue);
+            _currentValue += _keySixteen.ButtonPressed ? 16 : -16;
+            EmitSignal(SignalName.KeyPressed, _currentValue);
         };
 
-        KeyReturn.Pressed += () => EmitSignal(SignalName.NumpadReturned, currentValue);
+        _keyReturn.Pressed += () => EmitSignal(SignalName.NumpadReturned, _currentValue);
     }
 
+    /// <summary>
+    /// Clears the current input, resetting the current value to zero (0).
+    /// </summary>
     public void Clear()
     {
-        currentValue = 0;
-        KeyOne.ButtonPressed = false;
-        KeyTwo.ButtonPressed = false;
-        KeyFour.ButtonPressed = false;
-        KeyEight.ButtonPressed = false;
-        KeySixteen.ButtonPressed = false;
+        _currentValue = 0;
+        _keyOne.ButtonPressed = false;
+        _keyTwo.ButtonPressed = false;
+        _keyFour.ButtonPressed = false;
+        _keyEight.ButtonPressed = false;
+        _keySixteen.ButtonPressed = false;
     }
 
     private static KeyTextures GetTexturesForKey(NumpadKey key)
