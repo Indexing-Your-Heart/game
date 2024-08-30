@@ -15,19 +15,28 @@
 #endregion
 
 using Godot;
+using System;
 using System.Text.Json;
 
 namespace IndexingYourHeart.Mechanics;
 
+[Serializable]
+public record EnvironmentData(string GameVersion, string Platform, string OperatingSystemVersion);
+
 /// <summary>
 ///  A representation of a save file containing information about the player's saved state.
 /// </summary>
-public class Playerfile(float[] playerPosition, string[] solvedPuzzles)
+public class Playerfile(float[] playerPosition, string[] solvedPuzzles, EnvironmentData environment)
 {
     /// <summary>
     /// The version of the file. Some features and fields may only be available in later iterations.
     /// </summary>
     public int PlayerfileVersion { get; init; } = 1;
+
+    /// <summary>
+    /// Information about the game when the player file was created.
+    /// </summary>
+    public EnvironmentData Environment { get; init; } = environment;
 
     /// <summary>
     /// An array representation of the player's global position in the world. The first number is the X position, and the last

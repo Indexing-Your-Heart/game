@@ -159,9 +159,24 @@ public partial class RollinsportMessageBus : Node
 
     private void SaveDataToFile()
     {
-        Playerfile savedPlayerFile = new([_playerGlobalPosition.X, _playerGlobalPosition.Y], _puzzles.ToArray());
+        EnvironmentData currentEnv = CreateEnvironmentData();
+        Playerfile savedPlayerFile = new(
+            playerPosition: [_playerGlobalPosition.X, _playerGlobalPosition.Y],
+            solvedPuzzles: _puzzles.ToArray(),
+            environment: currentEnv);
         using FileAccess saveFile = FileAccess.Open(PlayerfileLocation, FileAccess.ModeFlags.Write);
         saveFile.StoreString(savedPlayerFile.ToJson());
+    }
+
+    private static EnvironmentData CreateEnvironmentData()
+    {
+        var gameVersion = (string)ProjectSettings.Singleton.GetSetting("application/config/version");
+        if (gameVersion == string.Empty)
+            gameVersion = "0.0.0";
+        string osVersion = OS.GetVersion();
+        string platform = OS.GetName();
+        EnvironmentData currentEnv = new(gameVersion, platform, osVersion);
+        return currentEnv;
     }
 
     private void LoadFromSaveData()
