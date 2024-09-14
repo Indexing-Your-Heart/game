@@ -526,6 +526,7 @@ grow_vertical = 2
 
 [node name="Who Label" type="Label" parent="Dialogue Tape/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ern7x")
 text = "John Smith"
 label_settings = SubResource("LabelSettings_4q5km")
 uppercase = true
