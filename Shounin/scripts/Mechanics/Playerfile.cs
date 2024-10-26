@@ -20,6 +20,16 @@ using System.Text.Json;
 
 namespace IndexingYourHeart.Mechanics;
 
+/// <summary>
+/// A record used for storing information about the device running the game.
+/// </summary>
+/// <remarks>
+/// This information is typically used for debugging purposes to isolate whether specific issues in the game are tied to a given
+/// platform, such as macOS.
+/// </remarks>
+/// <param name="GameVersion">The game's version.</param>
+/// <param name="Platform">The operating system platform the game is running on.</param>
+/// <param name="OperatingSystemVersion">The version of the operating system.</param>
 [Serializable]
 public record EnvironmentData(string GameVersion, string Platform, string OperatingSystemVersion);
 
@@ -58,23 +68,20 @@ public class Playerfile(float[] playerPosition, string[] solvedPuzzles, Environm
     /// </summary>
     /// <param name="jsonString">The string that contains the JSON data to deserialize from.</param>
     /// <returns>A new player file with the appropriate data deserialized.</returns>
-    public static Playerfile Deserialized(string jsonString)
-    {
-        return JsonSerializer.Deserialize<Playerfile>(jsonString);
-    }
+    public static Playerfile Deserialized(string jsonString) => JsonSerializer.Deserialize<Playerfile>(jsonString);
 
     /// <summary>
     /// Serializes the current file into a JSON string.
     /// </summary>
     /// <returns>A JSON string representation of the current player file object.</returns>
     public string ToJson() => JsonSerializer.Serialize(this);
-    
+
     /// <summary>
     /// Realizes the player's global position from the player file.
     /// </summary>
     /// <returns>A Vector2 that represents the player's global position.</returns>
     public Vector2 RealizedPlayerPosition() => new(PlayerPosition[0], PlayerPosition[1]);
-    
+
     /// <summary>
     /// Stores the player's global position as a float array for serialization.
     /// </summary>
