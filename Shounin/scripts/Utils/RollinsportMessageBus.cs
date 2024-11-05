@@ -16,6 +16,7 @@
 
 using Godot;
 using Godot.Collections;
+using IndexingYourHeart.Entities;
 using IndexingYourHeart.Mechanics;
 using System;
 using System.IO;
@@ -54,12 +55,12 @@ public partial class RollinsportMessageBus : Node
         /// A puzzle is querying whether it has already been solved by the player per the player file.
         /// </summary>
         RequestForSolution,
-        
+
         /// <summary>
         /// A puzzle has been found in the completed list.
         /// </summary>
         FoundSolution,
-        
+
         /// <summary>
         /// A puzzle was recently solved.
         /// </summary>
@@ -75,13 +76,23 @@ public partial class RollinsportMessageBus : Node
         /// A query for the player's current location is being requested.
         /// </summary>
         RequestPlayerLocation,
-        
+
         /// <summary>
         /// The player's location is being reported.
         /// </summary>
-        LocationReported
+        LocationReported,
+
+        /// <summary>
+        /// The player file was first created.
+        /// </summary>
+        PlayerGivenBirth,
+
+        /// <summary>
+        /// A query for whether the player file was created, rather than loaded.
+        /// </summary>
+        RequestPlayerBirth
     }
-    
+
     /// <summary>
     /// A shared instance of the message bus for globally setting event listeners.
     /// </summary>
@@ -89,6 +100,7 @@ public partial class RollinsportMessageBus : Node
 
     private Array<string> _puzzles = [];
     private Vector2 _playerGlobalPosition = Vector2.Zero;
+    private bool playerfileCreated;
 
     private const string PlayerfileLocation = "user://Playerfile";
 
@@ -96,7 +108,7 @@ public partial class RollinsportMessageBus : Node
     {
         Instance = this;
 
-        LoadFromSaveData();
+        playerfileCreated = !LoadFromSaveData();
 
         RequestForSolution += (id) =>
         {
@@ -107,13 +119,18 @@ public partial class RollinsportMessageBus : Node
         PuzzleSolved += _puzzles.Add;
 
         PlayerLocationReported += (globalPosition) => _playerGlobalPosition = globalPosition;
-        
+
+        RequestPlayerGivenBirth += () =>
+        {
+            if (playerfileCreated)
+                SendMessage(PlayerManagementMessage.PlayerGivenBirth, Vector2.Zero);
+        };
+
         // Save the player data to a file when exiting.
         TreeExiting += () => SendMessage(PlayerManagementMessage.RequestPlayerLocation, _playerGlobalPosition);
         TreeExited += SaveDataToFile;
-
     }
-    
+
     /// <summary>
     /// Send a message to the message bus, passing it to all its listeners.
     /// </summary>
@@ -152,6 +169,12 @@ public partial class RollinsportMessageBus : Node
             case PlayerManagementMessage.RequestPlayerLocation:
                 EmitSignal(SignalName.RequestPlayerLocation);
                 break;
+            case PlayerManagementMessage.PlayerGivenBirth:
+                EmitSignal(SignalName.PlayerGivenBirth);
+                break;
+            case PlayerManagementMessage.RequestPlayerBirth:
+                EmitSignal(SignalName.RequestPlayerGivenBirth);
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(message), message, null);
         }
@@ -161,9 +184,9 @@ public partial class RollinsportMessageBus : Node
     {
         EnvironmentData currentEnv = CreateEnvironmentData();
         Playerfile savedPlayerFile = new(
-            playerPosition: [_playerGlobalPosition.X, _playerGlobalPosition.Y],
-            solvedPuzzles: _puzzles.ToArray(),
-            environment: currentEnv);
+            [_playerGlobalPosition.X, _playerGlobalPosition.Y],
+            _puzzles.ToArray(),
+            currentEnv);
         using FileAccess saveFile = FileAccess.Open(PlayerfileLocation, FileAccess.ModeFlags.Write);
         saveFile.StoreString(savedPlayerFile.ToJson());
     }
@@ -179,11 +202,15 @@ public partial class RollinsportMessageBus : Node
         return currentEnv;
     }
 
-    private void LoadFromSaveData()
+    /// <summary>
+    /// Loads the Playerfile from disk, if it is available.
+    /// </summary>
+    /// <returns>Whether the Playerfile exists and was loaded successfully.</returns>
+    private bool LoadFromSaveData()
     {
         if (!FileAccess.FileExists(PlayerfileLocation))
-            return;
-        
+            return false;
+
         using FileAccess file = FileAccess.Open(PlayerfileLocation, FileAccess.ModeFlags.Read);
         string textContents = file.GetAsText();
         Playerfile playerFile = Playerfile.Deserialized(textContents);
@@ -193,6 +220,7 @@ public partial class RollinsportMessageBus : Node
         _playerGlobalPosition = globalPosition;
 
         CallDeferred("emit_signal", nameof(SignalName.RequestPlayerReposition), globalPosition);
+        return true;
     }
 
     #region Player Management Signals
@@ -212,6 +240,18 @@ public partial class RollinsportMessageBus : Node
     public delegate void PlayerLocationReportedEventHandler(Vector2 globalPosition);
 
     /// <summary>
+    /// A signal emitted whenever the Playerfile was created for the first time.
+    /// </summary>
+    [Signal]
+    public delegate void PlayerGivenBirthEventHandler();
+
+    /// <summary>
+    /// A signal emitted whenever a request to query Playerfile creation was made.
+    /// </summary>
+    [Signal]
+    public delegate void RequestPlayerGivenBirthEventHandler();
+
+    /// <summary>
     /// A signal emitted whenever a request is made to reposition the player.
     /// </summary>
     /// <remarks>
@@ -220,7 +260,7 @@ public partial class RollinsportMessageBus : Node
     [Signal]
     public delegate void RequestPlayerRepositionEventHandler(Vector2 globalPosition);
     #endregion
-    
+
     #region Puzzle Solution Signals
     /// <summary>
     /// A signal emitted whenever a puzzle or system is querying whether it has been solved by the player before (i.e.,

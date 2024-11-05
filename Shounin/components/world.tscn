@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://d3mug4awe8fdd"]
+[gd_scene load_steps=10 format=4 uid="uid://d3mug4awe8fdd"]
 
 [ext_resource type="PackedScene" uid="uid://ba8hn6o0mkfnp" path="res://components/molecules/numpad_puzzle.tscn" id="1_3idrq"]
 [ext_resource type="TileSet" uid="uid://cguee8ucqpwh1" path="res://resources/tilesets/all_tiles.tres" id="1_4ygrc"]
 [ext_resource type="PackedScene" uid="uid://bhdu82yikkqf3" path="res://components/atoms/player.tscn" id="1_h05bn"]
+[ext_resource type="Script" path="res://scripts/Entities/World.cs" id="1_p77bx"]
+[ext_resource type="PackedScene" uid="uid://davb8p5nov14o" path="res://components/ui/tutorial_movement.tscn" id="3_jxpvn"]
 [ext_resource type="PackedScene" uid="uid://cfqryghyys3rp" path="res://components/molecules/keyboard_puzzle.tscn" id="3_lcmyv"]
 [ext_resource type="PackedScene" uid="uid://rjqjadf4jjje" path="res://components/molecules/puzzle_point_number.tscn" id="4_58b54"]
 [ext_resource type="PackedScene" uid="uid://cr6fbwm4gfihn" path="res://components/molecules/puzzle_point_word.tscn" id="5_td85v"]
@@ -11,6 +13,7 @@
 [node name="World" type="Node2D"]
 z_as_relative = false
 y_sort_enabled = true
+script = ExtResource("1_p77bx")
 
 [node name="TileMap" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -69,6 +72,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="TutorialMovement" parent="CanvasLayer" instance=ExtResource("3_jxpvn")]
+visible = false
 
 [node name="Puzzle Keyboard" parent="CanvasLayer" instance=ExtResource("3_lcmyv")]
 visible = false
