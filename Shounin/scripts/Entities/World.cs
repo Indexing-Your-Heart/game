@@ -21,17 +21,40 @@ namespace IndexingYourHeart.Entities;
 
 public partial class World : Node2D
 {
-    private Control _tutorialNode;
+    private Control _tutorialMovementNode;
+    private Control _tutorialInteractNode;
+
+    private const double _tutorialInteractFadeTime = 0.25;
 
     public override void _Ready()
     {
         base._Ready();
-        _tutorialNode = GetNode<Control>("CanvasLayer/TutorialMovement");
+        _tutorialMovementNode = GetNode<Control>("CanvasLayer/TutorialMovement");
+        _tutorialInteractNode = GetNode<Control>("CanvasLayer/TutorialInteract");
 
-        // Show movement and interaction tutorials when the player is just starting.
+        _tutorialInteractNode.Modulate = Colors.Transparent;
+
+        // Show movement tutorial when the player is just starting.
         RollinsportMessageBus.Instance.PlayerGivenBirth += () =>
         {
-            _tutorialNode.Visible = true;
+            _tutorialMovementNode.Visible = true;
+        };
+
+        // Show/hide interaction HUD tutorials whenever the player is in range.
+        RollinsportMessageBus.Instance.PlayerInteractionEnteredRange += () =>
+        {
+            _tutorialInteractNode.Visible = true;
+            Tween animator = CreateTween().SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Linear).Parallel();
+            animator.TweenProperty(_tutorialInteractNode, "modulate", Colors.White, _tutorialInteractFadeTime);
+        };
+        RollinsportMessageBus.Instance.PlayerInteractionExitedRange += () =>
+        {
+            Tween animator = CreateTween().SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Linear).Parallel();
+            animator.TweenProperty(_tutorialInteractNode, "modulate", Colors.Transparent, _tutorialInteractFadeTime);
+            animator.Finished += () =>
+            {
+                _tutorialInteractNode.Visible = false;
+            };
         };
 
         // NOTE: Fire this off here, because doing so in RollinsportMessageBus is too early. Fucking race conditions, man!
@@ -41,10 +64,10 @@ public partial class World : Node2D
     public override void _UnhandledKeyInput(InputEvent @event)
     {
         Tween animator = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Linear).Parallel();
-        animator.TweenProperty(_tutorialNode, "modulate", Colors.Transparent, 0.5);
+        animator.TweenProperty(_tutorialMovementNode, "modulate", Colors.Transparent, 0.5);
         animator.Finished += () =>
         {
-            _tutorialNode.Visible = false;
+            _tutorialMovementNode.Visible = false;
         };
     }
 }

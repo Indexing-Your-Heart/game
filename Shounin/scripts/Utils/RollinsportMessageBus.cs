@@ -94,6 +94,22 @@ public partial class RollinsportMessageBus : Node
     }
 
     /// <summary>
+    /// Messages that are specific to player interaction.
+    /// </summary>
+    public enum PlayerInteractionMessage
+    {
+        /// <summary>
+        /// The player has entered the range where interactions can occur.
+        /// </summary>
+        EnteredRange,
+
+        /// <summary>
+        /// The player has exited the range where interactions can occur.
+        /// </summary>
+        ExitedRange
+    }
+
+    /// <summary>
     /// A shared instance of the message bus for globally setting event listeners.
     /// </summary>
     public static RollinsportMessageBus Instance { get; private set; }
@@ -180,6 +196,25 @@ public partial class RollinsportMessageBus : Node
         }
     }
 
+    /// <summary>
+    /// Sends a message to the message bus, passing it to all its listeners.
+    /// </summary>
+    /// <param name="message">The message to send to the message bus's listeners.</param>
+    public void SendMessage(PlayerInteractionMessage message)
+    {
+        switch (message)
+        {
+            case PlayerInteractionMessage.EnteredRange:
+                EmitSignal(SignalName.PlayerInteractionEnteredRange);
+                break;
+            case PlayerInteractionMessage.ExitedRange:
+                EmitSignal(SignalName.PlayerInteractionExitedRange);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(message), message, null);
+        }
+    }
+
     private void SaveDataToFile()
     {
         EnvironmentData currentEnv = CreateEnvironmentData();
@@ -259,6 +294,22 @@ public partial class RollinsportMessageBus : Node
     /// </remarks>
     [Signal]
     public delegate void RequestPlayerRepositionEventHandler(Vector2 globalPosition);
+    #endregion
+
+    #region Player Interaction Signals
+    /// <summary>
+    /// A signal emitted whenever the player has entered the range for an interaction to occur (i.e.,
+    /// <see cref="PlayerInteractionMessage.EnteredRange"/> was sent to the message bus).
+    /// </summary>
+    [Signal]
+    public delegate void PlayerInteractionEnteredRangeEventHandler();
+
+    /// <summary>
+    /// A signal emitted whenever the player has exited the range for an interaction to occur (i.e.,
+    /// <see cref="PlayerInteractionMessage.ExitedRange"/> was sent to the message bus).
+    /// </summary>
+    [Signal]
+    public delegate void PlayerInteractionExitedRangeEventHandler();
     #endregion
 
     #region Puzzle Solution Signals

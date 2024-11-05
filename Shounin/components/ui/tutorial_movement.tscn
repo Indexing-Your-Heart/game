@@ -1,0 +1,97 @@
+[gd_scene load_steps=7 format=3 uid="uid://davb8p5nov14o"]
+
+[ext_resource type="Texture2D" uid="uid://baho4ay6mf34r" path="res://resources/gui/tutorial_key.png" id="1_a4cne"]
+[ext_resource type="FontFile" uid="uid://u6we1jkkyhcr" path="res://resources/gui/salmon/s_sans_bold.ttf" id="2_u74yn"]
+[ext_resource type="FontFile" uid="uid://b8pqa2ubps2po" path="res://resources/gui/salmon/s_sans_regular.ttf" id="3_iyam8"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ytc0c"]
+texture = ExtResource("1_a4cne")
+
+[sub_resource type="LabelSettings" id="LabelSettings_gert0"]
+font = ExtResource("2_u74yn")
+font_size = 18
+font_color = Color(0.38, 0.3211, 0.266, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_opkqr"]
+font = ExtResource("3_iyam8")
+font_size = 27
+outline_size = 9
+outline_color = Color(0, 0, 0, 0.572549)
+shadow_size = 0
+
+[node name="TutorialMovement" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -204.0
+offset_right = 274.0
+offset_bottom = -128.0
+grow_vertical = 0
+scale = Vector2(2, 2)
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="Control" type="Control" parent="HBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="WKey" type="Label" parent="HBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_ytc0c")
+text = "W"
+label_settings = SubResource("LabelSettings_gert0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control2" type="Control" parent="HBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="AKey" type="Label" parent="HBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_ytc0c")
+text = "A"
+label_settings = SubResource("LabelSettings_gert0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SKey" type="Label" parent="HBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(27, 36)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_ytc0c")
+text = "S"
+label_settings = SubResource("LabelSettings_gert0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DKey" type="Label" parent="HBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_ytc0c")
+text = "D"
+label_settings = SubResource("LabelSettings_gert0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "MOVE"
+label_settings = SubResource("LabelSettings_opkqr")

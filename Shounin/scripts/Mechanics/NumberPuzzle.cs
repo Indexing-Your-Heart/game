@@ -31,7 +31,7 @@ public partial class NumberPuzzle : Node2D
     /// </summary>
     [Export]
     public NodePath Numpad;
-    
+
     /// <summary>
     /// The numeric value of the expected solution.
     /// </summary>
@@ -65,6 +65,7 @@ public partial class NumberPuzzle : Node2D
             _eligibleToLaunch = false;
             _puzzleFieldNumpad.Hide();
             _puzzleFieldNumpad.Clear();
+            RollinsportMessageBus.Instance.SendMessage(RollinsportMessageBus.PlayerInteractionMessage.ExitedRange);
         };
 
         _puzzleFieldNumpad.EditingChanged += value =>
@@ -77,7 +78,7 @@ public partial class NumberPuzzle : Node2D
                 return;
             }
             _puzzleFieldNumpad.MarkCorrect();
-            
+
             RollinsportMessageBus.Instance.SendMessage(
                 RollinsportMessageBus.PuzzleSolutionMessage.PuzzleSolved,
                 PuzzleId
@@ -111,11 +112,16 @@ public partial class NumberPuzzle : Node2D
     {
         _eligibleToLaunch = body is AnthroPlayer;
 
+        if (_eligibleToLaunch)
+        {
+            RollinsportMessageBus.Instance.SendMessage(RollinsportMessageBus.PlayerInteractionMessage.EnteredRange);
+        }
+
         RollinsportMessageBus.Instance.SendMessage(
             RollinsportMessageBus.PuzzleSolutionMessage.RequestForSolution,
             PuzzleId
         );
-        
+
         if (DisplayServer.IsTouchscreenAvailable() && _eligibleToLaunch)
         {
             _puzzleFieldNumpad.Show();
