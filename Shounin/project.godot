@@ -14,7 +14,7 @@ config/name="Indexing Your Heart"
 config/description="A Witness-like puzzle game with story elements for Mac, iPhone, and iPad."
 config/tags=PackedStringArray("development", "dotnet")
 run/main_scene="res://components/world.tscn"
-config/features=PackedStringArray("4.3", "C#", "Mobile")
+config/features=PackedStringArray("4.4", "C#", "Mobile")
 config/icon="res://icon.png"
 config/macos_native_icon="res://icon.icns"
 
@@ -57,6 +57,7 @@ import/blender/enabled=false
 
 settings/test/test_lookup_folder="scripts"
 ui/toolbar/run_overall=true
+settings/test/test_discovery=true
 
 [gui]
 

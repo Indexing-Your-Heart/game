@@ -1,11 +1,11 @@
 [gd_scene load_steps=33 format=3 uid="uid://bhdu82yikkqf3"]
 
-[ext_resource type="Script" path="res://scripts/Entities/AnthroPlayer.cs" id="1_owqaw"]
-[ext_resource type="AudioStream" uid="uid://exgvugr2j1wk" path="res://resources/sounds/fs_grass_01.mp3" id="2_706ek"]
+[ext_resource type="Script" uid="uid://cchupovcq067w" path="res://scripts/Entities/AnthroPlayer.cs" id="1_owqaw"]
+[ext_resource type="AudioStream" uid="uid://ds1yoyqso7vjl" path="res://resources/sounds/fs_grass_01.mp3" id="2_706ek"]
 [ext_resource type="Texture2D" uid="uid://b1d5u8txom028" path="res://resources/sprt_chelsea.png" id="2_r517x"]
-[ext_resource type="AudioStream" uid="uid://lwsjrc1wgad3" path="res://resources/sounds/fs_grass_02.mp3" id="3_5sx88"]
-[ext_resource type="AudioStream" uid="uid://mojt3nu4nn0p" path="res://resources/sounds/fs_grass_03.mp3" id="4_1vfms"]
-[ext_resource type="AudioStream" uid="uid://cn30gppi1fgyn" path="res://resources/sounds/fs_grass_04.mp3" id="5_1xbye"]
+[ext_resource type="AudioStream" uid="uid://ce7r6b6ovfy1q" path="res://resources/sounds/fs_grass_02.mp3" id="3_5sx88"]
+[ext_resource type="AudioStream" uid="uid://b5o7j0rhjsxtb" path="res://resources/sounds/fs_grass_03.mp3" id="4_1vfms"]
+[ext_resource type="AudioStream" uid="uid://bra4doao7ih6s" path="res://resources/sounds/fs_grass_04.mp3" id="5_1xbye"]
 
 [sub_resource type="Animation" id="Animation_shu7v"]
 length = 0.001
@@ -152,15 +152,15 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hsx20"]
 _data = {
-"RESET": SubResource("Animation_shu7v"),
-"idle_back": SubResource("Animation_8ss7f"),
-"idle_forward": SubResource("Animation_x0wac"),
-"idle_left": SubResource("Animation_yabg5"),
-"idle_right": SubResource("Animation_syps1"),
-"run_back": SubResource("Animation_fvpil"),
-"run_forward": SubResource("Animation_hvy7l"),
-"run_left": SubResource("Animation_w8jqm"),
-"run_right": SubResource("Animation_y4to3")
+&"RESET": SubResource("Animation_shu7v"),
+&"idle_back": SubResource("Animation_8ss7f"),
+&"idle_forward": SubResource("Animation_x0wac"),
+&"idle_left": SubResource("Animation_yabg5"),
+&"idle_right": SubResource("Animation_syps1"),
+&"run_back": SubResource("Animation_fvpil"),
+&"run_forward": SubResource("Animation_hvy7l"),
+&"run_left": SubResource("Animation_w8jqm"),
+&"run_right": SubResource("Animation_y4to3")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_osqnh"]
@@ -239,13 +239,9 @@ height = 44.0
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_if7a2"]
 streams_count = 4
 stream_0/stream = ExtResource("2_706ek")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("3_5sx88")
-stream_1/weight = 1.0
 stream_2/stream = ExtResource("4_1vfms")
-stream_2/weight = 1.0
 stream_3/stream = ExtResource("5_1xbye")
-stream_3/weight = 1.0
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true

@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://68a3v71i7a5p"]
 
-[ext_resource type="Script" path="res://scripts/Ashashat/VirtualAshashatKey.cs" id="1_lngkc"]
+[ext_resource type="Script" uid="uid://dileo27osw2k" path="res://scripts/Ashashat/VirtualAshashatKey.cs" id="1_lngkc"]
 [ext_resource type="Theme" uid="uid://b2ym80ujimgm6" path="res://resources/gui/theme_ashashat.tres" id="1_whuf2"]
-[ext_resource type="Texture2D" uid="uid://bn84g0xalylcj" path="res://resources/gui/keyboard/Delete_Normal.png" id="2_hu5pc"]
-[ext_resource type="Texture2D" uid="uid://dfj6aet8t5jwu" path="res://resources/gui/keyboard/Delete_Focus.png" id="3_ukui4"]
-[ext_resource type="Texture2D" uid="uid://donic1e105wwb" path="res://resources/gui/keyboard/Delete_Press.png" id="4_o6qym"]
+[ext_resource type="Texture2D" uid="uid://cocnlg183fr4l" path="res://resources/gui/keyboard/Delete_Normal.png" id="2_hu5pc"]
+[ext_resource type="Texture2D" uid="uid://pju4ecbpn6qr" path="res://resources/gui/keyboard/Delete_Focus.png" id="3_ukui4"]
+[ext_resource type="Texture2D" uid="uid://b4wdm8y7d782" path="res://resources/gui/keyboard/Delete_Press.png" id="4_o6qym"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ulqvq"]
 texture = ExtResource("2_hu5pc")

@@ -24,6 +24,7 @@ using TestEnvironment = IndexingYourHeart.Tests.Backing.AshashatNumpad_UnitTestN
 namespace IndexingYourHeart.Tests.Unit;
 
 [TestSuite]
+[RequireGodotRuntime]
 public class AshashatNumpadTests : IGameTestSuite
 {
     public ISceneRunner Runner { get; set; }

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bh0pp2l5p5jbm"]
 
-[ext_resource type="Script" path="res://scripts/Tests/Backing/AshashatNumpad_UnitTestNode.cs" id="1_h8ota"]
+[ext_resource type="Script" uid="uid://dg8mfl3njx6to" path="res://scripts/Tests/Backing/AshashatNumpad_UnitTestNode.cs" id="1_h8ota"]
 [ext_resource type="PackedScene" uid="uid://dwj644b4yi2u0" path="res://components/ui/numpad.tscn" id="1_jbij2"]
 
 [node name="Numpad Testcase" type="Control"]

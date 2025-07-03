@@ -24,6 +24,7 @@ using TestEnvironment = IndexingYourHeart.Tests.Backing.VirtualKeyContainer_Unit
 namespace IndexingYourHeart.Tests.Unit;
 
 [TestSuite]
+[RequireGodotRuntime]
 public class VirtualAshashatKeyTests
 {
     

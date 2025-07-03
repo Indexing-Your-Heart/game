@@ -20,6 +20,7 @@ using IndexingYourHeart.Ashashat;
 namespace IndexingYourHeart.Tests.Unit;
 
 [TestSuite]
+[RequireGodotRuntime]
 public class AshashatKeyTests
 {
     [TestCase]

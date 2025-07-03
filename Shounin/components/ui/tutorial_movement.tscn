@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://davb8p5nov14o"]
 
-[ext_resource type="Texture2D" uid="uid://baho4ay6mf34r" path="res://resources/gui/tutorial_key.png" id="1_a4cne"]
-[ext_resource type="FontFile" uid="uid://u6we1jkkyhcr" path="res://resources/gui/salmon/s_sans_bold.ttf" id="2_u74yn"]
-[ext_resource type="FontFile" uid="uid://b8pqa2ubps2po" path="res://resources/gui/salmon/s_sans_regular.ttf" id="3_iyam8"]
+[ext_resource type="Texture2D" uid="uid://can1sc5b2smof" path="res://resources/gui/tutorial_key.png" id="1_a4cne"]
+[ext_resource type="FontFile" uid="uid://dha7ofrstkfux" path="res://resources/gui/salmon/s_sans_bold.ttf" id="2_u74yn"]
+[ext_resource type="FontFile" uid="uid://whc15ve7lajw" path="res://resources/gui/salmon/s_sans_regular.ttf" id="3_iyam8"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ytc0c"]
 texture = ExtResource("1_a4cne")

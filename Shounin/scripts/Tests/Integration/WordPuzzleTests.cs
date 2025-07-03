@@ -23,6 +23,7 @@ using TestEnvironment = IndexingYourHeart.Tests.Backing.WordPuzzle_IntegrationTe
 namespace IndexingYourHeart.Tests.Integration;
 
 [TestSuite]
+[RequireGodotRuntime]
 public class WordPuzzleTests: IPuzzleEmbeddedTest
 {
     public ISceneRunner Runner { get; set; }

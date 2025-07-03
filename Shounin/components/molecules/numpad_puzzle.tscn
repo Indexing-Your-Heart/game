@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://dbup2qc6kea2t" path="res://resources/gui/theme.tres" id="1_wigx5"]
 [ext_resource type="PackedScene" uid="uid://dwj644b4yi2u0" path="res://components/ui/numpad.tscn" id="2_i63ja"]
-[ext_resource type="Script" path="res://scripts/UI/PuzzleNumpadField.cs" id="2_ydp2o"]
+[ext_resource type="Script" uid="uid://lb77bgr0xw36" path="res://scripts/UI/PuzzleNumpadField.cs" id="2_ydp2o"]
 
 [sub_resource type="Animation" id="Animation_l066x"]
 length = 0.001
@@ -52,9 +52,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0ieew"]
 _data = {
-"RESET": SubResource("Animation_l066x"),
-"correct": SubResource("Animation_cmy82"),
-"incorrect": SubResource("Animation_wuvgy")
+&"RESET": SubResource("Animation_l066x"),
+&"correct": SubResource("Animation_cmy82"),
+&"incorrect": SubResource("Animation_wuvgy")
 }
 
 [node name="NumpadPuzzleField" type="Control"]

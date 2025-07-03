@@ -23,6 +23,7 @@ using TestEnvironment = IndexingYourHeart.Tests.Backing.NumberPuzzle_Integration
 namespace IndexingYourHeart.Tests.Integration;
 
 [TestSuite]
+[RequireGodotRuntime]
 public class NumberPuzzleTests: IPuzzleEmbeddedTest
 {
     public ISceneRunner Runner { get; set; }

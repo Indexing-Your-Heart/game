@@ -18,7 +18,7 @@ puzzles and understand the mysteries of the obelisk.
 
 **Required Tools**
 
-- Godot 4.2.x
+- Godot 4.4.x
 - .NET 8 SDK
 
 **Optional Tools**

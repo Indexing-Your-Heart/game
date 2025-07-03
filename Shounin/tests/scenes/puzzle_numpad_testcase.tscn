@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=4 uid="uid://cu4stgr2id2da"]
 
-[ext_resource type="Script" path="res://scripts/Tests/Backing/NumberPuzzle_IntegrationTestNode.cs" id="1_xd6vg"]
+[ext_resource type="Script" uid="uid://dxr42x6fqo4pt" path="res://scripts/Tests/Backing/NumberPuzzle_IntegrationTestNode.cs" id="1_xd6vg"]
 [ext_resource type="PackedScene" uid="uid://bhdu82yikkqf3" path="res://components/atoms/player.tscn" id="2_6swde"]
 [ext_resource type="PackedScene" uid="uid://ba8hn6o0mkfnp" path="res://components/molecules/numpad_puzzle.tscn" id="3_c8vfc"]
 [ext_resource type="TileSet" uid="uid://cguee8ucqpwh1" path="res://resources/tilesets/all_tiles.tres" id="3_rgnd5"]

@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 //
 //  JensonTimeline_IntegrationTestNode.cs
 //  Indexing Your Heart
@@ -17,32 +17,37 @@
 
 using Godot;
 using IndexingYourHeart.UI;
+using System;
 
 namespace IndexingYourHeart.Tests.Backing
 {
-    public partial class JensonTimeline_IntegrationTestNode : CanvasLayer
-    {
-        private JensonTimeline Timeline;
-        private string[] dialogue;
+	public partial class JensonTimeline_IntegrationTestNode : CanvasLayer
+	{
+		private JensonTimeline _timeline;
+		private string[] dialogue;
 
-        public override void _Ready()
-        {
-            Timeline = GetNode<JensonTimeline>("JensonTimeline");
-            Timeline.TimelineDialogueFired += (Who, What) =>
-            {
-                GD.Print("Wow!");
-                dialogue = [Who, What];
-            };
-        }
+		public override void _Ready()
+		{
+			_timeline = GetNode<JensonTimeline>("JensonTimeline");
+			if (_timeline == null)
+			{
+				throw new Exception("The timeline was either not found or was not initialized.");
+			}
+			_timeline.TimelineDialogueFired += (Who, What) =>
+			{
+				GD.Print("Wow!");
+				dialogue = [Who, What];
+			};
+		}
 
-        public JensonTimeline.TimelineState GetTimelineState()
-        {
-            return Timeline.CurrentTimelineState;
-        }
+		public JensonTimeline.TimelineState GetTimelineState()
+		{
+			return _timeline?.CurrentTimelineState ?? JensonTimeline.TimelineState.Ended;
+		}
 
-        public string[] GetTimelineDialogue()
-        {
-            return dialogue;
-        }
-    }
+		public string[] GetTimelineDialogue()
+		{
+			return dialogue;
+		}
+	}
 }

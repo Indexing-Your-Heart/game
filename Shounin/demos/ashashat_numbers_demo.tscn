@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dpw2oovtw77tk"]
 
 [ext_resource type="Theme" uid="uid://dbup2qc6kea2t" path="res://resources/gui/theme.tres" id="1_pk3db"]
-[ext_resource type="PackedScene" uid="uid://dwj644b4yi2u0" path="res://components/numpad.tscn" id="3_ccn7u"]
+[ext_resource type="PackedScene" uid="uid://dwj644b4yi2u0" path="res://components/ui/numpad.tscn" id="3_ccn7u"]
 
 [node name="Control" type="DemoAshashatNumpad"]
 texture_filter = 1

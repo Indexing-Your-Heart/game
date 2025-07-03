@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://d3xhnxqyltvn6"]
 
-[ext_resource type="Script" path="res://scripts/UI/JensonTimeline.cs" id="1_8tixa"]
+[ext_resource type="Script" uid="uid://hats8h5slyd4" path="res://scripts/UI/JensonTimeline.cs" id="1_8tixa"]
 [ext_resource type="Theme" uid="uid://dbup2qc6kea2t" path="res://resources/gui/theme.tres" id="2_m83yl"]
 [ext_resource type="FontVariation" uid="uid://6wx5exwfyd5f" path="res://resources/gui/typewriter_bold_font.tres" id="3_ern7x"]
 [ext_resource type="FontVariation" uid="uid://dstlje76bbo1t" path="res://resources/gui/typewriter_regular_font.tres" id="3_h3uwv"]
@@ -394,9 +394,9 @@ tracks/15/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jfjxg"]
 _data = {
-"RESET": SubResource("Animation_iwom0"),
-"speech": SubResource("Animation_m0inr"),
-"start_timeline": SubResource("Animation_3ybv0")
+&"RESET": SubResource("Animation_iwom0"),
+&"speech": SubResource("Animation_m0inr"),
+&"start_timeline": SubResource("Animation_3ybv0")
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ubefd"]

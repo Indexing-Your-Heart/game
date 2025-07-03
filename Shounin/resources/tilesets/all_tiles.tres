@@ -1,8 +1,8 @@
 [gd_resource type="TileSet" load_steps=29 format=3 uid="uid://cguee8ucqpwh1"]
 
-[ext_resource type="Texture2D" uid="uid://wd4v03t8r7q6" path="res://resources/tilesets/11_Camping_16x16.png" id="1_k3j1n"]
-[ext_resource type="Texture2D" uid="uid://dhkt5s0o8v6nh" path="res://resources/tilesets/witkit.png" id="2_5oiiu"]
-[ext_resource type="Texture2D" uid="uid://t0tjryosftoi" path="res://resources/tilesets/3_City_Props_16x16.png" id="3_464l8"]
+[ext_resource type="Texture2D" uid="uid://cepyaefikbm60" path="res://resources/tilesets/11_Camping_16x16.png" id="1_k3j1n"]
+[ext_resource type="Texture2D" uid="uid://b7uwup6u01yjf" path="res://resources/tilesets/witkit.png" id="2_5oiiu"]
+[ext_resource type="Texture2D" uid="uid://ci5ic2k82lg4s" path="res://resources/tilesets/3_City_Props_16x16.png" id="3_464l8"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_6dkns"]
 tile_data = PackedInt32Array(0, 1, 5, 65536, 1, 6, 1, 65537, 5, 65537, 65537, 6)

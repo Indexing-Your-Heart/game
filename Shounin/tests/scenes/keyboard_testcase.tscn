@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dxe41wo67brcg"]
 
-[ext_resource type="Script" path="res://scripts/Tests/Backing/AshashatKeyboard_UnitTestNode.cs" id="1_2gujt"]
+[ext_resource type="Script" uid="uid://bxj7bc0c4wkpe" path="res://scripts/Tests/Backing/AshashatKeyboard_UnitTestNode.cs" id="1_2gujt"]
 [ext_resource type="PackedScene" uid="uid://ecxx1b6ggwda" path="res://components/ui/keyboard.tscn" id="2_67gqi"]
 
 [node name="Keyboard Testcase" type="Control"]

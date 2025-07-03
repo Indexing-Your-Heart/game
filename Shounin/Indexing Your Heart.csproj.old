@@ -1,0 +1,17 @@
+<Project Sdk="Godot.NET.Sdk/4.3.0">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>12.0</LangVersion>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <RootNamespace>IndexingYourHeart</RootNamespace>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Packages\Jenson.NET\Jenson.NET.csproj" />
+    <!-- Unit and Integration Testing -->
+    <PackageReference Include="gdUnit4.api" Version="4.3.*" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
+    <PackageReference Include="gdUnit4.test.adapter" Version="2.*" />
+    <PackageReference Update="GodotSharp" Version="4.4.0" />
+  </ItemGroup>
+</Project>

@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://crqpswoan71sf"]
 
-[ext_resource type="Texture2D" uid="uid://c2pad5yjx44km" path="res://resources/sprt_obel.png" id="1_k868l"]
+[ext_resource type="Texture2D" uid="uid://dejb10gt5f1nm" path="res://resources/sprt_obel.png" id="1_k868l"]
 
 [sub_resource type="Animation" id="Animation_shu7v"]
 length = 0.001
@@ -147,15 +147,15 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hsx20"]
 _data = {
-"RESET": SubResource("Animation_shu7v"),
-"idle_back": SubResource("Animation_8ss7f"),
-"idle_forward": SubResource("Animation_x0wac"),
-"idle_left": SubResource("Animation_yabg5"),
-"idle_right": SubResource("Animation_syps1"),
-"run_back": SubResource("Animation_fvpil"),
-"run_forward": SubResource("Animation_hvy7l"),
-"run_left": SubResource("Animation_w8jqm"),
-"run_right": SubResource("Animation_y4to3")
+&"RESET": SubResource("Animation_shu7v"),
+&"idle_back": SubResource("Animation_8ss7f"),
+&"idle_forward": SubResource("Animation_x0wac"),
+&"idle_left": SubResource("Animation_yabg5"),
+&"idle_right": SubResource("Animation_syps1"),
+&"run_back": SubResource("Animation_fvpil"),
+&"run_forward": SubResource("Animation_hvy7l"),
+&"run_left": SubResource("Animation_w8jqm"),
+&"run_right": SubResource("Animation_y4to3")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bmgc0"]

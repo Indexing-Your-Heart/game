@@ -23,6 +23,7 @@ using IndexingYourHeart.UI;
 namespace IndexingYourHeart.Tests.Unit
 {
     [TestSuite]
+    [RequireGodotRuntime]
     public class JensonTimelineTests
     {
         [TestCase]

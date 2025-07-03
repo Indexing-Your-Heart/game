@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://rjqjadf4jjje"]
 
-[ext_resource type="Script" path="res://scripts/Mechanics/NumberPuzzle.cs" id="1_nsf22"]
+[ext_resource type="Script" uid="uid://cfeodjd8y8xdw" path="res://scripts/Mechanics/NumberPuzzle.cs" id="1_nsf22"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3visf"]
 radius = 68.1175

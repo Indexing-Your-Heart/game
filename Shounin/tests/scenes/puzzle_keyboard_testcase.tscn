@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=4 uid="uid://dm38rbg7rx7rs"]
 
-[ext_resource type="Script" path="res://scripts/Tests/Backing/WordPuzzle_IntegrationTestNode.cs" id="1_6wly6"]
+[ext_resource type="Script" uid="uid://cgu7xmsnyea06" path="res://scripts/Tests/Backing/WordPuzzle_IntegrationTestNode.cs" id="1_6wly6"]
 [ext_resource type="PackedScene" uid="uid://cfqryghyys3rp" path="res://components/molecules/keyboard_puzzle.tscn" id="2_kdwd0"]
 [ext_resource type="PackedScene" uid="uid://bhdu82yikkqf3" path="res://components/atoms/player.tscn" id="3_cj05q"]
 [ext_resource type="TileSet" uid="uid://cguee8ucqpwh1" path="res://resources/tilesets/all_tiles.tres" id="4_jehtj"]

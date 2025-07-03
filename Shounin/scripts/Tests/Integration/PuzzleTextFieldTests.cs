@@ -23,6 +23,7 @@ using TestEnvironment = IndexingYourHeart.Tests.Backing.PuzzleTextField_Integrat
 namespace IndexingYourHeart.Tests.Integration;
 
 [TestSuite]
+[RequireGodotRuntime]
 public class PuzzleTextFieldTests : IGameTestSuite
 {
     public ISceneRunner Runner { get; set; }

@@ -24,6 +24,7 @@ using IndexingYourHeart.Tests.Backing;
 namespace IndexingYourHeart.Tests.Integration;
 
 [TestSuite]
+[RequireGodotRuntime]
 public class AnthroPlayerTests : IGameTestSuite
 {
     public ISceneRunner Runner { get; set; }

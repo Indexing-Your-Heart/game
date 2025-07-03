@@ -26,6 +26,7 @@ using TestEnvironment = IndexingYourHeart.Tests.Backing.AshashatKeyboard_UnitTes
 namespace IndexingYourHeart.Tests.Unit;
 
 [TestSuite]
+[RequireGodotRuntime]
 public class AshashatKeyboardTests
 {
     [TestCase]

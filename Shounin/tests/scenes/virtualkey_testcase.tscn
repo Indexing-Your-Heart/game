@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c1mrpmg08sabd"]
 
-[ext_resource type="Script" path="res://scripts/Tests/Backing/VirtualKeyContainer_UnitTestNode.cs" id="1_53xgf"]
+[ext_resource type="Script" uid="uid://c3l4n48h251fx" path="res://scripts/Tests/Backing/VirtualKeyContainer_UnitTestNode.cs" id="1_53xgf"]
 [ext_resource type="PackedScene" uid="uid://68a3v71i7a5p" path="res://components/atoms/virtualkey.tscn" id="1_g1l5n"]
 
 [node name="Virtual Key Container" type="Control"]

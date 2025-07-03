@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://cfqryghyys3rp"]
 
 [ext_resource type="Theme" uid="uid://dbup2qc6kea2t" path="res://resources/gui/theme.tres" id="1_6saaq"]
-[ext_resource type="FontFile" uid="uid://covkibsgnc860" path="res://resources/gui/ashashat_fnt.ttf" id="2_3jxq3"]
+[ext_resource type="FontFile" uid="uid://nrt7lsnkl5vt" path="res://resources/gui/ashashat_fnt.ttf" id="2_3jxq3"]
 [ext_resource type="PackedScene" uid="uid://ecxx1b6ggwda" path="res://components/ui/keyboard.tscn" id="2_aef43"]
-[ext_resource type="Script" path="res://scripts/UI/PuzzleTextField.cs" id="2_keppk"]
+[ext_resource type="Script" uid="uid://bddnhr6vro6us" path="res://scripts/UI/PuzzleTextField.cs" id="2_keppk"]
 
 [sub_resource type="Animation" id="Animation_l066x"]
 length = 0.001
@@ -53,9 +53,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0ieew"]
 _data = {
-"RESET": SubResource("Animation_l066x"),
-"correct": SubResource("Animation_cmy82"),
-"incorrect": SubResource("Animation_wuvgy")
+&"RESET": SubResource("Animation_l066x"),
+&"correct": SubResource("Animation_cmy82"),
+&"incorrect": SubResource("Animation_wuvgy")
 }
 
 [node name="Puzzle Keyboard" type="Control"]

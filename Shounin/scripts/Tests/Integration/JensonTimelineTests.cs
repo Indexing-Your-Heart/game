@@ -26,6 +26,7 @@ using GdUnit4.Asserts;
 namespace IndexingYourHeart.Tests.Integration;
 
 [TestSuite]
+[RequireGodotRuntime]
 public class JensonTimelineTests : IGameTestSuite
 {
     public ISceneRunner Runner { get; set; }

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cyu5qnluixvqm"]
 
-[ext_resource type="Script" path="res://scripts/Tests/Backing/JensonTimeline_IntegrationTestNode.cs" id="1_vhdws"]
+[ext_resource type="Script" uid="uid://d2q8p62tebv6h" path="res://scripts/Tests/Backing/JensonTimeline_IntegrationTestNode.cs" id="1_vhdws"]
 [ext_resource type="PackedScene" uid="uid://d3xhnxqyltvn6" path="res://components/ui/jenson_ui.tscn" id="2_lkdpm"]
 
 [node name="JensonScene" type="CanvasLayer"]
