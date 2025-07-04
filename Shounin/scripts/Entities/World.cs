@@ -48,7 +48,16 @@ public partial class World : Node2D
             // Show movement tutorial when the player is just starting, after the beginning scene plays.
             _tutorialMovementNode.Visible = true;
             _timelineNode.Visible = false;
-            _scriptOverlay.Visible = false;
+
+            this.WithAnimation(UIAnimation.LinearEaseInOut(), new UIAnimationProperty
+            {
+                Target = _scriptOverlay,
+                Property = "modulate",
+                EndState = Colors.Transparent
+            }, () =>
+            {
+                _scriptOverlay.Visible = false;
+            });
 
             string timeline = _timelineNode.Script.Replace("res://data/", "").Replace(".jenson", "");
             RollinsportMessageBus.Instance.SendMessage(RollinsportMessageBus.TimelineMessage.WatchedTimeline, timeline);
@@ -60,13 +69,25 @@ public partial class World : Node2D
             _timelineNode.Script = "res://data/preamble_v3.jenson";
             _timelineNode.LoadScript();
             _timelineNode.Visible = true;
+            _scriptOverlay.Visible = true;
             GetTree().Paused = true;
         };
 
         // Start the timeline after the script is loaded in.
         _timelineNode.TimelineLoaded += () =>
         {
-            _scriptOverlay.Visible = true;
+            if (!_scriptOverlay.Visible)
+            {
+                this.WithAnimation(UIAnimation.LinearEaseInOut(), new UIAnimationProperty
+                {
+                    Target = _scriptOverlay,
+                    Property = "modulate",
+                    EndState = Colors.White
+                }, () =>
+                {
+                    _scriptOverlay.Visible = true;
+                });
+            }
             _timelineNode.StartTimeline();
         };
 
@@ -75,17 +96,24 @@ public partial class World : Node2D
         {
             GD.Print("Player interaction entered");
             _tutorialInteractNode.Visible = true;
-            Tween animator = CreateTween().SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Linear).Parallel();
-            animator.TweenProperty(_tutorialInteractNode, "modulate", Colors.White, _tutorialInteractFadeTime);
+            this.WithAnimation(UIAnimation.LinearEaseInOut(_tutorialInteractFadeTime), new UIAnimationProperty
+            {
+                Target = _tutorialInteractNode,
+                Property = "modulate",
+                EndState = Colors.White
+            });
         };
         RollinsportMessageBus.Instance.PlayerInteractionExitedRange += () =>
         {
-            Tween animator = CreateTween().SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Linear).Parallel();
-            animator.TweenProperty(_tutorialInteractNode, "modulate", Colors.Transparent, _tutorialInteractFadeTime);
-            animator.Finished += () =>
+            this.WithAnimation(UIAnimation.InterpolatingSpring(), new UIAnimationProperty
+            {
+                Target = _tutorialInteractNode,
+                Property = "modulate",
+                EndState = Colors.Transparent
+            }, () =>
             {
                 _tutorialInteractNode.Visible = false;
-            };
+            });
         };
 
         // NOTE: Fire this off here, because doing so in RollinsportMessageBus is too early. Fucking race conditions, man!
@@ -94,11 +122,14 @@ public partial class World : Node2D
 
     public override void _UnhandledKeyInput(InputEvent @event)
     {
-        Tween animator = CreateTween().SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Linear).Parallel();
-        animator.TweenProperty(_tutorialMovementNode, "modulate", Colors.Transparent, 0.5);
-        animator.Finished += () =>
+        this.WithAnimation(UIAnimation.InterpolatingSpring(), new UIAnimationProperty
+        {
+            Target = _tutorialMovementNode,
+            Property = "modulate",
+            EndState = Colors.Transparent
+        }, () =>
         {
             _tutorialMovementNode.Visible = false;
-        };
+        });
     }
 }
