@@ -110,11 +110,23 @@ public partial class RollinsportMessageBus : Node
     }
 
     /// <summary>
+    /// Messages that are specific to story timeline management.
+    /// </summary>
+    public enum TimelineMessage
+    {
+        /// <summary>
+        /// The player has watched the timeline for a specific script.
+        /// </summary>
+        WatchedTimeline
+    }
+
+    /// <summary>
     /// A shared instance of the message bus for globally setting event listeners.
     /// </summary>
     public static RollinsportMessageBus Instance { get; private set; }
 
     private Array<string> _puzzles = [];
+    private Array<string> _timelines = [];
     private Vector2 _playerGlobalPosition = Vector2.Zero;
     private bool playerfileCreated;
 
@@ -140,6 +152,12 @@ public partial class RollinsportMessageBus : Node
         {
             if (playerfileCreated)
                 SendMessage(PlayerManagementMessage.PlayerGivenBirth, Vector2.Zero);
+        };
+
+        TimelineWatchedTimeline += (timeline) =>
+        {
+            if (!_timelines.Contains(timeline))
+                _timelines.Add(timeline);
         };
 
         // Save the player data to a file when exiting.
@@ -215,12 +233,30 @@ public partial class RollinsportMessageBus : Node
         }
     }
 
+    /// <summary>
+    /// Sends a message to the message bus, passing it to all its listeners.
+    /// </summary>
+    /// <param name="message">The message to send to the message bus's listeners.</param>
+    /// <param name="timeline">The timeline that corresponds to the message.</param>
+    public void SendMessage(TimelineMessage message, string timeline)
+    {
+        switch (message)
+        {
+            case TimelineMessage.WatchedTimeline:
+                EmitSignal(SignalName.TimelineWatchedTimeline, timeline);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(message), message, null);
+        }
+    }
+
     private void SaveDataToFile()
     {
         EnvironmentData currentEnv = CreateEnvironmentData();
         Playerfile savedPlayerFile = new(
             [_playerGlobalPosition.X, _playerGlobalPosition.Y],
             _puzzles.ToArray(),
+            _timelines.ToArray(),
             currentEnv);
         using FileAccess saveFile = FileAccess.Open(PlayerfileLocation, FileAccess.ModeFlags.Write);
         saveFile.StoreString(savedPlayerFile.ToJson());
@@ -310,6 +346,15 @@ public partial class RollinsportMessageBus : Node
     /// </summary>
     [Signal]
     public delegate void PlayerInteractionExitedRangeEventHandler();
+    #endregion
+
+    #region Timeline
+    /// <summary>
+    /// A signal emitted whenever the player has finished watching a specified timeline (i.e.,
+    /// <see cref="TimelineMessage.WatchedTimeline"/> was sent to the message bus).
+    /// </summary>
+    [Signal]
+    public delegate void TimelineWatchedTimelineEventHandler(string timeline);
     #endregion
 
     #region Puzzle Solution Signals

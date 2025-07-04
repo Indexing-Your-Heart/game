@@ -36,7 +36,7 @@ public record EnvironmentData(string GameVersion, string Platform, string Operat
 /// <summary>
 ///  A representation of a save file containing information about the player's saved state.
 /// </summary>
-public class Playerfile(float[] playerPosition, string[] solvedPuzzles, EnvironmentData environment)
+public class Playerfile(float[] playerPosition, string[] solvedPuzzles, string[] timelines, EnvironmentData environment)
 {
     /// <summary>
     /// The version of the file. Some features and fields may only be available in later iterations.
@@ -57,6 +57,11 @@ public class Playerfile(float[] playerPosition, string[] solvedPuzzles, Environm
     /// and deserialization via JSON.
     /// </remarks>
     public float[] PlayerPosition { get; set; } = playerPosition;
+
+    /// <summary>
+    /// An array of all the scripts the player has seen before.
+    /// </summary>
+    public string[] PlayedTimelines { get; init; } = timelines;
 
     /// <summary>
     /// An array of all the current puzzle IDs the player has solved.

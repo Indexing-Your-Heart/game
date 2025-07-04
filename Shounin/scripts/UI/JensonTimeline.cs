@@ -21,6 +21,7 @@ using Godot;
 using IndexingYourHeart.Utils;
 using Jenson.NET;
 using Jenson.NET.Models;
+using System;
 
 namespace IndexingYourHeart.UI
 {
@@ -129,13 +130,15 @@ namespace IndexingYourHeart.UI
                 }
             };
 
+            if (Script == string.Empty)
+            {
+                GD.PushWarning(
+                    "Script was not set in the editor. Set the Script property and call LoadScript() to execute the timeline."
+                );
+                return;
+            }
             LoadScript();
-
-            if (timeline.First().EventType == JensonEventType.Refresh)
-                Next();
-
-            _timelineState = TimelineState.Started;
-            animator.Play("start_timeline");
+            StartTimeline();
         }
 
         public override void _Input(InputEvent @event)
@@ -157,6 +160,22 @@ namespace IndexingYourHeart.UI
             timeline = reader.Parse().timeline.ToList();
             _timelineState = TimelineState.Loaded;
             EmitSignal(SignalName.TimelineLoaded);
+        }
+
+        /// <summary>
+        /// Start the playback of the current timeline.
+        /// </summary>
+        /// <remarks>
+        /// This method assumes that the script has already been loaded via <see cref="LoadScript"/>.
+        /// </remarks>
+        public void StartTimeline()
+        {
+            if (_timelineState != TimelineState.Loaded) return;
+            if (timeline.First().EventType == JensonEventType.Refresh)
+                Next();
+
+            _timelineState = TimelineState.Started;
+            animator.Play("start_timeline");
         }
 
         private void HandleNextEvent()
@@ -223,7 +242,7 @@ namespace IndexingYourHeart.UI
                     break;
                 case (int)ImageRefreshPriorityLayer.SpeakerSingle:
                     string speakSinglePath = $"res://resources/characters/{refreshEvent.What}.png";
-                    Texture2D singleSpeakerTexture = GD.Load <Texture2D>(speakSinglePath);
+                    Texture2D singleSpeakerTexture = GD.Load<Texture2D>(speakSinglePath);
                     speakerSingle.Texture = singleSpeakerTexture;
                     break;
                 case (int)ImageRefreshPriorityLayer.SpeakerLeft:
