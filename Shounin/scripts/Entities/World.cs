@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 // World.cs
 // Indexing Your Heart
 // 
@@ -43,6 +43,7 @@ public partial class World : Node2D
         // Show/hide interaction HUD tutorials whenever the player is in range.
         RollinsportMessageBus.Instance.PlayerInteractionEnteredRange += () =>
         {
+            GD.Print("Player interaction entered");
             _tutorialInteractNode.Visible = true;
             Tween animator = CreateTween().SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Linear).Parallel();
             animator.TweenProperty(_tutorialInteractNode, "modulate", Colors.White, _tutorialInteractFadeTime);

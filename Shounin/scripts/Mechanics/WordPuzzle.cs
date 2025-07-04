@@ -31,7 +31,7 @@ public partial class WordPuzzle : Node2D
     /// </summary>
     [Export]
     public NodePath TextFieldPath;
-    
+
     /// <summary>
     /// The text value of the expected solution.
     /// </summary>
@@ -47,7 +47,7 @@ public partial class WordPuzzle : Node2D
     /// </remarks>
     [Export]
     public string PuzzleId;
-    
+
     /// <summary>
     /// The text field driving the puzzle interaction, derived from <see cref="TextFieldPath"/>.
     /// </summary>
@@ -75,6 +75,7 @@ public partial class WordPuzzle : Node2D
             _eligibleToLaunch = false;
             textField.Clear();
             textField.Hide();
+            RollinsportMessageBus.Instance.SendMessage(RollinsportMessageBus.PlayerInteractionMessage.ExitedRange);
         };
 
         RollinsportMessageBus.Instance.FoundSolution += id =>
@@ -88,7 +89,7 @@ public partial class WordPuzzle : Node2D
     public override void _UnhandledInput(InputEvent @event)
     {
         base._UnhandledInput(@event);
-        
+
         if (Input.IsActionPressed("interact") && _eligibleToLaunch)
         {
             textField.Show();
@@ -104,10 +105,15 @@ public partial class WordPuzzle : Node2D
         _eligibleToLaunch = body is AnthroPlayer;
         textField.Clear();
 
+        if (_eligibleToLaunch)
+        {
+            RollinsportMessageBus.Instance.SendMessage(RollinsportMessageBus.PlayerInteractionMessage.EnteredRange);
+        }
+
         RollinsportMessageBus.Instance.SendMessage(
             RollinsportMessageBus.PuzzleSolutionMessage.RequestForSolution,
             PuzzleId);
-        
+
         if (DisplayServer.IsTouchscreenAvailable() && _eligibleToLaunch)
         {
             textField.Show();
