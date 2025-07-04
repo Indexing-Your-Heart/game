@@ -1,4 +1,17 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeStyle/FileHeader/FileHeaderText/@EntryValue">${File.FileName}
+Indexing Your Heart
+
+Created by ${User.FullName} on ${File.CreatedDay}/${File.CreatedMonth}/${File.CreatedYear}.
+
+This file is part of Indexing Your Heart.
+
+Indexing Your Heart is non-violent software: you can use, redistribute, and/or modify it under the terms of the
+CNPLv7+ as found in the LICENSE file in the source code root directory or at
+&lt;https://git.pixie.town/thufie/npl-builder&gt;.
+
+Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
+details.</s:String>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=ashashat/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=duplicant/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=ejective/@EntryIndexedValue">True</s:Boolean>

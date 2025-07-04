@@ -1,3 +1,19 @@
+#region Copyright
+// UIAnimation.cs
+// Indexing Your Heart
+// 
+// Created by Marquis Kurt on 04/07/2025.
+// 
+// This file is part of Indexing Your Heart.
+// 
+// Indexing Your Heart is non-violent software: you can use, redistribute, and/or modify it under the terms of the
+// CNPLv7+ as found in the LICENSE file in the source code root directory or at
+// <https://git.pixie.town/thufie/npl-builder>.
+// 
+// Indexing Your Heart comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. See the CNPL for
+// details.
+#endregion
+
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -36,28 +52,21 @@ public class UIAnimation(double duration, Tween.EaseType easing, Tween.Transitio
     /// Creates a default animation with the specified property groups.
     /// </summary>
     /// <returns></returns>
-    public static UIAnimation Default()
-    {
-        return new UIAnimation(1, Tween.EaseType.InOut, Tween.TransitionType.Linear);
-    }
+    public static UIAnimation Default() => new(1, Tween.EaseType.InOut, Tween.TransitionType.Linear);
 
     /// <summary>
     /// Creates a linear animation with the specified duration and property groups.
     /// </summary>
     /// <param name="duration">The duration of the animation.</param>
     /// <returns></returns>
-    public static UIAnimation LinearEaseInOut(double duration = 0.5)
-    {
-        return new UIAnimation(duration, Tween.EaseType.InOut, Tween.TransitionType.Linear);
-    }
+    public static UIAnimation LinearEaseInOut(double duration = 0.5) =>
+        new(duration, Tween.EaseType.InOut, Tween.TransitionType.Linear);
 
     /// <summary>
     /// Create an interpolating string animation.
     /// </summary>
     /// <param name="duration">The duration of the animation.</param>
     /// <returns></returns>
-    public static UIAnimation InterpolatingSpring(double duration = 0.3)
-    {
-        return new UIAnimation(duration, Tween.EaseType.Out, Tween.TransitionType.Spring);
-    }
+    public static UIAnimation InterpolatingSpring(double duration = 0.3) =>
+        new(duration, Tween.EaseType.Out, Tween.TransitionType.Spring);
 }
