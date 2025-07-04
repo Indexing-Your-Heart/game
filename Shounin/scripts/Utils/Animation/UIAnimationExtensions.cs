@@ -18,7 +18,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-namespace IndexingYourHeart.Utils;
+namespace IndexingYourHeart.Utils.Animation;
 
 // ReSharper disable once InconsistentNaming
 public readonly struct UIAnimationProperty(GodotObject target, NodePath property, Variant endState)
@@ -40,7 +40,7 @@ public static class UIAnimationExtensions
     /// <param name="animation">The animation that will be executed.</param>
     /// <param name="property">The property to animate.</param>
     /// <param name="completion">The completion handler that executes when the animation has finished.</param>
-    public static void WithAnimation(
+    public static void Animate(
         this Node node,
         UIAnimation animation,
         UIAnimationProperty property,
@@ -60,7 +60,7 @@ public static class UIAnimationExtensions
     /// <param name="properties">The properties to animate.</param>
     /// <param name="concurrent">Whether the properties should be animated concurrently.</param>
     /// <param name="completion">The completion handler that executes when the animation has finished.</param>
-    public static void WithAnimation(this Node node,
+    public static void AnimateMultiple(this Node node,
         UIAnimation animation,
         List<UIAnimationProperty> properties,
         bool concurrent = true,

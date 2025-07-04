@@ -17,6 +17,8 @@
 using Godot;
 using IndexingYourHeart.UI;
 using IndexingYourHeart.Utils;
+using IndexingYourHeart.Utils.Animation;
+using System.Collections.Generic;
 
 namespace IndexingYourHeart.Entities;
 
@@ -43,24 +45,31 @@ public partial class World : Node2D
 
         _timelineNode.TimelineFinished += () =>
         {
+            string timeline = _timelineNode.Script.Replace("res://data/", "").Replace(".jenson", "");
+            RollinsportMessageBus.Instance.SendMessage(RollinsportMessageBus.TimelineMessage.WatchedTimeline, timeline);
+
+            this.Animate(UIAnimation.LinearEaseInOut(), new UIAnimationProperty
+            {
+                Target = _timelineNode,
+                Property = "modulate",
+                EndState = Colors.Transparent
+            }, () =>
+            {
+                _timelineNode.Visible = false;
+                GetTree().Paused = false;
+            });
+
             GetTree().Paused = false;
-
-            // Show movement tutorial when the player is just starting, after the beginning scene plays.
-            _tutorialMovementNode.Visible = true;
-            _timelineNode.Visible = false;
-
-            this.WithAnimation(UIAnimation.LinearEaseInOut(), new UIAnimationProperty
+            this.Animate(UIAnimation.LinearEaseInOut(), new UIAnimationProperty
             {
                 Target = _scriptOverlay,
                 Property = "modulate",
                 EndState = Colors.Transparent
             }, () =>
             {
-                _scriptOverlay.Visible = false;
+                // Show movement tutorial when the player is just starting, after the beginning scene plays.
+                _tutorialMovementNode.Visible = true;
             });
-
-            string timeline = _timelineNode.Script.Replace("res://data/", "").Replace(".jenson", "");
-            RollinsportMessageBus.Instance.SendMessage(RollinsportMessageBus.TimelineMessage.WatchedTimeline, timeline);
         };
 
         // Initiate the preamble when the player is born.
@@ -68,35 +77,46 @@ public partial class World : Node2D
         {
             _timelineNode.Script = "res://data/preamble_v3.jenson";
             _timelineNode.LoadScript();
-            _timelineNode.Visible = true;
-            _scriptOverlay.Visible = true;
-            GetTree().Paused = true;
+        };
+
+        // Load timelines when requested. Notably, whenever a player walks into a trigger that fires this event.
+        RollinsportMessageBus.Instance.TimelineRequestTimeline += (timeline) =>
+        {
+            _timelineNode.Script = timeline;
+            _timelineNode.LoadScript();
         };
 
         // Start the timeline after the script is loaded in.
         _timelineNode.TimelineLoaded += () =>
         {
-            if (!_scriptOverlay.Visible)
-            {
-                this.WithAnimation(UIAnimation.LinearEaseInOut(), new UIAnimationProperty
+            List<UIAnimationProperty> propertiesToAnimate =
+            [
+                new UIAnimationProperty
                 {
                     Target = _scriptOverlay,
                     Property = "modulate",
                     EndState = Colors.White
-                }, () =>
+                },
+                new UIAnimationProperty
                 {
-                    _scriptOverlay.Visible = true;
-                });
-            }
-            _timelineNode.StartTimeline();
+                    Target = _timelineNode,
+                    Property = "modulate",
+                    EndState = Colors.White
+                }
+            ];
+            this.AnimateMultiple(UIAnimation.LinearEaseInOut(), propertiesToAnimate, true, () =>
+            {
+                GetTree().Paused = true;
+                _timelineNode.Visible = true;
+                _timelineNode.StartTimeline();
+            });
         };
 
         // Show/hide interaction HUD tutorials whenever the player is in range.
         RollinsportMessageBus.Instance.PlayerInteractionEnteredRange += () =>
         {
-            GD.Print("Player interaction entered");
             _tutorialInteractNode.Visible = true;
-            this.WithAnimation(UIAnimation.LinearEaseInOut(_tutorialInteractFadeTime), new UIAnimationProperty
+            this.Animate(UIAnimation.LinearEaseInOut(_tutorialInteractFadeTime), new UIAnimationProperty
             {
                 Target = _tutorialInteractNode,
                 Property = "modulate",
@@ -105,7 +125,7 @@ public partial class World : Node2D
         };
         RollinsportMessageBus.Instance.PlayerInteractionExitedRange += () =>
         {
-            this.WithAnimation(UIAnimation.InterpolatingSpring(), new UIAnimationProperty
+            this.Animate(UIAnimation.InterpolatingSpring(), new UIAnimationProperty
             {
                 Target = _tutorialInteractNode,
                 Property = "modulate",
@@ -122,7 +142,7 @@ public partial class World : Node2D
 
     public override void _UnhandledKeyInput(InputEvent @event)
     {
-        this.WithAnimation(UIAnimation.InterpolatingSpring(), new UIAnimationProperty
+        this.Animate(UIAnimation.InterpolatingSpring(), new UIAnimationProperty
         {
             Target = _tutorialMovementNode,
             Property = "modulate",

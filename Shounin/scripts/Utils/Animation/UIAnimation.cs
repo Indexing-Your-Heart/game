@@ -18,7 +18,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-namespace IndexingYourHeart.Utils;
+namespace IndexingYourHeart.Utils.Animation;
 
 // ReSharper disable once InconsistentNaming
 /// <summary>
