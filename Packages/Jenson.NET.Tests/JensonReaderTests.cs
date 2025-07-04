@@ -27,15 +27,15 @@ namespace Jenson.NET.Tests
         public void Test_Parse_BasicStory()
         {
             JensonReader reader = new("""
-            jenson {
-                story {
-                    name "Hello World"
-                    authors "Marquis Kurt" "John Smith"
-                }
+                                      jenson {
+                                          story {
+                                              name "Hello World"
+                                              authors "Marquis Kurt" "John Smith"
+                                          }
 
-                timeline {}
-            }
-            """);
+                                          timeline {}
+                                      }
+                                      """);
             JensonDocument document = reader.Parse();
             Assert.NotNull(document);
             Assert.Equal("Hello World", document.story.title);
@@ -46,17 +46,17 @@ namespace Jenson.NET.Tests
         public void Test_Parse_FullStory()
         {
             JensonReader reader = new("""
-            jenson {
-                story {
-                    name "Hello World"
-                    authors "Marquis Kurt" "John Smith"
-                    chapter 1 name="Nocens Mulier"
-                    copyright "(C) 2024 Marquis Kurt and friends."
-                }
+                                      jenson {
+                                          story {
+                                              name "Hello World"
+                                              authors "Marquis Kurt" "John Smith"
+                                              chapter 1 name="Nocens Mulier"
+                                              copyright "(C) 2024 Marquis Kurt and friends."
+                                          }
 
-                timeline {}
-            }
-            """);
+                                          timeline {}
+                                      }
+                                      """);
             JensonDocument document = reader.Parse();
             Assert.NotNull(document);
             Assert.Equal("Hello World", document.story.title);
@@ -69,17 +69,17 @@ namespace Jenson.NET.Tests
         public void Test_Parse_FullStory_MissingChapterNumber()
         {
             JensonReader reader = new("""
-            jenson {
-                story {
-                    name "Hello World"
-                    authors "Marquis Kurt" "John Smith"
-                    chapter name="Nocens Mulier"
-                    copyright "(C) 2024 Marquis Kurt and friends."
-                }
+                                      jenson {
+                                          story {
+                                              name "Hello World"
+                                              authors "Marquis Kurt" "John Smith"
+                                              chapter name="Nocens Mulier"
+                                              copyright "(C) 2024 Marquis Kurt and friends."
+                                          }
 
-                timeline {}
-            }
-            """);
+                                          timeline {}
+                                      }
+                                      """);
             JensonDocument document = reader.Parse();
             Assert.NotNull(document);
             Assert.Equal("Hello World", document.story.title);
@@ -91,19 +91,20 @@ namespace Jenson.NET.Tests
         [Fact]
         public void Test_Parse_Timeline_DialogueAndNarration()
         {
-            JensonReader reader = new("""
-            jenson {
-                story {
-                    name "The Third Eye"
-                    authors "Renzo Nero" "Lorelei Weiss"
-                }
+            JensonReader reader = new(
+                """
+                jenson {
+                    story {
+                        name "The Third Eye"
+                        authors "Renzo Nero" "Lorelei Weiss"
+                    }
 
-                timeline {
-                    dialogue who="Renate" "Hold me..."
-                    narration "The woman fumbles around in the dark."
+                    timeline {
+                        dialogue who="Renate" "Hold me..."
+                        narration "The woman fumbles around in the dark."
+                    }
                 }
-            }
-            """);
+                """);
             JensonDocument document = reader.Parse();
             Assert.NotNull(document);
             Assert.Equal(2, document.timeline.Length);
@@ -125,24 +126,60 @@ namespace Jenson.NET.Tests
         }
 
         [Fact]
+        public void Test_Parse_Timeline_DialogueShorthand()
+        {
+            JensonReader reader = new(
+                """
+                jenson {
+                    story {
+                        name "The Third Eye"
+                        authors "Renzo Nero" "Lorelei Weiss"
+                    }
+
+                    timeline {
+                        narration "The woman fumbles around in the dark." \
+                            "Blood tears fall from her eye sockets, staining the floors."
+                    }
+                }
+                """);
+            JensonDocument document = reader.Parse();
+            Assert.NotNull(document);
+            Assert.Equal(2, document.timeline.Length);
+
+            var firstEvent = document.timeline[0];
+            Assert.NotNull(firstEvent);
+            Assert.Equal(JensonEventType.Narration, firstEvent.EventType);
+            NarrationEvent narration = (NarrationEvent)firstEvent;
+            Assert.NotNull(narration);
+            Assert.Equal("The woman fumbles around in the dark.", narration.What);
+
+            var secondEvent = document.timeline[1];
+            Assert.NotNull(secondEvent);
+            Assert.Equal(JensonEventType.Narration, secondEvent.EventType);
+            NarrationEvent narration2 = (NarrationEvent)secondEvent;
+            Assert.NotNull(narration2);
+            Assert.Equal("Blood tears fall from her eye sockets, staining the floors.", narration2.What);
+        }
+
+        [Fact]
         public void Test_Parse_Timeline_Refresh()
         {
             JensonReader reader = new("""
-            jenson {
-                story {
-                    name "Game Changer"
-                    authors "Sam Reich" "Brennan Lee Mulligan"
-                }
+                                      jenson {
+                                          story {
+                                              name "Game Changer"
+                                              authors "Sam Reich" "Brennan Lee Mulligan"
+                                          }
 
-                timeline {
-                    refresh "GameChanger_Logo" kind="image" priority=-1
+                                          timeline {
+                                              refresh "GameChanger_Logo" kind="image" priority=-1
 
-                    // Get ready for a GAME CHANGER!
-                    refresh "GameChanger_Intro_a1" kind="sound"
-                    dialogue who="Sam" "Get ready for a GAME CHANGER!"
-                }
-            }
-            """);
+                                              // Get ready for a GAME CHANGER!
+                                              refresh "GameChanger_Intro_a1" kind="sound"
+                                              dialogue who="Sam" "Get ready for a GAME CHANGER!"
+                                          }
+                                      }
+                                      """);
             JensonDocument document = reader.Parse();
             Assert.NotNull(document);
             Assert.Equal(3, document.timeline.Length);
@@ -172,20 +209,20 @@ namespace Jenson.NET.Tests
         void Test_Parse_Timeline_QuestionAndChoice()
         {
             JensonReader reader = new("""
-            jenson {
-                story {
-                    name "A Whole New World"
-                    authors "Marquis Kurt"
-                }
+                                      jenson {
+                                          story {
+                                              name "A Whole New World"
+                                              authors "Marquis Kurt"
+                                          }
 
-                timeline {
-                    question who="Amy" "No, really, who's there?" {
-                        choice "Me!" {  }
-                        choice "A ghost..." {  }
-                    }
-                }
-            }
-            """);
+                                          timeline {
+                                              question who="Amy" "No, really, who's there?" {
+                                                  choice "Me!" {  }
+                                                  choice "A ghost..." {  }
+                                              }
+                                          }
+                                      }
+                                      """);
             JensonDocument document = reader.Parse();
             Assert.NotNull(document);
             Assert.Single(document.timeline);

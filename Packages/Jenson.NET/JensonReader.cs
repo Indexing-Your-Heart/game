@@ -87,9 +87,14 @@ public class JensonReader(string sourceContents)
                     jensonEvents.Add(dialogue);
                     continue;
                 case "narration":
-                    string narrationContent = child.Arguments.First().ToRawKdlString();
-                    NarrationEvent narration = new(narrationContent);
-                    jensonEvents.Add(narration);
+                    var linesToNarrate = child.Arguments.Select(line => line.ToRawKdlString());
+
+                    // ReSharper disable once LoopCanBeConvertedToQuery
+                    foreach (string line in linesToNarrate)
+                    {
+                        NarrationEvent narration = new(line);
+                        jensonEvents.Add(narration);
+                    }
                     continue;
                 case "refresh":
                     string refreshKind = child.Properties["kind"].ToRawKdlString();
