@@ -8,65 +8,63 @@ jenson {
 
     timeline {
         // NOTE: This scene is intended to be played before the game loop starts as an introduction to the game's premise and its characters.
-
         refresh "Apartment" kind="image" priority=-1
 
-        // TODO: Perhaps these individual blocks can be combined into a single node, and let Jenson.NET split it for us?
-        narration "It's been almost three years since I last performed at Antony's tavern."
-        narration "I remember being so nervous about getting up on stage, thinking that I was going in the wrong direction."
-        narration "'Are they going to laugh at me? Is the hammer costume too gimmicky? How do I know I'm not walking into failure?'"
+        narration "It's been almost three years since I last performed at Antony's tavern." \
+            "I remember being so nervous about getting up on stage, thinking that I was going in the wrong direction." \
+            "'Are they going to laugh at me? Is the hammer costume too gimmicky? How do I know I'm not walking into failure?'"
         
-        narration "Some part of me asked those questions again today, wondering if I made the right move then."
-        narration "Surely, I must have, I was fantastic."
-        narration "It was the most thrilling experience I've had in three years."
-        narration "'So, why am I still so uneasy about this? Maybe I'm just lonely...'"
+        narration "Some part of me asked those questions again today, wondering if I made the right move then." \
+            "Surely, I must have, I was fantastic." \
+            "It was the most thrilling experience I've had in three years." \
+            "'So, why am I still so uneasy about this? Maybe I'm just lonely...'"
         
-        narration "I sigh and look out my apartment window, watching as the waves crash against the shore."
-        narration "There's nothing more intriguing and mystifying than to watch on the beach, especially this early in the morning."
-        narration "It puts my mind at ease, allowing me to forget this uneasy feeling and self-doubt. Well, probably that and dream therapy."
+        narration "I sigh and look out my apartment window, watching as the waves crash against the shore." \
+            "There's nothing more intriguing and mystifying than to watch on the beach, especially this early in the morning." \
+            "It puts my mind at ease, allowing me to forget this uneasy feeling and self-doubt. Well, probably that and dream therapy."
 
-        narration "I pull out a plastic container from the fridge and microwave it."
-        narration "Carefully, I open the container and pull out a pancake."
-        narration "'Mmm, pancakes...'"
-        narration "I grab the top layer and take a bite, getting lost in its fluffiness."
-        narration "There's no way I can resist my favorite comfort food."
+        narration "I pull out a plastic container from the fridge and microwave it." \
+            "Carefully, I open the container and pull out a pancake." \
+            "'Mmm, pancakes...'" \
+            "I grab the top layer and take a bite, getting lost in its fluffiness." \
+            "There's no way I can resist my favorite comfort food."
 
-        narration "'Hmm, maybe I should spend some time in nature today...'"
-        narration "I've always wanted to explore the forest north of here. It would probably help me mull over everything."
-        narration "As soon as I finish my pancakes, I grab a water bottle and my purse, put my hammer helmet and shows on, and head out the door."
+        narration "'Hmm, maybe I should spend some time in nature today...'" \
+            "I've always wanted to explore the forest north of here. It would probably help me mull over everything." \
+            "As soon as I finish my pancakes, I grab a water bottle and my purse, put my hammer helmet and shows on, and head out the door."
 
         refresh "ForestDay" kind="image" priority=-1
-        narration "Within half an hor, I make my way into the forest."
-        narration "I keep walking for a while, not really keeping track of where I am."
-        narration "There's barely and wind this morning, and the forest is ever so quiet."
-        narration "It almost feels as if it's been abandoned for years."
-        narration "'What a disturbing yet comforting feeling.'"
+        narration "Within half an hour, I make my way into the forest." \
+            "I keep walking for a while, not really keeping track of where I am." \
+            "There's barely and wind this morning, and the forest is ever so quiet." \
+            "It almost feels as if it's been abandoned for years." \
+            "'What a disturbing yet comforting feeling.'"
 
         refresh "Remains" kind="image" priority=-1
-        narration "Eventually, I find myself approaching some ruins."
-        narration "I can't tell how far I've walked, let alone where I am, exactly."
-        narration "The environment beckons to me, drawing me in closer."
-        narration "I haven't seen anything like this before; it's almost like an entirely different world."
-        narration "I turn to the side and look down, witnessing the entirety of New Rollinsport right undereath my paws."
-        narration "'Wow, I went *far*...'"
+        narration "Eventually, I find myself approaching some ruins." \
+            "I can't tell how far I've walked, let alone where I am, exactly." \
+            "The environment beckons to me, drawing me in closer." \
+            "I haven't seen anything like this before; it's almost like an entirely different world." \
+            "I turn to the side and look down, witnessing the entirety of New Rollinsport right undereath my paws." \
+            "'Wow, I went *far*...'"
         
-        narration "Carefully, I make my way into the center of the ruins, noticing a series of gray obelisks towering over me."
-        narration "The've been arranged into a ring, with one smaller obelisk in the center."
-        narration "Ominous hums echo throughout the ruins, like as if the obelisks were singing to each other in some language I don't understand."
+        narration "Carefully, I make my way into the center of the ruins, noticing a series of gray obelisks towering over me." \
+            "The've been arranged into a ring, with one smaller obelisk in the center." \
+            "Ominous hums echo throughout the ruins, like as if the obelisks were singing to each other in some language I don't understand."
 
         refresh "chels_2h" kind="image" priority=1
         refresh "obelisk" kind="image" priority=2
-        narration "I step closer to one of the obelisks, examining the sides of it."
-        narration "A series of unrecognizable symbols covers each side, something all the obelisks share."
-        narration "Some of the symbols glow dimly, but not quite randomly."
-        narration "Archeology isn't my thing, but this is super weird..."
+        narration "I step closer to one of the obelisks, examining the sides of it." \
+            "A series of unrecognizable symbols covers each side, something all the obelisks share." \
+            "Some of the symbols glow dimly, but not quite randomly." \
+            "Archeology isn't my thing, but this is super weird..."
         
         refresh "obel_0" kind="image" priority=2
-        narration "Suddenly, I feel something poking my back."
-        narration "'Eh?'"
-        narration "I turn around, wary of what I'm gonna find behind me."
-        narration "To my surprise, the smaller obelisk has moved from the center, just barely towering over me."
-        narration "A pair of glowing blue eyes stares at me inquisitively."
+        narration "Suddenly, I feel something poking my back." \
+            "'Eh?'" \
+            "I turn around, wary of what I'm gonna find behind me." \
+            "To my surprise, the smaller obelisk has moved from the center, just barely towering over me." \
+            "A pair of glowing blue eyes stares at me inquisitively."
 
         narration "'What the hell...?!'"
         narration "I'm so confused by what's in front of me, I'm unable to move or think..."
