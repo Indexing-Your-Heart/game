@@ -117,7 +117,12 @@ public partial class RollinsportMessageBus : Node
         /// <summary>
         /// The player has watched the timeline for a specific script.
         /// </summary>
-        WatchedTimeline
+        WatchedTimeline,
+
+        /// <summary>
+        /// A query for a timeline to be played is requested.
+        /// </summary>
+        RequestTimeline
     }
 
     /// <summary>
@@ -245,6 +250,9 @@ public partial class RollinsportMessageBus : Node
             case TimelineMessage.WatchedTimeline:
                 EmitSignal(SignalName.TimelineWatchedTimeline, timeline);
                 break;
+            case TimelineMessage.RequestTimeline:
+                EmitSignal(SignalName.TimelineRequestTimeline, timeline);
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(message), message, null);
         }
@@ -355,6 +363,13 @@ public partial class RollinsportMessageBus : Node
     /// </summary>
     [Signal]
     public delegate void TimelineWatchedTimelineEventHandler(string timeline);
+
+    /// <summary>
+    /// A signal emitted whenever a request to play a timeline is made (i.e.,
+    /// <see cref="TimelineMessage.RequestTimeline"/> was sent to the message bus).
+    /// </summary>
+    [Signal]
+    public delegate void TimelineRequestTimelineEventHandler(string timeline);
     #endregion
 
     #region Puzzle Solution Signals

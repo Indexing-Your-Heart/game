@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://bx7krsbwnppyf"]
+
+[ext_resource type="Script" uid="uid://qlky8aad244e" path="res://scripts/Entities/EventTrigger.cs" id="1_eiqkf"]
+[ext_resource type="FontFile" uid="uid://cr02klatwe4ym" path="res://resources/gui/salmon/s_typewriter_regular.ttf" id="2_s5wmn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qvdmk"]
+font = ExtResource("2_s5wmn")
+font_size = 36
+
+[node name="MeetcuteTrigger" type="Area2D"]
+script = ExtResource("1_eiqkf")
+RetriggerCondition = 1
+TriggerValue = "res://data/meetcute.jenson"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -1)
+debug_color = Color(1, 0.647059, 0, 0.498039)
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.498039)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.0
+offset_top = -24.0
+offset_right = 98.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "TRIGGER"
+label_settings = SubResource("LabelSettings_qvdmk")
