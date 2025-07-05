@@ -427,7 +427,7 @@ script = ExtResource("1_8tixa")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_jfjxg")
+&"": SubResource("AnimationLibrary_jfjxg")
 }
 
 [node name="Background" type="TextureRect" parent="."]

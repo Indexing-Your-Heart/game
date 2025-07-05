@@ -57,10 +57,52 @@ public static class UIAnimationExtensions
     /// </summary>
     /// <param name="node">The node that the tween will be created from.</param>
     /// <param name="animation">The animation that will be executed.</param>
+    /// <param name="property">The property to animate.</param>
+    /// <param name="completion">The completion handler that executes when the animation has finished.</param>
+    public static void Animate(
+        this Control node,
+        UIAnimation animation,
+        UIAnimationProperty property,
+        Action? completion = null)
+    {
+        var animator = node.CreateTween().SetEase(animation.Easing).SetTrans(animation.Transition).Parallel();
+        if (completion != null)
+            animator.Finished += completion;
+        animator.TweenProperty(property.Target, property.Property, property.EndState, animation.Duration);
+    }
+
+    /// <summary>
+    /// Perform an animation and execute an action upon completion.
+    /// </summary>
+    /// <param name="node">The node that the tween will be created from.</param>
+    /// <param name="animation">The animation that will be executed.</param>
     /// <param name="properties">The properties to animate.</param>
     /// <param name="concurrent">Whether the properties should be animated concurrently.</param>
     /// <param name="completion">The completion handler that executes when the animation has finished.</param>
     public static void AnimateMultiple(this Node node,
+        UIAnimation animation,
+        List<UIAnimationProperty> properties,
+        bool concurrent = true,
+        Action? completion = null)
+    {
+        var animator = node.CreateTween().SetEase(animation.Easing).SetTrans(animation.Transition).SetParallel(concurrent);
+        if (completion != null)
+            animator.Finished += completion;
+        foreach (var property in properties)
+        {
+            animator.TweenProperty(property.Target, property.Property, property.EndState, animation.Duration);
+        }
+    }
+
+    /// <summary>
+    /// Perform an animation and execute an action upon completion.
+    /// </summary>
+    /// <param name="node">The node that the tween will be created from.</param>
+    /// <param name="animation">The animation that will be executed.</param>
+    /// <param name="properties">The properties to animate.</param>
+    /// <param name="concurrent">Whether the properties should be animated concurrently.</param>
+    /// <param name="completion">The completion handler that executes when the animation has finished.</param>
+    public static void AnimateMultiple(this Control node,
         UIAnimation animation,
         List<UIAnimationProperty> properties,
         bool concurrent = true,

@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using IndexingYourHeart.Utils;
+using IndexingYourHeart.Utils.Animation;
 using Jenson.NET;
 using Jenson.NET.Models;
 using System;
@@ -205,12 +206,36 @@ namespace IndexingYourHeart.UI
         {
             if (_timelineState != TimelineState.Ended)
             {
+                ResetTimelineState();
                 _timelineState = TimelineState.Ended;
                 GD.Print("Timeline has finished.");
                 EmitSignal(SignalName.TimelineFinished);
+
                 return;
             }
             GD.PushWarning("Attempted to move to an empty slot.");
+        }
+
+        private void ResetTimelineState()
+        {
+            whoLabel.Text = string.Empty;
+            whatLabel.Text = string.Empty;
+
+            List<TextureRect> rects = [backgroundLayer, speakerSingle, speakerLeft, speakerRight];
+            foreach (var rect in rects)
+            {
+                this.Animate(UIAnimation.InterpolatingSpring(), new UIAnimationProperty
+                {
+                    Target = rect,
+                    Property = "modulate",
+                    EndState = Colors.Transparent
+                }, () =>
+                {
+                    rect.Texture = null;
+                    rect.Modulate = Colors.White;
+                });
+            }
+            animator.Play("start_timeline", customSpeed: -1, fromEnd: true);
         }
 
         private void RefreshSceneWithCurrentEvent()
@@ -236,30 +261,55 @@ namespace IndexingYourHeart.UI
             switch (refreshEvent.Priority)
             {
                 case (int)ImageRefreshPriorityLayer.Background:
-                    string bgPath = $"res://resources/backgrounds/{refreshEvent.What}.png";
-                    Texture2D backgroundTexture = GD.Load<Texture2D>(bgPath);
-                    backgroundLayer.Texture = backgroundTexture;
+                    LoadTextureIntoImage(backgroundLayer, refreshEvent, "backgrounds");
                     break;
                 case (int)ImageRefreshPriorityLayer.SpeakerSingle:
-                    string speakSinglePath = $"res://resources/characters/{refreshEvent.What}.png";
-                    Texture2D singleSpeakerTexture = GD.Load<Texture2D>(speakSinglePath);
-                    speakerSingle.Texture = singleSpeakerTexture;
+                    LoadTextureIntoImage(speakerSingle, refreshEvent, "characters");
                     break;
                 case (int)ImageRefreshPriorityLayer.SpeakerLeft:
-                    string speakerLeftPath = $"res://resources/characters/{refreshEvent.What}.png";
-                    Texture2D speakerLeftTexture = GD.Load<Texture2D>(speakerLeftPath);
-                    speakerLeft.Texture = speakerLeftTexture;
+                    LoadTextureIntoImage(speakerLeft, refreshEvent, "characters");
                     speakerLeft.FlipH = true;
                     break;
                 case (int)ImageRefreshPriorityLayer.SpeakerRight:
-                    string speakerRightPath = $"res://resources/characters/{refreshEvent.What}.png";
-                    Texture2D speakerRightTexture = GD.Load<Texture2D>(speakerRightPath);
-                    speakerRight.Texture = speakerRightTexture;
+                    LoadTextureIntoImage(speakerRight, refreshEvent, "characters");
                     break;
                 default:
                     GD.PushWarning($"Unrecognized priority: {refreshEvent.Priority}. Skipping.");
                     break;
             }
+        }
+
+        private void LoadTextureIntoImage(TextureRect imageRect, RefreshEvent refreshEvent, string domain)
+        {
+            this.Animate(UIAnimation.InterpolatingSpring(), new UIAnimationProperty
+            {
+                Target = imageRect,
+                Property = "modulate",
+                EndState = Colors.Transparent
+            }, () =>
+            {
+                if (refreshEvent.What == string.Empty)
+                {
+                    GD.PushWarning("Refresh image name is empty, assuming to clear.");
+                    imageRect.Texture = null;
+                    this.Animate(UIAnimation.InterpolatingSpring(), new UIAnimationProperty
+                    {
+                        Target = imageRect,
+                        Property = "modulate",
+                        EndState = Colors.Transparent
+                    });
+                    return;
+                }
+                var speakerRightPath = $"res://resources/{domain}/{refreshEvent.What}.png";
+                var speakerRightTexture = GD.Load<Texture2D>(speakerRightPath);
+                imageRect.Texture = speakerRightTexture;
+                this.Animate(UIAnimation.InterpolatingSpring(), new UIAnimationProperty
+                {
+                    Target = imageRect,
+                    Property = "modulate",
+                    EndState = Colors.White
+                });
+            });
         }
 
         private void SetupButton(Button button, string choiceName)
