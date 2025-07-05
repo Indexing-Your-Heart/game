@@ -31,6 +31,7 @@ public partial class World : Node2D
     private JensonTimeline _timelineNode;
 
     private const double _tutorialInteractFadeTime = 0.25;
+    private bool _birthTripwire = false;
 
     public override void _Ready()
     {
@@ -68,13 +69,15 @@ public partial class World : Node2D
             }, () =>
             {
                 // Show movement tutorial when the player is just starting, after the beginning scene plays.
-                _tutorialMovementNode.Visible = true;
+                if (_birthTripwire)
+                    _tutorialMovementNode.Visible = true;
             });
         };
 
         // Initiate the preamble when the player is born.
         RollinsportMessageBus.Instance.PlayerGivenBirth += () =>
         {
+            _birthTripwire = true;
             _timelineNode.Script = "res://data/preamble_v3.jenson";
             _timelineNode.LoadScript();
         };

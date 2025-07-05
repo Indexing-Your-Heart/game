@@ -366,7 +366,7 @@ namespace IndexingYourHeart.UI
             whoLabel.Text = dialogue.Who;
             whatLabel.Text = dialogue.What;
             SkipImageModulation();
-            animator.Play("speech", (double)dialogue.What.Length / 4);
+            animator.Play("speech", (double)dialogue.What.Length / 0.25);
         }
 
         private void SetupDialogueWithCurrentEvent()
@@ -374,19 +374,43 @@ namespace IndexingYourHeart.UI
             DialogueEvent dialogue = (DialogueEvent)currentEvent;
             whoLabel.Text = dialogue.Who;
             whatLabel.Text = dialogue.What;
+            whatLabel.VisibleRatio = 0.0f;
             SkipImageModulation();
-            animator.Play("speech", (double)dialogue.What.Length / 4);
-            EmitSignal(SignalName.TimelineDialogueFired, whoLabel.Text, whatLabel.Text);
+
+            this.Animate(UIAnimation.LinearEaseInOut(CalculateCPS(dialogue.What)), new UIAnimationProperty
+            {
+                Target = whatLabel,
+                Property = "visible_ratio",
+                EndState = 1.0f
+            }, () =>
+            {
+                EmitSignal(SignalName.TimelineDialogueFired, whoLabel.Text, whatLabel.Text);
+            });
         }
 
         private void SetupNarration()
         {
             NarrationEvent narration = (NarrationEvent)currentEvent;
             whatLabel.Text = narration.What;
+            whatLabel.VisibleRatio = 0.0f;
             whoLabel.Text = "";
             SkipImageModulation();
-            animator.Play("speech", (double)narration.What.Length / 4);
-            EmitSignal(SignalName.TimelineDialogueFired, "<#narration#>", whatLabel.Text);
+
+            this.Animate(UIAnimation.LinearEaseInOut(CalculateCPS(narration.What)), new UIAnimationProperty
+            {
+                Target = whatLabel,
+                Property = "visible_ratio",
+                EndState = 1.0f
+            }, () =>
+            {
+                EmitSignal(SignalName.TimelineDialogueFired, "<#narration#>", whatLabel.Text);
+            });
+        }
+
+        // ReSharper disable once InconsistentNaming
+        private float CalculateCPS(string line)
+        {
+            return line.Length / 40.0f;
         }
 
         private void SetupQuestion()
