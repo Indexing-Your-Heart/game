@@ -100,15 +100,21 @@ public class JensonReader(string sourceContents)
                     string refreshKind = child.Properties["kind"].ToRawKdlString();
                     int priority = 0;
 
-                    int priorityOut;
                     if (child.Properties.ContainsKey("priority") &&
-                        int.TryParse(child.Properties["priority"].ToRawKdlString(), out priorityOut))
+                        int.TryParse(child.Properties["priority"].ToRawKdlString(), out int priorityOut))
                     {
                         priority = priorityOut;
                     }
 
+                    bool animated = true;
+                    if (child.Properties.ContainsKey("animated") &&
+                        bool.TryParse(child.Properties["animated"].ToRawKdlString(), out bool animatedOut))
+                    {
+                        animated = animatedOut;
+                    }
+
                     string contentToRefresh = child.Arguments.First().ToRawKdlString();
-                    RefreshEvent refreshEvent = new(contentToRefresh, refreshKind, priority);
+                    RefreshEvent refreshEvent = new(contentToRefresh, refreshKind, priority, animated);
                     jensonEvents.Add(refreshEvent);
                     continue;
                 case "question":
@@ -117,6 +123,13 @@ public class JensonReader(string sourceContents)
                     if (child.Properties.ContainsKey("who"))
                     {
                         questionWho = child.Properties["who"].ToRawKdlString();
+                    }
+
+                    bool forceAllOptions = false;
+                    if (child.Properties.ContainsKey("forceAll") &&
+                        bool.TryParse(child.Properties["forceAll"].ToRawKdlString(), out bool forceOptions))
+                    {
+                        forceAllOptions = forceOptions;
                     }
 
                     if (child.Children == null)
@@ -131,7 +144,7 @@ public class JensonReader(string sourceContents)
                         choices.Add(choiceEvent);
                     }
 
-                    QuestionEvent questionEvent = new(questionContent, choices.ToArray(), questionWho);
+                    QuestionEvent questionEvent = new(questionContent, choices.ToArray(), questionWho, forceAllOptions);
                     jensonEvents.Add(questionEvent);
                     continue;
                 default:

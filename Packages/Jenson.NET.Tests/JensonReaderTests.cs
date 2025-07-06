@@ -172,7 +172,7 @@ namespace Jenson.NET.Tests
                                           }
 
                                           timeline {
-                                              refresh "GameChanger_Logo" kind="image" priority=-1
+                                              refresh "GameChanger_Logo" kind="image" priority=-1 animated=false
 
                                               // Get ready for a GAME CHANGER!
                                               refresh "GameChanger_Intro_a1" kind="sound"
@@ -193,6 +193,7 @@ namespace Jenson.NET.Tests
             Assert.Equal("GameChanger_Logo", imageRefreshEvent.What);
             Assert.Equal("image", imageRefreshEvent.Kind);
             Assert.Equal(-1, imageRefreshEvent.Priority);
+            Assert.False(imageRefreshEvent.Animated);
 
             var nextEvent = document.timeline[1];
             Assert.NotNull(nextEvent);
@@ -216,7 +217,7 @@ namespace Jenson.NET.Tests
                                           }
 
                                           timeline {
-                                              question who="Amy" "No, really, who's there?" {
+                                              question who="Amy" "No, really, who's there?" forceAll=true {
                                                   choice "Me!" {  }
                                                   choice "A ghost..." {  }
                                               }
@@ -236,6 +237,7 @@ namespace Jenson.NET.Tests
             Assert.Equal("Amy", questionEvent.Who);
             Assert.Equal("No, really, who's there?", questionEvent.What);
             Assert.Equal(2, questionEvent.Choices.Length);
+            Assert.True(questionEvent.ForceAll);
 
             string[] choiceNames = ["Me!", "A ghost..."];
             Assert.Equal(choiceNames, questionEvent.Choices.Select((choiceEvent) => choiceEvent.What));

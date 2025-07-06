@@ -73,6 +73,8 @@ namespace IndexingYourHeart.UI
 
         private static TimelineState[] UnsafeRefreshStates => [TimelineState.Initial, TimelineState.Loaded, TimelineState.Ended];
 
+        private const string questionReuseString = "<#__REUSE_#>";
+
         /// <summary>
         /// The path to the timeline script to load. Ideally set in the editor, but can be manually instantiated.
         /// </summary>
@@ -87,6 +89,10 @@ namespace IndexingYourHeart.UI
         private Dictionary<string, List<IJensonEvent>> choices = new();
         private Button choiceTemplate;
         private IJensonEvent currentEvent;
+        private UIAnimationProperty dialogueAnimationProp;
+        private bool dialogueIsAnimating;
+        private Tween? dialogueTween;
+        private bool menuRequiresAllSelected;
         private JensonReader reader;
         private List<IJensonEvent> timeline;
         private TimelineState _timelineState = TimelineState.Initial;
@@ -120,6 +126,13 @@ namespace IndexingYourHeart.UI
             choiceTemplate.Visible = false;
             whoLabel.Text = "";
             whatLabel.Text = "";
+
+            dialogueAnimationProp = new UIAnimationProperty
+            {
+                Target = whatLabel,
+                Property = "visible_ratio",
+                EndState = 1.0f
+            };
 
             // Listen for when the animation finishes rather than using a dispatch queue.
             animator.AnimationFinished += delegate
@@ -181,9 +194,9 @@ namespace IndexingYourHeart.UI
 
         private void HandleNextEvent()
         {
-            if (animator == null || menu.Visible || _timelineState == TimelineState.Started)
+            if (menu.Visible || _timelineState == TimelineState.Started)
                 return;
-            if (animator.IsPlaying() && animator.CurrentAnimation != "start_timeline")
+            if (dialogueIsAnimating)
             {
                 SkipAnimation();
                 return;
@@ -261,17 +274,17 @@ namespace IndexingYourHeart.UI
             switch (refreshEvent.Priority)
             {
                 case (int)ImageRefreshPriorityLayer.Background:
-                    LoadTextureIntoImage(backgroundLayer, refreshEvent, "backgrounds");
+                    LoadTextureIntoImageWithAnimationIfNeeded(backgroundLayer, refreshEvent, "backgrounds");
                     break;
                 case (int)ImageRefreshPriorityLayer.SpeakerSingle:
-                    LoadTextureIntoImage(speakerSingle, refreshEvent, "characters");
+                    LoadTextureIntoImageWithAnimationIfNeeded(speakerSingle, refreshEvent, "characters");
                     break;
                 case (int)ImageRefreshPriorityLayer.SpeakerLeft:
-                    LoadTextureIntoImage(speakerLeft, refreshEvent, "characters");
+                    LoadTextureIntoImageWithAnimationIfNeeded(speakerLeft, refreshEvent, "characters");
                     speakerLeft.FlipH = true;
                     break;
                 case (int)ImageRefreshPriorityLayer.SpeakerRight:
-                    LoadTextureIntoImage(speakerRight, refreshEvent, "characters");
+                    LoadTextureIntoImageWithAnimationIfNeeded(speakerRight, refreshEvent, "characters");
                     break;
                 default:
                     GD.PushWarning($"Unrecognized priority: {refreshEvent.Priority}. Skipping.");
@@ -279,7 +292,17 @@ namespace IndexingYourHeart.UI
             }
         }
 
-        private void LoadTextureIntoImage(TextureRect imageRect, RefreshEvent refreshEvent, string domain)
+        private void LoadTextureIntoImageWithAnimationIfNeeded(TextureRect imageRect, RefreshEvent refreshEvent, string domain)
+        {
+            if (!refreshEvent.Animated)
+            {
+                LoadTextureIntoImage(imageRect, refreshEvent, domain);
+                return;
+            }
+            LoadTextureIntoImageAnimated(imageRect, refreshEvent, domain);
+        }
+
+        private void LoadTextureIntoImageAnimated(TextureRect imageRect, RefreshEvent refreshEvent, string domain)
         {
             this.Animate(UIAnimation.InterpolatingSpring(), new UIAnimationProperty
             {
@@ -312,22 +335,43 @@ namespace IndexingYourHeart.UI
             });
         }
 
+        private void LoadTextureIntoImage(TextureRect imageRect, RefreshEvent refreshEvent, string domain)
+        {
+            if (imageRect.Modulate == Colors.Transparent) imageRect.Modulate = Colors.White;
+            if (refreshEvent.What == string.Empty)
+            {
+                GD.PushWarning("Refresh image name is empty, assuming to clear.");
+                imageRect.Texture = null;
+                return;
+            }
+            var speakerRightPath = $"res://resources/{domain}/{refreshEvent.What}.png";
+            var speakerRightTexture = GD.Load<Texture2D>(speakerRightPath);
+            imageRect.Texture = speakerRightTexture;
+        }
+
         private void SetupButton(Button button, string choiceName)
         {
             button.Text = choiceName.ToUpper();
             button.Visible = true;
             button.Pressed += delegate
             {
-                menu.Visible = false;
-                if (!choices.ContainsKey(choiceName))
-                    return;
-                var events = choices[choiceName];
-                var mergedTimeline = events;
-                foreach (var timelineEvent in timeline)
+                if (menuRequiresAllSelected)
                 {
-                    mergedTimeline.Add(timelineEvent);
+                    button.QueueFree();
+                    if (choices.Count == 1)
+                    {
+                        menuRequiresAllSelected = false;
+                    }
                 }
+                menu.Visible = false;
+                if (!choices.TryGetValue(choiceName, out var events)) // guard let choiceName else { return }
+                    return;
+                var mergedTimeline = events;
+                if (choices.Count > 1)
+                    mergedTimeline.Add(new QuestionEvent(questionReuseString, []));
+                mergedTimeline.AddRange(timeline);
                 timeline = mergedTimeline;
+                choices.Remove(choiceName);
                 Next();
             };
 
@@ -351,9 +395,11 @@ namespace IndexingYourHeart.UI
                 case JensonEventType.Question:
                     QuestionEvent question = (QuestionEvent)currentEvent;
                     DialogueEvent questionDialogue = new DialogueEvent(question.Who, question.What);
-                    SetupDialogue(questionDialogue);
+                    if (question.ForceAll && !menuRequiresAllSelected)
+                        SetupDialogue(questionDialogue);
                     SetupQuestion();
                     break;
+                case JensonEventType.Choice:
                 default:
                     GD.PushWarning($"Unknown event type: {currentEvent.EventType}. Skipping.");
                     Next();
@@ -361,54 +407,48 @@ namespace IndexingYourHeart.UI
             }
         }
 
+        private void AnimateWhatMessage(string what)
+        {
+            whatLabel.Text = what;
+            whatLabel.VisibleRatio = 0.0f;
+
+            dialogueIsAnimating = true;
+            dialogueTween = this.Animate(UIAnimation.LinearEaseInOut(CalculateCPS(what)), dialogueAnimationProp, () =>
+            {
+                dialogueTween = null;
+                dialogueIsAnimating = false;
+            });
+        }
+
         private void SetupDialogue(DialogueEvent dialogue)
         {
             whoLabel.Text = dialogue.Who;
-            whatLabel.Text = dialogue.What;
             SkipImageModulation();
-            animator.Play("speech", (double)dialogue.What.Length / 0.25);
+            AnimateWhatMessage(dialogue.What);
         }
 
         private void SetupDialogueWithCurrentEvent()
         {
             DialogueEvent dialogue = (DialogueEvent)currentEvent;
             whoLabel.Text = dialogue.Who;
-            whatLabel.Text = dialogue.What;
-            whatLabel.VisibleRatio = 0.0f;
             SkipImageModulation();
 
-            this.Animate(UIAnimation.LinearEaseInOut(CalculateCPS(dialogue.What)), new UIAnimationProperty
-            {
-                Target = whatLabel,
-                Property = "visible_ratio",
-                EndState = 1.0f
-            }, () =>
-            {
-                EmitSignal(SignalName.TimelineDialogueFired, whoLabel.Text, whatLabel.Text);
-            });
+            EmitSignal(SignalName.TimelineDialogueFired, whoLabel.Text, whatLabel.Text);
+            AnimateWhatMessage(dialogue.What);
         }
 
         private void SetupNarration()
         {
             NarrationEvent narration = (NarrationEvent)currentEvent;
-            whatLabel.Text = narration.What;
-            whatLabel.VisibleRatio = 0.0f;
             whoLabel.Text = "";
             SkipImageModulation();
 
-            this.Animate(UIAnimation.LinearEaseInOut(CalculateCPS(narration.What)), new UIAnimationProperty
-            {
-                Target = whatLabel,
-                Property = "visible_ratio",
-                EndState = 1.0f
-            }, () =>
-            {
-                EmitSignal(SignalName.TimelineDialogueFired, "<#narration#>", whatLabel.Text);
-            });
+            EmitSignal(SignalName.TimelineDialogueFired, "<#narration#>", whatLabel.Text);
+            AnimateWhatMessage(narration.What);
         }
 
         // ReSharper disable once InconsistentNaming
-        private float CalculateCPS(string line)
+        private static float CalculateCPS(string line)
         {
             return line.Length / 40.0f;
         }
@@ -416,7 +456,16 @@ namespace IndexingYourHeart.UI
         private void SetupQuestion()
         {
             QuestionEvent question = (QuestionEvent)currentEvent;
+
+            if (menuRequiresAllSelected && question.What == questionReuseString)
+            {
+                SkipImageModulation();
+                menu.Visible = true;
+                return;
+            }
+
             choices.Clear();
+            menuRequiresAllSelected = question.ForceAll;
             foreach (var choice in question.Choices)
             {
                 choices[choice.What] = choice.Events.ToList();
@@ -427,7 +476,7 @@ namespace IndexingYourHeart.UI
                 menu.RemoveChild(child);
             }
 
-            foreach (var choiceName in question.Choices.Select((choice) => choice.What))
+            foreach (string choiceName in question.Choices.Select((choice) => choice.What))
             {
                 Button newButton = (Button)choiceTemplate.Duplicate();
                 SetupButton(newButton, choiceName);
@@ -438,7 +487,9 @@ namespace IndexingYourHeart.UI
 
         private void SkipAnimation()
         {
-            animator.Stop();
+            dialogueTween?.Stop();
+            dialogueTween = null;
+            dialogueIsAnimating = false;
             whoLabel.VisibleRatio = 1;
             whatLabel.VisibleRatio = 1;
 
@@ -457,7 +508,7 @@ namespace IndexingYourHeart.UI
         public delegate void TimelineLoadedEventHandler();
 
         [Signal]
-        public delegate void TimelineDialogueFiredEventHandler(string Who, string What);
+        public delegate void TimelineDialogueFiredEventHandler(string who, string what);
 
         [Signal]
         public delegate void TimelineFinishedEventHandler();

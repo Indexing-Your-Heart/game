@@ -399,13 +399,6 @@ _data = {
 &"start_timeline": SubResource("Animation_3ybv0")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ubefd"]
-bg_color = Color(0.192157, 0.160784, 0.184314, 0.847059)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
 [sub_resource type="LabelSettings" id="LabelSettings_4q5km"]
 font = ExtResource("3_ern7x")
 font_size = 36
@@ -415,6 +408,15 @@ font_color = Color(0.513726, 0.737255, 0.980392, 1)
 font = ExtResource("3_h3uwv")
 font_size = 27
 font_color = Color(0.760784, 0.709804, 0.682353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ubefd"]
+bg_color = Color(0.2, 0.160784, 0.184314, 0.980392)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
 
 [node name="JensonTimeline" type="Control"]
 layout_mode = 3
@@ -480,36 +482,13 @@ size_flags_horizontal = 3
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Choice Menu" type="VBoxContainer" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.219
-anchor_right = 0.781
-anchor_bottom = 1.0
-offset_left = -0.400019
-offset_right = 0.399971
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="Template Button" type="Button" parent="Choice Menu"]
-custom_minimum_size = Vector2(2.08165e-12, 56)
-layout_mode = 2
-theme = ExtResource("2_m83yl")
-theme_override_colors/font_color = Color(0.760784, 0.709804, 0.682353, 1)
-theme_override_fonts/font = ExtResource("3_h3uwv")
-theme_override_font_sizes/font_size = 27
-theme_override_styles/normal = SubResource("StyleBoxFlat_ubefd")
-text = "Template Button"
-
 [node name="Dialogue Tape" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.604
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 0.399971
+offset_top = 0.399963
 color = Color(0.2, 0.160784, 0.184314, 0.980392)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Dialogue Tape"]
@@ -539,3 +518,26 @@ label_settings = SubResource("LabelSettings_1608h")
 autowrap_mode = 3
 visible_characters = 0
 visible_ratio = 0.0
+
+[node name="Choice Menu" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.219
+anchor_right = 0.781
+anchor_bottom = 1.0
+offset_left = -0.400019
+offset_right = 0.399971
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Template Button" type="Button" parent="Choice Menu"]
+custom_minimum_size = Vector2(2.08165e-12, 56)
+layout_mode = 2
+theme = ExtResource("2_m83yl")
+theme_override_colors/font_color = Color(0.760784, 0.709804, 0.682353, 1)
+theme_override_fonts/font = ExtResource("3_h3uwv")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_ubefd")
+text = "Template Button"

@@ -40,7 +40,7 @@ public static class UIAnimationExtensions
     /// <param name="animation">The animation that will be executed.</param>
     /// <param name="property">The property to animate.</param>
     /// <param name="completion">The completion handler that executes when the animation has finished.</param>
-    public static void Animate(
+    public static Tween Animate(
         this Node node,
         UIAnimation animation,
         UIAnimationProperty property,
@@ -50,6 +50,7 @@ public static class UIAnimationExtensions
         if (completion != null)
             animator.Finished += completion;
         animator.TweenProperty(property.Target, property.Property, property.EndState, animation.Duration);
+        return animator;
     }
 
     /// <summary>
@@ -59,7 +60,7 @@ public static class UIAnimationExtensions
     /// <param name="animation">The animation that will be executed.</param>
     /// <param name="property">The property to animate.</param>
     /// <param name="completion">The completion handler that executes when the animation has finished.</param>
-    public static void Animate(
+    public static Tween Animate(
         this Control node,
         UIAnimation animation,
         UIAnimationProperty property,
@@ -69,6 +70,7 @@ public static class UIAnimationExtensions
         if (completion != null)
             animator.Finished += completion;
         animator.TweenProperty(property.Target, property.Property, property.EndState, animation.Duration);
+        return animator;
     }
 
     /// <summary>
@@ -79,7 +81,7 @@ public static class UIAnimationExtensions
     /// <param name="properties">The properties to animate.</param>
     /// <param name="concurrent">Whether the properties should be animated concurrently.</param>
     /// <param name="completion">The completion handler that executes when the animation has finished.</param>
-    public static void AnimateMultiple(this Node node,
+    public static Tween AnimateMultiple(this Node node,
         UIAnimation animation,
         List<UIAnimationProperty> properties,
         bool concurrent = true,
@@ -92,6 +94,7 @@ public static class UIAnimationExtensions
         {
             animator.TweenProperty(property.Target, property.Property, property.EndState, animation.Duration);
         }
+        return animator;
     }
 
     /// <summary>
@@ -102,7 +105,7 @@ public static class UIAnimationExtensions
     /// <param name="properties">The properties to animate.</param>
     /// <param name="concurrent">Whether the properties should be animated concurrently.</param>
     /// <param name="completion">The completion handler that executes when the animation has finished.</param>
-    public static void AnimateMultiple(this Control node,
+    public static Tween AnimateMultiple(this Control node,
         UIAnimation animation,
         List<UIAnimationProperty> properties,
         bool concurrent = true,
@@ -115,5 +118,6 @@ public static class UIAnimationExtensions
         {
             animator.TweenProperty(property.Target, property.Property, property.EndState, animation.Duration);
         }
+        return animator;
     }
 }
