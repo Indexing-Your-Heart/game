@@ -32,7 +32,7 @@ jobs:
       - checkout
       - run: git submodule sync
       - run: git submodule update --init
-      - run: brew install dotnet-sdk
+      - run: brew install dotnet-sdk dotnet@8
       - run: ./Shounin/addons/gdUnit4/runtest.sh -a ./test || if [ $? -eq 101 ]; then echo "warnings"; elif [ $? -eq 0 ]; then echo "success"; else exit 1; fi
       - store_test_results:
           path: ./reports/report_1/results.xml
