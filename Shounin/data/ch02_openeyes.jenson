@@ -1,0 +1,158 @@
+jenson {
+    story {
+        name "Indexing Your Heart"
+        authors "Indexing Your Heart authors"
+        chapter 2 name="Geöffnete Augen"
+        copyright "(C) 2021-2025 Indexing Your Heart authors."
+    }
+    
+    timeline {
+        refresh "Remains" kind="image" priority=-1
+        refresh "obelisk" kind="image" priority=0
+        
+        narration "Whoa... I've never seen *anything* like this before." \
+            "It feels so... ominous." \
+            "Have these obelisks always been here?" \
+            "Who built them? Where did they come from?"
+        
+        narration "I move closer to the obelisk in the center, inspecting its sides." \
+            "There are several symbols along the side, just like what I saw on those stones in the forest." \
+            "Surely it's some ancient language, but the inscription is too complex for me to understand." \
+            "I can only make a out a few words like 'slab'. The rest seems like gibberish."
+        
+        refresh "" kind="image" priority=0
+        refresh "chels_5h" kind="image" priority=1
+        refresh "obelisk" kind="image" priority=2
+        
+        narration "As I walk around and inspect each of the sides, I begin to feel uneasy, but I don't know why." \
+            "It's almost as if there's a presence nearby, but there's no one to be seen." \
+            "After circling around, I'm suddenly greeted by a pair of glowing blue eyes, staring at me."
+        
+        refresh "obel_0" kind="image" priority=2 animated=false
+        dialogue who="Chelsea" "Aah~!"
+        narration "I jolt back." \
+            "The obelisk's deep azure eyes pierce into me, searching yet never finding." \
+            "Ooh..."
+        dialogue who="Chelsea + ???" "(in unison) Great lyric."
+        narration "I let out a yelp and jolt back even further than before." \
+            "Is this thing reading my mind???" \
+            "Does it *know* me somehow?"
+        dialogue who="Chelsea" "I..."
+        dialogue who="Chelsea" "Do you...?"
+        dialogue who="???" "Read minds? Afraid not."
+        refresh "obel_0b" kind="image" priority=2 animated=false
+        dialogue who="???" "But, given your... reaction, I presume I must have... nailed it."
+        narration "I let out a small groan." \
+            "This thing did *not* just make that joke..."
+        refresh "obel_0" kind="image" priority=2 animated=false
+        dialogue who="???" "Such amusing statements would be fitting for your circumstances."
+        refresh "obel_0d" kind="image" priority=2 animated=false
+        dialogue who="???" "Though it appears you didn't find it amusing at all, and for that I apologize."
+        narration "I'm at a loss for words. What did I even get myself into?"
+
+        refresh "obel_0" kind="image" priority=2 animated=false
+        dialogue who="???" "This is a very unusual situation you find yourself in."
+        dialogue who="Chelsea" "Yeah, no kidding! Who are you?"
+        dialogue who="???" "That's a question I've pondered for half a century."
+        refresh "obel_0d" kind="image" priority=2 animated=false
+        dialogue who="???" "Unfortunately, such an answer is... less than straightforward."
+        refresh "obel_0" kind="image" priority=2 animated=false
+        dialogue who="???" "Time has been far kinder to you in answering that question for yourself."
+        dialogue who="???" "Perhaps I should be envious of you because of it, but such feelings don't amount to anything substantial."
+        dialogue who="Chelsea" "Uhh..."
+        refresh "obel_0d" kind="image" priority=2 animated=false
+        dialogue who="???" "I wish I could look into a mirror and see myself, finalized."
+        dialogue who="???" "Unfortunately, my... transition has dragged on for far too long."
+        narration "The obelisk groans and shifts a little."
+        dialogue who="Chelsea" "That's not a..."
+        refresh "obel_0" kind="image" priority=2 animated=false
+        dialogue who="???" "A costume? No. This is my body."
+        dialogue who="???" "At least, as it currently stands."
+        
+        narration "This whole thing is just... surreal." \
+            "I can't quite describe just how perplexed I am by everything." \
+            "Is this a nightmare? Some fantasy conjured by my imagination?" \
+            "Have I gone crazy?"
+        dialogue who="???" "I apologize for being such an enigma to you."
+        dialogue who="???" "The last sentient being I interacted with walked away, filled with confusion, guilt, and regret."
+        dialogue who="???" "Granted, the guilt and regret were already there..."
+        dialogue who="Chelsea" "I just... uhh..."
+        
+        narration "Everything that's happening is making me dizzy."
+        refresh "chels_5" kind="image" priority=1
+        narration "I gradually sit down to get my bearings."
+        dialogue who="???" "This is a lot to process."
+        dialogue who="Chelsea" "(breathing heavily) Yeah. No kidding."
+        narration "The obelisk awkwardly bends down, flops on the group, and sits up."
+        dialogue who="???" "It's a little tricky when you don't have any limbs."
+        
+        narration "I might as well take this one step at a time."
+        
+        question "What should I ask?" forceAll=true {
+            choice "How do you know so much about me?" {
+                refresh "obel_0" kind="image" priority=2 animated=false
+                dialogue who="???" "The moment you came up to me, I began to better understand you."
+                dialogue who="???" "I may not know everything about you, but I can make some educated assumptions."
+                dialogue who="???" "We've stood the test of time for hundreds of years and know a lot about humans."
+                dialogue who="???" "And, naturally, that knowledge expanded."
+            }
+            choice "How are you able to move?" {
+                refresh "obel_0" kind="image" priority=2 animated=false
+                dialogue who="???" "Over the duration of my transition, my existing body became more malleable."
+                dialogue who="???" "I do not know what my new body looks like, but I know it can affect my current one."
+                dialogue who="???" "Both bodies are in symbiosis with each other."
+            }
+            choice "How long have you been alive?" {
+                refresh "obel_0" kind="image" priority=2 animated=false
+                dialogue who="???" "We've been around for hundreds of years and have stood the test of time."
+                dialogue who="???" "In human years, inclusive of my current form, I'd be more than a few centuires old."
+            }
+            choice "Do you always make such terrible jokes?" {
+                refresh "obel_0c" kind="image" priority=2 animated=false
+                dialogue who="???" "Only as often as a typical father would."
+            }
+        }
+
+        refresh "obel_0" kind="image" priority=2 animated=false
+        dialogue who="Chelsea" "Man, I just..."
+        dialogue who="Chelsea" "This is just a lot to take in."
+        refresh "obel_0d" kind="image" priority=2 animated=false
+        dialogue who="???" "Such knowledge is a burden to be carried."
+        refresh "obel_0" kind="image" priority=2 animated=false
+        dialogue who="???" "You wouldn't be the first or the last."
+        
+        narration "The obelisk bends around while readjusting itself."
+        dialogue who="???" "It's been uncomfortably lonely up here."
+        dialogue who="???" "Unfortunately, after some time, I lost contact with my kind."
+        refresh "obel_0d" kind="image" priority=2 animated=false
+        dialogue who="???" "A consequence of this... transition..."
+        refresh "obel_0" kind="image" priority=2 animated=false
+        dialogue who="???" "You're the first being I've interacted with since I lost contact."
+        dialogue who="???" "Would you... allow me to accompany you on this journey in the forest?"
+        dialogue who="Chelsea" "Well, it's not really much of a *journey* per se..."
+        dialogue who="Chelsea" "But I'll allow it."
+        
+        narration "The two of us get up from the ground, and I stick my helmet back on."
+        refresh "chels_5h" kind="image" priority=1 animated=true
+        refresh "obel_0c" kind="image" priority=2 animated=true
+        dialogue who="???" "I give you my deepest gratitude."
+        refresh "obel_0" kind="image" priority=2 animated=false
+        dialogue who="Chelsea" "No problem. Do you have a name?"
+        dialogue who="Chelsea" "Unless it's the long inscription on all your sides..."
+        dialogue who="???" "We are a nameless kind, as we don't have a concept of individiual identity."
+        dialogue who="???" "And my inscription isn't a name, but rather my... destiny, in a way."
+        dialogue who="Chelsea" "... huh. How should I call you, then?"
+        dialogue who="Chelsea" "Unless 'O Mysterious Obelisk' is enough."
+        refresh "obel_0b" kind="image" priority=2 animated=false
+        dialogue who="???" "I'd rather not. Omniscience does not include omnipotence."
+        dialogue who="???" "I have no power or authority over you and wouldn't want such thing, anyway."
+        refresh "obel_0" kind="image" priority=2 animated=false
+        dialogue who="???" "I suppose I will have to come up with a name once I finish my transition."
+        dialogue who="???" "But for now... 'Obel' should do..."
+        dialogue who="Chelsea" "Alright, Obel, nice to meet you."
+        dialogue who="Chelsea" "I'm Chelsea, though I guess you might've already known that."
+        refresh "obel_0c" kind="image" priority=2 animated=false
+        dialogue who="Obel" "A pleasure to meet you, Chelsea."
+        narration "This is going to be a long journey..."
+    }
+}
