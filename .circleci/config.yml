@@ -3,8 +3,7 @@ version: 2.1
 jobs:
   download_godot:
     macos:
-      xcode: 16.0.0
-      resource_class: m2pro.medium
+      xcode: 16.4.0
     environment:
       HOMEBREW_NO_AUTO_UPDATE: 1
     steps:
@@ -21,8 +20,7 @@ jobs:
             - godot
   unit_test:
     macos:
-      xcode: 15.0.0
-      resource_class: m2pro.medium
+      xcode: 16.4.0
     environment:
       HOMEBREW_NO_AUTO_UPDATE: 1
     steps:
