@@ -27,8 +27,8 @@ jobs:
     steps:
       - attach_workspace:
           at: /tmp/workspace
-      - run: echo "export PATH='/tmp/workspace/godot/Godot.app/Contents/MacOS:$PATH'" >> "$BASH_ENV"
-      - run: echo "export GODOT_BIN='/tmp/workspace/godot/Godot.app/Contents/MacOS/Godot'" >> "$BASH_ENV"
+      - run: echo "export PATH='/tmp/workspace/godot/Godot_mono.app/Contents/MacOS:$PATH'" >> "$BASH_ENV"
+      - run: echo "export GODOT_BIN='/tmp/workspace/godot/Godot_mono.app/Contents/MacOS/Godot'" >> "$BASH_ENV"
       - checkout
       - run: git submodule sync
       - run: git submodule update --init
