@@ -31,7 +31,7 @@ public partial class PuzzleTextField : Control
     private AshashatKeyboard _keyboard;
     private AnimationPlayer _animationPlayer;
     #endregion
-    
+
     private string _currentText;
     private string _currentRenderedText;
     private readonly List<AshashatKey> _keyHistory = [];
@@ -53,6 +53,10 @@ public partial class PuzzleTextField : Control
         _currentText = "";
         _currentRenderedText = "";
         _textLabel.Text = "";
+        if (_animationPlayer.IsPlaying())
+            _animationPlayer.Stop();
+        _textLabel.Modulate = Colors.White;
+        _animationPlayer.Play("RESET");
     }
 
     /// <summary>
@@ -66,7 +70,7 @@ public partial class PuzzleTextField : Control
     {
         _keyboard.GetNode<Control>("Main Grid/P Key").GrabFocus();
     }
-    
+
     /// <summary>
     /// Mark the field as the correct solution.
     /// </summary>
@@ -89,12 +93,14 @@ public partial class PuzzleTextField : Control
     /// Prefill the text field with a value.
     /// </summary>
     /// <param name="text">The value to prefill into the text field.</param>
-    public void Prefill(string text)
+    public void Prefill(string text, bool correct = false)
     {
         _currentText = text;
-        
+
         // TODO: Make sure to transform this to a font-rendered version.
         _textLabel.Text = _currentText;
+        if (correct)
+            _animationPlayer.Play("correct");
     }
 
     /// <summary>

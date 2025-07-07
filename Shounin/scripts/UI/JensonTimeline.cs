@@ -159,7 +159,7 @@ namespace IndexingYourHeart.UI
         {
             if (!Visible)
                 return;
-            if (Input.IsActionPressed("timeline_next") || Input.IsMouseButtonPressed(MouseButton.Left))
+            if (Input.IsActionJustPressed("timeline_next"))
                 HandleNextEvent();
             base._Input(@event);
         }

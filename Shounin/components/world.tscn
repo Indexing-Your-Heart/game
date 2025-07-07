@@ -198,7 +198,7 @@ PuzzleId = "pzl_primitives_3"
 [node name="Primitives Cylinder" parent="Primitives" instance=ExtResource("5_td85v")]
 position = Vector2(-120, 3091)
 TextFieldPath = NodePath("../../CanvasLayer/Puzzle Keyboard")
-ExpectedSolution = "kabatui"
+ExpectedSolution = "kabutui"
 PuzzleId = "pzl_primitives_4"
 
 [node name="Primitives Idea" parent="Primitives" instance=ExtResource("5_td85v")]
@@ -222,7 +222,7 @@ PuzzleId = "pzl_primitives_7"
 [node name="Primitives Animal" parent="Primitives" instance=ExtResource("5_td85v")]
 position = Vector2(503, 2515)
 TextFieldPath = NodePath("../../CanvasLayer/Puzzle Keyboard")
-ExpectedSolution = "bupaʃ"
+ExpectedSolution = "bupeʃ"
 PuzzleId = "pzl_primitives_8"
 
 [node name="Primitives Pyramid" parent="Primitives" instance=ExtResource("5_td85v")]
@@ -250,4 +250,6 @@ position = Vector2(480, 1392)
 
 [node name="MeetcuteTrigger" parent="Triggers" instance=ExtResource("12_q4ndo")]
 position = Vector2(493, 1813)
+RetriggerCondition = 0
+TriggerValue = "res://data/ch02_openeyes.jenson"
 TriggerShape = SubResource("RectangleShape2D_wiyff")

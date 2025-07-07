@@ -32,6 +32,7 @@ public partial class World : Node2D
 
     private const double _tutorialInteractFadeTime = 0.25;
     private bool _birthTripwire = false;
+    private string? _timelineTripwire;
 
     public override void _Ready()
     {
@@ -85,13 +86,24 @@ public partial class World : Node2D
         // Load timelines when requested. Notably, whenever a player walks into a trigger that fires this event.
         RollinsportMessageBus.Instance.TimelineRequestTimeline += (timeline) =>
         {
+            RollinsportMessageBus.Instance.SendMessage(RollinsportMessageBus.TimelineMessage.RequestSeenTimelines, timeline);
             _timelineNode.Script = timeline;
             _timelineNode.LoadScript();
+        };
+
+        RollinsportMessageBus.Instance.TimelineWatchedTimeline += (timeline) =>
+        {
+            _timelineTripwire = timeline;
         };
 
         // Start the timeline after the script is loaded in.
         _timelineNode.TimelineLoaded += () =>
         {
+            if (_timelineTripwire != null)
+            {
+                _timelineTripwire = null;
+                return;
+            }
             List<UIAnimationProperty> propertiesToAnimate =
             [
                 new UIAnimationProperty

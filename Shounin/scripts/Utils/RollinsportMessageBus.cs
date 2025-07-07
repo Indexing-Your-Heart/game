@@ -122,7 +122,12 @@ public partial class RollinsportMessageBus : Node
         /// <summary>
         /// A query for a timeline to be played is requested.
         /// </summary>
-        RequestTimeline
+        RequestTimeline,
+
+        /// <summary>
+        /// A query for whether the player has previously seen a timeline.
+        /// </summary>
+        RequestSeenTimelines
     }
 
     /// <summary>
@@ -163,6 +168,12 @@ public partial class RollinsportMessageBus : Node
         {
             if (!_timelines.Contains(timeline))
                 _timelines.Add(timeline);
+        };
+
+        TimelineRequestSeenTimelines += (timeline) =>
+        {
+            if (_timelines.Contains(timeline))
+                SendMessage(TimelineMessage.WatchedTimeline, timeline);
         };
 
         // Save the player data to a file when exiting.
@@ -253,6 +264,9 @@ public partial class RollinsportMessageBus : Node
             case TimelineMessage.RequestTimeline:
                 EmitSignal(SignalName.TimelineRequestTimeline, timeline);
                 break;
+            case TimelineMessage.RequestSeenTimelines:
+                EmitSignal(SignalName.TimelineRequestSeenTimelines, timeline);
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(message), message, null);
         }
@@ -297,6 +311,8 @@ public partial class RollinsportMessageBus : Node
         _puzzles = new Array<string>(playerFile.SolvedPuzzles);
         Vector2 globalPosition = playerFile.RealizedPlayerPosition();
         _playerGlobalPosition = globalPosition;
+
+        _timelines = new Array<string>(playerFile.PlayedTimelines);
 
         CallDeferred("emit_signal", nameof(SignalName.RequestPlayerReposition), globalPosition);
         return true;
@@ -370,6 +386,13 @@ public partial class RollinsportMessageBus : Node
     /// </summary>
     [Signal]
     public delegate void TimelineRequestTimelineEventHandler(string timeline);
+
+    /// <summary>
+    /// A signal emitted whenever a request to query if a player has seen a specific timeline (i.e.,
+    /// <see cref="TimelineMessage.RequestSeenTimelines"/> was sent to the message bus.
+    /// </summary>
+    [Signal]
+    public delegate void TimelineRequestSeenTimelinesEventHandler(string timeline);
     #endregion
 
     #region Puzzle Solution Signals

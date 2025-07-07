@@ -82,7 +82,7 @@ public partial class WordPuzzle : Node2D
         {
             if (!_eligibleToLaunch || id != PuzzleId)
                 return;
-            textField.Prefill(ExpectedSolution);
+            textField.Prefill(ExpectedSolution, true);
         };
     }
 
