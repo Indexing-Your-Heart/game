@@ -11,42 +11,13 @@ jobs:
       - run: |
           mkdir -p workspace/godot
           cd workspace/godot
-          aria2c 'https://github.com/godotengine/godot/releases/download/4.1.1-stable/Godot_v4.1.1-stable_macos.universal.zip'
-          unzip Godot_v4.1.1-stable_macos.universal.zip
-          rm Godot_v4.1.1-stable_macos.universal.zip
+          aria2c 'https://github.com/godotengine/godot/releases/download/4.4.1-stable/Godot_v4.4.1-stable_mono_macos.universal.zip'
+          unzip Godot_v4.4.1-stable_mono_macos.universal.zip
+          rm Godot_v4.4.1-stable_mono_macos.universal.zip
       - persist_to_workspace:
           root: workspace
           paths:
             - godot
-  integration_test:
-    macos:
-      xcode: 15.0.0
-      resource_class: macos.m1.medium.gen1
-    environment:
-      HOMEBREW_NO_AUTO_UPDATE: 1
-    steps:
-      - attach_workspace:
-          at: /tmp/workspace
-      - run: echo "export PATH='/tmp/workspace/godot/Godot.app/Contents/MacOS:$PATH'" >> "$BASH_ENV"
-      - checkout
-      - run: git submodule sync
-      - run: git submodule update --init
-      - run: brew install just
-      - run: just fetch-tools
-      - run: just unswizzle-assets
-      - run: just build-all-deps-ci
-      - run: |
-          mkdir -p /tmp/buildlogs/
-          mv *_build.log /tmp/buildlogs/
-      - store_artifacts:
-          path: /tmp/buildlogs
-          destination: dependency_builds
-      - run: just test-game
-      - run: |
-          mkdir -p /tmp/testresults/godot
-          cp integration_results_*.xml /tmp/testresults/godot
-      - store_test_results:
-          path: /tmp/testresults/godot
   unit_test:
     macos:
       xcode: 15.0.0
@@ -57,49 +28,22 @@ jobs:
       - attach_workspace:
           at: /tmp/workspace
       - run: echo "export PATH='/tmp/workspace/godot/Godot.app/Contents/MacOS:$PATH'" >> "$BASH_ENV"
+      - run: echo "export GODOT_BIN='/tmp/workspace/godot/Godot.app/Contents/MacOS/Godot'" >> "$BASH_ENV"
       - checkout
       - run: git submodule sync
       - run: git submodule update --init
-      - run: brew install just
-      - run: just test-all-deps-ci
+      - run: brew install dotnet-sdk
+      - run: ./Shounin/addons/gdUnit4/runtest.sh -a ./test || if [ $? -eq 101 ]; then echo "warnings"; elif [ $? -eq 0 ]; then echo "success"; else exit 1; fi
       - store_test_results:
-          path: /tmp/testresults
-  lint:
-    macos:
-      xcode: 15.0.0
-    environment:
-      HOMEBREW_NO_AUTO_UPDATE: 1
-    steps:
-      - attach_workspace:
-          at: /tmp/workspace
-      - run: echo "export PATH='/tmp/workspace/godot/Godot.app/Contents/MacOS:$PATH'" >> "$BASH_ENV"
-      - checkout
-      - run: git submodule sync
-      - run: git submodule update --init
-      - run: brew install just swiftlint
-      - run: just lint || true
-      - run: |
-          mkdir -p /tmp/logs
-          cp swiftlint*.log /tmp/logs 
-      - store_artifacts:
-          path: /tmp/logs
-          destination: swiftlint
+          path: ./reports/report_1/results.xml
 
 workflows:
   merge_request:
     jobs:
       - download_godot
-      - lint:
-          requires:
-            - download_godot
 
 # TODO: Enable unit and integration tests once CircleCI offers M1 machines to customers for free
 # (see https://discuss.circleci.com/t/macos-intel-support-deprecation-in-january-2024/48718).
-
-      # - unit_test:
-      #     requires:
-      #       - download_godot
-      # - integration_test:
-      #     requires:
-      #       - download_godot
-      #       - unit_test
+      - unit_test:
+          requires:
+            - download_godot
