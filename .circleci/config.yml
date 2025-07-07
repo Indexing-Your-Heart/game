@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   download_godot:
     macos:
-      xcode: 16.4.0
+      xcode: 15.0.0
     environment:
       HOMEBREW_NO_AUTO_UPDATE: 1
     steps:
@@ -32,7 +32,7 @@ jobs:
       - run: git submodule sync
       - run: git submodule update --init
       - run: brew install dotnet-sdk dotnet@8
-      - run: ./Shounin/addons/gdUnit4/runtest.sh -a ./test || if [ $? -eq 101 ]; then echo "warnings"; elif [ $? -eq 0 ]; then echo "success"; else exit 1; fi
+      - run: cd Shounin && ./addons/gdUnit4/runtest.sh -a ./test || if [ $? -eq 101 ]; then echo "warnings"; elif [ $? -eq 0 ]; then echo "success"; else exit 1; fi
       - store_test_results:
           path: ./reports/report_1/results.xml
 
